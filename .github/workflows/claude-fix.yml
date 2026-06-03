@@ -1,0 +1,21 @@
+```yaml
+    name: Claude Auto-Fix
+    on:
+      issues:
+        types: [labeled]
+
+    jobs:
+      claude_fix:
+        if: github.event.label.name == 'trigger_claude'
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout code
+            uses: actions/checkout@v4
+
+         - name: Run Claude Code Fix
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          claude --execute "Resolve a issue #${{ github.event.issue.number }}: ${{ github.event.issue.title }}. Read description: ${{ github.event.issue.body }}. After fixing the code in the repository, create a branch and open a detailed pull request."
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
