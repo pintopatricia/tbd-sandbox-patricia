@@ -1,0 +1,18 @@
+"__typename": "{{__typename}}{{^__typename}}MarketViewLinkCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:marketViewLink:924.228886655{{/urn}}",
+{{#if market}}
+  {{#with market}}
+    "market": {
+      {{> bff-market }}
+    },
+  {{/with}}
+{{/if}}
+{{#if badge}}
+  "badge": "{{badge}}{{^badge}}CUP{{/badge}}",
+{{/if}}
+"viewLink": {
+  {{#with viewLink}}
+    {{> bff-view-link}}
+  {{/with}}
+}
+

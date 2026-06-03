@@ -1,0 +1,41 @@
+name: Test Tools
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'tools/**'
+
+# Ensures that additional commits on the same PR cancels the previous github run.
+# This helps to ensure that our apps are not unnecessarily using resources.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-tools:
+    runs-on: ubuntu-latest
+    env:
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      MONTEROSA_TOKEN: ${{ secrets.MONTEROSA_TOKEN }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+      - name: Cache node dependencies
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Install dependencies
+        run: yarn install --immutable-cache
+      - name: Run test:tools
+        run: yarn test:tools

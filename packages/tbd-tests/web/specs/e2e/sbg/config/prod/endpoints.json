@@ -1,0 +1,53 @@
+{
+  "X_APPLICATION": "DuJYiLaRflSsueCd",
+
+  "SSO": {
+    "endpoint": "https://ssosbg.prd.internal/api/login"
+  },
+
+  "SKYBET_CLUB_TRACKER": {
+    "endpoint": "https://promos.skybet.com/skybetclub"
+  },
+
+  "FACETED_SEARCH_URL_OPTIONS": {
+    "hostname": "scan-prdsbg.prd.internal",
+    "port": 80,
+    "pathname": "/www/sports/navigation/facet/v1.0/search",
+    "protocol": "http"
+  },
+
+  "FCQ_VALIDATE_MARKETS_ELIGIBILITY_URL_OPTIONS": {
+    "hostname": "fcqsbg.prd.internal",
+    "port": 80,
+    "pathname": "/fcq-service/v0.1/validateMarketsEligibility",
+    "protocol": "http"
+  },
+
+  "FCQ_GET_ELIGIBLE_BETS_URL_OPTIONS": {
+    "hostname": "fcqsbg.prd.internal",
+    "port": 80,
+    "pathname": "/fcq-service/v0.1/getEligibleBets",
+    "protocol": "http"
+  },
+
+  "COS_GET_ELIGIBLE_MARKETS_URL_OPTIONS": {
+    "hostname": "cos.prd.internal",
+    "port": 80,
+    "pathname": "/cashout-service/readonly/v1/getEligibleMarkets",
+    "protocol": "http"
+  },
+
+  "COS_TRANSACTIONAL_URL_OPTIONS": {
+    "hostname": "cos.prd.internal",
+    "port": 80,
+    "pathname": "/cashout-service/transactional/v1/cashout",
+    "protocol": "http"
+  },
+
+  "SCO_SPORTSBOOK_CASHOUT_BET_URL_OPTIONS": {
+    "hostname": "sco.skybet.com",
+    "port": 80,
+    "pathname": "/www/sports/fixedodds/transactional/v1/cashoutBet",
+    "protocol": "http"
+  }
+}

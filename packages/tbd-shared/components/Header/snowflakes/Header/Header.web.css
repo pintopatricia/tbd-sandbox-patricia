@@ -1,0 +1,111 @@
+.header {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--header-vertical-gap-primary);
+}
+
+.accountHeader {
+  display: flex;
+
+  gap: var(--header-horizontal-gap-primary);
+
+  align-items: center;
+
+  width: 100%;
+  height: var(--header-container-sizing);
+  padding: var(--header-padding);
+
+  background: var(--header-background-primary-colour);
+}
+
+.logoContainer {
+  flex-grow: 1;
+
+  max-height: var(--header-logo-sizing);
+
+  text-decoration: none;
+}
+
+.logoLink {
+  display: block;
+
+  width: fit-content;
+}
+
+.accountContainersGroup {
+  display: flex;
+
+  gap: var(--header-horizontal-gap-secondary);
+}
+
+.accountContainer {
+  display: flex;
+
+  gap: var(--header-horizontal-gap-secondary);
+
+  align-items: center;
+  justify-content: center;
+}
+
+.balanceLabel {
+  font: var(--header-label-typography);
+  color: var(--header-text-label-colour);
+  text-decoration-line: var(--header-label-typography-text-decoration-line);
+  text-transform: var(--header-label-typography-text-transform);
+  letter-spacing: var(--header-label-typography-letter-spacing);
+}
+
+.userIconContainer {
+  width: var(--header-icon-profile-icon-sizing);
+  height: var(--header-icon-profile-icon-sizing);
+}
+
+.backButton {
+  width: var(--header-icon-back-icon-sizing);
+  height: var(--header-icon-back-icon-sizing);
+}
+
+.menuButton {
+  width: var(--header-icon-action-icon-left-sizing);
+  height: var(--header-icon-action-icon-left-sizing);
+}
+
+.loginContainer {
+  display: flex;
+
+  gap: var(--header-horizontal-gap-primary);
+
+  padding: var(--header-padding);
+
+  background-color: var(--header-background-secondary-colour);
+  border-bottom: var(--header-border);
+}
+
+.balanceContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--header-vertical-gap-secondary);
+
+  align-items: flex-end;
+}
+
+.generosityWalletActionContainer {
+  display: flex;
+
+  align-items: flex-end;
+}
+
+.notificationIconContainer {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  width: var(--header-icon-profile-icon-sizing);
+  height: var(--header-icon-profile-icon-sizing);
+}

@@ -1,0 +1,6 @@
+fragment fixtureWithStats on Fixture {
+  ...fixture
+  ... on FootballFixture {
+    ...footballFixtureWithStats
+  }
+}

@@ -1,0 +1,59 @@
+:root {
+  --crest-img: 16px;
+  --crest-spacing: 6px;
+}
+
+.matchTimeline {
+  color: var(--neutrals-text-default);
+}
+
+.timelineContainer {
+  display: flex;
+}
+
+.condensed .timelineContainer {
+  width: calc(100% - 16px);
+}
+
+.teamCrests {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  align-self: center;
+
+  margin-right: var(--spacing-1);
+}
+
+.teamCrest,
+.teamCrests svg {
+  width: var(--crest-img);
+  height: var(--crest-img);
+}
+
+.condensed .teamCrest:first-child,
+.condensed .teamCrests svg:first-child {
+  margin-top: 0;
+  margin-bottom: var(--spacing-3);
+}
+
+.timelines {
+  display: flex;
+
+  flex-grow: 1;
+}
+
+.condensed .timeline:not(:last-child) {
+  margin-right: var(--spacing-1);
+}
+
+.prematch {
+  display: flex;
+
+  align-items: center;
+
+  padding: var(--spacing-1);
+
+  color: var(--neutrals-text-secondary);
+}

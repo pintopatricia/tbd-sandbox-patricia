@@ -1,0 +1,36 @@
+"__typename": "{{__typename}}{{^__typename}}MarketGraphsCard{{/__typename}}",
+"urn":"{{urn}}{{^urn}}ppb:tbd:card:marketGraphs:1.123456789{{/urn}}",
+"title": "{{title}}{{^title}}Match Odds{{/title}}",
+{{#with market}}
+    "market": {
+        "__typename": "{{__typename}}{{^__typename}}ExchangeMarket{{/__typename}}",
+        "name": "{{name}}{{^name}}Match Odds{{/name}}",
+        "urn": "{{urn}}{{^urn}}ppb:excMarket:1.160337355{{/urn}}",
+        "marketType": "{{marketType}}{{^marketType}}MATCH_ODDS{{/marketType}}",
+        "marketTypeName": "{{marketTypeName}}{{^marketTypeName}}Match Odds{{/marketTypeName}}",
+        "bettingType": "{{bettingType}}{{^bettingType}}ODDS{{/bettingType}}",
+        "eachWayDivisor": {{eachWayDivisor}}{{^eachWayDivisor}}null{{/eachWayDivisor}},
+        "numberOfWinners": {{numberOfWinners}}{{^numberOfWinners}}1{{/numberOfWinners}},
+        "hierarchy": {
+          {{> bff-hierarchy hierarchy}}
+        },
+        {{#unless noLiveData}}
+        "liveData": {
+            "exchangeMarketStatus": "{{liveData.exchangeMarketStatus}}{{^liveData.exchangeMarketStatus}}OPEN{{/liveData.exchangeMarketStatus}}",
+            "totalMatched": {{liveData.totalMatched}}{{^liveData.totalMatched}}5.56365244306876{{/liveData.totalMatched}},
+            "bspMarket": {{liveData.bspMarket}}{{^liveData.bspMarket}}false{{/liveData.bspMarket}},
+            "inplay": {{#if liveData.inplay}}true{{else}}false{{/if}},
+            "turnInPlayEnabled": {{#unless liveData.turnInPlayEnabled}}false{{else}}true{{/unless}}
+        },
+        {{/unless}}
+        "sport": {
+          {{> bff-sport sport}}
+        },
+        "runners": [
+        {{> bff-runners }}
+    ]
+    },
+{{/with}}
+{{#with runner}}
+    {{> bff-runner-market-graphs}}
+{{/with}}

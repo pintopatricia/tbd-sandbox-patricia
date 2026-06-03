@@ -1,0 +1,135 @@
+@startuml ota_decision_flows
+title expo-updates OTA Decision Flows
+
+skinparam DefaultFontName Helvetica
+skinparam ActivityBackgroundColor #FAFAFA
+skinparam ActivityBorderColor #555
+skinparam ActivityDiamondBackgroundColor #FFFCEE
+
+start
+
+partition "Native Cold Launch (EXUpdates)" {
+  :EXUpdatesAppController.start();
+  note right
+    Reads Expo.plist / AndroidManifest.xml:
+      EXUpdatesURL
+      EXUpdatesRuntimeVersion = R
+      EXUpdatesCodeSigningCertificate
+  end note
+
+  if (Cached/embedded bundle\nload fails (fatal)?) then (yes)
+    #LightPink:Emergency Launch;
+    note right
+      Updates.isEmergencyLaunch = true
+      Updates.emergencyLaunchReason populated.
+      Falls back to embedded bundle.
+    end note
+    stop
+  endif
+
+  if (Cached OTA bundle valid\nfor runtimeVersion R?) then (yes)
+    :Load cached OTA bundle;
+  else (no)
+    :Load embedded bundle;
+  endif
+
+  :Start JS runtime;
+}
+
+partition "JS - checkAndDownloadOtaUpdate" {
+  :AppContext loaded (throttles available);
+
+  if (hasCheckedOnce?) then (yes)
+    stop
+  endif
+
+  if (!__DEV__ && Updates.isEnabled\n&& RELEASE_MODE=production\n&& ENABLE_OTA_UPDATES throttle active?) then (yes)
+    note right: Fast path - skip launch args fetch
+  else (no)
+    :LaunchArgumentsModule\n.getLaunchArguments();
+    if (ENABLE_OTA_UPDATES\nlaunch arg = true?) then (no)
+      stop
+    endif
+  endif
+
+  :hasCheckedOnce = true;
+
+  :Updates.checkForUpdateAsync();
+  note right
+    Headers sent:
+      expo-runtime-version  = R
+      expo-channel-name     = channel
+      expo-platform         = ios | android
+      expo-current-update-id
+  end note
+}
+
+partition "tbdnota.tools.flutter.com" {
+  :channel -> branch resolution;
+
+  if (Branch has active update\nfor (R, platform)?) then (no)
+    #LightYellow:Return noUpdateAvailable\n(NoUpdateAvailable\nor RuntimeVersionMismatch);
+    :Client keeps current bundle;
+    stop
+  endif
+
+  if (Active update is a\nrollback directive?\n(set by eoas rollback)) then (yes)
+    #LightBlue:Return rollBackToEmbedded\n(signed directive);
+  else (no)
+    if (Active updateId ==\nclient's current updateId?) then (yes)
+      #LightYellow:Return noUpdateAvailable;
+      :Client keeps current bundle;
+      stop
+    endif
+
+    #LightGreen:Return signed manifest\n(bundle URL + asset URLs);
+    note right
+      Active update came from one of:
+        - fresh eoas publish
+        - eoas republish of an earlier updateId
+    end note
+  endif
+}
+
+partition "JS - Updates.fetchUpdateAsync" {
+  if (Response is a\nrollback directive?) then (yes)
+    :Verify directive signature\nagainst embedded cert;
+
+    if (Signature valid?) then (yes)
+      #LightGreen:Apply rollback on next cold launch;
+    else (no)
+      #LightCoral:Reject directive;
+    endif
+    stop
+  endif
+
+  :Verify manifest signature\nagainst embedded code-signing cert;
+
+  if (Signature valid?) then (no)
+    #LightCoral:Reject manifest;
+    stop
+  endif
+
+  :Download bundle + assets;
+  :Verify each asset hash;
+  #LightGreen:Cache for next cold launch;
+  note right
+    Silent - no reload this session.
+    Applied on next cold launch.
+  end note
+  stop
+}
+
+legend right
+  == Identifiers ==
+  runtimeVersion (R) : Fingerprint of native code.
+  channel : What the client asks for (e.g. bf-production). Points to a branch
+  branch  : Bucket of updates.
+
+  == Publish-side operations (eoas) ==
+  eoas publish    : upload new bundle to branch under (R, platform)
+  eoas republish  : point branch's "current" at an earlier updateId
+  eoas rollback   : rollBackToEmbedded directive on branch
+end legend
+
+@enduml

@@ -1,0 +1,40 @@
+fragment australianRulesFixture on AustralianRulesFixture {
+  __typename
+  urn
+  isAmericanFormat
+  runnerNames {
+    home
+    away
+  }
+  score {
+    goals {
+      scoreHome: home
+      scoreAway: away
+    }
+    behinds {
+      scoreHome: home
+      scoreAway: away
+    }
+    points {
+      scoreHome: home
+      scoreAway: away
+    }
+  }
+  periodScores {
+    score {
+      goals {
+        scoreHome: home
+        scoreAway: away
+      }
+      behinds {
+        scoreHome: home
+        scoreAway: away
+      }
+      points {
+        scoreHome: home
+        scoreAway: away
+      }
+    }
+    australianRulesPeriod
+  }
+}

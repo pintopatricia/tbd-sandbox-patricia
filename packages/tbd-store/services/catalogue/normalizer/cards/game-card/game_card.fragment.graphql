@@ -1,0 +1,12 @@
+fragment gameCard on GameCard {
+  __typename
+  urn
+  game {
+    ...game
+  }
+}
+
+fragment gameCardPartial on GameCard {
+  __typename
+  urn
+}

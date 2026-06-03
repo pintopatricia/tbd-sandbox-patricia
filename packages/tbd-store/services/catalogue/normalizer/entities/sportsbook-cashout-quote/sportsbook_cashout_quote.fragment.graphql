@@ -1,0 +1,11 @@
+fragment sportsbookCashoutQuote on SportsbookCashoutQuote {
+  __typename
+  urn
+  betUrn
+  quote
+  stake
+  betDelay
+  cashOutToken
+  refreshRate
+  status
+}

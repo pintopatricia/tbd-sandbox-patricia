@@ -1,0 +1,11 @@
+"expressionTemplateId": "{{expressionTemplateId}}",
+{{#if baseExpressionTemplateDefinitions}}
+  "baseExpressionTemplateDefinitions": [
+    {{#each baseExpressionTemplateDefinitions}}
+      {
+        {{> bff-obb-base-expression-template}}
+      }
+      {{#unless @last}},{{/unless}}
+    {{/each}}
+  ]
+{{/if}}

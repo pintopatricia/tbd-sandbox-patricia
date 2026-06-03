@@ -1,0 +1,8 @@
+.openBets {
+  width: var(--my-bets-icon-sizing);
+  height: var(--my-bets-icon-sizing);
+}
+
+.openBets > svg {
+  fill: var(--my-bets-icon-colour);
+}

@@ -1,0 +1,53 @@
+.marketSwitcherContainer {
+  display: flex;
+}
+
+.marketSwitcher {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--market-switcher-vertical-gap);
+
+  align-items: flex-start;
+
+  width: 100%;
+  padding: var(--market-switcher-padding);
+
+  border-radius: var(--market-switcher-border-radius);
+}
+
+.title {
+  font: var(--market-switcher-label-typography);
+  color: var(--market-switcher-label-colour);
+  text-decoration-line: var(--market-switcher-label-typography-text-decoration-line);
+  text-transform: var(--market-switcher-label-typography-text-transform);
+  letter-spacing: var(--market-switcher-label-typography-letter-spacing);
+}
+
+.labelContainer {
+  display: flex;
+
+  gap: var(--market-switcher-horizontal-gap);
+
+  align-self: stretch;
+}
+
+.label {
+  overflow: hidden;
+
+  font: var(--market-switcher-title-typography);
+  color: var(--market-switcher-title-colour);
+  text-decoration-line: var(--market-switcher-title-typography-text-decoration-line);
+  text-overflow: ellipsis;
+  text-transform: var(--market-switcher-title-typography-text-transform);
+  letter-spacing: var(--market-switcher-title-typography-letter-spacing);
+  white-space: nowrap;
+}
+
+.icon {
+  flex-shrink: 0;
+
+  width: var(--market-switcher-icon-sizing);
+  height: var(--market-switcher-icon-sizing);
+}

@@ -1,0 +1,49 @@
+.container {
+  overflow: hidden;
+}
+
+.borderRadius {
+  border-radius: var(--bet-selections-border-radius);
+}
+
+.header {
+  display: flex;
+
+  flex-direction: row;
+
+  gap: var(--bet-selections-header-horizontal-gap);
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: var(--bet-selections-header-padding);
+
+  background-color: var(--bet-selections-header-background-colour);
+  filter: var(--bet-selections-header-drop-shadow);
+}
+
+.title {
+  flex: 1;
+
+  font: var(--bet-selections-header-label-typography);
+  color: var(--bet-selections-header-label-colour);
+}
+
+.selections {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--bet-selections-bottom-content-vertical-gap);
+
+  padding: var(--bet-selections-bottom-content-padding);
+
+  background-color: var(--bet-selections-background-colour);
+}
+
+.chevron {
+  width: var(--bet-selections-header-chevron-icon-sizing);
+  height: var(--bet-selections-header-chevron-icon-sizing);
+
+  fill: var(--bet-selections-header-label-colour);
+}

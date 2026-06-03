@@ -1,0 +1,86 @@
+{{#each this}}
+  {
+  {{#with clock}}
+    "clock":{ {{> sca-clock }} },
+  {{/with}}
+  {{#with details}}
+    "details": {
+    {{#ifEquals __typename "GoalIncident"}}
+      "__typename": "GoalIncident",
+      "goalType": "{{goalType}}{{^goalType}}NORMAL{{/goalType}}",
+      {{#if goalScorer}} {{#with goalScorer}}  "goalScorer": { {{> sca-football-player}} }, {{/with}} {{else}} "goalScorer": null, {{/if}}
+      {{#if assist}} {{#with assist}}  "assist": { {{> sca-football-player}} }, {{/with}} {{else}} "assist": null, {{/if}}
+      "side": "{{side}}{{^side}}HOME{{/side}}"
+    {{/ifEquals}}
+
+    {{#ifEquals __typename "CardIncident"}}
+      "__typename": "CardIncident",
+      "cardType": "{{cardType}}{{^cardType}}YELLOW{{/cardType}}",
+      {{#if player}} {{#with player}} "player": { {{> sca-football-player}} }, {{/with}} {{else}} "player": null, {{/if}}
+      "side": "{{side}}{{^side}}HOME{{/side}}"
+    {{/ifEquals}}
+
+    {{#ifEquals __typename "SubstitutionIncident"}}
+      "__typename": "SubstitutionIncident",
+      "side": "{{side}}{{^side}}HOME{{/side}}",
+      {{#with playerIn}} "playerIn": { {{> sca-football-player }} }, {{/with}}
+      {{#with playerOut}} "playerOut": { {{> sca-football-player }} } {{/with}}
+    {{/ifEquals}}
+
+    {{#ifEquals __typename "PenaltyIncident"}}
+      "__typename": "PenaltyIncident",
+      "penaltyType": "{{penaltyType}}{{^penaltyType}}AWARDED{{/penaltyType}}",
+      "side": "{{side}}{{^side}}HOME{{/side}}"
+    {{/ifEquals}}
+
+    {{#ifEquals __typename "PenaltyShootoutIncident"}}
+      "__typename": "PenaltyShootoutIncident",
+      "penaltyShootoutType": "{{penaltyShootoutType}}{{^penaltyShootoutType}}MISSED{{/penaltyShootoutType}}",
+      "side": "{{side}}{{^side}}HOME{{/side}}",
+      {{#with player}} "player": { {{> sca-football-player }} } {{/with}}
+    {{/ifEquals}}
+
+    {{#ifEquals __typename "PeriodIncident"}}
+      "__typename": "PeriodIncident",
+      "periodType": "{{periodType}}{{^periodType}}INJURY_TIME_UPDATE{{/periodType}}",
+      "period": "{{period}}{{^period}}REGULAR{{/period}}",
+      "status": "{{status}}{{^status}}INPLAY_FIRST_HALF{{/status}}",
+      {{#if injuryTime}}
+      "injuryTime": {{injuryTime}}{{^injuryTime}}2{{/injuryTime}}
+      {{else}}
+        "injuryTime": null
+      {{/if}}
+    {{/ifEquals}}
+
+    {{#ifEquals __typename "ShotIncident"}}
+      "__typename": "ShotIncident",
+      "shotType": "{{shotType}}{{^shotType}}SAVED_BLOCKED{{/shotType}}",
+      "side": "{{side}}{{^side}}HOME{{/side}}",
+      {{#with player}} "player": { {{> sca-football-player }} } {{/with}}
+    {{/ifEquals}}
+
+    {{#ifEquals __typename "SetPieceIncident"}}
+      "__typename": "SetPieceIncident",
+      "setPieceType": "{{setPieceType}}{{^setPieceType}}FREE_KICK{{/setPieceType}}",
+      "side": "{{side}}{{^side}}HOME{{/side}}"
+    {{/ifEquals}}
+
+    {{#ifEquals __typename "FoulIncident"}}
+      "__typename": "FoulIncident",
+      "foulType": "{{foulType}}{{^foulType}}FOUL{{/foulType}}",
+      "side": "{{side}}{{^side}}HOME{{/side}}",
+      {{#with player}} "player": { {{> sca-football-player }} } {{/with}}
+    {{/ifEquals}}
+
+    {{#ifEquals __typename "AttackIncident"}}
+      "__typename": "AttackIncident",
+      "attackType": "{{attackType}}{{^attackType}}DANGEROUS_ATTACK{{/attackType}}",
+      "side": "{{side}}{{^side}}HOME{{/side}}"
+    {{/ifEquals}}
+    },
+  {{/with}}
+  "period": "{{period}}{{^period}}REGULAR{{/period}}",
+  "periodStatus": "{{periodStatus}}{{^periodStatus}}PRE_MATCH{{/periodStatus}}"
+  }
+  {{#unless @last}},{{/unless}}
+{{/each}}

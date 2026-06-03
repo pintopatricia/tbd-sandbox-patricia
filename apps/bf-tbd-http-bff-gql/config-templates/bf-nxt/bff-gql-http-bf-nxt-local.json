@@ -1,0 +1,646 @@
+{
+  "env": "development",
+  "strand": {
+    "module": "$PWD/dist/bf-tbd-http-bff-gql-v11"
+  },
+  "stereotype": {
+    "http": {
+      "ifc": "127.0.0.1",
+      "port": 8082,
+      "scriptContext": "/api",
+      "circuitBreakerThreshold": 300,
+      "maxTimeout": 5000,
+      "socketKeepAliveTimeOut": 120000,
+      "stopTimeOut": 2000,
+      "jsonBodyLimit": "200000",
+      "cors": {
+        "allowedOrigins": "*",
+        "allowedMethods": "GET,POST,HEAD",
+        "allowedHeaders": "X-Requested-With,Content-Type,Accept,Origin",
+        "preflightMaxAge": 1800,
+        "allowCredentials": true,
+        "exposedHeaders": ""
+      },
+      "validateXApplicationHeader": true,
+      "internalDomainSuffixes": ["com.nxt.ppbdev.com", "nxt.com.betfair", "sportschannels-dev.aws.private"]
+    }
+  },
+  "plugins": {
+    "metrics": {
+      "performanceLogging": {
+        "samplingLevel": 1000
+      },
+      "statse": {
+        "samplingLevel": 1000,
+        "collector": {
+          "host": "127.0.0.1",
+          "port": 14444
+        }
+      },
+      "opentracing": {
+        "samplingLevel": 1000,
+        "collector": {
+          "host": "127.0.0.1",
+          "port": 6832
+        }
+      },
+      "outboundRequestsDebugger": {
+        "enabled": false
+      }
+    },
+    "ERO-UK": {
+      "url": "http://ero.nxt.internal/api/ero-json-rpc",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host"
+    },
+    "Facet": {
+      "url": "http://scan-nxtbfg.nxt.internal/api/nav-json-rpc",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host"
+    },
+    "LogProcessingService": {
+      "url": "https://lps-rest-proxy-nxtbf.platformservices-dev.aws.private/",
+      "poolSize": 20,
+      "timeout": 500,
+      "headerStrategy": "basic-no-host",
+      "certificates": {
+        "pfx": "config/certificates/{{tla_tbd/data/misc/qa/tbd.qa.internal_cert.pfx}}",
+        "pfx-passphrase": "{{tla_tbd/data/common/certificatePassphrase}}",
+        "ca": "config/certificates/{{tla_tbd/data/common/betfair.truststore.dev.pem}}",
+        "verify-server-certificate": false
+      }
+    },
+    "FacetSportsbook": {
+      "url": "http://nav-sb.nxt.dev.betfair/api/nav-json-rpc",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host"
+    },
+    "EventBasedSearch": {
+      "url": "http://khojq-nxtbf.nxt.internal/KHOJQ/v1.0/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host"
+    },
+    "SMP": {
+      "url": "http://smp.nxt.internal/api/sports/fixedodds/readonly/v1.0/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": {
+        "config": {
+          "x-authentication": "sessionId",
+          "x-ip": "ip",
+          "x-uuid": "uuid",
+          "x-application": "appKey",
+          "user-agent": "userAgent",
+          "vid": "visitorId"
+        }
+      }
+    },
+    "SSM": {
+      "url": "https://ssmbf.nxt.internal/SessionManagement/v1.0/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "certificates": {
+        "pfx": "config/certificates/{{tla_tbd/data/misc/qa/tbd.qa.internal_cert.pfx}}",
+        "pfx-passphrase": "{{tla_tbd/data/common/certificatePassphrase}}",
+        "ca": "config/certificates/{{tla_tbd/data/common/betfair.truststore.dev.pem}}",
+        "verify-server-certificate": false
+      }
+    },
+    "FixedOddsBetReporting": {
+      "url": "http://fbr.nxt.internal/api/FixedOddsBetReporting/v1.0/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host"
+    },
+    "FixedOddsCashoutQuote": {
+      "url": "http://fcq.nxt.internal/api/json-rpc",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host"
+    },
+    "HeritageOXIFeed": {
+      "url": "https://transactions.test-app-guea.staging.skybet.net/heritage-oxi-feed/v1/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "minimal",
+      "certificates": {
+        "ca": "config/certificates/{{tla_tbd/data/common/betfair.truststore.dev.pem}}",
+        "verify-server-certificate": true
+      }
+    },
+    "BrowserIdentity": {
+      "url": "http://bxi.nxt.internal/BoxeverIdentity/v1/",
+      "poolSize": 20,
+      "timeout": 400,
+      "headerStrategy": "basic-no-host"
+    },
+    "Boxever": {
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "minimal",
+      "url": "https://api.boxever.com/",
+      "clientKey": "{{tla_tbd/data/common/boxever_client_key}}"
+    },
+    "BoxeverService": {
+      "channel": "MOBILE_WEB",
+      "pointOfSale": "betfair",
+      "browserIdentityConfig": {
+        "brand": "Betfair",
+        "product": "Exchange",
+        "channel": "Mobile"
+      }
+    },
+    "VQA": {
+      "url": "http://vqabf.nxt.internal/VideoQualificationAPI/v1.7/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host"
+    },
+    "ContentServingV2": {
+      "url": "http://calbf.nxt.internal/ContentServing/v2/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host"
+    },
+    "PersonalisedPromotionsHub": {
+      "url": "http://pphbf.nxt.internal/api/customisedPromotions",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": {
+        "config": {
+          "x-authentication": "sessionId",
+          "x-ip": "ip",
+          "x-uuid": "uuid",
+          "x-application": "appKey",
+          "user-agent": "userAgent",
+          "host": "host"
+        },
+        "overrides": {
+          "host": "mypromos.betfair.com.nxt.ppbdev.com"
+        }
+      }
+    },
+    "LiveDealerFeedService": {
+      "url": "http://gfsbf.nxt.internal/LiveDealerDataFeeds/v1.0/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host"
+    },
+    "GamesUserActivity": {
+      "url": "http://gfebf-nxt.nxt.internal/api/gfe/user-activity/v1/",
+      "poolSize": 20,
+      "timeout": 10000,
+      "headerStrategy": "basic-no-host"
+    },
+    "GamesFeedService": {
+      "url": "http://gfsbf.nxt.internal/GamesFeeds/v1.0/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host"
+    },
+    "CashoutReadOnly": {
+      "url": "http://cos.nxt.internal/cashout-service/readonly/v1.0/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host"
+    },
+    "LiveBetReportingFaceted": {
+      "url": "http://lbr.nxt.internal/api/lbr-json-rpc",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host"
+    },
+    "ClearedBetReportingFaceted": {
+      "url": "http://cbr.nxt.internal/api/cbr-json-rpc",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host"
+    },
+    "SER": {
+      "url": "http://ser.nxt.internal/SportsbookEventReadOnlyService/v1/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host"
+    },
+    "FBO": {
+      "url": "http://fbobf.nxt.internal/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host"
+    },
+    "FBOV2": {
+      "url": "http://fbobf.nxt.internal/v2/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host"
+    },
+    "SIB": {
+      "url": "http://sib.nxt.internal/api/sports/fixedodds/transactional/v1/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": {
+        "config": {
+          "x-authentication": "sessionId",
+          "x-ip": "ip",
+          "x-uuid": "uuid",
+          "x-application": "appKey",
+          "user-agent": "userAgent",
+          "vid": "visitorId"
+        }
+      }
+    },
+    "SSCV2": {
+      "url": "https://ssc.nxt.internal/api/v2.0/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host",
+      "certificates": {
+        "pfx": "config/certificates/{{tla_tbd/data/misc/qa/tbd.qa.internal_cert.pfx}}",
+        "pfx-passphrase": "{{tla_tbd/data/common/certificatePassphrase}}",
+        "ca": "config/certificates/{{tla_tbd/data/common/betfair.truststore.dev.pem}}",
+        "verify-server-certificate": false
+      }
+    },
+    "MAX": {
+      "url": "http://maxbf.nxt.internal/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic"
+    },
+    "SGX": {
+      "url": "https://sgxbf.nxt.internal/api/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host",
+      "certificates": {
+        "pfx": "config/certificates/{{tla_tbd/data/misc/qa/tbd.qa.internal_cert.pfx}}",
+        "pfx-passphrase": "{{tla_tbd/data/common/certificatePassphrase}}",
+        "ca": "config/certificates/{{tla_tbd/data/common/betfair.truststore.dev.pem}}",
+        "verify-server-certificate": false
+      }
+    },
+    "WMS": {
+      "url": "http://wmsbf.nxt.internal/services/ws/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host"
+    },
+    "WMSV2": {
+      "url": "http://wmsbf.nxt.internal/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host"
+    },
+    "CustomerReadOnly": {
+      "url": "https://crobf.nxt.internal/CustomerReadOnly/v1.0/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host",
+      "certificates": {
+        "pfx": "config/certificates/{{tla_tbd/data/misc/qa/tbd.qa.internal_cert.pfx}}",
+        "pfx-passphrase": "{{tla_tbd/data/common/certificatePassphrase}}",
+        "ca": "config/certificates/{{tla_tbd/data/common/betfair.truststore.dev.pem}}",
+        "verify-server-certificate": false
+      }
+    },
+    "ESX": {
+      "url": "https://esxbf.nxt.internal/Exclusion/v1",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host",
+      "certificates": {
+        "pfx": "config/certificates/{{tla_tbd/data/misc/qa/tbd.qa.internal_cert.pfx}}",
+        "pfx-passphrase": "{{tla_tbd/data/common/certificatePassphrase}}",
+        "ca": "config/certificates/{{tla_tbd/data/common/betfair.truststore.dev.pem}}",
+        "verify-server-certificate": false
+      }
+    },
+    "UserSharedPreferences": {
+      "url": "http://uspbf.nxt.internal/usp-preferences/v1/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host"
+    },
+    "ExchangeSettings": {
+      "url": "http://ero.nxt.internal/api/ExchangeSettings/v1.0/",
+      "poolSize": 20,
+      "timeout": 1000,
+      "headerStrategy": "basic-no-host"
+    },
+    "UserService": {
+      "localeRules": {
+        "BRAZIL": {
+          "supportedLocales": ["en_GB", "pt_BR"],
+          "defaultLocale": "pt_BR"
+        },
+        "DENMARK": {
+          "supportedLocales": ["da"],
+          "defaultLocale": "da"
+        },
+        "INTERNATIONAL": {
+          "supportedLocales": ["en_GB", "en", "da", "de", "es_419", "pt_BR", "ru", "no", "fi", "hu"],
+          "defaultLocale": "en_GB"
+        },
+        "SPAIN": {
+          "supportedLocales": ["en_GB", "es"],
+          "defaultLocale": "es"
+        },
+        "ITALY": {
+          "supportedLocales": ["it"],
+          "defaultLocale": "it"
+        },
+        "ROMANIA": {
+          "supportedLocales": ["en_GB", "ro"],
+          "defaultLocale": "ro"
+        }
+      },
+      "authTokenResolver": "cro",
+      "cro": {
+        "defaultCountryCode": "GB",
+        "defaultDiscount": 0
+      }
+    },
+    "ThrottlesService": {
+      "store": "ssw-config",
+      "path": "throttles/"
+    },
+    "PrismicService": {
+      "PrismicIntl": {
+        "url": "https://gmbcom.nxt.net.cdnppb/api/",
+        "poolSize": 20,
+        "timeout": 2000
+      },
+      "PrismicIt": {
+        "url": "https://gmbit.nxt.net.cdnppb/api/",
+        "poolSize": 20,
+        "timeout": 2000
+      },
+      "PrismicEs": {
+        "url": "https://gmbes.nxt.net.cdnppb/api/",
+        "poolSize": 20,
+        "timeout": 2000
+      },
+      "PrismicDk": {
+        "url": "https://gmbdk.nxt.net.cdnppb/api/",
+        "poolSize": 20,
+        "timeout": 2000
+      },
+      "PrismicSe": {
+        "url": "https://gmbse.nxt.net.cdnppb/api/",
+        "poolSize": 20,
+        "timeout": 2000
+      },
+      "PrismicRo": {
+        "url": "https://gmbro.nxt.net.cdnppb/api/",
+        "poolSize": 20,
+        "timeout": 2000
+      }
+    },
+    "ExperimentationsService": {
+      "urn": "prismic:flutter-experimentation-dev:en-gb:uid:experiment:null"
+    },
+    "LoopExperimentServiceV2": {
+      "keepAliveTimeoutMs": 120000,
+      "url": "https://les-nxtbf.platformservices-dev.aws.private/v3/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host",
+      "certificates": {
+        "pfx": "config/certificates/{{tla_tbd/data/misc/qa/tbd.qa.internal_cert.pfx}}",
+        "pfx-passphrase": "{{tla_tbd/data/common/certificatePassphrase}}",
+        "ca": "config/certificates/{{tla_tbd/data/common/betfair.truststore.dev.pem}}",
+        "verify-server-certificate": false
+      }
+    },
+    "FSS": {
+      "url": "https://fssbf.nxt.internal/rest/v4.0/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "certificates": {
+        "pfx": "config/certificates/{{tla_tbd/data/misc/qa/tbd.qa.internal_cert.pfx}}",
+        "pfx-passphrase": "{{tla_tbd/data/common/certificatePassphrase}}",
+        "ca": "config/certificates/{{tla_tbd/data/common/betfair.truststore.dev.pem}}",
+        "verify-server-certificate": false
+      }
+    },
+    "ObbQuoting": {
+      "url": "https://obb-nxt.sbksplatformservices-dev.aws.private/v2/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host",
+      "certificates": {
+        "pfx": "config/certificates/{{tla_tbd/data/misc/qa/tbd.qa.internal_cert.pfx}}",
+        "pfx-passphrase": "{{tla_tbd/data/common/certificatePassphrase}}",
+        "ca": "config/certificates/{{tla_tbd/data/common/betfair.truststore.dev.pem}}",
+        "verify-server-certificate": false
+      }
+    },
+    "ObbBetPlacement": {
+      "url": "https://obb-nxt.sbksplatformservices-dev.aws.private/v2/",
+      "poolSize": 20,
+      "timeout": 2000,
+      "headerStrategy": "basic-no-host",
+      "certificates": {
+        "pfx": "config/certificates/{{tla_tbd/data/misc/qa/tbd.qa.internal_cert.pfx}}",
+        "pfx-passphrase": "{{tla_tbd/data/common/certificatePassphrase}}",
+        "ca": "config/certificates/{{tla_tbd/data/common/betfair.truststore.dev.pem}}",
+        "verify-server-certificate": false
+      }
+    },
+    "CustomGraphqlClients": {
+      "tips": {
+        "url": "https://tips-nxt-pp.sbksplatformservices-dev.aws.private/graphql",
+        "poolSize": 20,
+        "timeout": 2000,
+        "headerStrategy": "basic-no-host",
+        "certificates": {
+          "ca": "config/certificates/{{tla_tbd/data/common/betfair.truststore.prd.pem}}",
+          "verify-server-certificate": false
+        }
+      },
+      "asa": {
+        "url": "http://asabf.nxt.internal/graphql",
+        "poolSize": 20,
+        "timeout": 1100,
+        "headerStrategy": "basic-no-host"
+      },
+      "sca": {
+        "url": "http://scabf.nxt.internal/graphql",
+        "poolSize": 20,
+        "timeout": 1100,
+        "headerStrategy": "basic-no-host"
+      },
+      "blh": {
+        "url": "http://blhbf.nxt.internal/graphql",
+        "poolSize": 20,
+        "timeout": 500,
+        "headerStrategy": "basic-no-host"
+      },
+      "cds": {
+        "url": "https://cdsapi-bf.dev.dt.ppb/v1/graphql/",
+        "poolSize": 20,
+        "timeout": 1000,
+        "headerStrategy": "basic-no-host",
+        "certificates": {
+          "pfx": "config/certificates/{{tla_tbd/data/misc/qa/tbd.qa.internal_cert.pfx}}",
+          "pfx-passphrase": "{{tla_tbd/data/common/certificatePassphrase}}",
+          "ca": "config/certificates/{{tla_tbd/data/common/betfair.truststore.dev.pem}}",
+          "verify-server-certificate": false
+        }
+      },
+      "obbCatalog": {
+        "url": "https://obb-nxt.sbksplatformservices-dev.aws.private/graphql",
+        "poolSize": 20,
+        "timeout": 1100,
+        "headerStrategy": "basic-no-host",
+        "certificates": {
+          "pfx": "config/certificates/{{tla_tbd/data/misc/qa/tbd.qa.internal_cert.pfx}}",
+          "pfx-passphrase": "{{tla_tbd/data/common/certificatePassphrase}}",
+          "ca": "config/certificates/{{tla_tbd/data/common/betfair.truststore.dev.pem}}",
+          "verify-server-certificate": false
+        }
+      },
+      "fboGql": {
+        "url": "http://fbobf.nxt.internal/graphql",
+        "poolSize": 20,
+        "timeout": 1100,
+        "headerStrategy": "basic-no-host"
+      }
+    },
+    "CustomRestClients": {
+      "tipsRest": {
+        "url": "https://tips-drk-pp.sbksplatformservices-prod.aws.private/graphql",
+        "poolSize": 20,
+        "timeout": 2000,
+        "headerStrategy": "basic-no-host"
+      },
+      "splashFlare": {
+        "url": "http://splfa.qa.internal/v2/",
+        "poolSize": 20,
+        "timeout": 300,
+        "headerStrategy": {
+          "config": {
+            "x-ip": "ip",
+            "x-uuid": "uuid",
+            "x-application": "appKey"
+          }
+        }
+      },
+      "trendingGames": {
+        "keepAliveTimeoutMs": 120000,
+        "url": "https://devtgr001.edcdev.aws.betfair/",
+        "poolSize": 20,
+        "timeout": 2000,
+        "headerStrategy": "basic-no-host",
+        "certificates": {
+          "pfx": "config/certificates/{{tla_tbd/data/misc/qa/tbd.qa.internal_cert.pfx}}",
+          "pfx-passphrase": "{{tla_tbd/data/common/certificatePassphrase}}",
+          "ca": "config/certificates/{{tla_tbd/data/common/betfair.truststore.dev.pem}}",
+          "verify-server-certificate": false
+        }
+      },
+      "becauseYouPlayed": {
+        "keepAliveTimeoutMs": 120000,
+        "url": "https://devbyp003.edcdev.aws.betfair/",
+        "poolSize": 20,
+        "timeout": 2000,
+        "headerStrategy": {
+          "overrides": {
+            "x-api-key": "{{tla_tbd/data/nxt/bypXApiKey}}"
+          }
+        },
+        "certificates": {
+          "ca": "config/certificates/{{tla_tbd/data/common/betfair.truststore.dev.pem}}",
+          "verify-server-certificate": false
+        }
+      },
+      "cbb": {
+        "keepAliveTimeoutMs": 120000,
+        "url": "https://cbb.dt.ppb/",
+        "poolSize": 20,
+        "timeout": 2000,
+        "headerStrategy": {
+          "config": {
+            "x-authentication": "sessionId",
+            "x-application": "appKey"
+          },
+          "overrides": {
+            "x-api-key": "{{tla_tbd/data/nxt/cbbXApiKey}}"
+          }
+        },
+        "certificates": {
+          "ca": "config/certificates/{{tla_tbd/data/common/betfair.truststore.dev.pem}}",
+          "verify-server-certificate": false
+        }
+      },
+      "seoMetadata": {
+        "keepAliveTimeoutMs": 120000,
+        "url": "http://smdbf.nxt.internal/",
+        "poolSize": 20,
+        "timeout": 2000,
+        "headerStrategy": "basic-no-host"
+      },
+      "gzContentRetriveApi": {
+        "keepAliveTimeoutMs": 120000,
+        "url": "http://gzcontentapibf.nxt.internal/",
+        "poolSize": 20,
+        "timeout": 2000,
+        "headerStrategy": "basic-no-host"
+      },
+      "gzContentInteractionApi": {
+        "keepAliveTimeoutMs": 120000,
+        "url": "http://gzcontentapibf.nxt.internal/",
+        "poolSize": 20,
+        "timeout": 5000,
+        "headerStrategy": "basic-no-host"
+      },
+      "pjs": {
+        "keepAliveTimeoutMs": 120000,
+        "url": "http://pjs.nxt.internal",
+        "poolSize": 20,
+        "timeout": 5000,
+        "headerStrategy": "basic-no-host"
+      },
+      "gamingSearchServiceApi": {
+        "keepAliveTimeoutMs": 120000,
+        "url": "http://gfebf.nxt.internal/",
+        "poolSize": 20,
+        "timeout": 10000,
+        "headerStrategy": "basic-no-host"
+      },
+      "bme": {
+        "keepAliveTimeoutMs": 120000,
+        "url": "http://bmesbg.nxt.internal/",
+        "poolSize": 20,
+        "timeout": 2000,
+        "headerStrategy": "basic-no-host"
+      }
+    },
+    "fileSystem": {
+      "rootPath": "/var/tmp"
+    },
+    "log": {
+      "rootFolder": "./log",
+      "mask": "0755",
+      "appenders": {
+        "console": {
+          "type": "console",
+          "layout": {
+            "type": "pattern",
+            "pattern": "%[[%d] [%p] [pid=%x{pid}] [category=%c]%] %m"
+          }
+        }
+      },
+      "categories": {
+        "default": {
+          "appenders": ["console"],
+          "level": "debug"
+        }
+      }
+    }
+  }
+}

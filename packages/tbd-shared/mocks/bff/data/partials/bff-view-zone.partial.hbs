@@ -1,0 +1,8 @@
+"__typename":"ViewZone",
+"urn": "{{urn}}{{^urn}}ppb:tbd:view:zone:multifunctionalModule:1{{/urn}}",
+"title": "{{title}}{{^title}}Multifunctional Module{{/title}}",
+{{#with viewZoneItems}}
+    "viewZoneItems":{
+      {{> bff-items }}
+    }
+{{/with}}

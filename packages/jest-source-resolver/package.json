@@ -1,0 +1,17 @@
+{
+  "name": "jest-source-resolver",
+  "version": "1.2.0",
+  "description": "A Jest resolver to take priority using source field instead of main",
+  "main": "lib/resolver.js",
+  "license": "MIT",
+  "scripts": {
+    "lint": "echo 'no lint task'",
+    "test:coverage": "echo 'no test:coverage task'",
+    "test:branch:coverage": "echo 'no test:branch:coverage task'",
+    "format": "echo 'no format task'",
+    "typecheck": "echo 'no typecheck task'"
+  },
+  "dependencies": {
+    "@types/node": "24.12.4"
+  }
+}

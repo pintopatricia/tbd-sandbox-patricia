@@ -1,0 +1,39 @@
+fragment competition on Competition {
+  ...commonCompetition
+  ...competitionLogo
+  ...competitionCountry
+}
+
+fragment competitionWithLogo on Competition {
+  ...commonCompetition
+  ...competitionLogo
+}
+
+fragment competitionBasic on Competition {
+  ...commonCompetition
+}
+
+fragment commonCompetition on Competition {
+  __typename
+  urn
+  name
+  competitionId
+  sport {
+    ...sport
+  }
+}
+
+fragment competitionLogo on Competition {
+  logo {
+    vector
+    small
+    medium
+    large
+  }
+}
+
+fragment competitionCountry on Competition {
+  country {
+    ...country
+  }
+}

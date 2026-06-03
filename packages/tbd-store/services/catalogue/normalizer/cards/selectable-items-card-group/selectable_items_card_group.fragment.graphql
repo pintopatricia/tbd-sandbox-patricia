@@ -1,0 +1,44 @@
+fragment selectableitemsCardGroup on SelectableItemsCardGroup {
+  __typename
+  urn
+  cardGroupTitle: title
+  isSelectableItemsCardGroupHighlighted: isHighlighted
+  selectableItemsCardGroupType: type
+  filter {
+    ... on RaceCountriesFilter {
+      countries
+      defaultSelected
+    }
+  }
+  full: items(first: 1) {
+    ...fullSelectableItemsCardGroupItems
+  }
+  partials: items {
+    ...partialsSelectableItemsCardGroupItems
+  }
+}
+
+fragment selectableitemsCardGroupFiltered on SelectableItemsCardGroup {
+  __typename
+  urn
+  cardGroupTitle: title
+  isSelectableItemsCardGroupHighlighted: isHighlighted
+  selectableItemsCardGroupType: type
+  filter {
+    ... on RaceCountriesFilter {
+      countries
+      defaultSelected
+    }
+  }
+  full: items(first: 1, filterBy: $filterBy) {
+    ...fullSelectableItemsCardGroupItems
+  }
+  partials: items(filterBy: $filterBy) {
+    ...partialsSelectableItemsCardGroupItems
+  }
+}
+
+fragment selectableitemsCardGroupPartial on SelectableItemsCardGroup {
+  __typename
+  urn
+}

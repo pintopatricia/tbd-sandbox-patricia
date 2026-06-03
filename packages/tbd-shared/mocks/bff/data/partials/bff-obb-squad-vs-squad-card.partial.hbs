@@ -1,0 +1,73 @@
+"__typename": "{{__typename}}{{^__typename}}ObbSquadVsSquadCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:obb:card:squadVsSquad:aAZWeREAACAAel7O/e/34433840{{/urn}}",
+"title": {
+  {{#with title}}
+    {{> bff-obb-display-name}}
+  {{/with}}
+},
+"outcomesText": {
+  {{#with outcomesText}}
+    {{> bff-obb-display-name}}
+  {{/with}}
+},
+"statsText": {
+  {{#with statsText}}
+    {{> bff-obb-display-name}}
+  {{/with}}
+},
+"participantInfo": {
+  {{#with participantInfo}}
+    {{> bff-obb-display-name}}
+  {{/with}}
+},
+"showModalEntryPoint": {{showModalEntryPoint}}{{^showModalEntryPoint}}false{{/showModalEntryPoint}},
+"filterTags": [
+  {{#each filterTags}}
+    {
+      {{> bff-obb-filter-tag}}
+    }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+],
+"event": {
+  {{#with event}}
+    {{> bff-sportevent}}
+  {{/with}}
+},
+"eventParticipants": [
+  {{#each eventParticipants}}
+    {
+      {{> bff-obb-participant}}
+    }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+],
+"firstSquadParticipants": [
+  {{#each firstSquadParticipants}}
+    {
+      {{> bff-obb-participant}}
+    }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+],
+"secondSquadParticipants": [
+  {{#each secondSquadParticipants}}
+    {
+      {{> bff-obb-participant}}
+    }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+],
+"incidentType": {
+  {{#with incidentType}}
+    {{> bff-obb-incident-type}}
+  {{/with}}
+},
+"defaultLegs": [
+  {{#each defaultLegs}}
+    {
+      {{> bff-obb-leg}}
+    }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+]

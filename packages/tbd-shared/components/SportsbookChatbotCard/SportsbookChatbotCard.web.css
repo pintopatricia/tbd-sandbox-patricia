@@ -1,0 +1,11 @@
+:root {
+  --margin-bottom: 500px;
+
+  @media screen and (min-width: 900px) {
+    --margin-bottom: var(--spacing-12);
+  }
+}
+
+.container {
+  margin-bottom: var(--margin-bottom);
+}

@@ -1,0 +1,72 @@
+.virtualRunnerLine {
+  display: flex;
+
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.virtualRunnerInnerContainer {
+  display: flex;
+
+  flex-grow: 1;
+
+  align-items: center;
+
+  margin-right: var(--spacing-1);
+  overflow: hidden;
+}
+
+.imageContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  margin: 0 var(--spacing-2) 0 var(--spacing-1);
+}
+
+.informationContainer {
+  overflow: hidden;
+
+  color: var(--neutrals-text-default);
+  text-overflow: ellipsis;
+  word-break: break-all;
+  white-space: nowrap;
+}
+
+.description {
+  color: var(--neutrals-text-secondary);
+}
+
+.leftColumn {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 24px;
+  margin-right: var(--spacing-1);
+}
+
+.virtualRunnerNumber {
+  color: var(--neutrals-text-default);
+  text-align: center;
+}
+
+.horseRacing {
+  width: 25px;
+  height: 30px;
+}
+
+.square {
+  width: 30px;
+  height: 30px;
+}
+
+.football {
+  width: 30px;
+  height: 38px;
+}

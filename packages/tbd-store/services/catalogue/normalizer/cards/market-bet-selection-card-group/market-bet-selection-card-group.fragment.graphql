@@ -1,0 +1,26 @@
+fragment marketBetSelectionCardGroup on MarketBetSelectionCardGroup {
+  __typename
+  urn
+  betCardGroupURN
+  marketBetCardURN
+  marketBetCardGroupURN
+  full: items {
+    edges {
+      node {
+        ...marketBetSelectionCard
+      }
+    }
+  }
+  partials: items {
+    edges {
+      node {
+        ...marketBetSelectionCardPartial
+      }
+    }
+  }
+}
+
+fragment marketBetSelectionCardGroupPartial on MarketBetSelectionCardGroup {
+  __typename
+  urn
+}

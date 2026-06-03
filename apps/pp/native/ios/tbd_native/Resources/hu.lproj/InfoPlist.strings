@@ -1,0 +1,3 @@
+NSCameraUsageDescription = "Az „OK” gomb megnyomásával fel tudsz tölteni egy képet, illetve elküldhetsz nekünk egy fotót a számlád érvényesítéséhez.";
+NSFaceIDUsageDescription = "A Face ID engedélyezése lehetővé teszi a számlád gyors és biztonságos elérését.";
+NSUserTrackingUsageDescription = "Az adataidat arra használjuk, hogy személyre szabottabb élményt nyújtsunk az oldalon való böngészés, üzenetküldés, sportesemények és promóciók terén.";

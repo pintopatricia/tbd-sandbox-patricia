@@ -1,0 +1,37 @@
+name: remove-preview-env
+on:
+  pull_request_target:
+    types:
+      - closed # Merged PRs are automatically closed, so this covers both cases
+
+env:
+  PR_ID: ${{github.event.pull_request.number}}
+
+jobs:
+  remove_generated_env:
+    runs-on:
+      group: FlutterGithubRunners
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_ACCESS_KEY_TOKEN }}
+          aws-region: eu-west-1
+      - name: Remove preview environment
+        run: |
+          brands=("bf" "sbg" "ps" "pp")
+          envs=("qa" "qacms" "nxt")
+          for brand in "${brands[@]}"; do
+            for env in "${envs[@]}"; do
+
+              stack_name="${brand}-tbdpe${PR_ID}-${env}"
+              stack=$(aws cloudformation describe-stacks --stack-name $stack_name --max-items 1 --output text || echo "")
+              if [ -z ${stack} ]; then
+                echo "Stack not found! Nothing to remove"
+              else
+                echo "Found a stack! Removing $stack_name"
+                aws cloudformation delete-stack --stack-name $stack_name
+              fi
+            done
+          done

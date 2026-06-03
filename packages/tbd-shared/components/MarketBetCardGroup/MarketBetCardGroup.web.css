@@ -1,0 +1,14 @@
+.marketBetCardGroup {
+  display: flex;
+
+  flex-direction: column;
+
+  padding: var(--spacing-2);
+
+  background-color: var(--neutrals-background-elevation4);
+  border-radius: var(--spacing-1);
+}
+
+.groupItem {
+  margin: 0;
+}

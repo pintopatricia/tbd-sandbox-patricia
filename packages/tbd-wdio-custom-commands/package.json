@@ -1,0 +1,25 @@
+{
+  "name": "@ppb/tbd-wdio-custom-commands",
+  "version": "0.7.3",
+  "main": "src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint ./src",
+    "test:coverage": "echo 'no test:coverage task'",
+    "test:branch:coverage": "echo 'no test:branch:coverage task'",
+    "format": "prettier --ignore-path ../../.prettierignore --write \"./src/**/*.{js,ts,tsx}\"",
+    "typecheck": "echo 'no typecheck task'"
+  },
+  "devDependencies": {
+    "@babel/core": "7.28.5",
+    "@babel/eslint-parser": "7.28.5",
+    "@ppb/eslint-plugin-tbd-rules": "0.5.0",
+    "eslint": "9.17.0",
+    "prettier": "3.0.3",
+    "typescript-eslint": "8.18.2"
+  },
+  "dependencies": {
+    "@types/node": "24.12.4",
+    "@wdio/allure-reporter": "8.4.0"
+  }
+}

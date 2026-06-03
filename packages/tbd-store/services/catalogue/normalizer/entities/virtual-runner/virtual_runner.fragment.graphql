@@ -1,0 +1,17 @@
+fragment virtualRunner on VirtualRunner {
+  __typename
+  name
+  humanName
+  racerIndex
+  odds {
+    decimal
+    fractional {
+      numerator
+      denominator
+    }
+  }
+  runnerURN
+  selectionId
+  humanTexture
+  selectionTexture
+}

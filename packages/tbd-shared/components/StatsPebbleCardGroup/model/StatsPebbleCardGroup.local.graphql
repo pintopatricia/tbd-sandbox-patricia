@@ -1,0 +1,9 @@
+extend type StatsPebbleCardGroup {
+  selectedPebble: SelectedPebble
+}
+
+type SelectedPebble {
+  urn: String
+  typename: String
+
+}

@@ -1,0 +1,31 @@
+{
+    "data": {
+        "obb": {
+            "implyBets": {
+                "betDefinitions": [
+                  {{#each betDefinitions}}
+                    {
+                      {{> bff-obb-imply-result}}
+                    }
+                    {{#unless @last}},{{/unless}}
+                  {{/each}}
+                ],
+                "combinedBetDefinitions": [
+                  {{#each combinedBetDefinitions}}
+                    {
+                      {{> bff-obb-imply-result}}
+                    }
+                    {{#unless @last}},{{/unless}}
+                  {{/each}}
+                ],
+                {{#with result}}
+                  "result": {
+                    {{> bff-obb-bet-imply-result}}
+                  },
+                {{/with}}
+              "__typename": "{{__typename}}{{^__typename}}ImplyBetsResponse{{/__typename}}"
+            },
+        "__typename": "{{__typename}}{{^__typename}}ObbQuery{{/__typename}}"
+        }
+    }
+}

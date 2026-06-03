@@ -1,0 +1,17 @@
+"id": "{{id}}{{^id}}45617892{{/id}}",
+{{#if score}}
+  "score": {
+    "home": {{score.home}},
+    "away": {{score.away}}
+  },
+{{else}}
+  "score": null,
+{{/if}}
+{{#if clock}}
+  "clock": {
+    {{#if clock.period}}"period": "{{clock.period}}"{{else}}"period": null{{/if}}
+  }
+{{else}}
+  "clock": null
+{{/if}}
+

@@ -1,0 +1,32 @@
+name: turn-off-preview-envs
+
+on:
+  schedule:
+    - cron: "0 0 * * 6" # schedule at 00:00 UTC every Saturday
+
+env:
+  AWS_REGION: eu-west-1
+
+jobs:
+  turn-off-preview-envs:
+    runs-on:
+      group: FlutterGithubRunners
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_ACCESS_KEY_TOKEN }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Turn off all preview environments
+        run: |
+          brands=("ui" "bf" "sbg" "ps" "pp")
+          for brand in "${brands[@]}"; do
+            cluster_name="${brand}-tbdpeCluster"
+            service_arns=$(aws ecs list-services --cluster $cluster_name --output text --query 'serviceArns')
+
+            for service_arn in $service_arns; do
+                echo "Turning off service: $service_arn"
+                aws ecs update-service --cluster $cluster_name --service $service_arn --desired-count 0
+            done
+          done

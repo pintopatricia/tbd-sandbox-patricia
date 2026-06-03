@@ -1,0 +1,46 @@
+"__typename": "{{__typename}}{{^__typename}}Race{{/__typename}}",
+"urn":"{{urn}}{{^urn}}ppb:race:29901908.1410{{/urn}}",
+"raceId":"{{raceId}}{{^raceId}}29901908.1410{{/raceId}}",
+"startTime":"{{startTime}}{{^startTime}}2020-07-13T14:10:00.000Z{{/startTime}}",
+"name":"{{name}}{{^name}}SKY SPORTS RACING HD VIRGIN 535 NOVICE STAKES (5) (D.I){{/name}}",
+{{#if verdict}}
+  "verdict": "{{verdict}}",
+{{/if}}
+{{#if winningTime}}
+  "winningTime": "{{winningTime}}",
+{{/if}}
+ {{#if details}}
+  "details": {
+    {{#with details}}
+      "scheduledTime": "{{scheduledTime}}{{^scheduledTime}}2020-01-01T00:00:00Z{{/scheduledTime}}",
+      "distance": {
+        "miles": {{distance.miles}}{{^distance.miles}}0{{/distance.miles}},
+        "furlongs": {{distance.furlongs}}{{^distance.furlongs}}0{{/distance.furlongs}},
+        "yards": {{distance.yards}}{{^distance.yards}}0{{/distance.yards}}
+      },
+      "going": {{#if going}}"{{going}}"{{else}}null{{/if}},
+      "status": {{#if status}}"{{status}}"{{else}}null{{/if}},
+      "type": {{#if type}}"{{type}}"{{else}}null{{/if}},
+      "numberOfRunners": {{#if numberOfRunners}}{{numberOfRunners}}{{else}}null{{/if}},
+      "numberOfParticipants": {{#if numberOfParticipants}}{{numberOfParticipants}}{{else}}null{{/if}},
+      "numberOfNonRunners": {{#if numberOfNonRunners}}{{numberOfNonRunners}}{{else}}null{{/if}},
+      "title": {{#if title}}"{{title}}"{{else}}null{{/if}},
+      "resultType": {{#if resultType}}"{{resultType}}"{{else}}null{{/if}}
+    {{/with}}
+  },
+ {{/if}}
+"runners": [
+  {{#each runners}}
+    {
+        {{> bff-race-runner }}
+    }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+],
+"meeting": {
+  {{#if meeting}}
+      {{#with meeting}}
+          {{> bff-meeting }}
+      {{/with}}
+  {{/if}}
+}

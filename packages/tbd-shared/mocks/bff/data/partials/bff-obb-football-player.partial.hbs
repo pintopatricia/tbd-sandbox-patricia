@@ -1,0 +1,26 @@
+"__typename": "{{__typename}}{{^__typename}}ObbFootballPlayer{{/__typename}}",
+"urn": "{{urn}}"
+{{#if player}},
+  "player": {
+    {{#with player}}
+      {{> bff-football-player}}
+    {{/with}}
+  }
+{{/if}}
+{{#if team}},
+  "team": {
+    {{#with team}}
+      {{> bff-football-team}}
+    {{/with}}
+  }
+{{/if}}
+{{#if incidentTypes}},
+  "incidentTypes": [
+    {{#each incidentTypes}}
+        {
+            {{> bff-obb-incident-type}}
+        }
+        {{#unless @last}},{{/unless}}
+    {{/each}}
+    ]
+{{/if}}

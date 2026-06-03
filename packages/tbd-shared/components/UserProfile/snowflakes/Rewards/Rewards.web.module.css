@@ -1,0 +1,44 @@
+.rewardsCard {
+  margin: 0;
+}
+
+.rewardsContainer {
+  padding: var(--spacing-3);
+
+  color: var(--neutrals-text-default);
+
+  border: 1px solid var(--neutrals-border-elevation2);
+  border-radius: var(--spacing-1);
+}
+
+.rewardsContainer h6 {
+  text-transform: lowercase;
+}
+
+.rewardsContainer h6::first-letter {
+  text-transform: uppercase;
+}
+
+.rewardsMessageValue span {
+  color: var(--neutrals-text-default);
+}
+
+.rewardsMessageComplete {
+  margin-top: var(--spacing-3);
+
+  color: var(--neutrals-text-secondary);
+}
+
+.rewardsWrapper {
+  margin-top: var(--spacing-3);
+  margin-bottom: var(--spacing-3);
+}
+
+.rewardsWrapper > a {
+  display: block;
+
+  padding-top: 0;
+  padding-bottom: 0;
+
+  background: none;
+}

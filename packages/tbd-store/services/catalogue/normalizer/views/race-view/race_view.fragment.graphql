@@ -1,0 +1,28 @@
+fragment raceView on RaceView {
+  __typename
+  urn
+  url
+  title
+  canonicalUrl
+  race {
+    ...race
+  }
+  items(autoPageSize: true) {
+    ...viewItems
+  }
+  partialItems: items {
+    ...viewItemsPartial
+  }
+  bottomBar @include(if: $withBottomBar) {
+    ...bottomBar
+  }
+  leftSidebar @include(if: $withLeftSidebar) {
+    ...leftSidebar
+  }
+  regulatoryData @include(if: $withRegulatoryData) {
+    ...regulatoryData
+  }
+  xsellBar {
+    ...XSellBar
+  }
+}

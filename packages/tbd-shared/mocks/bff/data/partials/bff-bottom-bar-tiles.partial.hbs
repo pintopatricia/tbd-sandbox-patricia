@@ -1,0 +1,64 @@
+{{#if bottomBar}}
+  "__typename": "BottomBar",
+  {{#with bottomBar}}
+    "tiles": [
+    {{#each tiles}}
+      {
+      "tileType": "{{tileType}}{{^tileType}}HOME{{/tileType}}",
+      {{#with viewLink}}
+        "viewLink": {
+          "__typename": "ViewLink",
+          "viewDisplayMode": {{#if viewDisplayMode}}"{{viewDisplayMode}}"{{else}}null{{/if}},
+          "viewUrl": "{{viewUrl}}{{^viewUrl}}football{{/viewUrl}}",
+          "viewUrn": "{{viewUrn}}{{^viewUrn}}ppb:tbd:view:sport:1{{/viewUrn}}"
+        }
+      {{/with}}
+      }{{#unless @last}},{{/unless}}
+    {{/each}}
+    ],
+    "hasProductSwitcher": {{hasProductSwitcher}}{{^hasProductSwitcher}}false{{/hasProductSwitcher}}
+  {{/with}}
+{{else}}
+  "__typename": "BottomBar",
+  "tiles": [
+    {
+      "tileType": "HOME",
+      "viewLink": {
+        "viewUrn": "ppb:tbd:view:generic:home",
+        "viewUrl": "",
+        "__typename": "ViewLink",
+        "viewDisplayMode": null
+      }
+    },
+    {
+      "tileType": "BROWSE",
+      "viewLink": {
+        "viewUrn": "ppb:tbd:view:browse:sports",
+        "viewUrl": "browse/b-sports",
+        "__typename": "ViewLink",
+        "viewDisplayMode": null
+      }
+    },
+    {
+      "tileType": "MY_BETS",
+      "viewLink": {
+        "viewUrn": "ppb:tbd:view:myBets:open",
+        "viewUrl": "mybets/mybets-open",
+        "__typename": "ViewLink",
+        "viewDisplayMode": null
+      }
+    },
+    {
+      "tileType": "GAMING",
+      "viewLink": {
+        "viewUrn": "ppb:tbd:view:gaming:1",
+        "viewUrl": "casino/gm-1",
+        "__typename": "ViewLink",
+        "viewDisplayMode": null
+      }
+    }
+  ],
+  "hasProductSwitcher": {{hasProductSwitcher}}{{^hasProductSwitcher}}false{{/hasProductSwitcher}}
+{{/if}}
+
+

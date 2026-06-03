@@ -1,0 +1,23 @@
+{
+  "data": {
+    "View": {
+      "__typename": "MarketRulesView",
+      "urn": "{{urn}}{{^urn}}ppb:tbd:view:marketRules:1.123456789{{/urn}}",
+      "url": "Not Implemented",
+      "title": null,
+      "category": "MODAL",
+      "items": {
+        "edges": [
+          {{#each edges}}
+            {
+              "node": {
+                {{> bff-market-rules-card}}
+              }
+            }{{#unless @last}},{{/unless}}
+          {{/each}}
+        ],
+        "pageInfo": null
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+"__typename": "{{__typename}}{{^__typename}}PlayerMarketsCardGroup{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:cardgroup:playermarkets:71823|35049415{{/urn}}",
+"fixtureCard": {
+    {{#with fixtureCard}}
+    "__typename": "{{__typename}}{{^__typename}}FixtureCard{{/__typename}}",
+    "urn": "{{urn}}{{^urn}}ppb:tbd:card:fixture:35049415{{/urn}}"
+    {{/with}}
+},
+"items": {
+    "edges": [
+        {{#each items.edges}}
+            {{#with node}}
+            {
+                "node": {
+                    "__typename": "{{__typename}}{{^__typename}}PebbleCardGroup{{/__typename}}",
+                    "urn": "{{urn}}{{^urn}}pbb:tbd:card:pebble:player:goalscorers|71823|35049415{{/urn}}"
+                }
+                {{#unless @last}},{{/unless}}
+            }
+            {{/with}}
+        {{/each}}
+    ]
+}

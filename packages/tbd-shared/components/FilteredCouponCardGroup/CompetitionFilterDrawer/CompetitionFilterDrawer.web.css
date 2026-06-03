@@ -1,0 +1,27 @@
+.sectionTitle {
+  margin: var(--spacing-3) 0;
+
+  color: var(--neutrals-text-default);
+}
+
+.drawerContentWithPadding {
+  padding: 0;
+}
+
+.drawerContentWithPadding .listPadding {
+  padding-left: var(--spacing-6);
+}
+
+.competitionByCountry:not(:last-of-type) {
+  border-bottom: 1px solid var(--neutrals-border-elevation2);
+}
+
+.placeholderContainer {
+  height: 400px;
+  padding: 8px;
+}
+
+.placeholder {
+  background-color: var(--neutrals-background-elevation5);
+  border-radius: 4px;
+}

@@ -1,0 +1,8 @@
+.microPlayersCarousel > section > div {
+  overscroll-behavior-x: contain;
+}
+
+.outcomeLabel {
+  font: var(--squad-bet-card-label-typography);
+  color: var(--squad-bet-card-label-colour);
+}

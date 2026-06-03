@@ -1,0 +1,28 @@
+.cbbFloatingButton {
+  position: fixed;
+  right: 0;
+  bottom: var(--bottom-bar-height-sizing);
+  left: 0;
+  z-index: var(--overlay-stack);
+
+  padding: 0 12px 16px;
+
+  transition: bottom 0.3s ease-in-out;
+}
+
+.inactive {
+  pointer-events: none;
+}
+
+.withBetslipSelections {
+  bottom: calc(var(--bottom-bar-height-sizing) + var(--expandable-container-sizing));
+}
+
+.withGradient {
+  background: linear-gradient(
+    0deg,
+    var(--page-background-colour) 0%,
+    color-mix(in srgb, var(--page-background-colour) 90%, transparent) 50.04%,
+    transparent 100%
+  );
+}

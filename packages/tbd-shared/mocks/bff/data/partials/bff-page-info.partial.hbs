@@ -1,0 +1,6 @@
+{{#with pageInfo}}
+"pageInfo": {
+  "hasNextPage": {{#if hasNextPage}}true{{/if}}{{^hasNextPage}}false{{/hasNextPage}},
+  "endCursor": "{{{endCursor}}}"
+}
+{{/with}}

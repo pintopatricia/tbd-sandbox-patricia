@@ -1,0 +1,18 @@
+fragment gameStats on FootballGameStats {
+  attacks
+  possession
+  corners
+  yellowCards
+  redCards
+  offsides
+  fouls
+  throwIns
+  freeKicks
+  goalKicks
+  blockedShots
+  dangerousAttacks
+  shotsOnTarget
+  shotsOffTarget
+  goals
+  attacks
+}

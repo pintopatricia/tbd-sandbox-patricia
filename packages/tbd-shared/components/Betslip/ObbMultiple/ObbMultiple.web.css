@@ -1,0 +1,11 @@
+.obbMultiple {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--spacing-2);
+}
+
+.alert {
+  margin-top: var(--spacing-2);
+}

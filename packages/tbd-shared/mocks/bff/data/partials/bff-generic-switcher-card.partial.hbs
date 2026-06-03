@@ -1,0 +1,93 @@
+"__typename": "{{__typename}}{{^__typename}}GenericSwitcherCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:genericswitcher:1{{/urn}}",
+"filterTitle": {
+  "translated": "Set Sport",
+  "translate": null
+},
+"selectedViewLink": {
+{{#if selectedViewLink}}
+  {{#with selectedViewLink}}
+  "label": "{{label}}{{^label}}Switcher Title Mock{{/label}}",
+  "viewLink": {
+   {{#if viewLink}}
+    {{#with viewLink}}
+    "viewUrn": "{{viewUrn}}{{^viewUrn}}ppb:tbd:view:sport:1{{/viewUrn}}",
+    "viewUrl": "{{viewUrl}}{{^viewUrl}}football/s-1{{/viewUrl}}"
+    {{/with}}
+   {{else}}
+    "viewUrn": "ppb:tbd:view:sport:1",
+    "viewUrl": "football/s-1"
+   {{/if}}
+  }
+  {{/with}}
+{{else}}
+  "label": "Switcher Title Mock",
+  "viewLink": {
+    "viewUrn": "ppb:tbd:view:sport:1",
+    "viewUrl": "football/s-1"
+  }
+{{/if}}
+},
+"siblingViews": {
+{{#if siblingViews}}
+  {{#with siblingViews}}
+  "edges": [
+    {{#each edges}}
+        {{#if node}}
+          {
+            "node": {
+            {{#with node}}
+              "label": "{{label}}{{^label}}Switcher Title Mock{{/label}}",
+              "viewLink": {
+                {{#if viewLink}}
+                  {{#with viewLink}}
+                  "viewUrn": "{{viewUrn}}{{^viewUrn}}ppb:tbd:view:sport:1{{/viewUrn}}",
+                  "viewUrl": "{{viewUrl}}{{^viewUrl}}football/s-1{{/viewUrl}}"
+                  {{/with}}
+                {{else}}
+                  "viewUrn": "ppb:tbd:view:sport:1",
+                  "viewUrl": "football/s-1"
+                {{/if}}
+              }
+            {{/with}}
+            }
+          } {{#unless @last}},{{/unless}}
+        {{else}}
+          null{{#unless @last}},{{/unless}}
+        {{/if}}
+    {{/each}}
+  ]
+  {{/with}}
+{{else}}
+  "edges": [
+    {
+      "node": {
+        "label": "Baseball",
+        "viewLink": {
+          "viewUrn": "ppb:tbd:view:sport:7511",
+          "viewUrl": "baseball/s-7511"
+        }
+      }
+    },
+    {
+      "node": {
+        "label":  "Switcher Title Mock",
+        "viewLink": {
+          "viewUrn": "ppb:tbd:view:sport:1",
+          "viewUrl": "football/s-1"
+        }
+      }
+    },
+    {
+      "node": {
+        "label": "Virtuals",
+        "viewLink": {
+          "viewUrn": "ppb:tbd:view:generic:virtuals",
+          "viewUrl": "view/d-virtuals"
+        }
+      }
+    }
+  ]
+{{/if}}
+},
+"headerTheming": {{#if headerTheming}}"{{headerTheming}}"{{else}}null{{/if}}

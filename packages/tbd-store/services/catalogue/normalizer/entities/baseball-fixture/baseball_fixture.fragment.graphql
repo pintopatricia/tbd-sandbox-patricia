@@ -1,0 +1,23 @@
+fragment baseballFixture on BaseballFixture {
+  __typename
+  urn
+  isAmericanFormat
+  runnerNames {
+    home
+    away
+  }
+  score {
+    scoreHome: home
+    scoreAway: away
+  }
+  clock {
+    baseballClockPeriod: period
+  }
+  scorePerInning {
+    score {
+      scoreHome: home
+      scoreAway: away
+    }
+    baseballInningPeriod: period
+  }
+}

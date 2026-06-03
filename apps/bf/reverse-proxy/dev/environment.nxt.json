@@ -1,0 +1,405 @@
+{
+  "ENV": "localhost",
+  "PRODUCT_ID": "90",
+  "HOMEPAGE_PATHS": "betting|wetten/de|apuestas/es|apuestas|apostas/br|делать-ставки/ru|vedonlyönti/fi|fogadás/hu|oddsspill/no|betting/en|scommesse|væddemål|pariuri|apostas",
+  "HOST": "www.nxt.{domain_extension}.betfair/",
+  "NEW_RELIC": false,
+  "SIGNALFX": false,
+  "SIGNALFX_SESSION_RECORDING": false,
+  "SIGNALFX_NAME": "Betfair Sportsbook",
+  "SIGNALFX_REALM": "eu0",
+  "SIGNALFX_ENVIRONMENT": "dev",
+  "SIGNALFX_ACCESS_TOKEN": "BN9EVDZSeHfkftFnAiH4Mw",
+  "BASE_PATH": "/betting/",
+  "ASSETS": {
+    "HOST": "",
+    "PATH": "ie1/tbd/assets",
+    "DC": "ie1"
+  },
+  "DESKTOP_HEADER_CONFIG": {
+    "authenticationConfiguration": {
+      "loginEndpoint": "https://identitysso.betfair.{domain_extension}.nxt.ppbdev.com/api/login",
+      "loginRedirectUrl": "https://www.betfair.{domain_extension}.nxt.ppbdev.com/betting/",
+      "loginRedirectMethod": "POST",
+      "logoutEndpoint": "https://identitysso.betfair.{domain_extension}.nxt.ppbdev.com/api/logout",
+      "logoutRedirectUrl": "https://www.betfair.{domain_extension}.nxt.ppbdev.com/betting/",
+      "logoutRedirectMethod": "POST"
+    },
+    "productDomain": "{domain_extension}.nxt.ppbdev.com",
+    "clientConfiguration": {
+      "version": "1",
+      "brand": "betfair",
+      "product": "BFRB_WEB",
+      "channel": "desktop",
+      "platform": "",
+      "selectedTab": "sportsbook"
+    },
+    "contentConfiguration": {
+      "headerType": "REGULAR"
+    }
+  },
+  "BETSLIP_CONFIG": {
+    "collapseStrategy": "ALL_OPEN"
+  },
+  "LOOP_CLIENT_CONFIG": {
+    "key": "Rp9mDx9wgF7Ch2AQ",
+    "brand": "BF"
+  },
+  "ENDPOINTS": {
+    "SPAM": "",
+    "APPLE_PAY_PROXY": "https://myfunds.betfair.{domain_extension}.nxt.ppbdev.com/lib/js/apple_pay_proxy.min.js",
+    "MY_ACCOUNT": "https://myaccount.betfair.{domain_extension}.nxt.ppbdev.com",
+    "PROMOS": "https://promos.betfair.{domain_extension}.nxt.ppbdev.com",
+    "DEPOSIT": {
+      "path": "deposit?prod=90&showHeader=0",
+      "host": "https://myfunds.betfair.{domain_extension}.nxt.ppbdev.com/"
+    },
+    "SPEND_BUDGET": {
+      "path": "my-budget?prod=90&showHeader=0",
+      "host": "https://myspendbudget.betfair.{domain_extension}.nxt.ppbdev.com/"
+    },
+    "EXCHANGE_SITE": {
+      "path": "exchange",
+      "host": "https://www.betfair.{domain_extension}.nxt.ppbdev.com/"
+    },
+    "OSG": {
+      "path": "",
+      "host": "wss://osg.betfair.{domain_extension}.nxt.ppbdev.com/"
+    },
+    "ERO": {
+      "path": "www/sports/exchange/readonly/v1/",
+      "host": ""
+    },
+    "ETX": {
+      "path": "www/sports/exchange/transactional/v1/",
+      "host": ""
+    },
+    "SMP": {
+      "path": "www/sports/fixedodds/readonly/v1/",
+      "host": ""
+    },
+    "NSS": {
+      "path": "NotificationSubscription/v1/",
+      "host": ""
+    },
+    "SER": {
+      "path": "SportsbookEventReadOnlyService/v1/",
+      "host": ""
+    },
+    "SPB": {
+      "path": "www/sports/fixedodds/transactional/v1/",
+      "host": ""
+    },
+    "SIB": {
+      "path": "www/sports/fixedodds/transactional/v1/",
+      "host": ""
+    },
+    "SSC": {
+      "path": "api/v1.0/content",
+      "host": ""
+    },
+    "COS_READONLY": {
+      "path": "cashout-service/readonly/v1/",
+      "host": ""
+    },
+    "COS_TRANSACTIONAL": {
+      "path": "cashout-service/transactional/v1/",
+      "host": ""
+    },
+    "FCQ": {
+      "path": "fcq-service/v0.1/",
+      "host": ""
+    },
+    "SCO": {
+      "path": "www/sports/fixedodds/transactional/v1/",
+      "host": ""
+    },
+    "CATALOGUE": {
+      "path": "api/tbd/bff-gql/",
+      "host": ""
+    },
+    "WAS": {
+      "path": "wallet-service/v3.0/",
+      "host": ""
+    },
+    "LBR": {
+      "path": "www/sports/exchange/reporting/live/v1/",
+      "host": ""
+    },
+    "LOGOUT": {
+      "path": "api/logout/",
+      "host": ""
+    },
+    "BLH": {
+      "path": "graphql",
+      "host": "https://blh.betfair.com.nxt.ppbdev.com"
+    },
+    "SCA": {
+      "path": "graphql/",
+      "host": ""
+    },
+    "USP": {
+      "path": "usp-preferences/v1.0/",
+      "host": ""
+    },
+    "GAME_LAUNCHER": {
+      "path": "launcher/",
+      "host": ""
+    },
+    "PROMOTIONS_CDN": {
+      "path": "",
+      "host": "https://promotions.cdnppb.net.nxt.ppbdev.com"
+    },
+    "PMA_S3_PROMOTIONS_CDN": {
+      "path": "",
+      "host": "https://pma-s3.betfair.com.nxt.ppbdev.com"
+    },
+    "GAMING_SEARCH": {
+      "path": "api/gfe/search-games/v1/search-games",
+      "host": ""
+    },
+    "XTSD": {
+      "path": "LoadRunnerInfoChartAction/",
+      "host": ""
+    },
+    "CBS": {
+      "path": "CustomerBehaviourService/v2.0/",
+      "host": ""
+    },
+    "SMD": {
+      "path": "SeoMetadata/v1/",
+      "host": ""
+    },
+    "LIVE_DEALER_WS": {
+      "path": "api/gfe/fanout/v2/",
+      "host": ""
+    },
+    "LIVE_DEALER_EVENT_SOURCE": {
+      "path": "feeds/",
+      "host": "https://gmd.betfair.com.nxt.ppbdev.com/"
+    },
+    "USER_ACTIVITY": {
+      "path": "api/gfe/user-activity/v1/favourite-games/",
+      "host": "https://gfe.betfair.{domain_extension}.nxt.ppbdev.com/"
+    },
+    "HANDLE_BANNER_ACTION": {
+      "path": "myaccountx/rest/handleBannerAction",
+      "host": ""
+    },
+    "WMS": {
+      "path": "",
+      "host": "https://messaging.betfair.{domain_extension}.nxt.ppbdev.com/"
+    },
+    "BCE": {
+      "path": "api/sports/bce/v1.0/",
+      "host": "https://bce.nxt.dev.betfair/"
+    },
+    "EGA": {
+      "path": "",
+      "host": "https://graphs.nxt.{domain_extension}.betfair/"
+    },
+    "LPS": {
+      "path": "exposure/v1/log",
+      "host": "https://lps.betfair.com.nxt.ppbdev.com/"
+    }
+  },
+  "ADOBE_SDK": {
+    "ADOBE_MARKETING_SERVER": "betfair-mid.neolane.net",
+    "ADOBE_TRACKING_SERVER": "powerleisurebookmakers-mid-stage1-t.adobe-campaign.com"
+  },
+  "SWA_PRODUCT_ID": "tbd",
+  "EXPERIMENTATIONS_KEY": "Rp9mDx9wgF7Ch2AQ",
+  "CATALOG": {
+    "FILLED_CARDS_PER_CARD_GROUP": 2,
+    "FILLED_CARDS_PER_VIEW": 3,
+    "FILLED_CARDS_PER_LAZY_LOAD": 4
+  },
+  "REN_USER_AGENTS": {
+    "MOBILE": "RENBF Android",
+    "DESKTOP": "RENBF Desktop"
+  },
+  "SSO_URL": "https://identitysso.betfair.com.nxt.ppbdev.com/view/login?redirectMethod=GET&product=bfrebuild&prod=90",
+  "JOIN_FALLBACK_URL": "https://btfr.co/linker/join-now-btfr",
+  "DOMAIN_EXTENSIONS": {
+    "BRAZIL": "bet.br",
+    "DENMARK": "com",
+    "INTERNATIONAL": "com",
+    "SPAIN": "es",
+    "ITALY": "it",
+    "ROMANIA": "ro"
+  },
+  "CLOUDFLARE_WHITELIST_DOMAINS": [],
+  "GTM": {
+    "ID": "GTM-M2MWMLTZ",
+    "DEBUG_KEYS": "&gtm_auth=4H47DrWdhtYPnhhDU0ZYoA&gtm_preview=env-6&gtm_cookies_win=x"
+  },
+  "EXTERNAL_LINKS": {
+    "NINETY_MINUTE_RULE": {
+      "INTERNATIONAL": {
+        "default": "https://support.betfair.com/app/answers/detail/a_id/10279/",
+        "de": "https://support.betfair.com/de/app/answers/detail/a_id/10281/",
+        "es_419": "https://support.betfair.com/es/app/answers/detail/a_id/10288/",
+        "fi": "https://support.betfair.com/fi/app/answers/detail/a_id/10287/",
+        "hu": "https://support.betfair.com/hu/app/answers/detail/a_id/10285/",
+        "no": "https://support.betfair.com/no/app/answers/detail/a_id/10286/",
+        "pt": "https://support.betfair.com/pt/app/answers/detail/a_id/10282/",
+        "pt_BR": "https://support.betfair.com/pt/app/answers/detail/a_id/10282/",
+        "ru": "https://support.betfair.com/ru/app/answers/detail/a_id/10283/"
+      },
+      "BRAZIL": {
+        "default": "https://support.betfair.bet.br.nxt.ppbdev.com/pt/app/answers/detail/10282-sportsbook-90-minute-payout/",
+        "en_GB": "https://support.betfair.bet.br.nxt.ppbdev.com/app/answers/detail/10279-sportsbook-90-minute-payout/"
+      },
+      "ITALY": {
+        "default": "https://support.betfair.it/app/answers/detail/a_id/6697/"
+      },
+      "SPAIN": {
+        "default": "https://support.betfair.es/app/answers/detail/a_id/10340/"
+      }
+    },
+    "SUPER_SUB": {
+      "INTERNATIONAL": {
+        "default": "https://betting.betfair.com/betfair-announcements/whats-new-on-betfair/safe-sub-comes-to-betfair-220425-6.html"
+      },
+      "BRAZIL": {
+        "default": "https://support.betfair.bet.br/app/answers/detail/substituicao-segura-br/",
+        "en_GB": "https://support.betfair.bet.br/en/app/answers/detail/substituicao-segura-en/"
+      },
+      "SPAIN": {
+        "default": "https://support.betfair.es/app/answers/detail/10707-sustituto/",
+        "en_GB": "https://support.betfair.es/en/app/answers/detail/10708-safe-substitution/"
+      }
+    },
+    "MAX_PAYOUT": {
+      "INTERNATIONAL": {
+        "default": "https://www.betfair.com/en/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+        "da": "https://www.betfair.com/da/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+        "de": "https://www.betfair.com/de/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+        "es_419": "https://www.betfair.com/es_419/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+        "fi": "https://www.betfair.com/fi/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+        "hu": "https://www.betfair.com/hu/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+        "no": "https://www.betfair.com/no/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+        "pt": "https://www.betfair.com/pt/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+        "pt_BR": "https://www.betfair.com/pt/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+        "ru": "https://www.betfair.com/ru/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin"
+      },
+      "BRAZIL": {
+        "default": "https://www.betfair.bet.br.nxt.ppbdev.com/pt/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+        "en_GB": "https://www.betfair.bet.br.nxt.ppbdev.com/en/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin"
+      },
+      "SPAIN": {
+        "default": "https://www.betfair.es/es/conocenos/#MaxWin"
+      }
+    },
+    "ACCA_INSURANCE": {
+      "INTERNATIONAL": {
+        "default": "https://support.betfair.com/app/answers/detail/6157-sportsbook-what-is-acca-edge",
+        "de": "https://support.betfair.com/de/app/answers/detail/a_id/6459",
+        "es_419": "https://support.betfair.com/es/app/answers/detail/a_id/6464",
+        "pt": "https://support.betfair.com/pt/app/answers/detail/a_id/6465",
+        "pt_BR": "https://support.betfair.com/pt/app/answers/detail/a_id/6465",
+        "ru": "https://support.betfair.com/ru/app/answers/detail/a_id/6461"
+      },
+      "BRAZIL": {
+        "default": "https://support.betfair.bet.br.nxt.ppbdev.com/pt/app/answers/detail/6465-betfair-esportes-o-que-e-multipla-segura/",
+        "en_GB": "https://support.betfair.bet.br.nxt.ppbdev.com/app/answers/detail/6157-sportsbook-what-is-acca-edge/"
+      },
+      "SPAIN": {
+        "default": "https://support.betfair.com/es/app/answers/detail/a_id/6464"
+      }
+    },
+    "MARKET_RULES_DISCOUNT_RATE": {
+      "INTERNATIONAL": {
+        "default": "//support.betfair.com/app/answers/detail/a_id/414",
+        "pt": "//en-betfair.custhelp.com/app/answers/detail/a_id/414",
+        "sv": "//en-betfair.custhelp.com/app/answers/detail/a_id/414"
+      },
+      "ITALY": {
+        "default": "//en-betfair.custhelp.com/app/answers/detail/a_id/414"
+      },
+      "ROMANIA": {
+        "default": "https://www.asistentabetfair.ro/app/answers/detail/a_id/414"
+      },
+      "SPAIN": {
+        "default": "https://es-betfair.custhelp.com/app/answers/detail/a_id/414"
+      }
+    },
+    "RULE4": {
+      "INTERNATIONAL": {
+        "default": "https://support.betfair.com/app/answers/detail/a_id/11/",
+        "en": "https://support.betfair.com/app/answers/detail/a_id/11/",
+        "es_419": "https://support.betfair.com/es/app/answers/detail/a_id/10368",
+        "hu": "https://support.betfair.com/hu/app/answers/detail/a_id/11011",
+        "no": "https://support.betfair.com/no/app/answers/detail/a_id/11011",
+        "de": "https://support.betfair.com/de/app/answers/detail/a_id/6504",
+        "da": "https://support.betfair.com/app/answers/detail/a_id/403",
+        "fi": "https://support.betfair.com/fi/app/answers/detail/a_id/11011",
+        "pt": "https://support.betfair.com/pt/app/answers/detail/a_id/10369",
+        "pt_BR": "https://support.betfair.com/pt/app/answers/detail/a_id/10369"
+      },
+      "BRAZIL": {
+        "default": "https://support.betfair.bet.br/app/answers/detail/10369-corrida-de-cavalos---non-runner-e-regra-4/",
+        "en_GB": "https://support.betfair.bet.br/en/app/answers/detail/11-horse-racing---non-runner--rule-4/"
+      },
+      "SPAIN": {
+        "default": "https://support.betfair.es/app/answers/detail/a_id/5888"
+      },
+      "ROMANIA": {
+        "default": "https://support.betfair.ro/app/answers/detail/a_id/6337"
+      }
+    },
+    "DEAD_HEAT": {
+      "INTERNATIONAL": {
+        "default": "https://support.betfair.com/app/answers/detail/a_id/403",
+        "en": "https://support.betfair.com/app/answers/detail/a_id/403",
+        "es_419": "https://support.betfair.com/es/app/answers/detail/a_id/10364",
+        "hu": "https://support.betfair.com/hu/app/answers/detail/a_id/11403",
+        "no": "https://support.betfair.com/no/app/answers/detail/a_id/11016",
+        "de": "https://support.betfair.com/de/app/answers/detail/a_id/10362",
+        "da": "https://support.betfair.com/da/app/answers/detail/a_id/1329",
+        "fi": "https://support.betfair.com/fi/app/answers/detail/a_id/11016",
+        "pt": "https://support.betfair.com/pt/app/answers/detail/a_id/10365",
+        "pt_BR": "https://support.betfair.com/pt/app/answers/detail/a_id/10365"
+      },
+      "BRAZIL": {
+        "default": "https://support.betfair.bet.br/app/answers/detail/10365-pagina-de-dead-heat/",
+        "en_GB": "https://support.betfair.bet.br/en/app/answers/detail/403-exchange-what-happens-if-there-is-a-dead-heat/"
+      },
+      "SPAIN": {
+        "default": "https://support.betfair.es/app/answers/detail/a_id/10360"
+      },
+      "ROMANIA": {
+        "default": "https://support.betfair.ro/app/answers/detail/a_id/10361"
+      }
+    },
+    "OPTA_FOOTBALL_STATISTICS": {
+      "INTERNATIONAL": {
+        "default": "https://support.betfair.com/app/answers/detail/opta-football-statistics-definitions/"
+      }
+    },
+    "SMART_APP_BANNER": {
+      "INTERNATIONAL": {
+        "default": "https://betfair.onelink.me/cWpO/sportssmart"
+      },
+      "BRAZIL": {
+        "default": "https://betfair-bet-br.onelink.me/Ax0n/brsmart"
+      },
+      "ITALY": {
+        "default": "https://betfair.onelink.me/cWpO/IT_SB_Smart_Banner"
+      }
+    },
+    "LOYALTY_CLUB": {
+      "BRAZIL": {
+        "default": "https://promos.betfair.bet.br.nxt.ppbdev.com/clubedevantagens"
+      },
+      "SPAIN": {
+        "default": "https://promos.betfair.es.nxt.ppbdev.com/clubbetfair"
+      }
+    },
+    "EXC_FEEDBACK_URL": {
+      "INTERNATIONAL": {
+        "default": "https://thebetfaircommunity.alidainsights.com/c/a/63H5nR6XgQC1G2CTuxtXOA"
+      }
+    }
+  }
+}

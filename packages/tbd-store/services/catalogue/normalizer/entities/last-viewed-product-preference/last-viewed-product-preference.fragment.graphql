@@ -1,0 +1,6 @@
+fragment lastViewedProductPreference on LastViewedProductPreference {
+  __typename
+  urn
+  lastViewedProductOptions
+  selectedLastViewedProduct
+}

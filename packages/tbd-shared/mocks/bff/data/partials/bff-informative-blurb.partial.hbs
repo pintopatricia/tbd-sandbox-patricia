@@ -1,0 +1,32 @@
+"__typename": "InformativeBlurb",
+"isCollapsed": {{isCollapsed}},
+{{#with title}}
+"title": {
+    "__typename": "DisplayNameTitle",
+    "name": "{{name}}{{^name}}Informative blurb title.{{/name}}"
+},
+{{/with}}
+{{#with description}}
+"description": {
+    "__typename": "DisplayNameTitle",
+    "name": "{{name}}{{^name}}Informative blurb description.{{/name}}"
+},
+{{/with}}
+{{#with supplementaryInfo}}
+"supplementaryInfo": {
+    "__typename": "SupplementaryInfo",
+    {{#with label}}
+        "label": {
+            "__typename": "DisplayNameTitle",
+            "name": "{{name}}{{^name}}SupplementaryInfo label{{/name}}"
+        },
+    {{/with}}
+    {{#with viewLink}}
+        "viewLink": { 
+            "__typename": "ViewLink",
+            "viewDisplayMode": "BLANK_INAPP",
+            "viewUrl": "{{viewUrl}}{{^viewUrl}}"https://casino.betfair.com/"{{/viewUrl}}"
+        }
+    {{/with}}
+}
+{{/with}}

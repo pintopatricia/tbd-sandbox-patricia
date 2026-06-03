@@ -1,0 +1,286 @@
+:root {
+  --progress-bar-container-margin: 4px;
+  --white-color: #fff;
+  --shadow-box-gradient: linear-gradient(
+    1turn,
+    rgba(255 255 255 / 0.97),
+    hsl(0deg 0% 100% / 0.33),
+    hsl(0deg 0% 100% / 0)
+  );
+  --shadow-box-top-gradient: linear-gradient(
+    180deg,
+    rgba(255 255 255 / 0.4),
+    hsl(0deg 0% 100% / 0.15),
+    hsl(0deg 0% 100% / 0)
+  );
+  --progress-bar-color: rgba(26 26 26 / 0.2);
+  --progress-bar-margin: 8px;
+  --progress-bar-margin-mobile: 4px;
+  --arrow-margin: 12px;
+  --arrows-background: rgba(0 0 0 / 0.4);
+}
+
+.carouselContainer {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 212px;
+  overflow: hidden;
+
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.carouselSlider {
+  display: flex;
+
+  width: 100%;
+  height: 100%;
+
+  will-change: transform;
+
+  transition: transform 1.2s ease;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.carouselItem {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+  touch-action: none;
+
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.itemImages {
+  width: 100%;
+  height: auto;
+  object-fit: fill;
+
+  aspect-ratio: 7 / 5.1;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.progressBarContainer {
+  position: absolute;
+  bottom: 0;
+
+  display: flex;
+
+  justify-content: center;
+
+  width: 75%;
+  padding: 6px;
+  margin: var(--progress-bar-container-margin);
+}
+
+.shadowBox {
+  position: absolute;
+  bottom: 0;
+
+  width: 100%;
+  height: 38px;
+
+  pointer-events: none;
+
+  background: var(--shadow-box-gradient);
+}
+
+.shadowBoxTop {
+  position: absolute;
+  top: 0;
+
+  width: 100%;
+  height: 28px;
+
+  pointer-events: none;
+
+  background: var(--shadow-box-top-gradient);
+}
+
+.arrowContainer {
+  position: absolute;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+}
+
+.arrow {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 50%;
+  height: 100%;
+
+  pointer-events: auto;
+  cursor: pointer;
+
+  background-color: transparent;
+  border: none;
+  outline: none;
+
+  svg {
+    display: none;
+  }
+}
+
+.left {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.right {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.progressBar {
+  width: 100%;
+  height: 2px;
+  margin: var(--progress-bar-margin-mobile);
+  overflow: hidden;
+
+  background-color: var(--progress-bar-color);
+  border-radius: 18px;
+}
+
+.progress {
+  width: 0;
+  height: 100%;
+
+  background-color: var(--white-color);
+
+  animation-name: progressFillAnimation;
+  animation-duration: 4.5s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes progressFillAnimation {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .carouselContainer {
+    height: 320px;
+  }
+
+  .shadowBox {
+    height: 59px;
+  }
+
+  .shadowBoxTop {
+    height: 48px;
+  }
+
+  .arrow {
+    display: flex;
+
+    width: 40px;
+    height: 40px;
+    margin: var(--arrow-margin);
+
+    background-color: var(--arrows-background);
+    border-radius: 50%;
+  }
+
+  .arrow svg {
+    display: block;
+
+    width: 24px;
+    height: 24px;
+  }
+
+  .left {
+    position: absolute;
+    top: auto;
+    left: 1%;
+  }
+
+  .right {
+    position: absolute;
+    top: auto;
+    right: 1%;
+  }
+
+  .progressBarContainer {
+    bottom: 10px;
+
+    padding: 0 48px;
+  }
+
+  .progressBar {
+    margin: 0 var(--progress-bar-margin);
+  }
+
+  .itemImages {
+    aspect-ratio: 7 / 4.6;
+  }
+}
+
+@media screen and (min-width: 650px) {
+  .carouselContainer {
+    height: 380px;
+  }
+
+  .shadowBox {
+    height: 70px;
+  }
+
+  .shadowBoxTop {
+    height: 56px;
+  }
+
+  .progressBarContainer {
+    bottom: 8px;
+
+    width: 90%;
+    padding: 0 101px;
+  }
+
+  .progressBar {
+    margin: 0 var(--progress-bar-margin);
+  }
+}

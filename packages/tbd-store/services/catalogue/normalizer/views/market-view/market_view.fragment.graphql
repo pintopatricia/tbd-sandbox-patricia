@@ -1,0 +1,25 @@
+fragment marketView on MarketView {
+  __typename
+  urn
+  url
+  canonicalUrl
+  mainMarket {
+    ...sportsbookMarket
+    ...exchangeMarket
+  }
+  items {
+    ...viewItems
+  }
+  bottomBar @include(if: $withBottomBar) {
+    ...bottomBar
+  }
+  leftSidebar @include(if: $withLeftSidebar) {
+    ...leftSidebar
+  }
+  regulatoryData @include(if: $withRegulatoryData) {
+    ...regulatoryData
+  }
+  xsellBar {
+    ...XSellBar
+  }
+}

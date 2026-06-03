@@ -1,0 +1,50 @@
+.timeUnit {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--timer-vertical-gap);
+
+  align-items: center;
+  justify-content: center;
+}
+
+.timeDigits {
+  display: flex;
+
+  gap: var(--timer-horizontal-gap);
+
+  align-items: center;
+}
+
+.timerBorder {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: var(--timer-padding);
+
+  background-color: var(--timer-background-colour);
+  border-radius: var(--timer-border-radius);
+}
+
+.timerLabel {
+  width: var(--timer-label-width);
+
+  font: var(--timer-label-typography);
+  color: var(--timer-label-colour);
+  text-align: center;
+  text-decoration-line: var(--timer-label-typography-text-decoration-line);
+  text-transform: var(--timer-label-typography-text-transform);
+  letter-spacing: var(--timer-label-typography-letter-spacing);
+}
+
+.text {
+  font: var(--timer-supporting-text-typography);
+  color: var(--timer-supporting-text-colour);
+  text-align: center;
+  text-decoration-line: var(--timer-supporting-text-typography-text-decoration-line);
+  text-transform: var(--timer-supporting-text-typography-text-transform);
+  letter-spacing: var(--timer-supporting-text-typography-letter-spacing);
+}

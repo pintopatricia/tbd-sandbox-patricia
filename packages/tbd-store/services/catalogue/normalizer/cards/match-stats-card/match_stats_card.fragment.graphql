@@ -1,0 +1,22 @@
+fragment matchStatsCard on MatchStatsCard {
+  __typename
+  urn
+  footballFixture: fixture {
+    ...footballFixture
+    stats {
+      period
+      periodStatus
+      home {
+        ...gameStats
+      }
+      away {
+        ...gameStats
+      }
+    }
+  }
+}
+
+fragment matchStatsCardPartial on MatchStatsCard {
+  __typename
+  urn
+}

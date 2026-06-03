@@ -1,0 +1,10 @@
+{{#if score}}
+  {{#with score}}
+    "score": {
+    "home":{{home}}{{^home}}2{{/home}},
+    "away":{{away}}{{^away}}2{{/away}}
+    },
+  {{/with}}
+{{else}}
+  "score": null,
+{{/if}}

@@ -1,0 +1,46 @@
+"__typename": "MarketBetCard",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:marketBet:1.167249009{{/urn}}",
+"betCardGroupURN": "{{betCardGroupURN}}{{^betCardGroupURN}}ppb:tbd:card:betCardGroup:123{{/betCardGroupURN}}",
+"marketBetCardGroupURN": "{{marketBetCardGroupURN}}{{^marketBetCardGroupURN}}ppb:tbd:card:marketBetCardGroup:666{{/marketBetCardGroupURN}}",
+"matchedStatus": "{{matchedStatus}}{{^matchedStatus}}unmatched{{/matchedStatus}}",
+"marketBet": {
+  {{#with marketBet}}
+    "__typename": "MarketBet",
+    "urn": "{{urn}}{{^urn}}ppb:marketBet:1.167249009{{/urn}}",
+    "id": "{{id}}{{^id}}1.167249009{{/id}}",
+    "description": "{{description}}{{^description}}Most Seats{{/description}}",
+    "numOfOrders": {{numOfOrders}}{{^numOfOrders}}2{{/numOfOrders}},
+    "numOfUnmatched": {{numOfUnmatched}}{{^numOfUnmatched}}0{{/numOfUnmatched}},
+    "cashoutQuotes": [
+    {{#each cashoutQuotes}}
+    {
+      "__typename": "ExchangeCashoutQuote",
+      "urn":"{{urn}}{{^urn}}ppb:excCashoutQuote:1.167249009/0{{/urn}}",
+      "marketURN":"{{marketURN}}{{^marketURN}}ppb:excMarket:1.167249009{{/marketURN}}",
+      "marketBetURN":"{{marketBetURN}}{{^marketBetURN}}ppb:marketBet:1.167249009{{/marketBetURN}}",
+      "value":{{value}}{{^value}}null{{/value}},
+      "profit":{{profit}}{{^profit}}null{{/profit}},
+      "currentLiability":{{currentLiability}}{{^currentLiability}}null{{/currentLiability}},
+      "status":"{{status}}{{^status}}UNAVAILABLE{{/status}}"
+    }{{#unless @last}},{{/unless}}
+    {{/each}}
+    ],
+    "betDelay": {{betDelay}}{{^betDelay}}0{{/betDelay}},
+    "marketViewLink": {
+    {{#with marketViewLink}}
+      "viewUrn": "{{viewUrn}}{{^viewUrn}}ppb:tbd:view:market:1.167249009{{/viewUrn}}",
+      "viewUrl": "{{viewUrl}}{{^viewUrl}}politics/uk-next-general-election/most-seats/mwe-1.167249009{{/viewUrl}}"
+    {{/with}}
+    },
+    "exchangeLightMarketViewLink": {
+    {{#with exchangeLightMarketViewLink}}
+      "viewUrn": "{{viewUrn}}{{^viewUrn}}ppb:tbd:view:generic:exchangeLightMarket:1.167249009{{/viewUrn}}",
+      "viewUrl": "{{viewUrl}}{{^viewUrl}}Not Implemented{{/viewUrl}}"
+    {{/with}}
+    },
+    "liability": {{liability}}{{^liability}}null{{/liability}},
+    "commission": {{commission}}{{^commission}}null{{/commission}},
+    "profit": {{profit}}{{^profit}}null{{/profit}},
+    "netProfit": {{netProfit}}{{^netProfit}}null{{/netProfit}}
+  {{/with}}
+}

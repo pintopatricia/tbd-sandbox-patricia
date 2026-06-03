@@ -1,0 +1,26 @@
+version: "3.4"
+services:
+  reverseproxy:
+    image: ppb/tbdsbg/dev/reverseproxy-nxt
+    build:
+      context: ${PWD}/../../../apps/sbg/reverse-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ${PWD}/../../../apps/sbg/reverse-proxy/dev/webapp.d/nxt.apitbdsbg-remote.locations.conf:/etc/nginx/conf.d/custom.locations.conf
+      - ${PWD}/../../../apps/sbg/reverse-proxy/dev/webapp.d/nxt.locations.conf:/etc/nginx/conf.d/locations.conf
+      - ${PWD}/../../../apps/sbg/reverse-proxy/dev/webapp.d/nxt.upstream:/etc/nginx/conf.d/nxt.upstream
+    depends_on:
+      - http-webserver
+      - webserver
+  http-webserver:
+    volumes:
+      - ${PWD}/../../../apps/tbd-http-webserver/config/certificates:/etc/bf-fabric/certificates/
+      - ${PWD}/../../../apps/tbd-http-webserver/config/webserver-config-http-sbg-nxt.json:/etc/bf-fabric/config-http.json
+      - ${PWD}/../../../apps/tbd-http-webserver/lib:/fabric/deploy/tbd-http-webserver/lib
+      - ${PWD}/../../../apps/tbd-http-webserver/lib/config/environment.json:/fabric/deploy/tbd-http-webserver/dist/tbd-http-webserver-v1/lib/config/environment.json:ro
+      - tbd-assets:/var/tmp/webserver/tbd-assets
+
+volumes:
+  tbd-assets:

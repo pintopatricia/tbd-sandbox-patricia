@@ -1,0 +1,87 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    apply from: 'config.gradle'
+
+    ext {
+        buildToolsVersion = BUILD.android.buildToolsVersion
+        minSdkVersion = BUILD.android.minSdkVersion
+        compileSdkVersion = BUILD.android.compileSdkVersion
+        targetSdkVersion = BUILD.android.targetSdkVersion
+        // We use NDK 23 which has both M1 support and is the side-by-side NDK version from AGP.
+        ndkVersion = BUILD.plugin.ndkVersion
+    }
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:${BUILD.plugin.gradleVersion}")
+        classpath("com.google.gms:google-services:${BUILD.plugin.googleServicesVersion}")
+        classpath("de.undercouch:gradle-download-task:${BUILD.plugin.gradleDownloadTask}")
+        classpath("com.google.firebase:firebase-crashlytics-gradle:${BUILD.plugin.firebaseCrashlyticsVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${BUILD.plugin.kotlinVersion}")
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:4.0.0.2929"
+        classpath "com.google.firebase:perf-plugin:2.0.2"
+        classpath("com.splunk:rum-httpurlconnection-auto-plugin:2.3.0")
+        classpath("com.splunk:rum-okhttp3-auto-plugin:2.3.0")
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+plugins {
+    id("com.facebook.react.rootproject")
+}
+
+allprojects {
+    tasks.withType(Javadoc).all { enabled = false }
+
+    repositories {
+        maven {
+            // Artifactory Maven URL
+            url('https://artifactory-prd.prd.betfair/artifactory/gradle-plugins/')
+        }
+        maven {
+            // Android JSC is installed from npm
+            url("$rootDir/../../../../node_modules/jsc-android/dist")
+        }
+        maven {
+          url "https://s3-us-west-2.amazonaws.com/si-mobile-sdks/android/"
+        }
+
+        mavenCentral {
+            // Maven Central Artifactory repo
+            url('https://artifactory-prd.prd.betfair/artifactory/Maven-Central/')
+
+            content {
+                excludeGroup "com.facebook.react"
+            }
+        }
+
+        google()
+        maven { url 'https://www.jitpack.io' }
+        maven { url 'https://artifactory-prd.prd.betfair/ui/repos/tree/General/jitpack' }
+        maven {
+            url "https://gitlab.com/api/v4/projects/38419902/packages/maven"
+            credentials(HttpHeaderCredentials) {
+                name 'Deploy-Token'
+                value System.getenv('MONTEROSA_TOKEN')
+            }
+            authentication {
+                header(HttpHeaderAuthentication)
+            }
+        }
+        flatDir {     dirs project( ':betfair.cetmodule' ).file( 'libs' ) }
+    }
+
+    configurations.all {
+        resolutionStrategy {
+            force 'androidx.browser:browser:1.8.0'
+        }
+    }
+}
+apply plugin: "expo-root-project"

@@ -1,0 +1,20 @@
+.statsContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--stats-container-vertical-gap);
+
+  padding: var(--stats-container-padding);
+
+  background-color: var(--stats-background-colour);
+  border-bottom: var(--stats-border);
+}
+
+.pebblesContainer {
+  padding: var(--stats-pebbles-padding);
+}
+
+.statsContent {
+  padding: var(--stats-content-padding);
+}

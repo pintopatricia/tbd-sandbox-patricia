@@ -1,0 +1,48 @@
+"__typename": "{{__typename}}{{^__typename}}GridCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:grid:default{{/urn}}",
+"numberOfItemsToDisplay": {{numberOfItemsToDisplay}}{{^numberOfItemsToDisplay}}5{{/numberOfItemsToDisplay}},
+"layout": "{{layout}}{{^layout}}VERTICAL_MARKETS{{/layout}}",
+"markets": [
+  {{#if markets}}
+    {{#each markets}}
+      {
+        {{#if displayLabel}}
+          {{#with displayLabel}}
+            "displayLabel": {
+              "__typename": "{{#if __typename}}{{__typename}}{{else}}DisplayNameTranslationKey{{/if}}",
+              "translationKey": {{#if translationKey}}"{{translationKey}}"{{else}}null{{/if}},
+              "name": {{#if name}}"{{name}}"{{else}}null{{/if}}
+            },
+          {{/with}}
+        {{/if}}
+        "market": {
+          {{#with market}}
+          {{> bff-market}}
+          {{/with}}
+        }
+      }{{#unless @last}},{{/unless}}
+    {{/each}}
+  {{/if}}
+],
+"runners": [
+  {{#if runners}}
+    {{#each runners}}
+      {
+        {{#if displayName}}
+          {{#with displayName}}
+            "displayName": {
+              "__typename": "{{#if __typename}}{{__typename}}{{else}}DisplayNameTranslationKey{{/if}}",
+              "translationKey": {{#if translationKey}}"{{translationKey}}"{{else}}null{{/if}},
+              "name": {{#if name}}"{{name}}"{{else}}null{{/if}}
+            },
+          {{/with}}
+        {{/if}}
+        "runner": {
+          {{#with runner}}
+          {{> bff-runner}}
+          {{/with}}
+        }
+      }{{#unless @last}},{{/unless}}
+    {{/each}}
+  {{/if}}
+]

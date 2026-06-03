@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>aps-environment</key>
+	<string>development</string>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:skybet.com</string>
+		<string>applinks:promos.skybet.com</string>
+	</array>
+	<key>com.apple.developer.in-app-payments</key>
+	<array>
+		<string>merchant.com.skybettingandgaming.SkyBet</string>
+		<string>merchant.com.skybettingandgaming.myaccount.test</string>
+	</array>
+	<key>com.apple.security.application-groups</key>
+	<array/>
+	<key>keychain-access-groups</key>
+	<array>
+		<string>$(AppIdentifierPrefix)com.skybet.SSO</string>
+		<string>$(AppIdentifierPrefix)com.skybet.CookieTransfer</string>
+	</array>
+</dict>
+</plist>

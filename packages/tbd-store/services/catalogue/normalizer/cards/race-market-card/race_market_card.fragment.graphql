@@ -1,0 +1,50 @@
+fragment raceMarketCard on RaceMarketCard {
+  __typename
+  urn
+  raceViewLink {
+    viewUrn
+    viewUrl
+  }
+  title
+  displayRunners {
+    exchange {
+      market {
+        ...exchangeMarketLiveData
+      }
+      runners {
+        runnerURN
+      }
+    }
+    sportsbook {
+      market {
+        ...sportsbookMarketLiveData
+      }
+      runners {
+        runnerURN
+      }
+    }
+  }
+  numberOfRunners
+  race {
+    ...raceWithRaceRunners
+  }
+  runnerViewLinks {
+    runnerUrn
+    viewUrl
+    viewUrn
+  }
+  isRunnerExpandable
+  marketPromo: promotion {
+    title
+    description
+    signposting
+  }
+  blurbs {
+    ...informativeBlurb
+  }
+}
+
+fragment raceMarketCardPartial on RaceMarketCard {
+  __typename
+  urn
+}

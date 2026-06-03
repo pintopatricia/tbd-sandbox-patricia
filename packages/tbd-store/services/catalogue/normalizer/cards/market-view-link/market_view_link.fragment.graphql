@@ -1,0 +1,26 @@
+fragment marketViewLinkCard on MarketViewLinkCard {
+  __typename
+  urn
+  viewLink {
+    viewUrn
+    viewUrl
+  }
+  market {
+    ... on ExchangeMarket {
+      __typename
+      name
+      urn
+    }
+    ... on SportsbookMarket {
+      __typename
+      name
+      urn
+    }
+  }
+  badge
+}
+
+fragment marketViewLinkCardPartial on MarketViewLinkCard {
+  __typename
+  urn
+}

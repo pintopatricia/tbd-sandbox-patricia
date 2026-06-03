@@ -1,0 +1,104 @@
+fragment accountBannersCard on AccountBannersCard {
+  __typename
+  urn
+  bannerDetails {
+    bannerInfo {
+      title
+      bodyContent {
+        text
+        items
+        formContent {
+          addressInfo {
+            addressLabel
+            postcodeLabel
+            jumioAddressStreetName
+            jumioAddressCity
+            jumioAddressProvince
+          }
+        }
+        contactUsInfo {
+          link
+          label
+        }
+      }
+    }
+    minimizedBannerInfo {
+      bodyText
+    }
+    bannerActions {
+      label
+      gaLabel
+      minimizedLabel
+      type
+      buttonType
+      path
+      url
+      target
+      action
+      data
+      actionFinalize {
+        onErrorBanner {
+          bannerInfo {
+            title
+            bodyContent {
+              text
+              items
+              formContent {
+                addressInfo {
+                  addressLabel
+                  postcodeLabel
+                  jumioAddressStreetName
+                  jumioAddressCity
+                  jumioAddressProvince
+                }
+              }
+              contactUsInfo {
+                link
+                label
+              }
+            }
+          }
+          minimizedBannerInfo {
+            bodyText
+          }
+          bannerActions {
+            label
+            gaLabel
+            minimizedLabel
+            type
+            buttonType
+            path
+            url
+            target
+            action
+            data
+          }
+          isMinimized
+          priority
+          useCase
+          flow
+          template
+          attentionLevel
+          maxDisplays
+          version
+          isClosable
+        }
+      }
+    }
+    isMinimized
+    priority
+    useCase
+    flow
+    template
+    attentionLevel
+    maxDisplays
+    version
+    isClosable
+    bannerType
+  }
+}
+
+fragment accountBannersCardPartial on AccountBannersCard {
+  __typename
+  urn
+}

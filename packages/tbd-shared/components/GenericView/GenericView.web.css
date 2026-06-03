@@ -1,0 +1,78 @@
+.default {
+  background-color: inherit;
+}
+
+.highlighted {
+  background-color: var(--page-highlighted-section-background-color);
+}
+
+@media screen and (min-width: 899px) {
+  .highlighted {
+    margin: var(--sticky-header-padding-desktop);
+
+    background-color: var(--page-highlighted-section-background-color);
+  }
+}
+
+.genericViewContainer {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin: 0 var(--spacing-3) 0 var(--spacing-3);
+
+  background-color: var(--page-highlighted-section-background-color);
+}
+
+.card {
+  margin: 0 var(--spacing-3);
+}
+
+/* groups define its own margins */
+
+.emptyMargins {
+  margin: 0;
+}
+
+/* apply margin to all cards */
+.itemsList .default > .card,
+.itemsList .highlighted > .card:not(:first-child, :empty) {
+  margin-top: var(--page-vertical-gap-primary);
+}
+
+/* remove margin top for this content cards */
+.itemsList .highlighted > .card.emptyTopMargin,
+.itemsList .default > .card.emptyTopMargin {
+  margin-top: 0;
+}
+
+.itemsList .hiddenDesktopItems {
+  display: none;
+
+  /* next sibling should have no margin top */
+  + div {
+    margin-top: 0;
+  }
+}
+
+.settingsView,
+.settingsView .itemsList,
+.settingsView .default,
+.settingsView .highlighted,
+.settingsView .emptyMargins {
+  display: flex;
+
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+@media screen and (max-width: 899px) {
+  .header {
+    margin: 0;
+  }
+}

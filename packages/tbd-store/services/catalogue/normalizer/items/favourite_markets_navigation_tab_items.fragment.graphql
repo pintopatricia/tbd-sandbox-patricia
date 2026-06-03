@@ -1,0 +1,19 @@
+fragment fullFavouriteMarketsNavigationTabItems on FavouriteMarketsNavigationTabItems {
+  edges {
+    node {
+      ...outrightMarketListCard
+      ...packagedCreatedBetsCard
+      ...pebbleCardGroup
+    }
+  }
+}
+
+fragment partialsFavouriteMarketsNavigationTabItems on FavouriteMarketsNavigationTabItems {
+  edges {
+    node {
+      ...outrightMarketListCardPartial
+      ...packagedCreatedBetsCardPartial
+      ...pebbleCardGroupEnrichedPartial
+    }
+  }
+}

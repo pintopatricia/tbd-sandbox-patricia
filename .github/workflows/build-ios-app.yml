@@ -1,0 +1,714 @@
+name: build-ios-app
+on:
+  workflow_call:
+    inputs:
+      pr_id:
+        type: string
+        description: PR the comment is made on
+        required: false
+      is_testing_app:
+        type: boolean
+        description: Is the app being built a test app?
+        required: true
+        default: true
+      brand:
+        type: string
+        description: What brand to use (bf, sbg or pp)
+        required: true
+        default: 'bf'
+      comment_id:
+        type: string
+        description: ID of the comment that triggered the workflow
+        required: false
+      is_deploy:
+        type: boolean
+        description: Is this workflow being triggered as part of a deploy process?
+        required: false
+        default: false
+      deploy_tag:
+        type: string
+        description: If this workflow is being triggered as part of a deploy process, what is the tag being deployed?
+        required: false
+        default: ''
+      ref:
+        type: string
+        description: Branch or tag to build from
+        required: false
+        default: 'master'
+    outputs:
+      artifact_name:
+        description: 'Name of the built artifact'
+        value: ${{ jobs.compute-brand-and-artifact-name.outputs.artifact_name }}
+  workflow_dispatch:
+    inputs:
+      pr_id:
+        type: string
+        description: PR the comment is made on
+        required: false
+      is_testing_app:
+        type: boolean
+        description: Is the app being built a test app?
+        required: true
+        default: true
+      brand:
+        type: choice
+        description: What brand to use
+        required: true
+        options:
+          - sbg
+          - bf
+          - pp
+        default: bf
+      comment_id:
+        type: string
+        description: ID of the comment that triggered the workflow
+        required: false
+      is_deploy:
+        type: boolean
+        description: Is this workflow being triggered as part of a deploy process?
+        required: false
+        default: false
+      deploy_tag:
+        type: string
+        description: If this workflow is being triggered as part of a deploy process, what is the tag being deployed?
+        required: false
+        default: ''
+      ref:
+        type: string
+        description: Branch or tag to build from
+        required: false
+        default: 'master'
+
+# Ensures that additional commits on the same PR cancels the previous github run.
+# This helps to ensure that our apps are not unnecessarily using resources.
+concurrency:
+  group: build-ios-app-${{ inputs.pr_id || inputs.ref }}-${{ inputs.is_testing_app }}-${{ inputs.brand }}
+  cancel-in-progress: true
+permissions: write-all
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_26.2.app/Contents/Developer
+  MATCH_KEYCHAIN_NAME_BF: ${{ secrets.MATCH_KEYCHAIN_NAME_BF }}
+  MATCH_KEYCHAIN_NAME_SBG: ${{ secrets.MATCH_KEYCHAIN_NAME_SBG }}
+  MATCH_KEYCHAIN_NAME_PP: ${{ secrets.MATCH_KEYCHAIN_NAME_PP }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  MONTEROSA_TOKEN: ${{ secrets.MONTEROSA_TOKEN }}
+  MONTEROSA_USER: ${{secrets.MONTEROSA_USER}}
+  FB_APP_ID_BF: ${{ secrets.FB_APP_ID_BF }}
+  FB_APP_ID_SBG: ${{ secrets.FB_APP_ID_SBG }}
+  FB_APP_ID_PP: ${{ secrets.FB_APP_ID_PP }}
+  FIREBASE_CI_KEY_BF: ${{ secrets.FIREBASE_CI_KEY_BF }}
+  FIREBASE_CI_KEY_SBG: ${{ secrets.FIREBASE_CI_KEY_SBG }}
+  MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+  MATCH_KEYCHAIN_PASSWORD_BF: ${{ secrets.MATCH_KEYCHAIN_PASSWORD_BF }}
+  MATCH_KEYCHAIN_PASSWORD_SBG: ${{ secrets.MATCH_KEYCHAIN_PASSWORD_SBG }}
+  MATCH_KEYCHAIN_PASSWORD_PP: ${{ secrets.MATCH_KEYCHAIN_PASSWORD_PP }}
+  FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+  APP_STORE_CONNECT_API_KEY_ID_SBG: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID_SBG}}
+  APP_STORE_CONNECT_API_ISSUER_ID_SBG: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID_SBG }}
+  APP_STORE_CONNECT_API_KEY_CONTENT_SBG: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT_SBG }}
+  APP_STORE_CONNECT_API_KEY_ID_BF: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID_BF}}
+  APP_STORE_CONNECT_API_ISSUER_ID_BF: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID_BF }}
+  APP_STORE_CONNECT_API_KEY_CONTENT_BF: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT_BF }}
+  APP_STORE_CONNECT_API_KEY_ID_PP: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID_PP}}
+  APP_STORE_CONNECT_API_ISSUER_ID_PP: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID_PP }}
+  APP_STORE_CONNECT_API_KEY_CONTENT_PP: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT_PP }}
+  SLACK_RELEASE_WEBHOOK_URL: ${{ secrets.SLACK_RELEASE_WEBHOOK_URL }}
+  IS_MR_BUILD: ${{!inputs.is_deploy}}
+jobs:
+  compute-brand-and-artifact-name:
+    runs-on: ubuntu-latest
+    outputs:
+      artifact_name: ${{ steps.set-artifact-name.outputs.artifact_name }}
+      brand_full_name: ${{ steps.set-brand.outputs.brand_full_name }}
+      target_url: ${{ steps.workflow-url.outputs.workflow_url }}
+    steps:
+      - name: Set brand
+        id: set-brand
+        run: |
+          if [[ "${{ inputs.brand }}" == "bf" ]]; then
+            echo "brand_full_name=Betfair" >> $GITHUB_OUTPUT
+          elif [[ "${{ inputs.brand }}" == "sbg" ]]; then
+            echo "brand_full_name=SkyBet" >> $GITHUB_OUTPUT
+          elif [[ "${{ inputs.brand }}" == "pp" ]]; then
+            echo "brand_full_name=PaddyPower" >> $GITHUB_OUTPUT
+          fi
+      - name: Set artifact name
+        id: set-artifact-name
+        run: |
+          brand="${{ steps.set-brand.outputs.brand_full_name }}"
+          if [[ "${{ inputs.is_testing_app }}" == "true" ]]; then
+            if [[ "${{ inputs.pr_id }}" ]]; then
+              artifact_name="${brand}-PR-${{ inputs.pr_id }}.app.zip"
+            else
+              artifact_name="${brand}-${{ inputs.deploy_tag }}.app.zip"
+            fi
+          else
+            if [[ "${{ inputs.pr_id }}" ]]; then
+              artifact_name="${brand}-PR-${{ inputs.pr_id }}.ipa"
+            else
+              artifact_name="${brand}.ipa"
+            fi
+          fi
+          echo "artifact_name=${artifact_name}" >> $GITHUB_OUTPUT
+      - name: Get Running Workflow URL
+        id: workflow-url
+        run: |
+          echo "workflow_url=https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> $GITHUB_OUTPUT
+  build-firebase-app:
+    if: ${{ !inputs.is_testing_app }}
+    runs-on: macos-15-xlarge
+    needs: compute-brand-and-artifact-name
+    outputs:
+      link_to_app: ${{ steps.build-app.outputs.link_to_app }}
+      artifact_name: ${{ needs.compute-brand-and-artifact-name.outputs.artifact_name }}
+      sha: ${{ steps.set-sha.outputs.sha }}
+      target_url: ${{ needs.compute-brand-and-artifact-name.outputs.target_url }}
+      brand_full_name: ${{ needs.compute-brand-and-artifact-name.outputs.brand_full_name }}
+    env:
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+      FASTLANE_PASSWORD: ${{secrets.FASTLANE_PASSWORD}}
+      MATCH_PASSWORD: ${{secrets.MATCH_PASSWORD}}
+      FIREBASE_CI_KEY: ${{secrets.FIREBASE_CI_KEY}}
+      MATCH_KEYCHAIN_NAME: 'TBDN_App'
+      MATCH_KEYCHAIN_PASSWORD: ${{secrets.MATCH_KEYCHAIN_PASSWORD}}
+      BRAND_FULL_NAME: ${{ needs.compute-brand-and-artifact-name.outputs.brand_full_name }}
+      ARTIFACT_NAME: ${{ needs.compute-brand-and-artifact-name.outputs.artifact_name }}
+      BUILD_URL: ${{ needs.compute-brand-and-artifact-name.outputs.target_url }}
+    steps:
+      - name: Get Cross-Repo App Token
+        id: app
+        uses: Flutter-Tech/github-app-token@v2
+        with:
+          APP_PEM: ${{ secrets.CROSS_REPO_CONTENTS_ACCESS_PEM }}
+          APP_ID: 211263
+          APP_INSTALLATION_ID: 26559618
+      - name: Setting the ref to checkout
+        id: ref-to-checkout
+        run: |
+          if [ ${{inputs.pr_id}} ]; then
+            echo "REF_TO_CHECKOUT=refs/pull/${{ inputs.pr_id }}/head" >> $GITHUB_OUTPUT
+          else
+            echo "REF_TO_CHECKOUT=${{ inputs.ref || github.ref }}" >> $GITHUB_OUTPUT
+          fi
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          ref: ${{ steps.ref-to-checkout.outputs.REF_TO_CHECKOUT }}
+      - name: Set ios build number
+        id: set-ios-build-number
+        run: |
+          if [[ "${{ inputs.is_deploy }}" == "true" ]]; then
+            echo "IOS_BUILD_NUMBER=${{ inputs.deploy_tag }}" >> $GITHUB_OUTPUT
+          else
+            echo "IOS_BUILD_NUMBER=${{ github.run_id }}" >> $GITHUB_OUTPUT
+          fi
+      - name: Set sha variable
+        id: set-sha
+        run: |
+            echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+      - uses: actions/github-script@v7
+        if: ${{inputs.pr_id}}
+        with:
+          script: |
+            await github.rest.repos.createCommitStatus({
+              owner: "Flutter-Global",
+              repo: "tbd",
+              sha: "${{ steps.set-sha.outputs.sha }}",
+              state: "pending",
+              description: "IOS build is running, click to view",
+              target_url: "${{ needs.compute-brand-and-artifact-name.outputs.target_url }}",
+              context: "build-ios-${{ inputs.brand }}-firebase"
+            });
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+      - name: Cache node dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Setup Ruby
+        run: |
+          brew install ruby-build
+          ruby-build 3.2.2 /Users/runner/hostedtoolcache/Ruby/3.2.2/arm64
+          touch /Users/runner/hostedtoolcache/Ruby/3.2.2/arm64.complete
+      - name: Setup ruby (cached)
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+          bundler-cache: true
+      - name: Install CocoaPods
+        run: sudo gem install cocoapods -v 1.15.2
+      - name: Install fastlane
+        run: sudo gem install fastlane -v 2.232.2
+      - name: Install base dependencies
+        run: |
+          brew install imagemagick
+          brew install graphicsmagick
+        shell: bash
+      - name: Install dependencies
+        run: yarn install --immutable-cache
+      - name: Generate ENV files
+        run: |
+          chmod +x tools/generate-env-files.sh
+          ./tools/generate-env-files.sh --brand "${{ inputs.brand }}"
+        shell: bash
+      - name: Prepare
+        run: |
+          yarn prepare
+        shell: bash
+      - name: Add FB ID
+        run: |
+          if [ "${{ inputs.brand }}" = "bf" ]; then
+            FB_APP_ID="$FB_APP_ID_BF"
+          elif [ "${{ inputs.brand }}" = "sbg" ]; then
+            FB_APP_ID="$FB_APP_ID_SBG"
+          elif [ "${{ inputs.brand }}" = "pp" ]; then
+            FB_APP_ID="$FB_APP_ID_PP"
+          fi
+          sed -i "" "s/FACEBOOK_APP_ID/$FB_APP_ID/g" "apps/${{ inputs.brand }}/native/ios/tbd_native/Info.plist"
+        shell: bash
+      - name: Set app environment
+        run: |
+          cd "apps/${{ inputs.brand }}/native"
+          yarn run environment qa
+          yarn run releaseMode internal
+        shell: bash
+      - name: Make .netrc file
+        run: |
+          rm -f ~/.netrc
+          touch ~/.netrc
+          echo 'machine api.github.com' >> ~/.netrc
+          echo 'login github_app' >> ~/.netrc
+          echo 'password ${{ steps.app.outputs.app_token }}' >> ~/.netrc
+          echo 'machine github.com' >> ~/.netrc
+          echo 'login github_app' >> ~/.netrc
+          echo 'password ${{ steps.app.outputs.app_token }}' >> ~/.netrc
+          echo 'machine gitlab.com' >> ~/.netrc
+          echo 'login ${{ env.MONTEROSA_USER }}' >> ~/.netrc
+          echo 'password ${{ env.MONTEROSA_TOKEN }}' >> ~/.netrc
+          chmod 600 ~/.netrc
+        shell: bash
+      - name: Install pods
+        run: |
+          cd "apps/${{ inputs.brand }}/native/ios"
+          bundle install
+          bundle exec pod install --repo-update
+        shell: bash
+      - name: Build app
+        env:
+          GIT_BRANCH: ${{ steps.ref-to-checkout.outputs.REF_TO_CHECKOUT }}
+        id: build-app
+        run: |
+          if [ "${{ inputs.brand }}" = "bf" ]; then
+            export FIREBASE_CI_KEY="$FIREBASE_CI_KEY_BF"
+            export MATCH_KEYCHAIN_PASSWORD="$MATCH_KEYCHAIN_PASSWORD_BF"
+            export MATCH_KEYCHAIN_NAME="$MATCH_KEYCHAIN_NAME_BF"
+            export APP_STORE_CONNECT_API_KEY_ID="$APP_STORE_CONNECT_API_KEY_ID_BF"
+            export APP_STORE_CONNECT_API_ISSUER_ID="$APP_STORE_CONNECT_API_ISSUER_ID_BF"
+            export APP_STORE_CONNECT_API_KEY_CONTENT="$APP_STORE_CONNECT_API_KEY_CONTENT_BF"
+          elif [ "${{ inputs.brand }}" = "sbg" ]; then
+            export FIREBASE_CI_KEY="$FIREBASE_CI_KEY_SBG"
+            export MATCH_KEYCHAIN_PASSWORD="$MATCH_KEYCHAIN_PASSWORD_SBG"
+            export MATCH_KEYCHAIN_NAME="$MATCH_KEYCHAIN_NAME_SBG"
+            export APP_STORE_CONNECT_API_KEY_ID="$APP_STORE_CONNECT_API_KEY_ID_SBG"
+            export APP_STORE_CONNECT_API_ISSUER_ID="$APP_STORE_CONNECT_API_ISSUER_ID_SBG"
+            export APP_STORE_CONNECT_API_KEY_CONTENT="$APP_STORE_CONNECT_API_KEY_CONTENT_SBG"
+          elif [ "${{ inputs.brand }}" = "pp" ]; then
+            export MATCH_KEYCHAIN_PASSWORD="$MATCH_KEYCHAIN_PASSWORD_PP"
+            export MATCH_KEYCHAIN_NAME="$MATCH_KEYCHAIN_NAME_PP"
+            export APP_STORE_CONNECT_API_KEY_ID="$APP_STORE_CONNECT_API_KEY_ID_PP"
+            export APP_STORE_CONNECT_API_ISSUER_ID="$APP_STORE_CONNECT_API_ISSUER_ID_PP"
+            export APP_STORE_CONNECT_API_KEY_CONTENT="$APP_STORE_CONNECT_API_KEY_CONTENT_PP"
+            export MATCH_PASSWORD="$MATCH_KEYCHAIN_PASSWORD_PP"
+
+            echo ${{ secrets.FIREBASE_INHOUSE_SERVICE_ACCOUNT_PP}} | base64 --decode > apps/${{ inputs.brand }}/native/ios/service_account.json
+          fi
+
+          cd "apps/${{ inputs.brand }}/native/ios"
+          IS_GH=true IOS_BUILD_NUMBER="${{ steps.set-ios-build-number.outputs.IOS_BUILD_NUMBER }}" bundle exec fastlane in_house
+          cd ..
+          echo "link_to_app=$(cat ios/link_to_app)" >> $GITHUB_OUTPUT
+          echo "You can download the IPA from [here]($(cat ios/link_to_app))" >> $GITHUB_STEP_SUMMARY
+        shell: bash
+      - name: Rename IPA for PR build
+        if: ${{ inputs.pr_id != '' }}
+        run: |
+          cd "apps/${{ inputs.brand }}/native/ios"
+          mv "${{ env.BRAND_FULL_NAME }}.ipa" "${{ env.ARTIFACT_NAME }}"
+      - name: Upload Artifact
+        id: upload-zip-artifact-github
+        uses: actions/upload-artifact@v4
+        with:
+          name: "${{ env.ARTIFACT_NAME }}"
+          path: "apps/${{ inputs.brand }}/native/ios/${{ env.ARTIFACT_NAME }}"
+          retention-days: 14
+  build-testing-app:
+    if: ${{ inputs.is_testing_app }}
+    runs-on: macos-15-xlarge
+    needs: compute-brand-and-artifact-name
+    outputs:
+      artifact_name: ${{ needs.compute-brand-and-artifact-name.outputs.artifact_name }}
+      sha: ${{ steps.set-sha.outputs.sha }}
+      target_url: ${{ needs.compute-brand-and-artifact-name.outputs.target_url }}
+      brand_full_name: ${{ needs.compute-brand-and-artifact-name.outputs.brand_full_name }}
+    env:
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+      BRAND_FULL_NAME: ${{ needs.compute-brand-and-artifact-name.outputs.brand_full_name }}
+      ARTIFACT_NAME: ${{ needs.compute-brand-and-artifact-name.outputs.artifact_name }}
+      ENABLE_A11Y_TESTS_MODE: 1
+    steps:
+      - name: Get Cross-Repo App Token
+        id: app
+        uses: Flutter-Tech/github-app-token@v2
+        with:
+          APP_PEM: ${{ secrets.CROSS_REPO_CONTENTS_ACCESS_PEM }}
+          APP_ID: 211263
+          APP_INSTALLATION_ID: 26559618
+      - name: Setting the ref to checkout
+        id: ref-to-checkout
+        run: |
+          if [ ${{inputs.pr_id}} ]; then
+            echo "REF_TO_CHECKOUT=refs/pull/${{ inputs.pr_id }}/head" >> $GITHUB_OUTPUT
+          else
+            echo "REF_TO_CHECKOUT=${{ inputs.ref || github.ref }}" >> $GITHUB_OUTPUT
+          fi
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          ref: ${{ steps.ref-to-checkout.outputs.REF_TO_CHECKOUT }}
+      - name: Set sha variable
+        id: set-sha
+        run: |
+            echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+      - uses: actions/github-script@v7
+        if: ${{inputs.pr_id}}
+        with:
+          script: |
+            await github.rest.repos.createCommitStatus({
+              owner: "Flutter-Global",
+              repo: "tbd",
+              sha: "${{ steps.set-sha.outputs.sha }}",
+              state: "pending",
+              description: "IOS build is running, click to view",
+              target_url: "${{ needs.compute-brand-and-artifact-name.outputs.target_url }}",
+              context: "build-ios-${{ inputs.brand }}-test-app"
+            });
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+      - name: Cache node dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Setup Ruby
+        run: |
+          brew install ruby-build
+          ruby-build 3.2.2 /Users/runner/hostedtoolcache/Ruby/3.2.2/arm64
+          touch /Users/runner/hostedtoolcache/Ruby/3.2.2/arm64.complete
+      - name: Setup ruby (cached)
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+          bundler-cache: true
+      - name: Add FB ID
+        run: |
+          if [ "${{ inputs.brand }}" = "bf" ]; then
+            FB_APP_ID="$FB_APP_ID_BF"
+          elif [ "${{ inputs.brand }}" = "sbg" ]; then
+            FB_APP_ID="$FB_APP_ID_SBG"
+          elif [ "${{ inputs.brand }}" = "pp" ]; then
+            FB_APP_ID="$FB_APP_ID_PP"
+          fi
+          sed -i "" "s/FACEBOOK_APP_ID/$FB_APP_ID/g" "apps/${{ inputs.brand }}/native/ios/tbd_native/Info.plist"
+        shell: bash
+      - name: Install dependencies
+        run: yarn install --immutable-cache
+      - name: Generate ENV files
+        run: |
+          chmod +x tools/generate-env-files.sh
+          ./tools/generate-env-files.sh --brand "${{ inputs.brand }}"
+        shell: bash
+      - name: Prepare
+        run: |
+          yarn prepare
+        shell: bash
+      - name: Set app environment
+        run: |
+          cd "apps/${{ inputs.brand }}/native"
+          yarn run environment qa
+          yarn run releaseMode internal
+        shell: bash
+      - name: Make .netrc file
+        run: |
+          rm -f ~/.netrc
+          touch ~/.netrc
+          echo 'machine api.github.com' >> ~/.netrc
+          echo 'login github_app' >> ~/.netrc
+          echo 'password ${{ steps.app.outputs.app_token }}' >> ~/.netrc
+          echo 'machine github.com' >> ~/.netrc
+          echo 'login github_app' >> ~/.netrc
+          echo 'password ${{ steps.app.outputs.app_token }}' >> ~/.netrc
+          echo 'machine gitlab.com' >> ~/.netrc
+          echo 'login ${{ env.MONTEROSA_USER }}' >> ~/.netrc
+          echo 'password ${{ env.MONTEROSA_TOKEN }}' >> ~/.netrc
+          chmod 600 ~/.netrc
+        shell: bash
+      - name: Build app
+        env:
+          GITHUB_TOKEN: ${{ steps.app.outputs.app_token }}
+          GIT_BRANCH: ${{ steps.ref-to-checkout.outputs.REF_TO_CHECKOUT }}
+        run: |
+          cd "apps/${{ inputs.brand }}/native/ios"
+          sh ../tests/scripts/app/build_ios.sh --buildtype In_House
+        shell: bash
+      - name: Zip App
+        run: |
+          zip -r ${{ env.ARTIFACT_NAME }} apps/${{ inputs.brand }}/native/ios/build/Build/Products/In_House-iphonesimulator/${{ env.BRAND_FULL_NAME }}.app
+      - name: Upload Artifact
+        id: upload-zip-artifact-github
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: ${{ env.ARTIFACT_NAME }}
+          retention-days: 14
+  publish-to-artifactory:
+    runs-on: centos-self-hosted
+    needs: build-testing-app
+    if: ${{ inputs.is_testing_app && (needs.build-testing-app.result == 'success') }}
+    env:
+      ARTIFACT_NAME: ${{ needs.build-testing-app.outputs.artifact_name }}
+      BRAND_FULL_NAME: ${{ needs.build-testing-app.outputs.brand_full_name }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          sparse-checkout: |
+            .github/actions/publish-artifactory
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        id: download-artifact
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: downloaded-artifacts
+      - name: Set Artifactory path
+        id: set-artifactory-path
+        run: |
+          if [[ "${{ inputs.pr_id }}" != "" ]]; then
+            echo "artifactory_path=tbd-native/ios/${{ inputs.brand }}/pull-requests/" >> $GITHUB_OUTPUT
+          else
+            echo "artifactory_path=tbd-native/ios/${{ inputs.brand }}/qa/" >> $GITHUB_OUTPUT
+          fi
+      - name: Publish APP to Artifactory
+        uses: ./.github/actions/publish-artifactory
+        with:
+          artifactory_path: ${{ steps.set-artifactory-path.outputs.artifactory_path }}
+          path: ${{steps.download-artifact.outputs.download-path}}/${{ env.ARTIFACT_NAME }}
+      - name: Rename the app zip to latest
+        if: ${{ inputs.is_deploy }}
+        run: |
+          SOURCE_PATH="${{steps.download-artifact.outputs.download-path}}/${{ env.ARTIFACT_NAME }}"
+          DEST_PATH="${{steps.download-artifact.outputs.download-path}}/${{env.BRAND_FULL_NAME}}-latest.app.zip"
+          mv "$SOURCE_PATH" "$DEST_PATH"
+      - name: Publish APP Latest to Artifactory
+        if: ${{ inputs.is_deploy }}
+        uses: ./.github/actions/publish-artifactory
+        with:
+          artifactory_path: ${{ steps.set-artifactory-path.outputs.artifactory_path }}
+          path: ${{steps.download-artifact.outputs.download-path}}/${{env.BRAND_FULL_NAME}}-latest.app.zip
+  publish-qr-code:
+    concurrency:
+      group: publish-qr-code
+      cancel-in-progress: false
+    runs-on: centos-self-hosted
+    needs: build-firebase-app
+    if: ${{ !inputs.is_testing_app && (needs.build-firebase-app.result == 'success') && inputs.pr_id }}
+    env:
+      ARTIFACT_NAME: ${{ needs.build-firebase-app.outputs.artifact_name }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          sparse-checkout: |
+            .nvmrc
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          repository: "Flutter-Global/tbd-qrcode"
+          ref: "main"
+          token: ${{ secrets.QR_CODE_TOKEN }}
+          path: tbd-qrcode
+      - name: Upload qr code to tbd-qrcode
+        run: |
+          LINK_TO_APP="${{ needs.build-firebase-app.outputs.link_to_app }}"
+          npx qrcode@1.5.3 -o ./tbd-qrcode/QR-CODE-${{ inputs.pr_id }}-${{ github.run_id }}.png $LINK_TO_APP
+          cd tbd-qrcode
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add QR-CODE-${{ inputs.pr_id }}-${{ github.run_id }}.png
+          git commit -m "add QRCode for PR ${{ inputs.pr_id }}"
+          git push origin main
+  comment-on-pr-test-app:
+    runs-on: ubuntu-latest
+    needs: [build-testing-app, publish-to-artifactory]
+    if: ${{ always() && inputs.is_testing_app && inputs.pr_id }}
+    env:
+      ARTIFACT_NAME: ${{ needs.build-testing-app.outputs.artifact_name }}
+      IS_SUCCESS: ${{ needs.build-testing-app.result == 'success' && needs.publish-to-artifactory.result == 'success' }}
+      target_url: ${{ needs.build-testing-app.outputs.target_url }}
+      sha: ${{ needs.build-testing-app.outputs.sha }}
+    steps:
+      - name: Comment on PR for test app
+        if: ${{ inputs.pr_id && inputs.is_testing_app }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const buildResult = "${{ needs.build-testing-app.outputs.build_result }}";
+            let commentBody;
+
+            if (${{ env.IS_SUCCESS }}) {
+              const testAppUrl = "https://artifactory-prd.prd.betfair/artifactory/tbd-native/ios/${{ inputs.brand }}/pull-requests/${{ env.ARTIFACT_NAME }}";
+              commentBody = [
+                `✅ **iOS App (for tests) Build Complete**`,
+                `Download the app here: [${{ env.ARTIFACT_NAME }}](${testAppUrl})`
+              ].join('\n');
+            } else {
+              const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+              commentBody = [
+                `❌ **iOS App (for tests) Build Failed**`,
+                `- **Brand**: ${{inputs.brand}}`,
+                `- Please check the workflow run here: [View Workflow Run](${runUrl})`
+              ].join('\n')
+            }
+
+            if (${{inputs.comment_id != ''}}) {
+              const { data: existingComment } = await github.rest.issues.getComment({
+                owner: "Flutter-Global",
+                repo: "tbd",
+                comment_id: parseInt("${{inputs.comment_id}}", 10)
+              });
+              const updatedBody = `> ${existingComment.body}\n\n ${commentBody}`;
+              await github.rest.issues.updateComment({
+                owner: "Flutter-Global",
+                repo: "tbd",
+                comment_id: parseInt("${{inputs.comment_id}}", 10),
+                body: updatedBody
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: "Flutter-Global",
+                repo: "tbd",
+                issue_number: ${{ inputs.pr_id }},
+                body: commentBody,
+              });
+            }
+      - name: Compute overall workflow status
+        id: compute-overall-result
+        run: |
+          if [[ "${{ needs.build-testing-app.result }}" == "success" && "${{ needs.publish-to-artifactory.result }}" == "success" ]]; then
+            echo "overall_result=success" >> $GITHUB_OUTPUT
+          else
+            echo "overall_result=failure" >> $GITHUB_OUTPUT
+          fi
+      - name: Commit Status
+        uses: actions/github-script@v7
+        if: always()
+        with:
+          script: |
+            await github.rest.repos.createCommitStatus({
+              owner: "Flutter-Global",
+              repo: "tbd",
+              sha: "${{ env.sha }}",
+              state: "${{ steps.compute-overall-result.outputs.overall_result }}",
+              description: "IOS build job finished",
+              target_url: "${{ env.target_url }}",
+              context: "build-ios-${{ inputs.brand }}-test-app"
+            });
+  comment-on-pr-firebase-app:
+    runs-on: ubuntu-latest
+    needs: [build-firebase-app, publish-qr-code]
+    if: ${{ always() && !inputs.is_testing_app && inputs.pr_id }}
+    env:
+      ARTIFACT_NAME: ${{ needs.build-firebase-app.outputs.artifact_name }}
+      IS_SUCCESS: ${{ needs.build-firebase-app.result == 'success' && needs.publish-qr-code.result == 'success' }}
+      target_url: ${{ needs.build-firebase-app.outputs.target_url }}
+      sha: ${{ needs.build-firebase-app.outputs.sha }}
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const buildResult = "${{ needs.build-firebase-app.outputs.build_result }}";
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            let commentBody;
+            if (${{ env.IS_SUCCESS }}) {
+              const qrCodeArtifactUrl = "https://github.com/Flutter-Global/tbd-qrcode/blob/main/QR-CODE-${{ inputs.pr_id }}-${{ github.run_id }}.png?raw=true";
+              commentBody = [
+                `✅ **iOS Firebase Build Complete**`,
+                `- **Brand**: ${{inputs.brand}}`,
+                `- **IPA QR**:`,
+                `  ![Download IPA](${qrCodeArtifactUrl})`,
+                `- **IPA GH URL**: [Download artifact from github](${runUrl})`
+                ].join('\n');
+
+            } else {
+              commentBody = [
+                `❌ **iOS Firebase Build**`,
+                `- **Status**: ${buildResult}`,
+                `- **Brand**: ${{inputs.brand}}`,
+                `- Please check the workflow run here: [View Workflow Run](${runUrl})`
+                ].join('\n');
+            }
+
+            if (${{inputs.comment_id != ''}}) {
+                const { data: existingComment } = await github.rest.issues.getComment({
+                  owner: "Flutter-Global",
+                  repo: "tbd",
+                  comment_id: parseInt("${{inputs.comment_id}}", 10)
+                });
+                const updatedBody = `> ${existingComment.body}\n\n ${commentBody}`;
+                await github.rest.issues.updateComment({
+                  owner: "Flutter-Global",
+                  repo: "tbd",
+                  comment_id: parseInt("${{inputs.comment_id}}", 10),
+                  body: updatedBody
+                });
+              } else {
+                await github.rest.issues.createComment({
+                  owner: "Flutter-Global",
+                  repo: "tbd",
+                  issue_number: ${{ inputs.pr_id }},
+                  body: commentBody,
+                });
+              }
+      - name: Compute overall workflow status
+        id: compute-overall-result
+        run: |
+          if [[ "${{ needs.build-firebase-app.result }}" == "success" && "${{ needs.publish-qr-code.result }}" == "success" ]]; then
+            echo "overall_result=success" >> $GITHUB_OUTPUT
+          else
+            echo "overall_result=failure" >> $GITHUB_OUTPUT
+          fi
+      - name: Commit Status
+        uses: actions/github-script@v7
+        if: always()
+        with:
+          script: |
+            await github.rest.repos.createCommitStatus({
+              owner: "Flutter-Global",
+              repo: "tbd",
+              sha: "${{ env.sha }}",
+              state: "${{ steps.compute-overall-result.outputs.overall_result }}",
+              description: "IOS build job finished",
+              target_url: "${{ env.target_url }}",
+              context: "build-ios-${{ inputs.brand }}-firebase"
+            });

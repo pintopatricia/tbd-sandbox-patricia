@@ -1,0 +1,63 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--modal-stack);
+
+  background-color: var(--components-neutrals-overlay-background);
+}
+
+.modalContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+}
+
+.modal {
+  display: flex;
+
+  flex-direction: column;
+
+  width: 85%;
+  max-width: 480px;
+  max-height: 85%;
+  overflow: hidden;
+
+  background-color: var(--loyalty-message-modal-background-colour);
+  border-radius: 8px;
+}
+
+.content {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--loyalty-message-modal-vertical-gap-primary);
+
+  justify-content: space-between;
+
+  padding: var(--spacing-3);
+}
+
+.header.loyaltyMessage {
+  padding-bottom: var(--spacing-half);
+}
+
+.title {
+  padding-bottom: var(--spacing-1);
+
+  font: var(--loyalty-message-modal-title-typography);
+  color: var(--loyalty-message-modal-text-title-colour);
+  word-break: break-word;
+}
+
+.actionLink {
+  text-align: center;
+}
+
+.image {
+  width: 100%;
+  height: var(--loyalty-message-modal-image-sizing);
+}

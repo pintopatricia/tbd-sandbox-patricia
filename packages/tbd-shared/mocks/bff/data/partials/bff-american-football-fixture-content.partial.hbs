@@ -1,0 +1,31 @@
+"__typename": "{{__typename}}{{^__typename}}AmericanFootballFixture{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:fixture:45617892{{/urn}}",
+"sportevent": {
+  {{> bff-sportevent sportevent}}
+},
+"runnerNames": {{#if runnerNames}}{
+  "home": "{{runnerNames.home}}{{^runnerNames.home}}Kansas City Chiefs{{/runnerNames.home}}",
+  "away": "{{runnerNames.away}}{{^runnerNames.away}}Philadelphia Eagles{{/runnerNames.away}}"
+}{{else}}null{{/if}},
+"isAmericanFormat": {{#unless isAmericanFormat}}false{{else}}true{{/unless}},
+"score": {{#if score}}{
+  "home": {{#if score.home}}{{score.home}}{{else}}null{{/if}},
+  "away": {{#if score.away}}{{score.away}}{{else}}null{{/if}}
+}{{else}}null{{/if}},
+"clock": {{#if clock}}{
+  "period": {{#if clock.americanFootballPeriod}}"{{clock.americanFootballPeriod}}"{{else}}null{{/if}},
+  "timeElapsed": {{#if clock.timeElapsed}}{{clock.timeElapsed}}{{else}}null{{/if}},
+  "timeRemaining": {{#if clock.timeRemaining}}{{clock.timeRemaining}}{{else}}null{{/if}}
+}{{else}}null{{/if}},
+"quarterScores": {{#if quarterScores}}[
+  {{#each quarterScores}}
+    {
+      "score": {{#if score}}{
+        "home": {{#if score.home}}{{score.home}}{{else}}null{{/if}},
+        "away": {{#if score.away}}{{score.away}}{{else}}null{{/if}}
+      }{{else}}null{{/if}},
+      "period": {{#if period}}"{{period}}"{{else}}null{{/if}}
+    }{{#unless @last}},{{/unless}}
+  {{/each}}
+]{{else}}null{{/if}}
+

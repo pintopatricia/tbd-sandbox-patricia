@@ -1,0 +1,16 @@
+fragment budgetLimitsCard on BudgetLimitsCard {
+  __typename
+  urn
+  limits {
+    amount
+    category
+    remain
+    reset
+    nextBreachable
+  }
+}
+
+fragment budgetLimitsCardPartial on BudgetLimitsCard {
+  __typename
+  urn
+}

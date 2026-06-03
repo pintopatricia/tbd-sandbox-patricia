@@ -1,0 +1,7 @@
+.container {
+  margin: 0 var(--spacing-3);
+}
+
+.liveStreamContainer {
+  padding-top: var(--spacing-1);
+}

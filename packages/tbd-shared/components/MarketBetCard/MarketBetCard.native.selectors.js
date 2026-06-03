@@ -1,0 +1,9 @@
+const MARKET_BET_CARD = "market-bet-card";
+const MARKET_BET_CARD_MARKET_LINK = `${MARKET_BET_CARD}-market-link`;
+const MARKET_BET_CARD_LIABILITY_CONTAINER = `${MARKET_BET_CARD}-liability-container`;
+
+module.exports = {
+  MARKET_BET_CARD,
+  MARKET_BET_CARD_MARKET_LINK,
+  MARKET_BET_CARD_LIABILITY_CONTAINER,
+};

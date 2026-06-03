@@ -1,0 +1,53 @@
+{
+  "languages": [
+    {
+      "code": "es_419",
+      "name": "Espanol",
+      "expectedUrl": "/es/",
+      "sportsBook": "SPORTS",
+      "testKey": "PRPI-647"
+    },
+    {
+      "code": "de",
+      "name": "Deutsch",
+      "expectedUrl": "/de/",
+      "sportsBook": "SPORT",
+      "testKey": "PRPI-785"
+    },
+    {
+      "code": "hu",
+      "name": "Hungarian",
+      "expectedUrl": "/hu/",
+      "sportsBook": "SPORT",
+      "testKey": "PRPI-784"
+    },
+    {
+      "code": "ru",
+      "name": "Russian",
+      "expectedUrl": "/ru/",
+      "sportsBook": "СПОРТ",
+      "testKey": "PRPI-783"
+    },
+    {
+      "code": "en_GB",
+      "name": "English - UK",
+      "expectedUrl": "/",
+      "sportsBook": "SPORTS",
+      "testKey": "PRPI-782"
+    },
+    {
+      "code": "ie",
+      "name": "English - IRE",
+      "expectedUrl": "/",
+      "sportsBook": "SPORTS",
+      "testKey": "PRPI-781"
+    },
+    {
+      "code": "fr",
+      "name": "French",
+      "expectedUrl": "/fr/",
+      "sportsBook": "SPORTS",
+      "testKey": "PRPI-780"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+	"data": {
+		"View": {
+			"__typename": "EventView",
+      {{#if urn}}
+         "urn": "{{{urn}}}{{{queryParams}}}",
+      {{else}}
+         "urn": "ppb:tbd:view:event:12345",
+      {{/if}}
+      {{#if url}}
+         "url": "{{{url}}}",
+      {{else}}
+         "url": "/football/friendly-matches/rsm-hodonin-v-h-slavia-kromeriz/e-12345",
+      {{/if}}
+			"sportevent": {
+        {{#if sportevent}}
+          {{#with sportevent}}
+            {{> bff-sportevent}}
+          {{/with}}
+        {{else}}
+          {{> bff-sportevent}}
+        {{/if}}
+			},
+			"leftSidebar": {
+				{{> bff-leftside-bar }}
+			},
+			"items": {
+				"pageInfo": {
+					"nextPageCursor": "{{nextPageCursor}}{{^nextPageCursor}}TUFUQ0hfT0REUyxDT1JSRUNUX1NDT1JFLE9WRVJfVU5ERVJfMDUsT1ZFUl9VTkRFUl8xNQ=={{/nextPageCursor}}"
+				},
+				{{> bff-items }}
+			},
+			"partialItems": {
+				"pageInfo": null,
+				{{> bff-partial-items }}
+			},
+			"bottomBar": {
+				{{> bff-bottom-bar-tiles }}
+			}
+		}
+	}
+}

@@ -1,0 +1,562 @@
+name: ios-tests
+run-name: iOS - ${{ inputs.brand }} - ${{ inputs.test_type }} - ${{ inputs.pr_id || inputs.app_name }}
+
+on:
+  workflow_call:
+    inputs:
+      test_type:
+        required: true
+        type: string
+        description: Type of test to run
+      brand:
+        required: false
+        default: "bf"
+        type: string
+        description: Brand against which to run the tests
+      env:
+        required: false
+        default: "qa"
+        type: string
+        description: Environment against which to run the tests
+      app_name:
+        type: string
+        description: iOS app artifact name to test
+        required: true
+      pr_id:
+        required: false
+        type: string
+      is_merge_queue:
+        type: boolean
+        description: Has been kicked off by the merge queue
+        required: false
+        default: true
+      commit_status_context:
+        type: string
+        description: Context for the commit status
+        required: false
+      comment_id:
+        type: string
+        description: ID of the comment that triggered the workflow
+        required: false
+      baselines_branch:
+        type: string
+        description: Branch from which to get IOS baselines from
+        required: false
+        default: 'master'
+      tag:
+        type: string
+        description: Git tag to checkout for the tests, if not a PR
+        required: false
+
+  workflow_dispatch:
+    inputs:
+      test_type:
+        required: true
+        type: choice
+        description: Type of test to run
+        options:
+          - visual
+          - e2e
+      brand:
+        required: false
+        default: "bf"
+        type: string
+        description: Brand against which to run the tests
+      env:
+        required: true
+        type: choice
+        description: Environment against which to run the tests
+        options:
+          - mockserver
+          - qa
+        default: qa
+      app_name:
+        type: string
+        description: iOS app artifact name to test
+        required: true
+      pr_id:
+        type: string
+        description: PR the comment is made on
+        required: false
+      is_merge_queue:
+        type: boolean
+        description: Has been kicked off by the merge queue
+        required: false
+        default: false
+      comment_id:
+        type: string
+        description: ID of the comment that triggered the workflow
+        required: false
+      baselines_branch:
+        type: string
+        description: Branch from which to get IOS baselines from
+        required: false
+        default: 'master'
+      tag:
+        type: string
+        description: Git tag to checkout for the tests, if not a PR
+        required: false
+
+env:
+  VAULT_USER: ${{ secrets.VAULT_USER }}
+  VAULT_PASSWORD: ${{ secrets.VAULT_PASSWORD }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  MONTEROSA_TOKEN: ${{ secrets.MONTEROSA_TOKEN }}
+  MONTEROSA_USER: ${{ secrets.MONTEROSA_USER }}
+
+concurrency:
+  group: ios-test-${{ inputs.brand }}-${{ inputs.test_type }}-${{ inputs.pr_id || inputs.app_name || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  run_test:
+    name: Run ${{ inputs.test_type }} tests
+    timeout-minutes: 50
+    runs-on: [ubuntu-self-hosted, x64]
+    permissions: write-all
+    env:
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+      ghprbPullId: ${{ inputs.pr_id }}
+      BASELINES_BRANCH: ${{ inputs.baselines_branch }}
+    outputs:
+      failed: ${{ steps.run-tests.outputs.failed }}
+      passed: ${{ steps.run-tests.outputs.passed }}
+      total: ${{ steps.run-tests.outputs.total }}
+      initialisation_comment: ${{ steps.initialisation-comment.outputs.result }}
+      environment: ${{ steps.resolve-env.outputs.environment }}
+      started_at: ${{ steps.exec_start.outputs.started_at }}
+      finished_at: ${{ steps.exec_end.outputs.finished_at }}
+      duration_seconds: ${{ steps.exec_end.outputs.duration_seconds }}
+      ref_path_normalized: ${{ steps.normalize-path.outputs.ref_path_normalized }}
+
+    steps:
+      - name: Get Running Workflow URL
+        id: workflow-url
+        run: |
+          echo "workflow_url=https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> "$GITHUB_OUTPUT"
+      - name: Get source branch from PR
+        id: get-branch
+        if: ${{ inputs.pr_id }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: ${{ inputs.pr_id }}
+            });
+            const branchName = pr.head.ref;
+            console.log(`✅ Retrieved source branch from PR #${{ inputs.pr_id }}: ${branchName}`);
+            core.setOutput('branch', branchName);
+      - name: Update initialisation comment
+        if: ${{ inputs.comment_id }}
+        uses: actions/github-script@v7
+        id: initialisation-comment
+        with:
+          script: |
+            const commentId = "${{ inputs.comment_id }}";
+            const workflowUrl = "${{ steps.workflow-url.outputs.workflow_url }}";
+            const { data: existingComment } = await github.rest.issues.getComment({
+              owner: "Flutter-Global",
+              repo: "tbd",
+              comment_id: commentId
+            });
+
+            const updatedBody = `> ${existingComment.body}\n\n ⏳ iOS ${{ inputs.test_type }} tests for brand ${{ inputs.brand }} are running - [click to view](${workflowUrl})`;
+            await github.rest.issues.updateComment({
+              owner: "Flutter-Global",
+              repo: "tbd",
+              comment_id: commentId,
+              body: updatedBody
+            });
+
+            return existingComment.body;
+
+      - name: Set pending commit status
+        uses: actions/github-script@v7
+        if: ${{ inputs.pr_id }}
+        with:
+          script: |
+            await github.rest.repos.createCommitStatus({
+              owner: "Flutter-Global",
+              repo: "tbd",
+              sha: "${{ github.sha }}",
+              state: "pending",
+              description: "iOS tests are running, click to view",
+              target_url: "${{ steps.workflow-url.outputs.workflow_url }}",
+              context: "${{ inputs.commit_status_context }}" || "iOS ${{ inputs.test_type }} tests for ${{ inputs.brand }} on demand for PR"
+            });
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          ref: ${{ inputs.tag || github.ref }}
+
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: "arn:aws:iam::509882276346:role/AWS20_GithubOidcRole-repo"
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          role-skip-session-tagging: true
+          aws-region: eu-west-1
+
+      - name: Cache node dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Enable corepack
+        run: corepack enable yarn
+
+      - name: Install dependencies
+        run: yarn install --immutable-cache
+
+      - name: Prepare
+        run: |
+          yarn prepare
+        shell: bash
+
+      - name: Generate Config files
+        run: |
+          echo "Running generate-config-files"
+          yarn generate-config-files
+        shell: bash
+
+      - name: Capture execution start (UTC)
+        id: exec_start
+        shell: bash
+        run: |
+          echo "started_at=$(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> "$GITHUB_OUTPUT"
+          echo "started_epoch=$(date -u +%s)" >> "$GITHUB_OUTPUT"
+
+      - name: Run ${{ inputs.test_type }} (see here if tests have failed)
+        id: run-tests
+        shell: bash
+        run: |
+          BRAND=$(echo "${{ inputs.brand }}" | tr '[:upper:]' '[:lower:]')
+
+          if [[ -z "${{ inputs.pr_id }}" ]]; then
+            ARTIFACTORY_PATH="https://artifactory-prd.prd.betfair/artifactory/tbd-native/ios/${BRAND}/qa"
+          else
+            ARTIFACTORY_PATH="https://artifactory-prd.prd.betfair/artifactory/tbd-native/ios/${BRAND}/pull-requests"
+          fi
+
+          APP_URL="${ARTIFACTORY_PATH}/${{ inputs.app_name }}"
+
+          if [ "${{ inputs.test_type }}" = "e2e" ]; then
+            TEST_ENV="qa"
+          else
+            TEST_ENV="mockserver"
+          fi
+
+          recordVideo=false \
+          appToInstall="${APP_URL}" \
+          NODE_TLS_REJECT_UNAUTHORIZED=0 \
+          NUM_SPEC_RETRIES=1 \
+          BAIL_LIMIT=10 \
+          MAX_INSTANCES=5 \
+          yarn native:ios:${{ inputs.test_type }}:${BRAND}:${TEST_ENV}:ci | tee test-results.log || true
+
+          SUMMARY_LINE=$(grep "Spec Files:" test-results.log || true)
+          echo "$SUMMARY_LINE"
+
+          PASSED=$(echo "$SUMMARY_LINE" | grep -o '[0-9]\+ passed' | cut -d' ' -f1 || true)
+          FAILED=$(echo "$SUMMARY_LINE" | grep -o '[0-9]\+ failed' | cut -d' ' -f1 || true)
+          TOTAL=$(echo "$SUMMARY_LINE" | grep -o '[0-9]\+ total' | cut -d' ' -f1 || true)
+
+          echo "Passed: ${PASSED:-0}"
+          echo "Failed: ${FAILED:-0}"
+          echo "Total: ${TOTAL:-0}"
+
+          echo "passed=${PASSED:-0}" >> "$GITHUB_OUTPUT"
+          echo "failed=${FAILED:-0}" >> "$GITHUB_OUTPUT"
+          echo "total=${TOTAL:-0}" >> "$GITHUB_OUTPUT"
+
+          # Fail the step if any tests failed
+          if [ "${FAILED:-0}" != "0" ]; then
+            echo "❌ Tests failed: ${FAILED} test(s) failed"
+              exit 1
+          fi
+      - name: Capture execution end + duration (UTC)
+        id: exec_end
+        if: ${{ always() }}
+        shell: bash
+        run: |
+          end_epoch=$(date -u +%s)
+          finished_at=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+          start_epoch="${{ steps.exec_start.outputs.started_epoch }}"
+          if [ -z "${start_epoch}" ]; then
+            start_epoch=$end_epoch
+          fi
+
+          duration_seconds=$(( end_epoch - start_epoch ))
+          if [ "$duration_seconds" -lt 0 ]; then duration_seconds=0; fi
+
+          echo "finished_at=${finished_at}" >> "$GITHUB_OUTPUT"
+          echo "duration_seconds=${duration_seconds}" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        name: Upload baselines if any
+        if: ${{ always() && inputs.test_type == 'visual' && steps.run-tests.outputs.failed != '0' }}
+        with:
+          name: "${{ inputs.brand }}_baselines"
+          path: packages/tbd-tests/native/specs/visual/actual
+          if-no-files-found: warn
+      - name: Resolve test environment
+        id: resolve-env
+        if: ${{ always() }}
+        shell: bash
+        run: |
+          echo "environment=${{ inputs.env }}" >> "$GITHUB_OUTPUT"
+          echo "Resolved environment: ${{ inputs.env }}"
+
+      - name: Normalize artifact path
+        id: normalize-path
+        shell: bash
+        run: |
+          REF_PATH_NORMALIZED="${{ inputs.pr_id || github.ref_name }}"
+          REF_PATH_NORMALIZED="${REF_PATH_NORMALIZED//\//-}"
+          echo "ref_path_normalized=${REF_PATH_NORMALIZED}" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/upload-artifact@v4
+        name: Archive junit results
+        if: ${{ always() }}
+        with:
+          name: "ios-junit-${{ inputs.brand }}-${{ inputs.test_type }}-${{ steps.normalize-path.outputs.ref_path_normalized }}"
+          path: reports/junit/**/*.xml
+          if-no-files-found: warn
+
+      - name: Copy results to main folder
+        id: copy-results
+        if: ${{ always() && inputs.test_type != 'e2e' }}
+        run: |
+          mkdir -p reports
+          cp -R ./apps/${{ inputs.brand }}/native/reports/ ./ || echo "No results to copy"
+
+      - uses: actions/upload-artifact@v4
+        name: Archive test results
+        id: archive-results
+        if: ${{ always() }}
+        with:
+          name: "ios-tests-results-${{ inputs.brand }}-${{ inputs.test_type }}-${{ steps.normalize-path.outputs.ref_path_normalized }}"
+          path: reports/allure-results
+
+      - name: Raise PR for Baseline changes
+        if: ${{ always() && steps.run-tests.outputs.failed != '0' && !inputs.is_merge_queue && inputs.test_type == 'visual' && inputs.pr_id }}
+        id: raise-baseline-pr
+        shell: bash
+        env:
+          HUSKY: 0
+          GITHUB_TOKEN: ${{ secrets.BASELINES_TOKEN }}
+        run: |
+          echo "Baseline changes detected"
+          echo "Raising PR for baseline changes"
+
+          git config --global user.name "svc-aws-automation"
+          git config --global user.email "cloud.automation@paddypowerbetfair.com"
+
+          if ! command -v rsync >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y rsync
+          fi
+
+          chmod +x tools/ci/update-baselines-ios.sh
+          # Use branch name if available, fallback to PR ID
+          BRANCH_NAME="${{ steps.get-branch.outputs.branch }}"
+          if [ -z "$BRANCH_NAME" ]; then
+            BRANCH_NAME="${{ inputs.pr_id }}"
+          fi
+
+          GIT_BRANCH="${BRANCH_NAME}" \
+          bash tools/ci/update-baselines-ios.sh \
+            packages/tbd-tests/native/specs/visual \
+            baselines/${{ inputs.brand }}/ios
+
+      - name: Update commit status
+        uses: actions/github-script@v7
+        if: ${{ always() && inputs.pr_id }}
+        with:
+          script: |
+            const failed = "${{ steps.run-tests.outputs.failed }}";
+            console.log(typeof failed);
+            const state = "${{ steps.run-tests.outputs.failed }}" != '0' ? 'failure' : 'success';
+            await github.rest.repos.createCommitStatus({
+              owner: "Flutter-Global",
+              repo: "tbd",
+              sha: "${{ github.sha }}",
+              state,
+              description: "iOS tests are finished, click to view",
+              target_url: "${{ steps.workflow-url.outputs.workflow_url }}",
+              context: "${{ inputs.commit_status_context }}" || "iOS ${{ inputs.test_type }} tests for ${{ inputs.brand }} on demand for PR"
+            });
+
+  run_allure:
+    needs: [run_test]
+    if: ${{ !cancelled() }}
+    uses: ./.github/workflows/allure.yml
+    with:
+      results_folder_name: "ios-tests-results-${{ inputs.brand }}-${{ inputs.test_type }}-${{ needs.run_test.outputs.ref_path_normalized }}"
+      brand: ${{ inputs.brand }}
+      test_type: ${{ inputs.test_type }}
+      history_group: ${{ needs.run_test.outputs.ref_path_normalized }}
+      platform: "ios"
+
+  allure_summary_comment:
+    runs-on: ubuntu-latest
+    needs: [run_test, run_allure]
+    if: ${{ always() }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Post summary to PR
+        if: ${{ always() && inputs.comment_id && !inputs.is_merge_queue }}
+        env:
+          PR_ID: ${{ inputs.pr_id }}
+          BRAND: ${{ inputs.brand }}
+          TEST_TYPE: ${{ inputs.test_type }}
+          RUN_ID: ${{ github.run_id }}
+          INITIALISATION_COMMENT: ${{ needs.run_test.outputs.initialisation_comment }}
+          COMMENT_ID: ${{ inputs.comment_id }}
+          REF_NORMALIZED: ${{ needs.run_test.outputs.ref_path_normalized }}
+          passed: ${{ needs.run_test.outputs.passed }}
+          failed: ${{ needs.run_test.outputs.failed }}
+          total: ${{ needs.run_test.outputs.total }}
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { passed, failed, total } = process.env;
+            const { owner, repo } = context.repo;
+            const issue_number = process.env.PR_ID;
+            const allure_url = `https://awsdxrstbd-bucket.s3.eu-west-1.amazonaws.com/allure-report/ios/${process.env.BRAND}/${process.env.TEST_TYPE}/${process.env.REF_NORMALIZED}/${process.env.RUN_ID}/index.html`;
+            const status = parseInt(failed) > 0 ? '❌ Failure' : '✅ Success';
+            const initialisationComment = process.env.INITIALISATION_COMMENT.replace(/"/g, '');
+
+            const { data: existingComment } = await github.rest.issues.getComment({
+              owner,
+              repo,
+              comment_id: process.env.COMMENT_ID,
+            });
+
+            // removes the XXX tests are running text from the PR comment
+            const regex = new RegExp(`⏳.*?${process.env.TEST_TYPE}.*\\n?`, 'g');
+            const cleanedBody = existingComment.body.replace(regex, '');
+
+            // Adds the results to the comment
+            const commentBody = [
+              `${cleanedBody}\n\n`,
+              `**Allure Test Results Summary - iOS ${process.env.BRAND} ${process.env.TEST_TYPE}**`,
+              `Status: ${status}`,
+              `[GH Actions Run](https://github.com/${owner}/${repo}/actions/runs/${process.env.RUN_ID}) | [Allure report](${allure_url})`,
+              `- **Passed tests**: ${passed}`,
+              `- **Failed tests**: ${failed}`,
+              `- **Total tests**: ${total}`,
+            ].join('\n');
+
+            await github.rest.issues.updateComment({
+              owner,
+              repo,
+              comment_id: process.env.COMMENT_ID,
+              body: commentBody,
+            });
+
+      - name: Generate Summary
+        if: always()
+        run: |
+          if [ -n "${{ inputs.pr_id }}" ]; then
+            echo "**iOS ${{ inputs.brand }} ${{ inputs.test_type }} for PR: ${{ inputs.pr_id }}**" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "**iOS ${{ inputs.brand }} ${{ inputs.test_type }} for APP: ${{ inputs.app_name }}**" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ needs.run_test.outputs.failed }}" = "0" ]; then
+            echo "✅ Success - 0 tests failed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ Failure - ${{ needs.run_test.outputs.failed }} tests failed" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          ALLURE_URL="https://awsdxrstbd-bucket.s3.eu-west-1.amazonaws.com/allure-report/ios/${{ inputs.brand }}/${{ inputs.test_type }}/${{ needs.run_test.outputs.ref_path_normalized }}/${{ github.run_id }}/index.html"
+
+          if [ -n "${{ inputs.pr_id }}" ]; then
+            echo "[Allure report](${ALLURE_URL}) | [PR Link](https://github.com/Flutter-Global/tbd/pull/${{ inputs.pr_id }})" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "[Allure report](${ALLURE_URL})" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Error on test failure
+        continue-on-error: true
+        run: |
+          if [ "${{ needs.run_test.outputs.failed }}" != "0" ] || [ "${{ needs.run_test.outputs.failed }}" != "" ]; then
+            echo "${{ needs.run_test.outputs.failed }} tests failed"
+            exit 1
+          fi
+
+      - name: Send Slack Notification (Failure)
+        if: ${{ always() && needs.run_test.outputs.failed != '0' && inputs.is_merge_queue }}
+        uses: ./.github/actions/slack-notification
+        with:
+          slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL_MERGE_QUEUE }}
+          job-name: "${{ inputs.test_type }} - ${{ inputs.brand }} - iOS"
+          allure-report-url: https://awsdxrstbd-bucket.s3.eu-west-1.amazonaws.com/allure-report/ios/${{ inputs.brand }}/${{ inputs.test_type }}/${{ needs.run_test.outputs.ref_path_normalized }}/${{ github.run_id }}/index.html
+
+      - name: Cancel workflow run (Failure)
+        if: ${{ always() && needs.run_test.outputs.failed != '0' && inputs.is_merge_queue }}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const response = await github.rest.actions.cancelWorkflowRun({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.runId
+            });
+            console.log("Workflow canceled:", response.data);
+
+  trigger_xray_import:
+    needs: [run_test]
+    if: ${{ !cancelled() && needs.run_test.outputs.tests_executed == 'true' && !inputs.is_merge_queue }}
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - name: Trigger Xray import workflow asynchronously
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const refName = "${{ github.ref_name }}";
+            const testType = "${{ inputs.test_type }}";
+
+            const workflowInputs = {
+              source_run_id: "${{ github.run_id }}",
+              junit_artifact_name: "ios-junit-${{ inputs.brand }}-${{ inputs.test_type }}-${{ needs.run_test.outputs.ref_path_normalized }}",
+              jira_project_key: "PRPI",
+              pr_id: "${{ inputs.pr_id || '' }}",
+              test_type: testType,
+              brand: "${{ inputs.brand }}",
+              environment: "${{ needs.run_test.outputs.environment }}",
+              platform: "ios",
+              execution_started_at: "${{ needs.run_test.outputs.started_at || '' }}",
+              execution_finished_at: "${{ needs.run_test.outputs.finished_at || '' }}",
+              execution_duration_seconds: "${{ needs.run_test.outputs.duration_seconds || '' }}"
+            };
+
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: "xray-import.yml",
+              ref: refName,
+              inputs: workflowInputs
+            });
+
+            core.info(`Triggered xray-import.yml asynchronously for ${testType}`);

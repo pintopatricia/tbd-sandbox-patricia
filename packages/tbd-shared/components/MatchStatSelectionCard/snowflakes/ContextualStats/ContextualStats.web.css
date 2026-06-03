@@ -1,0 +1,23 @@
+/* stylelint-disable */
+
+.contextualStatsContainer {
+  display: flex;
+  padding: var(--half-time-pulse-stat-container-spacing-horizontal-padding);
+  align-items: center;
+  gap: var(--half-time-pulse-stat-container-spacing-gap);
+  align-self: stretch;
+  border-radius: var(--half-time-pulse-stat-container-border-radius);
+  background: var(--half-time-pulse-stat-container-background-colour);
+}
+
+.contextualStatsText {
+  color: var(--half-time-pulse-stat-text-colour);
+  font: var(--half-time-pulse-stat-text-typography);
+}
+
+.icon {
+  min-width: var(--half-time-pulse-stat-card-icon-sizing);
+  display: flex;
+  height: var(--half-time-pulse-stat-card-icon-sizing);
+  align-items: center;
+}

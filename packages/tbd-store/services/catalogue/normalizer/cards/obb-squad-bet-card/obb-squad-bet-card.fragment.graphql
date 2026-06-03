@@ -1,0 +1,50 @@
+fragment obbSquadBetCard on ObbSquadBetCard {
+  __typename
+  urn
+  title {
+    ...displayName
+  }
+  outcomesLabel {
+    ...displayName
+  }
+  statsLabel {
+    ...displayName
+  }
+  showModalEntryPoint
+  entryPointLabel {
+    ...displayName
+  }
+  participantInfo {
+    ...displayName
+  }
+  filterTags {
+    label {
+      ...displayName
+    }
+    type
+  }
+  event {
+    __typename
+    urn
+    name
+    eventId
+  }
+  eventParticipants {
+    ...obbFootballPlayer
+  }
+  squadParticipants {
+    ... on ObbFootballPlayer {
+      __typename
+      urn
+    }
+  }
+  incidentType {
+    ... on ObbIncidentType {
+      id
+    }
+  }
+  defaultLegs {
+    ...obbLeg
+  }
+  defaultOutcomeIndex
+}

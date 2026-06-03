@@ -1,0 +1,72 @@
+query SearchView(
+  $query: String!
+  $preferences: LayoutPreferencesInput
+  $productExclusions: [ProductExclusion!]
+  $experiments: [ExperimentsInput!]
+  $throttlesOn: [String!]
+  $throttlesOff: [String!]
+)
+@preferences(preferences: $preferences)
+@productExclusions(productExclusions: $productExclusions)
+@experiments(experiments: $experiments)
+@throttlesOn(throttlesOn: $throttlesOn)
+@throttlesOff(throttlesOff: $throttlesOff) {
+  Search(query: $query) {
+    query
+    pageSize
+    startIndex
+    didYouMean
+    results {
+      ... on EventView {
+        __typename
+        urn
+        url
+        sportevent {
+          name
+          openDate
+          competition {
+            ...competitionBasic
+          }
+          sport {
+            ...sport
+          }
+        }
+      }
+      ... on CompetitionView {
+        __typename
+        urn
+        url
+        competition {
+          ...competitionWithLogo
+        }
+      }
+      ... on RaceView {
+        __typename
+        urn
+        url
+        # This is a temporary solution and should be replaced with "...race"
+        race {
+          __typename
+          urn
+          startTime
+          name
+          meeting {
+            __typename
+            urn
+            name
+            country
+            venue
+            date
+          }
+          sport {
+            ...sport
+          }
+        }
+      }
+      ... on RaceMeetingView {
+        __typename
+        urn
+      }
+    }
+  }
+}

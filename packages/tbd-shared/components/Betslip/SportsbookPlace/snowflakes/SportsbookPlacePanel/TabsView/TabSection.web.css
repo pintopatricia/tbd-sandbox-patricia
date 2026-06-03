@@ -1,0 +1,9 @@
+.tabSectionContainer {
+  background-color: var(--card-background-colour);
+  filter: var(--sportsbook-place-panel-collapse-drop-shadow);
+  border-radius: var(--card-border-radius);
+}
+
+.tabSectionContent {
+  padding: var(--sportsbook-place-panel-collapse-content-padding);
+}

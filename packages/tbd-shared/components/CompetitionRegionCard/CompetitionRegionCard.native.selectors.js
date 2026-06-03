@@ -1,0 +1,9 @@
+const COMPETITION_REGION_CARD_CONTAINER = "competition-region-card-container";
+const COLLAPSE_WRAPPER = `${COMPETITION_REGION_CARD_CONTAINER}-collapse-wrapper`;
+const COLLAPSE_TITLE = `${COMPETITION_REGION_CARD_CONTAINER}-collapse-title`;
+
+module.exports = {
+  COMPETITION_REGION_CARD_CONTAINER,
+  COLLAPSE_WRAPPER,
+  COLLAPSE_TITLE,
+};

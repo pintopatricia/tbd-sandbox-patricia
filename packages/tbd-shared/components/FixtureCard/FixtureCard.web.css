@@ -1,0 +1,7 @@
+.fixtureCard {
+  margin: 0;
+}
+
+.disabledLink {
+  pointer-events: unset;
+}

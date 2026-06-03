@@ -1,0 +1,14 @@
+"__typename": "MarketBetExpandableCardGroup",
+"urn": "{{urn}}{{^urn}}ppb:tbd:cardgroup:marketBetExpandableCard:1.167249009|OPEN{{/urn}}",
+"isOpen": {{#if isOpen}}{{isOpen}}{{else}}false{{/if}},
+"marketBetCardGroupURN": "{{marketBetCardGroupURN}}{{^marketBetCardGroupURN}}ppb:tbd:cardgroup:marketBetCardGroup:167249009{{/marketBetCardGroupURN}}",
+{{#with full}}
+"full": {
+  {{> bff-items }}
+}
+{{/with}}
+{{#with partials}},
+"partials": {
+  {{> bff-partial-items }}
+}
+{{/with}}

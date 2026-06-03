@@ -1,0 +1,38 @@
+.eventMarketCard {
+  display: flex;
+
+  flex-direction: column;
+
+  /* min-height: var(--featured-matches-sizing); */
+
+  overflow: hidden;
+
+  border: var(--featured-matches-border);
+  border-radius: var(--featured-matches-border-radius);
+  box-shadow: 0 var(--spacing-1) var(--spacing-1) var(--neutrals-effects-drop-shadow);
+}
+
+.fixtureContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  min-height: var(--featured-matches-header-min-height);
+  padding: var(--featured-matches-header-padding);
+
+  text-decoration: none;
+
+  background-color: var(--featured-matches-header-background-colour);
+}
+
+.eventMarketCardContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--featured-matches-vertical-gap);
+
+  background-color: var(--featured-matches-background-colour);
+}

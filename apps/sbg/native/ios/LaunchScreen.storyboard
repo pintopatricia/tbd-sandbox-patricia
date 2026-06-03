@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CoU-Z1-7fH">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="full-background.png" translatesAutoresizingMaskIntoConstraints="NO" id="2qG-x3-WdE">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="skybet-logo-tagline.png" translatesAutoresizingMaskIntoConstraints="NO" id="gyD-z7-p2B">
+                                        <rect key="frame" x="116" y="327.66666666666669" width="161" height="77"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="160.66999999999999" id="myc-RZ-1cK"/>
+                                            <constraint firstAttribute="height" constant="77" id="uzw-vY-xHs"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="PROUD PARTNERS OF THE EFL AND BRITISH HEART FOUNDATION" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPt-Hd-9Zk">
+                                        <rect key="frame" x="58" y="524" width="277" height="39"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="39" id="pH1-7t-Abc"/>
+                                            <constraint firstAttribute="width" constant="277" id="pPt-W-Cns"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
+                                        <color key="textColor" red="0.0" green="0.15294117647058825" blue="0.48627450980392156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="BhF-Lg-7Ks">
+                                        <rect key="frame" x="81" y="595.33333333333337" width="231" height="87.666666666666629"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="skybet-efl-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="2Xi-va-dUC">
+                                                <rect key="frame" x="0.0" y="0.0" width="93.333333333333329" height="87.666666666666671"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="93.28399658203125" id="BT7-6g-wgk"/>
+                                                    <constraint firstAttribute="height" constant="87.790000000000006" id="cZB-Yy-ZkU"/>
+                                                </constraints>
+                                            </imageView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dvd-Ln-3Ml">
+                                                <rect key="frame" x="123.33333333333334" y="0.0" width="2" height="87.666666666666671"/>
+                                                <color key="backgroundColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="2" id="8Qx-Dm-7Fl"/>
+                                                    <constraint firstAttribute="height" constant="87.790000000000006" id="9Hs-Jm-8Kl"/>
+                                                </constraints>
+                                            </view>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="british-heart-foundation.png" translatesAutoresizingMaskIntoConstraints="NO" id="BhF-Pl-Hld">
+                                                <rect key="frame" x="155.33333333333334" y="0.0" width="75.666666666666657" height="87.666666666666671"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="87.790000000000006" id="BhF-H-Cns"/>
+                                                    <constraint firstAttribute="width" constant="75.432000000000002" id="BhF-W-Cns"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8yF-0C-GLY">
+                                        <rect key="frame" x="0.0" y="782" width="393" height="70"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleAspectFit" distribution="equalCentering" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="eME-hE-118">
+                                                <rect key="frame" x="36" y="16" width="321.33333333333331" height="24"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Safer-Gambling.png" translatesAutoresizingMaskIntoConstraints="NO" id="Xgq-rM-OwQ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="229.33333333333334" height="24"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="24" id="0t4-Wc-3Nk"/>
+                                                            <constraint firstAttribute="width" constant="229.33000000000001" id="Slj-sq-3OI"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="245" verticalHuggingPriority="251" text="v3000000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nD-dD-GN3" userLabel="APP_VERSION">
+                                                        <rect key="frame" x="241.33333333333331" y="2.3333333333333712" width="80" height="19.333333333333332"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="54.670000000000002" id="AGr-My-6qS"/>
+                                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="e9D-TI-Qhk"/>
+                                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="24" id="pJj-07-fcB"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                        <color key="textColor" name="SkyBetQuickPinBlue"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="eME-hE-118" secondAttribute="bottom" constant="30" id="BX0-rR-etd"/>
+                                            <constraint firstAttribute="height" constant="70" id="N2l-Qr-5De"/>
+                                            <constraint firstItem="eME-hE-118" firstAttribute="centerX" secondItem="8yF-0C-GLY" secondAttribute="centerX" id="wc0-gn-mvw"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <accessibility key="accessibilityConfiguration" identifier="splash-screen">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstItem="2qG-x3-WdE" firstAttribute="leading" secondItem="CoU-Z1-7fH" secondAttribute="leading" id="IHP-tr-iEr"/>
+                                    <constraint firstItem="2qG-x3-WdE" firstAttribute="top" secondItem="CoU-Z1-7fH" secondAttribute="top" id="YzH-hn-G5X"/>
+                                    <constraint firstItem="BhF-Lg-7Ks" firstAttribute="centerX" secondItem="CoU-Z1-7fH" secondAttribute="centerX" id="b7X-w4-NAn"/>
+                                    <constraint firstItem="pPt-Hd-9Zk" firstAttribute="centerX" secondItem="CoU-Z1-7fH" secondAttribute="centerX" id="bDS-dd-A8a"/>
+                                    <constraint firstItem="gyD-z7-p2B" firstAttribute="centerX" secondItem="CoU-Z1-7fH" secondAttribute="centerX" id="bDS-tt-A8n"/>
+                                    <constraint firstAttribute="trailing" secondItem="2qG-x3-WdE" secondAttribute="trailing" id="gkU-OY-ErA"/>
+                                    <constraint firstItem="gyD-z7-p2B" firstAttribute="centerY" secondItem="CoU-Z1-7fH" secondAttribute="centerY" constant="-60" id="hPl-8j-iYk">
+                                        <variation key="heightClass=compact-widthClass=compact" constant="-100"/>
+                                        <variation key="heightClass=compact-widthClass=regular" constant="-100"/>
+                                    </constraint>
+                                    <constraint firstAttribute="bottom" secondItem="2qG-x3-WdE" secondAttribute="bottom" id="m9F-Rr-tzr"/>
+                                    <constraint firstAttribute="bottom" secondItem="8yF-0C-GLY" secondAttribute="bottom" id="oKa-NS-9TJ"/>
+                                    <constraint firstItem="BhF-Lg-7Ks" firstAttribute="top" secondItem="pPt-Hd-9Zk" secondAttribute="bottom" constant="20" id="pPt-Lg-Cns"/>
+                                    <constraint firstItem="pPt-Hd-9Zk" firstAttribute="top" secondItem="gyD-z7-p2B" secondAttribute="bottom" constant="83.333333333333314" id="pPt-T-Cns"/>
+                                    <constraint firstItem="8yF-0C-GLY" firstAttribute="top" secondItem="BhF-Lg-7Ks" secondAttribute="bottom" constant="40" id="sbT-mY-Bj0">
+                                        <variation key="heightClass=compact-widthClass=compact" constant="5"/>
+                                    </constraint>
+                                    <constraint firstItem="8yF-0C-GLY" firstAttribute="leading" secondItem="CoU-Z1-7fH" secondAttribute="leading" id="sh6-TK-oEI"/>
+                                    <constraint firstAttribute="trailing" secondItem="8yF-0C-GLY" secondAttribute="trailing" id="xYA-jM-Mqy"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="CoU-Z1-7fH" secondAttribute="bottom" id="Ke1-l5-K7o"/>
+                            <constraint firstItem="CoU-Z1-7fH" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="cCD-cj-g1h"/>
+                            <constraint firstItem="CoU-Z1-7fH" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="lHJ-mQ-Jgs"/>
+                            <constraint firstItem="CoU-Z1-7fH" firstAttribute="trailing" secondItem="Bcu-3y-fUS" secondAttribute="trailing" id="qIg-BX-rVC"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52.671755725190835" y="374.64788732394368"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Safer-Gambling.png" width="229.33332824707031" height="24"/>
+        <image name="british-heart-foundation.png" width="151" height="176"/>
+        <image name="full-background.png" width="375" height="812"/>
+        <image name="skybet-efl-logo.png" width="144" height="176"/>
+        <image name="skybet-logo-tagline.png" width="160.66667175292969" height="77"/>
+        <namedColor name="SkyBetQuickPinBlue">
+            <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

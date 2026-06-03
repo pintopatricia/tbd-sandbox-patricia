@@ -1,0 +1,17 @@
+"__typename": "{{__typename}}{{^__typename}}TimeFormBroadCastsCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:timeFormBroadCasts:30280765.1830{{/urn}}",
+"selectedRace": {
+  {{#if selectedRace}}
+    {{#with selectedRace}}
+      {{> bff-race }}
+    {{/with}}
+  {{/if}}
+},
+"raceBroadCasts": {
+  {{#if raceBroadCasts}}
+    {{#with raceBroadCasts}}
+      "dataVizUrl": {{#if dataVizUrl}}"{{dataVizUrl}}"{{else}}null{{/if}},
+      "liveVideoUrl": {{#if liveVideoUrl}}"{{liveVideoUrl}}"{{else}}null{{/if}}
+    {{/with}}
+  {{/if}}
+}

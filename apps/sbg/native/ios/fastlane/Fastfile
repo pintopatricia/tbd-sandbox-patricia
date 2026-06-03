@@ -1,0 +1,310 @@
+require_relative "lib/helpers"
+import("GamingFastfile")
+
+default_platform(:ios)
+
+platform :ios do
+  before_all do
+    validate_env_variables()
+
+    create_keychain(
+      name: ENV["MATCH_KEYCHAIN_NAME"],
+      password: ENV["MATCH_KEYCHAIN_PASSWORD"],
+      default_keychain: true,
+      unlock: true,
+      timeout: 3600
+    )
+
+    unlock_keychain(
+      path: ENV["MATCH_KEYCHAIN_NAME"],
+      password: ENV["MATCH_KEYCHAIN_PASSWORD"]
+    )
+
+    update_code_signing_settings(
+      use_automatic_signing: false,
+      path: "tbd_native.xcodeproj"
+    )
+  end
+
+  desc "This is used to setup the certificates and provisioning profiles on a dev machine"
+  lane :dev_setup do
+    match(
+      type: "enterprise",
+      app_identifier: ["com.skybet.SkyBetTesting", "com.skybet.SkyBetTesting.SkyBetNotificationServiceExtension"],
+      git_branch: "SkyBetEnterprise",
+      clone_branch_directly: true,
+      keychain_name: ENV["MATCH_KEYCHAIN_NAME"],
+      keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"],
+      readonly: true
+    )
+  end
+
+  desc "Build and uploads our QA app to Firebase for the stakeholders"
+  lane :qa do
+    begin
+      match(
+        type: "enterprise",
+        app_identifier: ["com.skybet.SkyBetTesting", "com.skybet.SkyBetTesting.SkyBetNotificationServiceExtension"],
+        git_branch: "SkyBetEnterprise",
+        clone_branch_directly: true,
+        keychain_name: ENV["MATCH_KEYCHAIN_NAME"],
+        keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"],
+        readonly: true
+      )
+
+      if (is_running_in_gh)
+        update_app_version()
+      end
+
+      update_info_plist(
+        plist_path: "tbd_native/Info.plist",
+        display_name: "Sky Bet (QA)"
+      )
+
+      add_badge(
+        no_badge: true,
+        shield: "QA-#{get_encoded_build_number_label()}-green",
+        shield_gravity: 'South',
+        shield_scale: '0.75'
+      )
+
+      build_app(
+        workspace: "tbd_native.xcworkspace",
+        scheme: "tbd_native",
+        configuration: "Debug",
+        silent: true,
+        suppress_xcode_output: true,
+        clean: true,
+        export_options: {
+          method: "enterprise"
+        }
+      )
+
+      firebase_app_distribution(
+        app: "1:471098256672:ios:4d8dc39ed16f554cb83b45",
+        groups: 'sbgtbd-teams',
+        release_notes: get_release_notes(),
+        firebase_cli_token: ENV['FIREBASE_CI_KEY']
+      )
+    ensure
+      delete_keychain(
+        name: ENV["MATCH_KEYCHAIN_NAME"]
+      )
+    end
+  end
+
+  desc "Build and uploads our In-House app to Firebase for the stakeholders"
+  lane :in_house do
+    begin
+      match(
+        type: "enterprise",
+        app_identifier: ["com.skybet.SkyBetTesting", "com.skybet.SkyBetTesting.SkyBetNotificationServiceExtension"],
+        git_branch: "SkyBetEnterprise",
+        clone_branch_directly: true,
+        keychain_name: ENV["MATCH_KEYCHAIN_NAME"],
+        keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"],
+        readonly: true
+      )
+
+      if (is_running_in_jenkins || is_running_in_gh)
+        new_build_number = "0." + get_build_number() + ".0" if ENV['IS_MR_BUILD']
+        update_app_version(nil, new_build_number)
+      end
+
+      update_info_plist(
+        plist_path: "tbd_native/Info.plist",
+        display_name: "Sky Bet (In-House)"
+      )
+
+      # changes push notifications environment to production
+      # keys / secrets can be found on company https://www.airship.com/ account
+      update_plist(
+        plist_path: "AirshipConfig.plist",
+        block: proc do |plist|
+          plist[:inProduction] = "YES"
+        end
+      )
+      update_plist(
+        plist_path: "AirshipConfig.plist",
+        block: proc do |plist|
+          plist[:productionAppKey] = "NXpn8zosThG30n5ShaJo7g"
+        end
+      )
+      update_plist(
+        plist_path: "AirshipConfig.plist",
+        block: proc do |plist|
+          plist[:productionAppSecret] = "PCdTBI4YRECVPusDrPrzKg"
+        end
+      )
+
+      add_badge(
+        no_badge: true,
+        shield: "IH-#{get_encoded_build_number_label()}-green",
+        shield_gravity: 'South',
+        shield_scale: '0.75'
+      )
+
+      build_app(
+        workspace: "tbd_native.xcworkspace",
+        scheme: "tbd_native",
+        configuration: "In_House",
+        silent: true,
+        suppress_xcode_output: true,
+        clean: true,
+        export_options: {
+          method: "enterprise"
+        }
+      )
+
+      firebase_app_distribution(
+        app: "1:471098256672:ios:34fb32a169a4cc1bb83b45",
+        groups: 'sbgtbd-teams',
+        ipa_path: 'skybet.ipa',
+        release_notes: get_release_notes(),
+        firebase_cli_token: ENV['FIREBASE_CI_KEY']
+      )
+
+      upload_symbols_to_crashlytics(
+        dsym_path: lane_context[SharedValues::DSYM_OUTPUT_PATH],
+        app_id: "1:471098256672:ios:34fb32a169a4cc1bb83b45",
+        debug: true
+      )
+
+      if ENV['IS_MR_BUILD']
+        latest_release = firebase_app_distribution_get_latest_release(
+          app: "1:471098256672:ios:34fb32a169a4cc1bb83b45",
+          firebase_cli_token: ENV['FIREBASE_CI_KEY']
+        )
+
+        new_link = "https://appdistribution.firebase.google.com/" + latest_release[:name].gsub(/projects\/[0-9]+\/apps\//, "testerapps/")
+
+        File.write("../link_to_app", new_link)
+      end
+    ensure
+      delete_keychain(
+        name: ENV["MATCH_KEYCHAIN_NAME"]
+      )
+    end
+  end
+
+  desc "Build and uploads our Release app to Testflight for the stakeholders to test. Testflight is part of Apple's App Store tools"
+  lane :release do |options|
+    begin
+      api_key = authenticate_appstore()
+
+      # Fetches all required certificates and setup the provisioning profiles
+      # for the production account Bonne Terre Ltd (Apple App Store Account)
+      match(
+        api_key: api_key,
+        readonly: true,
+        type: "appstore",
+        team_name: "Bonne Terre Ltd",
+        team_id: "BR5TD8Z784",
+        generate_apple_certs: false,
+        app_identifier: ["com.bskyb.mobenga.skybet", "com.bskyb.mobenga.skybet.skybetnotificationserviceextension", "com.bskyb.mobenga.skybet.liveactivities"],
+        git_branch: "SkyBetProduction",
+        clone_branch_directly: true,
+        keychain_name: ENV["MATCH_KEYCHAIN_NAME"],
+        keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"]
+      )
+
+      if (is_running_in_gh)
+        new_marketing_version = ENV['APP_VERSION_NUMBER']
+        update_app_version(new_marketing_version, nil)
+      end
+
+      # We want to have the prd endpoints of our services.
+      yarn(
+        command: "environment prd",
+        package_path: "../package.json"
+      )
+
+      # We want to have the production version of the app.
+      yarn(
+        command: "releaseMode production",
+        package_path: "../package.json"
+      )
+
+      # The user facing name of the app will be "Sky Bet".
+      update_info_plist(
+        plist_path: "tbd_native/Info.release.plist",
+        display_name: "Sky Bet"
+      )
+
+      # changes push notifications environment to production
+      # keys / secrets can be found on company https://www.airship.com/ account
+      update_plist(
+        plist_path: "AirshipConfig.plist",
+        block: proc do |plist|
+          plist[:inProduction] = "YES"
+        end
+      )
+      update_plist(
+        plist_path: "AirshipConfig.plist",
+        block: proc do |plist|
+          plist[:productionAppKey] = "W5XPSYKwQw67esU6zBV0dQ"
+        end
+      )
+      update_plist(
+        plist_path: "AirshipConfig.plist",
+        block: proc do |plist|
+          plist[:productionAppSecret] = "JoYW4cYUQiadJ7qUstIiow"
+        end
+      )
+
+      # gym is the "official" name for build_app on Fastlane
+      # https://docs.fastlane.tools/actions/gym/
+      gym(
+        workspace: "tbd_native.xcworkspace",
+        clean: true,
+        scheme: "tbd_native",
+        configuration: "Release",
+        silent: false,
+        suppress_xcode_output: false,
+        export_method: "app-store",
+        export_options: {
+          manageAppVersionAndBuildNumber: false,
+          provisioningProfiles: {
+            "com.bskyb.mobenga.skybet" => "match AppStore com.bskyb.mobenga.skybet"
+          }
+        }
+      )
+
+      # debug: true, in order to display every log
+      upload_symbols_to_crashlytics(
+        dsym_path: lane_context[SharedValues::DSYM_OUTPUT_PATH],
+        app_id: "1:38241123377:ios:b7f635a4399c8eadeca910",
+        debug: true
+      )
+
+      # Use pilot to upload your app to testflight
+      # https://docs.fastlane.tools/actions/pilot/
+      pilot(
+        api_key: api_key,
+        team_id: "BR5TD8Z784",
+        app_identifier: "com.bskyb.mobenga.skybet",
+        app_platform: 'ios',
+        skip_submission: true,
+        skip_waiting_for_build_processing: true,
+        notify_external_testers: false
+      )
+
+      version = ENV['APP_VERSION_NUMBER']
+
+      slack(
+      message: "Hi all, there's a new :ios: :sky-bet-8642: app deployed to Testflight! - available for testing",
+      success: true,
+      payload: {
+        "Version" => "#{version}",
+      },
+      default_payloads: [:last_git_commit_hash],
+      slack_url: ENV["SLACK_RELEASE_WEBHOOK_URL"]
+      ) rescue UI.error("Slack notification failed")
+
+    ensure
+      delete_keychain(
+        name: ENV["MATCH_KEYCHAIN_NAME"]
+      )
+    end
+  end
+end

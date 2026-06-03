@@ -1,0 +1,24 @@
+fragment marketHierarchy on MarketHierarchy {
+  __typename
+  ... on RaceHierarchy {
+    race {
+      ...race
+    }
+    meeting {
+      ...meeting
+    }
+  }
+  ... on EventHierarchy {
+    sportevent {
+      ...sportEvent
+    }
+  }
+  ... on EventCompetitionHierarchy {
+    sportevent {
+      ...sportEvent
+    }
+    competition {
+      ...competitionBasic
+    }
+  }
+}

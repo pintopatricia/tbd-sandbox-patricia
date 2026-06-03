@@ -1,0 +1,33 @@
+.container > section {
+  padding: 0;
+}
+
+.container > section > * {
+  padding: 0;
+}
+
+@media screen and (max-width: 899px) {
+  .multiCardsLayout > section > div:last-child {
+    margin: 0 calc(var(--spacing-3) * -1);
+  }
+
+  .multiCardsLayout > section > div > [class*="childWrapper"]:first-child {
+    padding-left: var(--spacing-3);
+  }
+
+  .multiCardsLayout > section > div > [class*="childWrapper"]:last-child {
+    padding-right: var(--spacing-3);
+  }
+}
+
+.card {
+  align-self: flex-start;
+}
+
+.singleCard {
+  width: fit-content;
+}
+
+.doubleCard {
+  width: calc(50% - var(--scrollable-swimlane-swimlane-horizontal-gap) / 2);
+}

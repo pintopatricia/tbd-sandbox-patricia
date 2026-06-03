@@ -1,0 +1,15 @@
+.disclaimer {
+  margin-bottom: var(--spacing-6);
+
+  white-space: pre-line;
+}
+
+.list {
+  list-style-position: inside;
+  list-style-type: decimal;
+}
+
+.disclaimer p,
+.listItem {
+  margin-top: var(--spacing-2);
+}

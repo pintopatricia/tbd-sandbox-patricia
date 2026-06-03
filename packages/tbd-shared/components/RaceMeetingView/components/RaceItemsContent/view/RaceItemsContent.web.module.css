@@ -1,0 +1,12 @@
+.content {
+  display: flex;
+
+  flex: 1;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.cardPadding {
+  padding: var(--spacing-2);
+}

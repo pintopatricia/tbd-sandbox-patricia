@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--spacing-4);
+
+  width: 100%;
+}
+
+.card {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--spacing-2);
+
+  padding: 0 var(--spacing-3);
+}
+
+.card .title {
+  font: var(--card-group-title-typography);
+  color: var(--card-group-title-colour);
+  text-decoration-line: var(--card-group-title-typography-text-decoration-line);
+  text-transform: var(--card-group-title-typography-text-transform);
+  letter-spacing: var(--card-group-title-typography-letter-spacing);
+}
+
+.card .fixture {
+  padding: var(--spacing-4);
+  overflow: hidden;
+
+  background-color: var(--sticky-header-background-colour);
+  border-radius: var(--spacing-2);
+}
+
+.placeholder {
+  height: 600px;
+}

@@ -1,0 +1,33 @@
+"liveData": {
+	"urn": "{{urn}}{{^urn}}ppb:tbd:excRunnerLiveData:1.160337355/48044/0{{/urn}}",
+	"selectionId": {{selectionId}}{{^selectionId}}48044{{/selectionId}},
+	"handicap": {{handicap}}{{^handicap}}0{{/handicap}},
+  "inplay": {{#if inplay}}true{{else}}false{{/if}},
+  "turnInPlayEnabled": {{#unless turnInPlayEnabled}}false{{else}}true{{/unless}},
+	"availableToLay": [
+	{{#each availableToLay}}
+		{
+			"odd": {{odd}}{{^odd}}1.92{{/odd}},
+			"liquidity": {{liquidity}}{{^liquidity}}72.58{{/liquidity}}
+		}{{#unless @last}},{{/unless}}
+	{{/each}}
+	],
+	"availableToBack": [
+	{{#each availableToBack}}
+		{
+			"odd": {{odd}}{{^odd}}1.91{{/odd}},
+			"liquidity": {{liquidity}}{{^liquidity}}0.38{{/liquidity}}
+		}{{#unless @last}},{{/unless}}
+	{{/each}}
+	],
+	"traded": [
+	{{#each traded}}
+		{
+			"odd": {{odd}}{{^odd}}1.8{{/odd}},
+			"liquidity": {{liquidity}}{{^liquidity}}10.91{{/liquidity}}
+		}{{#unless @last}},{{/unless}}
+	{{/each}}
+	],
+    "totalMatched": {{totalMatched}}{{^totalMatched}}432.78{{/totalMatched}},
+    "lastPriceTraded": {{lastPriceTraded}}{{^lastPriceTraded}}2.34{{/lastPriceTraded}}
+}

@@ -1,0 +1,33 @@
+"__typename": "{{__typename}}{{^__typename}}CouponHeaderCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:couponheader:2134{{/urn}}",
+{{#with competition}}
+"competition": {
+  "__typename": "{{__typename}}{{^__typename}}Competition{{/__typename}}",
+  "urn": "{{urn}}{{^urn}}ppb:competition:11698341{{/urn}}",
+  "name": "{{name}}{{^name}}Argentinian Torneo de Verano{{/name}}",
+  "competitionId": {{competitionId}}{{^competitionId}}11698341{{/competitionId}},
+  {{#with sport}}
+  "sport": {
+    "__typename": "{{__typename}}{{^__typename}}Sport{{/__typename}}",
+    "urn": "{{urn}}{{^urn}}ppb:eventType:1{{/urn}}",
+    "name": "{{name}}{{^name}}Football{{/name}}",
+    "sportId": {{sportId}}{{^sportId}}1{{/sportId}}
+  }
+  {{/with}}
+},
+{{/with}}
+{{#if columns}}
+  "columns": [
+  {{#each columns}}
+    "{{this}}"
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+  ],
+{{else}}
+"columns": [
+  "1",
+  "X",
+  "2"
+],
+{{/if}}
+"hasStats": {{#if hasStats}}{{hasStats}}{{else}}false{{/if}}

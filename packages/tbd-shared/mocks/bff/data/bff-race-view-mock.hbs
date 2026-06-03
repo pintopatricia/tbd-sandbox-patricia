@@ -1,0 +1,28 @@
+{
+	"data": {
+		"View": {
+			"__typename": "RaceView",
+			"urn": "{{urn}}{{^urn}}ppb:tbd:view:race:123.45{{/urn}}",
+			"url": "{{url}}{{^url}}/horse-racing/clairefontaine-3rd-aug/r-123.45{{/url}}",
+			"race": {
+				{{#with race}}
+					{{> bff-race }}
+				{{/with}}
+			},
+			"leftSidebar": {
+				{{> bff-leftside-bar }}
+			},
+			"items": {
+				"pageInfo": null,
+				{{> bff-items }}
+			},
+			"partialItems": {
+				"pageInfo": null,
+				{{> bff-partial-items }}
+			},
+			"bottomBar": {
+				{{> bff-bottom-bar-tiles }}
+			}
+		}
+	}
+}

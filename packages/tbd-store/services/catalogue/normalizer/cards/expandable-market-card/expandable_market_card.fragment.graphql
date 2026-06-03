@@ -1,0 +1,21 @@
+fragment expandableMarketCard on ExpandableMarketCard {
+  __typename
+  urn
+  title
+  viewOpenBets {
+    viewUrl
+    viewUrn
+  }
+  marketCardURN
+}
+
+fragment expandableMarketCardPartial on ExpandableMarketCard {
+  __typename
+  urn
+}
+
+fragment expandableMarketCardEnrichedPartial on ExpandableMarketCard {
+  __typename
+  urn
+  title
+}

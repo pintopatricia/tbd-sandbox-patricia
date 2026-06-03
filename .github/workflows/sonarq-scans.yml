@@ -1,0 +1,411 @@
+name: SonarQube Scans
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: Reason for the manual SonarQube scan (must run against master branch)
+        required: false
+        default: "Manual trigger for SonarQube scans (e.g. SonarQube Quality Gate changes)"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  MONTEROSA_TOKEN: ${{ secrets.MONTEROSA_TOKEN }}
+  SONAR_HOST_URL: https://secsy.tools.flutter.com/sonarq
+  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  NX_BASE: origin/${{ github.base_ref }}
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-self-hosted
+    outputs:
+      android_bf: ${{ steps.filter.outputs.android_bf }}
+      android_sbg: ${{ steps.filter.outputs.android_sbg }}
+      ios_bf: ${{ steps.filter.outputs.ios_bf }}
+      ios_sbg: ${{ steps.filter.outputs.ios_sbg }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Filter Changes
+        id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            android_bf: 'apps/bf/native/android/**'
+            android_sbg: 'apps/sbg/native/android/**'
+            ios_bf: 'apps/bf/native/ios/**'
+            ios_sbg: 'apps/sbg/native/ios/**'
+
+  sonarqube_web:
+    runs-on: ubuntu-self-hosted
+    steps:
+      - name: Checkout code for PR
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: ${{ github.event_name == 'pull_request' && 50 || 0 }}
+
+      - name: Fetch nx base branch
+        if: github.event_name == 'pull_request'
+        uses: Flutter-Global/tbd-custom-actions/.github/custom-actions/fetch-branch@master
+
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: Cache node dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Enable corepack
+        run: corepack enable yarn
+      - name: Install dependencies
+        run: yarn install --immutable-cache
+      - name: Generate ENV files
+        run: |
+          chmod +x tools/generate-env-files.sh
+          ./tools/generate-env-files.sh --brand BF
+        shell: bash
+
+      - name: Generate coverage on PRs
+        if: github.event_name == 'pull_request'
+        run: yarn nx affected --target=test:coverage --base=origin/master --head=HEAD --parallel
+
+      - name: Generate coverage on master
+        if: github.ref == 'refs/heads/master'
+        run: yarn nx run-many --target=test:coverage --all
+
+      - name: SonarQube Scan Web
+        uses: sonarsource/sonarqube-scan-action@master
+        with:
+          projectBaseDir: "${CI_PROJECT_DIR}"
+          args: >
+            -Dsonar.projectKey=tla-tbd
+            -Dsonar.sources=packages,apps
+            -Dsonar.newCode.period=referenceBranch:master
+            -Dsonar.scm.provider=git
+            -Dsonar.exclusions=**/apps/**/native/**,**/apps/**/web/postman-tests/**,apps/*/web/regression-tests/**,**/*.config.js,**/config/**,**/__generated__/**,**/apollo-client/**,**/rspack/**,**/saga-jest-setup.js,**/*.so.js,**/*.po.js,**/baselines/**
+            -Dsonar.test.inclusions=apps/bf/web/postman-tests/**,apps/bf/web/regression-tests/**,apps/tbd-http-webserver/regression-tests/**,packages/**/specs/**,packages/**/**.test.js,packages/**/**.test.jsx,packages/**/**.test.ts,packages/**/**.test.tsx,apps/**/*.test.js,**/test-setup.native.js
+            -Dsonar.c.file.suffixes=-
+            -Dsonar.cpp.file.suffixes=-
+            -Dsonar.objc.file.suffixes=-
+            -Dsonar.javascript.lcov.reportPaths=packages/*/reports/lcov.info,packages/tbd-shared/reports/*/lcov.info,apps/*/coverage/lcov.info
+            -Dsonar.typescript.lcov.reportPaths=packages/*/reports/lcov.info,packages/tbd-shared/reports/*/lcov.info,apps/*/coverage/lcov.info
+            -Dsonar.coverage.exclusions=packages/bff-performance-tests/**,packages/gql-doc-loader/**,packages/jest-source-resolver/**,packages/tbd-lint-rules/**,packages/tbd-tests/**,packages/tbd-wdio-custom-commands/**,packages/wdio-lazy-element/**,packages/tbd-shared/reports/native/**,**/__mocks__/**,**/mocks/**,apps/*/web/translations-*.js,**/translations/**,**/polyfills/**,**/*.selectors.js,**/index.js,**/index.ts,**/client.tsx,**/*.graphql.ts,**/global-setup.js,**/baselines/**
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: SonarQube Quality Gate
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        timeout-minutes: 5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  sonarqube_tbdn:
+    runs-on: ubuntu-self-hosted
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.android_bf == 'true' || github.ref == 'refs/heads/master' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 50
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+      - name: Cache node dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          packages: ""
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Enable corepack
+        run: corepack enable yarn
+
+      - name: Install dependencies
+        run: yarn install --immutable-cache
+      - name: Prepare
+        run: yarn prepare
+
+      - name: Cache SonarQube packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
+      - name: Compile Java files
+        working-directory: apps/bf/native/android
+        run: |
+          ./gradlew compilePlayReleaseJavaWithJavac
+
+      - name: Run SonarQube scan
+        uses: sonarsource/sonarqube-scan-action@master
+        with:
+          projectBaseDir: apps/bf/native/android
+          args: >
+            -Dsonar.projectKey=tla-tbdn-android_app
+            -Dsonar.sources=app/src
+            -Dsonar.exclusions=**/generated/**,**/node_modules/**,**/*.bundle
+            -Dsonar.c.file.suffixes=-
+            -Dsonar.cpp.file.suffixes=-
+            -Dsonar.objc.file.suffixes=-
+            -Dsonar.sourceEncoding=UTF-8
+            -Dsonar.coverage.exclusions=**
+            -Dsonar.coverageReportPaths=
+            -Dsonar.java.coveragePlugin=none
+            -Dsonar.java.binaries=app/build/intermediates/javac/playRelease
+            -Dsonar.host.url=${{ env.SONAR_HOST_URL }}
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: SonarQube Quality Gate
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        timeout-minutes: 5
+        with:
+          scanMetadataReportFile: apps/bf/native/android/.scannerwork/report-task.txt
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  sonarqube_tbdnsbg:
+    runs-on: ubuntu-self-hosted
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.android_sbg == 'true' || github.ref == 'refs/heads/master' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 50
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+      - name: Cache node dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          packages: ""
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      # Install and setup Yarn
+      - name: Enable corepack
+        run: corepack enable yarn
+
+      - name: Install dependencies
+        run: yarn install --immutable-cache
+      - name: Prepare
+        run: yarn prepare
+
+      - name: Cache SonarQube packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
+      - name: Compile Java files
+        working-directory: apps/sbg/native/android
+        run: |
+          ./gradlew compilePlayReleaseJavaWithJavac
+
+      - name: Run SonarQube scan
+        uses: sonarsource/sonarqube-scan-action@master
+        with:
+          projectBaseDir: apps/sbg/native/android
+          args: >
+            -Dsonar.projectKey=tla-tbdnsbg-android_app
+            -Dsonar.sources=app/src
+            -Dsonar.exclusions=**/generated/**,**/node_modules/**,**/*.bundle
+            -Dsonar.c.file.suffixes=-
+            -Dsonar.cpp.file.suffixes=-
+            -Dsonar.objc.file.suffixes=-
+            -Dsonar.sourceEncoding=UTF-8
+            -Dsonar.coverage.exclusions=**
+            -Dsonar.coverageReportPaths=
+            -Dsonar.java.coveragePlugin=none
+            -Dsonar.java.binaries=app/build/intermediates/javac/playRelease
+            -Dsonar.host.url=${{ env.SONAR_HOST_URL }}
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: SonarQube Quality Gate
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        timeout-minutes: 5
+        with:
+          scanMetadataReportFile: apps/sbg/native/android/.scannerwork/report-task.txt
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  sonarqube_tbdn_ios:
+    runs-on: ubuntu-self-hosted
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.ios_bf == 'true' || github.ref == 'refs/heads/master' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Run SonarQube scan
+        uses: sonarsource/sonarqube-scan-action@master
+        with:
+          projectBaseDir: apps/bf/native/ios
+          args: >
+            -Dsonar.projectKey=tla-tbdn-ios_app
+            -Dsonar.coverage.exclusions=**
+            -Dsonar.coverageReportPaths=
+            -Dsonar.host.url=${{ env.SONAR_HOST_URL }}
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: SonarQube Quality Gate
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        timeout-minutes: 5
+        with:
+          scanMetadataReportFile: apps/bf/native/ios/.scannerwork/report-task.txt
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  sonarqube_tbdnsbg_ios:
+    runs-on: ubuntu-self-hosted
+    needs: detect-changes
+    if: ${{ needs.detect-changes.outputs.ios_sbg == 'true' || github.ref == 'refs/heads/master' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Run SonarQube scan
+        uses: sonarsource/sonarqube-scan-action@master
+        with:
+          projectBaseDir: apps/sbg/native/ios
+          args: >
+            -Dsonar.projectKey=tla-tbdnsbg-ios_app
+            -Dsonar.coverage.exclusions=**
+            -Dsonar.coverageReportPaths=
+            -Dsonar.host.url=${{ env.SONAR_HOST_URL }}
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: SonarQube Quality Gate
+        uses: sonarsource/sonarqube-quality-gate-action@master
+        timeout-minutes: 5
+        with:
+          scanMetadataReportFile: apps/sbg/native/ios/.scannerwork/report-task.txt
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  Quality_Gate_Message:
+    runs-on: ubuntu-self-hosted
+    if: always() && github.event_name == 'pull_request'
+    needs: [sonarqube_web, sonarqube_tbdn, sonarqube_tbdnsbg, sonarqube_tbdn_ios, sonarqube_tbdnsbg_ios]
+    steps:
+      - name: Check SonarQube Quality Gates
+        run: |
+          declare -A PROJECTS=(
+            ["tla-tbd"]="TBD"
+            ["tla-tbdn-android_app"]="TBDN Android"
+            ["tla-tbdnsbg-android_app"]="TBDN SBG Android"
+            ["tla-tbdn-ios_app"]="TBDN iOS"
+            ["tla-tbdnsbg-ios_app"]="TBDN SBG iOS"
+          )
+
+          for PROJECT_KEY in "${!PROJECTS[@]}"; do
+            PROJECT_NAME=${PROJECTS[$PROJECT_KEY]}
+
+            URL="${{ env.SONAR_HOST_URL }}/api/qualitygates/project_status?projectKey=$PROJECT_KEY&pullRequest=${{ github.event.number }}"
+            SONAR_LINK="https://sonarq.prd.internal/dashboard?id=$PROJECT_KEY&pullRequest=${{ github.event.number }}"
+            QUALITY_GATE_STATUS=$(curl -s -u "${{ secrets.SONAR_TOKEN }}:" "$URL" | jq -r .projectStatus.status)
+
+            if [[ -z "$QUALITY_GATE_STATUS" || "$QUALITY_GATE_STATUS" == "null" ]]; then
+              QUALITY_GATE_STATUS="SKIPPED"
+            fi
+
+            if [[ "$QUALITY_GATE_STATUS" == "OK" ]]; then
+              COMMENT_BODY=":green_circle: **Passed**"
+            elif [[ "$QUALITY_GATE_STATUS" == "SKIPPED" ]]; then
+              COMMENT_BODY=":white_circle: **No Result / Not Run**"
+            else
+              COMMENT_BODY=":red_circle: **Failed**"
+            fi
+
+            if [[ "$QUALITY_GATE_STATUS" != "SKIPPED" ]]; then
+              echo "QUALITY_GATE_STATUS_$PROJECT_KEY=$COMMENT_BODY [View Results]($SONAR_LINK)" >> $GITHUB_ENV
+            else
+              echo "QUALITY_GATE_STATUS_$PROJECT_KEY=$COMMENT_BODY" >> $GITHUB_ENV
+            fi
+          done
+
+      - name: Send SonarQube summary
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.repo;
+            const issue_number = context.issue.number;
+
+            const { data: comments } = await github.rest.issues.listComments({
+              owner,
+              repo,
+              issue_number
+            });
+
+            const sonarComments = comments.filter(comment =>
+              comment.user.login === 'github-actions[bot]' &&
+              comment.body.includes('SonarQube Quality Gates Summary')
+            );
+
+            for (const comment of sonarComments) {
+              await github.rest.issues.deleteComment({
+                owner,
+                repo,
+                comment_id: comment.id
+              });
+            }
+
+            const commentBody = `
+            **SonarQube Quality Gates Summary**
+            - TBD: ${{ env.QUALITY_GATE_STATUS_tla-tbd }}
+            - TBDN BF Android: ${{ env.QUALITY_GATE_STATUS_tla-tbdn-android_app }}
+            - TBDN SBG Android: ${{ env.QUALITY_GATE_STATUS_tla-tbdnsbg-android_app }}
+            - TBDN BF iOS: ${{ env.QUALITY_GATE_STATUS_tla-tbdn-ios_app }}
+            - TBDN SBG iOS: ${{ env.QUALITY_GATE_STATUS_tla-tbdnsbg-ios_app }}
+            `;
+
+            await github.rest.issues.createComment({
+              issue_number,
+              owner,
+              repo,
+              body: commentBody
+            });

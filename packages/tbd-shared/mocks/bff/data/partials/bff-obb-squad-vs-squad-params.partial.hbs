@@ -1,0 +1,24 @@
+"__typename": "ObbSquadVsSquadParams",
+"squadAParticipantIds": [
+  {{#each squadAParticipantIds}}
+    {
+      {{> bff-obb-participant}}
+    }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+],
+"squadBParticipantIds": [
+  {{#each squadBParticipantIds}}
+    {
+      {{> bff-obb-participant}}
+    }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+],
+"outcomeIds": [
+  {{#each outcomeIds}}
+    "{{this}}"{{#unless @last}},{{/unless}}
+  {{/each}}
+],
+"timePeriodId": "{{timePeriodId}}",
+"quantifier": "{{quantifier}}"

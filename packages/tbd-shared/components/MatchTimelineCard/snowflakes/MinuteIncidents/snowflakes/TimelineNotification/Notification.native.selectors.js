@@ -1,0 +1,9 @@
+const NOTIFICATION = "notification";
+const NOTIFICATION_TITLE = `${NOTIFICATION}-title`;
+const NOTIFICATION_DESCRIPTION = `${NOTIFICATION}-description`;
+
+module.exports = {
+  NOTIFICATION,
+  NOTIFICATION_TITLE,
+  NOTIFICATION_DESCRIPTION,
+};

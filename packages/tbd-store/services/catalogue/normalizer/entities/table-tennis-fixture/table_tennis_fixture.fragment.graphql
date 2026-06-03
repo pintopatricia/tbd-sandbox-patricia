@@ -1,0 +1,29 @@
+fragment tableTennisFixture on TableTennisFixture {
+  __typename
+  urn
+  runnerNames {
+    home
+    away
+  }
+  isAmericanFormat
+  currentSet {
+    number
+    score {
+      home
+      away
+    }
+    currentServer
+  }
+  setsWon {
+    home
+    away
+  }
+  previousSets {
+    number
+    score {
+      home
+      away
+    }
+    currentServer
+  }
+}

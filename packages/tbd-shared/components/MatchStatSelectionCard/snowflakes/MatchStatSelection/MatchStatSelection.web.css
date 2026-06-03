@@ -1,0 +1,66 @@
+.matchStatSelectionCardContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--half-time-pulse-market-gap);
+
+  align-items: flex-start;
+
+  height: 100%;
+  padding: var(--half-time-pulse-market-card-padding);
+
+  background: var(--half-time-pulse-market-card-background-colour);
+  border-radius: var(--half-time-pulse-market-card-border-radius);
+}
+
+.marketDetailsContainer {
+  display: flex;
+
+  flex-grow: 1;
+
+  gap: var(--half-time-pulse-stat-container-spacing-gap);
+
+  align-items: center;
+  align-self: stretch;
+}
+
+.titleContainer {
+  display: flex;
+
+  flex: 1 0 0;
+  flex-flow: column;
+  flex-wrap: wrap;
+
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.title {
+  display: flex;
+
+  flex-flow: row;
+  flex-wrap: wrap;
+
+  gap: var(--half-time-pulse-market-card-player-title-vertical-gap)
+    var(--half-time-pulse-market-card-player-title-horizontal-gap);
+
+  align-items: flex-start;
+  align-self: stretch;
+
+  font: var(--half-time-pulse-market-card-player-title-typography);
+  color: var(--half-time-pulse-market-card-player-title-colour);
+}
+
+.subtitle {
+  align-self: stretch;
+
+  font: var(--half-time-pulse-market-card-market-description-typography);
+  color: var(--half-time-pulse-market-card-market-description-colour);
+}
+
+.icon {
+  min-width: var(--icon-size-large);
+  min-height: var(--icon-size-large);
+  aspect-ratio: 1/1;
+}

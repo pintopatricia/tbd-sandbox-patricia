@@ -1,0 +1,97 @@
+require_relative "lib/helpers"
+
+platform :ios do
+  desc "Build and uploads our In-House app to Firebase for the stakeholders"
+  lane :in_house_gaming_firebase do |options|
+    begin
+      match(
+        type: "enterprise",
+        app_identifier: ["com.skybet.SkyBetTesting", "com.skybet.SkyBetTesting.SkyBetNotificationServiceExtension"],
+        git_branch: "SkyBetEnterprise",
+        clone_branch_directly: true,
+        keychain_name: ENV["MATCH_KEYCHAIN_NAME"],
+        keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"],
+        readonly: true
+      )
+
+      if (is_running_in_jenkins)
+        new_build_number = "0." + get_build_number() + ".0" if ENV['IS_MR_BUILD']
+        update_app_version(nil, new_build_number)
+      end
+
+      update_info_plist(
+        plist_path: "tbd_native/Info.plist",
+        display_name: "Sky Bet (In-House)"
+      )
+
+      # changes push notifications environment to production
+      # keys / secrets can be found on company https://www.airship.com/ account
+      update_plist(
+        plist_path: "AirshipConfig.plist",
+        block: proc do |plist|
+          plist[:inProduction] = "YES"
+        end
+      )
+      update_plist(
+        plist_path: "AirshipConfig.plist",
+        block: proc do |plist|
+          plist[:productionAppKey] = "NXpn8zosThG30n5ShaJo7g"
+        end
+      )
+      update_plist(
+        plist_path: "AirshipConfig.plist",
+        block: proc do |plist|
+          plist[:productionAppSecret] = "PCdTBI4YRECVPusDrPrzKg"
+        end
+      )
+
+      add_badge(
+        no_badge: true,
+        shield: "IH-#{get_encoded_build_number_label}-orange",
+        shield_gravity: 'South',
+        shield_scale: '0.75'
+      )
+
+      build_app(
+        workspace: "tbd_native.xcworkspace",
+        scheme: "tbd_native",
+        configuration: "In_House",
+        silent: true,
+        suppress_xcode_output: true,
+        clean: true,
+        export_options: {
+          method: "enterprise"
+        }
+      )
+
+      firebase_app_distribution(
+        app: "1:471098256672:ios:34fb32a169a4cc1bb83b45",
+        groups: 'gaming-native-dev-teams',
+        ipa_path: lane_context[SharedValues::IPA_OUTPUT_PATH],
+        release_notes: get_release_notes_gaming(),
+        firebase_cli_token: ENV['FIREBASE_CI_KEY']
+      )
+
+      upload_symbols_to_crashlytics(
+        dsym_path: lane_context[SharedValues::DSYM_OUTPUT_PATH],
+        app_id: "1:471098256672:ios:34fb32a169a4cc1bb83b45",
+        debug: true
+      )
+
+      if ENV['IS_MR_BUILD']
+        latest_release = firebase_app_distribution_get_latest_release(
+          app: "1:471098256672:ios:34fb32a169a4cc1bb83b45",
+          firebase_cli_token: ENV['FIREBASE_CI_KEY']
+        )
+
+        new_link = "https://appdistribution.firebase.google.com/" + latest_release[:name].gsub(/projects\/[0-9]+\/apps\//, "testerapps/")
+
+        File.write("../link_to_app", new_link)
+      end
+    ensure
+      delete_keychain(
+        name: ENV["MATCH_KEYCHAIN_NAME"]
+      )
+    end
+  end
+end

@@ -1,0 +1,15 @@
+# Ignore everything
+**
+
+# Allowed files and directories
+!packages/**
+!.yarnrc.yml
+!yarn.lock
+!package.json
+!apps/bf/native/**
+!.yarn/**
+
+# Ignore unnecessary files inside allowed directories
+# This should go after the allowed directories
+**/node_modules/
+**/dist

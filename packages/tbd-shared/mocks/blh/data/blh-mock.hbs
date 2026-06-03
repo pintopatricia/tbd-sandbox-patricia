@@ -1,0 +1,33 @@
+{
+  "errors":[],
+  "data": {
+    "betsResult": [
+      {{#each betsResult}}
+        {
+          "result": "{{result}}{{^result}}WIN{{/result}}",
+          "resultType": "{{resultType}}{{^resultType}}POTENTIAL{{/resultType}}",
+          "legs": [
+            {{#each legs}}
+              {
+                "legNumber": "{{legNumber}}{{^legNumber}}1{{/legNumber}}",
+                "runners": [
+                  {{#each runners}}
+                    {
+                      "id": "{{id}}{{^id}}1234{{/id}}",
+                      "marketId": "{{marketId}}{{^marketId}}12345{{/marketId}}",
+                      "result": "{{result}}{{^result}}WIN{{/result}}",
+                      "resultType": "{{resultType}}{{^resultType}}POTENTIAL{{/resultType}}"
+                    }
+                    {{#unless @last}},{{/unless}}
+                  {{/each}}
+                ]
+              }
+              {{#unless @last}},{{/unless}}
+            {{/each}}
+          ]
+        }
+        {{#unless @last}},{{/unless}}
+      {{/each}}
+    ]
+  }
+}

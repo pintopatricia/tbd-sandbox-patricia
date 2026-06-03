@@ -1,0 +1,16 @@
+.helpLink {
+  display: flex;
+
+  gap: var(--my-bets-header-add-on-horizontal-gap);
+
+  align-items: center;
+
+  padding: var(--my-bets-header-add-on-padding);
+
+  color: var(--action-link-default-label-colour);
+}
+
+.helpLinkButtonIcon {
+  width: var(--my-bets-header-add-on-icon-sizing);
+  height: var(--my-bets-header-add-on-icon-sizing);
+}

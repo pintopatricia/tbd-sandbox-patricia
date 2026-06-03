@@ -1,0 +1,17 @@
+.settingsContainer {
+  display: flex;
+
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.settingsContainer [class$="_scrollablePebbleContainer"] {
+  margin-top: var(--spacing-4);
+  margin-left: var(--spacing-3);
+}
+
+.externalContent {
+  flex-grow: 1;
+
+  margin-top: var(--spacing-3);
+}

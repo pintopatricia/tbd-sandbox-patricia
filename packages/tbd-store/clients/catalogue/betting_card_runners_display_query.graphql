@@ -1,0 +1,56 @@
+query BettingCardRunnersDisplay(
+  $urn: [URN!]!
+  $requestForExc: Boolean!
+  $requestForSbk: Boolean!
+  $preferences: LayoutPreferencesInput
+  $productExclusions: [ProductExclusion!]
+  $experiments: [ExperimentsInput!]
+  $throttlesOn: [String!]
+  $throttlesOff: [String!]
+)
+@preferences(preferences: $preferences)
+@productExclusions(productExclusions: $productExclusions)
+@experiments(experiments: $experiments)
+@throttlesOn(throttlesOn: $throttlesOn)
+@throttlesOff(throttlesOff: $throttlesOff) {
+  Cards(cardsURN: $urn) {
+    __typename
+    ... on MarketCard {
+      urn
+      displayRunners {
+        ...displayRunners
+      }
+    }
+    ... on MarketExtendedCard {
+      urn
+      displayRunners {
+        ...displayRunners
+      }
+    }
+    ... on EventMarketCard {
+      urn
+      displayRunners {
+        ...displayRunners
+      }
+    }
+    ... on RaceMarketCard {
+      urn
+      displayRunners {
+        ...displayRunners
+      }
+    }
+  }
+}
+
+fragment displayRunners on DisplayRunners {
+  exchange @include(if: $requestForExc) {
+    runners {
+      runnerURN
+    }
+  }
+  sportsbook @include(if: $requestForSbk) {
+    runners {
+      runnerURN
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "dropdown": "div.ssc-hls",
+  "sportsBook": "#SPORTSBOOK",
+  "languageOptions": "span.ssc-aru.ssc-sprite",
+  "languageFirstPart": "span.ssc-ldf.ssc-sprite.ssc-f"
+}

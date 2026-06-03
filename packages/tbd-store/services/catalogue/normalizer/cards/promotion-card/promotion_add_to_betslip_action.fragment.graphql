@@ -1,0 +1,11 @@
+fragment promotionAddToBetslipAction on PromotionAddToBetslipAction {
+  market {
+    ...sportsbookMarket
+  }
+  runner {
+    runnerURN
+    selectionId
+    handicap
+  }
+  displayPreviousOdd
+}

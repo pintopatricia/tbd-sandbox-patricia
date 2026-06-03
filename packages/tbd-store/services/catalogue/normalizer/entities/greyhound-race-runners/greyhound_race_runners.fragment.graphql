@@ -1,0 +1,7 @@
+fragment greyhoundRaceRunner on GreyhoundRaceRunner {
+  urn
+  __typename
+  trap
+  raceURN
+  selectionId
+}

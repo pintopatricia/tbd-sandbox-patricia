@@ -1,0 +1,86 @@
+/* stylelint-disable font-family-no-missing-generic-family-keyword */
+/* stylelint-disable scale-unlimited/declaration-strict-value */
+/* stylelint-disable font-family-name-quotes */
+
+.container {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--spacing-2);
+
+  margin: 0 var(--spacing-3);
+}
+
+.collapseWrapper {
+  overflow: hidden;
+
+  background-color: var(--card-background-colour);
+  border-radius: var(--card-border-radius);
+}
+
+.stats {
+  display: flex;
+
+  flex-direction: row;
+
+  gap: var(--spacing-9);
+
+  padding: var(--tooltip-pointer-padding);
+}
+
+.statItem {
+  display: flex;
+
+  flex: 1;
+  flex-direction: column;
+}
+
+.noStatsLabel,
+.statLabel {
+  font: var(--odds-large-label-typography);
+  color: var(--card-group-title-colour);
+  text-decoration-line: var(--odds-large-label-typography-text-decoration-line);
+  text-transform: var(--odds-large-label-typography-text-transform);
+  letter-spacing: var(--odds-large-label-typography-letter-spacing);
+}
+
+.statTitle {
+  font: var(--card-group-title-typography);
+  color: var(--card-group-title-colour);
+  text-decoration-line: var(--card-group-title-typography-text-decoration-line);
+  text-transform: var(--card-group-title-typography-text-transform);
+  letter-spacing: var(--card-group-title-typography-letter-spacing);
+}
+
+.statValue {
+  font: 500 56px/64px "SSportsD";
+  color: var(--card-group-title-colour);
+  text-decoration-line: var(--promoted-price-current-content-text-typography-text-decoration-line);
+  text-transform: var(--promoted-price-current-content-text-typography-text-transform);
+  letter-spacing: var(--promoted-price-current-content-text-typography-letter-spacing);
+}
+
+.collapseHeader {
+  display: flex;
+
+  gap: var(--card-header-horizontal-gap);
+
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: var(--sports-ribbon-placeholder-padding);
+
+  font: var(--card-header-medium-title-typography);
+  color: var(--card-header-secondary-title-colour);
+  text-decoration-line: var(--card-header-medium-title-typography-text-decoration-line);
+  text-transform: var(--card-header-medium-title-typography-text-transform);
+  letter-spacing: var(--card-header-medium-title-typography-letter-spacing);
+
+  background-color: var(--card-header-secondary-background-colour);
+}
+
+.placeholder {
+  height: 200px;
+}

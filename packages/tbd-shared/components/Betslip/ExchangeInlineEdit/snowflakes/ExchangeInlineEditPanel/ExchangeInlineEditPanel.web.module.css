@@ -1,0 +1,40 @@
+.container {
+  margin: 0;
+}
+
+.row {
+  display: flex;
+
+  gap: var(--sm-spacing-x-small);
+
+  margin-bottom: var(--sm-spacing-x-small);
+}
+
+.item {
+  display: flex;
+
+  flex: 1 1 0;
+}
+
+.notifications {
+  margin-bottom: var(--sm-spacing-x-small);
+}
+
+.persistence {
+  margin-bottom: var(--sm-spacing-xxx-small);
+
+  background-color: var(--agnostic-neutrals-background-transparency1);
+  border-radius: 4px;
+}
+
+.collapseChildren {
+  padding: var(--sm-spacing-x-small);
+}
+
+.paddingBottom {
+  padding-bottom: var(--sm-spacing-x-small);
+}
+
+.quickStakes {
+  padding: var(--sm-spacing-xxx-small) 0;
+}

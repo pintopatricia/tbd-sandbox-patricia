@@ -1,0 +1,17 @@
+.single {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--spacing-2);
+
+  margin: 0;
+}
+
+.signposting {
+  display: flex;
+
+  align-self: flex-end;
+
+  height: 24px;
+}

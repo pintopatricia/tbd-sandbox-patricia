@@ -1,0 +1,17 @@
+"period": "{{period}}{{^period}}PERIOD_1{{/period}}",
+{{#with score}}
+"score": {
+    "goals": {
+        "home": {{score.goals.home}}{{^score.goals.home}}4{{/score.goals.home}},
+        "away": {{score.goals.away}}{{^score.goals.away}}2{{/score.goals.away}}
+    },
+    "behinds": {
+        "home": {{score.behinds.home}}{{^score.behinds.home}}1{{/score.behinds.home}},
+        "away": {{score.behinds.away}}{{^score.behinds.away}}0{{/score.behinds.away}}
+    },
+    "points": {
+        "home": {{score.points.home}}{{^score.points.home}}3{{/score.points.home}},
+        "away": {{score.points.away}}{{^score.points.away}}2{{/score.points.away}}
+    }
+}
+{{/with}}

@@ -1,0 +1,18 @@
+fragment obbQuoteSuccessFragment on ObbQuoteSuccess {
+  __typename
+  price {
+    __typename
+    decimal
+    fractional {
+      __typename
+      numerator
+      denominator
+    }
+  }
+}
+
+fragment obbQuoteErrorFragment on ObbQuoteError {
+  __typename
+  errorCode
+  errorDetails
+}

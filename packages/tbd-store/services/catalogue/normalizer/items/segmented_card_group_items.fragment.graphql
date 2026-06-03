@@ -1,0 +1,18 @@
+fragment fullSegmentedCardGroupItems on SegmentedCardGroupItemsConnection {
+  edges {
+    node {
+      # Read this before adding new entries: docs/guidelines/how-to-add-a-new-card.md
+
+      ...gamingCardGroup
+    }
+  }
+}
+
+fragment partialsSegmentedCardGroupItems on SegmentedCardGroupItemsConnection {
+  edges {
+    node {
+      urn
+      __typename
+    }
+  }
+}

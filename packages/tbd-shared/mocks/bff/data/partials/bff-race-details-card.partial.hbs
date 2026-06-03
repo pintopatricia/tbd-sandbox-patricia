@@ -1,0 +1,24 @@
+"__typename": "{{__typename}}{{^__typename}}RaceDetailsCard{{/__typename}}",
+"urn":"{{urn}}{{^urn}}ppb:tbd:card:raceDetails:1.171782025/24000991/0{{/urn}}",
+"availableToSubscribe": {{availableToSubscribe}}{{^availableToSubscribe}}true{{/availableToSubscribe}},
+"numberOfRunners": {{#if numberOfRunners}}{{numberOfRunners}}{{else}}null{{/if}},
+"raceClass": {{#if raceClass}}{{raceClass}}{{else}}null{{/if}},
+"raceDetailsTitle": {{#if raceDetailsTitle}}"{{raceDetailsTitle}}"{{else}}null{{/if}},
+"race": {
+  {{#if race}}
+    {{#with race}}
+      {{> bff-race }}
+    {{/with}}
+  {{/if}}
+},
+"showMeetingInfo": {{#if showMeetingInfo}}{{showMeetingInfo}}{{else}}false{{/if}},
+{{#if raceViewLink}}
+  "raceViewLink": {
+  {{#with raceViewLink}}
+    "viewUrn":"{{viewUrn}}",
+    "viewUrl":"{{viewUrl}}"
+  {{/with}}
+  }
+{{else}}
+  "raceViewLink": null
+{{/if}}

@@ -1,0 +1,10 @@
+---
+mac_os_version: 14.1.1
+node_version: v24.15.0
+yarn_version: 1.22.10
+ruby_version: 3.2.2
+xcode_version: 26.2
+cocoapods_version: 1.15.2
+mac_os_sdk_path: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
+simulators_runtime: 1
+jdk_version: 11.0.11

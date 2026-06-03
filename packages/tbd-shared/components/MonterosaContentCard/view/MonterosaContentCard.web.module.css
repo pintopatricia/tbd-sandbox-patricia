@@ -1,0 +1,11 @@
+.consentContainer {
+  display: grid;
+
+  gap: var(--spacing-1);
+
+  place-items: center;
+}
+
+.consentButton {
+  margin-top: var(--spacing-1);
+}

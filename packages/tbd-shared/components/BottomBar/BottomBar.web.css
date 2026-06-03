@@ -1,0 +1,15 @@
+.bottomBarContainer {
+  position: fixed;
+  bottom: 0;
+  z-index: var(--bottom-bar-stack);
+
+  width: 100%;
+
+  /*
+    This is used to add extra padding bottom to the bottom bar
+    on Chromium based browsers in iOS to avoid overlaping with system UI elements.
+  */
+  padding-bottom: var(--safe-area-inset-bottom);
+
+  background-color: var(--components-navigation-bottombar-background-default);
+}

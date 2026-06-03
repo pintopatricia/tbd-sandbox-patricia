@@ -1,0 +1,71 @@
+:root {
+  --snack-viewport-margin: 8px;
+  --snack-bottom: calc(var(--bottom-bar-height-sizing) + var(--snack-viewport-margin));
+}
+
+.snacksContainer {
+  position: fixed;
+  right: var(--spacing-2);
+  bottom: var(--snack-bottom);
+  left: var(--spacing-2);
+  z-index: var(--messaging-stack);
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--spacing-2);
+
+  transition: bottom 0.3s ease;
+}
+
+.snacksContainerDesktop {
+  right: 5%;
+  bottom: var(--snack-viewport-margin);
+  left: 0;
+
+  width: 55%;
+  max-width: var(--snack-bar-container-sizing);
+  margin: auto;
+}
+
+.slideUp {
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+  animation: slideUp 0.3s ease-out;
+}
+
+.fadeOut {
+  overflow: hidden;
+
+  animation: fadeOut 0.3s ease-out forwards;
+}
+
+.webWrappedVersion {
+  bottom: var(--snack-viewport-margin);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+
+    transform: translateY(var(--snack-bottom));
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}

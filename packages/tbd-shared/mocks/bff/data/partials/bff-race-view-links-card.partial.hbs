@@ -1,0 +1,37 @@
+"__typename": "{{__typename}}{{^__typename}}RaceViewLinksCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:raceViewLinks:7|30174778.1630{{/urn}}",
+"race": {
+  {{#if race}}
+    {{#with race}}
+      {{> bff-race }}
+    {{/with}}
+  {{/if}}
+},
+"raceViewLinks": [
+  {{#each raceViewLinks}}
+    {
+      "race": {
+      {{#if race}}
+        {{#with race}}
+          {{> bff-race }}
+        {{/with}}
+      {{/if}}
+      },
+    {{#if marketPromo}}
+      "marketPromo": {
+      {{#with marketPromo}}
+        "title": "{{title}}{{^title}}Title{{/title}}",
+        "description": "{{description}}{{^description}}Description{{/description}}",
+        "signposting": "{{signposting}}{{^signposting}}MONEY_BACK{{/signposting}}"
+      {{/with}}
+      },
+    {{/if}}
+      {{#with viewLink}}
+        "viewLink": {
+        "viewUrl": "{{viewUrl}}{{^viewUrl}}/football{{/viewUrl}}",
+        "viewUrn": "{{viewUrn}}{{^viewUrn}}ppb:tbd:view:sport:1{{/viewUrn}}"
+        }
+      {{/with}}
+    }{{#unless @last}},{{/unless}}
+  {{/each}}
+]

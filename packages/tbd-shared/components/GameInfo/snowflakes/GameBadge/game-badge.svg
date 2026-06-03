@@ -1,0 +1,28 @@
+<svg viewBox="1 5 102 27" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient x1="100%" y1="47.12%" x2="0%" y2="47.12%" id="c">
+      <stop stop-opacity="0" offset="0%"/>
+      <stop stop-opacity=".15" offset="16.887%"/>
+      <stop stop-opacity="0" offset="32.849%"/>
+      <stop stop-opacity="0" offset="70.529%"/>
+      <stop stop-opacity=".15" offset="86.803%"/>
+      <stop stop-opacity="0" offset="100%"/>
+    </linearGradient>
+    <filter x="-28%" y="-83.3%" width="156%" height="333.3%" filterUnits="objectBoundingBox" id="a">
+      <feOffset dy="8" in="SourceAlpha" result="shadowOffsetOuter1"/>
+        <feGaussianBlur stdDeviation="8" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+        <feColorMatrix values="0 0 0 0 0.117647059 0 0 0 0 0.117647059 0 0 0 0 0.117647059 0 0 0 0.3 0" in="shadowBlurOuter1"/>
+    </filter>
+
+    	<path d="M0 3.79C6.181 1.262 10.817 0 13.907 0H85.43c3.974 0 8.83 1.263 14.57 3.79L92.715 12 100 24c-6.623-2.526-11.479-3.79-14.57-3.79H13.907C10.817 20.21 6.181 21.475 0 24l7.285-12L0 3.79z" id="b"/>
+
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(-12 0)">
+    <path
+      d="M14 11.79C20.181 9.262 24.817 8 27.907 8H99.43c3.974 0 8.83 1.263 14.57 3.79L106.715 20 114 32c-6.623-2.526-11.479-3.79-14.57-3.79H27.907c-3.09 0-7.726 1.264-13.907 3.79l7.285-12L14 11.79z"
+      fill="#E62931"/>
+    <g transform="translate(14 8)">
+      <use fill="url(#c)" xlink:href="#b"/>
+    </g>
+  </g>
+</svg>

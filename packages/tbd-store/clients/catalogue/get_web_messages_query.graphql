@@ -1,0 +1,16 @@
+query GetWebMessages($throttlesOn: [String!], $throttlesOff: [String!], $productExclusions: [ProductExclusion!])
+@productExclusions(productExclusions: $productExclusions)
+@throttlesOn(throttlesOn: $throttlesOn)
+@throttlesOff(throttlesOff: $throttlesOff) {
+  MarketingMessages {
+    ... on WebMessage {
+      urn
+      content {
+        title
+        templateUrl
+        templateHeight
+        templateWidth
+      }
+    }
+  }
+}

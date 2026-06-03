@@ -1,0 +1,47 @@
+:root {
+  --grey-850: #1e1e1e;
+}
+
+.acceptPromo {
+  position: relative;
+
+  display: flex;
+
+  overflow: hidden;
+
+  color: var(--casino-jackpot-text-default);
+
+  background-color: var(--grey-850);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: 55%;
+  border-radius: var(--spacing-1);
+}
+
+.acceptPromo button {
+  width: 50vw;
+  margin-top: var(--spacing-2);
+}
+
+.textBackground {
+  position: relative;
+
+  width: 55vw;
+  padding: var(--spacing-3);
+  /* stylelint-disable-next-line dczajkowski/color-no-non-variables */
+  background: linear-gradient(-90deg, rgb(42 42 44 / 0) 0%, rgb(42 42 44) 100%);
+}
+
+.textContent {
+  position: relative;
+
+  width: 45vw;
+}
+
+.tcText {
+  margin-top: var(--spacing-1);
+}
+
+.title {
+  color: var(--brand-casino-text-default);
+}

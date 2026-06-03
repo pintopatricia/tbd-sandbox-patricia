@@ -1,0 +1,124 @@
+.container {
+  position: relative;
+
+  display: flex;
+
+  gap: var(--bubble-item-horizontal-gap-primary);
+}
+
+.lineContainer {
+  display: flex;
+
+  justify-content: center;
+
+  padding: var(--bubble-item-line-padding);
+}
+
+.line {
+  position: absolute;
+
+  width: var(--bubble-item-line-sizing);
+  height: calc(100% + 4px);
+
+  background: var(--bubble-item-line-colour);
+}
+
+.last {
+  background: transparent;
+}
+
+.dot {
+  z-index: 1;
+
+  width: var(--bubble-item-pointer-sizing);
+  height: var(--bubble-item-pointer-sizing);
+
+  background: var(--bubble-item-pointer-colour);
+  border-radius: var(--bubble-item-pointer-border-radius);
+}
+
+.textContainer {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.entryText {
+  align-self: flex-end;
+}
+
+.titleText {
+  font: var(--bubble-item-title-highlighted-typography);
+  color: var(--bubble-item-text-title-highlighted-colour);
+  text-decoration: var(--bubble-item-title-highlighted-typography-text-decoration-line);
+  text-transform: var(--bubble-item-title-highlighted-typography-text-transform);
+  letter-spacing: var(--bubble-item-title-highlighted-typography-letter-spacing);
+}
+
+.regularText {
+  font: var(--bubble-item-title-typography);
+  color: var(--bubble-item-text-content-text-colour);
+  text-decoration: var(--bubble-item-title-typography-text-decoration-line);
+  text-transform: var(--bubble-item-title-typography-text-transform);
+  letter-spacing: var(--bubble-item-title-typography-letter-spacing);
+}
+
+.description {
+  font: var(--bubble-item-content-text-typography);
+  color: var(--bubble-item-text-content-text-colour);
+  text-decoration: var(--bubble-item-content-text-typography-text-decoration-line);
+  text-transform: var(--bubble-item-content-text-typography-text-transform);
+  letter-spacing: var(--bubble-item-content-text-typography-letter-spacing);
+}
+
+.subDescription {
+  font: var(--bubble-item-supporting-text-typography);
+  color: var(--bubble-item-text-supporting-text-colour);
+  text-decoration: var(--bubble-item-supporting-text-typography-text-decoration-line);
+  text-transform: var(--bubble-item-supporting-text-typography-text-transform);
+  letter-spacing: var(--bubble-item-supporting-text-typography-letter-spacing);
+}
+
+.iconContainer {
+  width: var(--bubble-item-silk-width-sizing);
+  height: var(--bubble-item-silk-height-sizing);
+}
+
+.iconContainer > img,
+.iconContainer > svg {
+  width: auto;
+  height: 100%;
+}
+
+.titleContainer {
+  display: flex;
+
+  gap: var(--bubble-item-horizontal-gap-secondary);
+
+  justify-content: space-between;
+}
+
+.iconAndTitleContainer {
+  display: flex;
+
+  flex-shrink: 1;
+
+  gap: var(--bubble-item-horizontal-gap-secondary);
+}
+
+.titleWithIconText {
+  display: flex;
+
+  align-items: center;
+}
+
+.infoContainer {
+  width: 100%;
+  padding: var(--bubble-item-content-padding);
+}
+
+.children {
+  display: flex;
+
+  gap: var(--bubble-item-horizontal-gap-secondary);
+}

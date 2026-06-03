@@ -1,0 +1,13 @@
+.betslipSinglesCard {
+  margin: var(--spacing-2) 0 0;
+}
+
+.singlesCard {
+  overflow: hidden;
+
+  border-radius: 4px;
+}
+
+.singlesCard + .singlesCard {
+  margin-top: var(--spacing-2);
+}

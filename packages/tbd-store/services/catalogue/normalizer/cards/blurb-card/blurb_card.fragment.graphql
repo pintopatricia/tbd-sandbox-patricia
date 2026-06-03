@@ -1,0 +1,27 @@
+fragment blurbCard on BlurbCard {
+  urn
+  __typename
+  blurb {
+    ...informativeBlurb
+  }
+}
+
+fragment informativeBlurb on InformativeBlurb {
+  title {
+    ...displayName
+  }
+  description {
+    ...displayName
+  }
+  isCollapsed
+  supplementaryInfo {
+    label {
+      ...displayName
+    }
+    viewLink {
+      viewUrn
+      viewUrl
+      viewDisplayMode
+    }
+  }
+}

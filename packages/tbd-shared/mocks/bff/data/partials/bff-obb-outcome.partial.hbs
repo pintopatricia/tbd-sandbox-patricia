@@ -1,0 +1,9 @@
+"incidentType": "{{incidentType}}",
+"operator": "{{operator}}",
+"value": {
+  {{#with value}}
+    {{> bff-obb-outcome-value}}
+  {{/with}}
+},
+"period": "{{period}}",
+"__typename": "{{__typename}}{{^__typename}}ObbOperator{{/__typename}}"

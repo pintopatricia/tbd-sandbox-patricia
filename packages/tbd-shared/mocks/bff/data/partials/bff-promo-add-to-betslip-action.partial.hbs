@@ -1,0 +1,18 @@
+"__typename": "PromotionAddToBetslipAction",
+"market": {
+{{#with market}}
+  "__typename": "{{__typename}}{{^__typename}}SportsbookMarket{{/__typename}}",
+  "urn": "{{urn}}{{^urn}}ppb:sbkMarket:1.160337355{{/urn}}",
+  "isOddsboostMarketType": {{isOddsboostMarketType}}{{^isOddsboostMarketType}}false{{/isOddsboostMarketType}},
+  "hierarchy": {
+    {{> bff-hierarchy hierarchy}}
+  },
+  "liveData": {{{ json liveData }}}
+{{/with}}
+},
+"runner":{
+{{#with runner}}
+  "runnerURN": "{{runnerURN}}{{^runnerURN}}ppb:sbkRunner:924.235739888/35458130{{/runnerURN}}"
+{{/with}}
+},
+"displayPreviousOdd": {{displayPreviousOdd}}

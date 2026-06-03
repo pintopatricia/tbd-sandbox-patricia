@@ -1,0 +1,15 @@
+{
+  "promoCard": ".ccd08cc8d1dd25d9-promoCard",
+  "promoCardContent": ".ccd08cc8d1dd25d9-promoCardContent",
+  "tcTextContainer": ".ccd08cc8d1dd25d9-tcTextContainer",
+  "promotionCompletedContainer": ".ccd08cc8d1dd25d9-promotionCompletedContainer",
+  "requirementsText": ".ccd08cc8d1dd25d9-requirementsText",
+  "optInPromo": ".ccd08cc8d1dd25d9-optInPromo",
+  "freeSpinsPromo": ".ccd08cc8d1dd25d9-freeSpinsPromo",
+  "remainingTextContainer": ".ccd08cc8d1dd25d9-remainingTextContainer",
+  "remainingText": ".ccd08cc8d1dd25d9-remainingText",
+  "remainingTextFooter": ".ccd08cc8d1dd25d9-remainingTextFooter",
+  "progressBar": ".ccd08cc8d1dd25d9-progressBar",
+  "linkControlsContainer": ".ccd08cc8d1dd25d9-linkControlsContainer",
+  "footerTextContainer": ".ccd08cc8d1dd25d9-footerTextContainer"
+}

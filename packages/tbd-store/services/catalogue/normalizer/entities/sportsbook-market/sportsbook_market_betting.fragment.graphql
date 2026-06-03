@@ -1,0 +1,34 @@
+fragment sportsbookMarketBetting on SportsbookMarket {
+  __typename
+  urn
+  name
+  marketType
+  marketTypeName
+  bettingType
+  liveData {
+    inplay
+    turnInPlayEnabled
+    bspMarket
+    runners {
+      ...sportsbookRunnerLiveData
+    }
+  }
+  hierarchy {
+    ...hydratedMarketHierarchy
+  }
+  sport {
+    ...sport
+  }
+  runners {
+    __typename
+    runnerURN
+    name
+    selectionId
+    handicap
+    resultType
+  }
+  isOddsboostMarketType
+  isAutomaticEachWayMarketType
+  isSuperSub
+  isAccaFreezeEligible
+}

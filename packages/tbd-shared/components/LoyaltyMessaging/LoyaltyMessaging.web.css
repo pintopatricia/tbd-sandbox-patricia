@@ -1,0 +1,11 @@
+.toastContainer {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  z-index: var(--loyalty-messaging-stack);
+
+  width: 100%;
+  height: auto;
+  padding-right: var(--spacing-3);
+  padding-left: var(--spacing-3);
+}

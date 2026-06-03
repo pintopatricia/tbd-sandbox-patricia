@@ -1,0 +1,9 @@
+.generosityOverlay.generosityOverlay {
+  z-index: 33;
+}
+
+.bonusPageActionLink {
+  display: flex;
+
+  justify-content: center;
+}

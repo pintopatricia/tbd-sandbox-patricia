@@ -1,0 +1,5 @@
+a.linkCard {
+  flex-direction: row;
+
+  border: var(--gaming-link-card-border);
+}

@@ -1,0 +1,6 @@
+fragment userProductsPreference on UserProductsPreference {
+  __typename
+  urn
+  productOptions
+  selectedProduct
+}

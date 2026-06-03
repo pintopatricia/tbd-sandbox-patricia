@@ -1,0 +1,23 @@
+"__typename": "GamingLinkCard",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:gamingLink:1{{/urn}}",
+"games": [
+{{#each games}}
+  {
+  "releaseDate": "{{releaseDate}}",
+  "uid": "{{uid}}"
+  }
+  {{#unless @last}},{{/unless}}
+{{/each}}
+],
+{{#with link}}
+    "link": {
+    "icon": {{#if icon}}"{{icon}}"{{else}}null{{/if}},
+    "label": "{{label}}{{^label}}Gaming Category Link{{/label}}",
+    {{#with viewLink}}
+        "viewLink": {
+        "viewUrn": "{{viewUrn}}{{^viewUrn}}ppb:tbd:card:gamingCategory:1{{/viewUrn}}",
+        "viewUrl": "{{viewUrl}}{{^viewUrl}}/casino/c/slots/gamingCategory:1{{/viewUrl}}"
+        }
+    {{/with}}
+    }
+{{/with}}

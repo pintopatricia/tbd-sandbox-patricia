@@ -1,0 +1,63 @@
+"__typename": "{{__typename}}{{^__typename}}LottoCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:lotto:aKdBBxAAACAAf-Hv/s/29125756{{/urn}}",
+"shouldShowCompetitionName": {{#if shouldShowCompetitionName}}true{{else}}false{{/if}},
+"competition": {
+{{#if competition}}
+  {{#with competition}}
+    {{> bff-competition}}
+  {{/with}}
+{{else}}
+    "__typename": "Competition",
+    "urn": "ppb:competition:511511",
+    "name": "UK 49s"
+{{/if}}
+},
+"lottoMarkets": [
+{{#each lottoMarkets}}
+  {
+    "__typename": "SportsbookMarket",
+    "urn": "{{urn}}{{^urn}}ppb:sbkMarket:924.277968047{{/urn}}",
+    "name": "{{name}}{{^name}}Winner{{/name}}",
+    "marketType": "{{marketType}}{{^marketType}}STANDARD_BET{{/marketType}}",
+    "hierarchy": {
+      {{> bff-hierarchy hierarchy}}
+    },
+    "liveData": {
+    {{#if liveData}}
+        {{#with liveData}}
+        "urn": "{{urn}}{{^urn}}ppb:sbkMarket:930.333163721{{/urn}}",
+        "sportsbookMarketStatus": "{{sportsbookMarketStatus}}{{^sportsbookMarketStatus}}OPEN{{/sportsbookMarketStatus}}",
+        "__typename": "{{__typename}}{{^__typename}}SportsbookMarketLiveData{{/__typename}}"
+        {{/with}}
+    {{else}}
+        "urn": "ppb:sbkMarket:930.333163721",
+        "sportsbookMarketStatus": "OPEN",
+        "__typename": "SportsbookMarketLiveData"
+    {{/if}}
+    },
+    "runners": [
+      {{> bff-runners }}
+    ]
+  }{{#unless @last}},{{/unless}}
+{{/each}}
+],
+"marketIds": [
+{{#if marketIds}}
+  {{#each marketIds}}
+    "{{this}}"{{#unless @last}},{{/unless}}
+  {{/each}}
+{{/if}}
+],
+"winAvgOdds": [
+  {{#each winAvgOdds}}
+    {
+      "decimalDisplayOdds": {
+        "decimalOdds": {{decimalDisplayOdds.decimalOdds}}{{^decimalDisplayOdds.decimalOdds}}10{{/decimalDisplayOdds.decimalOdds}}
+      },
+      "fractionalDisplayOdds": {
+        "numerator": {{fractionalDisplayOdds.numerator}}{{^fractionalDisplayOdds.numerator}}1{{/fractionalDisplayOdds.numerator}},
+        "denominator": {{fractionalDisplayOdds.denominator}}{{^fractionalDisplayOdds.denominator}}10{{/fractionalDisplayOdds.denominator}}
+      }
+    }{{#unless @last}},{{/unless}}
+  {{/each}}
+]

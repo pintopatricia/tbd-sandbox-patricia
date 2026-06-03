@@ -1,0 +1,6 @@
+{
+  "$schema": "../../common/config.schema.json",
+  "$extends": "./base.json",
+  "ENV": "nxt",
+  "COMPOSE_PROJECT_NAME": "tbdbf-nxt"
+}

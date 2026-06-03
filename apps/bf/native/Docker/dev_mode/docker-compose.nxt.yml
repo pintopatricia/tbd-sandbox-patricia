@@ -1,0 +1,11 @@
+version: "3.4"
+services:
+  bff-gql:
+    volumes:
+      - ${PWD}/../../bf-tbd-http-bff-gql/config/bff-gql-http-bf-nxt.json:/etc/bf-fabric/bff-gql-http.json
+  reverseproxy:
+    build:
+      context: ${PWD}/../reverse-proxy
+      dockerfile: ./nxt.Dockerfile
+    volumes:
+      - ${PWD}/../reverse-proxy/dev/environment.nxt.json:/usr/share/nginx/app.environment.json

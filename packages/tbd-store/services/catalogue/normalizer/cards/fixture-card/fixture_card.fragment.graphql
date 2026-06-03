@@ -1,0 +1,28 @@
+fragment fixtureCard on FixtureCard {
+  __typename
+  urn
+  fixture {
+    ...fixture
+  }
+  fixtureEventViewLink: eventViewLink {
+    viewUrn
+    viewUrl
+  }
+  sportevent {
+    ...sportEvent
+  }
+  availableToSubscribe
+  red7Scoreboard {
+    fullURL
+    origin
+  }
+}
+
+fragment fixtureCardPartial on FixtureCard {
+  __typename
+  urn
+  red7Scoreboard {
+    fullURL
+    origin
+  }
+}

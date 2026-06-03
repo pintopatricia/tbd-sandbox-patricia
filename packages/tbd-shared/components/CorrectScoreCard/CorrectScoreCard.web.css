@@ -1,0 +1,46 @@
+.correctScoreCard {
+  margin: var(--spacing-2);
+}
+
+.correctScoreRunnerList {
+  display: flex;
+
+  justify-content: space-around;
+
+  padding-bottom: var(--spacing-2);
+
+  transition: height 1s ease;
+}
+
+.correctScoreRunnerColumn {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.correctScoreRunnerLine {
+  margin-bottom: var(--gutter-1);
+}
+
+.correctScoreRunnerLine:last-child {
+  margin-bottom: 0;
+}
+
+.betButtonWrapper {
+  width: var(--bet-button-width);
+  height: var(--bet-button-height);
+  margin-left: var(--spacing-1);
+  overflow: hidden;
+}
+
+.correctScoreRunnerLine:nth-child(2) .betButtonWrapper {
+  border-radius: 4px 4px 0 0;
+}
+
+.correctScoreRunnerLine:last-child .betButtonWrapper {
+  border-radius: 0 0 4px 4px;
+}
+
+.marketHeader {
+  padding-bottom: var(--spacing-3);
+}

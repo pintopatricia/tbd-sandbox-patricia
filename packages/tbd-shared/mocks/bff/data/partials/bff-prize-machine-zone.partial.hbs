@@ -1,0 +1,24 @@
+"__typename": "GamingPrizeMachineCard",
+"urn": "{{urn}}{{^urn}}ppb:tbd:gaming:master:config:element:prize_machine/0{{/urn}}",
+"title": "{{title}}{{^title}}Gaming Prize Machine{{/title}}",
+"placementId": "{{placementId}}{{^placementId}}cpp_promotions_prize_machine_test{{/placementId}}",
+"completed": {{#if completed}}{{completed}}{{else}}false{{/if}},
+"guaranteedPrize": {{#if guaranteedPrize}}{{guaranteedPrize}}{{else}}false{{/if}},
+"displayJackpotWinnersPostPlayWidget": {{#if displayJackpotWinnersPostPlayWidget}}{{displayJackpotWinnersPostPlayWidget}}{{else}}false{{/if}},
+"jackpotAmount": {{#if jackpotAmount}}{{jackpotAmount}}{{else}}null{{/if}},
+"jackpotState": {{#if jackpotState}}"{{jackpotState}}"{{else}}null{{/if}},
+"activeTitle": "{{activeTitle}}",
+"redirectUrl": "{{redirectUrl}}{{^redirectUrl}}https://casino.betfair.com/prize-pinball{{/redirectUrl}}",
+{{#if themeImages}}
+{{#with themeImages }}
+"themeImages": {
+	 "topLeftImage": { {{> bff-prize-machine-images topLeftImage }} },
+	 "bottomLeftImage": { {{> bff-prize-machine-images bottomLeftImage }} },
+	 "bottomRightImage": { {{> bff-prize-machine-images bottomRightImage }} }
+},
+{{/with}}
+{{else}}
+"themeImages": null,
+{{/if}}
+"ctaLabel": "{{ctaLabel}}",
+"minigameType": "{{minigameType}}{{^minigameType}}prize-pinball{{/minigameType}}"

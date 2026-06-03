@@ -1,0 +1,23 @@
+.betLegs {
+  margin: 0;
+}
+
+.selections {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--spacing-2);
+
+  padding: var(--spacing-2);
+
+  background-color: var(--action-sportsbook-background-elevation1);
+}
+
+.selectionsWithoutBackground {
+  background-color: transparent;
+}
+
+.description {
+  padding: var(--spacing-2) var(--spacing-1) var(--spacing-2) var(--spacing-3);
+}

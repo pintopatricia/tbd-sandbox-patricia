@@ -1,0 +1,413 @@
+{
+  "HOST": "www.skybet.{domain_extension}.nxt.ppbdev.com",
+  "PRODUCT_CLUSTER": "SBK",
+  "HOMEPAGE_PATHS": "",
+  "SWA": {
+    "MAINTENANCE_URL": {
+      "INTERNATIONAL": "https://maintenance.skybet.com.nxt.ppbdev.com/"
+    },
+    "SPLASH_FLARE_PRODUCTS": {
+      "Native": {
+        "sportsbook": ["skybet_native_sportsbook", "skybet_native"],
+        "games": ["skybet_native_games", "skybet_native"]
+      },
+      "Web": {
+        "sportsbook": ["skybet_sportsbook", "skybet"],
+        "games": ["skybet_games", "skybet"]
+      },
+      "redirectProducts": ["skybet_native", "skybet"]
+    }
+  },
+  "MY_ACCOUNT": {
+    "HOST": "https://myaccount.skybet.{domain_extension}.nxt.ppbdev.com/",
+    "PERSONAL_DETAILS": "myaccountx/personaldetails",
+    "NOTIFICATIONS": "myaccountx/notifications",
+    "PROMOTIONS_URL": "https://promos.skybet.{domain_extension}.nxt.ppbdev.com/sport?prod=90&hideHeader=true&returnURL=https%3A%2F%2Fskybet.com.nxt.ppbdev.com"
+  },
+  "CONTENT": {
+    "TBD-REPO": "skybet-dev",
+    "GAMES-REPO": {
+      "INTERNATIONAL": "skybettingandgaming-com-dev"
+    },
+    "JURISDICTIONS": {
+      "BRAZIL": {
+        "LANGUAGE_FALLBACK": "en_GB"
+      },
+      "DENMARK": {
+        "LANGUAGE_FALLBACK": "da"
+      },
+      "INTERNATIONAL": {
+        "LANGUAGE_FALLBACK": "en_GB"
+      },
+      "SPAIN": {
+        "LANGUAGE_FALLBACK": "es"
+      },
+      "ITALY": {
+        "LANGUAGE_FALLBACK": "it"
+      },
+      "ROMANIA": {
+        "LANGUAGE_FALLBACK": "ro"
+      }
+    }
+  },
+  "GRAPHQL": {
+    "PERSISTED_QUERIES_ONLY": false,
+    "ALLOW_INTROSPECTION_QUERIES": true
+  },
+  "LRU_DISABLE_CACHE_HEADER_NAME": "disableLruCache",
+  "ALLOW_QUERY_CACHE": true,
+  "SEO_PRODUCT": "SPORTSBOOK",
+  "EXTENSIONS": {
+    "DISPLAY_CMS_MAP_RESULTS": false
+  },
+  "ENABLE_OUTBOUND_REQUESTS_DEBUGGER": false,
+  "APP_KEYS": {
+    "IOS": "YpSA8eTvLXonmZb7",
+    "ANDROID": "V5sNqJQVGxRSjIf6",
+    "WEB": "9Fs5bFQ2XfGSPgep",
+    "DESKTOP": "DuJYiLaRflSsueCd",
+    "EXPERIMENTATIONS": "I2HxRtanqRPZS2fS"
+  },
+  "VIDEO_PLAYER": {
+    "HOST": "https://bvp.skybet.{domain_extension}.nxt.ppbdev.com/",
+    "ARCHIVE_PATH": "GetPlayer.do?contentType=vid",
+    "TRACK_IDS": {
+      "WEB": 1036,
+      "IOS": 1037,
+      "ANDROID": 1038
+    }
+  },
+  "VIRTUALS_RULES_URL": "https://support.skybet.com.nxt.ppbdev.com/app/answers/list/virtual-sports-rules",
+  "VIRTUALS_SPORTS_CONFIG": [
+    {
+      "sportId": "100",
+      "liveVideoURL": "https://skybet.streamamg.com/horsesflats.html",
+      "sportName": "I18N.VIRTUAL_SPORT.HORSES_FLAT"
+    },
+    {
+      "sportId": "0",
+      "liveVideoURL": "https://skybet.streamamg.com/horsesjumps.html",
+      "sportName": "I18N.VIRTUAL_SPORT.HORSES_JUMPS"
+    },
+    {
+      "sportId": "10",
+      "liveVideoURL": "https://skybet.streamamg.com/horsessprints.html",
+      "sportName": "I18N.VIRTUAL_SPORT.HORSES_SPRINTS"
+    },
+    {
+      "sportId": "9",
+      "liveVideoURL": "https://skybet.streamamg.com/rushfootint.html",
+      "sportName": "I18N.VIRTUAL_SPORT.WORLD_CUP"
+    },
+    {
+      "sportId": "4",
+      "liveVideoURL": "https://skybet.streamamg.com/rushfootclubs.html",
+      "sportName": "I18N.VIRTUAL_SPORT.CLUB_FOOTBALL"
+    },
+    {
+      "sportId": "1",
+      "liveVideoURL": "https://skybet.streamamg.com/dogs.html",
+      "sportName": "I18N.VIRTUAL_SPORT.GREYHOUNDS"
+    },
+    {
+      "sportId": "3",
+      "liveVideoURL": "https://skybet.streamamg.com/motors.html",
+      "sportName": "I18N.VIRTUAL_SPORT.MOTOR_RACING"
+    }
+  ],
+  "USER_DETAILS_DEFAULTS": {
+    "TIMEZONE": "Europe/London",
+    "JURISDICTIONS": {
+      "BRAZIL": {
+        "USER_PRODUCTS": "sportsbook,exchange,games",
+        "FEATURE_EXCLUSIONS": "",
+        "MY_BETS_RANGE": 2
+      },
+      "DENMARK": {
+        "USER_PRODUCTS": "sportsbook,exchange,games",
+        "FEATURE_EXCLUSIONS": "VIRTUALS",
+        "MY_BETS_RANGE": 2
+      },
+      "INTERNATIONAL": {
+        "USER_PRODUCTS": "sportsbook,exchange,games",
+        "FEATURE_EXCLUSIONS": "",
+        "MY_BETS_RANGE": 2
+      },
+      "SPAIN": {
+        "USER_PRODUCTS": "sportsbook,exchange,games",
+        "FEATURE_EXCLUSIONS": "VIRTUALS",
+        "MY_BETS_RANGE": 2
+      },
+      "ITALY": {
+        "USER_PRODUCTS": "sportsbook,exchange,games",
+        "FEATURE_EXCLUSIONS": "VIRTUALS,CASHOUT,POPULAR_BET_BUILDER",
+        "MY_BETS_RANGE": 90
+      },
+      "ROMANIA": {
+        "USER_PRODUCTS": "sportsbook,exchange,games",
+        "FEATURE_EXCLUSIONS": "VIRTUALS",
+        "MY_BETS_RANGE": 2
+      }
+    }
+  },
+  "DOMAIN_EXTENSIONS": {
+    "BRAZIL": "bet.br",
+    "DENMARK": "com",
+    "INTERNATIONAL": "com",
+    "SPAIN": "es",
+    "ITALY": "it",
+    "ROMANIA": "ro"
+  },
+  "SSC_CLIENT_CONFIG": {
+    "BRAND": "skybet",
+    "PRODUCT": "sportsbook",
+    "VERSION": "1",
+    "CHANNEL": {
+      "MOBILE": "mobile",
+      "DESKTOP": "desktop"
+    },
+    "CLIENT_NAME": {
+      "MOBILE": "native",
+      "DESKTOP": "sportsbook"
+    }
+  },
+  "PPH_CONFIG": {
+    "BRAND": "SKYBET",
+    "CLIENT_ID": "sportsbook",
+    "GAMING_CLIENT_ID": "gaming",
+    "MAX_LIMIT": 50,
+    "JURISDICTION_OVERRIDE": {
+      "INTERNATIONAL": "SBG_INTERNATIONAL"
+    }
+  },
+  "LOOP_CLIENT_CONFIG": {
+    "BRAND": "SBG"
+  },
+  "CLOUDFLARE_TRANSFORM_OPTIONS": "f=auto,q=90,w=300",
+  "CLOUDFLARE_WHITELIST_DOMAINS": [],
+  "IMAGE_RESIZE_DEFAULT_WIDTH": 300,
+  "PRODUCT_ID": 110,
+  "PRISMIC_CDN": [],
+  "GZUSERACTIVITY_PRODUCTS": {
+    "INTERNATIONAL": ["sportsgaming"],
+    "DENMARK": ["casino"],
+    "ROMANIA": ["vegas-ro", "gaming"],
+    "SPAIN": ["casino", "arcade"],
+    "ITALY": ["casino", "vegas-it"],
+    "BRAZIL": ["gaming"]
+  },
+  "CDV": {
+    "TAG": "CdV-dontuse"
+  },
+  "GFS_PRODUCT": "sportsgaming",
+  "JURISDICTION_URL_MINIGAME": {
+    "INTERNATIONAL": {
+      "HOST": "https://skyvegas.com/",
+      "PATH": {
+        "en_GB": "prize-machine",
+        "en": "prize-machine",
+        "pt_BR": "pt-br/prize-machine",
+        "es_419": "es/prize-machine",
+        "ru": "ru-ru/prize-machine",
+        "de": "de-de/prize-machine",
+        "fi": "prize-machine",
+        "no": "no-no/prize-machine",
+        "hu": "hu-hu/prize-machine"
+      }
+    }
+  },
+  "JURISDICTION_URL_FREE_BETS_WALLET": {
+    "INTERNATIONAL": "https://support.skybet.com/app/answers/detail/free-bet-information/"
+  },
+  "JURISDICTION_URL_BONUS_PAGE": {
+    "INTERNATIONAL": "https://promos.skybet.com/mybonuses/sport"
+  },
+  "PRODUCT_EXCLUSION": {
+    "SELF_EXCLUDED_PAGE": true,
+    "EXCLUSION_PRODUCT_MAP": {
+      "betting": ["SPORTS", "GAMES", "VIRTUALS"],
+      "gaming": ["GAMES", "VIRTUALS"],
+      "vsports": ["VIRTUALS"]
+    }
+  },
+  "GAMING_SEARCH_PRODUCTS": {
+    "INTERNATIONAL": "sportsgaming",
+    "DENMARK": "casino",
+    "ROMANIA": "xsellsportsbook",
+    "SPAIN": "xsellsportsbook",
+    "ITALY": "xsellsportsbook",
+    "BRAZIL": "gaming"
+  },
+  "TRENDING_GAMES_CONFIG": {
+    "BRAND": "skybet",
+    "DISPLAY_PRODUCTS": {
+      "INTERNATIONAL": "gaming"
+    }
+  },
+  "BECAUSE_YOU_PLAYED_CONFIG": {
+    "BRAND": "skybet",
+    "PRODUCTS": {
+      "INTERNATIONAL": "gaming"
+    },
+    "NUM_RECOMMENDATIONS": 30
+  },
+  "FAVOURITE_GAMES_PRODUCTS": {
+    "INTERNATIONAL": "sportsgaming"
+  },
+  "BRAND_SETTINGS": {
+    "MINIMIZE_BETSLIP": true,
+    "ACCA_FREEZE": true,
+    "SKYBETCLUB": true,
+    "BETFAIRCLUB": false,
+    "ENABLE_CIP_BANNER": true,
+    "ERROR_VIEW_IMAGE": false,
+    "HIGHLIGHTED_SPORTS_RIBBON": true,
+    "SHOW_X_SELL_BAR": true,
+    "HIGHLIGHTED_TABS_LIST": true,
+    "SHOW_SELECTION_TYPE_ICON": true,
+    "SPORTSBOOK_BET_BUTTON_ANIMATION": false,
+    "REDIRECT_TO_GAMING_PAGE": true,
+    "HAMBURGER_MENU": true,
+    "MYBETS_BET_PANEL_SUPPORTING_TEXT": false,
+    "BASE_URL_HAS_PATH": false,
+    "SBG_BETSLIP_ERROR_MESSAGE": true,
+    "HORIZONTAL_COUPON": true,
+    "RACES_BY_TIME_GRID": true,
+    "HIGHLIGHTED_HEADER": true
+  },
+  "COOKIES_WHITELIST": {
+    "tbdlcsp": "FUNCTIONALITY",
+    "tbd_dp": "FUNCTIONALITY",
+    "tbd_lvp": "FUNCTIONALITY"
+  },
+  "RED7_BASE_URL": "https://sky.red7sportstech.com",
+  "RED7_REFERRER": "https://skybet.com.nxt.ppbdev.com",
+  "RED7_PROVIDER_ID": "gbp",
+  "RED7_SCOREBOARD_V2_IDS": ["2", "4"],
+  "HIGHLIGHT_HEADER_CARDS": true,
+  "SHOW_INCIDENTS_CARD": true,
+  "WMS_V2_ENABLED": true,
+  "BACK_NAVIGATION_ITEM": true,
+  "GAMING_NAVIGATION": true,
+  "TRANSACTION_HISTORY_LINK": "https://myactivity.skybet.com.nxt.ppbdev.com/transactions/",
+  "TRANSACTION_HISTORY_JURISDICTION_LINK": {
+    "INTERNATIONAL": "https://myactivity.skybet.com.nxt.ppbdev.com/transactions/"
+  },
+  "MY_BETS_EMPTY_STATE_IMAGE": false,
+  "MYBETS_BET_PANEL_OPEN_BY_DEFAULT": true,
+  "MY_BETS_BET_SHARING": false,
+  "GAMING_DISPLAY_ODDS": false,
+  "GAMING_MAX_CARDGROUP_ITEMS": 100,
+  "MIN_UPSELL_SELECTIONS": 2,
+  "MAX_UPSELL_SELECTIONS": 2,
+  "MAX_UPSELL_OFFERINGS": 3,
+  "SIB_MAX_SUGGESTIONS": 5,
+  "MAX_ASA_SELECTIONS": 10,
+  "UPSELL_SPORT_IDS": ["1"],
+  "DEFAULT_RANK_SORTING": "RANK_START_AZ",
+  "COUPON_MARKET_TYPE_FILTER_LAYOUT": "PEBBLES",
+  "PROMO_TRACKER_CONTAINER": "sbc_betslip_tracker",
+  "SETTLEMENT_JURISDICTION_LINK": {
+    "INTERNATIONAL": "https://support.skybet.com/app/answers/detail/bet-settlement-queries/"
+  },
+  "MONTEROSA": {
+    "HOST": "cdn.monterosa.cloud"
+  },
+  "XSELL_LINKS": {
+    "SKY_VEGAS": {
+      "INTERNATIONAL": "https://skyvegas.com.nxt.ppbdev.com/"
+    },
+    "SKY_VEGAS_LIVE": {
+      "INTERNATIONAL": "https://skyvegas.com.nxt.ppbdev.com/p/live"
+    },
+    "SKY_CASINO": {
+      "INTERNATIONAL": "https://skycasino.com.nxt.ppbdev.com/"
+    },
+    "SKY_CASINO_LIVE": {
+      "INTERNATIONAL": "https://skycasino.com.nxt.ppbdev.com/p/live-casino"
+    },
+    "SKY_SPORTS": {
+      "INTERNATIONAL": "https://www.skysports.com.nxt.ppbdev.com/"
+    },
+    "SKY_BINGO": {
+      "INTERNATIONAL": "https://www.skybingo.com.nxt.ppbdev.com/"
+    },
+    "SKY_POKER": {
+      "INTERNATIONAL": "https://www.skypoker.com.nxt.ppbdev.com/"
+    },
+    "SPORTING_LIFE": {
+      "INTERNATIONAL": "https://test.spl.timeformsportinglife.com/"
+    },
+    "SUPER_6": {
+      "INTERNATIONAL": "https://s6-k8s.test.s6.sbgservices.com/"
+    },
+    "ITV7": {
+      "INTERNATIONAL": "https://staging.test.itv7.sbgservices.com/"
+    },
+    "SAFER_GAMBLING_LOGGED_IN": {
+      "INTERNATIONAL": "https://playerprotection.skybet.com.nxt.ppbdev.com/"
+    },
+    "SAFER_GAMBLING_LOGGED_OUT": {
+      "INTERNATIONAL": "https://support.skybet.com/app/answers/detail/safer-gambling"
+    }
+  },
+  "SETTINGS_STATIC_TABS": ["SettingsViewBettingPreferences", "SettingsViewPersonalDetails", "SettingsViewNotification"],
+  "EXTERNAL_LINKS": {
+    "SELF_EXCLUSION_SAFER_GAMBLING": {
+      "INTERNATIONAL": {
+        "default": "https://playerprotection.skybet.com"
+      },
+      "BRAZIL": {
+        "default": "https://playerprotection.skybet.com"
+      },
+      "DENMARK": {
+        "default": "https://playerprotection.skybet.com"
+      },
+      "ITALY": {
+        "default": "https://playerprotection.skybet.com"
+      },
+      "SPAIN": {
+        "default": "https://playerprotection.skybet.com"
+      },
+      "ROMANIA": {
+        "default": "https://playerprotection.skybet.com"
+      },
+      "SWEDEN": {
+        "default": "https://playerprotection.skybet.com"
+      }
+    },
+    "SELF_EXCLUSION_SUPPORT": {
+      "INTERNATIONAL": {
+        "default": "https://support.skybet.com",
+        "da": "https://support.skybet.com",
+        "de": "https://support.skybet.com",
+        "es_419": "https://support.skybet.com",
+        "fi": "https://support.skybet.com",
+        "hu": "https://support.skybet.com",
+        "it": "https://support.skybet.com",
+        "no": "https://support.skybet.com",
+        "pt_BR": "https://support.skybet.com",
+        "pt": "https://support.skybet.com"
+      },
+      "BRAZIL": {
+        "default": "https://support.skybet.com",
+        "en_GB": "https://support.skybet.com"
+      },
+      "SPAIN": {
+        "default": "https://support.skybet.com"
+      },
+      "ROMANIA": {
+        "default": "https://support.skybet.com"
+      },
+      "ITALY": {
+        "default": "https://support.skybet.com"
+      },
+      "DENMARK": {
+        "default": "https://support.skybet.com"
+      },
+      "SWEDEN": {
+        "default": "https://support.skybet.com"
+      }
+    }
+  }
+}

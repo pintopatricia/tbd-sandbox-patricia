@@ -1,0 +1,24 @@
+"__typename": "{{__typename}}{{^__typename}}MatchStatSelectionCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:matchStatSelection:924.458273536/83631682{{/urn}}",
+"matchStatTitle": {
+  "playerNames": [
+    {{#each matchStatTitle.playerNames}}"{{this}}"{{#unless @last}},{{/unless}}{{/each}}
+  ],
+  "combiner": "{{matchStatTitle.combiner}}{{^matchStatTitle.combiner}}AND{{/matchStatTitle.combiner}}",
+  "__typename": "MatchStatTitle"
+},
+"matchStatSubtitle":"{{subtitle}}{{^subtitle}}To have 6 or more shots on target{{/subtitle}}",
+"statsDescription":"{{statsDescription}}{{^statsDescription}}0 each so far{{/statsDescription}}",
+"incidentType":"{{incidentType}}{{^incidentType}}Shots{{/incidentType}}",
+{{#with market}}
+"market": {
+  {{> bff-market}}
+  },
+{{/with}}
+{{#with runner}}
+"runner":{
+  "runnerURN": "{{runnerURN}}{{^runnerURN}}ppb:sbkRunner:924.235739888/35458130{{/runnerURN}}",
+  "selectionId": "{{selectionId}}{{^selectionId}}35458130{{/selectionId}}",
+  "handicap": 0
+}
+{{/with}}

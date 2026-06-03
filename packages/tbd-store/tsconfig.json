@@ -1,0 +1,58 @@
+{
+  "compilerOptions": {
+    /* Type Checking */
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "strict": true,
+
+    /* Modules */
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "types": ["jest", "node"],
+
+    /* Emit */
+    "sourceMap": true,
+
+    /* Interop Constraints */
+    "esModuleInterop": true,
+    "isolatedModules": true,
+
+    /* Language and Environment */
+    "jsx": "react-jsx",
+
+    /* Completeness */
+    "skipLibCheck": true,
+    // Everything above is a copy of root tsconfig.json, it can't be extended right now because of Docker containers
+    // TODO it should be extended maybe through an indenpendent package
+
+    /* Modules */
+    "module": "commonjs",
+    "rootDir": ".",
+
+    /* Emit */
+    "declaration": true,
+    "downlevelIteration": true,
+    "noEmit": false,
+    "outDir": "dist",
+
+    /* JavaScript Support */
+    "allowJs": true,
+
+    /* Language and Environment */
+    "lib": ["dom", "es2020", "ESNext.Intl"],
+    "target": "es2020",
+
+    /* Projects */
+    "composite": true
+  },
+  "include": [
+    "**/*.ts",
+    "services/behaviour-service-interface.js",
+    "services/behaviour-tracking.js",
+    "state/betting/obb-betting/obb_schema.json"
+  ],
+  "exclude": ["node_modules", "dist", "**/*.test.ts"]
+}

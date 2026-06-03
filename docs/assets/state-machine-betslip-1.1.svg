@@ -1,0 +1,299 @@
+<!DOCTYPE svg [<!ENTITY nbsp "&#160;">]><svg width="1351pt" height="676pt" viewBox="0.00 0.00 1351.30 676.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 672)">
+<title>state transitions</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-672 1347.301,-672 1347.301,4 -4,4"></polygon>
+<!-- initial -->
+<g id="node1" class="node">
+<title>initial</title>
+<ellipse fill="#000000" stroke="#000000" stroke-width="2" cx="585.5" cy="-645" rx="5.5" ry="5.5"></ellipse>
+</g>
+<!-- BetslipHidden -->
+<g id="node2" class="node">
+<title>BetslipHidden</title>
+<polygon fill="transparent" stroke="transparent" stroke-width="2" points="636,-594 535,-594 535,-528 636,-528 636,-594"></polygon>
+<text text-anchor="start" x="548.9932" y="-577.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">BetslipHidden</text>
+<text text-anchor="start" x="541.327" y="-557.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">isCollapsed: true</text>
+<text text-anchor="start" x="541.5" y="-537.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">state: Closed</text>
+<polygon fill="#000000" stroke="#000000" points="535.5,-571 535.5,-571 636.5,-571 636.5,-571 535.5,-571"></polygon>
+<path fill="none" stroke="#000000" stroke-width="2" d="M548,-529C548,-529 623,-529 623,-529 629,-529 635,-535 635,-541 635,-541 635,-581 635,-581 635,-587 629,-593 623,-593 623,-593 548,-593 548,-593 542,-593 536,-587 536,-581 536,-581 536,-541 536,-541 536,-535 542,-529 548,-529"></path>
+</g>
+<!-- initial&#45;&gt;BetslipHidden -->
+<g id="edge1" class="edge">
+<title>initial-&gt;BetslipHidden</title>
+<path fill="none" stroke="#000000" d="M585.5,-639.4885C585.5,-632.0871 585.5,-618.2367 585.5,-604.2065"></path>
+<polygon fill="#000000" stroke="#000000" points="589.0001,-604.0483 585.5,-594.0483 582.0001,-604.0483 589.0001,-604.0483"></polygon>
+<text text-anchor="middle" x="586.8895" y="-605" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000"> </text>
+</g>
+<!-- BetslipExchangePotential -->
+<g id="node3" class="node">
+<title>BetslipExchangePotential</title>
+<polygon fill="transparent" stroke="transparent" stroke-width="2" points="414.5,-488 244.5,-488 244.5,-402 414.5,-402 414.5,-488"></polygon>
+<text text-anchor="start" x="261.4786" y="-471.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">BetslipExchangePotential</text>
+<text text-anchor="start" x="250.5" y="-451.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">isCollapsed: false</text>
+<text text-anchor="start" x="250.5" y="-431.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">state: PlacePotential</text>
+<text text-anchor="start" x="250.4716" y="-411.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">entities.exchangePotentialBet</text>
+<polygon fill="#000000" stroke="#000000" points="244.5,-465 244.5,-465 414.5,-465 414.5,-465 244.5,-465"></polygon>
+<path fill="none" stroke="#000000" stroke-width="2" d="M257.5,-403C257.5,-403 401.5,-403 401.5,-403 407.5,-403 413.5,-409 413.5,-415 413.5,-415 413.5,-475 413.5,-475 413.5,-481 407.5,-487 401.5,-487 401.5,-487 257.5,-487 257.5,-487 251.5,-487 245.5,-481 245.5,-475 245.5,-475 245.5,-415 245.5,-415 245.5,-409 251.5,-403 257.5,-403"></path>
+</g>
+<!-- BetslipHidden&#45;&gt;BetslipExchangePotential -->
+<g id="edge2" class="edge">
+<title>BetslipHidden-&gt;BetslipExchangePotential</title>
+<path fill="none" stroke="#000000" d="M534.7699,-559.6151C430.9895,-556.2571 202.1868,-545.9619 178.71,-520 171.5557,-512.0884 171.8047,-504.1298 178.71,-496 185.8227,-487.626 216.9431,-491.0441 227.5,-488 229.9236,-487.3011 232.3667,-486.5609 234.8211,-485.7854"></path>
+<polygon fill="#000000" stroke="#000000" points="235.9367,-489.103 244.3259,-482.6321 233.7325,-482.4591 235.9367,-489.103"></polygon>
+<text text-anchor="start" x="179.5" y="-505" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">MARKET_EXC_BET_BUTTON_CLICK &nbsp;&nbsp;</text>
+</g>
+<!-- BetslipSportsbookCombination -->
+<g id="node4" class="node">
+<title>BetslipSportsbookCombination</title>
+<polygon fill="transparent" stroke="transparent" stroke-width="2" points="179,-364 0,-364 0,-278 179,-278 179,-364"></polygon>
+<text text-anchor="start" x="7.983" y="-347.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">BetslipSportsbookCombination</text>
+<text text-anchor="start" x="6.5" y="-327.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">isCollapsed: false</text>
+<text text-anchor="start" x="6.5" y="-307.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">state: PlacePotential</text>
+<text text-anchor="start" x="6.3156" y="-287.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">entities.sportsbookCombination</text>
+<polygon fill="#000000" stroke="#000000" points=".5,-341 .5,-341 179.5,-341 179.5,-341 .5,-341"></polygon>
+<path fill="none" stroke="#000000" stroke-width="2" d="M13,-279C13,-279 166,-279 166,-279 172,-279 178,-285 178,-291 178,-291 178,-351 178,-351 178,-357 172,-363 166,-363 166,-363 13,-363 13,-363 7,-363 1,-357 1,-351 1,-351 1,-291 1,-291 1,-285 7,-279 13,-279"></path>
+</g>
+<!-- BetslipHidden&#45;&gt;BetslipSportsbookCombination -->
+<g id="edge3" class="edge">
+<title>BetslipHidden-&gt;BetslipSportsbookCombination</title>
+<path fill="none" stroke="#000000" d="M534.5612,-557.7978C407.1999,-549.275 82.8428,-524.1918 51.26,-488 23.7665,-456.4943 38.0024,-409.2281 56.4265,-373.0132"></path>
+<polygon fill="#000000" stroke="#000000" points="59.5816,-374.5343 61.178,-364.0605 53.3984,-371.2527 59.5816,-374.5343"></polygon>
+<text text-anchor="start" x="51.5" y="-442" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">MARKET_SBK_BET_BUTTON_CLICK &nbsp;&nbsp;</text>
+</g>
+<!-- BetslipExchangePotential&#45;&gt;BetslipHidden -->
+<g id="edge4" class="edge">
+<title>BetslipExchangePotential-&gt;BetslipHidden</title>
+<path fill="none" stroke="#000000" d="M390.6628,-488.0215C408.7058,-499.4709 428.8692,-511.111 448.424,-520 472.6711,-531.0219 500.6547,-540.0037 524.9907,-546.7207"></path>
+<polygon fill="#000000" stroke="#000000" points="524.2565,-550.1476 534.8226,-549.3675 526.0762,-543.3882 524.2565,-550.1476"></polygon>
+<text text-anchor="start" x="448.5" y="-511" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">MARKET_EXC_BET_BUTTON_CLICK (same urn+side) &nbsp;&nbsp;</text>
+<text text-anchor="start" x="448.5" y="-499" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">BETSLIP_EXC_REMOVE_POTENTIAL_BET_CLICK &nbsp;&nbsp;</text>
+</g>
+<!-- BetslipExchangePotential&#45;&gt;BetslipExchangePotential -->
+<g id="edge6" class="edge">
+<title>BetslipExchangePotential-&gt;BetslipExchangePotential</title>
+<path fill="none" stroke="#000000" d="M414.6998,-454.5746C427.6835,-453.1134 436.5,-449.9219 436.5,-445 436.5,-441.5393 432.1412,-438.9341 425.0399,-437.1843"></path>
+<polygon fill="#000000" stroke="#000000" points="425.1451,-433.652 414.6998,-435.4254 423.9712,-440.5529 425.1451,-433.652"></polygon>
+<text text-anchor="start" x="436.5" y="-454" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">MARKET_EXC_BET_BUTTON_CLICK (different urn) &nbsp;&nbsp;</text>
+<text text-anchor="start" x="436.5" y="-442" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">BETSLIP_EXC_PRICE_INPUT_CHANGED &nbsp;&nbsp;</text>
+<text text-anchor="start" x="436.5" y="-430" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">BETSLIP_EXC_SIZE_INPUT_CHANGED &nbsp;&nbsp;</text>
+</g>
+<!-- BetslipExchangePotential&#45;&gt;BetslipSportsbookCombination -->
+<g id="edge8" class="edge">
+<title>BetslipExchangePotential-&gt;BetslipSportsbookCombination</title>
+<path fill="none" stroke="#000000" d="M244.225,-406.5704C238.6302,-404.8232 233.0245,-403.2728 227.5,-402 211.426,-398.2967 90.6052,-405.9739 79.26,-394 74.0557,-388.5073 71.8016,-381.6579 71.4125,-374.3714"></path>
+<polygon fill="#000000" stroke="#000000" points="74.9147,-374.4182 71.936,-364.2507 67.924,-374.0565 74.9147,-374.4182"></polygon>
+<text text-anchor="start" x="79.5" y="-385" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">MARKET_SBK_BET_BUTTON_CLICK &nbsp;&nbsp;</text>
+</g>
+<!-- BetslipExchangeInProgress -->
+<g id="node5" class="node">
+<title>BetslipExchangeInProgress</title>
+<polygon fill="transparent" stroke="transparent" stroke-width="2" points="634.5,-374 464.5,-374 464.5,-268 634.5,-268 634.5,-374"></polygon>
+<text text-anchor="start" x="475.814" y="-357.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">BetslipExchangeInProgress</text>
+<text text-anchor="start" x="470.5" y="-337.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">isCollapsed: false</text>
+<text text-anchor="start" x="470.5" y="-317.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">state: PlacePotential</text>
+<text text-anchor="start" x="470.4716" y="-297.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">entities.exchangePotentialBet</text>
+<text text-anchor="start" x="470.5" y="-277.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">requestStatus: InProgress</text>
+<polygon fill="#000000" stroke="#000000" points="464.5,-351 464.5,-351 634.5,-351 634.5,-351 464.5,-351"></polygon>
+<path fill="none" stroke="#000000" stroke-width="2" d="M477.5,-269C477.5,-269 621.5,-269 621.5,-269 627.5,-269 633.5,-275 633.5,-281 633.5,-281 633.5,-361 633.5,-361 633.5,-367 627.5,-373 621.5,-373 621.5,-373 477.5,-373 477.5,-373 471.5,-373 465.5,-367 465.5,-361 465.5,-361 465.5,-281 465.5,-281 465.5,-275 471.5,-269 477.5,-269"></path>
+</g>
+<!-- BetslipExchangePotential&#45;&gt;BetslipExchangeInProgress -->
+<g id="edge10" class="edge">
+<title>BetslipExchangePotential-&gt;BetslipExchangeInProgress</title>
+<path fill="none" stroke="#000000" d="M414.6028,-421.1983C434.3444,-413.9232 454.7552,-404.8955 472.5,-394 479.0121,-390.0015 485.4357,-385.3819 491.6284,-380.4475"></path>
+<polygon fill="#000000" stroke="#000000" points="493.8762,-383.1304 499.3383,-374.0521 489.4071,-377.7427 493.8762,-383.1304"></polygon>
+<text text-anchor="start" x="489.5" y="-385" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">BETSLIP_EXC_PLACE_POTENTIAL_CLICK &nbsp;&nbsp;</text>
+</g>
+<!-- BetslipSportsbookCombination&#45;&gt;BetslipHidden -->
+<g id="edge5" class="edge">
+<title>BetslipSportsbookCombination-&gt;BetslipHidden</title>
+<path fill="none" stroke="#000000" d="M179.2954,-336.9559C252.7661,-349.3148 359.5126,-365.6864 453.5,-374 467.3973,-375.2293 694.6622,-372.1074 704.5,-382 751.289,-429.0495 717.7973,-505.6761 707.5,-520 699.7171,-530.8262 672.6765,-540.4689 646.025,-547.6787"></path>
+<polygon fill="#000000" stroke="#000000" points="645.0548,-544.3145 636.2601,-550.2225 646.8195,-551.0885 645.0548,-544.3145"></polygon>
+<text text-anchor="start" x="728.5" y="-448" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">MARKET_SBK_BET_BUTTON_CLICK (same urn) &nbsp;&nbsp;</text>
+<text text-anchor="start" x="728.5" y="-436" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">BETSLIP_SBK_REMOVE_LEG_CLICK &nbsp;&nbsp;</text>
+</g>
+<!-- BetslipSportsbookCombination&#45;&gt;BetslipExchangePotential -->
+<g id="edge9" class="edge">
+<title>BetslipSportsbookCombination-&gt;BetslipExchangePotential</title>
+<path fill="none" stroke="#000000" d="M179.3793,-344.8167C207.1318,-354.2065 237.0649,-366.5169 262.5,-382 268.7822,-385.8242 274.9728,-390.3118 280.9014,-395.1003"></path>
+<polygon fill="#000000" stroke="#000000" points="278.9107,-398.0005 288.8074,-401.7826 283.4294,-392.6543 278.9107,-398.0005"></polygon>
+<text text-anchor="start" x="279.5" y="-385" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">MARKET_EXC_BET_BUTTON_CLICK &nbsp;&nbsp;</text>
+</g>
+<!-- BetslipSportsbookCombination&#45;&gt;BetslipSportsbookCombination -->
+<g id="edge7" class="edge">
+<title>BetslipSportsbookCombination-&gt;BetslipSportsbookCombination</title>
+<path fill="none" stroke="#000000" d="M179.1784,-332.1665C192.2165,-330.394 201,-326.6719 201,-321 201,-316.9233 196.4624,-313.8539 189.0689,-311.7917"></path>
+<polygon fill="#000000" stroke="#000000" points="189.6678,-308.3424 179.1784,-309.8335 188.3082,-315.2091 189.6678,-308.3424"></polygon>
+<text text-anchor="start" x="201" y="-324" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">MARKET_SBK_BET_BUTTON_CLICK (different urn) &nbsp;&nbsp;</text>
+<text text-anchor="start" x="201" y="-312" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">BETSLIP_SBK_STAKE_INPUT_CHANGED &nbsp;&nbsp;</text>
+</g>
+<!-- BetslipSportsbookInProgress -->
+<g id="node8" class="node">
+<title>BetslipSportsbookInProgress</title>
+<polygon fill="transparent" stroke="transparent" stroke-width="2" points="218,-240 39,-240 39,-134 218,-134 218,-240"></polygon>
+<text text-anchor="start" x="51.6492" y="-223.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">BetslipSportsbookInProgress</text>
+<text text-anchor="start" x="45.5" y="-203.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">isCollapsed: false</text>
+<text text-anchor="start" x="45.5" y="-183.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">state: PlacePotential</text>
+<text text-anchor="start" x="45.3156" y="-163.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">entities.sportsbookCombination</text>
+<text text-anchor="start" x="45.5" y="-143.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">requestStatus: InProgress</text>
+<polygon fill="#000000" stroke="#000000" points="39.5,-217 39.5,-217 218.5,-217 218.5,-217 39.5,-217"></polygon>
+<path fill="none" stroke="#000000" stroke-width="2" d="M52,-135C52,-135 205,-135 205,-135 211,-135 217,-141 217,-147 217,-147 217,-227 217,-227 217,-233 211,-239 205,-239 205,-239 52,-239 52,-239 46,-239 40,-233 40,-227 40,-227 40,-147 40,-147 40,-141 46,-135 52,-135"></path>
+</g>
+<!-- BetslipSportsbookCombination&#45;&gt;BetslipSportsbookInProgress -->
+<g id="edge16" class="edge">
+<title>BetslipSportsbookCombination-&gt;BetslipSportsbookInProgress</title>
+<path fill="none" stroke="#000000" d="M102.0545,-277.864C104.6327,-269.0057 107.3972,-259.5072 110.1318,-250.1111"></path>
+<polygon fill="#000000" stroke="#000000" points="113.5278,-250.9672 112.9618,-240.3875 106.8067,-249.011 113.5278,-250.9672"></polygon>
+<text text-anchor="start" x="110.5" y="-251" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">BETSLIP_SBK_PLACE_BETS_CLICK &nbsp;&nbsp;</text>
+</g>
+<!-- BetslipExchangeInProgress&#45;&gt;BetslipExchangeInProgress -->
+<g id="edge11" class="edge">
+<title>BetslipExchangeInProgress-&gt;BetslipExchangeInProgress</title>
+<path fill="none" stroke="#000000" d="M634.6998,-332.2843C647.6835,-330.5622 656.5,-326.8008 656.5,-321 656.5,-316.8307 651.9454,-313.7149 644.5624,-311.6526"></path>
+<polygon fill="#000000" stroke="#000000" points="645.1868,-308.2085 634.6998,-309.7157 643.8378,-315.0773 645.1868,-308.2085"></polygon>
+<text text-anchor="start" x="656.5" y="-318" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">BETSLIP_EXC_PLACE_BET_IN_PROGRESS &nbsp;&nbsp;</text>
+</g>
+<!-- BetslipExchangeReport -->
+<g id="node6" class="node">
+<title>BetslipExchangeReport</title>
+<polygon fill="transparent" stroke="transparent" stroke-width="2" points="629.5,-240 491.5,-240 491.5,-134 629.5,-134 629.5,-240"></polygon>
+<text text-anchor="start" x="497.8168" y="-223.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">BetslipExchangeReport</text>
+<text text-anchor="start" x="497.5" y="-203.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">isCollapsed: false</text>
+<text text-anchor="start" x="497.5" y="-183.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">state: Report</text>
+<text text-anchor="start" x="497.5" y="-163.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">exchangeReport</text>
+<text text-anchor="start" x="497.4796" y="-143.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">requestStatus: Success</text>
+<polygon fill="#000000" stroke="#000000" points="491.5,-217 491.5,-217 629.5,-217 629.5,-217 491.5,-217"></polygon>
+<path fill="none" stroke="#000000" stroke-width="2" d="M504.5,-135C504.5,-135 616.5,-135 616.5,-135 622.5,-135 628.5,-141 628.5,-147 628.5,-147 628.5,-227 628.5,-227 628.5,-233 622.5,-239 616.5,-239 616.5,-239 504.5,-239 504.5,-239 498.5,-239 492.5,-233 492.5,-227 492.5,-227 492.5,-147 492.5,-147 492.5,-141 498.5,-135 504.5,-135"></path>
+</g>
+<!-- BetslipExchangeInProgress&#45;&gt;BetslipExchangeReport -->
+<g id="edge12" class="edge">
+<title>BetslipExchangeInProgress-&gt;BetslipExchangeReport</title>
+<path fill="none" stroke="#000000" d="M464.4116,-271.9544C460.4432,-270.4813 456.4623,-269.1503 452.5,-268 399.3883,-252.5804 291.7172,-288.2156 329.682,-248 340.2877,-236.7655 453.6958,-244.4195 468.5,-240 473.062,-238.6381 477.6399,-237.0115 482.1841,-235.1876"></path>
+<polygon fill="#000000" stroke="#000000" points="483.6548,-238.3649 491.4484,-231.1879 480.8802,-231.9383 483.6548,-238.3649"></polygon>
+<text text-anchor="start" x="330.5" y="-251" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">BETSLIP_EXC_PLACE_BET_SUCCESS &nbsp;&nbsp;</text>
+</g>
+<!-- BetslipExchangeError -->
+<g id="node7" class="node">
+<title>BetslipExchangeError</title>
+<polygon fill="transparent" stroke="transparent" stroke-width="2" points="826.5,-240 656.5,-240 656.5,-134 826.5,-134 826.5,-240"></polygon>
+<text text-anchor="start" x="683.4902" y="-223.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">BetslipExchangeError</text>
+<text text-anchor="start" x="662.5" y="-203.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">isCollapsed: false</text>
+<text text-anchor="start" x="662.5" y="-183.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">state: PlacePotential</text>
+<text text-anchor="start" x="662.4716" y="-163.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">entities.exchangePotentialBet</text>
+<text text-anchor="start" x="662.5" y="-143.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">requestStatus: Failure</text>
+<polygon fill="#000000" stroke="#000000" points="656.5,-217 656.5,-217 826.5,-217 826.5,-217 656.5,-217"></polygon>
+<path fill="none" stroke="#000000" stroke-width="2" d="M669.5,-135C669.5,-135 813.5,-135 813.5,-135 819.5,-135 825.5,-141 825.5,-147 825.5,-147 825.5,-227 825.5,-227 825.5,-233 819.5,-239 813.5,-239 813.5,-239 669.5,-239 669.5,-239 663.5,-239 657.5,-233 657.5,-227 657.5,-227 657.5,-147 657.5,-147 657.5,-141 663.5,-135 669.5,-135"></path>
+</g>
+<!-- BetslipExchangeInProgress&#45;&gt;BetslipExchangeError -->
+<g id="edge13" class="edge">
+<title>BetslipExchangeInProgress-&gt;BetslipExchangeError</title>
+<path fill="none" stroke="#000000" d="M540.7009,-267.9946C541.8953,-260.5819 544.6454,-253.5979 549.792,-248 563.4875,-233.1033 621.0842,-245.7012 640.5,-240 642.4594,-239.4246 644.4248,-238.8096 646.3926,-238.1591"></path>
+<polygon fill="#000000" stroke="#000000" points="648.0029,-241.3 656.2343,-234.6296 645.6398,-234.7109 648.0029,-241.3"></polygon>
+<text text-anchor="start" x="550.5" y="-251" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">BETSLIP_EXC_PLACE_BET_FAILURE &nbsp;&nbsp;</text>
+</g>
+<!-- BetslipExchangeReport&#45;&gt;BetslipHidden -->
+<g id="edge15" class="edge">
+<title>BetslipExchangeReport-&gt;BetslipHidden</title>
+<path fill="none" stroke="#000000" d="M629.605,-234.0486C634.8441,-236.3726 640.1698,-238.4004 645.5,-240 662.1605,-244.9998 946.0392,-235.8633 958.5,-248 991.2316,-279.8804 991.8086,-458.3757 966.5,-488 929.5271,-531.2777 769.2338,-516.4373 713.5,-528 691.289,-532.608 667.1471,-538.5773 645.8767,-544.1698"></path>
+<polygon fill="#000000" stroke="#000000" points="644.7724,-540.8417 636.006,-546.7916 646.5694,-547.6071 644.7724,-540.8417"></polygon>
+<text text-anchor="start" x="983.5" y="-385" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">BETSLIP_RECEIPT_DONE_CLICK &nbsp;&nbsp;</text>
+</g>
+<!-- BetslipExchangeError&#45;&gt;BetslipExchangeInProgress -->
+<g id="edge14" class="edge">
+<title>BetslipExchangeError-&gt;BetslipExchangeInProgress</title>
+<path fill="none" stroke="#000000" d="M746.0051,-240.3607C744.558,-247.467 741.9123,-254.2664 737.5,-260 725.2478,-275.9214 684.871,-290.0401 644.6616,-300.6742"></path>
+<polygon fill="#000000" stroke="#000000" points="643.5449,-297.3475 634.7348,-303.2326 645.2919,-304.126 643.5449,-297.3475"></polygon>
+<text text-anchor="start" x="743.5" y="-251" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">BETSLIP_EXC_PLACE_POTENTIAL_CLICK &nbsp;&nbsp;</text>
+</g>
+<!-- BetslipSportsbookInProgress&#45;&gt;BetslipSportsbookInProgress -->
+<g id="edge17" class="edge">
+<title>BetslipSportsbookInProgress-&gt;BetslipSportsbookInProgress</title>
+<path fill="none" stroke="#000000" d="M218.1784,-198.1665C231.2165,-196.394 240,-192.6719 240,-187 240,-182.9233 235.4624,-179.8539 228.0689,-177.7917"></path>
+<polygon fill="#000000" stroke="#000000" points="228.6678,-174.3424 218.1784,-175.8335 227.3082,-181.2091 228.6678,-174.3424"></polygon>
+<text text-anchor="start" x="240" y="-184" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">BETSLIP_SBK_PLACE_BETS_IN_PROGRESS &nbsp;&nbsp;</text>
+</g>
+<!-- BetslipSportsbookReport -->
+<g id="node9" class="node">
+<title>BetslipSportsbookReport</title>
+<polygon fill="transparent" stroke="transparent" stroke-width="2" points="218.5,-106 74.5,-106 74.5,0 218.5,0 218.5,-106"></polygon>
+<text text-anchor="start" x="80.152" y="-89.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">BetslipSportsbookReport</text>
+<text text-anchor="start" x="80.5" y="-69.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">isCollapsed: false</text>
+<text text-anchor="start" x="80.5" y="-49.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">state: Report</text>
+<text text-anchor="start" x="80.5" y="-29.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">sportsbookReport</text>
+<text text-anchor="start" x="80.5" y="-9.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">requestStatus: Success</text>
+<polygon fill="#000000" stroke="#000000" points="74.5,-83 74.5,-83 218.5,-83 218.5,-83 74.5,-83"></polygon>
+<path fill="none" stroke="#000000" stroke-width="2" d="M87.5,-1C87.5,-1 205.5,-1 205.5,-1 211.5,-1 217.5,-7 217.5,-13 217.5,-13 217.5,-93 217.5,-93 217.5,-99 211.5,-105 205.5,-105 205.5,-105 87.5,-105 87.5,-105 81.5,-105 75.5,-99 75.5,-93 75.5,-93 75.5,-13 75.5,-13 75.5,-7 81.5,-1 87.5,-1"></path>
+</g>
+<!-- BetslipSportsbookInProgress&#45;&gt;BetslipSportsbookReport -->
+<g id="edge18" class="edge">
+<title>BetslipSportsbookInProgress-&gt;BetslipSportsbookReport</title>
+<path fill="none" stroke="#000000" d="M38.8212,-160.1264C17.0749,-148.6693 3.2036,-133.3927 15.563,-114 27.0821,-95.9258 45.5034,-83.1209 64.9345,-74.0816"></path>
+<polygon fill="#000000" stroke="#000000" points="66.4312,-77.2476 74.219,-70.0642 63.6514,-70.8232 66.4312,-77.2476"></polygon>
+<text text-anchor="start" x="16.5" y="-117" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">BETSLIP_SBK_PLACE_BETS_SUCCESS &nbsp;&nbsp;</text>
+</g>
+<!-- BetslipSportsbookError -->
+<g id="node10" class="node">
+<title>BetslipSportsbookError</title>
+<polygon fill="transparent" stroke="transparent" stroke-width="2" points="441,-106 262,-106 262,0 441,0 441,-106"></polygon>
+<text text-anchor="start" x="290.3254" y="-89.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">BetslipSportsbookError</text>
+<text text-anchor="start" x="268.5" y="-69.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">isCollapsed: false</text>
+<text text-anchor="start" x="268.5" y="-49.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">state: PlacePotential</text>
+<text text-anchor="start" x="268.3156" y="-29.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">entities.sportsbookCombination</text>
+<text text-anchor="start" x="268.5" y="-9.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">requestStatus: Failure</text>
+<polygon fill="#000000" stroke="#000000" points="262.5,-83 262.5,-83 441.5,-83 441.5,-83 262.5,-83"></polygon>
+<path fill="none" stroke="#000000" stroke-width="2" d="M275,-1C275,-1 428,-1 428,-1 434,-1 440,-7 440,-13 440,-13 440,-93 440,-93 440,-99 434,-105 428,-105 428,-105 275,-105 275,-105 269,-105 263,-99 263,-93 263,-93 263,-13 263,-13 263,-7 269,-1 275,-1"></path>
+</g>
+<!-- BetslipSportsbookInProgress&#45;&gt;BetslipSportsbookError -->
+<g id="edge19" class="edge">
+<title>BetslipSportsbookInProgress-&gt;BetslipSportsbookError</title>
+<path fill="none" stroke="#000000" d="M209.3866,-133.9137C220.1742,-127.1026 231.1442,-120.3103 241.673,-114 245.4585,-111.7312 249.3316,-109.44 253.255,-107.1441"></path>
+<polygon fill="#000000" stroke="#000000" points="255.0204,-110.1663 261.9097,-102.1172 251.5046,-104.1133 255.0204,-110.1663"></polygon>
+<text text-anchor="start" x="242.5" y="-117" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">BETSLIP_SBK_PLACE_BETS_FAILURE &nbsp;&nbsp;</text>
+</g>
+<!-- BetslipSportsbookReport&#45;&gt;BetslipHidden -->
+<g id="edge21" class="edge">
+<title>BetslipSportsbookReport-&gt;BetslipHidden</title>
+<path fill="none" stroke="#000000" d="M218.7427,-94.9523C229.1208,-99.4445 239.8851,-103.3403 250.5,-106 294.2669,-116.9663 611.4751,-111.0748 656.5,-114 737.2638,-119.247 757.2785,-123.284 837.5,-134 988.2191,-154.1331 1175.5,-34.9422 1175.5,-187 1175.5,-445 1175.5,-445 1175.5,-445 1175.5,-549.3103 816.7057,-512.8597 713.5,-528 691.1543,-531.2781 667.0726,-536.9128 645.8921,-542.6077"></path>
+<polygon fill="#000000" stroke="#000000" points="644.7803,-539.2834 636.0657,-545.3088 646.6357,-546.033 644.7803,-539.2834"></polygon>
+<text text-anchor="start" x="1175.5" y="-318" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">BETSLIP_RECEIPT_DONE_CLICK &nbsp;&nbsp;</text>
+</g>
+<!-- BetslipSportsbookError&#45;&gt;BetslipSportsbookInProgress -->
+<g id="edge20" class="edge">
+<title>BetslipSportsbookError-&gt;BetslipSportsbookInProgress</title>
+<path fill="none" stroke="#000000" d="M439.8683,-106.3301C441.9978,-112.6664 441.0163,-119.2797 435.5,-126 409.5038,-157.6698 307.6067,-173.1953 228.2501,-180.6072"></path>
+<polygon fill="#000000" stroke="#000000" points="227.8442,-177.1295 218.1993,-181.5144 228.4735,-184.1012 227.8442,-177.1295"></polygon>
+<text text-anchor="start" x="441.5" y="-117" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">BETSLIP_EXC_PLACE_POTENTIAL_CLICK &nbsp;&nbsp;</text>
+</g>
+<!-- BetslipCollapsed -->
+<g id="node11" class="node">
+<title>BetslipCollapsed</title>
+<polygon fill="transparent" stroke="transparent" stroke-width="2" points="780,-668 679,-668 679,-622 780,-622 780,-668"></polygon>
+<text text-anchor="start" x="685.3264" y="-651.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">BetslipCollapsed</text>
+<text text-anchor="start" x="685.327" y="-631.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">isCollapsed: true</text>
+<polygon fill="#000000" stroke="#000000" points="679.5,-645 679.5,-645 780.5,-645 780.5,-645 679.5,-645"></polygon>
+<path fill="none" stroke="#000000" stroke-width="2" d="M692,-623C692,-623 767,-623 767,-623 773,-623 779,-629 779,-635 779,-635 779,-655 779,-655 779,-661 773,-667 767,-667 767,-667 692,-667 692,-667 686,-667 680,-661 680,-655 680,-655 680,-635 680,-635 680,-629 686,-623 692,-623"></path>
+</g>
+<!-- BetslipExpanded -->
+<g id="node12" class="node">
+<title>BetslipExpanded</title>
+<polygon fill="transparent" stroke="transparent" stroke-width="2" points="830.5,-584 724.5,-584 724.5,-538 830.5,-538 830.5,-584"></polygon>
+<text text-anchor="start" x="732.4838" y="-567.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">BetslipExpanded</text>
+<text text-anchor="start" x="730.493" y="-547.2" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">isCollapsed: false</text>
+<polygon fill="#000000" stroke="#000000" points="724.5,-561 724.5,-561 830.5,-561 830.5,-561 724.5,-561"></polygon>
+<path fill="none" stroke="#000000" stroke-width="2" d="M737.5,-539C737.5,-539 817.5,-539 817.5,-539 823.5,-539 829.5,-545 829.5,-551 829.5,-551 829.5,-571 829.5,-571 829.5,-577 823.5,-583 817.5,-583 817.5,-583 737.5,-583 737.5,-583 731.5,-583 725.5,-577 725.5,-571 725.5,-571 725.5,-551 725.5,-551 725.5,-545 731.5,-539 737.5,-539"></path>
+</g>
+<!-- BetslipCollapsed&#45;&gt;BetslipExpanded -->
+<g id="edge22" class="edge">
+<title>BetslipCollapsed-&gt;BetslipExpanded</title>
+<path fill="none" stroke="#000000" d="M678.7405,-629.8191C664.7611,-622.9017 655.4148,-613.6253 663.586,-602 670.1959,-592.596 691.9514,-583.7435 714.7043,-576.6879"></path>
+<polygon fill="#000000" stroke="#000000" points="715.8904,-579.9866 724.4753,-573.7777 713.8922,-573.2779 715.8904,-579.9866"></polygon>
+<text text-anchor="start" x="664.5" y="-605" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">BETSLIP_HEADER_SWIPE_UP &nbsp;&nbsp;</text>
+</g>
+<!-- BetslipExpanded&#45;&gt;BetslipCollapsed -->
+<g id="edge23" class="edge">
+<title>BetslipExpanded-&gt;BetslipCollapsed</title>
+<path fill="none" stroke="#000000" d="M810.851,-584.1732C819.9495,-593.3378 825.5755,-604.043 818.5,-614 814.4579,-619.6882 803.229,-625.0273 790.0511,-629.6186"></path>
+<polygon fill="#000000" stroke="#000000" points="788.615,-626.405 780.186,-632.8239 790.7781,-633.0624 788.615,-626.405"></polygon>
+<text text-anchor="start" x="821.5" y="-605" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">BETSLIP_HEADER_SWIPE_UP &nbsp;&nbsp;</text>
+</g>
+</g>
+</svg>

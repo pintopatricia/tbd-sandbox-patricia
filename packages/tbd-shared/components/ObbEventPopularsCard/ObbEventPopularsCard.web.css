@@ -1,0 +1,26 @@
+.timesBackedContainer {
+  padding-top: var(--half-time-pulse-market-card-padding);
+  padding-left: var(--half-time-pulse-market-card-padding);
+}
+
+.showMoreContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  padding-bottom: var(--squad-bet-card-secondary-padding);
+}
+
+.cardContainer {
+  flex-shrink: 1;
+}
+
+/*
+ * Override ScrollableSwimlane's `flex-shrink: 0` on its child wrapper so the
+ * card can shrink to the available width and the title can wrap.
+ */
+*:has(> .cardContainer) {
+  flex-shrink: 1;
+}

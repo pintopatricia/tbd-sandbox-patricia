@@ -1,0 +1,48 @@
+fragment filteredCouponOptions on FilteredCouponOptions {
+  __typename
+  sortOption {
+    defaultOption
+    availableOptions
+  }
+  dateRangeFilter {
+    urn
+    defaultOption {
+      urn
+      title {
+        ...displayName
+      }
+    }
+    availableOptions {
+      urn
+      title {
+        ...displayName
+      }
+    }
+  }
+  filtersSorting
+  marketTypeFilter {
+    urn
+    defaultOption {
+      marketType {
+        urn
+      }
+      name
+    }
+    availableOptions {
+      marketType {
+        urn
+      }
+      name
+    }
+    layout
+  }
+  competitionsFilter {
+    urn
+    defaultOptions {
+      ...competitionBasic
+    }
+    topCompetitions {
+      ...competitionBasic
+    }
+  }
+}

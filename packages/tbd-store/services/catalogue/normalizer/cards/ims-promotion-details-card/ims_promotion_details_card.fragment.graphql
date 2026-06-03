@@ -1,0 +1,24 @@
+fragment imsPromotionDetailsCard on ImsPromotionDetailsCard {
+  __typename
+  urn
+  promotion {
+    ... on ImsPromotion {
+      urn
+      details {
+        type
+        text
+        spans {
+          start
+          end
+          style
+          url
+        }
+      }
+    }
+  }
+}
+
+fragment imsPromotionDetailsCardPartial on ImsPromotionDetailsCard {
+  __typename
+  urn
+}

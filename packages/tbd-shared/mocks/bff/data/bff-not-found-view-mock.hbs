@@ -1,0 +1,19 @@
+{
+	"data": {
+		"View": {
+			"__typename": "NotFoundView",
+			"urn": "{{urn}}{{^urn}}ppb:tbd:view:notfound:notfound{{/urn}}",
+			"url": "{{url}}{{^url}}/notfound/notfound:notfound{{/url}}",
+			"items": {
+				{{> bff-items }}
+			},
+			"partialItems": {
+				"pageInfo": null,
+				{{> bff-partial-items }}
+			},
+			"bottomBar": {
+        {{> bff-bottom-bar-tiles }}
+			}
+		}
+	}
+}

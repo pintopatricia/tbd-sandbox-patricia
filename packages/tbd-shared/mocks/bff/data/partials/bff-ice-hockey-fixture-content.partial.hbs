@@ -1,0 +1,21 @@
+"__typename": "{{__typename}}{{^__typename}}IceHockeyFixture{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:fixture:34967318{{/urn}}",
+"id": "{{id}}{{^id}}123456789{{/id}}",
+"runnerNames": {{#if runnerNames}}{
+  "home": "{{runnerNames.home}}{{^runnerNames.home}}Utah Mammoth{{/runnerNames.home}}",
+  "away": "{{runnerNames.away}}{{^runnerNames.away}}Anaheim Ducks{{/runnerNames.away}}"
+}{{else}}null{{/if}},
+"isAmericanFormat": {{#unless isAmericanFormat}}false{{else}}true{{/unless}},
+"clock": {
+  "period": "{{periodClock}}{{^periodClock}}PERIOD_1{{/periodClock}}"
+},
+"score": {
+    "home": {{homeScore}}{{^homeScore}}3{{/homeScore}},
+    "away": {{awayScore}}{{^awayScore}}2{{/awayScore}}
+},
+"periodScores": [
+  {{#each periodScores}}
+    { {{> bff-ice-hockey-period-scores}} }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+]

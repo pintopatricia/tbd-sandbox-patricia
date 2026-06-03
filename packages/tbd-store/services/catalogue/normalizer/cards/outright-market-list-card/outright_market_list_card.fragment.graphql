@@ -1,0 +1,17 @@
+fragment outrightMarketListCard on OutrightMarketListCard {
+  __typename
+  urn
+  title
+  numberOfRowsToDisplay
+  markets {
+    ...sportsbookMarketLiveData
+  }
+  favouriteMarketsState {
+    ...favouriteMarketsStateLite
+  }
+}
+
+fragment outrightMarketListCardPartial on OutrightMarketListCard {
+  __typename
+  urn
+}

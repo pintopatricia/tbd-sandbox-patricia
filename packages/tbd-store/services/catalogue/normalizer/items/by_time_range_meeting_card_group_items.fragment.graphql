@@ -1,0 +1,10 @@
+fragment fullByTimeRangeMeetingCardGroupItems on ByTimeRangeMeetingCardGroupItemsConnection {
+  edges {
+    node {
+      # Read this before adding new entries: docs/guidelines/how-to-add-a-new-card.md
+
+      # Cards
+      ...raceByTimeRangeCard
+    }
+  }
+}

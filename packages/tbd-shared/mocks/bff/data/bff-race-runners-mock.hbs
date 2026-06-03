@@ -1,0 +1,11 @@
+{
+	"data": {
+		"RaceRunners": [
+      {{#each RaceRunners}}
+        {
+        {{> bff-race-runner}}
+        }{{#unless @last}},{{/unless}}
+      {{/each}}
+    ]
+	}
+}

@@ -1,0 +1,21 @@
+fragment obbCardsSwimlaneLayout on ObbCardsSwimlaneLayout {
+  __typename
+  urn
+  title {
+    ... on DisplayNameTitle {
+      name
+    }
+  }
+  badge {
+    name
+  }
+  cards {
+    edges {
+      node {
+        ...obbPvpCard
+        ...obbSquadBetCard
+        ...obbSquadVsSquadCard
+      }
+    }
+  }
+}

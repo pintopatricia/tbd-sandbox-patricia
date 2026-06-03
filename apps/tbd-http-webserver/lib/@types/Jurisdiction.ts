@@ -1,0 +1,8 @@
+export enum Jurisdiction {
+  DENMARK = "DENMARK",
+  INTERNATIONAL = "INTERNATIONAL",
+  ITALY = "ITALY",
+  ROMANIA = "ROMANIA",
+  SPAIN = "SPAIN",
+  BRAZIL = "BRAZIL",
+}

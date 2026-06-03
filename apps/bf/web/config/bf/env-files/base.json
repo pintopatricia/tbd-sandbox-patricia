@@ -1,0 +1,9 @@
+{
+  "$schema": "../../common/config.schema.json",
+  "BRAND": "bf",
+  "WORKSPACE_NAME": "@ppb/tbdbf-webapp",
+  "APP_PATH": "apps/bf/web",
+  "BFF_PATH": "apps/bf-tbd-http-bff-gql",
+  "BFF_WEBSERVER_PATH": "apps/tbd-http-webserver",
+  "BUNDLER_WEBSOCKET_URL": "auto://localhost.betfair.com/ws"
+}

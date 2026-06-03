@@ -1,0 +1,15 @@
+"__typename": "{{__typename}}{{^__typename}}AccountBannersCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:accountBanners:myaccount#accountBanners{{/urn}}",
+"bannerDetails": {{#if bannerDetails}}
+ [
+  {{#each bannerDetails}}
+    {
+    {{> bff-banner-details}},
+    "bannerType": {{#if bannerType}}"{{bannerType}}"{{else}}null{{/if}}
+    }
+      {{#unless @last}},{{/unless}}
+  {{/each}}
+ ]
+{{else}}
+[]
+{{/if}}

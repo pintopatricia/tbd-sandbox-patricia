@@ -1,0 +1,35 @@
+.placeholder {
+  display: flex;
+
+  flex-grow: 1;
+
+  width: 100%;
+  padding-bottom: var(--spacing-2);
+
+  background-color: var(--components-neutrals-bottomsheet-background-elevation1);
+  border-radius: 0 0 8px 8px;
+}
+
+.container {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: flex-start;
+
+  width: 100%;
+  margin: 0 var(--spacing-2);
+  overflow: hidden;
+
+  border-radius: 4px;
+}
+
+.header {
+  margin-top: var(--spacing-4);
+  margin-bottom: var(--spacing-2);
+}
+
+.textContainer {
+  text-align: center;
+}

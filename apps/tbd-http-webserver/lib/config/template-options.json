@@ -1,0 +1,8 @@
+{
+  "PRECONNECT_ORIGINS": [
+    "https://sca.cdnppb.net",
+    "https://assets.cdnppb.net",
+    "https://pma-s3.betfair.com",
+    "https://images.prismic.io"
+  ]
+}

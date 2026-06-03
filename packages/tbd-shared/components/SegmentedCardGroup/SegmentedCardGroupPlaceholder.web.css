@@ -1,0 +1,22 @@
+.placeholder {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  padding: 0 var(--spacing-3);
+}
+
+.placeholderTitle {
+  width: 50%;
+  height: var(--line-height-7);
+  margin: 0 0 var(--spacing-3) 0;
+
+  background-color: var(--neutrals-background-elevation3);
+}
+
+.segmentedCardPlaceholder {
+  width: var(--gaming-card-size);
+  height: var(--gaming-card-size);
+
+  background-color: var(--neutrals-background-elevation3);
+}

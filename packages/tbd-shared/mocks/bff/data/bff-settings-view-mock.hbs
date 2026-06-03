@@ -1,0 +1,27 @@
+{
+    "data":{
+       "View":{
+          "__typename":"SettingsView",
+          "urn":"{{urn}}{{^urn}}ppb:tbd:view:settings:settings{{/urn}}",
+          "url":"{{url}}{{^url}}/settings/settings:settings{{/url}}",
+          "settings":[
+            {{#each settings}}
+            {
+               {{> bff-tabs}}
+            }{{#unless @last}},{{/unless}}
+            {{/each}}
+          ],
+          "items": {
+            {{> bff-items }}
+          },
+          "bottomBar":{
+            {{> bff-bottom-bar-tiles }}
+          }
+          {{#if regulatoryData}}
+            ,"regulatoryData": {
+              {{> bff-regulatory-data }}
+            }
+        {{/if}}
+       }
+    }
+ }

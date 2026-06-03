@@ -1,0 +1,15 @@
+fragment popularMultiplesBetBuilderCard on PopularMultiplesBetBuilderCard {
+  __typename
+  urn
+  popularbettingopportunity {
+    ...popularBettingOpportunity
+  }
+  cmsConfiguredTitle: title {
+    ...displayNameTitle
+  }
+}
+
+fragment popularMultiplesBetBuilderCardPartial on PopularMultiplesBetBuilderCard {
+  __typename
+  urn
+}

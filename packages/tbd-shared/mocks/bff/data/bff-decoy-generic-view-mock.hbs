@@ -1,0 +1,59 @@
+{
+    "data": {
+        "View": {
+            "__typename": "GenericView",
+            "title": "Deep Link Decoy initialiser: don't use this screen, mock your own cards + bottom bar at /home",
+            "urn": "ppb:tbd:view:generic:home",
+            "url": "",
+            "items": {
+                "edges": [
+                    {
+                        "node": {
+                            "urn": "ppb:tbd:card:regulatory:footer",
+                            "__typename": "RegulatoryCard",
+                            "sections": [
+                                {
+                                    "__typename": "RegulatorySectionGeneric",
+                                    "sectionType": "GENERIC",
+                                    "genericSectionTitle": "TEST VIEW LINK:",
+                                    "items": [
+                                      {{#each viewLinks}}
+                                        {
+                                            "__typename": "RegulatoryLinkItem",
+                                            "alignment": "LEFT",
+                                            "text": "TEST VIEW LINK {{inc @index 1}}",
+                                            "url": "",
+                                            "target": "BLANK",
+                                            "viewLink": {
+                                                "viewUrn": "{{{viewUrn}}}",
+                                                "viewUrl": "{{{viewUrl}}}"
+                                            }
+                                        }
+                                        {{#unless @last}},{{/unless}}
+                                      {{/each}}
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "pageInfo": null
+            },
+            "partialItems": {
+                "edges": [
+                    {
+                        "node": {
+                            "urn": "ppb:tbd:card:regulatory:footer",
+                            "__typename": "RegulatoryCard"
+                        }
+                    }
+                ]
+            }
+            {{#if withBottomBar}}
+            ,"bottomBar": {
+              {{> bff-bottom-bar-tiles }}
+            }
+            {{/if}}
+        }
+    }
+}

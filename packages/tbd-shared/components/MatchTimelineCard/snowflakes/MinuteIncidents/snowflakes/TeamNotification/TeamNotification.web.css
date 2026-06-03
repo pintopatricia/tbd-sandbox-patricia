@@ -1,0 +1,34 @@
+.card {
+  display: flex;
+
+  flex-direction: column;
+
+  padding: var(--spacing-2);
+
+  background-color: var(--neutrals-background-elevation2);
+  border-radius: 4px;
+}
+
+.card.away {
+  display: flex;
+
+  align-items: flex-start;
+
+  text-align: left;
+}
+
+.card.home {
+  display: flex;
+
+  align-items: flex-end;
+
+  text-align: right;
+}
+
+.sideTitle {
+  color: var(--neutrals-text-default);
+}
+
+.sideDescription {
+  color: var(--neutrals-text-secondary);
+}

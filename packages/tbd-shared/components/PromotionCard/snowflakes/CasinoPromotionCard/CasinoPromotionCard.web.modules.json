@@ -1,0 +1,17 @@
+{
+  "promotionCard": ".f070302a1c633fbf-promotionCard",
+  "promotionContainer": ".f070302a1c633fbf-promotionContainer",
+  "promotionBody": ".f070302a1c633fbf-promotionBody",
+  "promotionInfoContainer": ".f070302a1c633fbf-promotionInfoContainer",
+  "actionContainer": ".f070302a1c633fbf-actionContainer",
+  "promotionAction": ".f070302a1c633fbf-promotionAction",
+  "promotionTitles": ".f070302a1c633fbf-promotionTitles",
+  "titleEnd": ".f070302a1c633fbf-titleEnd",
+  "subtitle": ".f070302a1c633fbf-subtitle",
+  "headline": ".f070302a1c633fbf-headline",
+  "title": ".f070302a1c633fbf-title",
+  "promotionImageContainer": ".f070302a1c633fbf-promotionImageContainer",
+  "promotionImage": ".f070302a1c633fbf-promotionImage",
+  "promotionFooter": ".f070302a1c633fbf-promotionFooter",
+  "summary": ".f070302a1c633fbf-summary"
+}

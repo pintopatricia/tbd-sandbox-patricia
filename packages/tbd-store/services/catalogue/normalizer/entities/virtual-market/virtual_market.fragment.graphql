@@ -1,0 +1,20 @@
+fragment virtualMarket on VirtualMarket {
+  __typename
+  urn
+  name
+  marketType
+  marketId
+  status
+  hasEachWay
+  eachWayPlaces
+  eachWayFraction
+  sport {
+    ...virtualSport
+  }
+  event {
+    ...virtualEvent
+  }
+  runners {
+    ...virtualRunner
+  }
+}

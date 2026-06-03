@@ -1,0 +1,14 @@
+fragment selfExcludedView on SelfExcludedView {
+  __typename
+  urn
+  url
+  items(first: $numberOfFilledCardsInView) {
+    ...viewItems
+  }
+  bottomBar @include(if: $withBottomBar) {
+    ...bottomBar
+  }
+  xsellBar {
+    ...XSellBar
+  }
+}

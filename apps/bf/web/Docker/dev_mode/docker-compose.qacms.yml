@@ -1,0 +1,19 @@
+services:
+  # Reverse proxy for QACMS environment
+  reverseproxy:
+    image: ppb/tbd${BRAND:-bf}/dev/reverseproxy-qacms
+    build:
+      context: ${PROJECT_ROOT}/${REVERSE_PROXY_DIR}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ${PROJECT_ROOT}/${REVERSE_PROXY_DIR}/dev/webapp.d/qacms.apitbd-remote.locations.conf:/etc/nginx/conf.d/custom.locations.conf
+      - ${PROJECT_ROOT}/${REVERSE_PROXY_DIR}/dev/webapp.d/qa.locations.conf:/etc/nginx/conf.d/locations.conf
+      - ${PROJECT_ROOT}/${REVERSE_PROXY_DIR}/dev/webapp.d/qacms.upstream:/etc/nginx/conf.d/qacms.upstream
+    depends_on:
+      - http-webserver
+      - webserver
+
+volumes:
+  tbd-assets:

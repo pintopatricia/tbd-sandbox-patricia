@@ -1,0 +1,189 @@
+"urn": "{{urn}}{{^urn}}ppb:fixture:29359895{{/urn}}",
+"__typename": "{{__typename}}{{^__typename}}FootballFixture{{/__typename}}",
+"scheduledAt": "{{scheduledAt}}{{^scheduledAt}}2020-02-01T12:30:00Z{{/scheduledAt}}",
+"startedAt": {{#if startedAt}}"{{startedAt}}"{{else}}null{{/if}},
+{{> bff-score }}
+"home": { {{> bff-football-team home}} },
+"away": { {{> bff-football-team away}} },
+{{#with firstLegScore}}
+    "firstLegScore": {
+      "home": {{home}}{{^home}}1{{/home}},
+      "away": {{away}}{{^away}}0{{/away}}
+    },
+  {{/with}}
+  {{> bff-penalty-shootout }}
+  "duration": {
+    {{#if duration}}
+      {{#with duration}}
+          "period": "{{period}}{{^period}}REGULAR{{/period}}",
+          "status": "{{status}}{{^status}}PRE_MATCH{{/status}}",
+          {{#with clock}}
+            "clock":{
+              "minute": {{minute}}{{^minute}}24{{/minute}},
+              "second": {{second}}{{^second}}48{{/second}}
+          },
+          {{/with}}
+          {{#if stoppageMinutes}} "stoppageMinutes": {{stoppageMinutes}}{{^stoppageMinutes}}2{{/stoppageMinutes}} {{else}} "stoppageMinutes": null {{/if}}
+       {{/with}}
+    {{else}}
+       "period":"REGULAR",
+       "status":"PRE_MATCH",
+       "clock":{
+          "minute":24,
+          "second":48
+       },
+       "stoppageMinutes": 2
+    {{/if}}
+ },
+  {{#if runnerNames}}
+  {{#with runnerNames}}
+       "runnerNames":{
+          "home":"{{home}}{{^home}}toto{{/home}}",
+          "away":"{{away}}{{^away}}tata{{/away}}"
+       },
+  {{/with}}
+  {{/if}}
+ {{#if recentForm}}
+    {{#with recentForm}}
+       "recentForm":{
+          "home":[
+             {{#with home}}
+                {{> bff-game-result }}
+             {{/with}}
+          ],
+          "away":[
+             {{#with away}}
+                {{> bff-game-result }}
+             {{/with}}
+          ]
+       },
+    {{/with}}
+ {{else}}
+    "recentForm": null,
+
+   "sportevent": {
+      {{#with sportevent}}
+         {{> bff-sportevent}}
+      {{/with}}
+   },
+
+  {{/if}}
+  {{#if competitionForm}}
+  {{#with competitionForm}}
+       "competitionForm":{
+          "home":[
+             {{#with home}}
+                {{> bff-game-result }}
+             {{/with}}
+          ],
+          "away":[
+             {{#with away}}
+                {{> bff-game-result }}
+             {{/with}}
+          ]
+       },
+  {{/with}}
+  {{else}}
+    "competitionForm": null,
+  {{/if}}
+{{#with players}}
+   "players": [
+   {{#each this}}
+      { {{> bff-football-player }} }
+   {{#unless @last}},{{/unless}}
+   {{/each}}
+   ],
+{{/with}}
+{{#if stats}}
+  "stats": [
+  {{#each stats}}
+      {
+      "__typename": "{{__typename}}{{^__typename}}FootballStats{{/__typename}}",
+      "period": "{{period}}{{^period}}null{{/period}}",
+      "periodStatus": "{{periodStatus}}{{^periodStatus}}PRE_MATCH{{/periodStatus}}",
+      {{#with home}}
+          "home": {
+      {{> bff-football-game-stats }}
+          },
+      {{/with}}
+      {{#with away}}
+          "away": {
+          {{> bff-football-game-stats }}
+          }
+      {{/with}}
+      }
+      {{#unless @last}},{{/unless}}
+  {{/each}}
+  ],
+{{else}}
+  "stats": null,
+{{/if}}
+{{#if (isArray incidents)}}
+  "incidents": [
+    {{#with incidents}}
+      {{> bff-football-incident}}
+    {{/with}}
+  ],
+{{else}}
+  "incidents": null,
+{{/if}}
+ {{#if head2head}}
+    {{#with head2head}}
+       "head2head":{
+          "home":[
+             {{#with home}}
+                {{> bff-game-result }}
+             {{/with}}
+          ],
+          "away":[
+             {{#with away}}
+                {{> bff-game-result }}
+             {{/with}}
+          ]
+       },
+    {{/with}}
+ {{else}}
+    "head2head": null,
+ {{/if}}
+ {{#if homeStanding}}
+        {{#with homeStanding}}
+       "homeStanding":{
+          {{> bff-football-standing-form }}
+       },
+    {{/with}}
+ {{else}}
+    "homeStanding": null,
+ {{/if}}
+  {{#if awayStanding}}
+        {{#with awayStanding}}
+      "awayStanding":{
+          {{> bff-football-standing-form }}
+      },
+        {{/with}}
+ {{else}}
+    "awayStanding": null,
+ {{/if}}
+  {{#if teams}}
+  "teams": [
+  {{#each teams}}
+      {
+      "urn": "{{urn}}{{^urn}}ppb:stats:footballTeam:1|29359895{{/urn}}",
+      "__typename": "{{__typename}}{{^__typename}}FootballTeam{{/__typename}}",
+      "name": "{{name}}{{^name}}Home{{/name}}",
+      "statsPreviousFive": {
+      {{#with statsPreviousFive}}
+        {{> bff-football-team-stats }}
+      {{/with}}
+        },
+      "statsAllSeason": {
+      {{#with statsAllSeason}}
+          {{> bff-football-team-stats }}
+      {{/with}}
+        }
+      }
+      {{#unless @last}},{{/unless}}
+  {{/each}}
+  ]
+  {{else}}
+    "teams": null
+  {{/if}}

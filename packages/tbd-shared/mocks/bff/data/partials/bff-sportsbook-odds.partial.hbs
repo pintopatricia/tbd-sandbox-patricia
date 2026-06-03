@@ -1,0 +1,9 @@
+"decimal": {{decimal}},
+{{#if fractional}}
+  {{#with fractional}}
+    "fractional": {
+      {{> bff-fractional-odds}}
+    },
+  {{/with}}
+{{/if}}
+"__typename": "{{__typename}}{{^__typename}}SportsbookOdds{{/__typename}}"

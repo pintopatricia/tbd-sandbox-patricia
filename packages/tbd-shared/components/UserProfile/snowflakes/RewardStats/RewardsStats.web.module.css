@@ -1,0 +1,26 @@
+.rewardsBar {
+  margin: 0;
+}
+
+.monthRewards {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-bottom: var(--spacing-4);
+}
+
+.monthRewards h6 {
+  color: var(--neutrals-text-default);
+}
+
+.monthRewards span {
+  width: 39px;
+  height: 20px;
+
+  color: var(--signposting-generosity-text-default);
+  text-align: center;
+
+  background: var(--signposting-generosity-background-elevation1);
+  border-radius: 2px;
+}

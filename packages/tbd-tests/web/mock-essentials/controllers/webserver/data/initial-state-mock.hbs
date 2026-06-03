@@ -1,0 +1,466 @@
+{
+   "entities": {
+      "appversion": {
+         "android": {
+            "urn": "ppb:tbd:appVersion:appVersion",
+            "url": "{{appVersionUrl}}{{^appVersionUrl}}https://play.google.com/store/apps/details?id=com.betfair.sportsbook.brazil{{/appVersionUrl}}",
+            "downloadUrl": "{{appVersionDownloadUrl}}{{^appVersionDownloadUrl}}https://play.google.com/store/apps/details?id=com.betfair.sportsbook.brazil{{/appVersionDownloadUrl}}",
+            "storeUrl": "{{appVersionStoreUrl}}{{^appVersionStoreUrl}}https://play.google.com/store/apps/details?id=com.betfair.sportsbook.brazil{{/appVersionStoreUrl}}",
+            "versionCode": {{appVersionCode}}{{^appVersionCode}}42951{{/appVersionCode}},
+            "minVersionCode": {{appVersionMinVersionCode}}{{^appVersionMinVersionCode}}42951{{/appVersionMinVersionCode}},
+            "minOSVersion": "{{appVersionMinOSVersion}}{{^appVersionMinOSVersion}}5{{/appVersionMinOSVersion}}",
+            "blackList": [
+               {
+                  "versioncode": {{appVersionBlacklistVersionCode}}{{^appVersionBlacklistVersionCode}}42643{{/appVersionBlacklistVersionCode}}
+               }
+            ]
+         },
+         "ios": {
+            "urn":"ppb:tbd:appVersion:appVersion",
+            "url":"{{appVersionUrl}}{{^appVersionUrl}}https://apps.apple.com/gb/app/betfair-sports-betting/id552024276{{/appVersionUrl}}",
+            "downloadUrl": "{{appVersionDownloadUrl}}{{^appVersionDownloadUrl}}https://apps.apple.com/gb/app/betfair-sports-betting/id552024276{{/appVersionDownloadUrl}}",
+            "storeUrl":"{{appVersionStoreUrl}}{{^appVersionStoreUrl}}https://apps.apple.com/gb/app/betfair-sports-betting/id552024276{{/appVersionStoreUrl}}",
+            "versionCode": {{appVersionCode}}{{^appVersionCode}}9734{{/appVersionCode}},
+            "minVersionCode": {{appVersionMinVersionCode}}{{^appVersionMinVersionCode}}9734{{/appVersionMinVersionCode}},
+            "minOSVersion": "{{appVersionMinOSVersion}}{{^appVersionMinOSVersion}}5{{/appVersionMinOSVersion}}",
+            "blackList": [
+               {
+                  "versioncode": {{appVersionBlacklistVersionCode}}{{^appVersionBlacklistVersionCode}}9422{{/appVersionBlacklistVersionCode}}
+               }
+            ]
+         }
+      },
+      "userdetails":{
+         "countryCode":"{{countryCode}}{{^countryCode}}IE{{/countryCode}}",
+         "currencyCode":"{{currencyCode}}{{^currencyCode}}USD{{/currencyCode}}",
+         "localeCode":"{{localeCode}}{{^localeCode}}en{{/localeCode}}",
+         "localeCodeBcp47":"{{localeCodeBcp47}}{{^localeCodeBcp47}}en-US{{/localeCodeBcp47}}",
+         "timezone":"{{timezone}}{{^timezone}}Europe/London{{/timezone}}",
+         "firstName":"{{firstName}}{{^firstName}}firstName{{/firstName}}",
+         "lastName":"{{lastName}}{{^lastName}}lastName{{/lastName}}",
+         "region":"{{regiion}}{{^region}}ALL_REGIONS{{/region}}",
+         "jurisdictionalData": {
+            "contractNumber": {{contractNumber}}{{^contractNumber}}null{{/contractNumber}},
+            "nationalIdentifier": {{nationalIdentifier}}{{^nationalIdentifier}}null{{/nationalIdentifier}}
+         },
+         "migrationData": {
+            "heritageAccountId": {{heritageAccountId}}{{^heritageAccountId}}null{{/heritageAccountId}},
+            "heritageSecondaryAccountId": {{heritageSecondaryAccountId}}{{^heritageSecondaryAccountId}}null{{/heritageSecondaryAccountId}},
+            "heritageSystem": {{heritageSystem}}{{^heritageSystem}}null{{/heritageSystem}},
+            "migrationDate": {{migrationDate}}{{^migrationDate}}null{{/migrationDate}},
+            "migrationInformation": {{migrationInformation}}{{^migrationInformation}}null{{/migrationInformation}}
+         },
+         "exchangeSettings": {
+            "discount": {{exchangeDiscount}}{{^exchangeDiscount}}0{{/exchangeDiscount}},
+            "currencyDetails": {
+               "minStake": {{minStake}}{{^minStake}}2{{/minStake}},
+               "minBspLiability": {{minBspLiability}}{{^minBspLiability}}10{{/minBspLiability}},
+               "currencyCode":"{{currencyCode}}{{^currencyCode}}GBP{{/currencyCode}}",
+               "currencyId": {{currencyId}}{{^currencyId}}2{{/currencyId}}
+            }
+         },
+         "accountId": {{accountId}}{{^accountId}}123456{{/accountId}},
+         "loggedIn": {{loggedIn}}{{^loggedIn}}true{{/loggedIn}},
+         "lastLoginDate": "{{lastLoginDate}}{{^lastLoginDate}}2023-01-01T12:00:00.000Z{{/lastLoginDate}}",
+         "accountOpenDate": "{{accountOpenDate}}{{^accountOpenDate}}2020-01-01T00:00:00.000Z{{/accountOpenDate}}",
+         "jurisdiction": {
+            "jurisdiction": "{{jurisdiction}}{{^jurisdiction}}INTERNATIONAL{{/jurisdiction}}"
+         },
+         "productExclusions":
+         {{#if productExclusions}}
+            [
+               {{#each productExclusions}}
+                  "{{this}}"{{#unless @last}},{{/unless}}
+               {{/each}}
+            ],
+            {{else}}
+            [],
+         {{/if}}
+         "bucketId": {{bucketId}}{{^bucketId}}1{{/bucketId}}
+      },
+      "throttles": {
+         "PRICE_BOOST_OFFERS": {
+         {{#if PRICE_BOOST_OFFERS}}
+            {{#with PRICE_BOOST_OFFERS}}
+               "isActive": {{#if isActive}}true{{else}}false{{/if}}
+            {{/with}}
+         {{else}}
+            "isActive": false
+         {{/if}}
+         },
+         "MULTI_BET_BUILDER_ONBOARDING": {
+         {{#if MULTI_BET_BUILDER_ONBOARDING}}
+            {{#with MULTI_BET_BUILDER_ONBOARDING}}
+               "isActive": {{#if isActive}}true{{else}}false{{/if}}
+            {{/with}}
+         {{else}}
+            "isActive": false
+         {{/if}}
+         },
+         "PRODUCT_SWITCHER":{
+         {{#if PRODUCT_SWITCHER}}
+            {{#with PRODUCT_SWITCHER}}
+               "isActive": {{#if isActive}}true{{else}}false{{/if}}
+            {{/with}}
+         {{else}}
+            "isActive": false
+         {{/if}}
+         },
+         "EXC_ONBOARDING_JOURNEY":{
+         {{#if EXC_ONBOARDING_JOURNEY}}
+           {{#with EXC_ONBOARDING_JOURNEY}}
+             "isActive": {{#if isActive}}true{{else}}false{{/if}}
+           {{/with}}
+         {{else}}
+          "isActive": false
+         {{/if}}
+         },
+         "EXC_ALLOWED_JURISDICTION":{
+         {{#if EXC_ALLOWED_JURISDICTION}}
+           {{#with EXC_ALLOWED_JURISDICTION}}
+             "isActive": {{#if isActive}}true{{else}}false{{/if}}
+           {{/with}}
+         {{else}}
+          "isActive": false
+         {{/if}}
+         },
+         "EXC_FEEDBACK_BUTTON":{
+         {{#if EXC_FEEDBACK_BUTTON}}
+           {{#with EXC_FEEDBACK_BUTTON}}
+             "isActive": {{#if isActive}}true{{else}}false{{/if}}
+           {{/with}}
+         {{else}}
+          "isActive": false
+         {{/if}}
+         },
+         "ENABLE_PREDICTS":{
+         {{#if ENABLE_PREDICTS}}
+           {{#with ENABLE_PREDICTS}}
+             "isActive": {{#if isActive}}true{{else}}false{{/if}}
+           {{/with}}
+         {{else}}
+          "isActive": false
+         {{/if}}
+         },
+         "DAILY_PAYOUT_LIMIT": {
+            "isActive": true
+         },
+         "DESKTOP_EXPERIENCE": {
+         {{#if DESKTOP_EXPERIENCE}}
+            {{#with DESKTOP_EXPERIENCE}}
+               "isActive": {{#if isActive}}true{{else}}false{{/if}}
+            {{/with}}
+         {{else}}
+            "isActive": true
+         {{/if}}
+         },
+         "USER_FAVOURITE_GAMES": {
+          {{#if USER_FAVOURITE_GAMES}}
+             {{#with USER_FAVOURITE_GAMES}}
+                "isActive": {{#if isActive}}true{{else}}false{{/if}}
+             {{/with}}
+          {{else}}
+             "isActive": false
+          {{/if}}
+          },
+         "MY_BETS_VIEW_RE_USE_SELECTIONS": {
+         {{#if MY_BETS_VIEW_RE_USE_SELECTIONS}}
+            {{#with MY_BETS_VIEW_RE_USE_SELECTIONS}}
+               "isActive": {{#if isActive}}true{{else}}false{{/if}}
+            {{/with}}
+         {{else}}
+            "isActive": false
+         {{/if}}
+         },
+         "BROWSE_CASINO_WEB": {
+         {{#if BROWSE_CASINO_WEB}}
+            {{#with BROWSE_CASINO_WEB}}
+            "isActive": {{#if isActive}}true{{else}}false{{/if}}
+            {{/with}}
+         {{else}}
+            "isActive": true
+         {{/if}}
+         },
+         "BROWSE_CASINO_ANDROID": {
+         {{#if BROWSE_CASINO_ANDROID}}
+            {{#with BROWSE_CASINO_ANDROID}}
+            "isActive": {{#if isActive}}true{{else}}false{{/if}}
+            {{/with}}
+         {{else}}
+            "isActive": true
+         {{/if}}
+         },
+         "MY_BETS_WIN_LOSE_VOID": {
+         {{#if MY_BETS_WIN_LOSE_VOID}}
+            {{#with MY_BETS_WIN_LOSE_VOID}}
+               "isActive": {{#if isActive}}true{{else}}false{{/if}}
+            {{/with}}
+         {{else}}
+            "isActive": false
+         {{/if}}
+         },
+         "NEW_SCA_POLLER": {
+         {{#if NEW_SCA_POLLER}}
+            {{#with NEW_SCA_POLLER}}
+               "isActive": {{#if isActive}}true{{else}}false{{/if}}
+            {{/with}}
+         {{else}}
+            "isActive": false
+         {{/if}}
+         },
+         "BET_CONFIRMATION_STEP": {
+         {{#if BET_CONFIRMATION_STEP}}
+            {{#with BET_CONFIRMATION_STEP}}
+               "isActive": {{#if isActive}}true{{else}}false{{/if}}
+            {{/with}}
+         {{else}}
+            "isActive": false
+         {{/if}}
+         },
+         "FAVOURITE_MARKETS_TOOLTIP": {
+         {{#if FAVOURITE_MARKETS_TOOLTIP}}
+            {{#with FAVOURITE_MARKETS_TOOLTIP}}
+               "isActive": {{#if isActive}}true{{else}}false{{/if}}
+            {{/with}}
+         {{else}}
+            "isActive": false
+         {{/if}}
+         },
+         "POPULAR_BET_BUILDER_SELECTION_TYPE_ICON": {
+         {{#if POPULAR_BET_BUILDER_SELECTION_TYPE_ICON}}
+            {{#with POPULAR_BET_BUILDER_SELECTION_TYPE_ICON}}
+               "isActive": {{#if isActive}}true{{else}}false{{/if}}
+            {{/with}}
+         {{else}}
+            "isActive": false
+         {{/if}}
+         },
+         "FREE_BETS_WALLET": {
+         {{#if FREE_BETS_WALLET}}
+            {{#with FREE_BETS_WALLET}}
+               "isActive": {{#if isActive}}true{{else}}false{{/if}}
+            {{/with}}
+         {{else}}
+            "isActive": false
+         {{/if}}
+         },
+         "ENABLE_SKYBETCLUB_TRACKER": {
+         {{#if ENABLE_SKYBETCLUB_TRACKER}}
+            {{#with ENABLE_SKYBETCLUB_TRACKER}}
+               "isActive": {{#if isActive}}true{{else}}false{{/if}}
+            {{/with}}
+         {{else}}
+            "isActive": false
+         {{/if}}
+         },
+         "ENABLE_BETFAIRCLUB_TRACKER": {
+         {{#if ENABLE_BETFAIRCLUB_TRACKER}}
+            {{#with ENABLE_BETFAIRCLUB_TRACKER}}
+               "isActive": {{#if isActive}}true{{else}}false{{/if}}
+            {{/with}}
+         {{else}}
+            "isActive": false
+         {{/if}}
+         },
+         "SUPER_SUB_MARKET_BLURBS": {
+         {{#if SUPER_SUB_MARKET_BLURBS}}
+            {{#with SUPER_SUB_MARKET_BLURBS}}
+               "isActive": {{#if isActive}}true{{else}}false{{/if}}
+            {{/with}}
+         {{else}}
+            "isActive": false
+         {{/if}}
+         },
+         "STAKE_FOCUS": {
+         {{#if STAKE_FOCUS}}
+            {{#with STAKE_FOCUS}}
+               "isActive": {{#if isActive}}true{{else}}false{{/if}}
+            {{/with}}
+         {{else}}
+            "isActive": false
+         {{/if}}
+         },
+         "MOBILE_BETSLIP_SP": {
+         {{#if MOBILE_BETSLIP_SP}}
+            {{#with MOBILE_BETSLIP_SP}}
+               "isActive": {{#if isActive}}true{{else}}false{{/if}}
+            {{/with}}
+         {{else}}
+            "isActive": false
+         {{/if}}
+         },
+         "SMART_APP_BANNER": {
+         {{#if SMART_APP_BANNER}}
+            {{#with SMART_APP_BANNER}}
+               "isActive": {{#if isActive}}true{{else}}false{{/if}}
+            {{/with}}
+         {{else}}
+            "isActive": false
+         {{/if}}
+         },
+         "SUPER_SUB_SIGNPOSTING": {
+         {{#if SUPER_SUB_SIGNPOSTING}}
+            {{#with SUPER_SUB_SIGNPOSTING}}
+               "isActive": {{#if isActive}}true{{else}}false{{/if}}
+            {{/with}}
+         {{else}}
+            "isActive": false
+         {{/if}}
+          },
+          "DISPLAY_SEARCH_HISTORY": {
+          {{#if DISPLAY_SEARCH_HISTORY}}
+             {{#with DISPLAY_SEARCH_HISTORY}}
+                "isActive": {{#if isActive}}true{{else}}false{{/if}}
+             {{/with}}
+          {{else}}
+             "isActive": false
+          {{/if}}
+         },
+         "CASHOUT_AUTH_REDIRECT": {
+            {{#if CASHOUT_AUTH_REDIRECT}}
+               {{#with CASHOUT_AUTH_REDIRECT}}
+                  "isActive": {{#if isActive}}true{{else}}false{{/if}}
+               {{/with}}
+            {{else}}
+               "isActive": false
+            {{/if}}
+         },
+         "MY_BETS_STATS": {
+         {{#if MY_BETS_STATS}}
+            {{#with MY_BETS_STATS}}
+               "isActive": {{#if isActive}}true{{else}}false{{/if}}
+            {{/with}}
+         {{else}}
+            "isActive": true
+         {{/if}}
+         },
+         "CASHOUT_SUSPENSION_REASONS": {
+         {{#if CASHOUT_SUSPENSION_REASONS}}
+            {{#with CASHOUT_SUSPENSION_REASONS}}
+               "isActive": {{#if isActive}}true{{else}}false{{/if}}
+            {{/with}}
+         {{else}}
+            "isActive": true
+         {{/if}}
+         },
+         "LPS_FE_EXPOSURE": {
+         {{#if LPS_FE_EXPOSURE}}
+            {{#with LPS_FE_EXPOSURE}}
+               "isActive": {{#if isActive}}true{{else}}false{{/if}}
+            {{/with}}
+         {{else}}
+            "isActive": true
+         {{/if}}
+         },
+         "CONFIRM_CASHOUT_PREFERENCE":{
+         {{#if CONFIRM_CASHOUT_PREFERENCE}}
+           {{#with CONFIRM_CASHOUT_PREFERENCE}}
+             "isActive": {{#if isActive}}true{{else}}false{{/if}}
+           {{/with}}
+         {{else}}
+          "isActive": false
+          {{/if}}
+         },
+         "ENABLE_NOTIFICATION_CENTER": {
+         {{#if ENABLE_NOTIFICATION_CENTER}}
+            {{#with ENABLE_NOTIFICATION_CENTER}}
+               "isActive": {{#if isActive}}true{{else}}false{{/if}}
+            {{/with}}
+         {{else}}
+            "isActive": false
+         {{/if}}
+         }
+      },
+      "brandSettings": {
+        "ERROR_VIEW_IMAGE": {
+        "isActive": true
+        },
+        "MAINTENANCE_PAGE_TWITTER_WIDGET" : {
+         "isActive": true
+        }
+         {{#if brandSettings}}
+            ,
+            {{#each brandSettings}}
+               "{{@key}}": {
+                  "isActive": {{this}}
+               }
+               {{#unless @last}},{{/unless}}
+            {{/each}}
+         {{/if}}
+      },
+      "preferences":{
+         "exchangeOddsDisplay":"DECIMAL",
+         "sportsbookOddsDisplay":"{{sportsbookOddsDisplay}}{{^sportsbookOddsDisplay}}DECIMAL{{/sportsbookOddsDisplay}}",
+         "exchangeConfirmBetPlacement": {{exchangeConfirmBetPlacement}}{{^exchangeConfirmBetPlacement}}false{{/exchangeConfirmBetPlacement}},
+         "showBalances": {{showBalances}}{{^showBalances}}true{{/showBalances}},
+         "oddsMovement": {{oddsMovement}}{{^oddsMovement}}true{{/oddsMovement}},
+         "favoriteSports": [1, 7],
+         "marketTab": "{{marketTab}}{{^marketTab}}sportsbook{{/marketTab}}",
+         "exchangeDefaultProduct": "{{exchangeDefaultProduct}}{{^exchangeDefaultProduct}}unassigned{{/exchangeDefaultProduct}}",
+         "exchangeDefaultMode": "{{exchangeDefaultMode}}{{^exchangeDefaultMode}}DEFAULT{{/exchangeDefaultMode}}",
+         "lastViewedProduct": "{{lastViewedProduct}}{{^lastViewedProduct}}sportsbook{{/lastViewedProduct}}",
+         "defaultProduct": "{{defaultProduct}}{{^defaultProduct}}sportsbook{{/defaultProduct}}",
+         "products":
+            {{#if products}}
+            [
+               {{#each products}}
+                  "{{this}}"{{#unless @last}},{{/unless}}
+               {{/each}}
+            ],
+            {{else}}
+            ["exchange", "sportsbook", "games"],
+         {{/if}}
+         "confirmCashout": {{#if (defined confirmCashout)}}{{confirmCashout}}{{else}}false{{/if}},
+         "quickStakes":[
+            {
+               "stake":5,
+               "displayStake":"5"
+            },
+            {
+               "stake":10,
+               "displayStake":"10"
+            },
+            {
+               "stake":20,
+               "displayStake":"20"
+            },
+            {
+               "stake":50,
+               "displayStake":"50"
+            }
+         ]
+      },
+      "experiments": {{#if experiments}}
+      {
+         {{#each experiments}}
+            "{{this.name}}": {
+               "variant": "{{this.variant}}"
+            }{{#unless @last}},{{/unless}}
+         {{/each}}
+      }
+      {{else}}
+      {}
+      {{/if}}
+   },
+   "router": {
+      {{#if currentUrn}}
+         "currentUrn": "{{{currentUrn}}}",
+      {{else}}
+         "currentUrn": "ppb:tbd:view:sport:1",
+      {{/if}}
+      {{#if currentView}}
+         "currentView": "{{{currentView}}}",
+      {{else}}
+         "currentView": "ppb:tbd:view:sport",
+      {{/if}}
+      {{#if currentUrl}}
+         "currentUrl": "{{{currentUrl}}}"
+      {{else}}
+         "currentUrl": ""
+      {{/if}}
+   },
+   "boot":{
+      "exchangeEnabled":{{exchangeEnabled}}{{^exchangeEnabled}}false{{/exchangeEnabled}},
+      "canUsePhoenixExchange":{{canUsePhoenixExchange}}{{^canUsePhoenixExchange}}false{{/canUsePhoenixExchange}}
+   }
+}

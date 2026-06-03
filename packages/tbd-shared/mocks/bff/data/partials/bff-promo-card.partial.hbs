@@ -1,0 +1,112 @@
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:betOpportunityPromo:pph/B10G10ASCOTSTAT{{/urn}}",
+"theme": "{{theme}}{{^theme}}DARK{{/theme}}",
+{{#if promoTag}}
+{{#with promoTag}}
+"promoTag": {
+  {{#if label}}
+    "__typename": "PromoLabelTag",
+    "label": "{{label}}"
+  {{else if iconTag}}
+    "__typename": "PromoIconTag",
+    "iconTag": "{{iconTag}}"
+  {{/if}}
+},
+{{/with}}
+{{else}}
+"promoTag": null,
+{{/if}}
+"title": "{{title}}{{^title}}TITLE{{/title}}",
+{{#if subTitle}}"subTitle": "{{subTitle}}{{^subTitle}}SUBTITLE{{/subTitle}}",{{/if}}
+{{#if promoImage}}
+{{#with promoImage}}
+"promoImage": {
+  "__typename": "PromoImage",
+  "url": "{{url}}{{^url}}https://pma-s3.betfair.com/cpp/bf/2023/6/9/mockedImage.jpg{{/url}}"
+},
+{{/with}}
+{{else}}
+"promoImage": null,
+{{/if}}
+{{#if selectionImage}}
+{{#with selectionImage}}
+"selectionImage": {
+  "__typename": "PromoImage",
+  "url": "{{url}}{{^url}}https://pma-s3.betfair.com/cpp/bf/2023/6/9/mockedImage.jpg{{/url}}"
+},
+{{/with}}
+{{else}}
+"selectionImage": null,
+{{/if}}
+{{#if betOpportunityAction}}
+"betOpportunityAction": {
+  {{> bff-promo-navigation-action betOpportunityAction}}
+},
+{{/if}}
+{{#if editorialAction}}
+"editorialAction": {
+  {{> bff-promo-navigation-action editorialAction}}
+},
+{{else}}
+"editorialAction": null,
+{{/if}}
+{{#if cta}}
+"cta": {
+  {{> bff-promo-add-to-betslip-action cta}}
+},
+{{/if}}
+{{#if termsAndConditions}}
+{{#with termsAndConditions}}
+"termsAndConditions": {
+  "__typename": "PromoTermsAndConditions",
+  "summary": "{{summary}}{{^summary}}Opt in required{{/summary}}",
+  {{#if link}}
+  {{#with link}}
+  "link": {
+    {{#with label}}
+    "label": {
+      "__typename": "{{#if __typename}}{{__typename}}{{else}}DisplayNameTranslationKey{{/if}}",
+      "translationKey": {{#if translationKey}}"{{translationKey}}"{{else}}null{{/if}},
+      "name": {{#if name}}"{{name}}"{{else}}null{{/if}}
+    }
+    {{/with}}
+    {{#with viewLink}},
+    "viewLink": {
+      "viewDisplayMode": "{{viewDisplayMode}}{{^viewDisplayMode}}BLANK_INAPP{{/viewDisplayMode}}",
+      "viewUrl": "{{viewUrl}}{{^viewUrl}}https://promos.nxt.com.betfair/promotion?promoCode=STYWBFRB{{/viewUrl}}",
+      "viewUrn": "{{viewUrn}}{{^viewUrn}}ppb:tbd:view:external:external{{/viewUrn}}"
+    }
+    {{/with}}
+  }
+  {{/with}}
+  {{else}}
+  "link": null
+  {{/if}}
+},
+{{/with}}
+{{else}}
+"termsAndConditions": null,
+{{/if}}
+{{#if ladderLevels}}
+"ladderLevels": [
+  {{#each ladderLevels}}
+  {
+    "__typename": "PPHPromotionLaddersLevels",
+    "fulfilled": {{#if fulfilled}}{{fulfilled}}{{else}}null{{/if}},
+    {{#if levels}}
+    {{#with levels}}
+    "levels": {
+      "__typename": "PPHCriteriaStateGauge",
+      "current": {{#if current}}{{current}}{{else}}null{{/if}},
+      "target": {{#if target}}{{target}}{{else}}null{{/if}}
+    }
+    {{/with}}
+    {{else}}
+    "levels": null
+    {{/if}}
+  }{{#unless @last}},{{/unless}}
+  {{/each}}
+],
+{{else}}
+"ladderLevels": null,
+{{/if}}
+"__typename": "{{__typename}}{{^__typename}}BetOpportunityPromoCard{{/__typename}}"

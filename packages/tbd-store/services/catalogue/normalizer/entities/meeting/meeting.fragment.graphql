@@ -1,0 +1,17 @@
+fragment meeting on Meeting {
+  __typename
+  urn
+  name
+  meetingId
+  country
+  countryFlag {
+    small
+    medium
+    large
+  }
+  venue
+  date
+  sport {
+    ...sport
+  }
+}

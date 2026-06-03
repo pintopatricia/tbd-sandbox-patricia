@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--spacing-2);
+
+  height: 100%;
+}
+
+.description {
+  color: var(--neutrals-text-default);
+}
+
+.screenshotFrame {
+  position: relative;
+
+  padding: 0 var(--spacing-5);
+  overflow-y: auto;
+}
+
+.screenshotOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: var(--overlay-stack);
+}
+
+.buttonsContainer {
+  display: flex;
+
+  gap: var(--spacing-2);
+
+  margin-top: auto;
+}

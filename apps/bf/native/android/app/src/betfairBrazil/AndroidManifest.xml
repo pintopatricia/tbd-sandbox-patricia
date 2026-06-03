@@ -1,0 +1,46 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" package="com.betfair.tbd">
+  <application android:usesCleartextTraffic="true" android:name=".MainApplication" tools:replace="android:label,android:allowBackup" android:label="@string/I18N.ANDROID.APP_NAME" android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round" android:allowBackup="false" android:theme="@style/AppTheme">
+    <activity
+      android:name=".MainActivity"
+      android:label="@string/I18N.ANDROID.APP_NAME"
+      android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+      android:screenOrientation="portrait"
+      android:launchMode="singleTask"
+      android:windowSoftInputMode="adjustResize"
+      android:exported="true"
+      tools:node="replace" >
+      <!-- App Scheme Config -->
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.INFO" />
+        <data android:scheme="bfe" />
+        <data android:scheme="bsm" />
+        <data android:scheme="fb-messenger" />
+        <data android:scheme="mailto" />
+        <data android:scheme="sms" />
+        <data android:scheme="twitter" />
+        <data android:scheme="whatsapp" />
+      </intent-filter>
+      <!-- App Links Config -->
+      <intent-filter android:autoVerify="true">
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.INFO" />
+        <data android:host="www.betfair.bet.br" android:pathPrefix="/apostas" android:scheme="https" />
+      </intent-filter>
+      <intent-filter android:autoVerify="true">
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.INFO" />
+        <data android:host="promos.betfair.bet.br" android:scheme="https" />
+      </intent-filter>
+    </activity>
+  </application>
+</manifest>

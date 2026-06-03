@@ -1,0 +1,15 @@
+fragment searchBarCard on SearchBarCard {
+  __typename
+   searchTitle:title {
+    ...displayNameTitle
+  },
+  searchPlaceholder: placeholder {
+    ...displayNameTitle
+  }
+  urn
+}
+
+fragment searchBarCardPartial on SearchBarCard {
+  __typename
+  urn
+}

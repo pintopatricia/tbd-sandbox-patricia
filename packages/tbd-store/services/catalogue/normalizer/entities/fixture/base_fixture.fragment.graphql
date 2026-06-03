@@ -1,0 +1,15 @@
+fragment baseFixture on BaseFixture {
+  __typename
+  urn
+  sportevent {
+    ...sportEvent
+  }
+  mainMarket {
+    exchange {
+      ...exchangeMarketLiveData
+    }
+    sportsbook {
+      ...sportsbookMarketLiveData
+    }
+  }
+}

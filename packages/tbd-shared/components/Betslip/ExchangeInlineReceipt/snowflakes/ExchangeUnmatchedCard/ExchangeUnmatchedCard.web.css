@@ -1,0 +1,17 @@
+.notifications:not(:last-child) {
+  margin-bottom: var(--spacing-2);
+}
+
+.actions {
+  display: flex;
+}
+
+.actionItem {
+  display: flex;
+
+  flex: 1 1 50%;
+}
+
+.actionItem:not(:last-child) {
+  margin-right: var(--spacing-2);
+}

@@ -1,0 +1,13 @@
+const SECONDARY_EVENT_CARD = "secondary-event-card";
+const SECONDARY_EVENT_CARD_VIEW = `${SECONDARY_EVENT_CARD}-view`;
+const START_TIME_SELECTOR = `${SECONDARY_EVENT_CARD}-start-time-selector`;
+const RUNNER_HOME_NAME = `${SECONDARY_EVENT_CARD}-runner-home-name`;
+const RUNNER_AWAY_NAME = `${SECONDARY_EVENT_CARD}-runner-away-name`;
+
+module.exports = {
+  SECONDARY_EVENT_CARD,
+  SECONDARY_EVENT_CARD_VIEW,
+  START_TIME_SELECTOR,
+  RUNNER_HOME_NAME,
+  RUNNER_AWAY_NAME,
+};

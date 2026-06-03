@@ -1,0 +1,12 @@
+fragment runnerInfoCard on RunnerInfoCard {
+  __typename
+  urn
+  raceRunner {
+    ...raceRunner
+  }
+}
+
+fragment runnerInfoCardPartial on RunnerInfoCard {
+  __typename
+  urn
+}

@@ -1,0 +1,35 @@
+{
+	"data": {
+		"View": {
+			"__typename": "GenericView",
+			"title": {{#if title}}"{{title}}"{{else}}null{{/if}},
+			"urn": "{{urn}}{{^urn}}ppb:tbd:view:generic:home{{/urn}}",
+			"url": "{{url}}{{^url}}{{/url}}",
+			"canonicalUrl": "{{canonicalUrl}}{{^canonicalUrl}}/sport/{{/canonicalUrl}}",
+      "category": {{#if category}}"{{category}}"{{else}}null{{/if}},
+			"viewHeader": {
+				{{> bff-view-header viewHeader }}
+			},
+			"leftSidebar": {
+				{{> bff-leftside-bar }}
+			},
+			"items": {
+				"pageInfo": null,
+				{{> bff-items }}
+			},
+			"partialItems": {
+				{{> bff-partial-items }}
+			}
+      {{#if withBottomBar}}
+      ,"bottomBar": {
+				{{> bff-bottom-bar-tiles }}
+			}
+      {{/if}}
+      {{#if regulatoryData}}
+        ,"regulatoryData": {
+          {{> bff-regulatory-data }}
+        }
+      {{/if}}
+		}
+	}
+}

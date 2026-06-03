@@ -1,0 +1,36 @@
+fragment contentSummaryCard on ContentSummaryCard {
+  __typename
+  urn
+  sections {
+    sectionType
+    title
+    includeToFaq
+    breadcrumbs {
+      urn
+      __typename
+    }
+    items {
+      __typename
+      ... on ContentSummaryGroupLinkItem {
+        subtitle
+        items {
+          alignment
+          text
+          viewLink {
+            viewUrl
+            viewUrn
+          }
+        }
+      }
+      ... on ContentSummaryTextItem {
+        alignment
+        text
+      }
+    }
+  }
+}
+
+fragment contentSummaryCardPartial on ContentSummaryCard {
+  __typename
+  urn
+}

@@ -1,0 +1,15 @@
+{
+  "__typename":"PreferenceSingleChoice",
+  "urn":"{{urn}}{{^urn}}ppb:tbd:preference:singleChoice:sportsbookOddsDisplay{{/urn}}",
+  "preferenceKey":"{{preferenceKey}}{{^preferenceKey}}sportsbookOddsDisplay{{/preferenceKey}}",
+  "preferenceValues":[
+  {{#each preferenceValues}}
+    {
+    "value":"{{value}}{{^value}}FRACTIONAL{{/value}}",
+    "translationKey":"{{translationKey}}{{^translationKey}}I18N.PREFERENCES.SPORTSBOOK_ODDS_DISPLAY.FRACTIONAL{{/translationKey}}"
+    }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+  ],
+  "selectedValueIndex":{{selectedValueIndex}}{{^selectedValueIndex}}0{{/selectedValueIndex}}
+}

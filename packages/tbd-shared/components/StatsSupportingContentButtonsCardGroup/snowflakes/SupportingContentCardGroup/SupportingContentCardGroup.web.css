@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--supporting-content-card-group-vertical-gap);
+
+  padding: var(--supporting-content-card-group-padding);
+}
+
+.content {
+  padding: var(--supporting-content-card-group-content-card-padding);
+
+  background-color: var(--supporting-content-card-group-content-card-background);
+}
+
+[class*="childWrapper"]:has(.swimlaneItem) {
+  flex: 1;
+}
+
+@media screen and (min-width: 900px) {
+  /* Remove swimlane and broadcast desktop paddings that doesn't align with my bets */
+  .container section {
+    padding: 0;
+  }
+}

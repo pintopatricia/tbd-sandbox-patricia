@@ -1,0 +1,27 @@
+fragment eventView on EventView {
+  __typename
+  urn
+  url
+  items(autoPageSize: true) {
+    ...viewItems
+  }
+  canonicalUrl
+  partialItems: items {
+    ...viewItemsPartial
+  }
+  sportevent {
+    ...sportEvent
+  }
+  bottomBar @include(if: $withBottomBar) {
+    ...bottomBar
+  }
+  leftSidebar @include(if: $withLeftSidebar) {
+    ...leftSidebar
+  }
+  regulatoryData @include(if: $withRegulatoryData) {
+    ...regulatoryData
+  }
+  xsellBar {
+    ...XSellBar
+  }
+}

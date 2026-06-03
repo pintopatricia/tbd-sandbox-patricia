@@ -1,0 +1,200 @@
+{
+  "project_info": {
+    "project_number": "119308048373",
+    "project_id": "bfapps-development",
+    "storage_bucket": "bfapps-development.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119308048373:android:4c8ad66af6dd2d578972bc",
+        "android_client_info": {
+          "package_name": "com.betfair.arcade.app.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAQ4P6mphrAaFudl1WmF1HBKjXW7A7RSo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119308048373:android:a6c048f2d9cd08228972bc",
+        "android_client_info": {
+          "package_name": "com.betfair.bingo.app.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAQ4P6mphrAaFudl1WmF1HBKjXW7A7RSo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119308048373:android:f78a618f46448ed58972bc",
+        "android_client_info": {
+          "package_name": "com.betfair.casino.app.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAQ4P6mphrAaFudl1WmF1HBKjXW7A7RSo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119308048373:android:c6fbc833265f16cc8972bc",
+        "android_client_info": {
+          "package_name": "com.betfair.exchange.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAQ4P6mphrAaFudl1WmF1HBKjXW7A7RSo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119308048373:android:845237c2fef6927a8972bc",
+        "android_client_info": {
+          "package_name": "com.betfair.exchange.qa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAQ4P6mphrAaFudl1WmF1HBKjXW7A7RSo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119308048373:android:fdd0b0eed9bb81318972bc",
+        "android_client_info": {
+          "package_name": "com.betfair.tbd.inhouse"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAQ4P6mphrAaFudl1WmF1HBKjXW7A7RSo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119308048373:android:892a65d8a5c464108972bc",
+        "android_client_info": {
+          "package_name": "com.betfair.tbd.qa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAQ4P6mphrAaFudl1WmF1HBKjXW7A7RSo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119308048373:android:6843af4531638b4c8972bc",
+        "android_client_info": {
+          "package_name": "com.betfair.tbdui.storybook"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAQ4P6mphrAaFudl1WmF1HBKjXW7A7RSo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119308048373:android:2ef115f724f782ca8972bc",
+        "android_client_info": {
+          "package_name": "com.betfair.vegas.app.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAQ4P6mphrAaFudl1WmF1HBKjXW7A7RSo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119308048373:android:4faf077d791e9d988972bc",
+        "android_client_info": {
+          "package_name": "com.betfair.vegasromania.app.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAQ4P6mphrAaFudl1WmF1HBKjXW7A7RSo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,21 @@
+fragment sportsbookBetLegCardGroup on SportsbookBetLegCardGroup {
+  __typename
+  urn
+  full: items {
+    edges {
+      node {
+        ...fixtureCard
+        ...eventHeaderCard
+        ...raceDetailsCard
+        ...sportsbookBetLegCard
+        ...StatsPebbleCardGroupBaseData
+        ...StatsSupportingContentButtonsCardGroupBaseData
+      }
+    }
+  }
+}
+
+fragment sportsbookBetLegCardGroupPartial on SportsbookBetLegCardGroup {
+  __typename
+  urn
+}

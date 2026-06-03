@@ -1,0 +1,90 @@
+.container {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--banner-card-gap);
+
+  padding: var(--banner-card-padding);
+
+  background-color: var(--banner-card-background-colour);
+  border: var(--banner-card-default-border);
+  border-radius: var(--banner-card-border-radius);
+}
+
+.topContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--banner-card-tracker-section-vertical-gap-primary);
+}
+
+.trackingCounter {
+  text-wrap: nowrap;
+}
+
+.trackingCounterValueIconWrapper {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: var(--tracking-bar-enhanced-tracking-counter-icon-sizing);
+}
+
+.supportingText {
+  font: var(--banner-card-supporting-text-typography);
+  color: var(--banner-card-text-supporting-text-colour);
+}
+
+.logoContainer {
+  display: flex;
+
+  flex-direction: row;
+
+  gap: var(--banner-card-tracker-section-vertical-gap-primary);
+}
+
+.logoIconContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.logoIconContainer svg {
+  width: var(--banner-card-tracker-section-icon-width-sizing);
+  height: var(--banner-card-tracker-section-icon-height-sizing);
+}
+
+.logoTextContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--banner-card-tracker-section-vertical-gap-secondary);
+
+  justify-content: center;
+
+  font: var(--banner-card-content-text-typography);
+  color: var(--banner-card-text-content-text-colour);
+}
+
+.logoTextSecondLineContainer {
+  display: flex;
+
+  flex-direction: row;
+
+  gap: var(--banner-card-tracker-section-horizontal-gap-secondary);
+
+  align-items: center;
+}
+
+.logoTextSecondLineText {
+  flex: 1 0 0;
+}
+
+.highlightedText {
+  font: var(--banner-card-content-text-highlighted-typography);
+}

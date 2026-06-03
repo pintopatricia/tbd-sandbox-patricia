@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  height: 100%;
+}
+
+.head2headResult {
+  width: 100%;
+}
+
+.border {
+  margin-top: var(--spacing-6);
+
+  border-bottom: 1px solid var(--neutrals-border-elevation1);
+}
+
+.caption {
+  margin: var(--spacing-3);
+}

@@ -1,0 +1,25 @@
+fragment marketBetExpandableCardGroup on MarketBetExpandableCardGroup {
+  __typename
+  urn
+  isOpen: isExpanded
+  marketBetCardGroupURN
+  full: items {
+    edges {
+      node {
+        ...marketBetSelectionCardGroup
+      }
+    }
+  }
+  partials: items {
+    edges {
+      node {
+        ...marketBetSelectionCardGroupPartial
+      }
+    }
+  }
+}
+
+fragment marketBetExpandableCardGroupPartial on MarketBetExpandableCardGroup {
+  __typename
+  urn
+}

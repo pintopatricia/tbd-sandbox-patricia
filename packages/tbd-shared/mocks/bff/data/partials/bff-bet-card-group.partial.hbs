@@ -1,0 +1,14 @@
+"__typename":"BetCardGroup",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:bet:group:1145046730{{/urn}}",
+"aggregatorDesc": "{{aggregatorDesc}}{{^aggregatorDesc}}event xpto{{/aggregatorDesc}}",
+"aggregatorId": "{{aggregatorId}}{{^aggregatorId}}1234{{/aggregatorId}}",
+{{#with full}}
+    "full":{
+        {{> bff-items }}
+    }
+{{/with}}
+{{#with partials}},
+    "partials":{
+      {{> bff-partial-items }}
+    }
+{{/with}}

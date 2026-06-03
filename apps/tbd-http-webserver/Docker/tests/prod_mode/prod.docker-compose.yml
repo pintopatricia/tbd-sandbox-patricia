@@ -1,0 +1,38 @@
+version: "3.4"
+services:
+  http-webserver-proxy:
+    image: ppb/tbd/bff/tests/http-webserver-proxy
+    build:
+      context: ${PWD}
+      dockerfile: Docker/tests/dev-regression.Dockerfile
+    environment:
+      - NODE_ENV=dev
+      - TZ=America/Los_Angeles
+      - GLOBAL_AGENT_HTTP_PROXY=http://mockServer:1081
+      - NODE_TLS_REJECT_UNAUTHORIZED=0
+    command: "node --enable-experimental-regexp-engine-on-excessive-backtracks -r ./regression-tests/config/mock-date.js -r 'global-agent/bootstrap' /fabric/bin/fabric.js run /etc/bf-fabric/config-http.json"
+    volumes:
+      - ${PWD}/config/certificates/:/etc/bf-fabric/certificates
+      - ${PWD}/config/config-http-proxy.json:/etc/bf-fabric/config-http.json
+      - ${PWD}/lib:/fabric/deploy/tbd-http-webserver/lib
+      - ${PWD}/lib/config/environment.json:/fabric/deploy/tbd-http-webserver/dist/tbd-http-webserver-v1/lib/config/environment.json:ro
+    ports:
+      - "8081:8081"
+
+  testexecutor:
+    image: ppb/tbd/http-webserver/tests/testexecutor
+    environment:
+      - MOCKSERVER_HOST=mockServer
+      - MOCKSERVER_PORT=1081
+      - STRAND_URL=http://http-webserver-proxy:8081/api/
+      - STRAND_2_URL=http://http-webserver-proxy:8081/api/
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - MONTEROSA_TOKEN=${MONTEROSA_TOKEN}
+    build:
+      context: ${PWD}
+      dockerfile: Docker/tests/prod_mode/testexecutor.Dockerfile
+    command: "sh run-all-tests.sh"
+    platform: linux/amd64 # m1 fix
+    depends_on:
+      - mockServer
+      - http-webserver-proxy

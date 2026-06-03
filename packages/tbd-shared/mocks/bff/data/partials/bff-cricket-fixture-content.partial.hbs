@@ -1,0 +1,35 @@
+"__typename": "{{__typename}}{{^__typename}}CricketFixture{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:fixture:45617892{{/urn}}",
+"id": "{{id}}{{^id}}45617892{{/id}}",
+"isAmericanFormat": {{#if isAmericanFormat}}true{{else}}false{{/if}},
+"runnerNames": {{#if runnerNames}}{
+  "home": "{{runnerNames.home}}{{^runnerNames.home}}New York Knicks{{/runnerNames.home}}",
+  "away": "{{runnerNames.away}}{{^runnerNames.away}}Philadelphia 76ers{{/runnerNames.away}}"
+}{{else}}null{{/if}},
+"currentTeamBatting": "{{currentTeamBatting}}{{^currentTeamBatting}}HOME{{/currentTeamBatting}}",
+{{#with currentTime}}
+"currentTime": {
+  "inning": {{inning}}{{^inning}}1{{/inning}},
+  "over": {{over}}{{^over}}null{{/over}}
+},
+{{/with}}
+{{#if cricketScore}}
+{{#with cricketScore}}
+"score": {
+  "home": [
+    {{#each home}}
+      { {{> bff-cricket-scores}} }
+      {{#unless @last}},{{/unless}}
+    {{/each}}
+  ],
+  "away": [
+    {{#each away}}
+      { {{> bff-cricket-scores}} }
+      {{#unless @last}},{{/unless}}
+    {{/each}}
+  ]
+}
+{{/with}}
+{{else}}
+"score": null
+{{/if}}

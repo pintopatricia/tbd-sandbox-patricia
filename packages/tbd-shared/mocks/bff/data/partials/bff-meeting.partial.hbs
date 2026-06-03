@@ -1,0 +1,17 @@
+"__typename": "{{__typename}}{{^__typename}}Meeting{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:meeting:111111111{{/urn}}",
+"name": "{{name}}{{^name}}Wind 13th Jul{{/name}}",
+"country": "{{country}}{{^country}}GB{{/country}}",
+"date": "{{date}}{{^date}}2020-12-10T17:20:00.000Z{{/date}}",
+{{#if countryFlag}}
+  "countryFlag": {
+  {{#each countryFlag}}
+    "{{@key}}": "{{this}}"
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+  },
+{{/if}}
+"venue": "{{venue}}{{^venue}}Windsor{{/venue}}",
+"sport": {
+  {{> bff-sport sport}}
+}

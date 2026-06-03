@@ -1,0 +1,9 @@
+
+  "__typename": "{{__typename}}{{^__typename}}LinksCard{{/__typename}}",
+  "urn": "{{urn}}{{^urn}}ppb:tbd:card:links:myaccount#menuSection{{/urn}}",
+  "section": [
+         {{#each section}}{
+            {{> bff-links-menu-sections }}
+        }{{#unless @last}},{{/unless}}{{/each}}
+    ]
+            

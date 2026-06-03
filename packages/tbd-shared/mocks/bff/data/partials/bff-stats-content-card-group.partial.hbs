@@ -1,0 +1,31 @@
+"__typename": "StatsContentCardGroup",
+"urn": "{{urn}}{{^urn}}ppb:tbd:stats:cardgroup:statsContent:Zo_esxAAACIAftCe/e/1{{/urn}}",
+{{#with partials}}
+"partials":{
+  "__typename":"StatsContentItemsConnection",
+  "edges":[
+    {{#each edges}}
+    {
+      "__typename":"{{typename}}{{^typename}}StatsPebbleItemEdge{{/typename}}",
+      "type":"{{type}}{{^type}}FORM{{/type}}",
+      {{#if displayName}}
+      {{#with displayName}}
+      "displayName": {
+        "__typename":"{{__typename}}{{^__typename}}DisplayNameTranslationKey{{/__typename}}",
+        "translationKey":{{#if translationKey}}"{{translationKey}}"{{else}}null{{/if}}
+      },
+      {{/with}}
+      {{else}}
+      "displayName": null,
+      {{/if}}
+      {{#with node}}
+      "node":{
+        "__typename":"{{__typename}}{{^__typename}}StatsPebbleCardGroup{{/__typename}}",
+        "urn":"{{urn}}{{^urn}}ppb:tbd:stats:cardgroup:pebble:1{{/urn}}"
+      }
+      {{/with}}
+    }{{#unless @last}},{{/unless}}
+    {{/each}}
+  ]
+}
+{{/with}}

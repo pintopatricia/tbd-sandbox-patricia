@@ -1,0 +1,64 @@
+{
+  "files": [
+    {
+      "path": "./dist/app*.js",
+      "maxSize": "245 kB"
+    },
+    {
+      "path": "./dist/vendor*.js",
+      "maxSize": "140 kB"
+    },
+    {
+      "path": "./dist/betslip*.js",
+      "maxSize": "67 kB"
+    },
+    {
+      "path": "./dist/inline-betslip*.js",
+      "maxSize": "21 kB"
+    },
+    {
+      "path": "./dist/translations*.js",
+      "maxSize": "50 kB"
+    },
+    {
+      "path": "./dist/*JackpotJar*.js",
+      "maxSize": "322 kB"
+    },
+    {
+      "path": "./dist/*PrizeMachinePlusBouncer*.js",
+      "maxSize": "53 kB"
+    },
+    {
+      "path": "./dist/football-silks*.js",
+      "maxSize": "50 kB"
+    },
+    {
+      "path": "./dist/+(sbk|exc)-betting-module*.js",
+      "maxSize": "30 kB"
+    },
+    {
+      "path": "./dist/sportsIconsBetfair*.js",
+      "maxSize": "32 kB"
+    },
+    {
+      "path": "./dist/!(sports)*IconsBetfair*.js",
+      "maxSize": "68 kB"
+    },
+    {
+      "path": "./dist/*Confetti*.js",
+      "maxSize": "290 kB"
+    },
+    {
+      "path": "./dist/*SuperSpinsWheel*.js",
+      "maxSize": "650 kB"
+    },
+    {
+      "path": "./dist/StatsLineupsCard*.js",
+      "maxSize": "40 kB"
+    },
+    {
+      "path": "./dist/!(app|vendor|betslip|inline-betslip|translations|*JackpotJar|*PrizeMachinePlusBouncer|football-silks|sbk-betting-module|exc-betting-module|*Icons|*Confetti|*SuperSpinsWheel|StatsLineupsCard)*.js",
+      "maxSize": "33 kB"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+.notFoundViewContainer {
+  margin: 0 var(--spacing-6);
+}
+
+.notFoundViewContainer .relatedLinks {
+  display: flex;
+
+  justify-content: center;
+
+  color: var(--neutrals-text-default);
+}
+
+.link {
+  display: inline-flex;
+
+  flex-flow: column;
+
+  align-items: center;
+
+  padding: var(--spacing-8) var(--spacing-4) var(--spacing-4);
+
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
+.iconContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 80px;
+  height: 80px;
+
+  background-color: var(--neutrals-background-elevation3);
+  border-radius: 50%;
+}
+
+.icon {
+  width: var(--icon-size-large);
+  height: var(--icon-size-large);
+}
+
+.text {
+  margin-top: var(--spacing-2);
+
+  color: var(--neutrals-text-default);
+  text-align: center;
+}

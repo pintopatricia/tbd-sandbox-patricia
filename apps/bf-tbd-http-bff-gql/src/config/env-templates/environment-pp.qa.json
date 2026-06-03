@@ -1,0 +1,310 @@
+{
+  "HOMEPAGE_PATHS": "",
+  "HOST": "www.paddypower.{domain_extension}.qa.ppbdev.com/",
+  "PRODUCT_CLUSTER": "SBK",
+  "SWA": {
+    "MAINTENANCE_URL": {
+      "INTERNATIONAL": "https://maintenance.paddypower.{domain_extension}/"
+    },
+    "SPLASH_FLARE_PRODUCTS": {
+      "Native": {
+        "sportsbook": [],
+        "games": []
+      },
+      "Web": {
+        "sportsbook": [],
+        "games": []
+      },
+      "redirectProducts": []
+    }
+  },
+  "MY_ACCOUNT": {
+    "HOST": "https://myaccount.paddypower.{domain_extension}/",
+    "PERSONAL_DETAILS": "myaccountx/personaldetails",
+    "NOTIFICATIONS": "myaccountx/notifications",
+    "PROMOTIONS_URL": "https://promos.paddypower.{domain_extension}/sport?prod=90&hideHeader=true&returnURL=https%3A%2F%2Fwww.paddypower.com"
+  },
+  "CONTENT": {
+    "TBD-REPO": "paddypower",
+    "GAMES-REPO": {
+      "INTERNATIONAL": "paddypower-com"
+    },
+    "JURISDICTIONS": {
+      "BRAZIL": {
+        "LANGUAGE_FALLBACK": "en_GB"
+      },
+      "DENMARK": {
+        "LANGUAGE_FALLBACK": "da"
+      },
+      "INTERNATIONAL": {
+        "LANGUAGE_FALLBACK": "en_GB"
+      },
+      "SPAIN": {
+        "LANGUAGE_FALLBACK": "es"
+      },
+      "ITALY": {
+        "LANGUAGE_FALLBACK": "it"
+      },
+      "ROMANIA": {
+        "LANGUAGE_FALLBACK": "ro"
+      }
+    }
+  },
+  "GRAPHQL": {
+    "PERSISTED_QUERIES_ONLY": false,
+    "ALLOW_INTROSPECTION_QUERIES": true
+  },
+  "LRU_DISABLE_CACHE_HEADER_NAME": "disableLruCache",
+  "ALLOW_QUERY_CACHE": true,
+  "SEO_PRODUCT": "REBUILD",
+  "EXTENSIONS": {
+    "DISPLAY_CMS_MAP_RESULTS": false
+  },
+  "ENABLE_OUTBOUND_REQUESTS_DEBUGGER": false,
+  "APP_KEYS": {
+    "IOS": "TpanpZDc8nIWso0P",
+    "ANDROID": "SQBaRmaGuPZoCPPi",
+    "WEB": "La6LWokES0cmKroF",
+    "DESKTOP": "puOD27sYaAlXSONc",
+    "EXPERIMENTATIONS": "XymxaWUIKZ2hryn4"
+  },
+  "VIDEO_PLAYER": {
+    "HOST": "https://bvp.paddypower.{domain_extension}/",
+    "ARCHIVE_PATH": "GetPlayer.do?contentType=vid",
+    "TRACK_IDS": {
+      "WEB": 1036,
+      "IOS": 1037,
+      "ANDROID": 1038
+    }
+  },
+  "VIRTUALS_RULES_URL": "https://helpcenter.paddypower.com/app/answers/detail/virtual-sports-rules/",
+  "VIRTUALS_SPORTS_CONFIG": [
+    {
+      "sportId": "100",
+      "liveVideoURL": "https://paddypower.streamamg.com/horsesflats.html",
+      "sportName": "I18N.VIRTUAL_SPORT.HORSES_FLAT"
+    },
+    {
+      "sportId": "0",
+      "liveVideoURL": "https://paddypower.streamamg.com/horses.html",
+      "sportName": "I18N.VIRTUAL_SPORT.HORSES_JUMPS"
+    },
+    {
+      "sportId": "10",
+      "liveVideoURL": "https://paddypower.streamamg.com/horsessprints.html",
+      "sportName": "I18N.VIRTUAL_SPORT.HORSES_SPRINTS"
+    },
+    {
+      "sportId": "9",
+      "liveVideoURL": "https://paddypower.streamamg.com/football2.html",
+      "sportName": "I18N.VIRTUAL_SPORT.WORLD_CUP"
+    },
+    {
+      "sportId": "4",
+      "liveVideoURL": "https://paddypower.streamamg.com/football.html",
+      "sportName": "I18N.VIRTUAL_SPORT.CLUB_FOOTBALL"
+    },
+    {
+      "sportId": "1",
+      "liveVideoURL": "https://paddypower.streamamg.com/dogs.html",
+      "sportName": "I18N.VIRTUAL_SPORT.GREYHOUNDS"
+    },
+    {
+      "sportId": "3",
+      "liveVideoURL": "https://paddypower.streamamg.com/motorsports.html",
+      "sportName": "I18N.VIRTUAL_SPORT.MOTOR_RACING"
+    }
+  ],
+  "USER_DETAILS_DEFAULTS": {
+    "TIMEZONE": "Europe/London",
+    "JURISDICTIONS": {
+      "BRAZIL": {
+        "USER_PRODUCTS": "sportsbook,exchange,games",
+        "FEATURE_EXCLUSIONS": "",
+        "MY_BETS_RANGE": 2
+      },
+      "DENMARK": {
+        "USER_PRODUCTS": "sportsbook,exchange,games",
+        "FEATURE_EXCLUSIONS": "VIRTUALS",
+        "MY_BETS_RANGE": 2
+      },
+      "INTERNATIONAL": {
+        "USER_PRODUCTS": "sportsbook,exchange,games",
+        "FEATURE_EXCLUSIONS": "",
+        "MY_BETS_RANGE": 90
+      },
+      "SPAIN": {
+        "USER_PRODUCTS": "sportsbook,exchange,games",
+        "FEATURE_EXCLUSIONS": "VIRTUALS",
+        "MY_BETS_RANGE": 2
+      },
+      "ITALY": {
+        "USER_PRODUCTS": "sportsbook,exchange,games",
+        "FEATURE_EXCLUSIONS": "VIRTUALS,CASHOUT,POPULAR_BET_BUILDER",
+        "MY_BETS_RANGE": 90
+      },
+      "ROMANIA": {
+        "USER_PRODUCTS": "sportsbook,exchange,games",
+        "FEATURE_EXCLUSIONS": "VIRTUALS",
+        "MY_BETS_RANGE": 2
+      }
+    }
+  },
+  "DOMAIN_EXTENSIONS": {
+    "BRAZIL": "bet.br",
+    "DENMARK": "com",
+    "INTERNATIONAL": "com",
+    "SPAIN": "es",
+    "ITALY": "it",
+    "ROMANIA": "ro"
+  },
+  "SSC_CLIENT_CONFIG": {
+    "BRAND": "paddypower",
+    "PRODUCT": "sportsbook",
+    "VERSION": "1",
+    "CHANNEL": {
+      "MOBILE": "mobile",
+      "DESKTOP": "desktop"
+    },
+    "CLIENT_NAME": {
+      "MOBILE": "native",
+      "DESKTOP": "sportsbook"
+    }
+  },
+  "PPH_CONFIG": {
+    "BRAND": "PADDYPOWER",
+    "CLIENT_ID": "SPORTSBOOK",
+    "GAMING_CLIENT_ID": "gaming",
+    "MAX_LIMIT": 50,
+    "JURISDICTION_OVERRIDE": {}
+  },
+  "LOOP_CLIENT_CONFIG": {
+    "BRAND": "PP"
+  },
+  "CLOUDFLARE_TRANSFORM_OPTIONS": "f=auto,q=90,w=300",
+  "CLOUDFLARE_WHITELIST_DOMAINS": [".*pma-s3.betfair.com", ".*cdnppb.net"],
+  "IMAGE_RESIZE_DEFAULT_WIDTH": 300,
+  "PRODUCT_ID": 90,
+  "PRISMIC_CDN": ["images.prismic.io"],
+  "GZUSERACTIVITY_PRODUCTS": {
+    "INTERNATIONAL": ["gaming"],
+    "DENMARK": ["casino"],
+    "ROMANIA": ["vegas-ro", "gaming"],
+    "SPAIN": ["casino", "arcade"],
+    "ITALY": ["casino", "vegas-it"],
+    "BRAZIL": ["gaming"]
+  },
+  "CDV": {
+    "TAG": "CdV-dontuse"
+  },
+  "GFS_PRODUCT": "gaming",
+  "JURISDICTION_URL_MINIGAME": {
+    "INTERNATIONAL": {
+      "HOST": "https://casino.betfair.com/",
+      "PATH": {
+        "en_GB": "prize-pinball",
+        "en": "prize-pinball",
+        "pt_BR": "pt-br/prize-pinball",
+        "es_419": "es/prize-pinball",
+        "ru": "ru-ru/prize-pinball",
+        "de": "de-de/prize-pinball",
+        "fi": "prize-pinball",
+        "no": "no-no/prize-pinball",
+        "hu": "hu-hu/prize-pinball"
+      }
+    }
+  },
+  "JURISDICTION_URL_FREE_BETS_WALLET": {
+    "INTERNATIONAL": "https://support.betfair.com/app/answers/list/c/456"
+  },
+  "JURISDICTION_URL_BONUS_PAGE": {
+    "INTERNATIONAL": "https://promos.paddypower.com/mybonuses/sport"
+  },
+  "PRODUCT_EXCLUSION": {
+    "SELF_EXCLUDED_PAGE": false,
+    "EXCLUSION_PRODUCT_MAP": {
+      "gaming": ["GAMES"],
+      "vsports": ["VIRTUALS"]
+    }
+  },
+  "GAMING_SEARCH_PRODUCTS": {
+    "INTERNATIONAL": "gaming"
+  },
+  "TRENDING_GAMES_CONFIG": {
+    "BRAND": "paddypower",
+    "DISPLAY_PRODUCTS": {
+      "INTERNATIONAL": "gaming"
+    }
+  },
+  "BECAUSE_YOU_PLAYED_CONFIG": {
+    "BRAND": "paddypower",
+    "PRODUCTS": {
+      "INTERNATIONAL": "gaming"
+    },
+    "NUM_RECOMMENDATIONS": 30
+  },
+  "FAVOURITE_GAMES_PRODUCTS": {
+    "INTERNATIONAL": "gaming"
+  },
+  "BRAND_SETTINGS": {
+    "MINIMIZE_BETSLIP": true,
+    "ACCA_FREEZE": false,
+    "SKYBETCLUB": false,
+    "ENABLE_CIP_BANNER": false,
+    "ERROR_VIEW_IMAGE": false,
+    "SHOW_X_SELL_BAR": false,
+    "MAINTENANCE_PAGE_TWITTER_WIDGET": false,
+    "REDIRECT_TO_GAMING_PAGE": false,
+    "SHOW_SELECTION_TYPE_ICON": true,
+    "SPORTSBOOK_BET_BUTTON_ANIMATION": true,
+    "MYBETS_BET_PANEL_SUPPORTING_TEXT": true,
+    "BASE_URL_HAS_PATH": true,
+    "RACES_BY_TIME_GRID": false
+  },
+  "COOKIES_WHITELIST": {
+    "tbdlcsp": "FUNCTIONALITY",
+    "tbd_dp": "FUNCTIONALITY",
+    "tbd_lvp": "FUNCTIONALITY"
+  },
+  "HIGHLIGHT_HEADER_CARDS": false,
+  "SHOW_INCIDENTS_CARD": true,
+  "WMS_V2_ENABLED": false,
+  "BACK_NAVIGATION_ITEM": false,
+  "GAMING_NAVIGATION": false,
+  "TRANSACTION_HISTORY_LINK": "https://myactivity.paddypower.com/transactions/",
+  "TRANSACTION_HISTORY_JURISDICTION_LINK": {
+    "INTERNATIONAL": "https://myactivity.paddypower.com/transactions/"
+  },
+  "MY_BETS_EMPTY_STATE_IMAGE": true,
+  "MYBETS_BET_PANEL_OPEN_BY_DEFAULT": false,
+  "MY_BETS_BET_SHARING": false,
+  "GAMING_DISPLAY_ODDS": true,
+  "GAMING_MAX_CARDGROUP_ITEMS": 0,
+  "MIN_UPSELL_SELECTIONS": 2,
+  "MAX_UPSELL_SELECTIONS": 2,
+  "MAX_UPSELL_OFFERINGS": 3,
+  "SIB_MAX_SUGGESTIONS": 5,
+  "MAX_ASA_SELECTIONS": 10,
+  "UPSELL_SPORT_IDS": ["1"],
+  "DEFAULT_RANK_SORTING": "RANK",
+  "PROMO_TRACKER_CONTAINER": "betfair_betslip_tracker",
+  "SETTLEMENT_JURISDICTION_LINK": {
+    "INTERNATIONAL": "https://support.betfair.com/app/answers/detail/bet-settlement-queries/"
+  },
+  "SETTINGS_STATIC_TABS": ["SettingsViewBettingPreferences", "SettingsViewPersonalDetails", "SettingsViewNotification"],
+  "EXTERNAL_LINKS": {
+    "SELF_EXCLUSION_SAFER_GAMBLING": {
+      "INTERNATIONAL": {
+        "default": "https://safergambling.paddypower.com"
+      }
+    },
+    "SELF_EXCLUSION_SUPPORT": {
+      "INTERNATIONAL": {
+        "default": "https://support.paddypower.com/"
+      }
+    }
+  },
+  "MONTEROSA": {
+    "HOST": "cdn.monterosa.cloud"
+  }
+}

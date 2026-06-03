@@ -1,0 +1,19 @@
+fragment betSharingCardGroup on BetSharingCardGroup {
+  __typename
+  urn
+  bet {
+    ...sportsbookBet
+  }
+  full: items {
+    edges {
+      node {
+        ...sportsbookBetLegCardGroup
+      }
+    }
+  }
+}
+
+fragment betSharingCardGroupPartial on BetSharingCardGroup {
+  __typename
+  urn
+}

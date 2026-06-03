@@ -1,0 +1,63 @@
+"liveData": {
+"exchangeMarketStatus": "{{exchangeMarketStatus}}{{^exchangeMarketStatus}}OPEN{{/exchangeMarketStatus}}",
+"totalMatched": {{totalMatched}}{{^totalMatched}}5.56365244306876{{/totalMatched}},
+"bspMarket": {{bspMarket}}{{^bspMarket}}false{{/bspMarket}},
+"inplay": {{#if inplay}}true{{else}}false{{/if}},
+"turnInPlayEnabled": {{#unless turnInPlayEnabled}}false{{else}}true{{/unless}}
+{{#if runners}}
+,"runners": [
+  {{#each runners}}
+    {
+      "__typename": "{{__typename}}{{^__typename}}Runner{{/__typename}}",
+      "runnerURN": "{{runnerURN}}{{^runnerURN}}ppb:excRunner:1.1603373550{{/runnerURN}}",
+      "selectionId": {{selectionId}}{{^selectionId}}4804{{/selectionId}},
+      "handicap": {{handicap}}{{^handicap}}0{{/handicap}},
+      "name": "{{name}}{{^name}}Wolves{{/name}}",
+      "resultType": "{{resultType}}{{^resultType}}HOME{{/resultType}}",
+      "marketURN": {{#if marketURN}}"{{marketURN}}"{{else}}null{{/if}},
+      "odds": {
+        "__typename": "{{odds.__typename}}{{^odds.__typename}}SportsbookOdds{{/odds.__typename}}",
+        "decimal": {{odds.decimal}}{{^odds.decimal}}17{{/odds.decimal}}
+        {{#if odds.fractional}}
+          ,"fractional": {
+            {{#with odds.fractional}}
+              {{> bff-fractional-odds }}
+            {{/with}}
+          }
+        {{/if}}
+      },
+      "displayOdds": {
+        {{#with displayOdds}}
+          "__typename": "{{__typename}}{{^__typename}}SportsbookOdds{{/__typename}}",
+          "decimal": {{decimal}}{{^decimal}}17{{/decimal}}
+          {{#if fractional}}
+            ,"fractional": {
+              {{#with fractional}}
+                {{> bff-fractional-odds }}
+              {{/with}}
+            }
+          {{/if}}
+        {{/with}}
+      }
+    }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+  ]
+{{/if}}
+{{#if cashoutQuotes}}
+,"cashoutQuotes": [
+    {{#each cashoutQuotes}}
+      {
+          "__typename": "ExchangeCashoutQuote",
+          "urn":"{{urn}}{{^urn}}ppb:excCashoutQuote:1.171572927/0{{/urn}}",
+          "marketURN":"{{marketURN}}{{^marketURN}}ppb:excMarket:1.171572927{{/marketURN}}",
+          "value":{{value}}{{^value}}null{{/value}},
+          "profit":{{profit}}{{^profit}}null{{/profit}},
+          "currentLiability":{{currentLiability}}{{^currentLiability}}null{{/currentLiability}},
+          "status":"{{status}}{{^status}}UNAVAILABLE{{/status}}"
+      }
+      {{#unless @last}},{{/unless}}
+    {{/each}}
+]
+{{/if}}
+}

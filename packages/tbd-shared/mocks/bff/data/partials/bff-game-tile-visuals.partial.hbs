@@ -1,0 +1,28 @@
+{{#if medium}}
+  {{#with medium}}
+      "medium": {
+        {{#if alt}} "alt": "{{alt}}{{^alt}}randomAlt{{/alt}}" {{else}} "alt": null {{/if}},
+        "url": "{{url}}{{^url}}https://images.prismic.io/betfair-com%2F40e940bb-a9e8-4cef-bfc7-864888b6d939_ageofthegodsgodofstorms_logo.png?auto=compress,format&rect=0,0,900,900&w=450&h=450{{/url}}",
+        "dimensions": {
+          "height": 450,
+          "width": 450
+        }
+      },
+  {{/with}}
+{{else}}
+    "medium": null,
+{{/if}}
+{{#if small}}
+  {{#with small}}
+      "small": {
+        {{#if alt}} "alt": "{{alt}}{{^alt}}randomAlt{{/alt}}" {{else}} "alt": null {{/if}},
+        "url": "{{url}}{{^url}}https://images.prismic.io/betfair-com%2F40e940bb-a9e8-4cef-bfc7-864888b6d939_ageofthegodsgodofstorms_logo.png?auto=compress,format&rect=0,0,900,900&w=225&h=225{{/url}}",
+        "dimensions": {
+          "height": 225,
+          "width": 225
+          }
+      }
+  {{/with}}
+{{else}}
+    "small": null
+{{/if}}

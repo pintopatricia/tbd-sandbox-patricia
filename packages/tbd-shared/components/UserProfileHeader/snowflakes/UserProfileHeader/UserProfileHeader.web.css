@@ -1,0 +1,79 @@
+.header {
+  display: flex;
+
+  flex-direction: row;
+
+  gap: var(--user-profile-header-horizontal-gap);
+
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 45px;
+  padding: var(--user-profile-header-padding);
+
+  background-color: var(--user-profile-header-background-colour);
+  backdrop-filter: blur(8px);
+}
+
+.title {
+  flex-grow: 1;
+
+  font: var(--user-profile-header-title-typography);
+  color: var(--user-profile-header-text-title-colour);
+  text-decoration-line: var(--user-profile-header-title-typography-text-decoration-line);
+  text-transform: var(--user-profile-header-title-typography-text-transform);
+  letter-spacing: var(--user-profile-header-title-typography-letter-spacing);
+}
+
+.balanceContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-end;
+}
+
+.balanceLabel {
+  display: flex;
+
+  align-items: center;
+
+  font: var(--user-profile-header-supporting-text-typography);
+  color: var(--user-profile-header-text-supporting-text-colour);
+  text-decoration-line: var(--user-profile-header-supporting-text-typography-text-decoration-line);
+  text-transform: var(--user-profile-header-supporting-text-typography-text-transform);
+  letter-spacing: var(--user-profile-header-supporting-text-typography-letter-spacing);
+}
+
+.freeBetsBalanceLabel {
+  display: flex;
+
+  align-items: center;
+
+  overflow: hidden;
+
+  font: var(--user-profile-header-supporting-text-bottom-typography);
+  color: var(--user-profile-header-text-supporting-text-bottom-colour);
+  text-decoration-line: var(--user-profile-header-supporting-text-bottom-typography-text-decoration-line);
+  text-overflow: ellipsis;
+  text-transform: var(--user-profile-header-supporting-text-bottom-typography-text-transform);
+  letter-spacing: var(--user-profile-header-supporting-text-bottom-typography-letter-spacing);
+  white-space: nowrap;
+}
+
+.backIconContainer,
+.backIconContainer svg {
+  width: var(--user-profile-header-chevron-icon-sizing);
+  height: var(--user-profile-header-chevron-icon-sizing);
+
+  fill: var(--user-profile-header-icon-chevron-colour);
+}
+
+.closeIconContainer,
+.closeIconContainer svg {
+  width: var(--user-profile-header-close-icon-sizing);
+  height: var(--user-profile-header-close-icon-sizing);
+
+  fill: var(--user-profile-header-icon-close-colour);
+}

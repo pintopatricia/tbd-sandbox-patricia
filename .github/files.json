@@ -1,0 +1,266 @@
+{
+  "global_ignore_files": [
+    {
+      "regex": [
+        "^docs/.*",
+        ".*.md",
+        ".*/ci/.*",
+        ".*jest.config.js",
+        ".test.(ts|js)",
+        ".*gitignore",
+        "^.huskyrc"
+      ]
+    }
+  ],
+  "tbd_http_webserver_ci_build": [
+    {
+      "job": [
+        "tbd_http_webserver_ci_build"
+      ],
+      "regex": [
+        "^apps/tbd-http-webserver/.*",
+        "^packages/tbd-store/.*",
+        "^yarn.lock"
+      ]
+    }
+  ],
+  "tbdn_build_in_house_ios": [
+    {
+      "job": [
+        "tbdn_build_in_house_ios"
+      ],
+      "regex": [
+        "^packages/tbd-shared/.*",
+        "^apps/bf/native/.*",
+        "^Docker/tbdn/.*",
+        "^packages/tbd-store/.*",
+        "^packages/tbd-router/native/.*",
+        "^apps/bf/native/.*spec.*",
+        "^apps/bf/native/tests/config/wdio/conf.blacklist.js",
+        "^packages/tbd-tests/native/.*",
+        "^yarn.lock"
+      ],
+      "job_ignore_files": [
+        "^packages/tbd-shared/.*web.*"
+      ]
+    }
+  ],
+  "tbdn_build_in_house_android": [
+    {
+      "job": [
+        "tbdn_build_in_house_android"
+      ],
+      "regex": [
+        "^packages/tbd-shared/.*",
+        "^apps/bf/native/.*",
+        "^Docker/tbdn/.*",
+        "^packages/tbd-store/.*",
+        "^packages/tbd-router/native/.*",
+        "^apps/bf/native/.*spec.*",
+        "^apps/bf/native/tests/config/wdio/conf.blacklist.js",
+        "^packages/tbd-tests/native/.*",
+        "^yarn.lock",
+        ".github/workflows/check-queue.yml",
+        ".github/workflows/build-android-app.yml"
+      ],
+      "job_ignore_files": [
+        "^packages/tbd-shared/.*web.*"
+      ]
+    }
+  ],
+  "tbdn_ci_build": [
+    {
+      "job": [
+        "tbdn_ci_build"
+      ],
+      "regex": [
+        "^apps/bf/tbd-native.spec",
+        "^packages/tbd-store/clients/catalogue/extracted_queries_v*",
+        "^yarn.lock"
+      ]
+    }
+  ],
+  "tbd_ci_build": [
+    {
+      "job": [
+        "tbd_ci_build"
+      ],
+      "regex": [
+        "^apps/bf/web/.*",
+        "^Docker/tbd/.*",
+        "^packages/tbd-store/.*",
+        "^packages/tbd-shared/.*",
+        "^packages/tbd-router/web/.*",
+        "^packages/tbd-tests/web/.*",
+        "^apps/bf/tbd-mobile-site.spec",
+        "^yarn.lock"
+      ],
+      "job_ignore_files": [
+        "^packages/tbd-store/clients/catalogue/extracted_queries_v.*",
+        "^packages/tbd-shared/.*native.*"
+      ]
+    }
+  ],
+  "tbdsbg_ci_build": [
+    {
+      "job": [
+        "tbdsbg_ci_build"
+      ],
+      "regex": [
+        "^apps/sbg/web/.*",
+        "^Docker/tbd/.*",
+        "^packages/tbd-store/.*",
+        "^packages/tbd-shared/.*",
+        "^packages/tbd-router/web/.*",
+        "^packages/tbd-tests/web/.*",
+        "^apps/sbg/tbdsbg-mobile-site.spec",
+        "^yarn.lock"
+      ],
+      "job_ignore_files": [
+        "^packages/tbd-store/clients/catalogue/extracted_queries_v.*",
+        "^packages/tbd-shared/.*native.*"
+      ]
+    }
+  ],
+  "tbdnsbg_ci_build": [
+    {
+      "job": [
+        "tbdnsbg_ci_build"
+      ],
+      "regex": [
+        "^apps/sbg/tbdsbg-native.spec",
+        "^packages/tbd-store/clients/catalogue/extracted_queries_v*",
+        "^yarn.lock"
+      ]
+    }
+  ],
+  "tbdnsbg_build_in_house_ios": [
+    {
+      "job": [
+        "tbdnsbg_build_in_house_ios"
+      ],
+      "regex": [
+        "^packages/tbd-shared/.*",
+        "^apps/sbg/native/.*",
+        "^Docker/tbdn/.*",
+        "^packages/tbd-store/.*",
+        "^packages/tbd-router/native/.*",
+        "^apps/bf/native/.*spec.*",
+        "^apps/bf/native/tests/config/wdio/conf.blacklist.js",
+        "^packages/tbd-tests/native/.*",
+        "^yarn.lock"
+      ],
+      "job_ignore_files": [
+        "^packages/tbd-shared/.*web.*"
+      ]
+    }
+  ],
+  "tbdnsbg_build_in_house_android": [
+    {
+      "job": [
+        "tbdnsbg_build_in_house_android"
+      ],
+      "regex": [
+        "^packages/tbd-shared/.*",
+        "^apps/sbg/native/.*",
+        "^Docker/tbdn/.*",
+        "^packages/tbd-store/.*",
+        "^packages/tbd-router/native/.*",
+        "^apps/bf/native/.*spec.*",
+        "^apps/bf/native/tests/config/wdio/conf.blacklist.js",
+        "^packages/tbd-tests/native/.*",
+        "^yarn.lock"
+      ],
+      "job_ignore_files": [
+        "^packages/tbd-shared/.*web.*"
+      ]
+    }
+  ],
+  "tbdps_ci_build": [
+    {
+      "job": [
+        "tbdps_ci_build"
+      ],
+      "regex": [
+        "^packages/tbd-shared/.*",
+        "^packages/tbd-store/.*",
+        "^packages/tbd-router/web/.*",
+        "^apps/ps/web/.*",
+        "^apps/ps/tbdps-mobile-site.spec",
+        "^packages/tbd-tests/web/.*",
+        "^Docker/tbd/.*",
+        "^yarn.lock"
+      ],
+      "job_ignore_files": [
+        "^packages/tbd-store/clients/catalogue/extracted_queries_v.*",
+        "^packages/tbd-shared/.*native.*"
+      ]
+    }
+  ],
+  "tbdpp_ci_build": [
+    {
+      "job": [
+        "tbdpp_ci_build"
+      ],
+      "regex": [
+        "^packages/tbd-shared/.*",
+        "^packages/tbd-store/.*",
+        "^packages/tbd-router/web/.*",
+        "^apps/pp/web/.*",
+        "^apps/pp/tbdpp-mobile-site.spec",
+        "^packages/tbd-tests/web/.*",
+        "^Docker/tbd/.*",
+        "^yarn.lock"
+      ],
+      "job_ignore_files": [
+        "^packages/tbd-store/clients/catalogue/extracted_queries_v.*",
+        "^packages/tbd-shared/.*native.*"
+      ]
+    }
+  ],
+  "tbdnpp_ci_build": [
+    {
+      "job": [
+        "tbdnpp_ci_build"
+      ],
+      "regex": [
+        "^apps/pp/tbdpp-native.spec",
+        "^packages/tbd-store/clients/catalogue/extracted_queries_v*",
+        "^yarn.lock"
+      ]
+    }
+  ],
+  "tbdexc_ci_build": [
+    {
+      "job": [
+        "tbdexc_ci_build"
+      ],
+      "regex": [
+        "^apps/bf/web/.*",
+        "^Docker/tbd/.*",
+        "^packages/tbd-store/.*",
+        "^packages/tbd-shared/.*",
+        "^packages/tbd-router/web/.*",
+        "^packages/tbd-tests/web/.*",
+        "^apps/bf/tbdexc-mobile-site.spec",
+        "^yarn.lock"
+      ],
+      "job_ignore_files": [
+        "^packages/tbd-store/clients/catalogue/extracted_queries_v.*",
+        "^packages/tbd-shared/.*native.*"
+      ]
+    }
+  ],
+  "tbdnexc_ci_build": [
+    {
+      "job": [
+        "tbdnexc_ci_build"
+      ],
+      "regex": [
+        "^apps/bf/tbdexc-native.spec",
+        "^packages/tbd-store/clients/catalogue/extracted_queries_v*",
+        "^yarn.lock"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+.gamingRibbonCardGroup {
+  display: flex;
+
+  gap: var(--spacing-3);
+}
+
+[class*="childWrapper"]:has(.swimlaneItemContainer.snap) {
+  width: 94%;
+  padding-left: var(--spacing-3);
+  scroll-snap-align: start;
+}
+
+[class*="childWrapper"]:has(.swimlaneItemContainer.supportingContent) {
+  flex: 0 0 100px;
+
+  height: 56px;
+  padding: 0 var(--spacing-1);
+}
+
+[class*="childWrapper"]:has(.swimlaneItemContainer.sportviewlink) {
+  flex-grow: initial;
+
+  padding-right: var(--spacing-3);
+}
+
+[class*="childWrapper"]:has(.swimlaneItemContainer.byTimeRangeMeeting) {
+  flex-grow: 0;
+
+  min-width: 59px;
+}
+
+[class*="childWrapper"]:has(.swimlaneItemContainer.snap):last-child {
+  padding-right: var(--spacing-3);
+}
+
+.navigation {
+  width: 200px;
+}
+
+[class*="childWrapper"]:has(.swimlaneItemContainer.supportingContent):first-child {
+  padding-left: var(--spacing-3);
+}
+
+.highlightedSelection {
+  width: 327px;
+}
+
+.circle {
+  width: 108px;
+}
+
+.game {
+  width: 70vw;
+}
+
+.decoratedGame {
+  width: 40vw;
+  height: 40vw;
+}
+
+/* Size GameCard tiles in the swimlane like the grid's 4-column round tiles */
+.roundGame {
+  flex: 0 0 auto;
+
+  width: calc((100vw - (3 * var(--spacing-6))) / 4);
+  height: calc((100vw - (3 * var(--spacing-6))) / 4 + var(--spacing-7));
+}
+
+.xmallGameTile {
+  flex: 0 0 auto;
+
+  width: var(--game-tile-rectangle-width-sizing);
+  height: calc(var(--game-tile-rectangle-height-sizing) + var(--spacing-7));
+}
+
+/* If swimlane uses SNAP, override its 94% width */
+.roundGame.snap {
+  width: calc((100vw - (3 * var(--spacing-6))) / 4);
+}
+
+.gamingLink {
+  height: var(--highlighted-link-card-container-sizing);
+}
+
+.promotion.snap {
+  width: 90%;
+}
+
+.pinnedRibbonCardGroup {
+  background: var(--page-background-colour);
+}
+
+@media (min-width: 1024px) {
+  .roundGame {
+    width: var(--gaming-round-card-medium-desktop-size);
+    height: calc(var(--gaming-round-card-medium-desktop-size) + var(--spacing-7));
+  }
+
+  .gamingRibbonCardGroup {
+    display: flex;
+
+    padding-top: var(--spacing-4);
+    padding-bottom: var(--spacing-4);
+  }
+}
+
+[class*="childWrapper"]:has(.swimlaneItemContainer.circle):not(:last-child) {
+  margin: 0;
+}
+
+.segmentedTitle {
+  margin: 0 0 var(--spacing-3) 0;
+
+  color: var(--neutrals-text-default);
+}
+
+.segmentedWrapper {
+  position: relative;
+
+  display: flex;
+
+  width: fit-content;
+  height: var(--gaming-card-size);
+}
+
+.segmentedContainer > * {
+  width: var(--gaming-card-size);
+  margin-right: var(--spacing-3);
+}
+
+@media screen and (min-width: 900px) {
+  .roundGame {
+    width: var(--gaming-round-card-small-desktop-size);
+    height: calc(var(--gaming-round-card-small-desktop-size) + var(--spacing-7));
+  }
+
+  .game,
+  .decoratedGame {
+    flex-grow: 0;
+
+    width: var(--gaming-card-small-desktop-size);
+    height: var(--gaming-card-small-desktop-size);
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .roundGame {
+    width: var(--gaming-round-card-large-desktop-size);
+    height: calc(var(--gaming-round-card-large-desktop-size) + var(--spacing-7));
+  }
+
+  .game,
+  .decoratedGame {
+    width: var(--gaming-card-desktop-size);
+    height: var(--gaming-card-desktop-size);
+  }
+}
+
+.favouritesWelcome {
+  margin: 0 0 var(--spacing-3) 0;
+  /* stylelint-disable-next-line property-disallowed-list */
+  font-size: var(--text-size-8);
+  /* stylelint-disable-next-line property-disallowed-list */
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--neutrals-text-default);
+  text-align: center;
+}
+
+.favouritesTitle {
+  margin: 0 0 var(--spacing-5) 0;
+  /* stylelint-disable-next-line property-disallowed-list */
+  font-size: var(--text-size-10);
+  /* stylelint-disable-next-line property-disallowed-list */
+  font-weight: bold;
+  color: var(--neutrals-text-default);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.gameTileWidgetPositioning {
+  position: fixed;
+  right: 24px;
+
+  /* Use calc with safe-area-inset-bottom to prevent overlap during iOS scroll */
+  bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+  z-index: 30;
+
+  transform: none;
+  backface-visibility: visible;
+}
+
+@supports (-webkit-touch-callout: none) {
+  .gameTileWidgetPositioning {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+  }
+}
+
+.gameTileWidgetPositioningAfterBetslipOpen {
+  bottom: calc(120px + env(safe-area-inset-bottom, 0px));
+}
+
+.emptyStateMessage {
+  margin: 0 auto;
+  /* stylelint-disable-next-line property-disallowed-list */
+  line-height: var(--line-height-5);
+  color: var(--neutrals-text-default);
+}
+
+.emptyStateMessage p {
+  margin: 0 var(--spacing-4) var(--spacing-4) var(--spacing-4);
+  /* stylelint-disable-next-line property-disallowed-list */
+  font-size: var(--text-size-6);
+}
+
+.emptyStateInstruction {
+  display: inline;
+
+  align-items: center;
+}
+
+.heartIcon {
+  display: inline-flex;
+
+  align-items: center;
+
+  width: var(--icon-size-large);
+  height: var(--icon-size-large);
+  margin: 0 var(--spacing-1);
+
+  vertical-align: middle;
+
+  fill: var(--neutrals-text-default);
+}

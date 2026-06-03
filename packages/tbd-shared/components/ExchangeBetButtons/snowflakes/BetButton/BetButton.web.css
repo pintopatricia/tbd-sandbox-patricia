@@ -1,0 +1,156 @@
+:root {
+  --opacity-disabled: 0.37;
+}
+
+.betButton {
+  width: 100%;
+  min-width: var(--bet-button-width);
+  min-height: 100%;
+  padding: var(--spacing-1) 0;
+
+  color: var(--neutrals-text-default);
+
+  border: none;
+}
+
+.yellow700 {
+  color: var(--signposting-generosity-text-default);
+}
+
+.fadeOut {
+  opacity: var(--opacity-disabled);
+}
+
+.primaryLabel {
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.twoLinesMax {
+  display: -webkit-box;
+
+  overflow: hidden;
+
+  word-break: break-word;
+  white-space: wrap;
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.secondaryLabelContainer {
+  display: flex;
+
+  gap: var(--spacing-1);
+
+  justify-content: center;
+
+  padding: 0 var(--spacing-half);
+}
+
+.secondaryLabel {
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  word-break: break-all;
+  white-space: nowrap;
+}
+
+.secondaryLabelHandicap {
+  margin: 0;
+}
+
+.lineThrough {
+  text-decoration: line-through;
+}
+
+.darkBlueBg {
+  color: var(--action-exchange-back-text-default);
+
+  background-color: var(--action-exchange-back-background-default);
+}
+
+.darkPinkBg {
+  color: var(--action-exchange-lay-text-default);
+
+  background-color: var(--action-exchange-lay-background-default);
+}
+
+.blueBg {
+  color: var(--action-exchange-back-text-default);
+
+  background-color: var(--action-exchange-back-background-default);
+}
+
+.tealBg {
+  color: var(--action-sportsbook-text-secondary);
+
+  background-color: var(--action-sportsbook-background-default);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .tealBg:hover {
+    background-color: var(--action-sportsbook-background-hover);
+  }
+}
+
+.greyBg {
+  background-color: var(--action-boost-background-default);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .greyBg:hover {
+    background-color: var(--action-boost-background-hover);
+  }
+}
+
+.darkGreyBg {
+  background-color: var(--action-sportsbook-background-closed);
+}
+
+.pinkBg {
+  color: var(--action-exchange-lay-text-default);
+
+  background-color: var(--action-exchange-lay-background-default);
+}
+
+.blueBg.isSelected,
+.darkBlueBg.isSelected {
+  background-color: var(--action-exchange-back-background-hit);
+}
+
+.tealBg.isSelected {
+  background-color: var(--action-sportsbook-background-hit);
+}
+
+.greyBg.isSelected {
+  background-color: var(--action-boost-background-hit);
+}
+
+.pinkBg.isSelected,
+.darkPinkBg.isSelected {
+  background-color: var(--action-exchange-lay-background-hit);
+}
+
+.icon {
+  flex-shrink: 0;
+
+  width: var(--icon-size);
+  height: var(--icon-size);
+}
+
+.horizontalBetButton {
+  display: flex;
+
+  flex-wrap: nowrap;
+
+  gap: var(--spacing-2);
+
+  align-items: center;
+  justify-content: center;
+
+  padding-right: var(--spacing-2);
+  padding-left: var(--spacing-2);
+}

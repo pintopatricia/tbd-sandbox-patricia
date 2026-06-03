@@ -1,0 +1,175 @@
+name: Jira Integration
+description: Update Jira issue fields and transitions
+
+inputs:
+  jira_base_url:
+    required: true
+    description: Jira base URL
+
+  jira_token:
+    required: true
+    description: Jira Bearer token
+
+  issue_key:
+    required: true
+    description: Jira issue key
+
+  test_plan_key:
+    required: false
+    description: Xray Test Plan key to set on Test Execution
+
+  test_plan_customfield_id:
+    required: false
+    default: customfield_30829
+    description: Jira custom field ID for Test Plan
+
+  transition_id:
+    required: false
+    description: Jira transition ID
+
+  worklog_seconds:
+    required: false
+    description: Worklog duration in seconds
+
+  assignee:
+    required: false
+    description: Jira assignee username
+
+runs:
+  using: composite
+  steps:
+    - name: Jira update fields / assign / transition / worklog
+      uses: actions/github-script@v7
+      env:
+        JIRA_BASE_URL: ${{ inputs.jira_base_url }}
+        JIRA_TOKEN: ${{ inputs.jira_token }}
+        ISSUE_KEY: ${{ inputs.issue_key }}
+        TEST_PLAN_KEY: ${{ inputs.test_plan_key }}
+        TEST_PLAN_CUSTOMFIELD_ID: ${{ inputs.test_plan_customfield_id }}
+        TRANSITION_ID: ${{ inputs.transition_id }}
+        WORKLOG_SECONDS: ${{ inputs.worklog_seconds }}
+        ASSIGNEE: ${{ inputs.assignee }}
+      with:
+        script: |
+          const baseUrl = (process.env.JIRA_BASE_URL || "").replace(/\/$/, "");
+          const token = (process.env.JIRA_TOKEN || "").trim();
+          const issueKey = (process.env.ISSUE_KEY || "").trim();
+
+          const testPlanKey = (process.env.TEST_PLAN_KEY || "").trim();
+          const testPlanField = (process.env.TEST_PLAN_CUSTOMFIELD_ID || "").trim();
+          const transitionId = (process.env.TRANSITION_ID || "").trim();
+
+          const assignee = (process.env.ASSIGNEE || "").trim();
+
+          const worklogRaw = (process.env.WORKLOG_SECONDS || "").trim();
+          const worklogSeconds = worklogRaw ? Number(worklogRaw) : 0;
+
+          if (!baseUrl) throw new Error("JIRA_BASE_URL is missing");
+          if (!token) throw new Error("JIRA_TOKEN is missing");
+          if (!issueKey) throw new Error("ISSUE_KEY is missing");
+
+          const jiraFetch = async (path, { method = "GET", body } = {}) => {
+            const res = await fetch(`${baseUrl}${path}`, {
+              method,
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+                Accept: "application/json",
+              },
+              body: body ? JSON.stringify(body) : undefined,
+            });
+
+            // Jira often returns 204 with empty body
+            const text = await res.text();
+            const data = text ? (() => { try { return JSON.parse(text); } catch { return text; } })() : null;
+
+            if (!res.ok) {
+              throw new Error(
+                `Jira API ${method} ${path} failed: ${res.status} ${res.statusText}\n` +
+                (text || "")
+              );
+            }
+            return { status: res.status, data };
+          };
+
+          // Update fields (Test Plan custom field)
+          core.startGroup("Jira: Update issue fields");
+          if (testPlanKey) {
+            if (!testPlanField) throw new Error("TEST_PLAN_CUSTOMFIELD_ID is missing");
+            core.info(`Issue: ${issueKey}`);
+            core.info(`Setting ${testPlanField} = [${testPlanKey}]`);
+
+            await jiraFetch(`/rest/api/2/issue/${issueKey}`, {
+              method: "PUT",
+              body: {
+                fields: {
+                  [testPlanField]: [testPlanKey],
+                },
+              },
+            });
+
+            core.info("Fields updated.");
+          } else {
+            core.info("Skipping fields update (no test_plan_key).");
+          }
+          core.endGroup();
+
+          // Assign user
+          core.startGroup("Jira: Assign issue");
+          if (assignee) {
+            core.info(`Issue: ${issueKey}`);
+            core.info(`Assignee: ${assignee}`);
+
+            await jiraFetch(`/rest/api/2/issue/${issueKey}/assignee`, {
+              method: "PUT",
+              body: {
+                name: assignee,
+              },
+            });
+
+            core.info("Issue assigned.");
+          } else {
+            core.info("Skipping assignee update (no assignee).");
+          }
+          core.endGroup();
+
+          // Transition
+          core.startGroup("Jira: Transition issue");
+          if (transitionId) {
+            core.info(`Issue: ${issueKey}`);
+            core.info(`Transition id: ${transitionId}`);
+
+            await jiraFetch(`/rest/api/2/issue/${issueKey}/transitions`, {
+              method: "POST",
+              body: { transition: { id: transitionId } },
+            });
+
+            core.info("Transition done.");
+          } else {
+            core.info("Skipping transition (no transition_id).");
+          }
+          core.endGroup();
+
+          // Worklog
+          core.startGroup("Jira: Add worklog");
+          if (Number.isFinite(worklogSeconds) && worklogSeconds > 0) {
+            const rounded = Math.max(1, Math.round(worklogSeconds));
+            const minutes = Math.floor(rounded / 60);
+            const seconds = rounded % 60;
+
+            core.info(`Issue: ${issueKey}`);
+            core.info(`Logging: ${rounded}s (${minutes}m ${seconds}s)`);
+
+            await jiraFetch(`/rest/api/2/issue/${issueKey}/worklog`, {
+              method: "POST",
+              body: {
+                timeSpentSeconds: rounded,
+                comment: `Automated test execution duration (${minutes}m ${seconds}s)`,
+              },
+            });
+
+            core.info("Worklog added.");
+          } else {
+            core.info("Skipping worklog (worklog_seconds empty/0).");
+          }
+          core.endGroup();

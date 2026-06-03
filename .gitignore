@@ -1,0 +1,104 @@
+node_modules/
+target/
+.DS_Store
+dist/
+npm-debug.log
+.vscode/
+#Enable vscode launch
+!.vscode/launch.json.example
+!.vscode/.env.example
+!.vscode/get-file-name.sh
+.idea/
+yarn-error.log
+reports/
+coverage/
+env/
+*.orig
+*.tsbuildinfo
+*.iml
+.java-version
+.cxx/
+*.keystore
+yalc.lock
+**/.yalc/*
+
+storybook-static/
+
+# Visual Tests
+apps/bf/web/regression-tests/actual
+apps/bf/web/regression-tests/diff
+apps/bf/web/regression-tests/diff-waitUntilImageEquals
+apps/bf/web/regression-tests/tbd-visual-tests-baseline
+apps/bf/web/regression-tests/tbd-visual-tests-baseline-desktop
+
+# Pact JS
+apps/bf-tbd-http-bff-gql/pactjs/logs/
+apps/bf-tbd-http-bff-gql/pactjs/pacts/
+
+# Yarn 2 (while we are not using Zero-Installs)
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+apps/bf-tbd-http-bff-gql/.yarn/*
+!apps/bf-tbd-http-bff-gql/.yarn/patches
+!apps/bf-tbd-http-bff-gql/.yarn/releases
+!apps/bf-tbd-http-bff-gql/.yarn/plugins
+!apps/bf-tbd-http-bff-gql/.yarn/sdks
+!apps/bf-tbd-http-bff-gql/.yarn/versions
+apps/bf-tbd-http-bff-gql.pnp.*
+
+# Bff config files
+apps/bf-tbd-http-bff-gql/config/*
+!apps/bf-tbd-http-bff-gql/config/bff-gql-http-proxy-ci.json
+apps/sbg/sbg-tbdsbg-http-webserver/config/*
+apps/tbd-http-webserver/config/*
+!apps/tbd-http-webserver/config/config-http-proxy.json
+apps/tbd-http-webserver/lib/config/environment.json
+apps/tbd-http-webserver/lib/config/environment-backend.json
+!apps/bf-tbd-http-bff-gql/src/config/extracted_queries.json
+apps/bf-tbd-http-bff-gql/src/config/environment.json
+
+# Generated .env files for Docker
+apps/*/web/Docker/dev_mode/.env.*
+
+# TBD local SSL certificate
+/**/reverse-proxy/ssl-cert/*
+!/**/reverse-proxy/ssl-cert/.gitkeep
+
+#CI
+*.txt
+!trufflehog_exclusions.txt
+*.properties
+
+# config-templates
+apps/bf/native/tests/config/login-local.json
+apps/bf/native/tests/config/download-baselines.json
+apps/sbg/native/tests/config/login-local.json
+apps/sbg/native/tests/config/download-baselines.json
+apps/bf/web/regression-tests/config/download-baselines.json
+packages/bff-performance-tests/conf/login-local.json
+packages/tbd-tests/web/e2e/bf/config/nxt/login-local.json
+packages/tbd-tests/web/e2e/bf/config/prod/login-local.json
+packages/tbd-tests/web/e2e/sbg/config/nxt/login-local.json
+packages/tbd-tests/web/e2e/sbg/config/prod/login-local.json
+
+# Native
+!/**/android/**/*.properties
+**/.xcode.env.local
+
+# Mock Server
+mockserver*.log
+CertificateAuthorityCertificate.pem
+!mockserver.properties
+
+# Temporary files created by Metro to check the health of the file watcher
+.metro-health-check*
+
+packages/tbd-tests/web/.yarn
+
+.nx

@@ -1,0 +1,31 @@
+# To see the current ownership:
+# `codeowners audit | grep -v "nobody" > ownership.txt`
+
+# See something wrong with these groups? Contact:
+# https://github.com/orgs/Flutter-Global/teams/tbd-maintainers-maintainers/members
+# to have these teams amended
+
+# https://github.com/orgs/Flutter-Global/teams/tbd-maintainers-automation/members - Owners of the automation tests
+**/regression-tests       @Flutter-Global/tbd-maintainers-automation
+**/visual-specs           @Flutter-Global/tbd-maintainers-automation
+**/wdio                   @Flutter-Global/tbd-maintainers-automation
+
+# https://github.com/orgs/Flutter-Global/teams/tbd-maintainers-betslip/members - Owners of the Betslip
+# **/Betslip                @Flutter-Global/tbd-maintainers-betslip
+# **/betslip                @Flutter-Global/tbd-maintainers-betslip
+
+# https://github.com/orgs/Flutter-Global/teams/tbd-maintainers-mybets/members - Owners of My Bets
+# **/MyBetsPage             @Flutter-Global/tbd-maintainers-mybets
+# **/my-bets                @Flutter-Global/tbd-maintainers-mybets
+# **/my-bets-messaging      @Flutter-Global/tbd-maintainers-mybets
+# **/MyBetsExchangeEditBet  @Flutter-Global/tbd-maintainers-mybets
+# **/my-bets-page           @Flutter-Global/tbd-maintainers-mybets
+
+# https://github.com/orgs/Flutter-Global/teams/tbd-maintainers-ios/members - Owners of Native IOS
+**/ios                    @Flutter-Global/tbd-maintainers-ios
+
+# https://github.com/orgs/Flutter-Global/teams/tbd-maintainers-android/members - Owners of Native Android
+**/android                @Flutter-Global/tbd-maintainers-android
+
+# https://github.com/orgs/Flutter-Global/teams/tbd-maintainers-workflows/members - Owners of the github workflows
+/.github/workflows        @Flutter-Global/tbd-maintainers-workflows

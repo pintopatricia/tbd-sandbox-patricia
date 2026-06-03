@@ -1,0 +1,9 @@
+.gridCardItem {
+  display: flex;
+
+  flex-shrink: 0;
+
+  width: var(--bet-button-width);
+  min-height: var(--bet-button-height);
+  overflow: hidden;
+}

@@ -1,0 +1,37 @@
+{{#if regulatoryData }}
+  {{#with regulatoryData}}
+    "__typename": "{{__typename}}{{^__typename}}RegulatoryData{{/__typename}}",
+    "sections": [
+    {{#each sections}}
+      {
+        "sectionType": "{{sectionType}}{{^sectionType}}GENERIC{{/sectionType}}",
+        "__typename": "{{__typename}}{{^__typename}}RegulatorySectionGeneric{{/__typename}}",
+        "items": [
+        {{#each items}}
+          {
+            "__typename": "{{__typename}}{{^__typename}}RegulatoryTextItem{{/__typename}}",
+            {{#if text}}"text": "{{text}}{{^text}}Some Text{{/text}}",{{/if}}
+            {{#if type}}"type": "{{type}}{{^type}}TEXT{{/type}}",{{/if}}
+            {{#if target}}"target": "{{target}}{{^target}}POPUP{{/target}}",{{/if}}
+            {{#if imageURL}}"imageURL": "{{imageURL}}{{^imageURL}}http://example.test.com/mockedImage/image.png{{/imageURL}}",{{/if}}
+            {{#if link}}"link": "{{link}}{{^link}}http://example.test.com/{{/link}}",{{/if}}
+            {{#if timeFormat}}"timeFormat": "{{timeFormat}}{{^timeFormat}}HH:mm:ss{{/timeFormat}}",{{/if}}
+            {{#if time}}"time": "{{time}}{{^time}}2020-01-01T16:01:56.244Z{{/time}}",{{/if}}
+            {{#if sessionText}}"sessionText": "{{sessionText}}{{^sessionText}}Session:{{/sessionText}}",{{/if}}
+            {{#with viewLink}}
+              "viewLink": {
+                "viewUrl": "{{viewUrl}}{{^viewUrl}}https://giocoresponsabile.betfair.it/{{/viewUrl}}"
+              },
+            {{/with}}
+            "alignment": "{{alignment}}{{^alignment}}LEFT{{/alignment}}"
+          }{{#unless @last}},{{/unless}}
+        {{/each}}
+        ]
+      }{{#unless @last}},{{/unless}}
+    {{/each}}
+    ]
+  {{/with}}
+{{else}}
+"__typename": "RegulatoryData",
+"sections": []
+{{/if}}

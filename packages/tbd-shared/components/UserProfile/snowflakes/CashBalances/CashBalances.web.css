@@ -1,0 +1,38 @@
+.cashBalances {
+  margin: 0;
+}
+
+.title {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: var(--cash-balances-vertical-gap);
+
+  font: var(--cash-balances-title-typography);
+  color: var(--cash-balances-title-colour);
+  text-decoration-line: var(--cash-balances-title-typography-text-decoration-line);
+  text-transform: var(--cash-balances-title-typography-text-transform);
+  letter-spacing: var(--cash-balances-title-typography-letter-spacing);
+}
+
+.content {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--cash-balances-content-block-vertical-gap);
+
+  padding: var(--cash-balances-content-block-padding);
+
+  background-color: var(--cash-balances-backgound-content-block-colour);
+  border-radius: var(--cash-balances-content-block-border-radius);
+}
+
+.eyeIcon {
+  width: var(--cash-balances-icon-sizing);
+  height: var(--cash-balances-icon-sizing);
+
+  fill: var(--cash-balances-icon-colour);
+}

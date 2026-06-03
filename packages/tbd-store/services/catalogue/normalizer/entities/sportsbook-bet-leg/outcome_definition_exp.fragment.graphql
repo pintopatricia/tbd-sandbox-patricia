@@ -1,0 +1,26 @@
+fragment outcomeDefinitionExp on OutcomeDefinitionExp {
+  __typename
+  outcomeDefinitionEntries {
+    outcomeDefinitionType
+    operator
+    outcomeDefinition {
+      query {
+        sport
+        outcome
+        periodDefinition {
+          period
+          periodStatus
+        }
+        participant {
+          type
+          side
+          participantId
+        }
+      }
+      statsThresholdDef {
+        threshold
+        comparison
+      }
+    }
+  }
+}

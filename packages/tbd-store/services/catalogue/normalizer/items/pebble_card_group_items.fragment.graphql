@@ -1,0 +1,76 @@
+fragment fullPebbleCardGroupItems on PebbleLayoutItemsConnection {
+  edges {
+    name
+    node {
+      # Read this before adding new entries: docs/guidelines/how-to-add-a-new-card.md
+
+      # Cards
+      ...accountBannersCard
+      ...balanceCard
+      ...broadcastsCardDeprecated
+      ...competitionViewLinkCard
+      ...contentSummaryCard
+      ...eventMarketCard
+      ...eventViewLinkCard
+      ...fixtureCard
+      ...gameCard
+      ...gameInfoCard
+      ...gamingJackpotCard
+      ...gamingLinkCard
+      ...gamingPlayNewCard
+      ...genericViewLinkCard
+      ...headToHeadCard
+      ...highlightedSelectionCard
+      ...imsPromotionDetailsCard
+      ...imsPromotionErrorCard
+      ...imsPromotionStateCard
+      ...imsPromotionTermsAndConditionsCard
+      ...linksCard
+      ...marketCard
+      ...marketExtendedCard
+      ...marketGraphsCard
+      ...marketRulesCard
+      ...marketViewLinkCard
+      ...matchStatsCard
+      ...matchTimelineCard
+      ...promotionCard
+      ...quickLinksCard
+      ...raceDetailsCard
+      ...raceMarketCard
+      ...raceViewLinkCard
+      ...raceViewLinksCard
+      ...rewardsCard
+      ...runnerInfoCard
+      ...sportsbookBetCard
+      ...sportViewLinkCard
+      ...teamFormCard
+      ...raceByTimeRangeCard
+      ...imsPromotionDetailsCard
+      ...imsPromotionTermsAndConditionsCard
+      ...imsPromotionStateCard
+      ...imsPromotionErrorCard
+      ...regulatoryCard
+      ...competitionRegionCard
+      ...accountBannersCard
+      ...gridCard
+      ...virtualMarketCard
+      ...correctScoreCard
+      ...packagedCreatedBetsCard
+      ...EditorialPromoCard
+      ...BetOpportunityPromoCard
+      ...SelectionPromoCard
+      ...PriceBoostMultiplePromoCard
+      ...TeamLineupCard
+    }
+  }
+}
+
+fragment partialsPebbleCardGroupItems on PebbleLayoutItemsConnection {
+  edges {
+    name
+    node {
+      urn
+      __typename
+    }
+  }
+}

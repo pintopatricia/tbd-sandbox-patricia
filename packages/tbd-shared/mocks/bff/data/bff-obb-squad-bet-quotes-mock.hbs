@@ -1,0 +1,21 @@
+{
+    "data": {
+        "obb": {
+              {{#with squadBetQuotes}}
+                "squadBetQuotes": {
+                    "legs": [
+                        {{#each legs}}
+                            {
+                            {{> bff-obb-leg}}
+                            }
+                            {{#unless @last}},{{/unless}}
+                        {{/each}}
+                    ],
+                    "defaultOutcomeIndex": {{defaultOutcomeIndex}}{{^defaultOutcomeIndex}}0{{/defaultOutcomeIndex}},
+                    "__typename": "SquadBetQuotesResponse"
+                },
+              {{/with}}
+            "__typename": "ObbQuery"
+        }
+    }
+}

@@ -1,0 +1,9 @@
+fragment virtualSport on VirtualSport {
+  __typename
+  name {
+    translationKey
+  }
+  sportId
+  urn
+  kind
+}

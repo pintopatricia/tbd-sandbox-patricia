@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>EXUpdatesEnabled</key>
+	<true/>
+	<key>EXUpdatesURL</key>
+	<string>https://tbdnota.tools.flutter.com/manifest</string>
+	<key>EXUpdatesRuntimeVersion</key>
+	<string>file:fingerprint</string>
+	<key>EXUpdatesCheckOnLaunch</key>
+	<string>NEVER</string>
+	<key>EXUpdatesLaunchWaitMs</key>
+	<integer>0</integer>
+	<key>EXUpdatesHasEmbeddedUpdate</key>
+	<true/>
+	<key>EXUpdatesRequestHeaders</key>
+	<dict>
+		<key>expo-channel-name</key>
+		<string>sbg-production</string>
+	</dict>
+	<key>EXUpdatesCodeSigningCertificate</key>
+    <string>-----BEGIN CERTIFICATE-----&#xD;
+MIIC1zCCAb+gAwIBAgIJd+HALuiSBYH6MA0GCSqGSIb3DQEBCwUAMBUxEzARBgNV&#xD;
+BAMTCkZsdXR0ZXJVS0kwHhcNMjYwNTE5MTQ0MTA1WhcNMzYwNTE5MTQ0MTA1WjAV&#xD;
+MRMwEQYDVQQDEwpGbHV0dGVyVUtJMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB&#xD;
+CgKCAQEAvXKcRv6Z9xRWhDfqjID94bGBCwyy0lzXob+mF1nIn3an5LGj0/vamQF4&#xD;
+j/AtWJ6cV4Re/as2ovKwg77NA9Qi+o3NfPAbCLEE7K4mHUpQGcnVOe+OY/4oOHco&#xD;
+KQ4XvSDwPu/YZb9bzOIi6AwwzYAkmwWnSNhwqIli8IsNgG/0/hCtLWMG9w3KsXVa&#xD;
+nx37ICJUc67/zBEXnxPLVqF73kwuZM6R1E0C5xfCSZIsvhBm+tjNNzWnsoJ4BDS+&#xD;
+RvOmDaURiSbd5T/vQ/XBSICVsqU7x15nvb/+XA3VkBCcdS6ryzqFdnxKJy+TB+Fs&#xD;
+YySZSbLnbrt7O6y5PTN0/HeDlr04twIDAQABoyowKDAOBgNVHQ8BAf8EBAMCB4Aw&#xD;
+FgYDVR0lAQH/BAwwCgYIKwYBBQUHAwMwDQYJKoZIhvcNAQELBQADggEBACYe0yeM&#xD;
+zLaTJvM4zEzis/gbGjBczhA2Zb3ckloeyrnq0mtduVkMeJLaLWawCzxPLXwY49hR&#xD;
+zpv23ceIIeCNeBGxZQbHkCFlxkHyuviv5faI5hfHuZgu7Bkx7vH4YentE3TSsgba&#xD;
+SXZa1jTq9JtlQgf/uttdtfS49zKfzNjygnNEtFLoVLY6joBFJBiV6cAndaEilAW4&#xD;
+vPnbUzD0hLJ235as3tlGikmSas/8vnjTIK/xfRI5ylZbvIg7VcqPXQs8I4P+fUkf&#xD;
+rH+g+zmJeqAiTCsTNfKPDUzPS01JEmqEIdevc2s5K/tXlOAbE54yTEIyGzGOue+f&#xD;
+5eVBG8MXNFGoDkY=&#xD;
+-----END CERTIFICATE-----&#xD;
+	</string>
+    <key>EXUpdatesCodeSigningMetadata</key>
+    <dict>
+		<key>keyid</key>
+		<string>main</string>
+		<key>alg</key>
+		<string>rsa-v1_5-sha256</string>
+    </dict>
+</dict>
+</plist>

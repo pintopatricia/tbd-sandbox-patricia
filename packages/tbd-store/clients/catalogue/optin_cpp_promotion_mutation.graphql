@@ -1,0 +1,13 @@
+mutation OptinCppPromoLegacy(
+  $urn: URN!
+  $throttlesOn: [String!]
+  $throttlesOff: [String!]
+  $productExclusions: [ProductExclusion!]
+)
+@productExclusions(productExclusions: $productExclusions)
+@throttlesOn(throttlesOn: $throttlesOn)
+@throttlesOff(throttlesOff: $throttlesOff) {
+  optinCppPromo(urn: $urn) {
+    ...loyaltyPromotionLegacy
+  }
+}

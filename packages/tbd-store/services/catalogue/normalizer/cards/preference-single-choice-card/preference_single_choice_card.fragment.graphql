@@ -1,0 +1,15 @@
+fragment preferenceSingleChoiceCard on PreferenceSingleChoiceCard {
+  __typename
+  urn
+  title
+  description
+  preference {
+    ...preferenceSingleChoice
+  }
+  cardLayout
+}
+
+fragment preferenceSingleChoiceCardPartial on PreferenceSingleChoiceCard {
+  __typename
+  urn
+}

@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.competitionsContainer {
+  display: flex;
+
+  overflow: auto hidden;
+}
+
+.competitionsContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.chip {
+  flex-shrink: 0;
+
+  margin-right: var(--spacing-1-and-half);
+}
+
+.chip:first-child {
+  padding-left: var(--spacing-2);
+}
+
+.chip:last-child {
+  padding-right: var(--spacing-2);
+  margin-right: 0;
+}

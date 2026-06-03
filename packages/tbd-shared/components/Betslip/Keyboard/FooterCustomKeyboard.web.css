@@ -1,0 +1,7 @@
+.footerCustomKeyboard {
+  padding-bottom: 0;
+}
+
+.footerCustomKeyboard.open {
+  padding-bottom: var(--spacing-2);
+}

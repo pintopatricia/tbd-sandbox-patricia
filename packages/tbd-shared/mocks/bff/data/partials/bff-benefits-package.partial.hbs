@@ -1,0 +1,27 @@
+"commissionRate": {{#if commissionRate}}{{commissionRate}}{{else}}null{{/if}},
+"requiredMarketBets": {{#if requiredMarketBets}}{{requiredMarketBets}}{{else}}0{{/if}},
+"criteriaType": {{#if criteriaType}}"{{criteriaType}}"{{else}}null{{/if}},
+"packageLevel": {{#if packageLevel}}"{{packageLevel}}"{{else}}null{{/if}},
+"excludedBenefits": {{#if excludedBenefits}}
+    [
+    {{#each excludedBenefits}}
+      {
+               "type": "{{type}}{{^type}}CURRENCY{{/type}}",
+               "accessLevel": "{{accessLevel}}{{^accessLevel}}STANDARD{{/accessLevel}}"
+           }
+    {{#unless @last}},{{/unless}}
+    {{/each}}
+    ],
+{{else}}
+[],
+{{/if}}
+"benefits": {{#if benefits}}
+[
+    {{#each benefits}}
+      {{> bff-rewards-prize }}
+    {{#unless @last}},{{/unless}}
+    {{/each}}
+    ]
+{{else}}
+[]
+{{/if}}

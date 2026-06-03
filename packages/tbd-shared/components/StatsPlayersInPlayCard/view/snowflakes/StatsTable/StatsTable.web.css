@@ -1,0 +1,48 @@
+.tableHeaderText {
+  font: var(--table-header-cell-label);
+}
+
+.playerNameAndTeamContainer {
+  display: flex;
+
+  flex-flow: column;
+
+  max-width: var(--stats-table-row-cell-content-title-large-sizing);
+
+  white-space: nowrap;
+}
+
+.playerName {
+  overflow: hidden;
+
+  font: var(--table-row-title-typography);
+  color: var(--table-row-default-title-color);
+  text-overflow: ellipsis;
+}
+
+.teamName {
+  overflow: hidden;
+
+  font: var(--table-row-label-typography);
+  color: var(--table-row-default-label-color);
+  text-overflow: ellipsis;
+}
+
+.total {
+  font: var(--table-row-content-text-typography);
+  color: var(--table-row-default-content-text-color);
+}
+
+.verticalAlignMiddle {
+  vertical-align: middle;
+}
+
+.tableRow {
+  background-color: var(--table-body-row-default-background-color);
+}
+
+.emptySpace {
+  height: var(--table-body-vertical-gap);
+
+  background: transparent;
+}

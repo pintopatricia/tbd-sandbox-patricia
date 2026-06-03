@@ -1,0 +1,15 @@
+.extraWalletCardGroup {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--bottom-sheet-vertical-gap);
+}
+
+.extraWalletCardGroupOption {
+  display: flex;
+
+  flex-direction: column;
+
+  min-height: var(--free-bets-sizing);
+}

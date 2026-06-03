@@ -1,0 +1,292 @@
+name: create-flex-env-pp
+
+on:
+  issue_comment:
+    types: [created]
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  MONTEROSA_TOKEN: ${{ secrets.MONTEROSA_TOKEN }}
+  AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+  AWS_REGION: eu-west-1
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY_TOKEN }}
+  VAULT_USER: ${{ secrets.VAULT_USER }}
+  VAULT_PASSWORD: ${{ secrets.VAULT_PASSWORD }}
+  PR_ID: ${{ github.event.issue.number }}
+  BRAND: pp
+
+jobs:
+  get_environment:
+    if: ${{ github.event.issue.pull_request && (
+      contains(github.event.comment.body, '/build-flexible-environment-pp-nxt') ||
+      contains(github.event.comment.body, '/build-flexible-environment-pp')
+      ) }}
+    runs-on: [ubuntu-self-hosted, x64]
+    outputs:
+      environment: ${{ steps.getenv.outputs.ENVIRONMENT }}
+    steps:
+      - name: Get Environment
+        id: getenv
+        run: |
+          if [[ '${{ github.event.comment.body }}' =~ '/build-flexible-environment-pp-nxt' ]]; then
+          ENVIRONMENT="nxt"
+          else
+          ENVIRONMENT="qa"
+          fi
+          echo "The environment is $ENVIRONMENT"
+          echo "ENVIRONMENT=$ENVIRONMENT" >> $GITHUB_OUTPUT
+
+  build_webserver_and_http_webserver:
+    needs: [get_environment]
+    runs-on: [ubuntu-self-hosted, x64]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: refs/pull/${{ env.PR_ID }}/head
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: Install yarn and cache dependencies
+        run: |
+          npm install -g yarn@1.22.10
+          yarn workspaces focus tbd-mobile-site
+
+      - name: Generate Config Files
+        run: |
+          yarn generate-config-files
+
+      - name: Build Webserver Image
+        run: |
+          docker build -f apps/pp/web/Docker/prod_mode/webserver.Dockerfile -t $AWS_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com/pp/${{ needs.get_environment.outputs.environment }}/tbdpe/webserver:${{ env.PR_ID }} --build-arg GITHUB_TOKEN=$GITHUB_TOKEN --build-arg MONTEROSA_TOKEN=$MONTEROSA_TOKEN .
+
+      - name: Push Webserver Image to ECR
+        run: |
+          aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin  $AWS_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com
+          docker push $AWS_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com/pp/${{ needs.get_environment.outputs.environment }}/tbdpe/webserver:${{ env.PR_ID }}
+
+      - name: Change environment.json to specific Paddy Power brand environment files
+        run: |
+          sh tools/generate-env-files.sh --brand PP --env ${{ needs.get_environment.outputs.environment }}
+
+      - name: Build HTTP Web Server Image
+        run: |
+          echo "Environment: [ ${{ needs.get_environment.outputs.environment }} ]"
+          aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin  $AWS_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com
+          docker build -f apps/tbd-http-webserver/prod.Dockerfile -t $AWS_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com/pp/${{ needs.get_environment.outputs.environment }}/tbdpe/http-webserver:${{ env.PR_ID }} --build-arg WEBSERVER_IMAGE=$AWS_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com/pp/${{ needs.get_environment.outputs.environment }}/tbdpe/webserver:${{ env.PR_ID }} --build-arg BRAND=$BRAND --build-arg ENVIRONMENT=${{ needs.get_environment.outputs.environment }} --build-arg GITHUB_TOKEN=$GITHUB_TOKEN --build-arg MONTEROSA_TOKEN=$MONTEROSA_TOKEN .
+
+      - name: Push HTTP Web Server Image to ECR
+        run: |
+          aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin  $AWS_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com
+          docker push $AWS_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com/pp/${{ needs.get_environment.outputs.environment }}/tbdpe/http-webserver:${{ env.PR_ID }}
+
+      - name: Failure Message
+        if: ${{ failure() }}
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `Flexible environment generation failed during the job ${context.job}.
+              More info on [https://github.com/Flutter-Global/tbd/actions/runs/${{ github.run_id }}](https://github.com/Flutter-Global/tbd/actions/runs/${{ github.run_id }})`
+            })
+
+  build_reverse_proxy:
+    needs: [get_environment]
+    runs-on: [ubuntu-self-hosted, x64]
+    env:
+      ENVIRONMENT_FOLDER: aws
+
+    steps:
+      - name: Get Runner OS
+        uses: kenchan0130/actions-system-info@master
+        id: system-info
+
+      - uses: actions/checkout@v4
+        with:
+          ref: refs/pull/${{ env.PR_ID }}/head
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: Build Reverse Proxy Image
+        run: |
+          cd apps/pp/reverse-proxy/
+          docker build -f ${{ needs.get_environment.outputs.environment }}.Dockerfile -t $AWS_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com/pp/${{ needs.get_environment.outputs.environment }}/tbdpe/reverse-proxy:${{ env.PR_ID }} --build-arg ENVIRONMENT_FOLDER=$ENVIRONMENT_FOLDER .
+
+      - name: Push Reverse Proxy Image to ECR
+        run: |
+          aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin  $AWS_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com
+          docker push $AWS_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com/pp/${{ needs.get_environment.outputs.environment }}/tbdpe/reverse-proxy:${{ env.PR_ID }}
+
+      - name: Failure Message
+        if: ${{ failure() }}
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `Flexible environment generation failed during the job ${context.job}.
+              More info on [https://github.com/Flutter-Global/tbd/actions/runs/${{ github.run_id }}](https://github.com/Flutter-Global/tbd/actions/runs/${{ github.run_id }})`
+            })
+
+  build_bff_gql:
+    needs: [get_environment]
+    runs-on: [ubuntu-self-hosted, x64]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: refs/pull/${{ env.PR_ID }}/head
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: Install yarn and cache dependencies
+        run: |
+          npm install -g yarn@1.22.10
+          yarn workspaces focus tbd-mobile-site
+
+      - name: Generate Config Files
+        run: |
+          yarn generate-config-files
+
+      - name: Fetch BFF GQL Version
+        id: fetchVersion
+        env:
+          CMT_BODY: ${{github.event.comment.body}}
+        run: |
+          BFF_SPEC_VERSION=$(grep bf-tbd-http-bff-gql-v apps/pp/tbdpp-mobile-site.spec \
+          | head -1 \
+          | awk -F '= ' '{ print $2 }' \
+          | awk -F '-' '{ print $1 }')
+
+          BFF_VERSION=$(echo $CMT_BODY | head -1 | awk -v spec=$BFF_SPEC_VERSION '{split($0,arr,"--bff-image-version="); print(arr[2]==""?spec:arr[2])}')
+
+          echo "bff_gql_version=$BFF_VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Change environment.json to PP specific env
+        run: |
+          sh tools/generate-env-files.sh --brand PP --env ${{ needs.get_environment.outputs.environment }}
+
+      - name: Build BFF GQL Image
+        env:
+          BFF_GQL_VERSION: ${{steps.fetchVersion.outputs.bff_gql_version}}
+        run: |
+          docker build -f apps/bf-tbd-http-bff-gql/Dockerfile -t $AWS_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com/pp/${{ needs.get_environment.outputs.environment }}/tbdpe/bff-gql:${{ env.PR_ID }} --build-arg VERSION=$BFF_GQL_VERSION --build-arg BRAND=$BRAND --build-arg ENVIRONMENT=${{ needs.get_environment.outputs.environment }} --build-arg GITHUB_TOKEN=$GITHUB_TOKEN --build-arg MONTEROSA_TOKEN=$MONTEROSA_TOKEN .
+
+      - name: Push BFF GQL Image to ECR
+        run: |
+          aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin  $AWS_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com
+          docker push $AWS_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com/pp/${{ needs.get_environment.outputs.environment }}/tbdpe/bff-gql:${{ env.PR_ID }}
+
+      - name: Failure Message
+        if: ${{ failure() }}
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `Flexible environment generation failed during the job ${context.job}.
+              More info on [https://github.com/Flutter-Global/tbd/actions/runs/${{ github.run_id }}](https://github.com/Flutter-Global/tbd/actions/runs/${{ github.run_id }})`
+            })
+
+  deploy_flex_env:
+    needs:
+      [
+        get_environment,
+        build_reverse_proxy,
+        build_bff_gql,
+        build_webserver_and_http_webserver,
+      ]
+    runs-on: [ubuntu-self-hosted, x64]
+
+    steps:
+      - name: Get Runner OS
+        uses: kenchan0130/actions-system-info@master
+        id: system-info
+
+      - name: Get Cross-Repo App Token
+        id: app
+        uses: Flutter-Tech/github-app-token@v2
+        with:
+          APP_PEM: ${{ secrets.CROSS_REPO_CONTENTS_ACCESS_PEM }}
+          APP_ID: 211263
+          APP_INSTALLATION_ID: 26559618
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_ACCESS_KEY_TOKEN }}
+          aws-region: eu-west-1
+
+      - name: Checkout TBDPE Repository
+        uses: actions/checkout@v4
+        with:
+          repository: Flutter-Global/tbdpe-configrepo-aws-ppb
+          path: tbdpe-configrepo-aws-ppb
+          token: ${{ steps.app.outputs.app_token }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Deploy PP Flexible Environment
+        run: |
+          cluster_name="pp-${{ needs.get_environment.outputs.environment }}-tbdpeCluster"
+          service_name="pp-tbdpe${{ env.PR_ID }}-${{ needs.get_environment.outputs.environment }}"
+          service_arn=$(aws ecs list-services --cluster $cluster_name --query "serviceArns[?contains(@, '$service_name')]" --output text)
+          if [ -z ${service_arn} ]; then
+            echo "Cluster not found! The stack will be deployed"
+            cd $GITHUB_WORKSPACE/tbdpe-configrepo-aws-ppb/cdk
+            if [[ ${{ steps.system-info.outputs.name }} == "Ubuntu" ]]; then
+              sudo apt autoremove -y
+              sudo apt-get -y install npm
+            fi
+            npm install
+            npx cdk deploy --verbose --context id=${{ env.PR_ID }} --context app=pp --context env=${{ needs.get_environment.outputs.environment }} --require-approval never
+          else
+            echo "Restarting the service"
+            aws ecs update-service --service $service_arn --cluster $cluster_name --force-new-deployment --desired-count 1
+          fi
+
+      - name: Success Message
+        if: ${{ success() }}
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `Your environment was generated!
+              PP URL: [https://pp-tbdpe${{ env.PR_ID }}-${{ needs.get_environment.outputs.environment }}.sportschannels-dev.aws.private/](https://pp-tbdpe${{ env.PR_ID }}-${{ needs.get_environment.outputs.environment }}.sportschannels-dev.aws.private/)`
+            })
+
+      - name: Failure Message
+        if: ${{ failure() }}
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `Flexible environment generation failed during the job ${context.job}.
+              More info on [https://github.com/Flutter-Global/tbd/actions/runs/${{ github.run_id }}](https://github.com/Flutter-Global/tbd/actions/runs/${{ github.run_id }})`
+            })

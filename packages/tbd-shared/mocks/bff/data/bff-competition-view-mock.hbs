@@ -1,0 +1,29 @@
+{
+  "data": {
+    "View": {
+      "__typename": "CompetitionView",
+      "urn":"{{urn}}{{^urn}}ppb:tbd:view:competition:12149617{{/urn}}",
+      "url": "{{url}}{{^url}}/football/belarusian-premier-league/c-12149617{{/url}}",
+      "competition": {
+      {{#if competition}}
+        {{#with competition}}
+          {{> bff-competition}}
+        {{/with}}
+      {{else}}
+        {{> bff-competition}}
+      {{/if}}
+      },
+      "items": {
+        "pageInfo": null,
+        {{> bff-items }}
+      },
+      "partialItems": {
+        "pageInfo": null,
+        {{> bff-partial-items }}
+      },
+      "bottomBar": {
+        {{> bff-bottom-bar-tiles }}
+      }
+    }
+  }
+}

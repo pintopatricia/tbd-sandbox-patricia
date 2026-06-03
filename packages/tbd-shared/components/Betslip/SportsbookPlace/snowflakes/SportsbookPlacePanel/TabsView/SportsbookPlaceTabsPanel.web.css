@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+
+  flex-direction: column;
+
+  width: 100%;
+  height: calc(var(--vh) - var(--header-height) - var(--betslip-top-offset) - var(--expandable-handle-height));
+
+  /*
+  * Allows containers that use this component to transform it
+  * into a scrollable component with flex column and max-height/height
+  */
+
+  overflow: hidden;
+
+  background-color: var(--sportsbook-place-panel-container-colour);
+
+  /*
+  * Without this, render issues happen in the panel with the scroll
+  * In firefox in conjunction with scrolling into view
+  */
+  transform: translate3d(0, 0, 0);
+
+  scroll-behavior: smooth;
+}
+
+.singlesContainer {
+  height: auto;
+  max-height: calc(100vh - var(--header-height) - var(--betslip-top-offset) - var(--expandable-handle-height));
+}
+
+@supports (max-height: 100svh) {
+  .container {
+    height: calc(100svh - var(--header-height) - var(--betslip-top-offset) - var(--expandable-handle-height));
+  }
+
+  .singlesContainer {
+    height: auto;
+    max-height: calc(100svh - var(--header-height) - var(--betslip-top-offset) - var(--expandable-handle-height));
+  }
+}
+
+.blurbContainer {
+  margin: var(--spacing-1) var(--spacing-2) 0 var(--spacing-2);
+}

@@ -1,0 +1,148 @@
+:root {
+  --title-height: 24px;
+  --min-button-width: 100px;
+}
+
+.gamesGrid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: var(--spacing-3) var(--spacing-3);
+}
+
+.twoColumns {
+  justify-content: space-between;
+
+  width: calc(100vw - 2 * var(--spacing-3));
+}
+
+.gamesGrid.recentlyPlayed {
+  grid-template-columns: repeat(4, 1fr);
+
+  width: 100%;
+  height: 100%;
+  padding-bottom: 0;
+  margin-bottom: var(--spacing-4);
+}
+
+.recentlyPlayed > div {
+  width: calc(25vw - var(--spacing-6) * 3 / 4);
+  height: calc(25vw - var(--spacing-6) * 3 / 4 + var(--spacing-7));
+}
+
+.fourColumns {
+  width: calc((100vw - (3 * var(--spacing-6))) / 4);
+  height: calc((100vw - (3 * var(--spacing-6))) / 4);
+}
+
+.fourColumns .gameContainer {
+  margin-left: var(--spacing-4);
+}
+
+:not(.recentlyPlayed).gamesGrid .gameContainer {
+  width: auto;
+  margin-bottom: var(--spacing-3);
+}
+
+.fourColumns .gameContainer:nth-child(1) {
+  margin-left: 0;
+}
+
+.segmentedGamesWrapper {
+  position: relative;
+
+  display: flex;
+
+  width: fit-content;
+  height: var(--gaming-card-size);
+}
+
+.segmentedGamesContainer > * {
+  width: var(--gaming-card-size);
+  margin-right: var(--spacing-3);
+}
+
+@media screen and (max-width: 899px) {
+  .recentlyPlayed {
+    gap: 0;
+  }
+
+  .rectangle > div:nth-child(1) {
+    grid-column: span 2;
+
+    width: 100%;
+    height: calc((100vw - 3 * var(--spacing-3)) / 2);
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .gamesGrid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: var(--spacing-3) var(--spacing-3);
+  }
+
+  .recentlyPlayed > div,
+  .fourColumns {
+    width: var(--gaming-round-card-small-desktop-size);
+    height: calc(var(--gaming-round-card-small-desktop-size) + var(--spacing-7));
+  }
+
+  .gamesGrid.fourColumns {
+    grid-template-columns: repeat(4, 1fr);
+
+    padding-bottom: var(--spacing-4);
+  }
+
+  .gamesGrid .gameContainer {
+    margin-bottom: 0;
+  }
+
+  .fourColumns .gameContainer {
+    margin-left: 0;
+  }
+
+  .twoColumns {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 900px) and (max-width: 1023px) {
+  .rectangle > div:nth-child(1) {
+    grid-column: span 2;
+
+    width: 100%;
+    height: calc((50vw - 3 * var(--spacing-3)) / 2);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .gamesGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .gamesGrid.fourColumns {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .recentlyPlayed > div,
+  .fourColumns {
+    width: var(--gaming-round-card-medium-desktop-size);
+    height: calc(var(--gaming-round-card-medium-desktop-size) + var(--spacing-7));
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .gamesGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .recentlyPlayed > div,
+  .fourColumns {
+    width: var(--gaming-round-card-large-desktop-size);
+    height: calc(var(--gaming-round-card-large-desktop-size) + var(--spacing-7));
+  }
+}

@@ -1,0 +1,39 @@
+"bannerInfo": { {{#with bannerInfo}}
+   "title": {{#if title}}"{{title}}"{{else}}null{{/if}},
+   "bodyContent": { {{#with bodyContent}}
+     "text": {{#if text}}"{{text}}"{{else}}null{{/if}},
+     "items": {{#if items}}"{{items}}"{{else}}null{{/if}},
+     "formContent": {{#if formContent}}"{{formContent}}"{{else}}null{{/if}},
+     "contactUsInfo": {{#if contactUsInfo}}"{{contactUsInfo}}"{{else}}null{{/if}}
+     {{/with}}
+     }
+{{/with}}
+},
+{{#if minimizedBannerInfo}}
+"minimizedBannerInfo":{
+{{#with minimizedBannerInfo}}
+ "bodyText": {{#if bodyText}}"{{bodyText}}"{{else}}null{{/if}}
+{{/with}}
+},
+{{else}}
+"minimizedBannerInfo": null,
+{{/if}}
+{{#if bannerActions}}
+"bannerActions": [
+  {{#each bannerActions}}
+   {
+    {{> bff-banner-actions}}
+   }
+   {{#unless @last}},{{/unless}}
+   {{/each}}
+],
+{{/if}}
+"isMinimized": {{#if isMinimized}}{{isMinimized}}{{else}}null{{/if}},
+"priority": {{#if priority}}"{{priority}}"{{else}}null{{/if}},
+"useCase": {{#if useCase}}"{{useCase}}"{{else}}null{{/if}},
+"flow": {{#if flow}}"{{flow}}"{{else}}null{{/if}},
+"template": {{#if template}}"{{template}}"{{else}}null{{/if}},
+"attentionLevel": {{#if attentionLevel}}"{{attentionLevel}}"{{else}}null{{/if}},
+"maxDisplays": {{#if maxDisplays}}{{maxDisplays}}{{else}}null{{/if}},
+"version": {{#if version}}{{version}}{{else}}null{{/if}},
+"isClosable": {{#if isClosable}}{{isClosable}}{{else}}null{{/if}}

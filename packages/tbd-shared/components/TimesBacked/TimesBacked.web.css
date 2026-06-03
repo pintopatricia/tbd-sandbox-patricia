@@ -1,0 +1,34 @@
+.timesBackedContainer {
+  display: flex;
+
+  gap: var(--times-backed-horizontal-gap-primary);
+
+  align-items: center;
+}
+
+.timesBackedLabel {
+  display: flex;
+
+  gap: var(--times-backed-horizontal-gap-secondary);
+
+  font: var(--times-backed-label-typography);
+  color: var(--times-backed-text-label-colour);
+  text-decoration-line: var(--times-backed-label-typography-text-decoration-line);
+  text-transform: var(--times-backed-label-typography-text-transform);
+  letter-spacing: var(--times-backed-label-typography-letter-spacing);
+}
+
+.timesBackedCount {
+  font: var(--times-backed-label-highlighted-typography);
+  color: var(--times-backed-text-label-highlighted-colour);
+  text-decoration-line: var(--times-backed-label-highlighted-typography-text-decoration-line);
+  text-transform: var(--times-backed-label-highlighted-typography-text-transform);
+  letter-spacing: var(--times-backed-label-highlighted-typography-letter-spacing);
+}
+
+.timesBackedIcon {
+  align-self: center;
+
+  width: var(--times-backed-icon-sizing);
+  height: var(--times-backed-icon-sizing);
+}

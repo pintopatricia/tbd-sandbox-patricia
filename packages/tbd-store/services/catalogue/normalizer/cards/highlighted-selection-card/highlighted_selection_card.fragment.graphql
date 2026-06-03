@@ -1,0 +1,17 @@
+fragment highlightedSelectionCard on HighlightedSelectionCard {
+  __typename
+  urn
+  title
+  market {
+    ...sportsbookMarket
+  }
+  runner {
+    runnerURN
+  }
+  displayPreviousOdd
+}
+
+fragment highlightedSelectionCardPartial on HighlightedSelectionCard {
+  __typename
+  urn
+}

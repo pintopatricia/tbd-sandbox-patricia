@@ -1,0 +1,19 @@
+fragment obbLeg on ObbLeg {
+  __typename
+  templateId
+  templateParams {
+    ...obbPvpTemplateParamsFragment
+    ...obbSquadBetTemplateParamsFragment
+    ...obbSquadVsSquadTemplateParamsFragment
+  }
+  quote {
+    ...obbQuoteSuccessFragment
+    ...obbQuoteErrorFragment
+  }
+  event {
+    __typename
+    urn
+    name
+    eventId
+  }
+}

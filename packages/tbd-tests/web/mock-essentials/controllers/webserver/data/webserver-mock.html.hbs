@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Betfair™ Sportsbook & Exchange » Online Sports Betting</title>
+  <meta name="description" content="Bet online on the Betfair™ Sportsbook & Exchange. Join Betfair and bet with great odds or against other people. ✓Great Betting Odds ✓Bet In-Play ✓Cash Out. Join Betfair Now »" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <base href="{{baseFolder}}" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="preload" href="tbd/assets/noto-sans-latin-400-normal.woff2" as="font" crossorigin>
+  <link rel="preload" href="tbd/assets/noto-sans-latin-700-normal.woff2" as="font" crossorigin>
+  {{#if 'app.css'}}
+  <link href="tbd/assets/{{'app.css'}}" rel="stylesheet">
+  {{/if}}
+  {{#if 'vendors~app.css'}}
+  <link href="tbd/assets/{{'vendors~app.css'}}" rel="stylesheet">
+  {{/if}}
+  {{#if 'vendors-colors-tokens~app.css'}}
+  <link href="tbd/assets/{{'vendors-colors-tokens~app.css'}}" rel="stylesheet">
+  {{/if}}
+  {{#if disableCSSAnimations}}
+  <style type="text/css">
+    *,
+    ::before,
+    ::after {
+      /*  Focus Cursor  */
+      caret-color: transparent !important;
+
+      /*  CSS transitions  */
+      -moz-transition-duration: 0s !important;
+      -ms-transition-duration: 0s !important;
+      -o-transition-duration: 0s !important;
+      -webkit-transition-duration: 0s !important;
+      transition-duration: 0s !important;
+
+      /* CSS animations */
+      -moz-animation-duration: 0s !important;
+      -ms-animation-duration: 0s !important;
+      -o-animation-duration: 0s !important;
+      -webkit-animation-duration: 0s !important;
+      animation-duration: 0s !important;
+      animation-delay: 0s !important;
+
+      animation-name: none !important;
+
+      /* Tap */
+      -tap-highlight-color: transparent;
+      -webkit-tap-highlight-color: transparent;
+      -moz-tap-highlight-color: transparent;
+    }
+  </style>
+  {{/if}}
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script>
+    window.__CONTENT_LOADING_PARAMETERS__ = {}
+    window.__PRELOADED_STATE__ = {{{initialState}}}
+    window.__TBD_APP_COMMANDS__ = {{{appCommands}}}
+    window.__POST_LOGIN_SESSION__ = {{#if __POST_LOGIN_SESSION__}}true{{else}}false{{/if}}
+    window.__TBD_ENVIRONMENT__ = {
+      "ENV": "qa",
+      "PRODUCT_ID": "90",
+      "APP_KEY": "Q5vPQGFHSYfsasIo",
+      "HOST": "localhost.betfair.com",
+      "BASE_PATH": "/",
+      "DESKTOP_HEADER_CONFIG": {
+        "authenticationConfiguration": {
+          "loginEndpoint": "",
+          "loginRedirectUrl": "",
+          "loginRedirectMethod": "",
+          "logoutEndpoint": "",
+          "logoutRedirectUrl": "",
+          "logoutRedirectMethod": ""
+        },
+        "productDomain": "",
+        "clientConfiguration": {
+          "version": "",
+          "brand": "",
+          "product": "",
+          "channel": "",
+          "platform": "",
+          "selectedTab": ""
+        },
+        "contentConfiguration": {
+          "headerType": ""
+        }
+      },
+      "BETSLIP_CONFIG": {
+        "collapseStrategy": "ALL_OPEN"
+      },
+      "LOOP_CLIENT_CONFIG": {
+        "key": "Rp9mDx9wgF7Ch2AQ",
+        "brand": "BF"
+      },
+      "ENDPOINTS": {
+        "SPAM": "",
+        "MY_ACCOUNT": "https://myaccount.betfair.com",
+        "PROMOS": "https://promos.betfair.com",
+        "APPLE_PAY_PROXY": "https://myfunds.qa.com.betfair/lib/js/apple_pay_proxy.min.js",
+        "ERO": {
+          "path": "www/sports/exchange/readonly/v1/",
+          "host": ""
+        },
+        "ETX": {
+          "path": "www/sports/exchange/transactional/v1/",
+          "host": ""
+        },
+        "SMP": {
+          "path": "www/sports/fixedodds/readonly/v1/",
+          "host": ""
+        },
+        "NSS": {
+          "path": "NotificationSubscription/v1/",
+          "host": ""
+        },
+        "SPB": {
+          "path": "www/sports/fixedodds/transactional/v1/",
+          "host": ""
+        },
+        "SIB": {
+          "path": "www/sports/fixedodds/transactional/v1/",
+          "host": ""
+        },
+        "SIB_LITE": {
+          "path": "www/sports/fixedodds-lite/transactional/v1/",
+          "host": ""
+        },
+        "COS_READONLY": {
+          "path": "cashout-service/readonly/v1/",
+          "host": ""
+        },
+        "COS_TRANSACTIONAL": {
+          "path": "cashout-service/transactional/v1/",
+          "host": ""
+        },
+        "FCQ": {
+          "path": "fcq-service/v0.1/",
+          "host": ""
+        },
+        "SSC": {
+          "path": "api/v1.0/content",
+          "host": ""
+        },
+        "SCO": {
+          "path": "www/sports/fixedodds/transactional/v1/",
+          "host": ""
+        },
+        "CATALOGUE": {
+          "path": "api/tbd/bff-gql/v11/",
+          "host": ""
+        },
+        "WAS": {
+          "path": "wallet-service/v3.0/",
+          "host": ""
+        },
+        "LBR": {
+          "path": "www/sports/exchange/reporting/live/v1/",
+          "host": ""
+        },
+        "LOGOUT": {
+          "path": "api/logout/",
+          "host": ""
+        },
+        "BLH": {
+          "path": "blh/graphql",
+          "host": ""
+        },
+        "SCA": {
+          "path": "graphql/",
+          "host": ""
+        },
+        "USP": {
+          "path": "usp-preferences/v1.0/",
+          "host": ""
+        },
+        "GAME_LAUNCHER": {
+          "path": "launcher/",
+          "host": ""
+        },
+        "GAMING_SEARCH": {
+          "path": "api/gfe/search-games/v1/search-games",
+          "host": ""
+        },
+        "XTSD": {
+          "path": "LoadRunnerInfoChartAction",
+          "host": ""
+        },
+        "CBS": {
+          "path": "CustomerBehaviourService/v1.0/",
+          "host": ""
+        },
+        "SMD": {
+          "path": "SeoMetadata/v1/",
+          "host": ""
+        },
+        "SPANISH_DECREE_NOTIFICATION": {
+          "path": "ws/notifications",
+          "host": "wss://gmd.betfair.es.nxt.ppbdev.com/"
+        },
+        "LIVE_DEALER_WS": {
+          "path": "api/gfe/fanout/v2/",
+          "host": ""
+        },
+        "LIVE_DEALER_EVENT_SOURCE": {
+          "path": "feeds/",
+          "host": "https://gmd.betfair.com.nxt.ppbdev.com/"
+        },
+         "USER_ACTIVITY":{
+          "path": "api/gfe/user-activity/v1/favourite-games/",
+          "host": "https://gfe.betfair.{domain_extension}.nxt.ppbdev.com/"
+        },
+        "HANDLE_BANNER_ACTION": {
+          "path": "myaccountx/rest/handleBannerAction",
+          "host": ""
+        },
+        "APP_CONTEXT": {
+          "path": "app-context/",
+          "host": "https://apitbd.qa.com.betfair/"
+        },
+        "PROMOTIONS_CDN": {
+          "path": "",
+          "host": "https://promotions.cdnppb.net.nxt.ppbdev.com"
+        },
+        "PMA_S3_PROMOTIONS_CDN": {
+          "path": "",
+          "host": "https://pma-s3.betfair.com.nxt.ppbdev.com"
+        },
+        "WMS": {
+          "path": "",
+          "host": "https://messaging.betfair.com/"
+        },
+        "SPEND_BUDGET": {
+          "path": "my-budget?prod=90&showHeader=0",
+          "host": "https://myspendbudget.betfair.com/"
+        },
+        "DEPOSIT": {
+          "path": "deposit?prod=90&showHeader=0",
+          "host": "https://myfunds.betfair.com/"
+        },
+        "SER": {
+          "path": "SportsbookEventReadOnlyService/v1/",
+          "host": ""
+        },
+        "EXCHANGE_SITE": {
+          "path": "exchange",
+          "host": "https://www.betfair.com/"
+        },
+        "EGA": {
+          "path": "",
+          "host": "https://graphs.betfair.com/"
+        },
+        "BCE": {
+          "path": "api/sports/bce/v1.0/",
+          "host": "https://bce.betfair.it/"
+        },
+        "LPS": {
+          "path": "exposure/v1/log",
+          "host": "https://lps.betfair.com.nxt.ppbdev.com/"
+        }
+      },
+      "ASSETS": {
+        "HOST": "",
+        "BASE_PATH": "tbd/assets"
+      },
+      "REFRESH_RATES": {
+        "ERO": 2000,
+        "SMP": 2000,
+        "WAS": 30000,
+        "LBR": 1000,
+        "SIB": 5000,
+        "SER": 10000,
+        "BLH": {
+          "inPlay": 2000,
+          "notInPlay": 30000
+        },
+        "SCA": {
+          "loggedIn": {
+            "default": {
+              "inPlay": 2000,
+              "notInPlay": 30000
+            }
+          },
+          "loggedOut": {
+            "default": {
+              "inPlay": 2000,
+              "notInPlay": 30000
+            }
+          }
+        },
+        "COS": {
+          "loggedIn": {
+            "7": {
+              "inPlay": 5000,
+              "notInPlay": 13000
+            },
+            "default": {
+              "inPlay": 1000,
+              "notInPlay": 13000
+            }
+          },
+          "loggedOut": 1000000
+        },
+        "JACKPOT_ZONE": 60000,
+        "MY_BETS": 5000,
+        "POPULAR_BETS": 45000,
+        "POLLING_DEBOUNCE": 300
+      },
+      "AUTH_DATA": {
+        "SSO_URL": "https://identitysso.betfair.com/view/login?redirectMethod=GET&product=bfrebuild&prod=90",
+        "JOIN_DATA": {
+          "joinNowLink": "https://btfr.co/linker/join-now-btfr"
+        }
+      },
+      "EXTERNAL_LINKS": {
+        "NINETY_MINUTE_RULE": {
+          "INTERNATIONAL": {
+            "default": "https://support.betfair.com/app/answers/detail/a_id/10279/",
+            "de": "https://support.betfair.com/de/app/answers/detail/a_id/10281/",
+            "es_419": "https://support.betfair.com/es/app/answers/detail/a_id/10288/",
+            "fi": "https://support.betfair.com/fi/app/answers/detail/a_id/10287/",
+            "hu": "https://support.betfair.com/hu/app/answers/detail/a_id/10285/",
+            "no": "https://support.betfair.com/no/app/answers/detail/a_id/10286/",
+            "pt": "https://support.betfair.com/pt/app/answers/detail/a_id/10282/",
+            "pt_BR": "https://support.betfair.com/pt/app/answers/detail/a_id/10282/",
+            "ru": "https://support.betfair.com/ru/app/answers/detail/a_id/10283/"
+          },
+          "BRAZIL": {
+            "default": "https://support.betfair.bet.br/app/answers/detail/10282-sportsbook-90-minute-payout/",
+            "en_GB": "https://support.betfair.bet.br/en/app/answers/detail/10458-90-minute-payout-faq/"
+          },
+          "ITALY": {
+            "default": "https://support.betfair.it/app/answers/detail/a_id/6697/"
+          },
+          "SPAIN": {
+            "default": "https://support.betfair.es/app/answers/detail/a_id/10340/"
+          }
+        },
+        "SUPER_SUB": {
+          "INTERNATIONAL": {
+            "default": "https:/.betfair.com/betfair-announcements/whats-new-on-betfair/safe-sub-comes-to-betfair-220425-6.html"
+          },
+          "BRAZIL": {
+            "default": "https://support.betfair.bet.br/app/answers/detail/substituicao-segura-br/",
+            "en_GB": "https://support.betfair.bet.br/en/app/answers/detail/substituicao-segura-en/"
+          },
+          "SPAIN": {
+            "default": "https://support.betfair.es/app/answers/detail/10707-sustituto/",
+            "en_GB": "https://support.betfair.es/en/app/answers/detail/10708-safe-substitution/"
+          }
+        },
+        "MAX_PAYOUT": {
+          "INTERNATIONAL": {
+            "default": "https://www.betfair.com/en/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+            "da": "https://www.betfair.com/da/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+            "de": "https://www.betfair.com/de/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+            "es_419": "https://www.betfair.com/es_419/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+            "fi": "https://www.betfair.com/fi/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+            "hu": "https://www.betfair.com/hu/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+            "no": "https://www.betfair.com/no/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+            "pt": "https://www.betfair.com/pt/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+            "pt_BR": "https://www.betfair.com/pt/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+            "ru": "https://www.betfair.com/ru/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin"
+          },
+          "BRAZIL": {
+            "default": "https://www.betfair.bet.br/pt/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+            "en_GB": "https://www.betfair.bet.br/en/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin"
+          },
+          "SPAIN": {
+            "default": "https://www.betfair.es/es/conocenos/#MaxWin"
+          }
+        },
+        "ACCA_INSURANCE": {
+          "INTERNATIONAL": {
+            "default": "https://support.betfair.com/app/answers/detail/6157-sportsbook-what-is-acca-edge",
+            "de": "https://support.betfair.com/de/app/answers/detail/a_id/6459",
+            "es_419": "https://support.betfair.com/es/app/answers/detail/a_id/6464",
+            "pt": "https://support.betfair.com/pt/app/answers/detail/a_id/6465",
+            "pt_BR": "https://support.betfair.com/pt/app/answers/detail/a_id/6465",
+            "ru": "https://support.betfair.com/ru/app/answers/detail/a_id/6461"
+          },
+          "BRAZIL": {
+            "default": "https://support.betfair.bet.br/app/answers/detail/6465-betfair-esportes-o-que-e-multipla-segura/",
+            "en_GB": "https://support.betfair.bet.br/en/app/answers/detail/10473-sportsbook-what-is-acca-edge/"
+          },
+          "SPAIN": {
+            "default": "https://support.betfair.com/es/app/answers/detail/a_id/6464"
+          }
+        },
+        "MARKET_RULES_DISCOUNT_RATE": {
+          "INTERNATIONAL": {
+            "default": "//support.betfair.com/app/answers/detail/a_id/414",
+            "pt": "//en-betfair.custhelp.com/app/answers/detail/a_id/414",
+            "sv": "//en-betfair.custhelp.com/app/answers/detail/a_id/414"
+          },
+          "ITALY": {
+            "default": "//en-betfair.custhelp.com/app/answers/detail/a_id/414"
+          },
+          "ROMANIA": {
+            "default": "https://www.asistentabetfair.ro/app/answers/detail/a_id/414"
+          },
+          "SPAIN": {
+            "default": "https://es-betfair.custhelp.com/app/answers/detail/a_id/414"
+          }
+        },
+        "OPTA_FOOTBALL_STATISTICS": {
+          "INTERNATIONAL": {
+            "default": "https://support.betfair.com/app/answers/detail/opta-football-statistics-definitions/"
+          }
+        },
+        "SMART_APP_BANNER": {
+          "INTERNATIONAL": {
+            "default": "https://betfair.onelink.me/cWpO/sportssmart"
+          },
+          "BRAZIL": {
+            "default": "https://betfair-bet-br.onelink.me/Ax0n/brsmart"
+          },
+          "ITALY": {
+            "default": "https://betfair.onelink.me/cWpO/IT_SB_Smart_Banner"
+          }
+        },
+        "LOYALTY_CLUB": {
+          "BRAZIL": {
+            "default": "https://promos.betfair.bet.br/clubedevantagens"
+          },
+          "SPAIN": {
+            "default": "https://promos.betfair.es/clubbetfair"
+          }
+        },
+        "EXC_FEEDBACK_URL": {
+          "INTERNATIONAL": {
+            "default": "https://thebetfaircommunity.alidainsights.com/c/a/63H5nR6XgQC1G2CTuxtXOA"
+          }
+        }
+      }
+    };
+    window.__APP_CONTEXT__ = {{{appContext}}}
+    window.__TBD_CLIENT_CONTEXT__ = {{{clientContext}}}
+
+    window.MOCKEDENDPOINTS = { {{#each ENDPOINTS}}
+        "{{@key}}": new URL("{{this}}")
+        {{#unless @last}},{{/unless}}
+      {{/each}}
+      }
+  </script>
+
+  <script>
+        {{{ 'fakeTimersScript' }}}
+  </script>
+  <script>
+    const TICK_INTERVAL = 50;
+    window.setIntervalOG = setInterval;
+    window.clearIntervalOG = clearInterval;
+    window.unpause = () => {
+      if (window.tickIntervalId) {
+        throw new Error("You didn't pause first!");
+      }
+      window.tickIntervalId = setIntervalOG(() => {
+        window.fakeTimersClock.tick(TICK_INTERVAL)
+      }, TICK_INTERVAL);
+    }
+    window.pause = () => {
+      if (!window.tickIntervalId) {
+        throw new Error("You didn't unpause first!");
+      }
+      window.clearIntervalOG(window.tickIntervalId);
+      window.tickIntervalId = null;
+    }
+
+    window.fakeTimersClock = FakeTimers.withGlobal(window).install({
+      toFake: ["Date", "setTimeout", "clearTimeout", "setInterval", "clearInterval", "performance"],
+      /* https://bugs.chromium.org/p/chromedriver/issues/detail?id=2599#c26 */
+      shouldAdvanceTime: false,
+      now: new Date("{{date}}{{^date}}1985-02-05T10:00{{/date}}")
+    });
+    window.unpause();
+    {{#if pause}}
+      window.pause();
+    {{/if}}
+    {{#if timeZone}}
+    const original = Intl.DateTimeFormat;
+    Intl.DateTimeFormat = function (locale,options) {
+      return original(locale, Object.assign({}, options, {timeZone: "{{timeZone}}"}))
+    }
+    {{/if}}
+  </script>
+  <script>
+    // Web Share API mock
+    navigator.canShare = () => true;
+  </script>
+  <script src="tbd/assets/{{'translations-en.js'}}"></script>
+  <script src="tbd/assets/{{'vendors-react-dom~app.js'}}"></script>
+  <script src="tbd/assets/{{'vendors-apollo~app.js'}}"></script>
+  <script src="tbd/assets/{{'vendors~app.js'}}"></script>
+  <script src="tbd/assets/{{'vendors-colors-tokens~app.js'}}"></script>
+  <script src="tbd/assets/{{'runtime.js'}}"></script>
+  <script src="tbd/assets/{{'app.js'}}"></script>
+  <script>
+    window.dataLayer = [];
+  </script>
+</body>
+
+</html>

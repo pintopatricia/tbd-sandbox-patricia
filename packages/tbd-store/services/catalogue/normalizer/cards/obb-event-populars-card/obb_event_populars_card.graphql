@@ -1,0 +1,27 @@
+fragment obbEventPopularsCard on ObbEventPopularsCard {
+  __typename
+  urn
+  obbEventPopularsCardTitle: title {
+    ...displayName
+  }
+  badgeLabel {
+    ...displayName
+  }
+  numberOfVisibleBettingOpportunities
+  showPopularEvidence
+  showStats
+  event {
+    urn
+    name
+    eventId
+  }
+  popularBettingOpportunities {
+    betCount
+    participants {
+      ...obbFootballPlayer
+    }
+    leg {
+      ...obbLeg
+    }
+  }
+}

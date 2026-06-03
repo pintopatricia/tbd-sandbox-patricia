@@ -1,0 +1,78 @@
+name: 'Build and Publish docker image'
+run-name: "Build and Publish docker image - ${{ inputs.dockerFile }} - ${{ inputs.tag }}"
+
+on:
+  workflow_dispatch:
+    inputs:
+      dockerFile:
+        description: 'The docker file with path to run'
+        type: string
+        required: true
+        default: Docker/tbdn/rn-android/rn-android.Dockerfile
+      tag:
+        description: 'Tag to publish'
+        type: string
+        required: false
+        default: docker.app.betfair/ppb/tbdn/rn-android:2.0.0
+  workflow_call:
+    inputs:
+      dockerFile:
+        description: 'The docker file with path to run'
+        type: string
+        required: true
+        default: Docker/tbdn/rn-android/rn-android.Dockerfile
+      tag:
+        description: 'Tag to publish'
+        type: string
+        required: false
+        default: docker.app.betfair/ppb/tbdn/rn-android:2.0.0
+env:
+  DOCKER_FILE: ${{ inputs.dockerFile }}
+  TAG: ${{ inputs.tag }}
+
+concurrency:
+  group: build-${{ inputs.dockerFile }}-${{ inputs.tag }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: centos-self-hosted-large
+    env:
+      GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      MONTEROSA_TOKEN: ${{secrets.MONTEROSA_TOKEN}}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: Cache node dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Enable corepack
+        run: corepack enable yarn
+
+      - name: Install dependencies
+        run: yarn install --immutable-cache
+
+      - name: Build Image
+        id: build
+        run: |
+          docker build --no-cache \
+            --platform linux/amd64 \
+            -f ${{ env.DOCKER_FILE }} \
+            -t ${{ env.TAG }} .
+
+      - name: Push Image
+        id: push
+        run: |
+          docker push ${{ env.TAG }}

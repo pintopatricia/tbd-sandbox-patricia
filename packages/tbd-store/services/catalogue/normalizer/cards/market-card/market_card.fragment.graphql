@@ -1,0 +1,73 @@
+fragment marketCard on MarketCard {
+  __typename
+  urn
+  cardTitle: title
+  numberOfItemsToDisplay
+  viewLinks {
+    viewUrn
+    viewUrl
+  }
+  marketsHierarchy {
+    ... on RaceHierarchy {
+      __typename
+      race {
+        ...raceWithRaceRunners
+      }
+    }
+  }
+  displayRunners {
+    exchange {
+      market {
+        ...exchangeMarketLiveData
+      }
+      runners {
+        runnerURN
+      }
+    }
+    sportsbook {
+      market {
+        ...sportsbookMarketLiveData
+      }
+      runners {
+        runnerURN
+        participantId
+      }
+    }
+  }
+  runnerViewLinks {
+    runnerUrn
+    viewUrl
+    viewUrn
+  }
+  isRunnerExpandable
+  template
+  marketPromo: promotion {
+    title
+    description
+    signposting
+  }
+  blurbs {
+    ...informativeBlurb
+  }
+  players {
+    edges {
+      cursor
+      node {
+        ...footballPlayerFixtureContextPlayerData
+      }
+    }
+  }
+  firstPlayer: players(first: 1) {
+    edges {
+      node {
+        ...footballPlayerFixtureContextFixtureData
+      }
+    }
+  }
+  stat
+}
+
+fragment marketCardPartial on MarketCard {
+  __typename
+  urn
+}

@@ -1,0 +1,31 @@
+name: tbdn-native-changes
+
+on:
+  pull_request:
+    types: [opened, closed]
+    paths:
+      - 'apps/sbg/native/**'
+    branches:
+      - master
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  slack-update:
+    if: github.event.pull_request.merged == true || github.event.action == 'opened'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send custom JSON data to Slack workflow
+        id: slack
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          payload: |
+            {
+              "pull_request_name": "${{ github.event.pull_request.title }}",
+              "pull_request_link": "${{ github.event.pull_request.html_url }}",
+              "pull_request_status": "${{ github.event.action == 'closed' && 'merged' || github.event.action }}"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_TBDN_CHANGES }}

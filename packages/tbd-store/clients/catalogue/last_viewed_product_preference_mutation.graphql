@@ -1,0 +1,17 @@
+mutation SetLastViewedProductPreferenceMutation(
+  $urn: URN!
+  $value: LastViewedProduct!
+  $throttlesOn: [String!]
+  $throttlesOff: [String!]
+  $productExclusions: [ProductExclusion!]
+)
+@productExclusions(productExclusions: $productExclusions)
+@throttlesOn(throttlesOn: $throttlesOn)
+@throttlesOff(throttlesOff: $throttlesOff) {
+  setPreferences(input: { lastViewedProductPreference: { urn: $urn, value: $value } }) {
+    result {
+      ...lastViewedProductPreference
+    }
+    error
+  }
+}

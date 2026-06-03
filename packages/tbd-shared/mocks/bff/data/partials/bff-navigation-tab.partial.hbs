@@ -1,0 +1,22 @@
+"__typename": "NavigationTab",
+"urn":"{{{urn}}}{{^urn}}ppb:tbd:view:navigationTab:YGxxkxIAACIAazfZ/s/1{{/urn}}",
+{{#with tabTitle}}
+"tabTitle": {
+    {{> bff-translatable-text}}
+},
+{{/with}}
+{{#with tabViewLink}}
+"tabViewLink": {
+    {{> bff-view-link}}
+},
+{{/with}}
+{{#with full}}
+"full":{
+  {{> bff-items }}
+},
+{{/with}}
+{{#with partials}}
+"partials":{
+  {{> bff-partial-items }}
+}
+{{/with}}

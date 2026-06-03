@@ -1,0 +1,36 @@
+"__typename": "{{__typename}}{{^__typename}}RegulatoryCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:regulatory{{/urn}}",
+"sections": [
+    {{#each sections}}
+	    {
+			"sectionType": "{{sectionType}}{{^sectionType}}GENERIC{{/sectionType}}",
+			"__typename": "{{__typename}}{{^__typename}}RegulatorySectionGeneric{{/__typename}}",
+			"title": {{#if title}}"{{title}}"{{else}}null{{/if}},
+			"genericSectionTitle": {{#if genericSectionTitle}}"{{genericSectionTitle}}"{{else}}null{{/if}},
+			"items": [
+                {{#each items}}
+					{
+						"__typename": "{{__typename}}{{^__typename}}RegulatoryTextItem{{/__typename}}",
+						{{#if text}}"text": "{{text}}{{^text}}Some Text{{/text}}",{{/if}}
+						{{#if textColor}}"textColor": "{{textColor}}{{^textColor}}Only here to test a fail scenario{{/textColor}}",{{/if}}
+						{{#if loggedInSinceText}}"loggedInSinceText": "{{loggedInSinceText}}{{^loggedInSinceText}}Some loggedInSinceText{{/loggedInSinceText}}",{{/if}}
+						{{#if lastLoginText}}"lastLoginText": "{{lastLoginText}}{{^lastLoginText}}Some lastLoginText{{/lastLoginText}}",{{/if}}
+						{{#if time}}"time": "{{time}}{{^time}}Some time{{/time}}",{{/if}}
+            {{#if timeFormat}}"timeFormat": "{{timeFormat}}{{^timeFormat}}HH:mm{{/timeFormat}}",{{/if}}
+            {{#if timeZone}}"timeZone": "{{timeZone}}{{^timeZone}}Europe/London{{/timeZone}}",{{/if}}
+						{{#if contractNumber}}"contractNumber": "{{contractNumber}}{{^contractNumber}}1234{{/contractNumber}}",{{/if}}
+						{{#if nationalIdentifier}}"nationalIdentifier": "{{nationalIdentifier}}{{^nationalIdentifier}}IT{{/nationalIdentifier}}",{{/if}}
+						{{#if firstName}}"firstName": "{{firstName}}{{^firstName}}Some firstName{{/firstName}}",{{/if}}
+						{{#if lastName}}"lastName": "{{lastName}}{{^lastName}}Some lastName{{/lastName}}",{{/if}}
+						{{#if sessionText}}"sessionText": "{{sessionText}}{{^sessionText}}Some Session Text{{/sessionText}}",{{/if}}
+						{{#if imageURL}}"imageURL": "{{imageURL}}{{^imageURL}}https://assets.cdnppb.net/ssc/intl/ALL_REGIONS/en/ALL_TRUEVALUES/footer/over18.png{{/imageURL}}",{{/if}}
+						{{#if alt}}"alt": {{#if alt}}"{{alt}}"{{else}}null{{/if}},{{/if}}
+						{{#if target}}"target": "{{target}}{{^target}}POPUP{{/target}}",{{/if}}
+						{{#if link}}"link": "{{link}}{{^link}}http://content.betfair.com/misc/?product=portal&sWhichKey=gamCare&locale=en_GB&region=GBR&brand=betfair&entrydomain=betfair.com{{/link}}",{{/if}}
+						"alignment": "{{alignment}}{{^alignment}}LEFT{{/alignment}}"
+					}{{#unless @last}},{{/unless}}
+				{{/each}}
+			]
+		}{{#unless @last}},{{/unless}}
+	{{/each}}
+]

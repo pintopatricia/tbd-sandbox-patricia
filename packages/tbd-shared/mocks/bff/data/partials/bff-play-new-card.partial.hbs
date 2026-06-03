@@ -1,0 +1,46 @@
+"__typename": "{{__typename}}{{^__typename}}GamingPlayNewCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:gaming:masterConfigElement:styw/0{{/urn}}",
+"title": "{{title}}{{^title}}SPIN ‘TIL YOU WIN ON FREE FIGHTER{{/title}}",
+"subtitle": "{{subtitle}}{{^subtitle}}NOW LIVE. JOIN FUN!{{/subtitle}}",
+"optInState": "{{optInState}}{{^optInState}}NOT_OPTED_IN{{/optInState}}",
+"endDate": "{{endDate}}{{^endDate}}2022-05-30T14:05:09.515Z{{/endDate}}",
+"tags": [
+{{#each tags}}
+  "{{this}}"
+  {{#unless @last}},{{/unless}}
+{{/each}}
+],
+"termsAndConditions": {
+  "label": {
+    "translationKey": "{{translationKey}}{{^translationKey}}I18N.PLAY_NEW.TC_LABEL{{/translationKey}}",
+    "__typename": "{{__typename}}{{^__typename}}DisplayNameTranslationKey{{/__typename}}"
+  },
+  "summary": "{{termsAndConditions.summary}}{{^termsAndConditions.summary}}Summarized T&C, click here for full T&C{{/termsAndConditions.summary}}",
+  "url": "{{termsAndConditions.url}}{{^termsAndConditions.url}}https://promos.nxt.com.betfair/promotion?promoCode=X41sdBAAACEACzD1{{/termsAndConditions.url}}",
+  "viewLink": {
+    "viewDisplayMode": "{{viewDisplayMode}}{{^viewDisplayMode}}BLANK_INAPP{{/viewDisplayMode}}",
+    "viewUrl": "{{viewUrl}}{{^viewUrl}}https://promos.nxt.com.betfair/promotion?promoCode=STYWBFRB{{/viewUrl}}",
+    "viewUrn": "{{viewUrn}}{{^viewUrn}}ppb:tbd:view:external:external{{/viewUrn}}"
+  }
+},
+"backgroundImage":  [
+{{#each backgroundImage}}
+  {
+  "url": "{{url}}{{^url}}https://kpo.nxt.internal/media/english_uk/images/cpp/commons/artwork-1400x400.jpg{{/url}}",
+  "width": {{width}}{{^width}}1400{{/width}},
+  "height": {{height}}{{^height}}400{{/height}}
+  }
+  {{#unless @last}},{{/unless}}
+{{/each}}
+],
+"logoImage":  [
+{{#each logoImage}}
+  {
+  "url": "{{url}}{{^url}}https://kpo.nxt.internal/media/english_uk/images/cpp/commons/artwork-1400x400.jpg{{/url}}",
+  "width": {{width}}{{^width}}1400{{/width}},
+  "height": {{height}}{{^height}}400{{/height}}
+  }
+  {{#unless @last}},{{/unless}}
+{{/each}}
+]
+

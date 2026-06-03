@@ -1,0 +1,7 @@
+.placeholder {
+  width: 94px;
+  height: 54px;
+
+  background-color: var(--neutrals-background-elevation2);
+  border-radius: 4px;
+}

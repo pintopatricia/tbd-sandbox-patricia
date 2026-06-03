@@ -1,0 +1,15 @@
+.countdown {
+  font: var(--countdown-content-text-default-typography);
+  color: var(--countdown-content-text-default-colour);
+  text-decoration-line: var(--countdown-content-text-default-typography-text-decoration-line);
+  text-transform: var(--countdown-content-text-default-typography-text-transform);
+  letter-spacing: var(--countdown-content-text-default-typography-letter-spacing);
+}
+
+.alert {
+  font: var(--countdown-content-text-alert-typography);
+  color: var(--countdown-content-text-alert-colour);
+  text-decoration-line: var(--countdown-content-text-alert-typography-text-decoration-line);
+  text-transform: var(--countdown-content-text-alert-typography-text-transform);
+  letter-spacing: var(--countdown-content-text-alert-typography-letter-spacing);
+}

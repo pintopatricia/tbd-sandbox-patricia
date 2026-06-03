@@ -1,0 +1,18 @@
+.title {
+  display: flex;
+
+  align-items: center;
+
+  min-height: var(--title-section-height);
+  margin-bottom: var(--spacing-1);
+
+  color: var(--neutrals-text-default);
+}
+
+.container {
+  margin: 0 var(--spacing-3) var(--spacing-4) var(--spacing-3);
+}
+
+.separator {
+  margin-bottom: var(--spacing-3);
+}

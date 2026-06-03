@@ -1,0 +1,40 @@
+{
+"hidden": {{#if hidden}}{{hidden}}{{else}}false{{/if}},
+"accessLevel": "{{accessLevel}}{{^accessLevel}}STANDARD{{/accessLevel}}",
+"type": "{{type}}{{^type}}LOSS_REFUND{{/type}}",
+"valueLookup": {
+{{#if valueLookup}}
+  {{#with valueLookup}}
+    "maxAmount":  {{#if maxAmount}}
+      {{#with maxAmount}}
+        {
+         "type": "{{type}}{{^type}}CURRENCY{{/type}}",
+         "value": "{{value}}{{^value}}10{{/value}}"
+         },
+      {{/with}}
+    {{else}}
+    null,
+    {{/if}}
+    "quantity":  {{#if quantity}}
+      {{#with quantity}}
+         {
+          "type": "{{type}}{{^type}}PERCENT{{/type}}",
+           "value": "{{value}}{{^value}}10{{/value}}"
+         },
+      {{/with}}
+    {{else}}
+    null,
+    {{/if}}
+    "size": {{#if size}}
+      {{#with size}}
+         {
+          "type": "{{type}}{{^type}}INTEGER{{/type}}",
+          "value": "{{value}}{{^value}}10{{/value}}"
+          }
+      {{/with}}
+    {{else}}
+    null
+   {{/if}}
+{{/with}}
+{{/if}}
+}}

@@ -1,0 +1,22 @@
+.competitionsGroup:not(:last-of-type) {
+  border-bottom: 1px solid var(--neutrals-border-elevation2);
+}
+
+.accordionContent {
+  padding: 0 var(--spacing-3) 0 var(--spacing-6);
+}
+
+.collapseHeaderIcon {
+  flex-shrink: 0;
+
+  width: var(--card-flag-sizing);
+  height: var(--card-flag-sizing);
+}
+
+.collapseHeaderIcon > img {
+  width: var(--card-flag-sizing);
+  height: var(--card-flag-sizing);
+
+  border: var(--card-flag-border);
+  border-radius: 50%; /* makes the border circular around the round flag icon */
+}

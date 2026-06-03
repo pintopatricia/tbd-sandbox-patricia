@@ -1,0 +1,22 @@
+fragment fullGameCardGroupItems on GamingCardGroupItemsConnection {
+  edges {
+    node {
+      # Read this before adding new entries: docs/guidelines/how-to-add-a-new-card.md
+
+      ...gameCard
+      ...gameInfoCard
+      ...gamingJackpotCard
+      ...gamingLinkCard
+      ...gamingPlayNewCard
+    }
+  }
+}
+
+fragment partialsGameCardGroupItems on GamingCardGroupItemsConnection {
+  edges {
+    node {
+      urn
+      __typename
+    }
+  }
+}

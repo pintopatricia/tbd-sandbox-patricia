@@ -1,0 +1,106 @@
+.promotionCard {
+  width: 100%;
+  height: var(--promo-card-height);
+  overflow: hidden;
+
+  background-color: var(--neutrals-background-elevation2);
+  background-position: center;
+  background-size: cover;
+  border-radius: var(--spacing-1);
+}
+
+.promotionContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  height: 100%;
+}
+
+.promotionBody {
+  display: flex;
+
+  flex: 1;
+
+  align-items: center;
+
+  overflow: hidden;
+}
+
+.promotionInfoContainer {
+  width: 50%;
+  padding-left: var(--spacing-4);
+}
+
+.actionContainer {
+  display: flex;
+}
+
+.promotionAction {
+  max-width: 100%;
+}
+
+/* Casino Action Button Exception */
+.promotionAction button {
+  height: 100%;
+  min-height: var(--button-height);
+  padding: var(--spacing-1) var(--spacing-3);
+}
+
+.promotionTitles {
+  color: var(--agnostic-neutrals-text-alternative);
+  text-transform: uppercase;
+}
+
+.titleEnd {
+  margin-bottom: var(--spacing-1);
+}
+
+.subtitle {
+  margin-bottom: calc(var(--spacing-1) + var(--spacing-half));
+
+  color: var(--agnostic-neutrals-border-default);
+}
+
+.headline p,
+.title p {
+  display: inline;
+
+  padding: 2px;
+
+  background-color: var(--agnostic-neutrals-border-default);
+  box-shadow:
+    calc(-1 * var(--spacing-4)) 0 0 var(--agnostic-neutrals-border-default),
+    var(--spacing-1) 0 0 var(--agnostic-neutrals-border-default),
+    var(--spacing-1) 0 0 var(--agnostic-neutrals-border-default);
+  box-decoration-break: clone;
+}
+
+.promotionImageContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 50%;
+  height: 100%;
+}
+
+.promotionImage {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.promotionFooter {
+  padding: var(--spacing-1) var(--spacing-4);
+
+  background-color: var(--components-promotions-background-casino-t-cs);
+}
+
+.promotionFooter p {
+  color: var(--agnostic-neutrals-text-alternative);
+}
+
+.summary {
+  color: var(--neutrals-text-default);
+}

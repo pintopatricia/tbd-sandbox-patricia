@@ -1,0 +1,25 @@
+{
+  "header": "{{header}}{{^header}}<div class=\"header\">HEADER</div>{{/header}}",
+  "footer": "",
+  "jsFiles":
+    {{#if jsFiles}}
+    [
+      {{#each jsFiles}}
+        "{{this}}"{{#unless @last}},{{/unless}}
+      {{/each}}
+    ],
+    {{else}}
+    [],
+  {{/if}}
+  "cssFiles":
+    {{#if cssFiles}}
+    [
+      {{#each cssFiles}}
+        "{{this}}"{{#unless @last}},{{/unless}}
+      {{/each}}
+    ],
+    {{else}}
+    ["https://ssc.desastre.pt/ssc/fake.css"]
+  {{/if}}
+}
+

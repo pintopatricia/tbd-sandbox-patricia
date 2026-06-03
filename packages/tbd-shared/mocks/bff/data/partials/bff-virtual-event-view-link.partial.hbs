@@ -1,0 +1,15 @@
+"__typename": "VirtualEventViewLink",
+"urn": "{{urn}}{{^urn}}ppb:tbd:virtualEventViewLink:0|13544362{{/urn}}",
+"viewLink": {
+  {{> bff-view-link viewLink}}
+},
+"virtualEvent": {
+  {{> bff-virtual-event virtualEvent}}
+},
+"virtualMarkets": [
+  {{#each virtualMarkets}}
+    {
+      {{> bff-virtual-market this}}
+    }{{#unless @last}},{{/unless}}
+  {{/each}}
+]

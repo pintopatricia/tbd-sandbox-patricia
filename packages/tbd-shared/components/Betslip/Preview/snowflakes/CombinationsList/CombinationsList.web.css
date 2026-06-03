@@ -1,0 +1,147 @@
+.combinationsList {
+  width: 100%;
+}
+
+.combinationsList.withoutMore {
+  border-bottom: 1px solid var(--action-sportsbook-background-elevation1);
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.combinationsGrid {
+  display: grid;
+
+  grid-template-columns: minmax(11px, min-content) 1fr fit-content(64px) fit-content(200px);
+}
+
+.header {
+  display: contents;
+}
+
+.headerCell {
+  height: 32px;
+
+  color: var(--action-sportsbook-text-default);
+  white-space: nowrap;
+
+  background-color: var(--action-sportsbook-background-elevation3);
+}
+
+.contentCell {
+  color: var(--neutrals-text-default);
+}
+
+.content {
+  padding: var(--spacing-1);
+}
+
+.headerId {
+  border-top-left-radius: 4px;
+}
+
+.headerClosed {
+  border-bottom-left-radius: 4px;
+}
+
+.headerTitleContainer {
+  display: flex;
+
+  align-items: center;
+}
+
+.headerTitle {
+  padding-left: var(--spacing-1);
+}
+
+.headerOdd {
+  padding: 0 var(--spacing-1);
+}
+
+.headerPayout {
+  padding: 0 var(--spacing-1);
+
+  border-top-right-radius: 4px;
+}
+
+.headerPayoutClosed {
+  border-bottom-right-radius: 4px;
+}
+
+.iconSize {
+  width: var(--icon-size);
+  height: var(--icon-size);
+}
+
+.icon {
+  display: inline-flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+.lines {
+  display: contents;
+}
+
+.line {
+  display: contents;
+}
+
+.line > span {
+  border-right: 1px solid var(--action-sportsbook-background-elevation1);
+}
+
+.line:not(:last-child) > span {
+  border-bottom: 1px solid var(--action-sportsbook-background-elevation1);
+}
+
+.id {
+  color: var(--action-sportsbook-text-default);
+
+  background-color: var(--action-sportsbook-background-elevation1);
+}
+
+.odd {
+  padding: var(--spacing-1);
+
+  text-align: center;
+}
+
+.payout {
+  max-width: 120px;
+  padding: var(--spacing-1);
+
+  text-align: center;
+  word-break: break-all;
+}
+
+.centerText {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.moreButton {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 32px;
+
+  color: var(--action-sportsbook-text-default);
+
+  background-color: var(--action-sportsbook-background-elevation3);
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.moreIcon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+}

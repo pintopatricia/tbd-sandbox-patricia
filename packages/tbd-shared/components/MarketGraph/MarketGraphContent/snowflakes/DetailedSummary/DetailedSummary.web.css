@@ -1,0 +1,47 @@
+.detailed {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--detailed-summary-horizontal-gap-primary);
+}
+
+.group {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--detailed-summary-horizontal-gap-secondary);
+}
+
+.groupTitle {
+  font: var(--detailed-summary-title-typography);
+  color: var(--detailed-summary-text-title-colour);
+  text-decoration-line: var(--detailed-summary-title-typography-text-decoration-line);
+  text-transform: var(--detailed-summary-title-typography-text-transform);
+  letter-spacing: var(--detailed-summary-title-typography-letter-spacing);
+}
+
+.itemTitle {
+  font: var(--detailed-summary-content-text-typography);
+  color: var(--detailed-summary-text-content-text-colour);
+  text-decoration-line: var(--detailed-summary-content-text-typography-text-decoration-line);
+  text-transform: var(--detailed-summary-content-text-typography-text-transform);
+  letter-spacing: var(--detailed-summary-content-text-typography-letter-spacing);
+}
+
+.itemAmount {
+  font: var(--detailed-summary-content-text-highlighted-typography);
+  color: var(--detailed-summary-text-content-text-highlighted-colour);
+  text-decoration-line: var(--detailed-summary-content-text-highlighted-typography-text-decoration-line);
+  text-transform: var(--detailed-summary-content-text-highlighted-typography-text-transform);
+  letter-spacing: var(--detailed-summary-content-text-highlighted-typography-letter-spacing);
+}
+
+.item {
+  display: flex;
+
+  gap: var(--detailed-summary-horizontal-gap-secondary);
+
+  place-content: center space-between;
+}

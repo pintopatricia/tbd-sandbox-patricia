@@ -1,0 +1,219 @@
+{
+  "project_info": {
+    "project_number": "471098256672",
+    "project_id": "sbg-apps-development",
+    "storage_bucket": "sbg-apps-development.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471098256672:android:673136c9b3d6635ab83b45",
+        "android_client_info": {
+          "package_name": "com.footyaccumulators.itv7dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQKUQvMTPjUIZ-EOxa7Upbr3g-yKL16WY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471098256672:android:4ca68a450103511eb83b45",
+        "android_client_info": {
+          "package_name": "com.footyaccumulators.itv7test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQKUQvMTPjUIZ-EOxa7Upbr3g-yKL16WY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471098256672:android:1dc41435632c1e9cb83b45",
+        "android_client_info": {
+          "package_name": "com.footyaccumulators.sbgffdemo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQKUQvMTPjUIZ-EOxa7Upbr3g-yKL16WY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471098256672:android:c6974d3d7a9052fdb83b45",
+        "android_client_info": {
+          "package_name": "com.footyaccumulators.sbgffstaging"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQKUQvMTPjUIZ-EOxa7Upbr3g-yKL16WY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471098256672:android:e545d3431fadd30db83b45",
+        "android_client_info": {
+          "package_name": "com.footyaccumulators.sbgfftest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQKUQvMTPjUIZ-EOxa7Upbr3g-yKL16WY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471098256672:android:6c1eb08296a30d03b83b45",
+        "android_client_info": {
+          "package_name": "com.footyaccumulators.super6test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQKUQvMTPjUIZ-EOxa7Upbr3g-yKL16WY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471098256672:android:89312f16643fd621b83b45",
+        "android_client_info": {
+          "package_name": "com.skybet.app.skybingo.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQKUQvMTPjUIZ-EOxa7Upbr3g-yKL16WY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471098256672:android:af025d70d87a922ab83b45",
+        "android_client_info": {
+          "package_name": "com.skybet.app.skycasino.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQKUQvMTPjUIZ-EOxa7Upbr3g-yKL16WY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471098256672:android:0463ce4de10a9e4fb83b45",
+        "android_client_info": {
+          "package_name": "com.skybet.app.skyvegas.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQKUQvMTPjUIZ-EOxa7Upbr3g-yKL16WY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471098256672:android:ec70c902bfe065a0b83b45",
+        "android_client_info": {
+          "package_name": "com.skybet.tbd.inhouse"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQKUQvMTPjUIZ-EOxa7Upbr3g-yKL16WY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:471098256672:android:7008f8c44aeda18cb83b45",
+        "android_client_info": {
+          "package_name": "com.skybet.tbd.qa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQKUQvMTPjUIZ-EOxa7Upbr3g-yKL16WY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

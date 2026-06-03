@@ -1,0 +1,20 @@
+query FilteredSelectableItemsQuery(
+  $urn: [URN!]!
+  $first: Int
+  $cursor: String
+  $filterBy: SelectableItemsFilterOptions
+  $preferences: LayoutPreferencesInput
+  $productExclusions: [ProductExclusion!]
+  $experiments: [ExperimentsInput!]
+  $throttlesOn: [String!]
+  $throttlesOff: [String!]
+)
+@preferences(preferences: $preferences)
+@productExclusions(productExclusions: $productExclusions)
+@experiments(experiments: $experiments)
+@throttlesOn(throttlesOn: $throttlesOn)
+@throttlesOff(throttlesOff: $throttlesOff) {
+  Cards(cardsURN: $urn) {
+    ...selectableitemsCardGroupFiltered
+  }
+}

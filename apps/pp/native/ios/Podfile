@@ -1,0 +1,182 @@
+# Resolve react_native_pods.rb with node to allow for hoisting
+require Pod::Executable.execute_command('node', ['-p',
+  'require.resolve(
+    "../../../../node_modules/react-native/scripts/react_native_pods.rb",
+    {paths: [process.argv[1]]},
+  )', __dir__]).strip
+
+require 'json'
+podfile_properties = JSON.parse(File.read(File.join(__dir__, 'Podfile.properties.json'))) rescue {}
+
+platform :ios, '15.1'
+prepare_react_native_project!
+
+# Use this property to enable support to the new architecture.
+ENV['RCT_NEW_ARCH_ENABLED'] = '1'
+
+def node_require(script)
+  # Resolve script with node to allow for hoisting
+  require Pod::Executable.execute_command('node', ['-p',
+    "require.resolve(
+      '#{script}',
+      {paths: [process.argv[1]]},
+    )", __dir__]).strip
+end
+
+node_require('react-native/scripts/react_native_pods.rb')
+node_require('react-native-permissions/scripts/setup.rb')
+
+require File.join(File.dirname(`node --print "require.resolve('expo/package.json')"`), "scripts/autolinking")
+
+
+# for geoComply
+setup_permissions([
+    'LocationAccuracy',
+  'LocationAlways',
+  'LocationWhenInUse',
+])
+
+linkage = ENV['USE_FRAMEWORKS']
+if linkage != nil
+  Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
+  use_frameworks! :linkage => linkage.to_sym
+end
+
+project 'tbd_native',
+        'In_House' => :release
+
+target 'tbd_native' do
+  # Monterosa sdk
+  version = '0.16.17'
+  url = "https://gitlab.com/monterosa-sdk/ios.git"
+
+  pod 'MonterosaSDKCommon', :git => url, :tag => version
+  pod 'MonterosaSDKConnectKit', :git => url, :tag => version
+  pod 'MonterosaSDKCore', :git => url, :tag => version
+  pod 'MonterosaSDKLauncherKit', :git => url, :tag => version
+  pod 'MonterosaSDKIdentifyKit', :git => url, :tag => version
+
+  use_expo_modules!
+
+  if ENV['EXPO_USE_COMMUNITY_AUTOLINKING'] == '1'
+    config_command = ['node', '-e', "process.argv=['', '', 'config'];require('@react-native-community/cli').run()"];
+  else
+    config_command = [
+      'node',
+      '--no-warnings',
+      '--eval',
+      'require(require.resolve(\'expo-modules-autolinking\', { paths: [require.resolve(\'expo/package.json\')] }))(process.argv.slice(1))',
+      'react-native-config',
+      '--json',
+      '--platform',
+      'ios'
+    ]
+  end
+
+  config = use_native_modules!(config_command)
+  use_frameworks! :linkage => :static
+  $RNFirebaseAsStaticFramework = true
+
+  use_react_native!(
+    :path => config[:reactNativePath],
+    :hermes_enabled => podfile_properties['expo.jsEngine'] == nil || podfile_properties['expo.jsEngine'] == 'hermes',
+
+    # An absolute path to your application root.
+    :app_path => "#{Pod::Config.instance.installation_root}/.."
+  )
+
+  pod 'AEPCampaignClassic'
+  pod 'AEPCore'
+
+  pod 'react-native-notifications', :path => '../../../../node_modules/react-native-notifications'
+  pod 'react-native-in-app-review', :path => '../../../../node_modules/react-native-in-app-review'
+
+  pod 'RNCClipboard', :path => '../../../../node_modules/@react-native-clipboard/clipboard'
+
+  pod 'GamesFramework', :git => 'https://github.com/Flutter-Global/uki-gaming-games-framework-ios.git', :tag => '7.67.1'
+  pod 'Kingfisher', :git => 'https://github.com/onevcat/Kingfisher.git', :tag => '8.6.2'
+  pod 'TaggingLibrary', :git => 'https://github.com/Flutter-Global/TaggingLibrarySwift.git', :tag => '5.0.0'
+
+  post_install do |installer|
+
+    # https://github.com/facebook/react-native/blob/main/packages/react-native/scripts/react_native_pods.rb#L197-L202
+    react_native_post_install(
+      installer,
+      config[:reactNativePath],
+      :mac_catalyst_enabled => false,
+      # :ccache_enabled => true
+    )
+
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        # TODO: Remove after upgrading React Native past 0.83.x
+        # Fix fmt 11.0.2 consteval build error with Xcode 26.4+
+        # See: https://github.com/facebook/react-native/issues/55601
+        if target.name == 'fmt'
+            config.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'c++17'
+        end
+
+        if target.name == 'GamesFramework'
+          if config.name == 'In_House'  # Apply only to In_House configuration
+            config.build_settings['SWIFT_ACTIVE_COMPILATION_CONDITIONS'] ||= ['$(inherited)']
+            unless config.build_settings['SWIFT_ACTIVE_COMPILATION_CONDITIONS'].include?('TESTNEWGAMES')
+              config.build_settings['SWIFT_ACTIVE_COMPILATION_CONDITIONS'] << 'TESTNEWGAMES'
+              puts "Set TESTNEWGAMES for #{target.name} in #{config.name} configuration"
+            end
+          end
+        end
+
+        # The following instructions skip the verification step on Adobe packages as defined in their documentation/examples
+        # https://github.com/adobe/aepsdk-react-native/blob/d5e5bfd07ba8db364a89a100db4f634e9f2df10a/apps/AEPSampleApp/ios/Podfile#L67
+        targets_to_skip_verification = [
+          'AEPServices',
+          'AEPRulesEngine',
+          'AEPCore',
+          'AEPSignal',
+          'RCTAEPCore',
+          'AEPLifecycle',
+          'AEPIdentity',
+          'AEPCampaignClassic',
+          'RCTAEPCampaignClassic',
+          'RCTAEPCore',
+          'RCTAEPCampaignClassic',
+          'AEPRulesEngine',
+        ]
+
+        if targets_to_skip_verification.include?(target.name)
+          puts "Updating OTHER_SWIFT_FLAGS for target #{target.name} to include -no-verify-emitted-module-interface"
+
+          config.build_settings['OTHER_SWIFT_FLAGS'] = '$(inherited) -no-verify-emitted-module-interface'
+        end
+
+        # sets all packages that have a minimum ios target lower than ours, to ours.
+        current_target = config.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
+        minimum_target = min_ios_version_supported
+
+        if current_target.to_f < minimum_target.to_f
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = minimum_target
+        end
+
+        # unary_function and binary_function are no longer provided in C++17 and newer standard modes as part of Xcode 15.
+        # They can be re-enabled with setting _LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION
+        # Ref: https://developer.apple.com/documentation/xcode-release-notes/xcode-15-release-notes#Deprecations
+        config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)', '_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION']
+
+        if config.name == 'Debug'
+          config.build_settings['ENABLE_BITCODE'] = 'NO'
+        end
+      end
+    end
+
+    # Excluded architecture entries that are manually added in our Pod project's
+    # Build Settings will be overridden when running `pod install`. The instruction
+    # below will ensure that the excluded architectures are written every time
+    # `pod install` is executed, excluding arm64 for iphonesimulator because we do
+    # not have on our pipelines the new arm-based Macs.
+    installer.pods_project.build_configurations.each do |config|
+      config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+    end
+
+  end
+
+end

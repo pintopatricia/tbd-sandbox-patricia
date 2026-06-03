@@ -1,0 +1,34 @@
+fragment obbFootballPlayer on ObbFootballPlayer {
+  __typename
+  urn
+  player {
+    id
+    name
+    position
+    shirtNumber
+    seasonStats {
+      matchesPlayed
+      averages {
+        goals
+        redCards
+        yellowCards
+        yellowRedCards
+        shotsOnTarget
+        totalShots
+        fouls
+        foulsWon
+        assists
+        passes
+        foulInvolvements
+      }
+    }
+  }
+  team {
+    id
+    name
+    color
+    jerseys {
+      url
+    }
+  }
+}

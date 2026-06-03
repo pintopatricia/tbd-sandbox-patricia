@@ -1,0 +1,31 @@
+{{#if id}}
+"__typename": "{{__typename}}{{^__typename}}BetDefinitionResult{{/__typename}}",
+"id": "{{id}}",
+{{/if}}
+{{#if details}}
+  {{#with details}}
+    "details": {
+      {{> bff-obb-imply-details}}
+    },
+  {{/with}}
+{{/if}}
+{{#if legs}}
+"__typename": "{{__typename}}{{^__typename}}CombinedBetDefinitionResult{{/__typename}}",
+  "legs": [
+    {{#each legs}}
+      {
+        {{> bff-obb-imply-leg}}
+      }
+      {{#unless @last}},{{/unless}}
+    {{/each}}
+    ],
+{{/if}}
+{{#if result}}
+  {{#with result}}
+    "result": {
+      {{> bff-obb-bet-imply-result}}
+    }
+  {{/with}}
+{{/if}}
+
+

@@ -1,0 +1,35 @@
+.container {
+  background-color: var(--sportsbook-bet-leg-card-group-background-container-colour);
+  border: var(--sportsbook-bet-leg-card-group-border);
+  border-radius: var(--sportsbook-bet-leg-card-group-container-border-radius);
+}
+
+.card {
+  width: 100%;
+  margin: 0;
+}
+
+.supportingContentCardContainer {
+  padding: var(--sportsbook-bet-leg-card-group-supporting-content-card-padding);
+}
+
+.supportingContentCardStatsContainer {
+  display: flex;
+
+  gap: var(--sportsbook-bet-leg-card-group-supporting-content-card-horizontal-gap);
+}
+
+.supportingContentCard {
+  background-color: var(--sportsbook-bet-leg-card-group-background-supporting-content-card-box-colour);
+  border-radius: var(--sportsbook-bet-leg-card-group-supporting-content-card-box-border-radius);
+}
+
+.supportingContentCardBox {
+  flex: 1;
+
+  padding: var(--sportsbook-bet-leg-card-group-supporting-content-card-box-padding);
+}
+
+.dividerContainer {
+  padding: var(--sportsbook-bet-leg-card-group-divider-padding);
+}

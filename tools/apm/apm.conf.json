@@ -1,0 +1,166 @@
+{
+  "WEB_PAGE_TEST_ENDPOINT": "tbdwpt.prd.internal",
+  "SLACK_CONFIGURATION": {
+    "endpoint": "runtime replace",
+    "username": "WebPageTest",
+    "channel": "#tbd-perf-alerts"
+  },
+  "PAGES": {
+    "HORSE_RACING": {
+      "eventTypeId": 7
+    },
+    "FOOTBALL": {
+      "eventTypeId": 1
+    }
+  },
+  "TLA": "tbd",
+  "AUTHENTICATION_URL": "http://ssobf.prd.internal/api/login",
+  "BASE_URL": "https://www.betfair.com/betting",
+  "SUBDOMAINS": {
+    "GENERIC": [
+      "https://apitbd.betfair.com",
+      "https://ero.betfair.com",
+      "https://lbr.betfair.com",
+      "https://smp.betfair.com",
+      "https://was.betfair.com",
+      "https://www.betfair.com"
+    ]
+  },
+  "WPT_CONFIGS": {
+    "WEB_3G": {
+      "device": "MotoG4",
+      "emulateMobile": true,
+      "location": "I2_internal:Chrome.3GFast",
+      "pollResults": 1,
+      "runs": 3,
+      "timeline": true,
+      "video": true
+    },
+    "WEB_4G": {
+      "device": "Nexus5X",
+      "emulateMobile": true,
+      "location": "I2_internal:Chrome.4G",
+      "pollResults": 1,
+      "runs": 3,
+      "timeline": true,
+      "video": true
+    }
+  },
+  "COOKIES": {
+    "global": {
+      "ssoid": "@@ssoid-generator",
+      "OptanonAlertBoxClosed": "true",
+      "OptanonConsent": "groups=C0001%3A1%2CC0003%3A1%2CC0002%3A1%2CC0004%3A1"
+    }
+  },
+  "SUITES": {
+    "TBD_FOOTBALL_EVENT_PAGE": {
+      "page": "Football Event Page",
+      "subdomains": "GENERIC",
+      "user": "TestAPM",
+      "url": "/footbal/competition-name/event-name/e-@@event-id-generator",
+      "cookies": "global",
+      "blockDomains": ["www.googletagmanager.com", "movableink.betfair.com"],
+      "thresholds": "BOTH"
+    },
+    "TBD_FOOTBALL_LANDING_PAGE": {
+      "page": "Football Landing Page",
+      "subdomains": "GENERIC",
+      "user": "TestAPM",
+      "url": "/football/s-1",
+      "cookies": "global",
+      "blockDomains": ["www.googletagmanager.com", "movableink.betfair.com"],
+      "thresholds": "BOTH"
+    },
+    "TBD_HORSE_RACING_LANDING_PAGE": {
+      "page": "Horse Racing Landing Page",
+      "subdomains": "GENERIC",
+      "user": "TestAPM",
+      "url": "/horse-racing/s-7",
+      "cookies": "global",
+      "blockDomains": ["www.googletagmanager.com", "movableink.betfair.com"],
+      "thresholds": "BOTH"
+    },
+    "TBD_HORSE_RACING_RACE_PAGE": {
+      "page": "Horse Racing Race Page",
+      "subdomains": "GENERIC",
+      "user": "TestAPM",
+      "url": "/horse-racing/race-name/r-7|@@race-id-generator",
+      "cookies": "global",
+      "blockDomains": ["www.googletagmanager.com", "movableink.betfair.com"],
+      "thresholds": "BOTH"
+    },
+    "TBD_HORSE_RACING_MARKET_PAGE": {
+      "page": "Horse Racing Market Page",
+      "subdomains": "GENERIC",
+      "user": "TestAPM",
+      "url": "/horse-racing/meeting-name/market-name/rc-@@market-id-generator",
+      "cookies": "global",
+      "pageDetails": "HORSE_RACING",
+      "blockDomains": ["www.googletagmanager.com", "movableink.betfair.com"]
+    },
+    "TBD_GAMING_LANDING_PAGE": {
+      "page": "Gaming Landing Page",
+      "subdomains": "GENERIC",
+      "user": "TestAPM",
+      "url": "/casino/gm-1",
+      "cookies": "global",
+      "blockDomains": ["www.googletagmanager.com", "movableink.betfair.com"],
+      "thresholds": "BOTH"
+    },
+    "TBD_HOMEPAGE": {
+      "page": "Homepage",
+      "subdomains": "GENERIC",
+      "user": "TestAPM",
+      "url": "/",
+      "cookies": "global",
+      "blockDomains": ["www.googletagmanager.com", "movableink.betfair.com"],
+      "thresholds": "BOTH"
+    },
+    "MY_ACCOUNT_LANDING_PAGE": {
+      "page": "My Account Landing Page",
+      "subdomains": "GENERIC",
+      "user": "TestAPM",
+      "url": "/navigation/a-cHBiOnRiZDp2aWV3OmdhbWluZzoxIyMjY2FzaW5vL2dtLTE%3D",
+      "cookies": "global",
+      "blockDomains": ["www.googletagmanager.com", "movableink.betfair.com"],
+      "thresholds": "BOTH"
+    },
+    "TBD_MYBETS_EXC_OPEN": {
+      "page": "My Bets Exchange Open",
+      "subdomains": "GENERIC",
+      "user": "TestAPM",
+      "url": "/mybets/mybets-exc|open",
+      "cookies": "global",
+      "blockDomains": ["www.googletagmanager.com", "movableink.betfair.com"],
+      "thresholds": "BOTH"
+    },
+    "TBD_MYBETS_EXC_SETTLED": {
+      "page": "My Bets Exchange Settled",
+      "subdomains": "GENERIC",
+      "user": "TestAPM",
+      "url": "/mybets/mybets-exc|settled",
+      "cookies": "global",
+      "blockDomains": ["www.googletagmanager.com", "movableink.betfair.com"],
+      "thresholds": "BOTH"
+    },
+    "TBD_MYBETS_SBK_OPEN": {
+      "page": "My Bets Sportsbook Open",
+      "subdomains": "GENERIC",
+      "user": "TestAPM",
+      "url": "/mybets/mybets-sbk|open",
+      "cookies": "global",
+      "blockDomains": ["www.googletagmanager.com", "movableink.betfair.com"],
+      "thresholds": "BOTH"
+    },
+    "TBD_MYBETS_SBK_SETTLED": {
+      "page": "My Bets Sportsbook Settled",
+      "subdomains": "GENERIC",
+      "user": "TestAPM",
+      "url": "/mybets/mybets-sbk|settled",
+      "cookies": "global",
+      "blockDomains": ["www.googletagmanager.com", "movableink.betfair.com"],
+      "thresholds": "BOTH"
+    }
+  }
+}

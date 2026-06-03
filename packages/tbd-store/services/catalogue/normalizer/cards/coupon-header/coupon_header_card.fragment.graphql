@@ -1,0 +1,18 @@
+fragment couponHeaderCard on CouponHeaderCard {
+  __typename
+  urn
+  columns
+  competition {
+    ...competitionBasic
+  }
+  competitionViewLink {
+    viewUrn
+    viewUrl
+  }
+  hasStats
+}
+
+fragment couponHeaderCardPartial on CouponHeaderCard {
+  __typename
+  urn
+}

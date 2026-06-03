@@ -1,0 +1,62 @@
+:root {
+  --highlighted-card-min-height: 206px;
+  --opacity-disabled: 0.37;
+}
+
+.highlightedSelectionCard {
+  display: flex;
+
+  flex-direction: column;
+
+  height: 100%;
+  padding: var(--spacing-2);
+
+  color: var(--neutrals-text-default);
+
+  background-color: var(--neutrals-background-elevation2);
+  border-radius: 4px;
+}
+
+.infoContainerClass {
+  display: flex;
+
+  flex-grow: 1;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text {
+  display: -webkit-box;
+
+  flex-grow: 1;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+}
+
+.button {
+  display: flex;
+
+  flex-shrink: 0;
+
+  align-content: center;
+
+  min-width: var(--bet-button-width);
+  min-height: var(--bet-button-height);
+  margin-left: var(--spacing-2);
+  overflow: hidden;
+
+  border-radius: 4px;
+}
+
+/* closed styles - we can't simply apply opacity-disabled to the entire container
+otherwise the bet button would have double opacity (container + disabled) */
+.closed {
+  background-color: var(--neutrals-background-elevation2);
+}
+
+.closed .text {
+  opacity: var(--opacity-disabled);
+}

@@ -1,0 +1,23 @@
+{
+  "data": {
+    "View": {
+      "__typename": "ImsPromotionView",
+      "urn": "{{urn}}{{^urn}}ppb:tbd:view:imsPromotion:gaming-promotion-1{{/urn}}",
+      "url": "{{url}}{{^url}}/casino/promotions/gaming-promotion-1/imsPromotion:gaming-promotion-1{{/url}}",
+      "title": "{{title}}{{^title}}Promotion Title{{/title}}",
+      "items": {
+        {{> bff-items }}
+      },
+      "partialItems": {
+        "pageInfo": null,
+        {{> bff-partial-items }}
+      },
+      "bottomBar": {
+        {{> bff-bottom-bar-tiles }}
+      }
+    }
+  }
+}
+
+
+

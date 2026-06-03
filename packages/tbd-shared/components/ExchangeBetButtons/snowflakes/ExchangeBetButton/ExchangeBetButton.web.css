@@ -1,0 +1,23 @@
+:root {
+  --flash-duration: 00.7s;
+}
+
+@keyframes flashBlueAnimation {
+  10% {
+    background-color: var(--action-exchange-back-background-flash);
+  }
+}
+
+@keyframes flashPinkAnimation {
+  10% {
+    background-color: var(--action-exchange-lay-background-flash);
+  }
+}
+
+.flashBlueAnimation {
+  animation: flashBlueAnimation var(--flash-duration);
+}
+
+.flashPinkAnimation {
+  animation: flashPinkAnimation var(--flash-duration);
+}

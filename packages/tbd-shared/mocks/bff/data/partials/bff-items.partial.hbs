@@ -1,0 +1,30 @@
+"edges": [
+{{#each edges}}
+    {{#if node}}
+      {
+        {{#if theme}}
+          "theme": "{{theme}}",
+        {{/if}}
+        {{#if displayName}}
+          {{#with displayName}}
+            "displayName": {
+            "__typename": "{{__typename}}{{^__typename}}DisplayNameTranslationKey{{/__typename}}",
+            "translationKey": {{#if translationKey}}"{{translationKey}}"{{else}}null{{/if}},
+            "name": {{#if name}}"{{name}}"{{else}}null{{/if}}
+            },
+          {{/with}}
+        {{/if}}
+        {{#with node}}
+          "node": {
+              {{> bff-card-types }}
+          }
+        {{/with}}
+      } {{#unless @last}},{{/unless}}
+    {{else}}
+      null{{#unless @last}},{{/unless}}
+    {{/if}}
+{{/each}}
+]
+{{#if pageInfo}},
+  {{> bff-page-info}}
+{{/if}}

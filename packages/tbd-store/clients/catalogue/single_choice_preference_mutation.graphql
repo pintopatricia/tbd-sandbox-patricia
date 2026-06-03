@@ -1,0 +1,17 @@
+mutation SetSingleChoicePreferenceMutation(
+  $urn: URN!
+  $value: String!
+  $throttlesOn: [String!]
+  $throttlesOff: [String!]
+  $productExclusions: [ProductExclusion!]
+)
+@productExclusions(productExclusions: $productExclusions)
+@throttlesOn(throttlesOn: $throttlesOn)
+@throttlesOff(throttlesOff: $throttlesOff) {
+  setPreferences(input: { preferenceSingleChoice: { urn: $urn, value: $value } }) {
+    result {
+      ...preferenceSingleChoice
+    }
+    error
+  }
+}

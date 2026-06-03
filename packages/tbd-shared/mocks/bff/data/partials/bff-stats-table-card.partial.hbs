@@ -1,0 +1,51 @@
+"__typename": "StatsTableCard",
+"urn": "{{urn}}{{^urn}}ppb:tbd:stats:card:table:1{{/urn}}",
+{{#with fixture}}
+  "fixture": {
+    "urn": "{{urn}}{{^urn}}ppb:fixture:1{{/urn}}",
+    {{#with competition}}
+      "competition": {
+        "__typename": "FootballCompetition",
+        "id": "{{id}}{{^id}}1{{/id}}",
+        {{#if stages}}
+          "stages": [
+            {{#each stages}}
+              {
+                "__typename": "FootballCompetitionStage",
+                {{#if standings}}
+                  "standings": [
+                    {{#each standings}}
+                      {
+                        "__typename": "FootballTeamStanding",
+                        "gamesPlayed": {{gamesPlayed}}{{^gamesPlayed}}0{{/gamesPlayed}},
+                        "win": {{win}}{{^win}}0{{/win}},
+                        "loss": {{loss}}{{^loss}}0{{/loss}},
+                        "draw": {{draw}}{{^draw}}0{{/draw}},
+                        "points": {{points}}{{^points}}0{{/points}},
+                        "goalsDifference": {{goalsDifference}}{{^goalsDifference}}0{{/goalsDifference}},
+                        {{#if team}}
+                          "team": {
+                            "__typename": "FootballTeamDetails",
+                            "name": "{{team.name}}{{^team.name}}Team Name{{/team.name}}"
+                          },
+                        {{/if}}
+                        {{#if rank}}
+                          "rank": {
+                            "__typename": "FootballTeamRank",
+                            "position": {{rank.position}}{{^rank.position}}0{{/rank.position}},
+                            "status": "{{rank.status}}{{^rank.status}}UNKNOWN{{/rank.status}}",
+                            "change": "{{rank.change}}{{^rank.change}}UNKNOWN{{/rank.change}}"
+                          }
+                        {{/if}}
+                      }{{#unless @last}},{{/unless}}
+                    {{/each}}
+                  ]
+                {{/if}}
+              }{{#unless @last}},{{/unless}}
+            {{/each}}
+          ]
+        {{/if}}
+      }
+    {{/with}}
+  }
+{{/with}}

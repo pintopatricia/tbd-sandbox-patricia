@@ -1,0 +1,17 @@
+fragment fullExpandableCardGroupItems on ExpandableCardGroupItemsConnection {
+  edges {
+    node {
+      # Cards
+      ...highlightedSelectionCard
+    }
+  }
+}
+
+fragment partialsExpandableCardGroupItems on ExpandableCardGroupItemsConnection {
+  edges {
+    node {
+      urn
+      __typename
+    }
+  }
+}

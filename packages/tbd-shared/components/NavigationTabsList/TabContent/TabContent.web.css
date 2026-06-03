@@ -1,0 +1,31 @@
+.tabContent {
+  display: flex;
+
+  flex-direction: column;
+  flex-grow: 1;
+
+  gap: var(--spacing-card-top-small);
+}
+
+.tooltip {
+  padding: var(--spacing-1) var(--spacing-3);
+}
+
+.tabItem {
+  margin: 0;
+}
+
+.cardItem {
+  padding-right: var(--spacing-3);
+  padding-left: var(--spacing-3);
+}
+
+.externalSettingsView {
+  display: flex;
+
+  flex-direction: column;
+  flex-grow: 1;
+
+  padding-right: 0;
+  padding-left: 0;
+}

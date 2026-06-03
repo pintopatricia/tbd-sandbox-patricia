@@ -1,0 +1,11 @@
+.multiBetBuilderCard {
+  width: 100%;
+}
+
+.notificationsListContainer {
+  margin-bottom: var(--spacing-3);
+}
+
+.multiBetBuilderCard > * + * {
+  margin-top: var(--spacing-2);
+}

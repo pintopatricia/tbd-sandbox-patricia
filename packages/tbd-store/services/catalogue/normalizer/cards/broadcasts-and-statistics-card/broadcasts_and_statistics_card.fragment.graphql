@@ -1,0 +1,21 @@
+fragment broadcastsAndStatisticsCard on BroadcastsAndStatisticsCard {
+  __typename
+  urn
+  sportevent {
+    ...sportEvent
+  }
+  eventBroadCasts: broadcasts {
+    dataVizUrl
+    liveVideoUrl
+  }
+  eventBroadCastsIsCollapsed: isCollapsed
+  statisticsViewLink {
+    viewUrn
+    viewUrl
+  }
+}
+
+fragment broadcastsAndStatisticsCardPartial on BroadcastsAndStatisticsCard {
+  __typename
+  urn
+}

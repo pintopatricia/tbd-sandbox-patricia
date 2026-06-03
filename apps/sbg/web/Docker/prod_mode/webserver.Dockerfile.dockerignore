@@ -1,0 +1,22 @@
+# Ignore everything
+**
+.git
+
+# Allowed files and directories
+!.yarnrc.yml
+!yarn.lock
+!package.json
+!packages/**
+!apps/sbg/web/**
+!src/**
+!tools/**
+!babel.config.js
+!.browserslistrc
+!pql-manifest*
+!.yarn
+!apps/sbg/reverse-proxy/**
+
+# Ignore unnecessary files inside allowed directories
+# This should go after the allowed directories
+**/node_modules/
+**/dist

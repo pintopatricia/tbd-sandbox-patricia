@@ -1,0 +1,19 @@
+fragment favouriteMarketsState on FavouriteMarketsState {
+  __typename
+  urn
+  isFavourite
+  metadata {
+    sport {
+      ...favouriteMarketsCountMetadata
+    }
+    total {
+      ...favouriteMarketsCountMetadata
+    }
+  }
+}
+
+fragment favouriteMarketsStateLite on FavouriteMarketsState {
+  __typename
+  urn
+  isFavourite
+}

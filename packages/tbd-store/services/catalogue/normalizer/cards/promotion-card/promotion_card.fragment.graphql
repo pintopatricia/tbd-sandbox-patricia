@@ -1,0 +1,44 @@
+fragment promotionCard on PromotionCard {
+  __typename
+  urn
+  promotionContentType
+  promoTypeLabel
+  promotionName: name
+  headline
+  subHeadline
+  strapline
+  promotionTitle: title
+  backgroundImage {
+    url
+    width
+    height
+    tag
+  }
+  termsAndConditions {
+    summary
+    url
+    label {
+      ...displayName
+    }
+    viewLink {
+      viewUrn
+      viewUrl
+      viewDisplayMode
+    }
+  }
+  isImsPromo
+  action {
+    ...promotionNavigationAction
+    ...promotionAddToBetslipAction
+  }
+  introLine
+  endDate
+  optInState
+  tags
+  hasBetfairBoost
+}
+
+fragment promotionCardPartial on PromotionCard {
+  __typename
+  urn
+}

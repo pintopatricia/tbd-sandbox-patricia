@@ -1,0 +1,22 @@
+{
+  "container": ".e4b78be51eee1b9d-container",
+  "staticContainer": ".e4b78be51eee1b9d-staticContainer",
+  "contentContainer": ".e4b78be51eee1b9d-contentContainer",
+  "leftContentWidget": ".e4b78be51eee1b9d-leftContentWidget",
+  "titleContainer": ".e4b78be51eee1b9d-titleContainer",
+  "title": ".e4b78be51eee1b9d-title",
+  "timerContainer": ".e4b78be51eee1b9d-timerContainer",
+  "rightContentWidget": ".e4b78be51eee1b9d-rightContentWidget",
+  "rightContainerWidget": ".e4b78be51eee1b9d-rightContainerWidget",
+  "gameBadgeContainer": ".e4b78be51eee1b9d-gameBadgeContainer",
+  "activeLogoImage": ".e4b78be51eee1b9d-activeLogoImage",
+  "staticLogoImage": ".e4b78be51eee1b9d-staticLogoImage",
+  "moreInfoLink": ".e4b78be51eee1b9d-moreInfoLink",
+  "button": ".e4b78be51eee1b9d-button",
+  "backgroundImageContainer": ".e4b78be51eee1b9d-backgroundImageContainer",
+  "staticBackground": ".e4b78be51eee1b9d-staticBackground",
+  "activeBackground": ".e4b78be51eee1b9d-activeBackground",
+  "animationImage": ".e4b78be51eee1b9d-animationImage",
+  "subtitle": ".e4b78be51eee1b9d-subtitle",
+  "activeRightContainerWidget": ".e4b78be51eee1b9d-activeRightContainerWidget"
+}

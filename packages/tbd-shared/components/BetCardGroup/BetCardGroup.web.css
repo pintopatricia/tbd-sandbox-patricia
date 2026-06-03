@@ -1,0 +1,26 @@
+.betCardGroup {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--card-vertical-gap);
+
+  padding-bottom: var(--spacing-2);
+  margin: var(--spacing-card-top-default) 0 var(--spacing-2) 0;
+
+  background-color: var(--card-background-colour);
+  filter: var(--card-drop-shadow);
+  border-radius: var(--sportsbook-bet-panel-border-radius);
+}
+
+.groupItem {
+  margin: 0;
+}
+
+.fixtureCardGroupItem {
+  padding: var(--spacing-2) var(--spacing-2) 0 0;
+}
+
+.marketBetCardGroupItem {
+  padding: 0 var(--spacing-2);
+}

@@ -1,0 +1,10 @@
+.clock {
+  display: inline-block;
+
+  padding: var(--spacing-1);
+
+  color: var(--neutrals-text-default);
+
+  background-color: var(--neutrals-background-elevation3);
+  border-radius: var(--spacing-1);
+}

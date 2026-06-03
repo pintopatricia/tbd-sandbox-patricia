@@ -1,0 +1,40 @@
+.promoCard {
+  position: relative;
+
+  width: 100%;
+
+  color: var(--casino-jackpot-text-default);
+
+  background-position: center;
+  background-size: cover;
+  border-radius: var(--spacing-2);
+}
+
+.promoCardContent {
+  position: relative;
+
+  width: 100%;
+  padding: var(--spacing-6) var(--spacing-3);
+
+  /* stylelint-disable-next-line dczajkowski/color-no-non-variables */
+  background: rgb(30 30 30 / 0.8);
+  backdrop-filter: blur(4px);
+  /* stylelint-disable-next-line dczajkowski/color-no-non-variables */
+  border: 1px solid rgb(255 255 255 / 0.2);
+  border-radius: var(--spacing-2);
+}
+
+.promoCardContent h5 {
+  margin-bottom: var(--spacing-1);
+
+  text-transform: uppercase;
+}
+
+.subheader {
+  margin-bottom: var(--spacing-3);
+}
+
+.sliderTooltipContainer {
+  margin-top: var(--spacing-12);
+  margin-bottom: var(--spacing-6);
+}

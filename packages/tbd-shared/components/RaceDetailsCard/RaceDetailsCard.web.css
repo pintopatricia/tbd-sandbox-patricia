@@ -1,0 +1,24 @@
+.container {
+  margin: 0;
+}
+
+a.raceViewLink {
+  display: block;
+
+  background: none;
+}
+
+/** You might be wondering, why on earth is this required. well, blame safari/iOS intersections observer roundings */
+@media screen and (min-width: 900px) and (max-width: 1440px) {
+  .desktopSticky {
+    margin: 0 var(--spacing-half);
+  }
+}
+
+.raceDetailsContainer {
+  padding: var(--sm-spacing-x-small) var(--sm-spacing-small);
+}
+
+.raceDetailsContainer.nonSticky {
+  margin-bottom: var(--gutter-1);
+}

@@ -1,0 +1,16 @@
+{{#with eventId}}
+  "eventId": {
+    "supplier": "{{supplier}}",
+    "id": "{{id}}",
+    "__typename": "EventId"
+  },
+{{/with}}
+{{#if price}}
+  {{#with price}}
+    "price":
+      {
+        {{> bff-sportsbook-odds}}
+      },
+  {{/with}}
+{{/if}}
+"__typename": "{{__typename}}{{^__typename}}OutcomeBasedLeg{{/__typename}}"

@@ -1,0 +1,74 @@
+fragment virtualCardGroupPartialItemEdge on VirtualCardGroupItemEdge {
+  __typename
+  startTime
+  isClosed
+  isDisabled
+  node {
+    urn
+    __typename
+  }
+}
+
+fragment virtualCardGroupFullItemEdge on VirtualCardGroupItemEdge {
+  __typename
+  startTime
+  isClosed
+  isDisabled
+  isHighlighted
+  node {
+    ...virtualCardGroup
+  }
+}
+
+fragment fullSelectableItemsCardGroupItems on SelectableItemsCardGroupItemsConnection {
+  edges {
+    ... on RaceTimeItemEdge {
+      isHighlighted
+      startTime
+      venue
+      promotion {
+        signposting
+      }
+      node {
+        ...raceMarketCard
+      }
+    }
+    ... on StatisticsItemEdge {
+      node {
+        ...teamFormCard
+        ...eventStatsCard
+        ...matchStatsCard
+        ...matchTimelineCard
+        ...headToHeadCard
+        ...TeamLineupCard
+      }
+      isHighlighted
+    }
+    ...virtualCardGroupFullItemEdge
+  }
+}
+
+fragment partialsSelectableItemsCardGroupItems on SelectableItemsCardGroupItemsConnection {
+  edges {
+    ... on RaceTimeItemEdge {
+      startTime
+      venue
+      promotion {
+        title
+        description
+        signposting
+      }
+      node {
+        urn
+        __typename
+      }
+    }
+    ... on StatisticsItemEdge {
+      node {
+        urn
+        __typename
+      }
+    }
+    ...virtualCardGroupPartialItemEdge
+  }
+}

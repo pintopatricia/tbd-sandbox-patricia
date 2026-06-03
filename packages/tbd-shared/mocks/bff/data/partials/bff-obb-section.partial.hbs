@@ -1,0 +1,37 @@
+"edges": [
+{{#each edges}}
+    {{#if node}}
+      {
+        {{#with node}}
+          "node": {
+            "__typename": "{{__typename}}{{^__typename}}ObbSection{{/__typename}}",
+            "icon": {{#if icon}}{
+              "id": "{{icon.id}}",
+              "category": "{{icon.category}}"
+            }{{else}}null{{/if}},
+            "isExpanded": {{#if (defined isExpanded)}}{{isExpanded}}{{else}}true{{/if}},
+            "obbSectionTitle": {
+              "__typename": "{{obbSectionTitle.__typename}}{{^obbSectionTitle.__typename}}DisplayNameTitle{{/obbSectionTitle.__typename}}",
+              "name": "{{obbSectionTitle.name}}{{^obbSectionTitle.name}}OBB Section title{{/obbSectionTitle.name}}"
+              },
+            "urn": "{{urn}}{{^urn}}ppb:tbd:section:testSection{{/urn}}",
+            {{#if layouts}}
+            {{#with layouts}}
+            "layouts": {
+              {{> bff-obb-cards-layouts-connection}}
+              }
+              {{/with}}
+              {{else}}"layouts": {
+                "edges": []
+                }
+                {{/if}}
+            },
+        {{/with}}
+        "__typename": "{{__typename}}{{^__typename}}ObbSectionEdge{{/__typename}}"
+      } {{#unless @last}},{{/unless}}
+    {{else}}
+      null{{#unless @last}},{{/unless}}
+    {{/if}}
+{{/each}}
+],
+"__typename": "{{__typename}}{{^__typename}}ObbSectionsConnection{{/__typename}}"

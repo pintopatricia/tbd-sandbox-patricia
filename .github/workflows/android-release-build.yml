@@ -1,0 +1,326 @@
+name: 'Android Release Build Workflow'
+run-name: "Android Release Build [android_release-${{ inputs.brand }}-${{ inputs.flavor }}-${{ inputs.tag-number }}]"
+
+on:
+  workflow_dispatch:
+    inputs:
+      brand:
+        type: choice
+        description: 'The brand to target for the release build'
+        required: true
+        options:
+          - bf
+          - sbg
+        default: bf
+      flavor:
+        type: choice
+        description: 'The flavor to build and deploy android release'
+        required: false
+        options:
+          - brazil
+          - common
+        default: common
+      tag-number:
+        description: 'The number on the tag "###-android_<brand>_releasable" to release from'
+        type: string
+        required: true
+      override-loading-subdomain:
+        description: 'Override the loading subdomain for the app'
+        type: boolean
+        required: false
+        default: false
+      use-cache:
+        description: 'Use gradle cache for build app'
+        type: boolean
+        required: false
+        default: true
+  workflow_call:
+    inputs:
+      brand:
+        description: 'The brand to target for the release build'
+        type: string
+        required: true
+        default: bf
+      flavor:
+        type: string
+        description: 'The flavor to build and deploy android release'
+        required: false
+        default: common
+      tag-number:
+        description: 'The number on the tag "###-android_<brand>_releasable" to release from'
+        type: string
+        required: true
+      override-loading-subdomain:
+        description: 'Override the loading subdomain for the app'
+        type: boolean
+        required: false
+        default: false
+      use-cache:
+        description: 'Use gradle cache for build app'
+        type: boolean
+        required: false
+        default: true
+env:
+  GITHUB_TOKEN: ${{ secrets.ANDROID_RELEASE_TOKEN }}
+  MONTEROSA_TOKEN: ${{ secrets.MONTEROSA_TOKEN }}
+  TAG_NUMBER: ${{ inputs.tag-number }}
+  NATIVE_BUILD_NUMBER: ${{ inputs.tag-number }}
+
+concurrency:
+  group: build-${{ github.workflow }}-${{ inputs.brand }}-${{ inputs.flavor }}-${{ inputs.tag-number }}-${{ inputs.override-loading-subdomain }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on:
+      group: FlutterGithubRunnersTBDLargeDisk
+    permissions: write-all
+    outputs:
+      app_identifier: ${{ steps.get-app-identifier.outputs.app_identifier }}
+      checkout_tag: ${{ steps.get-checkout-tag.outputs.checkout_tag }}
+
+    steps:
+      - name: "Get App Identifier"
+        id: get-app-identifier
+        run: |
+          if [[ "${{ inputs.flavor }}" != "common" ]]; then
+            echo "APP_IDENTIFIER=android_${{ inputs.brand }}_${{ inputs.flavor }}_release-${{ inputs.tag-number }}" >> $GITHUB_ENV
+          else
+            echo "APP_IDENTIFIER=android_${{ inputs.brand }}_release-${{ inputs.tag-number }}" >> $GITHUB_ENV
+          fi
+          echo "app_identifier=${APP_IDENTIFIER}" >> $GITHUB_OUTPUT
+
+      - name: "Get Checkout Tag"
+        id: get-checkout-tag
+        run: |
+          TAG="${{ inputs.tag-number }}-android_${{ inputs.brand }}_releasable"
+          echo "CHECKOUT_TAG=${TAG}" >> $GITHUB_ENV
+          echo "checkout_tag=${TAG}" >> $GITHUB_OUTPUT
+
+      - name: "Checkout Tag [${{ env.CHECKOUT_TAG }}]"
+        id: checkout-tag
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.CHECKOUT_TAG }}
+
+      - name: Start pulling docker images
+        run: |
+          docker pull docker.app.betfair/ppb/tbdn/tools/tbdn-android-build:2.0.0 &
+          docker pull docker.app.betfair/ppb/tbdn/tools/bundletool-release:latest &
+
+      - name: Install node
+        id: install-node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: Import Betfair Common Vault Secrets
+        if: ${{ inputs.flavor == 'common' && inputs.brand == 'bf' }}
+        id: import-bf-common-secrets
+        env:
+          SECRET_PATH: tla_tbdn/data/jenkins
+        uses: hashicorp/vault-action@v3
+        with:
+          url: https://vault-prd.prd.betfair
+          method: ldap
+          username: ${{ secrets.VAULT_USER }}
+          password: ${{ secrets.VAULT_PASSWORD }}
+          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          secrets: |
+            ${{ env.SECRET_PATH }} androidUploadStorePw | ANDROID_UPLOAD_STORE_PW ;
+            ${{ env.SECRET_PATH }} releaseKeystore | RELEASE_KEYSTORE ;
+            ${{ env.SECRET_PATH }} releaseKeystoreAlias | ANDROID_KEYSTORE_ALIAS ;
+            ${{ env.SECRET_PATH }} firebaseToken | FIREBASE_CI_TOKEN ;
+            ${{ env.SECRET_PATH }} firebaseKey | FIREBASE_CI_KEY ;
+            ${{ env.SECRET_PATH }} facebook_app_id | FB_APP_ID ;
+            ${{ env.SECRET_PATH }} facebook_app_token | FB_APP_TOKEN ;
+
+      - name: Import Skybet Common Vault Secrets
+        if: ${{ inputs.flavor == 'common' && inputs.brand == 'sbg' }}
+        id: import-sbg-common-secrets
+        env:
+          SECRET_PATH: tla_tbdnsbg/data/jenkins
+        uses: hashicorp/vault-action@v3
+        with:
+          url: https://vault-prd.prd.betfair
+          method: ldap
+          username: ${{ secrets.VAULT_USER }}
+          password: ${{ secrets.VAULT_PASSWORD }}
+          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          secrets: |
+            ${{ env.SECRET_PATH }} androidUploadStorePw | ANDROID_UPLOAD_STORE_PW ;
+            ${{ env.SECRET_PATH }} releaseKeystore | RELEASE_KEYSTORE ;
+            ${{ env.SECRET_PATH }} releaseKeystoreAlias | ANDROID_KEYSTORE_ALIAS ;
+            ${{ env.SECRET_PATH }} firebaseToken | FIREBASE_CI_TOKEN ;
+            ${{ env.SECRET_PATH }} firebaseKey | FIREBASE_CI_KEY ;
+            ${{ env.SECRET_PATH }} facebook_app_id | FB_APP_ID ;
+            ${{ env.SECRET_PATH }} facebook_app_token | FB_APP_TOKEN ;
+
+      - name: Import Brazil Vault Secrets
+        if: ${{ inputs.flavor == 'brazil' && inputs.brand == 'bf' }}
+        id: import-brazil-secrets
+        env:
+          SECRET_PATH: tla_tbdn/data/jenkins
+        uses: hashicorp/vault-action@v3
+        with:
+          url: https://vault-prd.prd.betfair
+          method: ldap
+          username: ${{ secrets.VAULT_USER }}
+          password: ${{ secrets.VAULT_PASSWORD }}
+          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          secrets: |
+            ${{ env.SECRET_PATH }} androidUploadStorePw | ANDROID_UPLOAD_STORE_PW ;
+            ${{ env.SECRET_PATH }} releaseBrazilKeystore | RELEASE_KEYSTORE ;
+            ${{ env.SECRET_PATH }} releaseBrazilKeystoreAlias | ANDROID_KEYSTORE_ALIAS ;
+            ${{ env.SECRET_PATH }} firebaseToken | FIREBASE_CI_TOKEN ;
+            ${{ env.SECRET_PATH }} firebaseKey | FIREBASE_CI_KEY ;
+            ${{ env.SECRET_PATH }} facebook_app_id | FB_APP_ID ;
+            ${{ env.SECRET_PATH }} facebook_app_token | FB_APP_TOKEN ;
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: "arn:aws:iam::509882276346:role/AWS20_GithubOidcRole-repo"
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          role-skip-session-tagging: true
+          aws-region: eu-west-1
+
+      - name: Cache gradle cache
+        if: ${{ inputs.use-cache }}
+        id: gradle-cache
+        uses: runs-on/cache@v4
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles(format('apps/{0}/native/**/*.gradle', inputs.brand)) }}
+        env:
+          SEGMENT_DOWNLOAD_TIMEOUT_MINS: 2
+          RUNS_ON_S3_BUCKET_CACHE: "tbd-github-runner-s3-bucket-cache"
+          AWS_REGION: "eu-west-1"
+
+      - name: Install Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          packages: ""
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Build AAB
+        id: build-aab
+        run: |
+          docker run -i --rm \
+            --platform linux/amd64 \
+            --user root \
+            -v ${PWD}/:/usr/app/ \
+            -v ${HOME}/.gradle/caches:/root/.gradle/caches \
+            -e ANDROID_UPLOAD_STORE_PW=${ANDROID_UPLOAD_STORE_PW} \
+            -e RELEASE_KEYSTORE=${RELEASE_KEYSTORE} \
+            -e ANDROID_KEYSTORE_ALIAS=${ANDROID_KEYSTORE_ALIAS} \
+            -e FB_APP_ID=${FB_APP_ID} \
+            -e FB_APP_TOKEN=${FB_APP_TOKEN} \
+            -e FLAVOR=${{ inputs.flavor }} \
+            -e BRAND=${{ inputs.brand }} \
+            -e MONTEROSA_TOKEN=${MONTEROSA_TOKEN} \
+            -e NATIVE_BUILD_NUMBER=${{ env.NATIVE_BUILD_NUMBER }} \
+            -e OVERRIDE_LOADING_SUBDOMAIN=${{ inputs.override-loading-subdomain }} \
+            docker.app.betfair/ppb/tbdn/tools/tbdn-android-build:2.0.0 /usr/app/tools/ci/native/android/release_build.sh
+
+      - name: Rename AAB
+        id: rename-aab
+        run: |
+          mkdir -p output
+          if [[ "${{ inputs.flavor }}" == "brazil" ]]; then
+            sudo cp apps/${{ inputs.brand }}/native/android/app/build/outputs/bundle/playReleaseBrazil/app-play-releaseBrazil.aab output/${{ env.APP_IDENTIFIER }}.aab
+          else
+            sudo cp apps/${{ inputs.brand }}/native/android/app/build/outputs/bundle/playRelease/app-play-release.aab output/${{ env.APP_IDENTIFIER }}.aab
+          fi
+
+      - name: Convert AAB to APK
+        id: convert-aab-apk
+        env:
+          AAB_FILE_NAME: ${{ env.APP_IDENTIFIER }}.aab
+          APK_FILE_NAME: ${{ env.APP_IDENTIFIER }}.apk
+        run: |
+          mkdir -p tmp
+          cp output/${{ env.APP_IDENTIFIER }}.aab tmp/
+          cp tools/ci/native/android/convert_aab_to_apk.sh tmp/
+          chmod +x tmp/convert_aab_to_apk.sh
+
+          docker run -i --rm \
+            --platform linux/amd64 \
+            --user root \
+            -v ${PWD}/tmp/:/usr/app/ \
+            -e ANDROID_UPLOAD_STORE_PW=${ANDROID_UPLOAD_STORE_PW} \
+            -e RELEASE_KEYSTORE=${RELEASE_KEYSTORE} \
+            -e APKS_FILE_NAME="release.apks" \
+            -e AAB_FILE_NAME=${AAB_FILE_NAME} \
+            -e ANDROID_KEYSTORE_ALIAS=${ANDROID_KEYSTORE_ALIAS} \
+            docker.app.betfair/ppb/tbdn/tools/bundletool-release:latest /usr/app/convert_aab_to_apk.sh
+
+          unzip -p tmp/release.apks universal.apk > output/${APK_FILE_NAME}
+
+      - name: Publish AAB to Artifactory
+        id: publish-aab-artifactory
+        if: ${{ !inputs.override-loading-subdomain }}
+        uses: ./.github/actions/publish-artifactory
+        with:
+          artifactory_path: "tbd-native/android/${{ inputs.brand }}/release/"
+          path: "./output/${{ env.APP_IDENTIFIER }}.aab"
+      - name: Publish AAB to Artifactory
+        id: publish-aab-override-artifactory
+        if: ${{ inputs.override-loading-subdomain }}
+        uses: ./.github/actions/publish-artifactory
+        with:
+          artifactory_path: "tbd-native/android/${{ inputs.brand }}/release/store/"
+          path: "./output/${{ env.APP_IDENTIFIER }}.aab"
+      - name: Publish APK to Artifactory
+        id: publish-apk-override-artifactory
+        if: ${{ inputs.override-loading-subdomain }}
+        uses: ./.github/actions/publish-artifactory
+        with:
+          artifactory_path: "tbd-native/android/${{ inputs.brand }}/release/store/"
+          path: "./output/${{ env.APP_IDENTIFIER }}.apk"
+
+      - name: Publish APK to Artifactory
+        id: publish-apk-artifactory
+        if: ${{ !inputs.override-loading-subdomain }}
+        uses: ./.github/actions/publish-artifactory
+        with:
+          artifactory_path: "tbd-native/android/${{ inputs.brand }}/release/"
+          path: "./output/${{ env.APP_IDENTIFIER }}.apk"
+
+      - name: Upload AAB Artifact
+        id: upload-aab-github
+        if: ${{ inputs.override-loading-subdomain }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.APP_IDENTIFIER }}.aab
+          path: output/${{ env.APP_IDENTIFIER }}.aab
+          retention-days: 14
+
+      - name: Upload APK Artifact
+        id: upload-apk-github
+        if: ${{ !inputs.override-loading-subdomain }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.APP_IDENTIFIER }}.apk
+          path: output/${{ env.APP_IDENTIFIER }}.apk
+          retention-days: 14
+
+      - name: Publish run id
+        id: publish-run-id
+        run: |
+          echo "Generated builds for '${{ env.APP_IDENTIFIER }}' with run id - ${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
+
+      - name: Create Releasable Tag
+        id: create-releasable-tag
+        if: ${{ !inputs.override-loading-subdomain }}
+        uses: ./.github/actions/create-tag
+        with:
+          tag-name: "${{ env.APP_IDENTIFIER }}"

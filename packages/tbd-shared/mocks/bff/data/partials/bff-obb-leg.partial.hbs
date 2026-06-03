@@ -1,0 +1,25 @@
+"__typename": "{{__typename}}{{^__typename}}ObbLeg{{/__typename}}",
+"templateId": "{{templateId}}",
+"templateParams": {
+  {{#with templateParams}}
+    {{#if participantIdA}}  {{!-- ObbPvpParams specific --}}
+      {{> bff-obb-pvp-params}}
+    {{else if participantIds}}  {{!-- ObbSquadBetParams specific --}}
+      {{> bff-obb-squadbet-params}}
+    {{else if squadAParticipantIds}}  {{!-- squadVsSquad specific --}}
+      {{> bff-obb-squad-vs-squad-params}}
+    {{/if}}
+  {{/with}}
+},
+{{#if quote}}
+  "quote": {
+    {{#with quote}}
+      {{> bff-obb-quote-result}}
+    {{/with}}
+  },
+{{/if}}
+"event": {
+  {{#with event}}
+    {{> bff-sportevent}}
+  {{/with}}
+}

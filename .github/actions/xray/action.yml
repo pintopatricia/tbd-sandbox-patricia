@@ -1,0 +1,43 @@
+name: Resolve Xray Test Plan
+description: Resolve Xray Test Plan Key using JS mapping
+
+inputs:
+  test_type:
+    required: true
+  brand:
+    required: true
+  environment:
+    required: true
+  platform:
+    required: false
+    default: web
+
+outputs:
+  test_plan_key:
+    value: ${{ steps.resolve.outputs.test_plan_key }}
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/checkout@v4
+
+    - id: resolve
+      shell: bash
+      env:
+        TEST_TYPE: ${{ inputs.test_type }}
+        BRAND: ${{ inputs.brand }}
+        ENVIRONMENT: ${{ inputs.environment }}
+        PLATFORM: ${{ inputs.platform }}
+      run: |
+        set -euo pipefail
+        PLAN="$(node -e "
+          const { resolveTestPlan } = require('./packages/tbd-tests/utils/xrayTestPlanMap');
+          const t = process.env.TEST_TYPE;
+          const b = process.env.BRAND;
+          const e = process.env.ENVIRONMENT;
+          const p = process.env.PLATFORM || 'web';
+          const plan = resolveTestPlan(t,b,e,p);
+          if (!plan) { console.error(\`No Xray Test Plan found for: \${t}|\${b}|\${e}|\${p}\`); process.exit(1); }
+          process.stdout.write(plan);
+        ")"
+        echo "test_plan_key=${PLAN}" >> "$GITHUB_OUTPUT"

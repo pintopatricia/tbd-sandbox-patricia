@@ -1,0 +1,541 @@
+.gameTile {
+  position: relative;
+
+  display: flex;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: var(--game-tile-square-new-wrap-background-colour);
+  border-radius: var(--game-tile-square-border-radius);
+}
+
+.gameTile::before {
+  display: block;
+
+  padding-top: 100%;
+
+  content: "";
+}
+
+.jackpotTile {
+  border: var(--game-tile-jackpot-border);
+}
+
+.gameWidgetTile {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: var(--primary-button-container-sizing);
+  height: var(--primary-button-container-sizing);
+
+  background: var(--action-boost-background-default);
+  border: 2px solid var(--primary-button-primary-hover-background-colour);
+  border-radius: var(--game-tile-round-border-radius);
+  box-shadow:
+    -1px -1px 6px 0 var(--primary-button-primary-hover-background-colour),
+    2px 1px 4px 0 var(--primary-button-primary-hover-background-colour);
+}
+
+.gameWidgetTile svg {
+  display: block;
+
+  width: var(--primary-button-container-sizing);
+  height: var(--primary-button-container-sizing);
+}
+
+.tileGradient {
+  position: relative;
+
+  width: 100%;
+
+  border-radius: var(--game-tile-square-border-radius);
+}
+
+.tileGradient::after {
+  position: absolute;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  content: "";
+
+  background: var(--game-tile-gradient-colour);
+  border-radius: var(--game-tile-square-border-radius);
+}
+
+.singleImage {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+
+  border-radius: var(--game-tile-square-border-radius);
+
+  object-fit: cover;
+}
+
+.iconBackground {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: var(--round-button-small-sizing);
+  height: var(--round-button-small-sizing);
+
+  pointer-events: none;
+}
+
+.jackpotLogoContainer,
+.customLogoContainer {
+  position: absolute;
+  top: 0;
+  right: var(--spacing-1);
+}
+
+.customLogoContainer {
+  right: 0;
+
+  width: auto;
+  min-width: 34px;
+  height: 34px;
+  margin: var(--game-tile-square-padding);
+}
+
+.jackpotLogoContainer {
+  width: 50px;
+  height: auto;
+}
+
+.jackpotLogoContainer img {
+  width: 100%;
+  height: 100%;
+}
+
+.gameBadgeContainer {
+  position: absolute;
+  top: var(--spacing-1);
+}
+
+.gameTile.isNewDecorated {
+  clip-path: polygon(100% 0, 100% 0, 100% 100%, 0 100%, 0 0);
+
+  animation-name: comeIntoViewImageFold;
+  animation-duration: 0.2s;
+  animation-delay: 0.4s;
+  animation-fill-mode: forwards;
+}
+
+.isNewDecorated .gameBadgeContainer {
+  top: 0;
+  right: 0;
+
+  width: 48px;
+  height: 38px;
+}
+
+.isNewDecorated :global .badgeText {
+  color: var(--agnostic-neutrals-text-default);
+  text-transform: var(--uppercase);
+}
+
+.isNewDecorated .jackpotLogoContainer,
+.isNewDecorated .customLogoContainer {
+  top: initial;
+  right: initial;
+  bottom: 16px;
+  left: 50%;
+
+  transform: translateX(-50%);
+}
+
+.isNewDecorated .customLogoContainer {
+  width: auto;
+}
+
+.isNewDecorated .jackpotLogoContainer {
+  width: 38px;
+}
+
+.gameInfoContainer {
+  min-width: var(--game-tile-icon-sizing);
+  height: 100%;
+
+  /* stylelint-disable-next-line scale-unlimited/declaration-strict-value, property-disallowed-list */
+  line-height: normal;
+
+  background-color: transparent;
+  border-radius: 50%;
+}
+
+.gameTextButtonContainer {
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+
+  display: flex;
+
+  gap: var(--game-tile-square-horizontal-gap);
+
+  align-items: flex-end;
+
+  width: 100%;
+  padding: var(--game-tile-square-padding);
+  overflow: hidden;
+}
+
+.gameTextContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--game-tile-square-vertical-gap);
+
+  width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.gameCopyright {
+  display: -webkit-box;
+
+  width: 100%;
+  overflow: hidden;
+
+  font: var(--game-tile-supporting-text-typography);
+  color: var(--game-tile-square-text-supporting-text-colour);
+  text-decoration-line: var(--game-tile-supporting-text-typography-text-decoration-line);
+  text-transform: var(--game-tile-supporting-text-typography-text-transform);
+  letter-spacing: var(--game-tile-supporting-text-typography-letter-spacing);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* For webkit browsers */
+  line-clamp: 2; /* Standard property for compatibility */
+}
+
+.gameTitle {
+  width: 100%;
+  overflow: hidden;
+
+  font: var(--game-tile-title-typography);
+  color: var(--game-tile-square-text-title-colour);
+  text-decoration-line: var(--game-tile-title-typography-letter-spacing);
+  text-overflow: ellipsis;
+  text-transform: var(--game-tile-title-typography-text-transform);
+  letter-spacing: var(--game-tile-title-typography-text-decoration-line);
+  white-space: nowrap;
+}
+
+.xmall {
+  position: relative;
+
+  width: var(--game-tile-rectangle-width-sizing);
+  height: var(--game-tile-rectangle-height-sizing);
+
+  border-radius: 4px;
+}
+
+.xmall .gameTitle {
+  color: var(--game-tile-rectangle-title-colour);
+}
+
+.xmall .gameInfoContainer {
+  display: flex;
+
+  flex-shrink: 0;
+
+  align-items: center;
+  justify-content: center;
+
+  width: var(--game-tile-icon-sizing);
+  height: var(--game-tile-icon-sizing);
+}
+
+.xmall .gameInfoContainer svg {
+  display: block;
+
+  flex-shrink: 0;
+
+  width: 100%;
+  height: 100%;
+}
+
+.xmall .gameTextButtonContainer {
+  position: static;
+
+  align-items: center;
+
+  width: var(--game-tile-rectangle-width-sizing);
+  padding: 0;
+}
+
+.xmall .tileGradient {
+  width: 100%;
+  height: 100%;
+  margin-bottom: var(--game-tile-rectangle-vertical-gap);
+}
+
+.xmall .customLogoContainer {
+  right: 0;
+
+  width: auto;
+  min-width: var(--game-tile-rectangle-flag-width-sizing);
+  height: var(--game-tile-rectangle-flag-height-sizing);
+  margin: var(--game-tile-xsmall-flag-position-y);
+}
+
+.round {
+  display: flex;
+
+  flex-direction: column;
+
+  aspect-ratio: 1;
+
+  background-color: inherit;
+  border-radius: var(--game-tile-round-border-radius);
+}
+
+.round .tileGradient {
+  width: 100%;
+  height: 100%;
+
+  border: none;
+  border-radius: var(--game-tile-round-border-radius);
+}
+
+.round .tileGradient:has(img) {
+  height: fit-content;
+}
+
+.round::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  content: "";
+
+  border-radius: 50%;
+  /* stylelint-disable-next-line declaration-property-value-allowed-list */
+  opacity: 0.4;
+}
+
+.round.imgRedBorder::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  content: "";
+}
+
+.round.imgGreyBorder::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  content: "";
+}
+
+.round .tileGradient::after {
+  filter: var(--game-tile-drop-shadow);
+  border-radius: var(--game-tile-round-border-radius);
+}
+
+.round .singleImage {
+  width: 100%;
+  height: 100%;
+
+  border-radius: var(--game-tile-round-border-radius);
+}
+
+.round .gameTextButtonContainer {
+  position: static;
+
+  width: 100%;
+  padding: 0;
+  margin-top: var(--game-tile-round-vertical-gap);
+
+  text-align: center;
+}
+
+.round .gameBadgeContainer {
+  top: 55%;
+
+  width: 100%;
+}
+
+.gameBadgeContainer .label {
+  position: absolute;
+  top: 38%;
+
+  width: 100%;
+
+  font: var(--badge-game-tile-label-typography);
+  color: var(--game-tile-square-new-wrap-label-colour);
+  text-align: center;
+  text-decoration-line: var(--badge-game-tile-label-typography-letter-spacing);
+  text-transform: var(--badge-game-tile-label-typography-text-transform);
+  letter-spacing: var(--badge-game-tile-label-typography-text-decoration-line);
+
+  transform: translateY(-50%);
+}
+
+.round .jackpotLogoContainer {
+  top: calc(var(--spacing-3) * -1);
+  left: calc(50% - 16px);
+
+  width: var(--game-tile-logo-sizing);
+  height: var(--game-tile-logo-sizing);
+}
+
+.round .customLogoContainer {
+  position: absolute;
+  top: calc(var(--spacing-3) * -1);
+  right: 0;
+  left: 0;
+
+  display: flex;
+
+  height: 24px;
+}
+
+.round .customLogoContainer img {
+  width: auto;
+  height: 100%;
+  margin: auto auto 0;
+}
+
+.round .customLogoContainer picture {
+  margin: auto auto 0;
+}
+
+.round .gameTitle {
+  color: var(--game-tile-round-title-colour);
+}
+
+@media screen and (min-width: 410px) {
+  .round .jackpotLogoContainer {
+    left: calc(50% - 20px);
+
+    width: 32px;
+  }
+
+  .gameBadgeContainer .label {
+    /* stylelint-disable-next-line property-disallowed-list */
+    font-size: var(--text-size-4);
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .round .jackpotLogoContainer {
+    left: calc(50% - 35px);
+
+    width: 70px;
+  }
+
+  .round .customLogoContainer {
+    height: 36px;
+  }
+
+  .gameBadgeContainer .label {
+    /* stylelint-disable-next-line property-disallowed-list */
+    font-size: var(--text-size-10);
+  }
+
+  .round .gameBadgeContainer {
+    top: 60%;
+  }
+}
+
+@media screen and (min-width: 850px) {
+  .round .jackpotLogoContainer {
+    left: calc(50% - 50px);
+
+    width: 100px;
+  }
+
+  .round .customLogoContainer {
+    height: 40px;
+  }
+
+  .gameBadgeContainer .label {
+    /* stylelint-disable-next-line property-disallowed-list */
+    font-size: var(--text-size-10);
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .round .jackpotLogoContainer {
+    left: calc(50% - 31px);
+
+    width: 62px;
+  }
+
+  .round .customLogoContainer {
+    height: 40px;
+  }
+
+  .gameBadgeContainer .label {
+    top: 42%;
+    /* stylelint-disable-next-line property-disallowed-list */
+    font-size: var(--text-size-4);
+    /* stylelint-disable-next-line property-disallowed-list */
+    font-weight: var(--text-weight-regular);
+  }
+
+  .round .gameBadgeContainer {
+    top: 57%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .round .jackpotLogoContainer {
+    left: calc(54% - 38px);
+
+    width: 62px;
+  }
+
+  .round .gameBadgeContainer {
+    top: 60%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .round .jackpotLogoContainer {
+    left: calc(58% - var(--jackpot-logo-game-info-width) / 2);
+
+    width: calc(var(--jackpot-logo-game-info-width) / 2 + 18px);
+  }
+
+  .round .customLogoContainer {
+    height: var(--custom-logo-game-info-height);
+  }
+
+  .gameBadgeContainer .label {
+    /* stylelint-disable-next-line property-disallowed-list */
+    font-size: var(--text-size-6);
+  }
+
+  .round .gameBadgeContainer {
+    top: 63%;
+    left: 50%;
+
+    width: 95%;
+
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes comeIntoViewImageFold {
+  0% {
+    clip-path: polygon(100% 0, 100% 0, 100% 100%, 0 100%, 0 0);
+  }
+
+  100% {
+    clip-path: polygon(calc(100% - 48px) 0, 100% calc(0% + 18px), 100% 100%, 0 100%, 0 0);
+  }
+}

@@ -1,0 +1,4 @@
+.placeholder {
+  min-width: var(--price-button-sbk-container-sizing);
+  height: var(--price-button-sbk-container-sizing);
+}

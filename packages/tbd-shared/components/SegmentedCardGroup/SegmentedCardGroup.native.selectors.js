@@ -1,0 +1,7 @@
+const SEGMENTED_CARD_GROUP = "segmented-card-group";
+const SEGMENTED_CARD_GROUP_CONTAINER = `${SEGMENTED_CARD_GROUP}-container`;
+
+module.exports = {
+  SEGMENTED_CARD_GROUP,
+  SEGMENTED_CARD_GROUP_CONTAINER,
+};

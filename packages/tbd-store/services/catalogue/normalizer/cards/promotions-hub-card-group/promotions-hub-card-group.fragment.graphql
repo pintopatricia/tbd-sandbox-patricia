@@ -1,0 +1,4 @@
+fragment localTbdPromotionsHubCardGroup on PromotionsHubCardGroup {
+  urn
+  __typename
+}

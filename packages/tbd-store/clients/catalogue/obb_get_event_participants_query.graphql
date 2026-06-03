@@ -1,0 +1,30 @@
+query ObbGetEventParticipants(
+  $eventParticipantsRequestInput: EventParticipantsRequestInput!
+  $incidentTypeFiltersInput: IncidentTypesFilterInput
+  $throttlesOn: [String!]
+  $throttlesOff: [String!]
+  $productExclusions: [ProductExclusion!]
+)
+@productExclusions(productExclusions: $productExclusions)
+@throttlesOn(throttlesOn: $throttlesOn)
+@throttlesOff(throttlesOff: $throttlesOff) {
+  obb {
+    eventParticipants(eventParticipantsRequestInput: $eventParticipantsRequestInput) {
+      ... on ObbFootballPlayer {
+        urn
+        incidentTypes(filter: $incidentTypeFiltersInput) {
+          id
+          resultType {
+            ... on ObbRangeResultType {
+              max
+              min
+            }
+            ... on ObbBooleanResultType {
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}

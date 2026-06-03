@@ -1,0 +1,52 @@
+fragment raceRunnerHorsePastPerformance on RaceRunner {
+  __typename
+  urn
+  rating123
+  ratingStars
+  selectionId
+  raceURN
+  form
+  rating
+  comments
+  status
+  horse {
+    name
+    sireName
+    damName
+    damSireName
+    age
+    color
+    sex
+    bred
+    pastPerformances {
+      race {
+        raceUrl
+        details {
+          scheduledTime
+          distance {
+            miles
+            furlongs
+            yards
+          }
+          numberOfRunners
+          going
+          type
+        }
+        venue
+      }
+      positionOfficial
+      performanceComment
+    }
+  }
+  details {
+    jockeyName
+    trainerName
+    saddleCloth
+    weight {
+      stones
+    }
+    equipmentDescription
+    silk
+    draw
+  }
+}

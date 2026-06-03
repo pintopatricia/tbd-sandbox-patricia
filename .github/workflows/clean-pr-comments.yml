@@ -1,0 +1,20 @@
+name: clean-pr-trigger-comments
+
+on:
+  schedule:
+    - cron: "30 23 * * *"
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  delete_comments:
+    runs-on:
+      group: FlutterGithubRunners
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Check if comment should be deleted
+        run: ./.github/delete_comments.sh

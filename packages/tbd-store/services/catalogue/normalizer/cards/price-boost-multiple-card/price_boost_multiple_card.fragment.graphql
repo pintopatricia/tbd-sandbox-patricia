@@ -1,0 +1,16 @@
+fragment priceBoostMultisCard on PriceBoostMultisCard {
+  __typename
+  urn
+  pbmTitle: title {
+    ...displayName
+  }
+  showWasPrice
+  popularbettingopportunity {
+    ...popularBettingOpportunity
+  }
+}
+
+fragment priceBoostMultisCardPartial on PriceBoostMultisCard {
+  __typename
+  urn
+}

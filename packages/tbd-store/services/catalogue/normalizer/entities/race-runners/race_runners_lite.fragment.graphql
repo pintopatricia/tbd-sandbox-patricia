@@ -1,0 +1,18 @@
+fragment raceRunnerLite on RaceRunner {
+  __typename
+  urn
+  raceURN
+  selectionId
+  horse {
+    name
+    age
+    color
+    sex
+  }
+  details {
+    jockeyName
+    trainerName
+    silk
+    saddleCloth
+  }
+}

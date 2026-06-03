@@ -1,0 +1,10 @@
+<svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 103 103">
+	<linearGradient id="a" gradientUnits="userSpaceOnUse" x1="-28.737" y1="261.925" x2="18.816" y2="309.078" gradientTransform="rotate(180 30.928 195.804) scale(1.2427)">
+		<stop offset="0" stop-color="#fff" stop-opacity=".1"/>
+		<stop offset="1" stop-opacity=".2"/>
+	</linearGradient>
+	<path fill-opacity=".15" d="M-1.1 4h49.8l46.4 46v51.2"/>
+	<path fill="#e09e00" d="M6.9 0h49.8l46.4 46v51.2M97.6 91.7l5.5 5.5-5.5 5.8V91.7z"/>
+	<path fill="#e09e00" d="M.5 6.8L6.9 0l6.8 6.8H.5z"/>
+	<path d="M56.7 0l46.4 46v51.2S82.7 50.7 68.7 36.7C54.6 22.6 7.7 0 7.7 0h49z" fill="url(#a)"/>
+</svg>

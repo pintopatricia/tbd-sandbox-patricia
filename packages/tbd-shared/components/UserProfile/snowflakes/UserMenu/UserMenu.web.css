@@ -1,0 +1,14 @@
+.userMenu {
+  margin: 0;
+}
+
+.userMenuLink {
+  text-decoration: none;
+}
+
+.userMenuItem {
+  padding: var(--spacing-8);
+
+  color: var(--action-tertiary-text-default);
+  text-align: center;
+}

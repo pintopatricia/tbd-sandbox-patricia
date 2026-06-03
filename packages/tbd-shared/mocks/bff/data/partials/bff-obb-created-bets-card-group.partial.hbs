@@ -1,0 +1,33 @@
+         "__typename": "ObbCreatedBetsCardGroup",
+        "urn": "{{urn}}{{^urn}}ppb:obb:createdBetsCardGroup:aMvBuBIAACIAVFHF/cv/home{{/urn}}",
+        {{#with obbCreatedBetsCardGroupTitle}}
+        "obbCreatedBetsCardGroupTitle": {
+            {{> bff-obb-display-name}}
+        },
+         {{/with}}
+
+        {{#with headerBadgeLabel}}
+        "headerBadgeLabel": {
+            {{> bff-obb-display-name}}
+        },
+        {{/with}}
+
+        {{#with headerViewLink}}
+            "headerViewLink": {    
+                {{> bff-view-link}}
+            },
+        {{/with}}
+
+        {{#if cards}}
+        {{#with cards}}
+        "cards": {
+            {{> bff-obb-created-bets-card-connection}}
+        }
+        {{#unless @last}},{{/unless}}
+        {{/with}}
+        {{else}}
+        "cards": {
+            "edges": [],
+             "__typename": "ObbCreatedBetsCardConnection"
+        }
+        {{/if}}

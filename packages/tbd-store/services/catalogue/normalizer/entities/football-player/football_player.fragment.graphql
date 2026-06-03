@@ -1,0 +1,8 @@
+fragment footballPlayer on FootballPlayer {
+  id
+  name
+  shirtNumber
+  position,
+  positionDescription
+  startingType
+}

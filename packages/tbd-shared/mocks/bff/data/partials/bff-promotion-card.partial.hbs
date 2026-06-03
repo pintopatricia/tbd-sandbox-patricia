@@ -1,0 +1,71 @@
+"__typename": "{{__typename}}{{^__typename}}PromotionCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:promotion:1{{/urn}}",
+"promotionContentType": "{{promotionContentType}}{{^promotionContentType}}GENERIC{{/promotionContentType}}",
+"promotionName": "{{promotionName}}{{^promotionName}}BET €20 ON THE 13:45 RACE AT GOODWOOD{{/promotionName}}",
+"hasBetfairBoost": {{#if hasBetfairBoost}}{{hasBetfairBoost}}{{else}}false{{/if}},
+{{#if isImsPromo}} "isImsPromo": {{isImsPromo}}{{^isImsPromo}}{{/isImsPromo}}, {{else}} "isImsPromo": null, {{/if}}
+"action": {
+  {{#ifEquals promotionContentType "ODDSBOOST"}}
+    {{#if market}}
+      "market": {
+      {{#with market}}
+        {{> bff-market }}
+      {{/with}}
+      },
+    {{/if}}
+    {{#with runner}}
+      "runner":{
+        "runnerURN": "{{runnerURN}}{{^runnerURN}}ppb:sbkRunner:924.235739888/35458130{{/runnerURN}}",
+        "selectionId": {{selectionId}}{{^selectionId}}35458130{{/selectionId}},
+        "handicap": 0
+      },
+    {{/with}}
+    {{#if displayPreviousOdd}}
+      "displayPreviousOdd": {{displayPreviousOdd}}
+    {{/if}}
+  {{else}}
+    {{#if label}}
+      "label": "{{label}}"
+    {{/if}}
+    {{#with viewLink}},
+    "viewLink": {
+      "viewUrl": "{{viewUrl}}{{^viewUrl}}https://promos.betfair.com/promotion?promoCode=excstreak280720{{/viewUrl}}",
+      "viewUrn": "{{viewUrn}}{{^viewUrn}}ppb:tbd:view:external:external{{/viewUrn}}"
+    }
+    {{/with}}
+  {{/ifEquals}}
+},
+{{#if promotionTitle}}
+  "promotionTitle": "{{promotionTitle}}{{^promotionTitle}}kekw{{/promotionTitle}}",
+{{/if}}
+{{#if headline}}
+  "headline": "{{headline}}{{^headline}}h1{{/headline}}",
+{{/if}}
+{{#if subHeadline}}
+  "subHeadline": "{{subHeadline}}{{^subHeadline}}h2{{/subHeadline}}",
+{{/if}}
+{{#if strapline}}
+  "strapline": "{{strapline}}{{^strapline}}str{{/strapline}}",
+{{/if}}
+"backgroundImage": [
+{{#each backgroundImage}}{
+  "url": "{{url}}{{^url}}https://confluence.app.betfair/download/attachments/272779508/Bitmap%203.png?version=1&modificationDate=1595849135000&api=v2{{/url}}",
+  "width": "{{width}}{{^width}}456{{/width}}",
+  "height": "{{height}}{{^height}}123{{/height}}"
+  }{{#unless @last}},{{/unless}}{{/each}}
+]
+{{#with termsAndConditions}},
+"termsAndConditions": {
+  "url": "{{url}}{{^url}}https://promos.betfair.com/promotion?promoCode=sbkb20g5280720p{{/url}}",
+  "summary": "{{summary}}{{^summary}}Terms and Conditions Summary{{/summary}}"
+  {{#with label}},
+  "label": {
+    {{#if name}}
+      "name": "{{name}}"
+    {{else}}
+      "translationKey": "{{translationKey}}"
+    {{/if}}
+  }
+  {{/with}}
+}
+{{/with}}

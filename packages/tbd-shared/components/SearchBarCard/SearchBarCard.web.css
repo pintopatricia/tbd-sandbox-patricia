@@ -1,0 +1,17 @@
+.searchTitle {
+  color: var(--neutrals-text-default);
+}
+
+.searchBarCardContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--spacing-2);
+
+  padding: var(--quick-link-padding-complex);
+}
+
+.filtersContainer {
+  margin-top: var(--spacing-2);
+}

@@ -1,0 +1,193 @@
+"__typename":"FilteredCouponCardGroup",
+"urn": "{{urn}}{{^urn}}ppb:tbd:cardgroup:filtered#1{{/urn}}",
+"filteredCouponTitle": {{#if filteredCouponTitle}}"{{filteredCouponTitle}}"{{else}}null{{/if}},
+{{#with filterOptions}}
+"filterOptions": {
+    "filtersSorting": [
+    {{#each filtersSorting}}
+    "{{this}}"
+    {{#unless @last}},{{/unless}}
+    {{/each}}
+    ],
+    {{#with sortOption}}
+    "sortOption": {
+        "defaultOption": "{{defaultOption}}{{^defaultOption}}RANK{{/defaultOption}}",
+        "availableOptions":
+        {{#if availableOptions}}
+        [
+           {{#each availableOptions}}
+              "{{ this }}"{{#unless @last}},{{/unless}}
+           {{/each}}
+        ]{{else}}
+          []
+        {{/if}}
+    },
+    {{/with}}
+    {{#with dateRangeFilter}}
+    "dateRangeFilter": {
+        "urn": "{{urn}}",
+        {{#with defaultOption}}
+        "defaultOption": {
+            "urn":"{{urn}}",
+            {{#with title}}
+            "title": {
+                "__typename": "{{#if __typename}}{{__typename}}{{else}}DisplayNameTranslationKey{{/if}}",
+                "translationKey": {{#if translationKey}}"{{translationKey}}"{{else}}null{{/if}},
+                "name": {{#if name}}"{{name}}"{{else}}null{{/if}}
+            }
+            {{/with}}
+        },
+        {{/with}}
+        "availableOptions":[
+        {{#each availableOptions}}
+            {
+                "urn": "{{urn}}",
+                {{#with title}}
+                "title": {
+                    "__typename": "{{#if __typename}}{{__typename}}{{else}}DisplayNameTranslationKey{{/if}}",
+                    "translationKey": {{#if translationKey}}"{{translationKey}}"{{else}}null{{/if}},
+                    "name": {{#if name}}"{{name}}"{{else}}null{{/if}}
+                }
+                {{/with}}
+            }
+            {{#unless @last}},{{/unless}}
+        {{/each}}
+        ]
+    },
+    {{/with}}
+    "marketTypeFilter": {{#with marketTypeFilter}}{
+        "urn": "{{urn}}",
+        {{#if layout}}
+        "layout": "{{layout}}",
+        {{/if}}
+        {{#with defaultOption}}
+        "defaultOption": {
+            "urn": "{{urn}}",
+            "name": "{{name}}"
+        },
+        {{/with}}
+        "availableOptions":[
+        {{#each availableOptions}}
+            {
+                "marketType": {
+                   "urn": "{{marketType.urn}}"
+                },
+                "name": "{{name}}"
+            }
+            {{#unless @last}},{{/unless}}
+        {{/each}}
+        ]
+    }{{else}}null{{/with}},
+    "competitionsFilter": {{#with competitionsFilter}}{
+      "urn": "{{urn}}",
+      "defaultOptions": [
+        {{#each defaultOptions}}
+        {
+            "urn": "{{urn}}",
+            "name": "{{name}}",
+            {{#with sport}}
+                "sport": {
+                    "urn": "{{urn}}"
+                }
+            {{/with}}
+        }
+         {{#unless @last}},{{/unless}}
+      {{/each}}
+      ],
+      "topCompetitions": [
+      {{#each topCompetitions}}
+      {
+        "__typename": "{{__typename}}",
+        "urn": "{{urn}}",
+        "name": "{{name}}",
+        "competitionId": {{competitionId}},
+        {{#with sport}}
+        "sport": {
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}",
+          "name": "{{name}}",
+          "sportId": {{sportId}}
+        }
+        {{/with}}
+      }
+      {{#unless @last}},{{/unless}}
+      {{/each}}
+      ],
+      "allCompetitions": [
+      {{#each allCompetitions}}
+      {
+        {{#with country}}
+            "country": {
+                "urn": "{{urn}}",
+                "code": "{{code}}",
+                {{#with flag}}
+                "flag": {
+                    "vector": {{#if vector}}"{{vector}}"{{else}}null{{/if}},
+                    "small": {{#if small}}"{{small}}"{{else}}null{{/if}},
+                    "medium": {{#if medium}}"{{medium}}"{{else}}null{{/if}},
+                    "large": {{#if large}}"{{large}}"{{else}}null{{/if}}
+                }
+                {{else}}
+                "flag": null
+                {{/with}}
+            },
+        {{/with}}
+        "competitions": [
+        {{#each competitions}}
+        {
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}",
+          "name": "{{name}}",
+          "competitionId": {{competitionId}},
+            {{#with sport}}
+            "sport": {
+              "__typename": "{{__typename}}",
+              "urn": "{{urn}}",
+              "name": "{{name}}",
+              "sportId": {{sportId}}
+            }
+            {{/with}}
+        }
+        {{#unless @last}},{{/unless}}
+        {{/each}}
+        ]
+      }
+      {{#unless @last}},{{/unless}}
+      {{/each}}
+      ]
+    }{{else}}null{{/with}}
+},
+{{/with}}
+{{#with full}}
+    "full":{
+        {{> bff-items }}
+    },
+{{/with}}
+{{#with partials}}
+"partials": {
+    {{#with pageInfo}}
+    "pageInfo": {
+        "hasNextPage": {{hasNextPage}}{{^hasNextPage}}null{{/hasNextPage}}
+    },
+    {{/with}}
+    {{> bff-partial-items }}
+},
+{{/with}}
+"defaultMarketTab": "{{#if defaultMarketTab}}{{defaultMarketTab}}{{else}}EXCHANGE{{/if}}",
+"has90Min": {{#if (defined has90Min)}}{{has90Min}}{{else}}false{{/if}},
+{{#if viewAll}}
+    {{#with viewAll}}
+    "viewAll" : {
+    "icon": {{#if icon}}"{{icon}}"{{else}}null{{/if}},
+    "label": "{{label}}{{^label}}Category Links Label{{/label}}",
+        {{#with viewLink}}
+            "viewLink": {
+                "viewUrl": "{{viewUrl}}{{^viewUrl}}/casino/c/slots/gamingCategory:slots{{/viewUrl}}",
+                "viewUrn": "{{viewUrn}}{{^viewUrn}}ppb:tbd:view:gamingCategory:slots{{/viewUrn}}"
+            }
+        {{/with}}
+    }
+    {{/with}}
+{{else}}
+    "viewAll": null
+{{/if}}

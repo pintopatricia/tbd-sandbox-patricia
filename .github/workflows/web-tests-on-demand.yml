@@ -1,0 +1,32 @@
+name: web-tests-on-demand
+# This workflow can be used to run all web tests and runs on a daily basis to help identify flakey tests
+on:
+  workflow_dispatch:
+  # run every day at 2am
+  schedule:
+    - cron: "0 2 * * *"
+env:
+  VAULT_USER: ${{ secrets.VAULT_USER }}
+  VAULT_PASSWORD: ${{ secrets.VAULT_PASSWORD }}
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  MONTEROSA_TOKEN: ${{ secrets.MONTEROSA_TOKEN }}
+jobs:
+  web_regression_tests:
+    name: Web Regression Tests
+    uses: ./.github/workflows/web-tests.yml
+    with:
+      test_type: regression-tests
+      script_extension: web:regression:bf:qa:ci
+      base_url: "https://ie2-tbd-qa.qa.betfair/"
+      is_merge_queue: false
+    secrets: inherit
+
+  web_visual_tests:
+    name: Web Visual Tests
+    uses: ./.github/workflows/web-tests.yml
+    with:
+      test_type: visual-tests
+      script_extension: web:visual:bf:qa:ci
+      base_url: "https://ie2-tbd-qa.qa.betfair/"
+      is_merge_queue: false
+    secrets: inherit

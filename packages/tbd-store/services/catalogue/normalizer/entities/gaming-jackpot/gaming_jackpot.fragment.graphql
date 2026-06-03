@@ -1,0 +1,11 @@
+fragment gamingJackpot on GamingJackpot {
+  __typename
+  urn
+  name
+  value
+  state
+  progress
+  dropValue
+  dropTime
+  dropText
+}

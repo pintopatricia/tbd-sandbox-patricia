@@ -1,0 +1,7 @@
+.obbSingle {
+  display: grid;
+
+  gap: var(--spacing-2);
+
+  margin-top: var(--spacing-2);
+}

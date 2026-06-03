@@ -1,0 +1,10 @@
+"__typename": "FootballSquad",
+{{#with manager}}
+  "manager": "{{manager}}{{^manager}}Steven Gerrard{{/manager}}",
+{{/with}}
+"players": [
+{{#each players}}
+  { {{> bff-football-player }} }
+  {{#unless @last}},{{/unless}}
+{{/each}}
+]

@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--settlement-condition-card-vertical-gap);
+
+  padding: var(--settlement-condition-card-padding);
+
+  background-color: var(--settlement-condition-card-background-colour);
+  border-radius: var(--settlement-condition-card-border-radius);
+}
+
+.titleRow {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.titleLeft {
+  display: flex;
+
+  gap: var(--settlement-condition-card-horizontal-gap);
+
+  align-items: center;
+}
+
+.title {
+  margin: 0;
+
+  font: var(--settlement-condition-card-label-typography);
+  color: var(--settlement-condition-card-label-colour);
+}
+
+.label {
+  font: var(--settlement-condition-card-label-typography);
+  color: var(--settlement-condition-card-label-colour);
+}

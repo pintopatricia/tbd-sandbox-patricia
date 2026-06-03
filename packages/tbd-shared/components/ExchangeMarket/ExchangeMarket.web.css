@@ -1,0 +1,44 @@
+.cashoutContainer {
+  display: flex;
+}
+
+.cashoutContainer > :first-child {
+  flex-basis: 40%;
+}
+
+.cashoutContainer > :last-child {
+  flex-basis: 60%;
+}
+
+.divider {
+  padding: var(--spacing-2) 0;
+}
+
+.runnersList {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  height: 100%;
+  padding: var(--spacing-3) 0;
+}
+
+.runnersOnMarketDepth {
+  padding-bottom: 0;
+}
+
+.runnersOnMarketDepth .runnersListItem {
+  margin-bottom: var(--spacing-4);
+}
+
+.runnersListItem:not(:first-child) {
+  margin-top: var(--gutter-1);
+}
+
+.runnersOnMarketDepth > :last-child {
+  margin-bottom: var(--spacing-1);
+}

@@ -1,0 +1,17 @@
+mutation SetDefaultProductPreferenceMutation(
+  $urn: URN!
+  $value: DefaultProduct!
+  $throttlesOn: [String!]
+  $throttlesOff: [String!]
+  $productExclusions: [ProductExclusion!]
+)
+@productExclusions(productExclusions: $productExclusions)
+@throttlesOn(throttlesOn: $throttlesOn)
+@throttlesOff(throttlesOff: $throttlesOff) {
+  setPreferences(input: { defaultProductPreference: { urn: $urn, value: $value } }) {
+    result {
+      ...defaultProductPreference
+    }
+    error
+  }
+}

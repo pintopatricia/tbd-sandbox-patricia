@@ -1,0 +1,52 @@
+fragment obbOnboardingCardsCardGroup on ObbOnboardingCardsCardGroup {
+  __typename
+  urn
+  obbOnboardingCardsCardGroupTitle: title {
+    ...displayName
+  }
+  obbOnboardingCardsCardGroupBadgeLabel: badgeLabel {
+    ...displayName
+  }
+  event {
+    urn
+    name
+    eventId
+    openDate
+  }
+  onboardingCards {
+    participants {
+      ... on ObbFootballPlayer {
+        __typename
+        urn
+        player {
+          id
+          name
+          shirtNumber
+          position
+        }
+        team {
+          id
+          name
+          color
+          crest {
+            small
+            medium
+          }
+          jerseys {
+            type
+            color
+            url
+          }
+        }
+      }
+    }
+    legs {
+      ...obbLeg
+    }
+  }
+}
+
+fragment obbOnboardingCardsCardGroupPartial on ObbOnboardingCardsCardGroup {
+  __typename
+  urn
+}

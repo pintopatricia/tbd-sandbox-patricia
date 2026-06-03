@@ -1,0 +1,8 @@
+.feedbackButton {
+  position: fixed;
+  top: 16%;
+  left: 0;
+  z-index: var(--modal-stack);
+
+  width: var(--sm-sizing-assets-small);
+}

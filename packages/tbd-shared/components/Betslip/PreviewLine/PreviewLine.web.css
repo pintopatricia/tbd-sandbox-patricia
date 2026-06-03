@@ -1,0 +1,3 @@
+.previewSelection:not(:last-child) {
+  margin-bottom: var(--spacing-2);
+}

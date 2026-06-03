@@ -1,0 +1,9 @@
+const SPORTS_BROWSE = "sports-browse";
+const SPORTS_BROWSE_SEARCH_CONTAINER = `${SPORTS_BROWSE}-search-container`;
+const SPORTS_BROWSE_SEARCH_BAR = `${SPORTS_BROWSE}-search-bar`;
+
+module.exports = {
+  SPORTS_BROWSE,
+  SPORTS_BROWSE_SEARCH_CONTAINER,
+  SPORTS_BROWSE_SEARCH_BAR,
+};

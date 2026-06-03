@@ -1,0 +1,13 @@
+fragment sportsbookBetLegCard on BetLegCard {
+  __typename
+  urn
+  betUrn
+  leg {
+    ...sportsbookBetLeg
+  }
+}
+
+fragment sportsbookBetLegCardPartial on BetLegCard {
+  __typename
+  urn
+}

@@ -1,0 +1,213 @@
+"templateId": "{{templateId}}",
+"templateVersion": {{templateVersion}}{{^templateVersion}}1{{/templateVersion}},
+"result": "{{result}}{{^result}}undefined{{/result}}",
+"params": {
+  {{#with params}}
+    {{#if participantIdA}}
+      "participantIdA": "{{participantIdA}}{{^participantIdA}}12345{{/participantIdA}}",
+      "participantIdB": "{{participantIdB}}{{^participantIdB}}67890{{/participantIdB}}",
+      "outcomeId": "{{outcomeId}}{{^outcomeId}}GOALS{{/outcomeId}}",
+      "timePeriodId": "{{timePeriodId}}{{^timePeriodId}}MATCH{{/timePeriodId}}"
+    {{/if}}
+    {{#if participantIds}}
+      "participantIds": [
+        {{#each participantIds}}
+          "{{this}}"
+        {{#unless @last}},{{/unless}}
+        {{/each}}
+      ],
+      "outcomeIds": [
+        {{#each outcomeIds}}
+          "{{this}}"
+        {{#unless @last}},{{/unless}}
+        {{/each}}
+      ],
+      "quantifier": "{{quantifier}}{{^quantifier}}MORE{{/quantifier}}",
+      "timePeriodId": "{{timePeriodId}}{{^timePeriodId}}MATCH{{/timePeriodId}}",
+      "value": {{value}}{{^value}}1{{/value}}
+    {{/if}}
+    {{#if squadAParticipantIds}}
+      {{#if squadBParticipantIds}}
+        "squadAParticipantIds": [
+          {{#each squadAParticipantIds}}
+            "{{this}}"
+          {{#unless @last}},{{/unless}}
+          {{/each}}
+        ],
+        "squadBParticipantIds": [
+          {{#each squadBParticipantIds}}
+            "{{this}}"
+          {{#unless @last}},{{/unless}}
+          {{/each}}
+        ],
+        "outcomeIds": [
+          {{#each outcomeIds}}
+            "{{this}}"
+          {{#unless @last}},{{/unless}}
+          {{/each}}
+        ],
+        "quantifier": "{{quantifier}}{{^quantifier}}GREATER_THAN{{/quantifier}}",
+        "timePeriodId": "{{timePeriodId}}{{^timePeriodId}}MATCH{{/timePeriodId}}"
+      {{/if}}
+    {{/if}}
+    {{#if x}}
+    "x": "{{x}}{{^x}}2{{/x}}"
+    {{/if}}
+  {{/with}}
+},
+{{#if expressionMetadata}}
+  "expressionMetadata": {
+    {{#with expressionMetadata}}
+      "participants": [
+        {{#each participants}}
+          {
+            "id": "{{id}}",
+            "name": "{{name}}"
+          }{{#unless @last}},{{/unless}}
+        {{/each}}
+      ]
+    {{/with}}
+  },
+{{/if}}
+{{#if expressionComponents}}
+  "expressionComponents": {
+    {{#with expressionComponents}}
+      "leftOperand": [
+        {{#each leftOperand}}
+          {{#if outcomeId}}
+            {
+              "outcomeId": "{{outcomeId}}",
+              "timePeriodId": "{{timePeriodId}}",
+              "participantId": "{{participantId}}"
+            }
+          {{/if}}
+          {{#if decimal}}
+            { "decimal": {{decimal}} }
+          {{/if}}
+          {{#if operator}}
+            { "operator": "{{operator}}" }
+          {{/if}}
+          {{#unless @last}},{{/unless}}
+        {{/each}}
+      ],
+      "operator": "{{operator}}",
+      "rightOperand": [
+        {{#each rightOperand}}
+          {{#if outcomeId}}
+            {
+              "outcomeId": "{{outcomeId}}",
+              "timePeriodId": "{{timePeriodId}}",
+              "participantId": "{{participantId}}"
+            }
+          {{/if}}
+          {{#if decimal}}
+            { "decimal": {{decimal}} }
+          {{/if}}
+          {{#if operator}}
+            { "operator": "{{operator}}" }
+          {{/if}}
+          {{#unless @last}},{{/unless}}
+        {{/each}}
+      ]
+    {{/with}}
+  }
+  {{else}} "expressionComponents": null
+{{/if}}
+{{#if subExpressionInfos}}
+  ,"subExpressionInfos": [
+    {{#each subExpressionInfos}}
+      {
+        "templateId": "{{templateId}}",
+        "templateVersion": "{{templateVersion}}{{^templateVersion}}1{{/templateVersion}}",
+        "result": "{{result}}{{^result}}undefined{{/result}}",
+        "params": {
+          {{#with params}}
+            {{#if participantIdA}}
+              "participantIdA": "{{participantIdA}}{{^participantIdA}}12345{{/participantIdA}}",
+              "participantIdB": "{{participantIdB}}{{^participantIdB}}67890{{/participantIdB}}",
+              "outcomeId": "{{outcomeId}}{{^outcomeId}}GOALS{{/outcomeId}}",
+              "timePeriodId": "{{timePeriodId}}{{^timePeriodId}}MATCH{{/timePeriodId}}"
+            {{/if}}
+            {{#if participantIds}}
+              "participantIds": [
+                {{#each participantIds}}
+                  "{{this}}"
+                {{#unless @last}},{{/unless}}
+                {{/each}}
+              ],
+              "outcomeIds": [
+                {{#each outcomeIds}}
+                  "{{this}}"
+                {{#unless @last}},{{/unless}}
+                {{/each}}
+              ],
+              "quantifier": "{{quantifier}}{{^quantifier}}MORE{{/quantifier}}",
+              "timePeriodId": "{{timePeriodId}}{{^timePeriodId}}MATCH{{/timePeriodId}}",
+              "value": {{value}}{{^value}}1{{/value}}
+            {{/if}}
+            {{#if x}}
+            "x": "{{x}}{{^x}}2{{/x}}"
+            {{/if}}
+          {{/with}}
+        },
+        {{#if expressionMetadata}}
+          "expressionMetadata": {
+            {{#with expressionMetadata}}
+              "participants": [
+                {{#each participants}}
+                  {
+                    "id": "{{id}}",
+                    "name": "{{name}}"
+                  }{{#unless @last}},{{/unless}}
+                {{/each}}
+              ]
+            {{/with}}
+          },
+        {{/if}}
+        {{#if expressionComponents}}
+          "expressionComponents": {
+          {{#with expressionComponents}}
+            "leftOperand": [
+              {{#each leftOperand}}
+                {{#if outcomeId}}
+                  {
+                    "outcomeId": "{{outcomeId}}",
+                    "timePeriodId": "{{timePeriodId}}",
+                    "participantId": "{{participantId}}"
+                  }
+                {{/if}}
+                {{#if decimal}}
+                  { "decimal": {{decimal}} }
+                {{/if}}
+                {{#if operator}}
+                  { "operator": "{{operator}}" }
+                {{/if}}
+                {{#unless @last}},{{/unless}}
+              {{/each}}
+            ],
+            "operator": "{{operator}}",
+            "rightOperand": [
+              {{#each rightOperand}}
+               {{#if outcomeId}}
+                  {
+                    "outcomeId": "{{outcomeId}}",
+                    "timePeriodId": "{{timePeriodId}}",
+                    "participantId": "{{participantId}}"
+                  }
+                {{/if}}
+                {{#if decimal}}
+                  { "decimal": {{decimal}} }
+                {{/if}}
+                {{#if operator}}
+                  { "operator": "{{operator}}" }
+                {{/if}}
+                {{#unless @last}},{{/unless}}
+              {{/each}}
+            ]
+          {{/with}}
+          }
+        {{/if}}
+      }{{#unless @last}},{{/unless}}
+    {{/each}}
+  ]
+{{/if}}

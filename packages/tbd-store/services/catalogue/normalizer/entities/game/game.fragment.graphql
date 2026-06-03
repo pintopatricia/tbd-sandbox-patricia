@@ -1,0 +1,100 @@
+fragment game on Game {
+  urn
+  uid
+  __typename
+  viewLink {
+    viewUrn
+    viewUrl
+  }
+  name
+  launchId
+  rgsCodeMobile
+  jackpotLogo
+  customLogo {
+    name
+    image {
+      ...gameImage
+    }
+  }
+  feedData {
+    jackpot
+    availableSeats
+    lastNumbers {
+      number
+      color
+    }
+    tableNames
+  }
+  copyrightText
+  customBackgroundColor
+  backgroundColor
+  label
+  provider {
+    name
+    uid
+  }
+  mainProduct
+  flattened {
+    ...gameImages
+  }
+  metaData {
+    metaTitle
+    metaDescription
+  }
+  gameType
+  gameVolatility
+  gameTheme
+  jackpotType
+  gameStudio
+  minStake
+  maxStake
+  gameMechanics
+  gameHelp
+  description {
+    headline
+    content {
+      type
+      text
+      spans {
+        start
+        end
+        style
+        url
+      }
+    }
+  }
+  rtp
+  decoration
+  hasDemo
+  screenshots {
+    ...gameImage
+  }
+}
+
+fragment gameImages on GameImages {
+  small {
+    url
+    alt
+    dimensions {
+      width
+      height
+    }
+  }
+  medium {
+    url
+    alt
+    dimensions {
+      width
+      height
+    }
+  }
+}
+
+fragment gameImage on GameImage {
+  url
+  alt
+  dimensions {
+    width
+    height
+  }
+}

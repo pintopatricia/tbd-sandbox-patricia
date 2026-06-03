@@ -1,0 +1,313 @@
+require_relative "lib/helpers"
+import("GamingFastfile")
+
+default_platform(:ios)
+
+platform :ios do
+  before_all do
+    validate_env_variables()
+
+    create_keychain(
+      name: ENV["MATCH_KEYCHAIN_NAME"],
+      password: ENV["MATCH_KEYCHAIN_PASSWORD"],
+      default_keychain: true,
+      unlock: true,
+      timeout: 3600
+    )
+
+    unlock_keychain(
+      path: ENV["MATCH_KEYCHAIN_NAME"],
+      password: ENV["MATCH_KEYCHAIN_PASSWORD"]
+    )
+
+    update_code_signing_settings(
+      use_automatic_signing: false,
+      path: "tbd_native.xcodeproj"
+    )
+  end
+
+  desc "This is used to setup the certificates and provisioning profiles on a dev machine"
+  lane :dev_setup do
+    match(
+      type: "enterprise",
+      app_identifier: ["com.betfair.tbd.qa", "com.betfair.tbd.qa.NotificationServiceExtension"],
+      keychain_name: ENV["MATCH_KEYCHAIN_NAME"],
+      keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"],
+      readonly: true
+    )
+  end
+
+  desc "Build and uploads our QA app to Firebase for the stakeholders"
+  lane :qa do
+    begin
+      match(
+        type: "enterprise",
+        app_identifier: ["com.betfair.tbd.qa", "com.betfair.tbd.qa.NotificationServiceExtension"],
+        keychain_name: ENV["MATCH_KEYCHAIN_NAME"],
+        keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"],
+        readonly: true
+      )
+
+      if (is_running_in_gh)
+        update_app_version()
+      end
+
+      update_info_plist(
+        plist_path: "tbd_native/Info.plist",
+        display_name: "Betfair (QA)"
+      )
+
+      add_badge(
+        no_badge: true,
+        shield: "QA-#{get_encoded_build_number_label()}-green",
+        shield_gravity: 'South',
+        shield_scale: '0.75'
+      )
+
+      build_app(
+        workspace: "tbd_native.xcworkspace",
+        scheme: "tbd_native",
+        configuration: "Debug",
+        silent: true,
+        suppress_xcode_output: true,
+        clean: true,
+        export_options: {
+          method: "enterprise"
+        }
+      )
+
+      # re-signing the app so that it runs on iOS 15. This can be removed after our iOS CI/CD infrastructure runs on macOS 11.6 (BigSur)
+      # see: https://developer.apple.com/documentation/xcode/using-the-latest-code-signature-format
+      resign(
+        ipa: "Betfair.ipa",
+        signing_identity: "iPhone Distribution: Betfair Limited",
+        provisioning_profile: {
+          "com.betfair.tbd.qa" => ENV["sigh_com.betfair.tbd.qa_enterprise_profile-path"],
+          "com.betfair.tbd.qa.NotificationServiceExtension" => ENV["sigh_com.betfair.tbd.qa.NotificationServiceExtension_enterprise_profile-path"]
+        }
+      )
+
+      firebase_app_distribution(
+        app: "1:119308048373:ios:51a10b2d6021d2ff8972bc",
+        groups: 'bfrb-teams',
+        release_notes: get_release_notes(),
+        firebase_cli_token: ENV['FIREBASE_CI_KEY']
+      )
+    ensure
+      delete_keychain(
+        name: ENV["MATCH_KEYCHAIN_NAME"]
+      )
+    end
+  end
+
+  desc "Build and uploads our In-House app to Firebase for the stakeholders"
+  lane :in_house do
+    begin
+      match(
+        type: "enterprise",
+        app_identifier: ["com.betfair.tbd.in-house", "com.betfair.tbd.in-house.NotificationServiceExtension"],
+        keychain_name: ENV["MATCH_KEYCHAIN_NAME"],
+        keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"],
+        readonly: true
+      )
+
+      if (is_running_in_gh)
+        new_build_number = "0." + get_build_number() + ".0" if ENV['IS_MR_BUILD']
+        update_app_version(new_build_number)
+      end
+
+      update_info_plist(
+        plist_path: "tbd_native/Info.plist",
+        display_name: "Betfair (In-House)"
+      )
+
+      # changes push notifications environment to production
+      # keys / secrets can be found on company https://www.airship.com/ account
+      update_plist(
+        plist_path: "AirshipConfig.plist",
+        block: proc do |plist|
+          plist[:inProduction] = "YES"
+        end
+      )
+      update_plist(
+        plist_path: "AirshipConfig.plist",
+        block: proc do |plist|
+          plist[:productionAppKey] = "AEXQbPYpTAOHZsOkGmPQEw"
+        end
+      )
+      update_plist(
+        plist_path: "AirshipConfig.plist",
+        block: proc do |plist|
+          plist[:productionAppSecret] = "O7MdZX0wRdyTOnOfafcLIg"
+        end
+      )
+
+      add_badge(
+        no_badge: true,
+        shield: "IH-#{get_encoded_build_number_label()}-green",
+        shield_gravity: 'South',
+        shield_scale: '0.75'
+      )
+
+      gym(
+        workspace: "tbd_native.xcworkspace",
+        scheme: "tbd_native",
+        configuration: "In_House",
+        silent: true,
+        suppress_xcode_output: true,
+        clean: true,
+        export_options: {
+          method: "enterprise"
+        }
+      )
+
+      firebase_app_distribution(
+        app: "1:119308048373:ios:4143158eef8252338972bc",
+        groups: 'bfrb-teams',
+        ipa_path: 'Betfair.ipa',
+        release_notes: get_release_notes(),
+        firebase_cli_token: ENV['FIREBASE_CI_KEY']
+      )
+
+      upload_symbols_to_crashlytics(
+        dsym_path: lane_context[SharedValues::DSYM_OUTPUT_PATH],
+        app_id: "1:119308048373:ios:4143158eef8252338972bc",
+        debug: true
+      )
+
+      if ENV['IS_MR_BUILD']
+        latest_release = firebase_app_distribution_get_latest_release(
+          app: "1:119308048373:ios:4143158eef8252338972bc",
+          firebase_cli_token: ENV['FIREBASE_CI_KEY']
+        )
+
+        new_link = "https://appdistribution.firebase.google.com/" + latest_release[:name].gsub(/projects\/[0-9]+\/apps\//, "testerapps/")
+
+        File.write("../link_to_app", new_link)
+      end
+    ensure
+      delete_keychain(
+        name: ENV["MATCH_KEYCHAIN_NAME"]
+      )
+    end
+  end
+
+  desc "Build and uploads our Release app to Testflight for the stakeholders to test. Testflight is part of Apple's App Store tools"
+  lane :release do |options|
+    begin
+      api_key = authenticate_appstore()
+
+      # Fetches all required certificates and setup the provisioning profiles
+      # for the production account Betfair LTD (Apple App Store Account)
+      match(
+        api_key: api_key,
+        readonly: true,
+        type: "appstore",
+        team_name: "Betfair LTD",
+        team_id: "9S6JBP4F2D",
+        generate_apple_certs: false,
+        app_identifier: ["com.betfair.multiples", "com.betfair.multiples.BetfairSportsbookNotificationExtension"],
+        git_branch: "BetfairLTD",
+        clone_branch_directly: true,
+        keychain_name: ENV["MATCH_KEYCHAIN_NAME"],
+        keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"]
+      )
+
+      if (is_running_in_gh)
+        update_app_version()
+      end
+
+      # We want to have the prd endpoints of our services.
+      yarn(
+        command: "environment prd",
+        package_path: "../package.json"
+      )
+
+      # We want to have the production version of the app.
+      yarn(
+        command: "releaseMode production",
+        package_path: "../package.json"
+      )
+
+      # The user facing name of the app will be "Betfair".
+      update_info_plist(
+        plist_path: "tbd_native/Info.release.plist",
+        display_name: "Betfair"
+      )
+
+      # changes push notifications environment to production
+      # keys / secrets can be found on company https://www.airship.com/ account
+      update_plist(
+        plist_path: "AirshipConfig.plist",
+        block: proc do |plist|
+          plist[:inProduction] = "YES"
+        end
+      )
+      update_plist(
+        plist_path: "AirshipConfig.plist",
+        block: proc do |plist|
+          plist[:productionAppKey] = "s5jSnBZwQm2IIMggOTwyMw"
+        end
+      )
+      update_plist(
+        plist_path: "AirshipConfig.plist",
+        block: proc do |plist|
+          plist[:productionAppSecret] = "Z3F9_-AbTe2XM1S07yoS5Q"
+        end
+      )
+
+      # gym is the "official" name for build_app on Fastlane
+      # https://docs.fastlane.tools/actions/gym/
+      gym(
+        workspace: "tbd_native.xcworkspace",
+        clean: true,
+        scheme: "tbd_native",
+        configuration: "Release",
+        silent: false,
+        suppress_xcode_output: true,
+        export_method: "app-store",
+        export_options: {
+          manageAppVersionAndBuildNumber: false,
+          provisioningProfiles: {
+            "com.betfair.multiples" => "match AppStore com.betfair.multiples"
+          }
+        }
+      )
+
+      # debug: true, in order to display every log
+      upload_symbols_to_crashlytics(
+        dsym_path: lane_context[SharedValues::DSYM_OUTPUT_PATH],
+        app_id: "1:237660054779:ios:660b77ba0ea3d245547c5e",
+        debug: true
+      )
+
+      # Use pilot to upload your app to testflight
+      # https://docs.fastlane.tools/actions/pilot/
+      pilot(
+        api_key: api_key,
+        team_id: "9S6JBP4F2D",
+        app_identifier: "com.betfair.multiples",
+        app_platform: 'ios',
+        skip_submission: true,
+        skip_waiting_for_build_processing: true,
+        notify_external_testers: false
+      )
+
+      # Posts message to Slack channel tbd_qa_all_locations with the new version of the app deployed to Testflight
+      slack(
+        message: "Hi all, there's a new :ios: :bf: app deployed to TestFlight! - available for testing.",
+        success: true,
+        payload: {
+          "Version" => get_build_number()
+        },
+        default_payloads: [:last_git_commit_hash],
+        slack_url: ENV["SLACK_RELEASE_WEBHOOK_URL"]
+      ) rescue UI.error("Slack notification failed")
+
+    ensure
+      delete_keychain(
+        name: ENV["MATCH_KEYCHAIN_NAME"]
+      )
+    end
+  end
+end

@@ -1,0 +1,21 @@
+fragment fullRacesByTimeRangeCardGroupItems on RacesByTimeRangeCardGroupItemsConnection {
+  edges {
+    node {
+      # Read this before adding new entries: docs/guidelines/how-to-add-a-new-card.md
+      ...swimlaneIndexedCardGroup
+      ...byTimeRangeMeetingCardGroup
+    }
+  }
+}
+
+fragment partialsRacesByTimeRangeCardGroupItems on RacesByTimeRangeCardGroupItemsConnection {
+  edges {
+    node {
+      ...swimlaneIndexedCardGroupPartial
+      ...byTimeRangeMeetingCardGroupPartial
+    }
+  }
+  pageInfo {
+    hasNextPage
+  }
+}

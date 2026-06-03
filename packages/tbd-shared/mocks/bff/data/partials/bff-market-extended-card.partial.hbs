@@ -1,0 +1,32 @@
+"__typename": "{{__typename}}{{^__typename}}MarketExtendedCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:marketExtended:29436223{{/urn}}",
+"viewLinks": [
+  {{#each viewLinks}}{
+    {{> bff-view-link}}
+  }{{#unless @last}},{{/unless}}{{/each}}
+],
+"cardTitle": {{#if cardTitle}}"{{cardTitle}}"{{else}}null{{/if}},
+"runnerViewLinks":
+  {{#if runnerViewLinks}}
+    [
+      {{#each runnerViewLinks}}{
+        "viewUrn": "{{viewUrn}}{{^viewUrn}}mockerURN{{/viewUrn}}",
+        "viewUrl": "{{viewUrl}}{{^viewUrl}}mockerUrl{{/viewUrl}}",
+        "runnerUrn": "{{runnerUrn}}{{^runnerUrn}}"ppb:excRunner:1.171826696/27871644/0"{{/runnerUrn}}"
+      }{{#unless @last}},{{/unless}}{{/each}}
+    ],
+  {{else}}
+    [],
+  {{/if}}
+"displayRunners": {
+{{#with displayRunners}}
+  {{> bff-display-runners}}
+{{/with}}
+},
+"numberOfItemsToDisplay": {{numberOfItemsToDisplay}}{{^numberOfItemsToDisplay}}null{{/numberOfItemsToDisplay}},
+"marketsHierarchy": {
+  {{> bff-hierarchy marketsHierarchy}}
+}
+{{#if cashoutQuotes}},
+    {{> bff-cashout-quotes }}
+{{/if}}

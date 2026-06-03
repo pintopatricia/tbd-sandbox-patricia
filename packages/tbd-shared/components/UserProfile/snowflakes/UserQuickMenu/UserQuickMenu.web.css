@@ -1,0 +1,21 @@
+.userQuickMenu {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: space-between;
+
+  margin-bottom: var(--spacing-3);
+}
+
+.userQuickMenuContainer {
+  width: 50%;
+}
+
+.userQuickMenuContainerHeight {
+  height: 100%;
+}
+
+.userQuickMenuContainer:nth-child(odd) > .userQuickMenuItem {
+  margin-right: var(--spacing-3);
+}

@@ -1,0 +1,18 @@
+fragment rugbyLeagueFixtureDeprecated on RugbyLeagueFixture {
+  __typename
+  urn
+  runnerNames {
+    home
+    away
+  }
+  isAmericanFormat
+  score {
+    scoreHome: home
+    scoreAway: away
+  }
+  halfTimeScore {
+    halfTimeScoreHome: home
+    halfTimeScoreAway: away
+  }
+}
+

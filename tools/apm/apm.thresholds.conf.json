@@ -1,0 +1,41 @@
+{
+  "WEB_PAGE_TEST_ENDPOINT": "tbdwpt.prd.internal",
+  "THRESHOLDS": {
+    "view": "firstView",
+    "calc": "median",
+    "metrics": {
+      "cumulativeLayoutShift": {
+        "value": 300
+      },
+      "largestContentfulPaint": {
+        "value": 4000
+      },
+      "totalBlockingTime": {
+        "value": 300
+      }
+    }
+  },
+  "TLA": "tbd",
+  "AUTHENTICATION_URL": "http://ssobf.prd.internal/api/login",
+  "BASE_URL": "https://www.drk.com.betfair/betting",
+  "SUBDOMAINS": {
+    "GENERIC": [
+      "https://apitbd.drk.com.betfair",
+      "https://ero.drk.com.betfair",
+      "https://lbr.drk.com.betfair",
+      "https://smp.drk.com.betfair",
+      "https://was.drk.com.betfair",
+      "https://www.drk.com.betfair"
+    ]
+  },
+  "WPT_CONFIGS": {
+    "device": "Nexus5X",
+    "emulateMobile": true,
+    "ignoreSSL": true,
+    "location": "I2_internal:Chrome.3GFast",
+    "pollResults": 1,
+    "runs": 3,
+    "timeline": true,
+    "video": true
+  }
+}

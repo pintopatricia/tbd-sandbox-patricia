@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 375 359" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<linearGradient id="c" x1="-13.9%" x2="301.4%" y1="63.6%" y2="63.6%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="h" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="aw" x1="20.9%" x2="214%" y1="-19.4%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset=".978"/>
+</linearGradient>
+<linearGradient id="b" x1="20.9%" x2="214%" y1="-19.4%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="f" x1="50%" x2="232%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".2" offset=".39"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset="1"/>
+</linearGradient>
+<linearGradient id="s" x1="21.6%" x2="151.3%" y1="-19.4%" y2="167.1%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".2" offset=".362"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".991"/>
+</linearGradient>
+<linearGradient id="r" x1="27%" x2="167.9%" y1="146.8%" y2="-216%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset=".52"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset="1"/>
+</linearGradient>
+<linearGradient id="p" x1="142.4%" x2="-202.7%" y1="-15.6%" y2="-129.1%">
+<stop stop-color="#D7BC7B" stop-opacity=".9" offset=".011"/>
+<stop stop-color="#D7BC7B" stop-opacity=".2" offset=".727"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="o" x1="20.2%" x2="163.9%" y1="-2.9%" y2="224.7%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".362"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="n" x1="111%" x2="-196.1%" y1="53.6%" y2="-22.8%">
+<stop stop-color="#D7BC7B" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".2" offset=".522"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="m" x1="50%" x2="213.3%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".2" offset=".39"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset="1"/>
+</linearGradient>
+<linearGradient id="l" x1="64.7%" x2="-62.7%" y1="88%" y2="-138.4%">
+<stop stop-color="#D7BC7B" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".2" offset=".617"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset="1"/>
+</linearGradient>
+<linearGradient id="k" x1="50%" x2="214%" y1="16.8%" y2="311.5%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".39"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset="1"/>
+</linearGradient>
+<linearGradient id="j" x1="50%" x2="206.8%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".39"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="bp" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset=".017"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="bo" x1="20.9%" x2="214%" y1="-19.4%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset=".989"/>
+</linearGradient>
+<linearGradient id="e" x1="-13.9%" x2="301.4%" y1="63.6%" y2="63.6%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="bn" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset=".007"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="bm" x1="-13.9%" x2="301.4%" y1="63.6%" y2="63.6%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset=".016"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="bl" x1="50%" x2="213.7%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset=".022"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset="1"/>
+</linearGradient>
+<linearGradient id="bk" x1="20.9%" x2="214%" y1="-19.8%" y2="294.9%">
+<stop stop-color="#D7BC7B" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset="1"/>
+</linearGradient>
+<linearGradient id="bj" x1="20.9%" x2="214%" y1="-19.7%" y2="294.5%">
+<stop stop-color="#D7BC7B" stop-opacity=".9" offset=".022"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="bi" x1="20.9%" x2="214%" y1="-19.4%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset="1"/>
+</linearGradient>
+<linearGradient id="a" x1="20.9%" x2="214%" y1="-19.4%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="bh" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset=".011"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="bg" x1="20.9%" x2="214%" y1="-19.4%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset=".002"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="d" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="ai" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#C3C1A3" stop-opacity=".5" offset=".378"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset="1"/>
+</linearGradient>
+<linearGradient id="ah" x1="20.9%" x2="153.8%" y1="-19.4%" y2="167.1%">
+<stop stop-color="#D7BC7B" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset=".629"/>
+</linearGradient>
+<linearGradient id="ag" x1="22.9%" x2="189.2%" y1="146.8%" y2="-216%">
+<stop stop-color="#D7BC7B" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".2" offset="1"/>
+</linearGradient>
+<linearGradient id="af" x1="142.4%" x2="-202.7%" y2="-86.5%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".2" offset="1"/>
+</linearGradient>
+<linearGradient id="ae" x1="20.2%" x2="163.9%" y2="215%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".2" offset="1"/>
+</linearGradient>
+<linearGradient id="ad" x1="112.5%" x2="-202%" y1="53.6%" y2="-22.8%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".3" offset=".699"/>
+</linearGradient>
+<linearGradient id="ac" x1="52%" x2="214%" y1="22.4%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".6" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset=".984"/>
+</linearGradient>
+<linearGradient id="ab" x1="64.7%" x2="-62.7%" y1="88.4%" y2="-140.3%">
+<stop stop-color="#D7BC7B" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".3" offset="1"/>
+</linearGradient>
+<linearGradient id="i" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset="1"/>
+</linearGradient>
+<linearGradient id="aa" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset="1"/>
+</linearGradient>
+<linearGradient id="bf" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".3" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset=".995"/>
+</linearGradient>
+<linearGradient id="be" x1="20.9%" x2="214%" y1="-19.4%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset=".004"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="bd" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".4" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="bc" x1="20.9%" x2="214%" y1="-19.4%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset=".009"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="bb" x1="50%" x2="214.1%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="ba" x1="23.7%" x2="214.3%" y1="-14.7%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".3" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="az" x1="50%" x2="213.9%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="ay" x1="23.8%" x2="213.7%" y1="-14.7%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".3" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="g" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="ax" x1="20.9%" x2="214%" y1="-19.4%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset=".019"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="av" x1="50%" x2="-17%" y1="113.4%" y2="-72.1%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="au" x1="74.4%" x2="-64%" y1="127.3%" y2="-21.8%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="z" x1="50%" x2="213.6%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset=".992"/>
+</linearGradient>
+<linearGradient id="y" x1="20.9%" x2="214%" y1="-19.4%" y2="293.6%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="x" x1="20.9%" x2="214%" y1="-19.5%" y2="293.7%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="at" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset=".016"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="as" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset=".003"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="w" x1="20.9%" x2="153.8%" y1="-19.4%" y2="167.1%">
+<stop stop-color="#D7BC7B" offset="0"/>
+<stop stop-color="#D7BC7B" offset="1"/>
+</linearGradient>
+<linearGradient id="ar" x1="112.5%" x2="-201.9%" y1="53.6%" y2="-22.8%">
+<stop stop-color="#FEDA85" offset=".11"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="v" x1="64.7%" x2="-62.7%" y1="88.4%" y2="-140.3%">
+<stop stop-color="#D7BC7B" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="u" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".6" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="t" x1="50%" x2="213.9%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".409"/>
+</linearGradient>
+<linearGradient id="aq" x1="22.9%" x2="189.1%" y1="146.8%" y2="-216%">
+<stop stop-color="#D7BC7B" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="ap" x1="142.4%" x2="-202.7%" y1="-.1%" y2="-86.6%">
+<stop stop-color="#D7BC7B" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="ao" x1="20.2%" x2="163.9%" y2="215%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="an" x1="77.9%" x2="-201.9%" y1="45.2%" y2="-22.8%">
+<stop stop-color="#FEDA85" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="cw" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".2" offset=".39"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset="1"/>
+</linearGradient>
+<linearGradient id="cv" x1="20.9%" x2="153.8%" y1="-19.4%" y2="167.1%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".2" offset=".362"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".991"/>
+</linearGradient>
+<linearGradient id="cu" x1="22.9%" x2="189.2%" y1="146.8%" y2="-216%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset=".52"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset="1"/>
+</linearGradient>
+<linearGradient id="ct" x1="142.4%" x2="-202.7%" y2="-86.5%">
+<stop stop-color="#D7BC7B" stop-opacity=".9" offset=".011"/>
+<stop stop-color="#D7BC7B" stop-opacity=".2" offset=".727"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="cs" x1="20.2%" x2="163.9%" y2="215%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".362"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="cr" x1="112.5%" x2="-202%" y1="53.6%" y2="-22.8%">
+<stop stop-color="#D7BC7B" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".2" offset=".522"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="cq" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".2" offset=".39"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset="1"/>
+</linearGradient>
+<linearGradient id="cp" x1="64.7%" x2="-62.7%" y1="88.4%" y2="-140.3%">
+<stop stop-color="#D7BC7B" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".2" offset=".617"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset="1"/>
+</linearGradient>
+<linearGradient id="co" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".39"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset="1"/>
+</linearGradient>
+<linearGradient id="cn" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".39"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="cm" x1="-13.9%" x2="301.4%" y1="63.6%" y2="63.6%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".694"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="cl" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".9" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".2" offset=".39"/>
+<stop stop-color="#D7BC7B" stop-opacity=".3" offset="1"/>
+</linearGradient>
+<linearGradient id="ck" x1="20.9%" x2="214%" y1="-19.4%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".362"/>
+<stop stop-opacity="0" offset=".99"/>
+</linearGradient>
+<linearGradient id="cj" x1="20.9%" x2="214%" y1="-19.4%" y2="293.4%">
+<stop stop-color="#D7BC7B" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".362"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset="1"/>
+</linearGradient>
+<linearGradient id="ci" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".39"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset="1"/>
+</linearGradient>
+<linearGradient id="ch" x1="20.9%" x2="214%" y1="-19.4%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".358"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="q" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".39"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="cg" x1="20.9%" x2="214%" y1="-19.4%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset=".022"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".375"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="cf" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".379"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="ce" x1="20.9%" x2="214%" y1="-19.4%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".382"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="cd" x1="20.9%" x2="214%" y1="-19.4%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".362"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="cc" x1="20.9%" x2="214%" y1="-19.4%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".362"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset=".982"/>
+</linearGradient>
+<linearGradient id="cb" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".2" offset=".39"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="ca" x1="20.9%" x2="214%" y1="-19.7%" y2="294.7%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".362"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="bz" x1="20.9%" x2="214%" y1="-20.3%" y2="296.7%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".362"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset=".982"/>
+</linearGradient>
+<linearGradient id="by" x1="50%" x2="210.2%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".8" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".2" offset=".39"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="bx" x1="20.9%" x2="153.8%" y1="-19.4%" y2="167.1%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset=".004"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".362"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="bw" x1="22.9%" x2="189.2%" y1="146.8%" y2="-216%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".52"/>
+<stop stop-color="#D7BC7B" stop-opacity="0" offset="1"/>
+</linearGradient>
+<linearGradient id="bv" x1="142.4%" x2="-202.7%" y2="-86.5%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".737"/>
+<stop stop-color="#D7BC7B" stop-opacity=".2" offset="1"/>
+</linearGradient>
+<linearGradient id="bu" x1="20.2%" x2="163.9%" y2="215%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset=".018"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".362"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset="1"/>
+</linearGradient>
+<linearGradient id="bt" x1="112.5%" x2="-202%" y1="53.6%" y2="-22.8%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".528"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset="1"/>
+</linearGradient>
+<linearGradient id="bs" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".391"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset="1"/>
+</linearGradient>
+<linearGradient id="br" x1="64.7%" x2="-62.7%" y1="88.4%" y2="-140.3%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset="0"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".62"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset="1"/>
+</linearGradient>
+<linearGradient id="bq" x1="50%" x2="214%" y1="19.1%" y2="293.4%">
+<stop stop-color="#D7BC7B" stop-opacity=".7" offset=".01"/>
+<stop stop-color="#D7BC7B" stop-opacity=".1" offset=".39"/>
+<stop stop-color="#D7BC7B" stop-opacity=".2" offset="1"/>
+</linearGradient>
+<rect id="ak" width="375" height="358.1"/>
+<rect id="aj" x=".1" width="375" height="358"/>
+</defs>
+<g fill="none" fill-rule="evenodd" opacity=".4">
+<mask id="am" fill="#fff">
+<use xlink:href="#ak"/>
+</mask>
+<g mask="url(#am)">
+<g id="Group" transform="translate(-.3 -.3)">
+<g transform="translate(.2 .2)">
+<mask id="al" fill="#fff">
+<use xlink:href="#aj"/>
+</mask>
+<g mask="url(#al)" opacity=".3">
+<g transform="translate(-16.4 -12)" fill-rule="nonzero">
+<g id="Group" transform="translate(52 148)">
+<polygon id="Path" transform="rotate(33 8.7 4.6)" points="12 1.3 5.4 7.9 9.4 6.9" fill="url(#c)"/>
+<polygon id="Path" transform="rotate(33 4.9 10)" points="1.8 6.7 7.9 14.3 5.8 5.7" fill="url(#h)"/>
+<polygon id="Path" transform="rotate(33 13 7.6)" points="11.1 4.1 8.4 9.8 17.7 11.1" fill="url(#aw)"/>
+<polygon id="Path" transform="rotate(33 9.5 13)" points="4.9 8.8 7 17.3 14.2 10" fill="url(#b)"/>
+</g>
+<g id="Group" transform="rotate(45 68.9 475.7)">
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -21)" points="8.5 2.9 10.4 6.8 9.7 3" fill="url(#f)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -12.6)" points="4.2 5 8.8 7.9 8.7 2.7" fill="url(#s)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -17.4)" points="8 0.2 6.1 3.8 7.3 3.8" fill="url(#r)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -7.5)" points="1.7 2.5 6.1 2.9 5.4 3.9" fill="url(#p)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -10.6)" points="3.7 1.8 3 5.4 7.4 3.1" fill="url(#o)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -2.4)" points="2.1 5.1 5.2 7.9 2.2 10.3" fill="url(#n)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -.7)" points="1.8 4.5 1 5.5 4.2 8.3" fill="url(#m)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -14.2)" points="5.3 4.6 6 8.4 9.8 7.6" fill="url(#l)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -13.8)" points="5.8 8.5 9.6 7.6 10.4 9" fill="url(#k)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -4.4)" points="3.5 9.8 4.3 11.2 6.5 7.5" fill="url(#j)"/>
+</g>
+<g id="Group" transform="translate(133 60.6)">
+<polygon id="Path" transform="rotate(216 5.2 7.5)" points="6.8 5.8 3.5 9.1 5.5 8.7" fill="url(#c)"/>
+<polygon id="Path" transform="rotate(216 7.2 4.9)" points="5.7 3.2 8.8 7 7.7 2.8" fill="url(#bp)"/>
+<polygon id="Path" transform="rotate(216 3 5.9)" points="2.1 4.1 0.8 7 5.4 7.6" fill="url(#bo)"/>
+<polygon id="Path" transform="rotate(216 5 3.2)" points="2.7 1.1 3.7 5.4 7.3 1.8" fill="url(#b)"/>
+</g>
+<g id="Group" transform="translate(280.7 358.7)">
+<polygon id="Path" transform="rotate(-46 4.9 9.5)" points="8.2 6.1 1.6 12.8 5.5 11.8" fill="url(#e)"/>
+<polygon id="Path" transform="rotate(-46 9.4 14.3)" points="6.4 11 12.4 18.5 10.4 10" fill="url(#bn)"/>
+<polygon id="Path" transform="rotate(-46 8.6 5.8)" points="6.7 2.3 4 8 13.3 9.2" fill="url(#b)"/>
+<polygon id="Path" transform="rotate(-46 13.3 10.3)" points="8.7 6 10.7 14.5 18 7.3" fill="url(#b)"/>
+</g>
+<g id="Group" transform="translate(357.1 318.8)">
+<polygon id="Path" transform="rotate(24 14.7 8.6)" points="21.1 2.1 8.3 15.1 16 13.2" fill="url(#bm)"/>
+<polygon id="Path" transform="rotate(24 9 20.2)" points="3.1 13.7 14.9 28.5 10.8 11.8" fill="url(#bl)"/>
+<polygon id="Path" transform="rotate(24 24 13)" points="20.1 6.3 15 17.4 33 19.8" fill="url(#bk)"/>
+<polygon id="Path" transform="rotate(24 19 24.6)" points="9.9 16.3 13.9 32.9 28 18.8" fill="url(#bj)"/>
+</g>
+<g id="Group" transform="translate(19 180.3)">
+<polygon id="Path" transform="scale(-1 1) rotate(-74 0 43.2)" points="10.6 16.1 20.3 17.7 34.8 8.5" fill="url(#bi)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(-74 0 35)" points="2.9 10.2 21.7 27.3 12.5 11.8" fill="url(#a)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(-74 0 29)" points="6.7 7.4 15.9 22.9 21.2 -1.8" fill="url(#bh)"/>
+</g>
+<g id="Group" transform="translate(285.2 263)">
+<polygon id="Path" transform="matrix(-1 0 0 1 14.5 0)" points="0 4.7 5.8 5.7 14.5 0.2" fill="url(#a)"/>
+<polygon id="Path" transform="matrix(-1 0 0 1 17.6 0)" points="3.2 4.7 14.4 14.9 8.9 5.7" fill="url(#bg)"/>
+<polygon id="Path" transform="matrix(-1 0 0 1 8.8 0)" points="0 5.6 5.6 14.9 8.7 0.2" fill="url(#d)"/>
+</g>
+<g id="Group" transform="translate(349 150.4)">
+<polygon id="Path" transform="scale(1 -1) rotate(-33 -24 0)" points="0.3 9.6 3.8 10.1 9.1 6.9" fill="url(#a)"/>
+<polygon id="Path" transform="scale(1 -1) rotate(-33 -9.2 0)" points="2.7 1.5 9.6 7.6 6.2 2.1" fill="url(#b)"/>
+<polygon id="Path" transform="scale(1 -1) rotate(-33 -16.5 0)" points="5 6 8.4 11.5 10.3 2.8" fill="url(#d)"/>
+</g>
+<g id="Group" transform="rotate(45 18.2 44.3)">
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -48.4)" points="19.5 6.9 24 16 22.4 7" fill="url(#f)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -28.6)" points="9.7 11.7 20.2 18.6 20 6.3" fill="url(#s)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -39.8)" points="18.5 0.5 14 8.9 16.8 9" fill="url(#r)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -16.7)" points="3.6 5.9 14 6.8 12.3 9.1" fill="url(#p)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -24)" points="8.3 4.2 6.6 12.8 17 7.4" fill="url(#o)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -4.8)" points="4.7 11.9 12 18.6 4.9 24.2" fill="url(#n)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -1)" points="3.9 10.5 2.2 12.8 9.5 19.6" fill="url(#m)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -32.3)" points="12 10.8 13.7 19.7 22.6 17.7" fill="url(#l)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -31.5)" points="13.2 19.9 22.1 17.9 23.9 21.1" fill="url(#k)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -9.4)" points="7.9 23.1 9.7 26.2 14.9 17.6" fill="url(#j)"/>
+</g>
+<g id="Group" transform="rotate(-50 376.6 159.3)">
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -51.4)" points="20.9 7.2 25.2 16.6 23.9 7.2" fill="url(#ai)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -30)" points="10.1 12.3 20.7 19.1 20.9 6.1" fill="url(#ah)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -41.2)" points="19.3 0.6 14.3 9.6 17.3 9.6" fill="url(#ag)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -16.6)" points="3.6 6.3 14.2 6.8 12.4 9.3" fill="url(#af)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -25)" points="9 4.3 6.9 13.4 17.8 7.3" fill="url(#ae)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -5.6)" points="5.2 11.9 12.4 18.6 5 24.8" fill="url(#ad)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -.9)" points="4.1 10.5 2.2 12.9 9.4 19.8" fill="url(#ac)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -34.6)" points="13.1 11.1 14.4 20.6 23.7 18" fill="url(#ab)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -34.2)" points="14.1 20.6 23.4 18.1 25.1 21.4" fill="url(#i)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -10.6)" points="8.2 23.6 10 26.9 15.7 17.5" fill="url(#aa)"/>
+</g>
+<g id="Group" transform="translate(72.5 200.5)">
+<polygon id="Path" transform="rotate(-15 9.7 18.7)" points="3.5 15.2 10.8 4.5 15.9 33" fill="url(#bf)"/>
+<polygon id="Path" transform="rotate(-15 19.6 16.1)" points="10.5 1.9 15.6 30.3 28.6 10" fill="url(#be)"/>
+</g>
+<g id="Group" transform="translate(119.4 349.1)">
+<polygon id="Path" transform="rotate(167 15.6 10.8)" points="11.2 8.3 16.4 0.9 20 20.8" fill="url(#bd)"/>
+<polygon id="Path" transform="rotate(167 8.6 12.4)" points="2.2 2.5 5.8 22.4 15 8.1" fill="url(#bc)"/>
+</g>
+<g id="Group" transform="matrix(0 1 1 0 29.4 55.9)">
+<polygon id="Path" transform="rotate(25 20.3 27)" points="9.5 20.9 22.2 2.4 31 51.5" fill="url(#bb)"/>
+<polygon id="Path" transform="rotate(25 36.3 34.4)" points="20.6 9.9 29.5 59 52 23.8" fill="url(#ba)"/>
+</g>
+<g transform="rotate(-90 78.7 -28.5)">
+<polygon id="Path" transform="rotate(25 12.5 16.5)" points="5.9 12.8 13.7 1.5 19.1 31.6" fill="url(#az)"/>
+<polygon id="Path" transform="rotate(25 22.3 21.1)" points="12.7 6.1 18.2 36.1 31.9 14.6" fill="url(#ay)"/>
+</g>
+<g id="Group" transform="translate(347.7 174.3)">
+<polygon id="Path" transform="rotate(132 26.2 15.6)" points="19.3 11.8 27.4 0 33.1 31.3" fill="url(#g)"/>
+<polygon id="Path" transform="rotate(132 18.6 24)" points="8.5 8.4 14.2 39.7 28.7 17.3" fill="url(#ax)"/>
+</g>
+<g id="Group" transform="translate(8.5 260)">
+<polygon id="Path" transform="rotate(109 27.5 21.2)" points="13.3 24.8 24.6 26.7 41.7 15.7" fill="url(#av)"/>
+<polygon id="Path" transform="rotate(109 15.4 13.8)" points="4.3 3.6 26.5 24 15.6 5.5" fill="url(#au)"/>
+<polygon id="Path" transform="rotate(109 16.9 23.6)" points="8.4 19.8 19.2 38.3 25.4 8.8" fill="url(#g)"/>
+</g>
+<g id="Group" transform="translate(8.4 117.2)">
+<polygon id="Path" transform="matrix(-1 0 0 1 32 0)" points="21.3 0 10.7 10.6 17.1 9.1" fill="url(#c)"/>
+<polygon id="Path" transform="matrix(-1 0 0 1 33 0)" points="11.6 10.6 21.3 22.7 18 9.1" fill="url(#g)"/>
+<polygon id="Path" transform="matrix(-1 0 0 1 15 0)" points="4.3 0 0.1 9.1 15 11.1" fill="url(#a)"/>
+<polygon id="Path" transform="matrix(-1 0 0 1 15 0)" points="0 9.1 3.4 22.7 15 11.1" fill="url(#b)"/>
+</g>
+<g id="Group" transform="translate(250.3 84.2)">
+<polygon id="Path" transform="scale(1 -1) rotate(-21 -112 0)" points="14.9 15.8 2 28.8 9.7 26.9" fill="url(#e)"/>
+<polygon id="Path" transform="scale(1 -1) rotate(-21 -41.6 0)" points="6.7 3.6 18.5 18.4 14.4 1.7" fill="url(#z)"/>
+<polygon id="Path" transform="scale(1 -1) rotate(-21 -120.8 0)" points="14.3 19 9.1 30.1 27.3 32.5" fill="url(#y)"/>
+<polygon id="Path" transform="scale(1 -1) rotate(-21 -52.4 0)" points="13.7 5.6 17.7 22.3 31.9 8.1" fill="url(#x)"/>
+</g>
+<g transform="translate(0 35.2)">
+<polygon id="Path" transform="scale(1 -1) rotate(-21 -112 0)" points="14.9 15.8 2 28.8 9.7 26.9" fill="url(#e)"/>
+<polygon id="Path" transform="scale(1 -1) rotate(-21 -41.6 0)" points="6.7 3.6 18.5 18.4 14.4 1.7" fill="url(#z)"/>
+<polygon id="Path" transform="scale(1 -1) rotate(-21 -120.8 0)" points="14.3 19 9.1 30.1 27.3 32.5" fill="url(#y)"/>
+<polygon id="Path" transform="scale(1 -1) rotate(-21 -52.4 0)" points="13.7 5.6 17.7 22.3 31.9 8.1" fill="url(#x)"/>
+</g>
+<g id="Group" transform="translate(122.2 284.8)">
+<polygon id="Path" transform="scale(-1 1) rotate(-82 0 49.7)" points="31.6 14.3 18.2 27.8 26.2 25.8" fill="url(#c)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(-82 0 37)" points="5.5 16.8 17.8 32.2 13.6 14.8" fill="url(#at)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(-82 0 37)" points="19.1 3.4 13.7 14.9 32.6 17.5" fill="url(#a)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(-82 0 23.8)" points="0.6 3.6 4.9 20.9 19.6 6.1" fill="url(#a)"/>
+</g>
+<g id="Group" transform="translate(112.8 98.7)">
+<polygon id="Path" transform="scale(-1 1) rotate(-82 0 30)" points="19.1 8.5 11.1 16.7 15.9 15.5" fill="url(#e)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(-82 0 22.2)" points="3.4 10 10.8 19.3 8.2 8.8" fill="url(#as)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(-82 0 22.4)" points="11.6 2 8.4 9 19.7 10.5" fill="url(#a)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(-82 0 14.4)" points="0.5 2.1 3 12.6 11.8 3.7" fill="url(#a)"/>
+</g>
+<g id="Group" transform="translate(367.8 74)">
+<polygon id="Path" transform="scale(-1 1) rotate(-50 0 118.4)" points="29 37.4 37.7 56.4 35 37.4" fill="url(#d)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(-50 0 99.8)" points="20.7 30.8 42.4 44.6 42.9 18.5" fill="url(#w)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(-50 0 60.7)" points="13 4.5 27.7 18.2 12.5 30.6" fill="url(#ar)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(-50 0 68.8)" points="23 2.4 19.2 7.5 34 21.2" fill="url(#h)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(-50 0 91.6)" points="14.5 27.8 17.2 46.8 36.2 41.7" fill="url(#v)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(-50 0 77.2)" points="6.1 41.6 25.1 36.5 28.7 43.1" fill="url(#u)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(-50 0 50.6)" points="4.7 27 8.3 33.6 20 14.6" fill="url(#t)"/>
+</g>
+<g transform="rotate(90 101 228.6)">
+<polygon id="Path" transform="scale(-1 1) rotate(-50 0 118.4)" points="29 37.4 37.7 56.4 35 37.4" fill="url(#d)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(-50 0 99.8)" points="20.7 30.8 42.4 44.6 42.9 18.5" fill="url(#w)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(-50 0 135.5)" points="52.2 25.3 42 43.5 48.1 43.5" fill="url(#aq)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(-50 0 107.2)" points="30.6 15.1 52.4 16.1 48.6 21.2" fill="url(#ap)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(-50 0 109.7)" points="32.5 16 28.2 34.4 50.5 22" fill="url(#ao)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(-50 0 60.7)" points="13 4.5 27.7 18.2 12.5 30.6" fill="url(#an)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(-50 0 68.8)" points="23 2.4 19.2 7.5 34 21.2" fill="url(#h)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(-50 0 91.6)" points="14.5 27.8 17.2 46.8 36.2 41.7" fill="url(#v)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(-50 0 77.2)" points="6.1 41.6 25.1 36.5 28.7 43.1" fill="url(#u)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(-50 0 50.6)" points="4.7 27 8.3 33.6 20 14.6" fill="url(#t)"/>
+</g>
+<g id="Group" transform="translate(366.2 5)">
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -48.5)" points="19.7 6.8 23.7 15.4 22.5 6.8" fill="url(#cw)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -28.3)" points="9.5 11.6 19.6 17.8 19.8 6" fill="url(#cv)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -39.2)" points="18.4 0.8 13.7 9 16.5 9" fill="url(#cu)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -16)" points="3.5 6.2 13.6 6.6 11.9 8.9" fill="url(#ct)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -23.9)" points="8.6 4.3 6.6 12.6 16.9 7" fill="url(#cs)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -5.1)" points="4.9 11.4 11.7 17.6 4.6 23.2" fill="url(#cr)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -.8)" points="3.9 10.2 2.1 12.4 9 18.6" fill="url(#cq)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -32.6)" points="12.2 10.5 13.5 19.1 22.3 16.8" fill="url(#cp)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -32)" points="13.1 19.2 21.9 16.9 23.6 19.9" fill="url(#co)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -9.7)" points="7.5 22.1 9.2 25.1 14.7 16.5" fill="url(#cn)"/>
+</g>
+<g id="Group" transform="translate(325.7 33.6)">
+<polygon id="Path" transform="rotate(195 18.8 15.6)" points="13.6 12.7 19.7 3.8 24 27.5" fill="url(#i)"/>
+<polygon id="Path" transform="rotate(195 10.6 13.4)" points="3 1.6 7.3 25.3 18.1 8.3" fill="url(#b)"/>
+</g>
+<g id="Group" transform="translate(148.7 82.7)">
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -51.4)" points="20.9 7.2 25.2 16.6 23.9 7.2" fill="url(#ai)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -30)" points="10.1 12.3 20.7 19.1 20.9 6.1" fill="url(#ah)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -41.2)" points="19.3 0.6 14.3 9.6 17.3 9.6" fill="url(#ag)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -16.6)" points="3.6 6.3 14.2 6.8 12.4 9.3" fill="url(#af)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -25)" points="9 4.3 6.9 13.4 17.8 7.3" fill="url(#ae)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -5.6)" points="5.2 11.9 12.4 18.6 5 24.8" fill="url(#ad)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -.9)" points="4.1 10.5 2.2 12.9 9.4 19.8" fill="url(#ac)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -34.6)" points="13.1 11.1 14.4 20.6 23.7 18" fill="url(#ab)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -34.2)" points="14.1 20.6 23.4 18.1 25.1 21.4" fill="url(#i)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -10.6)" points="8.2 23.6 10 26.9 15.7 17.5" fill="url(#aa)"/>
+</g>
+<g id="Group" transform="rotate(45 118.2 342.4)">
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -21)" points="8.5 2.9 10.4 6.8 9.7 3" fill="url(#f)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -12.6)" points="4.2 5 8.8 7.9 8.7 2.7" fill="url(#s)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -17.4)" points="8 0.2 6.1 3.8 7.3 3.8" fill="url(#r)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -7.5)" points="1.7 2.5 6.1 2.9 5.4 3.9" fill="url(#p)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -10.6)" points="3.7 1.8 3 5.4 7.4 3.1" fill="url(#o)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -2.4)" points="2.1 5.1 5.2 7.9 2.2 10.3" fill="url(#n)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -.7)" points="1.8 4.5 1 5.5 4.2 8.3" fill="url(#m)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -14.2)" points="5.3 4.6 6 8.4 9.8 7.6" fill="url(#l)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -13.8)" points="5.8 8.5 9.6 7.6 10.4 9" fill="url(#k)"/>
+<polygon id="Path" transform="scale(-1 1) rotate(40 0 -4.4)" points="3.5 9.8 4.3 11.2 6.5 7.5" fill="url(#j)"/>
+</g>
+<g id="Group" transform="translate(74.7 346.8)">
+<polygon id="Path" transform="rotate(39 7.7 3.8)" points="10.3 1.1 5 6.5 8.2 5.7" fill="url(#cm)"/>
+<polygon id="Path" transform="rotate(39 4.1 7.8)" points="1.8 5.2 6.4 11.2 4.8 4.4" fill="url(#cl)"/>
+<polygon id="Path" transform="rotate(39 10.7 6.6)" points="9.2 3.8 7.1 8.3 14.4 9.3" fill="url(#ck)"/>
+<polygon id="Path" transform="rotate(39 7.6 10.5)" points="3.9 7.1 5.6 13.9 11.2 8.1" fill="url(#cj)"/>
+</g>
+<g id="Group" transform="translate(366.3 132.5)">
+<polygon id="Path" transform="rotate(145 12 7.8)" points="8.9 6.1 12.6 0.7 15.1 14.9" fill="url(#ci)"/>
+<polygon id="Path" transform="rotate(145 7.8 10.8)" points="3.3 3.6 5.9 17.9 12.3 7.7" fill="url(#ch)"/>
+</g>
+<g id="Group" transform="translate(230.2 279.5)">
+<polygon id="Path" transform="rotate(-97 8.3 10.6)" points="5.2 8.8 8.9 3.5 11.4 17.7" fill="url(#q)"/>
+<polygon id="Path" transform="rotate(-97 7.7 5.5)" points="3.1 -1.6 5.7 12.6 12.2 2.5" fill="url(#cg)"/>
+</g>
+<g id="Group" transform="translate(280.9 56.3)">
+<polygon id="Path" transform="rotate(-68 7.8 11.8)" points="4.7 10 8.4 4.7 10.9 18.9" fill="url(#cf)"/>
+<polygon id="Path" transform="rotate(-68 9.7 7)" points="5.2 0 7.8 14.2 14.3 4" fill="url(#ce)"/>
+</g>
+<g id="cx" transform="translate(374.2 49.2)">
+<polygon id="Path" points="0.1 2.8 3.5 3.4 8.5 0.1" fill="url(#cd)"/>
+<polygon id="Path" points="0.1 2.8 6.7 8.9 3.5 3.4" fill="url(#cc)"/>
+<polygon id="Path" points="3.5 3.4 6.7 8.9 8.5 0.1" fill="url(#cb)"/>
+</g>
+<g transform="translate(62.6 27.1)">
+<polygon id="Path" points="0 6.5 8 7.8 20.1 0" fill="url(#ca)"/>
+<polygon id="Path" points="0 6.5 15.6 21.1 8 7.9" fill="url(#bz)"/>
+<polygon id="Path" points="8.1 7.8 15.7 21.1 20.1 0" fill="url(#by)"/>
+</g>
+<g transform="translate(348.4 227.8)">
+<polygon id="Path" transform="rotate(63 5.5 8.7)" points="3.2 3.8 7.8 13.7 6.4 3.8" fill="url(#q)"/>
+<polygon id="Path" transform="rotate(63 12.5 12.6)" points="6.7 12.2 18 19.4 18.3 5.8" fill="url(#bx)"/>
+<polygon id="Path" transform="rotate(63 14.3 4.7)" points="16.9 -0.1 11.6 9.4 14.8 9.4" fill="url(#bw)"/>
+<polygon id="Path" transform="rotate(63 20.9 10.7)" points="15.2 9.1 26.6 9.6 24.6 12.2" fill="url(#bv)"/>
+<polygon id="Path" transform="rotate(63 17.1 10.3)" points="13.5 5.5 11.3 15 22.9 8.6" fill="url(#bu)"/>
+<polygon id="Path" transform="rotate(63 16.8 21)" points="13.1 14.3 20.8 21.4 12.8 27.8" fill="url(#bt)"/>
+<polygon id="Path" transform="rotate(63 21 19.1)" points="19.1 14.2 17.1 16.9 24.8 24" fill="url(#bs)"/>
+<polygon id="Path" transform="rotate(63 8.4 14.5)" points="2.8 9.6 4.2 19.5 14.1 16.8" fill="url(#br)"/>
+<polygon id="cy" transform="rotate(63 5.7 17.8)" points="-0.2 18.7 9.6 16.1 11.5 19.5" fill="url(#q)"/>
+<polygon transform="rotate(63 12.1 23.4)" points="8.1 24.9 10 28.4 16.1 18.5" fill="url(#bq)"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>

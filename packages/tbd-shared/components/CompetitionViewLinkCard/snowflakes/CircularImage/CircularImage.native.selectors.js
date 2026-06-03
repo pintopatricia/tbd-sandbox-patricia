@@ -1,0 +1,9 @@
+const CIRCULAR_IMAGE = "circular-image";
+const CIRCULAR_IMAGE_CONTAINER = `${CIRCULAR_IMAGE}-container`;
+const CIRCULAR_IMAGE_TEXT = `${CIRCULAR_IMAGE}-text`;
+
+module.exports = {
+  CIRCULAR_IMAGE,
+  CIRCULAR_IMAGE_CONTAINER,
+  CIRCULAR_IMAGE_TEXT,
+};

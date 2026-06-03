@@ -1,0 +1,11 @@
+const PLACE_FOOTER = "place-footer";
+const PLACE_FOOTER_REMOVE_ALL_BUTTON = `${PLACE_FOOTER}-remove-all-button`;
+const PLACE_FOOTER_BUTTON = `${PLACE_FOOTER}-place-btn`;
+const PLACE_FOOTER_SECONDARY_BUTTON = `${PLACE_FOOTER}-secondary-btn`;
+
+module.exports = {
+  PLACE_FOOTER,
+  PLACE_FOOTER_REMOVE_ALL_BUTTON,
+  PLACE_FOOTER_BUTTON,
+  PLACE_FOOTER_SECONDARY_BUTTON,
+};

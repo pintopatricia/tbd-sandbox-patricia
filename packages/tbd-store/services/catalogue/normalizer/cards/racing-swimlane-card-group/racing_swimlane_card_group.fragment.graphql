@@ -1,0 +1,36 @@
+fragment racingSwimlaneCardGroup on RacingSwimlaneCardGroup {
+  __typename
+  urn
+  racingSwimlaneCardGroupTitle: title
+  displayName {
+    translationKey
+  }
+  viewAll {
+    label
+    icon
+    viewLink {
+      viewUrn
+      viewUrl
+    }
+  }
+  fullItems: items(first: $numberOfFilledCardsInCardGroup) {
+    edges {
+      node {
+        ...raceMarketCard
+      }
+    }
+  }
+  partialItems: items {
+    edges {
+      node {
+        urn
+        __typename
+      }
+    }
+  }
+}
+
+fragment racingSwimlaneCardGroupPartial on RacingSwimlaneCardGroup {
+  __typename
+  urn
+}

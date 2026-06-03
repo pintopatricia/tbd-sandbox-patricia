@@ -1,0 +1,57 @@
+:root {
+  --incident-spacing: 2px;
+  --incidents-height: 18px;
+  --incident-size: 12px;
+}
+
+.timelineBar {
+  display: flex;
+}
+
+.wrapper {
+  display: flex;
+
+  flex-flow: column;
+  flex-grow: 1;
+}
+
+.caption {
+  align-self: center;
+
+  padding: 0 var(--spacing-2);
+
+  color: var(--neutrals-text-secondary);
+}
+
+.bar {
+  height: 5px;
+  margin: var(--spacing-2) 0;
+
+  background-color: var(--neutrals-background-elevation4);
+  border-radius: 3px;
+}
+
+.condensed .bar {
+  margin: var(--spacing-1) 0;
+}
+
+.inplay,
+.condensed .inplay {
+  margin: 0;
+
+  background: var(--signposting-inplay-background-default);
+}
+
+.incidents {
+  position: relative;
+
+  width: calc(100% - var(--incident-size));
+  height: var(--incidents-height);
+}
+
+.incident {
+  position: absolute;
+
+  width: var(--incident-size);
+  height: var(--incident-size);
+}

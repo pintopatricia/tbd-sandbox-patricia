@@ -1,0 +1,428 @@
+{
+   "initialState": {
+      "entities": {
+         "appversion": {
+            "android": {
+                "storeUrl":"{{storeUrl}}{{^storeUrl}}storeUrl{{/storeUrl}}",
+                "downloadUrl":"{{downloadUrl}}{{^downloadUrl}}downloadUrl{{/downloadUrl}}",
+                "versionCode":{{versionCode}}{{^versionCode}}1{{/versionCode}},
+                "minVersionCode":{{minVersionCode}}{{^minVersionCode}}0{{/minVersionCode}},
+                "minOSVersion":"{{minOSVersion}}{{^minOSVersion}}8{{/minOSVersion}}",
+                "blackList":[
+                  {
+                    "versioncode":{{blacklistedVersionCode}}{{^blacklistedVersionCode}}0{{/blacklistedVersionCode}}
+                  }
+                ]
+            },
+            "ios": {
+                "storeUrl":"{{storeUrl}}{{^storeUrl}}storeUrl{{/storeUrl}}",
+                "versionCode":{{versionCode}}{{^versionCode}}1{{/versionCode}},
+                "minVersionCode":{{minVersionCode}}{{^minVersionCode}}0{{/minVersionCode}},
+                "minOSVersion":"{{minOSVersion}}{{^minOSVersion}}12{{/minOSVersion}}",
+                "blackList":[
+                  {
+                    "versioncode":{{blacklistedVersionCode}}{{^blacklistedVersionCode}}0{{/blacklistedVersionCode}}
+                  }
+                ]
+            }
+         },
+         "userdetails":{
+            "countryCode":"{{countryCode}}{{^countryCode}}IE{{/countryCode}}",
+            "currencyCode":"{{currencyCode}}{{^currencyCode}}USD{{/currencyCode}}",
+            "localeCode":"{{localeCode}}{{^localeCode}}en{{/localeCode}}",
+            "localeCodeBcp47":"{{localeCodeBcp47}}{{^localeCodeBcp47}}en-US{{/localeCodeBcp47}}",
+            "firstName":"{{firstName}}{{^firstName}}firstName{{/firstName}}",
+            "lastName":"{{lastName}}{{^lastName}}lastName{{/lastName}}",
+            "region":"{{regiion}}{{^region}}ALL_REGIONS{{/region}}",
+            "excSettings":{{excSettings}}{{^excSettings}}null{{/excSettings}},
+            "jurisdictionalData": {
+               "contractNumber": {{contractNumber}}{{^contractNumber}}null{{/contractNumber}},
+               "nationalIdentifier": {{nationalIdentifier}}{{^nationalIdentifier}}null{{/nationalIdentifier}}
+            },
+            "migrationData": {
+               "heritageAccountId": {{heritageAccountId}}{{^heritageAccountId}}null{{/heritageAccountId}},
+               "heritageSecondaryAccountId": {{heritageSecondaryAccountId}}{{^heritageSecondaryAccountId}}null{{/heritageSecondaryAccountId}},
+               "heritageSystem": {{heritageSystem}}{{^heritageSystem}}null{{/heritageSystem}},
+               "migrationDate": {{migrationDate}}{{^migrationDate}}null{{/migrationDate}},
+               "migrationInformation": {{migrationInformation}}{{^migrationInformation}}null{{/migrationInformation}}
+            },
+            "exchangeSettings": {
+               "discount": {{exchangeDiscount}}{{^exchangeDiscount}}0{{/exchangeDiscount}},
+               "currencyDetails": {
+                  "minStake": {{minStake}}{{^minStake}}2{{/minStake}},
+                  "minBspLiability": {{minBspLiability}}{{^minBspLiability}}10{{/minBspLiability}},
+                  "currencyCode":"{{currencyCode}}{{^currencyCode}}GBP{{/currencyCode}}",
+                  "currencyId": {{currencyId}}{{^currencyId}}2{{/currencyId}}
+               }
+            },
+            "timezone":"{{timezone}}{{^timezone}}Europe/London{{/timezone}}",
+            "accountId": {{accountId}}{{^accountId}}123456{{/accountId}},
+            "loggedIn": {{loggedIn}}{{^loggedIn}}true{{/loggedIn}},
+            "jurisdiction": {
+               "jurisdiction": "{{jurisdiction}}{{^jurisdiction}}INTERNATIONAL{{/jurisdiction}}"
+            },
+            "productExclusions": {{productExclusions}}{{^productExclusions}}[]{{/productExclusions}},
+            {{#if lastLoginDate}}
+            "lastLoginDate": "{{lastLoginDate}}{{^lastLoginDate}}2023-01-01T12:00:00.000Z{{/lastLoginDate}}",
+            {{/if}}
+            "bucketId": {{bucketId}}{{^bucketId}}1{{/bucketId}}
+         },
+         "preferences":{
+            "exchangeOddsDisplay":"DECIMAL",
+            "sportsbookOddsDisplay":"{{sportsbookOddsDisplay}}{{^sportsbookOddsDisplay}}DECIMAL{{/sportsbookOddsDisplay}}",
+            "exchangeConfirmBetPlacement": {{exchangeConfirmBetPlacement}}{{^exchangeConfirmBetPlacement}}false{{/exchangeConfirmBetPlacement}},
+            "showBalances": {{showBalances}}{{^showBalances}}true{{/showBalances}},
+            "oddsMovement": {{oddsMovement}}{{^oddsMovement}}true{{/oddsMovement}},
+            "confirmCashout": {{#if (defined confirmCashout)}}{{confirmCashout}}{{else}}false{{/if}},
+            "exchangeDefaultProduct": "{{exchangeDefaultProduct}}{{^exchangeDefaultProduct}}unassigned{{/exchangeDefaultProduct}}",
+            "lastViewedProduct": "{{lastViewedProduct}}{{^lastViewedProduct}}sportsbook{{/lastViewedProduct}}",
+            "defaultProduct": "{{defaultProduct}}{{^defaultProduct}}sportsbook{{/defaultProduct}}",
+            "products":
+              {{#if products}}
+                [
+                  {{#each products}}
+                      "{{this}}"{{#unless @last}},{{/unless}}
+                  {{/each}}
+                ],
+                {{else}}
+                ["exchange", "sportsbook", "games"],
+              {{/if}}
+            "favoriteSports": [1, 7],
+            "quickStakes":[
+               {
+                  "stake":5,
+                  "displayStake":"5"
+               },
+               {
+                  "stake":10,
+                  "displayStake":"10"
+               },
+               {
+                  "stake":20,
+                  "displayStake":"20"
+               },
+               {
+                  "stake":50,
+                  "displayStake":"50"
+               }
+            ]
+         },
+         "throttles": {
+            {{#each throttles}}
+               "{{@key}}": {
+                  "isActive": {{this.isActive}}
+               }{{#unless @last}},{{/unless}}
+            {{/each}}
+         }
+      },
+      "boot": {
+         "exchangeEnabled": {{exchangeEnabled}}{{^exchangeEnabled}}false{{/exchangeEnabled}}
+      }
+   },
+   "environment": {
+      "ENV": "localhost",
+      "PRODUCT_ID": "90",
+      "ASSETS": {
+         "HOST": "",
+         "PATH": "ie1/tbd/assets",
+         "DC": "ie1"
+      },
+      "ENDPOINTS": {
+         "APPLE_PAY_PROXY": "https://myfunds.betfair.com/lib/js/apple_pay_proxy.js",
+         "MY_ACCOUNT": "https://myaccount.betfair.com",
+         "PROMOS": "https://promos.betfair.com",
+         "ERO": {
+            "path": "www/sports/exchange/readonly/v1/"
+         },
+         "ETX": {
+            "path": "www/sports/exchange/transactional/v1/"
+         },
+         "SMP": {
+            "path": "www/sports/fixedodds/readonly/v1/"
+         },
+         "SPB": {
+            "path": "www/sports/fixedodds/transactional/v1/"
+         },
+         "SIB": {
+            "path": "www/sports/fixedodds/transactional/v1/"
+         },
+         "SIB_LITE": {
+            "path": "www/sports/fixedodds-lite/transactional/v1/"
+         },
+         "COS_READONLY": {
+            "path": "cashout-service/readonly/v1/"
+         },
+         "COS_TRANSACTIONAL": {
+            "path": "cashout-service/transactional/v1/"
+         },
+         "FCQ": {
+            "path": "fcq-service/v0.1/"
+         },
+         "SCO": {
+            "path": "www/sports/fixedodds/transactional/v1/"
+         },
+         "CATALOGUE": {
+            "path": "api/tbd/bff-gql/"
+         },
+         "WAS": {
+            "path": "wallet-service/v3.0/"
+         },
+         "LBR": {
+            "path": "www/sports/exchange/reporting/live/v1/"
+         },
+         "LOGOUT": {
+            "path": "api/logout/"
+         },
+         "BLH": {
+            "path": "graphql"
+         },
+         "SCA": {
+            "path": "graphql/"
+         },
+         "USP": {
+            "path": "usp-preferences/v1.0/"
+         },
+         "GAME_LAUNCHER": {
+            "path": "launcher/"
+         },
+         "PROMOTIONS_CDN": {
+            "path": "",
+            "host": "https://promotions.cdnppb.net.nxt.ppbdev.com"
+         },
+         "PMA_S3_PROMOTIONS_CDN": {
+            "path": "",
+            "host": "https://pma-s3.betfair.com.nxt.ppbdev.com"
+         },
+         "GAMING_SEARCH": {
+            "path": "api/gfe/search-games/v1/search-games"
+         },
+         "XTSD": {
+            "path": "LoadRunnerInfoChartAction/"
+         },
+         "CBS": {
+            "path": "CustomerBehaviourService/v2.0/"
+         },
+         "SMD": {
+            "path": "SeoMetadata/v1/"
+         },
+         "LIVE_DEALER_WS": {
+            "path": "api/gfe/fanout/v2/"
+         },
+         "LIVE_DEALER_EVENT_SOURCE": {
+            "path": "feeds/",
+            "host": "https://gmd.betfair.com.nxt.ppbdev.com/"
+         },
+         "HANDLE_BANNER_ACTION": {
+            "path": "myaccountx/rest/handleBannerAction"
+         },
+         "APP_CONTEXT": {
+            "path": "api/tbd/app-context/v1/"
+         },
+         "NSS": {
+            "path": "NotificationSubscription/v1/",
+            "host": ""
+         },
+         "WMS": {
+          "path": "",
+          "host": "https://messaging.betfair.com/"
+         },
+         "SPEND_BUDGET": {
+            "path": "my-budget?prod=90&showHeader=0",
+            "host": "https://myspendbudget.betfair.com/"
+         },
+         "DEPOSIT": {
+            "path": "deposit?prod=90&showHeader=0",
+            "host": "https://myfunds.betfair.com/"
+         },
+         "SER": {
+            "path": "SportsbookEventReadOnlyService/v1/"
+         },
+         "EXCHANGE_SITE": {
+            "path": "exchange",
+            "host": "https://www.betfair.com/"
+         },
+        "EGA": {
+            "path": "",
+            "host": "https://graphs.betfair.com/"
+        },
+        "BCE": {
+          "path": "api/sports/bce/v1.0/",
+          "host": "https://bce.betfair.it/"
+        },
+        "LPS": {
+          "path": "exposure/v1/log",
+          "host": "https://lps.betfair.com.nxt.ppbdev.com/"
+        }
+      },
+      "BETSLIP_CONFIG": {
+        "collapseStrategy": "ALL_OPEN"
+      },
+      "LOOP_CLIENT_CONFIG": {
+        "key": "Rp9mDx9wgF7Ch2AQ",
+        "brand": "BF"
+      },
+      "ADOBE_SDK": {
+        "ADOBE_MARKETING_SERVER": "betfair-mid.neolane.net",
+        "ADOBE_TRACKING_SERVER": "powerleisurebookmakers-mid-stage1-t.adobe-campaign.com"
+      },
+      "REFRESH_RATES": {
+         "ERO": {{environment.REFRESH_RATES.ERO}}{{^environment.REFRESH_RATES.ERO}}1000{{/environment.REFRESH_RATES.ERO}},
+         "SMP": {{environment.REFRESH_RATES.SMP}}{{^environment.REFRESH_RATES.SMP}}1000{{/environment.REFRESH_RATES.SMP}},
+         "WAS": {{environment.REFRESH_RATES.WAS}}{{^environment.REFRESH_RATES.WAS}}1000{{/environment.REFRESH_RATES.WAS}},
+         "LBR": {{environment.REFRESH_RATES.LBR}}{{^environment.REFRESH_RATES.LBR}}1000{{/environment.REFRESH_RATES.LBR}},
+         "SIB": {{environment.REFRESH_RATES.SIB}}{{^environment.REFRESH_RATES.SIB}}1000{{/environment.REFRESH_RATES.SIB}},
+         "SER": {{environment.REFRESH_RATES.SER}}{{^environment.REFRESH_RATES.SER}}1000{{/environment.REFRESH_RATES.SER}},
+         "BLH": {
+            "inPlay": 1000,
+            "notInPlay": 1000
+         },
+         "SCA": {
+            "loggedIn": {
+               "default": {
+               "inPlay": 1000,
+               "notInPlay": 1000
+               }
+            },
+            "loggedOut": {
+               "default": {
+               "inPlay": 1000,
+               "notInPlay": 1000
+               }
+            }
+         },
+         "COS": {
+            "loggedIn": {
+               "7": {
+               "inPlay": 1000,
+               "notInPlay": 1000
+               },
+               "default": {
+               "inPlay": 1000,
+               "notInPlay": 1000
+               }
+            },
+            "loggedOut": 1000
+         },
+         "JACKPOT_ZONE": {{environment.REFRESH_RATES.JACKPOT_ZONE}}{{^environment.REFRESH_RATES.JACKPOT_ZONE}}1000{{/environment.REFRESH_RATES.JACKPOT_ZONE}},
+         "MY_BETS": {{environment.REFRESH_RATES.MY_BETS}}{{^environment.REFRESH_RATES.MY_BETS}}1000{{/environment.REFRESH_RATES.MY_BETS}},
+         "POLLING_DEBOUNCE": {{environment.REFRESH_RATES.POLLING_DEBOUNCE}}{{^environment.REFRESH_RATES.POLLING_DEBOUNCE}}300{{/environment.REFRESH_RATES.POLLING_DEBOUNCE}}
+      },
+      "CATALOG": {
+         "FILLED_CARDS_PER_CARD_GROUP": 2,
+         "FILLED_CARDS_PER_VIEW": 3,
+         "FILLED_CARDS_PER_LAZY_LOAD": 4
+      },
+      "SSO_URL": "https://identitysso.betfair.com/view/login?redirectMethod=GET&product=bfrebuild",
+      "JOIN_FALLBACK_URL": "https://btfr.co/linker/join-now-btfr",
+      "EXTERNAL_LINKS": {
+        "NINETY_MINUTE_RULE": {
+          "INTERNATIONAL": {
+            "default": "https://support.betfair.com/app/answers/detail/a_id/10279/",
+            "de": "https://support.betfair.com/de/app/answers/detail/a_id/10281/",
+            "es_419": "https://support.betfair.com/es/app/answers/detail/a_id/10288/",
+            "fi": "https://support.betfair.com/fi/app/answers/detail/a_id/10287/",
+            "hu": "https://support.betfair.com/hu/app/answers/detail/a_id/10285/",
+            "no": "https://support.betfair.com/no/app/answers/detail/a_id/10286/",
+            "pt": "https://support.betfair.com/pt/app/answers/detail/a_id/10282/",
+            "pt_BR": "https://support.betfair.com/pt/app/answers/detail/a_id/10282/",
+            "ru": "https://support.betfair.com/ru/app/answers/detail/a_id/10283/"
+          },
+          "BRAZIL": {
+            "default": "https://support.betfair.bet.br/app/answers/detail/10282-sportsbook-90-minute-payout/",
+            "en_GB": "https://support.betfair.bet.br/en/app/answers/detail/10458-90-minute-payout-faq/"
+          },
+          "ITALY": {
+            "default": "https://support.betfair.it/app/answers/detail/a_id/6697/"
+          },
+          "SPAIN": {
+            "default": "https://support.betfair.es/app/answers/detail/a_id/10340/"
+          }
+        },
+        "SUPER_SUB": {
+          "INTERNATIONAL": {
+            "default": "https://betting.betfair.com/betfair-announcements/whats-new-on-betfair/safe-sub-comes-to-betfair-220425-6.html"
+          },
+          "BRAZIL": {
+            "default": "https://support.betfair.bet.br/app/answers/detail/substituicao-segura-br/",
+            "en_GB": "https://support.betfair.bet.br/en/app/answers/detail/substituicao-segura-en/"
+          },
+          "SPAIN": {
+            "default": "https://support.betfair.es/app/answers/detail/10707-sustituto/",
+            "en_GB": "https://support.betfair.es/en/app/answers/detail/10708-safe-substitution/"
+          }
+        },
+        "MAX_PAYOUT": {
+          "INTERNATIONAL": {
+            "default": "https://www.betfair.com/en/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+            "da": "https://www.betfair.com/da/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+            "de": "https://www.betfair.com/de/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+            "es_419": "https://www.betfair.com/es_419/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+            "fi": "https://www.betfair.com/fi/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+            "hu": "https://www.betfair.com/hu/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+            "no": "https://www.betfair.com/no/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+            "pt": "https://www.betfair.com/pt/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+            "pt_BR": "https://www.betfair.com/pt/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+            "ru": "https://www.betfair.com/ru/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin"
+          },
+          "BRAZIL": {
+            "default": "https://www.betfair.bet.br/pt/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin",
+            "en_GB": "https://www.betfair.bet.br/en/aboutUs/Sportsbook.Rules.And.Regulations/#MaxWin"
+          },
+          "SPAIN": {
+            "default": "https://www.betfair.es/es/conocenos/#MaxWin"
+          }
+        },
+        "ACCA_INSURANCE": {
+          "INTERNATIONAL": {
+            "default": "https://support.betfair.com/app/answers/detail/6157-sportsbook-what-is-acca-edge",
+            "de": "https://support.betfair.com/de/app/answers/detail/a_id/6459",
+            "es_419": "https://support.betfair.com/es/app/answers/detail/a_id/6464",
+            "pt": "https://support.betfair.com/pt/app/answers/detail/a_id/6465",
+            "pt_BR": "https://support.betfair.com/pt/app/answers/detail/a_id/6465",
+            "ru": "https://support.betfair.com/ru/app/answers/detail/a_id/6461"
+          },
+          "BRAZIL": {
+            "default": "https://support.betfair.bet.br/app/answers/detail/6465-betfair-esportes-o-que-e-multipla-segura/",
+            "en_GB": "https://support.betfair.bet.br/en/app/answers/detail/10473-sportsbook-what-is-acca-edge/"
+          },
+          "SPAIN": {
+            "default": "https://support.betfair.com/es/app/answers/detail/a_id/6464"
+          }
+        },
+        "MARKET_RULES_DISCOUNT_RATE": {
+          "INTERNATIONAL": {
+            "default": "//support.betfair.com/app/answers/detail/a_id/414",
+            "pt": "//en-betfair.custhelp.com/app/answers/detail/a_id/414",
+            "sv": "//en-betfair.custhelp.com/app/answers/detail/a_id/414"
+          },
+          "ITALY": {
+            "default": "//en-betfair.custhelp.com/app/answers/detail/a_id/414"
+          },
+          "ROMANIA": {
+            "default": "https://www.asistentabetfair.ro/app/answers/detail/a_id/414"
+          },
+          "SPAIN": {
+            "default": "https://es-betfair.custhelp.com/app/answers/detail/a_id/414"
+          }
+        },
+        "OPTA_FOOTBALL_STATISTICS": {
+          "INTERNATIONAL": {
+            "default": "https://support.betfair.com/app/answers/detail/opta-football-statistics-definitions/"
+          }
+        },
+        "LOYALTY_CLUB": {
+          "BRAZIL": {
+            "default": "https://promos.betfair.bet.br/clubedevantagens"
+          },
+          "SPAIN": {
+            "default": "https://promos.betfair.es/clubbetfair"
+          }
+        },
+        "EXC_FEEDBACK_URL": {
+          "INTERNATIONAL": {
+            "default": "https://thebetfaircommunity.alidainsights.com/c/a/63H5nR6XgQC1G2CTuxtXOA"
+          }
+        }
+      }
+   }
+}

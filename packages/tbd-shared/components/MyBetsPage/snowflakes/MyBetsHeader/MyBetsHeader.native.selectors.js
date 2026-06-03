@@ -1,0 +1,10 @@
+const MY_BETS_HEADER = "my-bets-header";
+const MY_BETS_HEADER_BUTTON = `${MY_BETS_HEADER}-button`;
+const MY_BETS_HEADER_ORDER_STATUS_FILTER = `${MY_BETS_HEADER}-order-status-filter`;
+const MY_BETS_HEADER_ORDER_TYPE_FILTER = `${MY_BETS_HEADER}-order-type-filter`;
+module.exports = {
+  MY_BETS_HEADER,
+  MY_BETS_HEADER_BUTTON,
+  MY_BETS_HEADER_ORDER_STATUS_FILTER,
+  MY_BETS_HEADER_ORDER_TYPE_FILTER,
+};

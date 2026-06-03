@@ -1,0 +1,13 @@
+.container {
+  padding: 0 var(--spacing-3);
+}
+
+.options {
+  display: flex;
+
+  gap: var(--spacing-1);
+}
+
+.content {
+  padding-top: var(--spacing-1);
+}

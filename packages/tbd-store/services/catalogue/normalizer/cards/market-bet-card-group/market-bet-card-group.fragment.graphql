@@ -1,0 +1,27 @@
+fragment marketBetCardGroup on MarketBetCardGroup {
+  __typename
+  urn
+  full: items {
+    edges {
+      node {
+        ...marketBetCard
+        ...marketBetExpandableCardGroup
+        ...marketBetSelectionCardGroup
+      }
+    }
+  }
+  partials: items {
+    edges {
+      node {
+        ...marketBetCardPartial
+        ...marketBetExpandableCardGroupPartial
+        ...marketBetSelectionCardGroupPartial
+      }
+    }
+  }
+}
+
+fragment marketBetCardGroupPartial on MarketBetCardGroup {
+  __typename
+  urn
+}

@@ -1,0 +1,88 @@
+.container {
+  display: flex;
+}
+
+.recentFormContainer {
+  flex: 1;
+  flex-direction: column;
+}
+
+.recentFormIconContainer {
+  margin-top: var(--spacing-1);
+}
+
+.recentFormScore {
+  display: flex;
+
+  align-items: center;
+
+  color: var(--neutrals-text-default);
+}
+
+.recentFormScorePenalties {
+  display: flex;
+
+  color: var(--neutrals-text-secondary);
+}
+
+.penalties {
+  color: var(--neutrals-text-secondary);
+}
+
+.extraTime {
+  color: var(--neutrals-text-secondary);
+}
+
+.recentFormOpponent {
+  display: flex;
+
+  color: var(--neutrals-text-default);
+  word-break: break-word;
+}
+
+.recentFormCompetition,
+.recentFormDate {
+  display: flex;
+
+  color: var(--neutrals-text-secondary);
+}
+
+.container.right,
+.right .recentFormScore,
+.right .recentFormScorePenalties {
+  flex-direction: row-reverse;
+}
+
+.right .recentFormContainer {
+  margin-right: var(--spacing-3);
+}
+
+.right .penalties,
+.right .extraTime {
+  padding-right: var(--spacing-1);
+}
+
+.right .recentFormCompetition,
+.right .recentFormDate,
+.right .recentFormOpponent {
+  justify-content: flex-end;
+
+  text-align: right;
+}
+
+.left .recentFormContainer {
+  margin-left: var(--spacing-3);
+}
+
+.left .penalties,
+.left .extraTime {
+  padding-left: var(--spacing-1);
+}
+
+.left .recentFormCompetition,
+.left .recentFormDate,
+.left .recentFormOpponent {
+  justify-content: flex-start;
+
+  text-align: left;
+}

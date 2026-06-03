@@ -1,0 +1,111 @@
+"__typename": "{{__typename}}{{^__typename}}SportsbookBet{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:sbkBet:926229536{{/urn}}",
+"betReceiptId": "{{betReceiptId}}{{^betReceiptId}}O/4275336/0021305{{/betReceiptId}}",
+"id": "{{id}}{{^id}}926229536{{/id}}",
+{{#if isSettled}}
+  "isSettled": {{isSettled}},
+{{/if}}
+{{#if potentialWinForPlace}}
+  "potentialWinForPlace": "{{potentialWinForPlace}}",
+{{/if}}
+{{#if product}}
+  "product": "{{product}}",
+{{/if}}
+"isSGM": {{#unless isSGM}}false{{else}}true{{/unless}},
+"isPBM": {{#unless isPBM}}false{{else}}true{{/unless}},
+"isSGMMulti": {{#unless isSGMMulti}}false{{else}}true{{/unless}},
+"has90MinBet": {{#unless has90MinBet}}false{{else}}true{{/unless}},
+"isLotteries": {{#unless isLotteries}}false{{else}}true{{/unless}},
+"isOddsBoosted": {{isOddsBoosted}}{{^isOddsBoosted}}false{{/isOddsBoosted}},
+{{#if profitAndLoss}}"profitAndLoss": {{profitAndLoss}},{{/if}}
+"originalPotentialWin": {{originalPotentialWin}}{{^originalPotentialWin}}0.21{{/originalPotentialWin}},
+"betType": "{{betType}}{{^betType}}SGL{{/betType}}",
+"currentSize": {{currentSize}}{{^currentSize}}0.12{{/currentSize}},
+"numLines": {{numLines}}{{^numLines}}1{{/numLines}},
+"currentSizePerLine": {{currentSizePerLine}}{{^currentSizePerLine}}1{{/currentSizePerLine}},
+"isAccaInsuranceReward": {{#if (defined isAccaInsuranceReward)}}{{isAccaInsuranceReward}}{{else}}false{{/if}},
+"lowestEventStartTime": "{{lowestEventStartTime}}{{^lowestEventStartTime}}2019-06-26T09:45:00.000Z{{/lowestEventStartTime}}",
+{{#if mutations}}
+"mutations": {
+  {{#with mutations}}
+  "eligibility": [
+    {{#each eligibility}}
+    {
+      "mutation": "{{mutation}}{{^mutation}}AccaFreeze{{/mutation}}",
+      "__typename": "{{__typename}}{{^__typename}}BetMutationEligibility{{/__typename}}"
+    }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+  ],
+  "__typename": "{{__typename}}{{^__typename}}BetMutation{{/__typename}}"
+  {{/with}}
+},
+{{/if}}
+{{#if result}}
+  "result": "{{result}}",
+{{/if}}
+{{#if resultType}}
+  "resultType": "{{resultType}}",
+{{/if}}
+"betPrice":
+{{#with betPrice}}
+{
+  "decimal": {{decimal}}{{^decimal}}2.29{{/decimal}},
+  "fractional": {
+  {{#with fractional}}
+    "numerator": {{numerator}}{{^numerator}}129{{/numerator}},
+    "denominator": {{denominator}}{{^denominator}}100{{/denominator}}
+  {{/with}}
+  }
+},
+{{else}}
+  null,
+{{/with}}
+"originalBetPrice":
+{{#with originalBetPrice}}
+{
+  "decimal": {{decimal}}{{^decimal}}2.20{{/decimal}},
+  "fractional": {
+  {{#with fractional}}
+    "numerator": {{numerator}}{{^numerator}}220{{/numerator}},
+    "denominator": {{denominator}}{{^denominator}}100{{/denominator}}
+  {{/with}}
+  }
+},
+{{else}}
+  null,
+{{/with}}
+"legs": [
+{{#each legs}}
+  {
+    {{> bff-bet-leg }}
+  }
+  {{#unless @last}},{{/unless}}
+{{/each}}
+],
+"edges": [
+{{#each edges}}
+  {
+  "reason": "{{reason}}",
+  "status": "{{status}}"
+  }
+  {{#unless @last}},{{/unless}}
+{{/each}}
+],
+"cashoutQuote":
+{{#with cashoutQuote}}
+{
+  "__typename": "{{__typename}}{{^__typename}}SportsbookCashoutQuote{{/__typename}}",
+  "urn": "{{urn}}{{^urn}}ppb:sbkCashoutQuote:1029344850{{/urn}}",
+  "betUrn": "{{betUrn}}{{^betUrn}}ppb:sbkBet:1029344850{{/betUrn}}",
+  {{#if quote}}"quote": {{quote}},{{/if}}
+  {{#if stake}}"stake": {{stake}},{{/if}}
+  "betDelay": {{betDelay}}{{^betDelay}}0{{/betDelay}},
+  "cashOutToken": "{{cashOutToken}}{{^cashOutToken}}cashOutToken={{/cashOutToken}}",
+  "refreshRate": {{refreshRate}}{{^refreshRate}}10{{/refreshRate}},
+  "status": "{{status}}{{^status}}AVAILABLE{{/status}}"
+},
+{{else}}
+  null,
+{{/with}}
+"bonus": {{bonus}}{{^bonus}}0{{/bonus}}

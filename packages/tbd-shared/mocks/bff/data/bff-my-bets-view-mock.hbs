@@ -1,0 +1,33 @@
+{
+  "data":{
+    "View":{
+      "__typename":"MyBetsView",
+      "urn":"{{urn}}{{^urn}}ppb:tbd:view:myBets:open{{/urn}}",
+      "url":"{{url}}{{^url}}/mybets/open/mb-6f70656e{{/url}}",
+      "filters":{
+        {{> bff-my-bets-filters }}
+      },
+      {{#if settlementLink}}
+        "settlementLink": "{{settlementLink}}",
+      {{/if}}
+      "leftSidebar": {
+				{{> bff-leftside-bar }}
+			},
+      "items":{
+        {{> bff-items }}
+      }
+      {{#if bottomBar}}
+      ,"bottomBar": {
+        {{> bff-bottom-bar-tiles }}
+      }
+      {{/if}}
+      {{#if headerItems}}
+      ,"headerItems": {
+        {{#with headerItems}}
+         {{> bff-items }}
+        {{/with}}
+      }
+      {{/if}}
+    }
+  }
+}

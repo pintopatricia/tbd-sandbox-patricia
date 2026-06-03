@@ -1,0 +1,38 @@
+.couponContainer {
+  display: block;
+}
+
+.couponEventScoreContainer {
+  display: flex;
+
+  gap: var(--coupon-horizontal-gap-primary);
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: var(--coupon-padding);
+}
+
+button.couponSupportingContentButton {
+  border-radius: var(--coupon-supporting-content-button-border-radius);
+}
+
+.fixtureHeaderContainer {
+  width: 100%;
+}
+
+.statsContainer {
+  background-color: var(--stats-background-colour);
+}
+
+.betButtonsContainer {
+  display: flex;
+
+  gap: 1px;
+
+  min-height: var(--bet-button-height);
+}
+
+.statsButtonContainer > button {
+  height: 100%;
+}

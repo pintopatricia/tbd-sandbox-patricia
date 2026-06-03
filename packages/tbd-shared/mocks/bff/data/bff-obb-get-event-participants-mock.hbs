@@ -1,0 +1,24 @@
+{
+    "data": {
+        "obb": {
+                "eventParticipants": [
+                    {{#each eventParticipants}}
+                        {
+                        "__typename": "ObbFootballPlayer",
+                        {{#if urn}}
+                            "urn": "{{urn}}",
+                        {{/if}}
+                        "incidentTypes": [
+                            {{#each incidentTypes}}
+                                {
+                                {{> bff-obb-incident-type}}
+                                }{{#unless @last}},{{/unless}}
+                            {{/each}}
+                        ]
+                        }{{#unless @last}},{{/unless}}
+                    {{/each}}
+                ],
+            "__typename": "ObbQuery"
+        }
+    }
+}

@@ -1,0 +1,21 @@
+fragment genericViewLinkCard on GenericViewLinkCard {
+  __typename
+  urn
+  genericViewLinkTitle: title {
+    ...displayName
+  }
+  viewLink {
+    viewUrn
+    viewUrl
+    viewDisplayMode
+  }
+  badge
+  sportIcon {
+    ...icon
+  }
+}
+
+fragment genericViewLinkCardPartial on GenericViewLinkCard {
+  __typename
+  urn
+}

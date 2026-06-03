@@ -1,0 +1,51 @@
+"__typename": "{{__typename}}{{^__typename}}RaceMarketCard{{/__typename}}",
+"urn":"{{urn}}{{^urn}}ppb:tbd:card:raceMarket:29901908.1410;WIN|3{{/urn}}",
+"title": "{{title}}{{^title}}1m2f Nov Stks{{/title}}",
+"runnerViewLinks":
+{{#if runnerViewLinks}}
+  [
+    {{#each runnerViewLinks}}{
+      "viewUrn": "{{viewUrn}}{{^viewUrn}}mockerURN{{/viewUrn}}",
+      "viewUrl": "{{viewUrl}}{{^viewUrl}}mockerUrl{{/viewUrl}}",
+      "runnerUrn": "{{runnerUrn}}{{^runnerUrn}}"ppb:excRunner:1.171826696/27871644/0"{{/runnerUrn}}"
+    }{{#unless @last}},{{/unless}}{{/each}}
+  ],
+{{else}}
+  [],
+{{/if}}
+"numberOfRunners": {{numberOfRunners}}{{^numberOfRunners}}3{{/numberOfRunners}},
+"displayRunners": {
+{{#with displayRunners}}
+  {{> bff-display-runners}}
+{{/with}}
+},
+"raceViewLink": {
+  {{#with raceViewLink}}
+    {{> bff-view-link}}
+  {{/with}}
+},
+"marketPromo":
+  {{#if marketPromo}}
+    {{#with marketPromo}}
+      {
+        "title": "{{title}}{{^title}}market promo title{{/title}}",
+        "description": "{{description}}{{^description}}market promo description{{/description}}",
+        "signposting": "{{signposting}}{{^signposting}}EXTRA_PLACES{{/signposting}}"
+      },
+    {{/with}}
+  {{else}}
+    null,
+  {{/if}}
+"blurbs":[
+  {{#each blurbs}}{
+    {{> bff-informative-blurb}}
+  }{{#unless @last}},{{/unless}}{{/each}}
+],
+"race": {
+  {{#if race}}
+      {{#with race}}
+          {{> bff-race }}
+      {{/with}}
+  {{/if}}
+}
+

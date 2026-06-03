@@ -1,0 +1,120 @@
+fragment fullNavigationTabItems on NavigationTabItems {
+  edges {
+    node {
+      # Read this before adding new entries: docs/guidelines/how-to-add-a-new-card.md
+
+      # Cards
+      ...accountBannersCard
+      ...balanceCard
+      ...blurbCard
+      ...broadcastsAndStatisticsCard
+      ...broadcastsCardDeprecated
+      ...budgetLimitsCard
+      ...competitionRegionCard
+      ...competitionViewLinkCard
+      ...contentSummaryCard
+      ...correctScoreCard
+      ...eventMarketCard
+      ...eventViewLinkCard
+      ...expandableMarketCard
+      ...fixtureCard
+      ...forbiddenContentCard
+      ...gameCard
+      ...gameInfoCard
+      ...gamingJackpotCard
+      ...gamingLinkCard
+      ...gamingPlayNewCard
+      ...genericViewLinkCard
+      ...gridCard
+      ...headToHeadCard
+      ...highlightedSelectionCard
+      ...imsPromotionDetailsCard
+      ...imsPromotionDetailsCard
+      ...imsPromotionErrorCard
+      ...imsPromotionErrorCard
+      ...imsPromotionStateCard
+      ...imsPromotionStateCard
+      ...imsPromotionTermsAndConditionsCard
+      ...imsPromotionTermsAndConditionsCard
+      ...linksCard
+      ...marketCard
+      ...marketExtendedCard
+      ...marketGraphsCard
+      ...marketRulesCard
+      ...marketViewLinkCard
+      ...matchStatsCard
+      ...matchStatSelectionCard
+      ...matchTimelineCard
+      ...outrightMarketListCard
+      ...popularMultiplesBetBuilderCard
+      ...preferenceSingleChoiceCard
+      ...promotionCard
+      ...quickLinksCard
+      ...raceByTimeRangeCard
+      ...raceDetailsCard
+      ...raceMarketCard
+      ...raceResultsCard
+      ...raceViewLinkCard
+      ...raceViewLinksCard
+      ...regulatoryCard
+      ...rewardsCard
+      ...runnerInfoCard
+      ...searchBarCard
+      ...sportsbookBetCard
+      ...sportViewLinkCard
+      ...teamFormCard
+      ...timeFormBroadCastsCard
+      ...virtualEventDetailsCard
+      ...virtualMarketCard
+
+      # Groups
+      ...betCardGroup
+      ...expandableCardGroup
+      ...filteredCouponCardGroup
+      ...futureRacingCardGroup
+      ...gamingCardGroup
+      ...pebbleCardGroup
+      ...racesByTimeRangeCardGroup
+      ...segmentedCardGroup
+      ...selectableitemsCardGroup
+      ...sportRibbonCardGroup
+      ...swimlaneCardGroup
+      ...halfTimeSpecialsSwimlaneCardGroup
+      ...swimlaneIndexedCardGroup
+      ...byTimeRangeMeetingCardGroup
+      ...viewZone
+      ...racingSwimlaneCardGroup
+      ...popularSwimlaneCardGroup
+
+      # Apollo Migrated Cards
+      ...MiniPromoBannerCard
+      ...EditorialPromoCard
+      ...BetOpportunityPromoCard
+      ...SelectionPromoCard
+      ...LottoCard
+      ...PriceBoostMultiplePromoCard
+      ...SportsbookLotteriesBetLegCardGroup
+      ...PromotionsCardGroup
+      ...TeamLineupCard
+      ...MonterosaContentCard
+      ...EmbeddedContentCard
+      ...PopularSelectionsCard
+      ...QuicklinksGridCardGroup
+      ...EmbeddedViewCard
+      ...SportsbookChatbotCard
+      ...PenaltyTakersCard
+    }
+  }
+}
+
+fragment partialsNavigationTabItems on NavigationTabItems {
+  edges {
+    node {
+      __typename
+      urn
+      ...pebbleCardGroupEnrichedPartial
+      ...expandableMarketCardEnrichedPartial
+      ...PopularSelectionsCardEnrichedPartial
+    }
+  }
+}

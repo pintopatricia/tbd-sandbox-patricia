@@ -1,0 +1,8 @@
+extend type StatsContentCardGroup {
+  selectedTab: SelectedTab
+}
+
+type SelectedTab {
+  urn: String
+  typename: String
+}

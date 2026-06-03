@@ -1,0 +1,26 @@
+.container {
+  display: inline-flex;
+
+  flex-wrap: wrap;
+
+  column-gap: var(--session-horizontal-gap);
+
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.textLabel {
+  font: var(--session-content-text-typography);
+  color: var(--session-text-content-text-colour);
+  text-decoration-line: var(--session-content-text-typography-text-decoration-line);
+  text-transform: var(--session-content-text-typography-text-transform);
+  letter-spacing: var(--session-content-text-typography-letter-spacing);
+}
+
+.timeLabel {
+  font: var(--session-content-text-highlighted-typography);
+  color: var(--session-text-content-text-highlighted-colour);
+  text-decoration-line: var(--session-content-text-highlighted-typography-text-decoration-line);
+  text-transform: var(--session-content-text-highlighted-typography-text-transform);
+  letter-spacing: var(--session-content-text-highlighted-typography-letter-spacing);
+}

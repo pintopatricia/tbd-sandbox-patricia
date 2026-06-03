@@ -1,0 +1,15 @@
+fragment packagedCreatedBetsItems on PackagedCreatedBetsCardItemsConnection {
+  edges {
+    ... on PackagedCreatedBetsCardItemEdge {
+      cursor
+      __typename
+      node {
+        ...popularBettingOpportunity
+      }
+    }
+  }
+  pageInfo {
+    endCursor
+    hasNextPage
+  }
+}

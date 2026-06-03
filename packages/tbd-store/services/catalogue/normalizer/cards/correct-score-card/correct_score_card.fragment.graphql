@@ -1,0 +1,13 @@
+fragment correctScoreCard on CorrectScoreCard {
+  __typename
+  urn
+  numberOfItemsToDisplay
+  market {
+    ...sportsbookMarket
+  }
+}
+
+fragment correctScoreCardPartial on CorrectScoreCard {
+  __typename
+  urn
+}

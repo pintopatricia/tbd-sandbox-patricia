@@ -1,0 +1,43 @@
+name: create_base_images
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: centos-self-hosted
+    strategy:
+      matrix:
+        include:
+          - name: "base layer"
+            dockerfile: "Docker/pipelines/base/Dockerfile"
+            image: "docker.app.betfair/tbd-ci/base-image:master"
+          - name: "fabric base layer"
+            dockerfile: "Docker/pipelines/base/fabric.Dockerfile"
+            image: "docker.app.betfair/tbd-ci/fabric-base-image:master"
+          - name: "bookwormslim fabric base layer"
+            dockerfile: "Docker/pipelines/base/bookwormslim-fabric.Dockerfile"
+            image: "docker.app.betfair/tbd-ci/bookworm-slim-fabric-base-image:master"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: BuildX Create
+        uses: docker/setup-buildx-action@v3
+        with:
+          driver-opts: |
+            image=docker.app.betfair/appsec/base/buildkit:stable-1
+
+      - name: Build and publish ${{ matrix.name }}
+        run: |
+          docker buildx build -f ${{ matrix.dockerfile }} --platform linux/amd64,linux/arm64 -t ${{ matrix.image }} --push .

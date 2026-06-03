@@ -1,0 +1,12 @@
+fragment bottomBar on BottomBar {
+  __typename
+  hasProductSwitcher
+  tiles: sections {
+    tileType: sectionType
+    viewLink {
+      viewUrn
+      viewUrl
+      viewDisplayMode
+    }
+  }
+}

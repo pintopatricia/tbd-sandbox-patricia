@@ -1,0 +1,18 @@
+query ObbSquadbetQuotes(
+  $squadBetQuotesRequestInput: SquadBetQuotesRequestInput!
+  $throttlesOn: [String!]
+  $throttlesOff: [String!]
+  $productExclusions: [ProductExclusion!]
+)
+@productExclusions(productExclusions: $productExclusions)
+@throttlesOn(throttlesOn: $throttlesOn)
+@throttlesOff(throttlesOff: $throttlesOff) {
+  obb {
+    squadBetQuotes(squadBetQuotesRequestInput: $squadBetQuotesRequestInput) {
+      legs {
+        ...obbLeg
+      }
+      defaultOutcomeIndex
+    }
+  }
+}

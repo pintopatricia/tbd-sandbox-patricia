@@ -1,0 +1,29 @@
+fragment tennisFixtureDeprecated on TennisMatch {
+  __typename
+  urn
+  runnerNames {
+    home
+    away
+  }
+  isAmericanFormat
+  actualStartTime
+  scheduledStartTime
+  teamAScore
+  teamBScore
+  currentSet {
+    currentGame {
+      teamAScore
+      teamBScore
+      teamServing
+      type
+    }
+    teamAScore
+    teamBScore
+  }
+  status {
+    status
+    reason
+  }
+  surface
+  type
+}

@@ -1,0 +1,30 @@
+.placeholder {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: stretch;
+}
+
+.placeholderContainer {
+  width: 100%;
+  height: 300px;
+
+  background-color: var(--neutrals-background-elevation2);
+  border-radius: 4px;
+}
+
+.placeholderTitle {
+  width: 50%;
+  height: var(--line-height-5);
+  margin: var(--spacing-3) 0;
+
+  background-color: var(--neutrals-background-elevation2);
+  border-radius: 4px;
+}
+
+@media screen and (min-width: 900px) {
+  .placeholderContainer {
+    height: var(--gaming-card-size);
+  }
+}

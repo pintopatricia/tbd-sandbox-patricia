@@ -1,0 +1,37 @@
+fragment exchangeMarketLiveData on ExchangeMarket {
+  __typename
+  urn
+  liveData {
+    totalMatched
+    exchangeMarketStatus
+    inplay
+    turnInPlayEnabled
+    cashoutQuotes {
+      ...exchangeCashoutQuote
+    }
+  }
+  name
+  marketType
+  marketTypeName
+  hierarchy {
+    ...marketHierarchy
+  }
+  sport {
+    ...sport
+  }
+  bettingType
+  eachWayDivisor
+  numberOfWinners
+  runners {
+    __typename
+    runnerURN
+    name
+    selectionId
+    handicap
+    resultType
+  }
+  marketRulesViewLink {
+    viewUrn
+    viewUrl
+  }
+}

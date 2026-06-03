@@ -1,0 +1,18 @@
+"id":  "{{id}}",
+{{#if result}}
+  {{#with result}}
+    "result":
+      {
+        {{> bff-obb-bet-details-result}}
+      },
+  {{/with}}
+{{/if}}
+{{#if betDetails}}
+  {{#with betDetails}}
+    "betDetails":
+      {
+        {{> bff-obb-bet-details}}
+      },
+  {{/with}}
+{{/if}}
+"__typename": "{{__typename}}{{^__typename}}BetPlacementDetails{{/__typename}}"

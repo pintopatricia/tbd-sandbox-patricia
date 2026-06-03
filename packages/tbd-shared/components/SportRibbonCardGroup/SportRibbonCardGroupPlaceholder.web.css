@@ -1,0 +1,14 @@
+.placeholderContainer {
+  display: flex;
+
+  gap: var(--scrollable-swimlane-swimlane-horizontal-gap);
+
+  padding: var(--sports-ribbon-placeholder-padding);
+  padding-right: 0;
+  padding-left: 12px;
+}
+
+.placeholder {
+  width: 54px;
+  height: var(--sports-ribbon-placeholder-height-sizing);
+}

@@ -1,0 +1,19 @@
+services:
+  http-webserver:
+    volumes:
+      - ${PROJECT_ROOT}/${BFF_WEBSERVER_PATH}/config/webserver-config-http-${BRAND:-bf}-nxt.json:/etc/bf-fabric/config-http.json
+
+  reverseproxy:
+    build:
+      context: ${PROJECT_ROOT}/${REVERSE_PROXY_DIR}
+      dockerfile: ./nxt.Dockerfile
+    volumes:
+      - ${PROJECT_ROOT}/${REVERSE_PROXY_DIR}/dev/environment.nxt.json:/usr/share/nginx/app.environment.json
+      - ${PROJECT_ROOT}/${REVERSE_PROXY_DIR}/dev/webapp.d/apitbd-local.locations.conf:/etc/nginx/conf.d/custom.locations.conf
+      - ${PROJECT_ROOT}/${REVERSE_PROXY_DIR}/dev/webapp.d/nxt.locations.conf:/etc/nginx/conf.d/locations.conf
+
+  bff-gql:
+    volumes:
+      - ${PROJECT_ROOT}/${BFF_PATH}/config/bff-gql-http-${BRAND:-bf}-nxt.json:/etc/bf-fabric/bff-gql-http.json
+volumes:
+  tbd-assets:

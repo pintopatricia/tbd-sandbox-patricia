@@ -1,0 +1,16 @@
+{
+  "header": ".bfcb1547747c6940-header",
+  "accountHeader": ".bfcb1547747c6940-accountHeader",
+  "logoContainer": ".bfcb1547747c6940-logoContainer",
+  "logoLink": ".bfcb1547747c6940-logoLink",
+  "accountContainersGroup": ".bfcb1547747c6940-accountContainersGroup",
+  "accountContainer": ".bfcb1547747c6940-accountContainer",
+  "balanceLabel": ".bfcb1547747c6940-balanceLabel",
+  "userIconContainer": ".bfcb1547747c6940-userIconContainer",
+  "backButton": ".bfcb1547747c6940-backButton",
+  "menuButton": ".bfcb1547747c6940-menuButton",
+  "loginContainer": ".bfcb1547747c6940-loginContainer",
+  "balanceContainer": ".bfcb1547747c6940-balanceContainer",
+  "generosityWalletActionContainer": ".bfcb1547747c6940-generosityWalletActionContainer",
+  "notificationIconContainer": ".bfcb1547747c6940-notificationIconContainer"
+}

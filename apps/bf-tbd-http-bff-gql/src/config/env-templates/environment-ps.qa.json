@@ -1,0 +1,329 @@
+{
+  "HOMEPAGE_PATHS": "",
+  "HOST": "sports.pokerstars.{domain_extension}.qa.ppbdev.com/",
+  "PRODUCT_CLUSTER": "SBK",
+  "SWA": {
+    "MAINTENANCE_URL": {
+      "BRAZIL": "https://swa.qa.internal/",
+      "DENMARK": "https://swa.qa.internal/",
+      "INTERNATIONAL": "https://swa.qa.internal/",
+      "ITALY": "https://swa.qa.internal/",
+      "ROMANIA": "https://swa.qa.internal/",
+      "SPAIN": "https://swa.qa.internal/"
+    },
+    "SPLASH_FLARE_PRODUCTS": {
+      "Native": {
+        "sportsbook": [],
+        "games": []
+      },
+      "Web": {
+        "sportsbook": [],
+        "games": []
+      },
+      "redirectProducts": []
+    }
+  },
+  "MY_ACCOUNT": {
+    "HOST": "https://myaccount.pokerstars.{domain_extension}/",
+    "PERSONAL_DETAILS": "myaccountx/personaldetails",
+    "NOTIFICATIONS": "myaccountx/notifications",
+    "PROMOTIONS_URL": "https://promos.betfair.{domain_extension}/sport?prod=90&hideHeader=true&returnURL=https%3A%2F%2Fwww.pokerstars.com%2F"
+  },
+  "CONTENT": {
+    "TBD-REPO": "pokerstars",
+    "GAMES-REPO": {
+      "INTERNATIONAL": "pokerstars-com"
+    },
+    "JURISDICTIONS": {
+      "BRAZIL": {
+        "LANGUAGE_FALLBACK": "en_GB"
+      },
+      "DENMARK": {
+        "LANGUAGE_FALLBACK": "da"
+      },
+      "INTERNATIONAL": {
+        "LANGUAGE_FALLBACK": "en_GB"
+      },
+      "SPAIN": {
+        "LANGUAGE_FALLBACK": "es"
+      },
+      "ITALY": {
+        "LANGUAGE_FALLBACK": "it"
+      },
+      "ROMANIA": {
+        "LANGUAGE_FALLBACK": "ro"
+      }
+    }
+  },
+  "GRAPHQL": {
+    "PERSISTED_QUERIES_ONLY": false,
+    "ALLOW_INTROSPECTION_QUERIES": true
+  },
+  "LRU_DISABLE_CACHE_HEADER_NAME": "disableLruCache",
+  "ALLOW_QUERY_CACHE": true,
+  "SEO_PRODUCT": "REBUILD",
+  "EXTENSIONS": {
+    "DISPLAY_CMS_MAP_RESULTS": false
+  },
+  "ENABLE_OUTBOUND_REQUESTS_DEBUGGER": false,
+  "APP_KEYS": {
+    "IOS": "KDpqx52meIBz55wV",
+    "ANDROID": "aOJKOCS3QfCp3Gks",
+    "WEB": "EnEopjDqL8CAeYb1",
+    "DESKTOP": "K7MtUqhpO2NelZ1B",
+    "DESKTOP_WRAPPER": "KoUpbjCqQnscfj9x",
+    "EXPERIMENTATIONS": "Rp9mDx9wgF7Ch2AQ"
+  },
+  "VIDEO_PLAYER": {
+    "HOST": "https://example.com/",
+    "ARCHIVE_PATH": "",
+    "TRACK_IDS": {
+      "WEB": 1036,
+      "IOS": 1037,
+      "ANDROID": 1038
+    }
+  },
+  "VIRTUALS_RULES_URL": "https://example.com/",
+  "VIRTUALS_SPORTS_CONFIG": [
+    {
+      "sportId": "",
+      "liveVideoURL": "https://example.com/",
+      "sportName": ""
+    }
+  ],
+  "USER_DETAILS_DEFAULTS": {
+    "TIMEZONE": "Europe/London",
+    "JURISDICTIONS": {
+      "INTERNATIONAL": {
+        "USER_PRODUCTS": "sportsbook,exchange,games",
+        "FEATURE_EXCLUSIONS": "",
+        "MY_BETS_RANGE": 2
+      }
+    }
+  },
+  "DOMAIN_EXTENSIONS": {
+    "INTERNATIONAL": "com"
+  },
+  "SSC_CLIENT_CONFIG": {
+    "BRAND": "pokerstars",
+    "PRODUCT": "BFRB_WEB",
+    "VERSION": "1",
+    "CHANNEL": {
+      "MOBILE": "mobile",
+      "DESKTOP": "desktop"
+    },
+    "CLIENT_NAME": {
+      "MOBILE": "native",
+      "DESKTOP": "sportsbook"
+    }
+  },
+  "PPH_CONFIG": {
+    "BRAND": "BETFAIR",
+    "CLIENT_ID": "bfrb",
+    "GAMING_CLIENT_ID": "gaming",
+    "MAX_LIMIT": 50,
+    "JURISDICTION_OVERRIDE": {}
+  },
+  "LOOP_CLIENT_CONFIG": {
+    "BRAND": "BF"
+  },
+  "CLOUDFLARE_TRANSFORM_OPTIONS": "f=auto,q=90,w=300",
+  "CLOUDFLARE_WHITELIST_DOMAINS": [".*pma-s3.betfair.com", ".*cdnppb.net"],
+  "IMAGE_RESIZE_DEFAULT_WIDTH": 300,
+  "PRODUCT_ID": 200,
+  "PRISMIC_CDN": ["images.prismic.io"],
+  "GZUSERACTIVITY_PRODUCTS": {
+    "INTERNATIONAL": ["gaming"],
+    "DENMARK": ["casino"],
+    "ROMANIA": ["vegas-ro", "gaming"],
+    "SPAIN": ["casino", "arcade"],
+    "ITALY": ["casino", "vegas-it"],
+    "BRAZIL": ["gaming"]
+  },
+  "CDV": {
+    "TAG": "CdV-dontuse"
+  },
+  "GFS_PRODUCT": "gaming",
+  "JURISDICTION_URL_MINIGAME": {
+    "INTERNATIONAL": {
+      "HOST": "https://casino.betfair.com/",
+      "PATH": {
+        "en_GB": "prize-pinball",
+        "en": "prize-pinball",
+        "pt_BR": "pt-br/prize-pinball",
+        "es_419": "es/prize-pinball",
+        "ru": "ru-ru/prize-pinball",
+        "de": "de-de/prize-pinball",
+        "fi": "prize-pinball",
+        "no": "no-no/prize-pinball",
+        "hu": "hu-hu/prize-pinball"
+      }
+    }
+  },
+  "JURISDICTION_URL_FREE_BETS_WALLET": {
+    "INTERNATIONAL": "https://support.betfair.com/app/answers/list/c/456"
+  },
+  "JURISDICTION_URL_BONUS_PAGE": {
+    "INTERNATIONAL": "https://promos.betfair.com/mybonuses"
+  },
+  "PRODUCT_EXCLUSION": {
+    "SELF_EXCLUDED_PAGE": false,
+    "EXCLUSION_PRODUCT_MAP": {
+      "gaming": ["GAMES"],
+      "vsports": ["VIRTUALS"]
+    }
+  },
+  "GAMING_SEARCH_PRODUCTS": {
+    "INTERNATIONAL": "gaming",
+    "DENMARK": "casino",
+    "ROMANIA": "xsellsportsbook",
+    "SPAIN": "xsellsportsbook",
+    "ITALY": "xsellsportsbook",
+    "BRAZIL": "gaming"
+  },
+  "TRENDING_GAMES_CONFIG": {
+    "BRAND": "betfair",
+    "DISPLAY_PRODUCTS": {
+      "INTERNATIONAL": "gaming",
+      "DENMARK": "casino",
+      "ROMANIA": "gaming",
+      "SPAIN": "arcade",
+      "ITALY": "casino",
+      "BRAZIL": "gaming"
+    }
+  },
+  "BECAUSE_YOU_PLAYED_CONFIG": {
+    "BRAND": "pokerstars",
+    "PRODUCTS": {
+      "INTERNATIONAL": "gaming",
+      "DENMARK": "casino",
+      "ROMANIA": "gaming",
+      "SPAIN": "arcade",
+      "ITALY": "casino",
+      "BRAZIL": "gaming"
+    },
+    "NUM_RECOMMENDATIONS": 30
+  },
+  "FAVOURITE_GAMES_PRODUCTS": {
+    "INTERNATIONAL": "gaming"
+  },
+  "BRAND_SETTINGS": {
+    "MINIMIZE_BETSLIP": true,
+    "ACCA_FREEZE": false,
+    "SKYBETCLUB": false,
+    "ENABLE_CIP_BANNER": false,
+    "ERROR_VIEW_IMAGE": true,
+    "SHOW_X_SELL_BAR": true,
+    "MAINTENANCE_PAGE_TWITTER_WIDGET": true,
+    "REDIRECT_TO_GAMING_PAGE": false,
+    "SHOW_SELECTION_TYPE_ICON": true,
+    "SPORTSBOOK_BET_BUTTON_ANIMATION": true,
+    "MYBETS_BET_PANEL_SUPPORTING_TEXT": true,
+    "BASE_URL_HAS_PATH": false,
+    "SUPPORT_NATIVE_WRAPPER": true,
+    "RACES_BY_TIME_GRID": false
+  },
+  "COOKIES_WHITELIST": {
+    "tbdlcsp": "FUNCTIONALITY",
+    "tbd_dp": "FUNCTIONALITY",
+    "tbd_lvp": "FUNCTIONALITY"
+  },
+  "HIGHLIGHT_HEADER_CARDS": false,
+  "WMS_V2_ENABLED": true,
+  "SHOW_INCIDENTS_CARD": true,
+  "BACK_NAVIGATION_ITEM": false,
+  "GAMING_NAVIGATION": false,
+  "TRANSACTION_HISTORY_LINK": "https://myactivity.pokerstars.com/transactions/",
+  "TRANSACTION_HISTORY_JURISDICTION_LINK": {
+    "INTERNATIONAL": "https://myactivity.pokerstars.com/transactions/"
+  },
+  "MY_BETS_EMPTY_STATE_IMAGE": true,
+  "MYBETS_BET_PANEL_OPEN_BY_DEFAULT": false,
+  "MY_BETS_BET_SHARING": false,
+  "GAMING_DISPLAY_ODDS": true,
+  "GAMING_MAX_CARDGROUP_ITEMS": 0,
+  "MIN_UPSELL_SELECTIONS": 2,
+  "MAX_UPSELL_SELECTIONS": 2,
+  "MAX_UPSELL_OFFERINGS": 3,
+  "SIB_MAX_SUGGESTIONS": 5,
+  "MAX_ASA_SELECTIONS": 10,
+  "UPSELL_SPORT_IDS": ["1"],
+  "DEFAULT_RANK_SORTING": "RANK",
+  "PROMO_TRACKER_CONTAINER": "betfair_betslip_tracker",
+  "SETTLEMENT_JURISDICTION_LINK": {
+    "INTERNATIONAL": "https://support.betfair.com/app/answers/detail/bet-settlement-queries/"
+  },
+  "XSELL_LINKS": {
+    "POKER": {
+      "INTERNATIONAL": "https://www.pokerstars.com.nxt.ppbdev.com/"
+    },
+    "CASINO": {
+      "INTERNATIONAL": "https://casino.pokerstars.com.nxt.ppbdev.com/"
+    },
+    "SPORTS": {
+      "INTERNATIONAL": "https://sports.pokerstars.com.nxt.ppbdev.com/"
+    }
+  },
+  "SETTINGS_STATIC_TABS": ["SettingsViewBettingPreferences"],
+  "EXTERNAL_LINKS": {
+    "SELF_EXCLUSION_SAFER_GAMBLING": {
+      "INTERNATIONAL": {
+        "default": "https://safergambling.betfair.com"
+      },
+      "BRAZIL": {
+        "default": "https://jogoresponsavel.betfair.bet.br/"
+      },
+      "DENMARK": {
+        "default": "https://safergambling.betfair.com"
+      },
+      "ITALY": {
+        "default": "https://safergambling.betfair.com"
+      },
+      "SPAIN": {
+        "default": "https://safergambling.betfair.com"
+      },
+      "ROMANIA": {
+        "default": "https://safergambling.betfair.com"
+      },
+      "SWEDEN": {
+        "default": "https://safergambling.betfair.com"
+      }
+    },
+    "SELF_EXCLUSION_SUPPORT": {
+      "INTERNATIONAL": {
+        "default": "https://support.betfair.com",
+        "da": "https://support.betfair.com/da/app/home",
+        "de": "https://support.betfair.com/de/app/home",
+        "es_419": "https://support.betfair.com/es/app/home",
+        "fi": "https://support.betfair.com/fi/app/home",
+        "hu": "https://support.betfair.com/hu/app/home",
+        "it": "https://support.betfair.it",
+        "no": "https://support.betfair.com/no/app/home",
+        "pt_BR": "https://support.betfair.com/pt/app/home",
+        "pt": "https://support.betfair.com/pt/app/home"
+      },
+      "BRAZIL": {
+        "default": "https://support.betfair.bet.br/app/home/",
+        "en_GB": "https://support.betfair.bet.br/en/app/home/"
+      },
+      "SPAIN": {
+        "default": "https://support.betfair.es"
+      },
+      "ROMANIA": {
+        "default": "https://support.betfair.ro"
+      },
+      "ITALY": {
+        "default": "https://support.betfair.it"
+      },
+      "DENMARK": {
+        "default": "https://support.betfair.com/da/app/home"
+      },
+      "SWEDEN": {
+        "default": "https://support.betfair.se"
+      }
+    }
+  },
+  "MONTEROSA": {
+    "HOST": "cdn.monterosa.cloud"
+  }
+}

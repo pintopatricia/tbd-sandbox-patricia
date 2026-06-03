@@ -1,0 +1,18 @@
+version: "3.4"
+services:
+  http-webserver:
+    volumes:
+      - ${PWD}/../../../apps/tbd-http-webserver/config/webserver-config-http-sbg-nxt.json:/etc/bf-fabric/config-http.json
+  reverseproxy:
+    build:
+      context: ${PWD}/../../../apps/sbg/reverse-proxy
+      dockerfile: ./nxt.Dockerfile
+    volumes:
+      - ${PWD}/../reverse-proxy/dev/environment.nxt.json:/usr/share/nginx/app.environment.json
+      - ${PWD}/../reverse-proxy/dev/webapp.d/apitbdsbg-local.locations.conf:/etc/nginx/conf.d/custom.locations.conf
+      - ${PWD}/../reverse-proxy/dev/webapp.d/nxt.locations.conf:/etc/nginx/conf.d/locations.conf
+  bff-gql:
+    volumes:
+      - ${PWD}/../../bf-tbd-http-bff-gql/config/bff-gql-http-sbg-nxt.json:/etc/bf-fabric/bff-gql-http.json
+volumes:
+  tbd-assets:

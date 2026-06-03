@@ -1,0 +1,63 @@
+name: Security - SCA Scan
+on:
+  pull_request:
+  merge_group:
+    types: [checks_requested]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  MONTEROSA_TOKEN: ${{ secrets.MONTEROSA_TOKEN }}
+
+jobs:
+  SCA:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'merge_group'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 50
+
+      # Install and setup Yarn
+      - name: Install and Setup Yarn
+        run: |
+          export YARN_ENABLE_IMMUTABLE_INSTALLS=true
+          npm install -g yarn@1.22.10
+          yarn install
+          yarn prepare
+      - name: Install CDXgen
+        run: |
+          npm install -g @cyclonedx/cdxgen@11.2.0
+      - name: SCA
+        env:
+          GIT_BRANCH: ${{ github.ref }}
+          GIT_URL: ${{ github.repository }}
+        run: |
+          cdxgen -r -o sbom.json
+      - name: upload SBOM artifact
+        env:
+          GIT_BRANCH: ${{ github.ref }}
+          GIT_URL: ${{ github.repository }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom-pr-${{ github.sha }}
+          path: sbom.json
+  analyze:
+    needs: SCA
+    runs-on:
+      group: FlutterGithubRunners
+    steps:
+      - name: Download SBOM artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: sbom-pr-${{ github.sha }}
+
+      - name: upload SBOM
+        env:
+          GIT_BRANCH: ${{ github.ref }}
+          GIT_URL: ${{ github.repository }}
+        run: |
+          curl -f -F 'file=@./sbom.json' "https://sbom-repo.secsy.prd.internal/v1/sbom?tla=tbd&entry=def&repo=https://github.com/${{ env.GIT_URL }}.git&branch=${{ env.GIT_BRANCH }}&main_branch=origin/master"

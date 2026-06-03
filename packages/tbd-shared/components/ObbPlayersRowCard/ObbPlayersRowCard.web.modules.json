@@ -1,0 +1,18 @@
+{
+  "playerCardContainer": "._0c7def5e4a91f36b-playerCardContainer",
+  "playerRowInfoContainer": "._0c7def5e4a91f36b-playerRowInfoContainer",
+  "playerNameContainer": "._0c7def5e4a91f36b-playerNameContainer",
+  "firstName": "._0c7def5e4a91f36b-firstName",
+  "lastName": "._0c7def5e4a91f36b-lastName",
+  "highlighted": "._0c7def5e4a91f36b-highlighted",
+  "playerInfoJersey": "._0c7def5e4a91f36b-playerInfoJersey",
+  "playerNameAndPosition": "._0c7def5e4a91f36b-playerNameAndPosition",
+  "playerRowStats": "._0c7def5e4a91f36b-playerRowStats",
+  "jersey": "._0c7def5e4a91f36b-jersey",
+  "fallbackJersey": "._0c7def5e4a91f36b-fallbackJersey",
+  "playerPositionAndNumber": "._0c7def5e4a91f36b-playerPositionAndNumber",
+  "playerStatsIcon": "._0c7def5e4a91f36b-playerStatsIcon",
+  "playerStatsIconDisabled": "._0c7def5e4a91f36b-playerStatsIconDisabled",
+  "playerStatValue": "._0c7def5e4a91f36b-playerStatValue",
+  "labelDisabled": "._0c7def5e4a91f36b-labelDisabled"
+}

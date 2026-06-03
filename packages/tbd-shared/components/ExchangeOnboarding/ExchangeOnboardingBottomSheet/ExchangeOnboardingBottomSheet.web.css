@@ -1,0 +1,14 @@
+.spacing {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--sm-spacing-small);
+}
+
+.imageContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}

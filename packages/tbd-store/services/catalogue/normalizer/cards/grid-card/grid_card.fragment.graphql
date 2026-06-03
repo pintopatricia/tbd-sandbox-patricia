@@ -1,0 +1,49 @@
+fragment gridCard on GridCard {
+  __typename
+  urn
+  numberOfItemsToDisplay
+  layout
+  markets {
+    displayLabel {
+      ...displayName
+    }
+    market {
+      ...sportsbookMarketLiveData
+    }
+  }
+  runners {
+    displayName {
+      ...displayName
+    }
+    runner {
+      runnerURN
+      selectionId
+      participantId
+      marketURN
+    }
+  }
+  players {
+    edges {
+      cursor
+      node {
+        ...footballPlayerFixtureContextPlayerData
+      }
+    }
+  }
+  firstPlayer: players(first: 1) {
+    edges {
+      node {
+        ...footballPlayerFixtureContextFixtureData
+      }
+    }
+  }
+  blurbs {
+    ...informativeBlurb
+  }
+  stat
+}
+
+fragment gridCardPartial on GridCard {
+  __typename
+  urn
+}

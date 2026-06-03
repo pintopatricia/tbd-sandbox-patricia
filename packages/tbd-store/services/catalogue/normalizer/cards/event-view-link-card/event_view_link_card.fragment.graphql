@@ -1,0 +1,25 @@
+fragment eventViewLinkCardWithoutFixture on EventViewLinkCard {
+  __typename
+  urn
+  viewLink {
+    viewUrn
+    viewUrl
+  }
+  sportevent {
+    ...sportEvent
+  }
+}
+
+fragment eventViewLinkCard on EventViewLinkCard {
+  ...eventViewLinkCardWithoutFixture
+  eventViewLinkFixture: fixture {
+    ... on FootballFixture {
+      ...footballFixtureLite
+    }
+  }
+}
+
+fragment eventViewLinkCardPartial on EventViewLinkCard {
+  __typename
+  urn
+}

@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+
+  flex-direction: row;
+
+  gap: var(--sm-spacing-x-small);
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: var(--sm-spacing-small) var(--sm-spacing-x-small) var(--sm-spacing-small) var(--sm-spacing-small);
+
+  background-color: var(--page-highlighted-section-background-color);
+}
+
+.titleWrapper {
+  display: flex;
+
+  flex-direction: row;
+
+  gap: var(--sm-spacing-x-small);
+
+  align-items: center;
+}
+
+.icon {
+  width: var(--generic-switcher-card-icon-sizing);
+  height: var(--generic-switcher-card-icon-sizing);
+
+  border-radius: var(--generic-switcher-card-icon-border-radius);
+}
+
+.label {
+  font: var(--generic-switcher-card-supporting-text-typography);
+  color: var(--generic-switcher-card-text-supporting-text-colour);
+  text-decoration-line: var(--generic-switcher-card-supporting-text-typography-text-decoration-line);
+  text-transform: var(--generic-switcher-card-supporting-text-typography-text-transform);
+  letter-spacing: var(--generic-switcher-card-supporting-text-typography-letter-spacing);
+  white-space: nowrap;
+}

@@ -1,0 +1,73 @@
+.footerContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  padding: var(--place-footer-padding);
+}
+
+.summaryContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--place-footer-vertical-gap);
+}
+
+.freeBetsContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--place-footer-vertical-gap);
+
+  padding-bottom: var(--place-footer-padding);
+}
+
+.oddsMovementAlertContainer {
+  padding-bottom: var(--place-footer-padding);
+}
+
+.actions {
+  display: flex;
+
+  gap: var(--place-footer-horizontal-gap);
+}
+
+.removeButton {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: var(--place-footer-icon-container-sizing);
+  height: var(--place-footer-icon-container-sizing);
+}
+
+.trashIcon {
+  width: var(--place-footer-icon-sizing);
+  height: var(--place-footer-icon-sizing);
+}
+
+.screenReaderOnly {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+
+  white-space: nowrap;
+}
+
+/** @todo add design tokens */
+.termsContainer {
+  font: var(--place-footer-label-typography);
+  color: var(--place-footer-text-label-colour);
+}
+
+.footerContainer a {
+  font: var(--place-footer-link-typography);
+  color: var(--place-footer-text-link-colour);
+}

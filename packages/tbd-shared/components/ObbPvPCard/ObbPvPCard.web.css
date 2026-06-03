@@ -1,0 +1,49 @@
+.cardContainer {
+  box-sizing: border-box;
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.playerParticipantsContainer {
+  display: flex;
+
+  flex-direction: row;
+
+  gap: 12px;
+
+  align-items: center;
+  justify-content: space-around;
+}
+
+.playerParticipantContainer {
+  width: 100%;
+}
+
+.versusContainer {
+  min-width: var(--obb-card-versus-width);
+}
+
+.betButtonsContainer {
+  display: flex;
+
+  gap: 1px;
+}
+
+.neutral {
+  background-color: var(--player-selector-background-colour);
+  border-radius: var(--card-border-radius);
+}
+
+.unavailableIcon svg {
+  width: var(--empty-state-icon-sizing);
+  height: var(--empty-state-icon-sizing);
+
+  fill: var(--empty-state-icon-color);
+}
+
+.unavailableIcon {
+  height: var(--empty-state-icon-sizing);
+}

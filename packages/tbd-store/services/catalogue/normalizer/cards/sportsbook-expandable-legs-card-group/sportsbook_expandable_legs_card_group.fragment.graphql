@@ -1,0 +1,19 @@
+fragment sportsbookExpandableLegCardGroup on SportsbookExpandableLegCardGroup {
+  __typename
+  urn
+  full: items {
+    edges {
+      node {
+        ...sportsbookBetLegCardGroup
+        ...sportsbookBetInfoCard
+        ...SportsbookLotteriesBetLegCardGroup
+      }
+    }
+  }
+  isBetPanelOpen
+}
+
+fragment sportsbookExpandableLegCardGroupPartial on SportsbookExpandableLegCardGroup {
+  __typename
+  urn
+}

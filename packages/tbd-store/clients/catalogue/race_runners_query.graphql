@@ -1,0 +1,13 @@
+query RaceRunners(
+  $URNs: [URN!]!
+  $throttlesOn: [String!]
+  $throttlesOff: [String!]
+  $productExclusions: [ProductExclusion!]
+)
+@productExclusions(productExclusions: $productExclusions)
+@throttlesOn(throttlesOn: $throttlesOn)
+@throttlesOff(throttlesOff: $throttlesOff) {
+  RaceRunners(URNs: $URNs) {
+    ...raceRunnerHorsePastPerformance
+  }
+}

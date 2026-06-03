@@ -1,0 +1,13 @@
+fragment runnerView on RunnerView {
+  __typename
+  urn
+  url
+  title
+  category
+  items {
+    ...viewItems
+  }
+  xsellBar {
+    ...XSellBar
+  }
+}

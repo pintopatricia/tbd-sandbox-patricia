@@ -1,0 +1,162 @@
+name: http-webserver-tests
+run-name: HTTP Webserver Tests - ${{ inputs.brand }} - ${{ inputs.pr_id }}
+on:
+  workflow_call:
+    inputs:
+      brand:
+        required: false
+        default: "bf"
+        type: string
+        description: Brand against which to run the tests
+      pr_id:
+        required: false
+        type: string
+      is_merge_queue:
+        type: boolean
+        description: Has been kicked off by the merge queue
+        required: false
+        default: true
+      commit_status_context:
+        type: string
+        description: Context for the commit status
+        required: false
+
+  workflow_dispatch:
+    inputs:
+      brand:
+        required: false
+        default: "bf"
+        type: string
+        description: Brand against which to run the tests
+      pr_id:
+        type: string
+        description: PR the comment is made on
+        required: true
+      is_merge_queue:
+        type: boolean
+        description: Has been kicked off by the merge queue
+        required: false
+        default: false
+      comment_id:
+        type: string
+        description: ID of the comment that triggered the workflow
+        required: false
+
+concurrency:
+  group: "http-webserver-tests-${{ inputs.brand }}-${{ inputs.pr_id || github.ref_name }}"
+  cancel-in-progress: true
+
+env:
+  VAULT_USER: ${{ secrets.VAULT_USER }}
+  VAULT_PASSWORD: ${{ secrets.VAULT_PASSWORD }}
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  MONTEROSA_TOKEN: ${{ secrets.MONTEROSA_TOKEN }}
+
+jobs:
+  run_tests:
+    timeout-minutes: 20
+    continue-on-error: true
+    runs-on: [ubuntu-self-hosted, x64]
+    permissions: write-all
+    env:
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+      GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      DISABLE_V8_COMPILE_CACHE: 1
+      ghprbPullId: ${{ inputs.pr_id }}
+    steps:
+      - name: Get Running Workflow URL
+        id: workflow-url
+        run: |
+          echo "workflow_url=https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> $GITHUB_OUTPUT
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: "arn:aws:iam::509882276346:role/AWS20_GithubOidcRole-repo"
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          role-skip-session-tagging: true
+          aws-region: eu-west-1
+      - name: Cache node modules
+        id: node-cache
+        uses: runs-on/cache@v4
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+        env:
+          SEGMENT_DOWNLOAD_TIMEOUT_MINS: 2
+          RUNS_ON_S3_BUCKET_CACHE: "tbd-github-runner-s3-bucket-cache"
+          AWS_REGION: "eu-west-1"
+      - name: Enable corepack
+        run: corepack enable yarn
+      - name: Install dependencies
+        if: steps.node-cache.outputs.cache-hit != 'true'
+        run: yarn install
+        shell: bash
+      - name: Pre test steps
+        run: yarn prepare && yarn generate-config-files
+      - name: Run webserver tests (see here if tests have failed)
+        id: run-test
+        continue-on-error: true
+        run: |
+          cd apps/tbd-http-webserver/
+          make build-ci-regression
+      - name: Update commit status
+        uses: actions/github-script@v7
+        if: always()
+        with:
+          script: |
+            const state = "${{ steps.run-test.outcome }}";
+            await github.rest.repos.createCommitStatus({
+              owner: "Flutter-Global",
+              repo: "tbd",
+              sha: "${{ github.sha }}",
+              state,
+              description: "Webserver tests are finished, click to view",
+              target_url: "${{ steps.workflow-url.outputs.workflow_url }}",
+              context: "${{inputs.commit_status_context}}" || "http-webserver tests on demand for PR"
+            });
+      - name: Post summary to PR
+        if: ${{ always() && inputs.comment_id && !inputs.is_merge_queue }}
+        env:
+          PR_ID: ${{ inputs.pr_id }}
+          RUN_ID: ${{ github.run_id }}
+          COMMENT_ID: ${{ inputs.comment_id }}
+          OUTCOME: ${{ steps.run-test.outcome }}
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.repo;
+            const issue_number = process.env.PR_ID;
+            const outcome = process.env.OUTCOME;
+            const status = outcome == 'failure' ? '❌ Failure' : '✅ Success';
+
+            const { data: existingComment } = await github.rest.issues.getComment({
+              owner,
+              repo,
+              comment_id: process.env.COMMENT_ID,
+            });
+
+            // removes the XXX tests are running text from the PR comment
+            const regex = new RegExp(`⏳.*?webserver.*\\n?`, 'g');
+            const cleanedBody = existingComment.body.replace(regex, '');
+
+            // Adds the results to the comment
+            const commentBody = [
+              `${cleanedBody}\n\n`,
+              `Status: ${status}`,
+              `[GH Actions Run](https://github.com/${owner}/${repo}/actions/runs/${process.env.RUN_ID})`
+            ].join('\n');
+
+            await github.rest.issues.updateComment({
+              owner,
+              repo,
+              comment_id: process.env.COMMENT_ID,
+              body: commentBody,
+            });

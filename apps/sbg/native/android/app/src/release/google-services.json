@@ -1,0 +1,162 @@
+{
+  "project_info": {
+    "project_number": "38241123377",
+    "project_id": "sbg-apps-ff069",
+    "storage_bucket": "sbg-apps-ff069.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38241123377:android:e0631a3274c33de0eca910",
+        "android_client_info": {
+          "package_name": "com.skybet.app.itv7"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa5szKwnpkBWydCNbldko6x2863MuDHDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38241123377:android:0c3ef4f3207cb5ececa910",
+        "android_client_info": {
+          "package_name": "com.skybet.app.skybet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa5szKwnpkBWydCNbldko6x2863MuDHDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38241123377:android:b6c07b920d98ddebeca910",
+        "android_client_info": {
+          "package_name": "com.skybet.app.skybingo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa5szKwnpkBWydCNbldko6x2863MuDHDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38241123377:android:3f1ca5136cdccbd7eca910",
+        "android_client_info": {
+          "package_name": "com.skybet.app.skycasino"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa5szKwnpkBWydCNbldko6x2863MuDHDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38241123377:android:fb2a83e1342df8a6eca910",
+        "android_client_info": {
+          "package_name": "com.skybet.app.skyvegas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa5szKwnpkBWydCNbldko6x2863MuDHDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38241123377:android:dcd68ca2b5c577c4eca910",
+        "android_client_info": {
+          "package_name": "com.skybet.skysportsfantasyfootball"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa5szKwnpkBWydCNbldko6x2863MuDHDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38241123377:android:f4bf9592d766fa2deca910",
+        "android_client_info": {
+          "package_name": "com.skybet.sportsbook"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa5szKwnpkBWydCNbldko6x2863MuDHDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38241123377:android:87baed6b12bd7a12eca910",
+        "android_client_info": {
+          "package_name": "com.skybet.super6"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa5szKwnpkBWydCNbldko6x2863MuDHDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

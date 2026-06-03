@@ -1,0 +1,27 @@
+.header {
+  width: 100%;
+
+  color: var(--receipt-title-title-colour);
+
+  background-color: var(--receipt-title-background-colour);
+}
+
+/*
+* TO-DO: TOKENIZE if relevant
+* Ensure z-index value is superior to the overlay-stack (30) and inferior to
+* the one used in free-bets-wallets - bottom-sheet-stack (33)
+*/
+
+.contentContainer {
+  z-index: 31;
+}
+
+/*
+* With rspack, CSS bundled assets are duplicated and their fetching order differs with mobile/desktop layout
+* As the contentContainer css class can end up above or under the-wall-web drawer classes in the global css, the styling may
+* or may not be applied.
+* Hence, the 0 2 0 specificity selector is needed to ensure the contentContainer styling is correctly applied
+*/
+.contentContainer2.contentContainer {
+  z-index: 31;
+}

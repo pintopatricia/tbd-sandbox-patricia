@@ -1,0 +1,22 @@
+.betslip {
+  background-color: var(--components-neutrals-bottomsheet-background-elevation1);
+}
+
+.betslipDesktop {
+  flex-grow: 1;
+
+  padding-bottom: var(--spacing-3);
+
+  border-radius: 0 0 8px 8px;
+}
+
+.container {
+  margin: 0 var(--spacing-2);
+  overflow: hidden;
+
+  border-radius: 4px;
+}
+
+.notificationsListContainer {
+  padding: var(--spacing-2) var(--spacing-2) 0;
+}

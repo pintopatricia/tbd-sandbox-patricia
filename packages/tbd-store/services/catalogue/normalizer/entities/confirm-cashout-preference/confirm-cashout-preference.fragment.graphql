@@ -1,0 +1,5 @@
+fragment confirmCashoutPreference on ConfirmCashoutPreference {
+    __typename
+    urn
+    shouldConfirmCashout
+}

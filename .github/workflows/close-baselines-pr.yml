@@ -1,0 +1,55 @@
+name: close-baselines-pr
+
+on:
+  pull_request:
+    types:
+      - closed
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  close_pr:
+    permissions: write-all
+    runs-on:
+      group: FlutterGithubRunners
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Get baselines branch name
+        id: get_baselines_branch_name
+        run: echo "baselines_branch_name=${{ github.head_ref }}-baselines" >> $GITHUB_OUTPUT
+      - name: Get pull request
+        id: get_pull_request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ github.event.repository.name }}
+        run: |
+          echo "Searching for PR for branch '${{ steps.get_baselines_branch_name.outputs.baselines_branch_name }}'"
+
+          PR_JSON=$(gh pr list --repo "$OWNER/$REPO" --head "${{ steps.get_baselines_branch_name.outputs.baselines_branch_name }}" --json number,state -q '.[0]')
+
+          if [ -z "$PR_JSON" ]; then
+            echo "No Pull Request found for the branch."
+            echo "pr_number=" >> $GITHUB_OUTPUT
+          else
+            PR_NUMBER=$(echo "$PR_JSON" | jq -r '.number')
+            echo "Found Pull Request #$PR_NUMBER"
+            echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Close pull request
+        if: ${{ steps.get_pull_request.outputs.pr_number }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ github.event.repository.name }}
+        run: |
+          echo "Closing Pull Request #${{ steps.get_pull_request.outputs.pr_number }}"
+          gh pr close "${{ steps.get_pull_request.outputs.pr_number }}" \
+            --repo "$OWNER/$REPO" \
+            --comment "Closed automatically by GitHub Actions."

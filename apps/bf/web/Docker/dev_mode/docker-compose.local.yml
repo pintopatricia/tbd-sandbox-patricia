@@ -1,0 +1,42 @@
+services:
+  http-webserver:
+    image: ppb/tbd/bff/http-webserver
+    build:
+      context: ${PROJECT_ROOT}
+      dockerfile: ${BFF_WEBSERVER_PATH}/dev.Dockerfile
+      args:
+        - GITHUB_TOKEN=${GITHUB_TOKEN}
+        - MONTEROSA_TOKEN=${MONTEROSA_TOKEN}
+        - BRAND=${BRAND:-bf}
+        - ENVIRONMENT=qa
+    ports:
+      - "9230:9230"
+    command: nodemon --inspect=0.0.0.0:9230 -e ts,js --signal SIGINT --watch ./deploy/tbd-http-webserver/lib/ --exec "sh deploy/tbd-http-webserver/rebuild.sh && node" bin/fabric.js run /etc/bf-fabric/config-http.json
+    volumes:
+      - ${PROJECT_ROOT}/${BFF_WEBSERVER_PATH}/lib:/fabric/deploy/tbd-http-webserver/lib
+
+  bff-gql:
+    image: docker.app.betfair/ppb/tbd/bff/bff-gql:local
+    environment:
+      NODE_OPTIONS: "--inspect=0.0.0.0"
+    ports:
+      - "9231:9229"
+    volumes:
+      - ${PROJECT_ROOT}/${BFF_PATH}/config/certificates:/etc/bf-fabric/certificates
+      - ${PROJECT_ROOT}/${BFF_PATH}/config/bff-gql-http-${BRAND:-bf}-qa.json:/etc/bf-fabric/bff-gql-http.json
+      - ${PROJECT_ROOT}/${BFF_PATH}/src/config:/app/dist/config
+  reverseproxy:
+    image: ppb/tbd${BRAND:-bf}/dev/reverseproxy-local
+    build:
+      context: ${PROJECT_ROOT}/${REVERSE_PROXY_DIR}
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - http-webserver
+      - webserver
+    volumes:
+      - ${PROJECT_ROOT}/${REVERSE_PROXY_DIR}/dev/environment.json:/usr/share/nginx/app.environment.json
+
+volumes:
+  tbd-assets:

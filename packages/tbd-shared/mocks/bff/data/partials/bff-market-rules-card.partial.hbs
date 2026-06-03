@@ -1,0 +1,19 @@
+"__typename": "MarketRulesCard",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:marketRules:1.123456789{{/urn}}",
+"marketName": "{{marketName}}{{^marketName}}Match Odds{{/marketName}}",
+"wallet": "{{wallet}}{{^wallet}}UK wallet{{/wallet}}",
+"clarifications": "{{clarifications}}{{^clarifications}}Rules section clarification{{/clarifications}}",
+"marketBaseRate": {{marketBaseRate}}{{^marketBaseRate}}3{{/marketBaseRate}},
+"discountAllowed": {{discountAllowed}}{{^discountAllowed}}true{{/discountAllowed}},
+"eventStartTime": "{{eventStartTime}}{{^eventStartTime}}2020-01-07T20:00:00.000Z{{/eventStartTime}}",
+"numberOfWinners": {{numberOfWinners}}{{^numberOfWinners}}1{{/numberOfWinners}},
+"marketBettingType": "{{marketBettingType}}{{^marketBettingType}}TO_BE_PLACED{{/marketBettingType}}",
+"sections": [
+{{#each sections}}
+  {
+    "name": "{{name}}{{^name}}MARKET_INFORMATION{{/name}}",
+    "content": "{{{content}}}{{^content}}Rules section content{{/content}}"
+  }{{#unless @last}},{{/unless}}
+{{/each}}
+],
+"footer": "{{footer}}{{^footer}}For further information please see <a href=http://content.betfair.com/aboutus/content.asp?sWhichKey=Rules%20and%20Regulations#undefined.do style=color:0163ad; text-decoration: underline; target=_blank>Rules & Regs</a>.{{/footer}}"

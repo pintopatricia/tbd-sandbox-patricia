@@ -1,0 +1,6 @@
+.placeholder {
+  width: calc(62px + var(--race-link-padding) * 2);
+
+  /* Not using token since this component height is based on font size */
+  height: 44px;
+}

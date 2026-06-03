@@ -1,0 +1,5 @@
+.correctScoreCardItem {
+  width: var(--bet-button-width);
+  height: var(--bet-button-height);
+  overflow: hidden;
+}

@@ -1,0 +1,20 @@
+fragment raceDetailsCard on RaceDetailsCard {
+  __typename
+  urn
+  race {
+    ...raceWithRaceDetails
+  }
+  numberOfRunners
+  raceClass
+  showMeetingInfo
+  raceViewLink {
+    viewUrn
+    viewUrl
+  }
+  availableToSubscribe
+}
+
+fragment raceDetailsCardPartial on RaceDetailsCard {
+  __typename
+  urn
+}

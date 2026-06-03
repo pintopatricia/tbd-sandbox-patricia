@@ -1,0 +1,8 @@
+"runner": {
+   "__typename": "RunnerMarketGraph",
+   "runnerURN": "{{runnerURN}}{{^runnerURN}}ppb:excRunner:1.160337355/48044/0{{/runnerURN}}",
+   "graphParams": "{{graphParams}}{{^graphParams}}marketId=1.160337355&selectionId=48044&handicap=0&logarithmic=true&theme=DARK&scale=STANDARD{{/graphParams}}",
+   {{#with liveData}}
+      {{> bff-runner-live-data}}
+    {{/with}}
+}

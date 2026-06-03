@@ -1,0 +1,29 @@
+"urn": "{{urn}}{{^urn}}ppb:obb:card:createdBets:aMvBuBIAACIAVFHF|obb_created_bets_card$de0a930c-c325-4b6c-9637-0b4725dd9159/cv/home{{/urn}}",
+"__typename": "ObbCreatedBetsCard",
+{{#with fixture}}
+    "fixture": {
+        {{> bff-football-fixture-content}}
+    },
+{{/with}}
+
+{{#with eventViewLink}}
+    "eventViewLink": {    
+        {{> bff-view-link}}
+    },
+{{/with}}
+
+{{#with footerViewLink}}
+    "footerViewLink": {    
+        {{> bff-view-link}}
+    },
+{{/with}}
+
+
+"bettingOpportunities": [
+{{#each bettingOpportunities}}
+    {
+       {{> bff-obb-betting-opportunity}}
+    }
+    {{#unless @last}},{{/unless}}
+{{/each}}
+]

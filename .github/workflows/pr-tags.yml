@@ -1,0 +1,32 @@
+name: pr-tags
+on: pull_request
+
+# Ensures that additional commits on the same PR cancels the previous github run.
+# This helps to ensure that our apps are not unnecessarily using resources.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  triage:
+    runs-on:
+      group: FlutterGithubRunners
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - id: label-the-PR
+        uses: actions/labeler@v4.2.0
+        with:
+          sync-labels: true
+      - id: slack-send-message
+        if: contains(steps.label-the-PR.outputs.new-labels, 'bff')
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          payload: |
+            {
+              "pr_name": "${{ github.event.pull_request.title }}",
+              "pr_link": "${{ github.event.pull_request.html_url }}"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_BFF_TAG }}

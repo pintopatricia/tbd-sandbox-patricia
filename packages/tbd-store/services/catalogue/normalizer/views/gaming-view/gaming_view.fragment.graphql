@@ -1,0 +1,27 @@
+fragment gamingView on GamingView {
+  __typename
+  urn
+  url
+  items(first: $numberOfFilledCardsInView) {
+    ...viewItems
+  }
+  partialItems: items {
+    ...viewItemsPartial
+  }
+  bottomBar @include(if: $withBottomBar) {
+    ...bottomBar
+  }
+  leftSidebar @include(if: $withLeftSidebar) {
+    ...leftSidebar
+  }
+  regulatoryData @include(if: $withRegulatoryData) {
+    ...regulatoryData
+  }
+  xsellBar {
+    ...XSellBar
+  }
+  seoMetaData {
+    metaTitle
+    metaDescription
+  }
+}

@@ -1,0 +1,37 @@
+"__typename": "{{__typename}}{{^__typename}}TableTennisFixture{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:fixture:98765432{{/urn}}",
+"isAmericanFormat": {{#if isAmericanFormat}}true{{else}}false{{/if}},
+"runnerNames": {{#if runnerNames}}{
+  "home": "{{runnerNames.home}}{{^runnerNames.home}}New York Knicks{{/runnerNames.home}}",
+  "away": "{{runnerNames.away}}{{^runnerNames.away}}Philadelphia 76ers{{/runnerNames.away}}"
+}{{else}}null{{/if}},
+"id": "{{id}}{{^id}}98765432{{/id}}",
+{{#if currentSet}}
+{{#with currentSet}}
+"currentSet": {
+  {{> bff-table-tennis-scores}}
+},
+{{/with}}
+{{else}}
+"currentSet": null,
+{{/if}}
+{{#if previousSets}}
+"previousSets": [
+  {{#each previousSets}}
+    { {{> bff-table-tennis-scores}} }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+],
+{{else}}
+"previousSets": null,
+{{/if}}
+{{#if setsWon}}
+{{#with setsWon}}
+"setsWon": {
+  "away": {{away}}{{^away}}1{{/away}},
+  "home": {{home}}{{^home}}2{{/home}}
+}
+{{/with}}
+{{else}}
+"setsWon": null
+{{/if}}

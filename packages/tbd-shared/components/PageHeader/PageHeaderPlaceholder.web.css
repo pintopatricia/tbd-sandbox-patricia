@@ -1,0 +1,8 @@
+.placeholderContainer {
+  padding: var(--page-header-padding);
+}
+
+.placeholder {
+  width: 30%;
+  height: 22px;
+}

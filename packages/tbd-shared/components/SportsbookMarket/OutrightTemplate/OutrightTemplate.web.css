@@ -1,0 +1,16 @@
+.bodyContainer {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+  grid-gap: var(--spacing-2);
+
+  width: 100%;
+  padding-top: var(--spacing-4);
+}
+
+.item {
+  height: var(--bet-button-height);
+  overflow: hidden;
+
+  border-radius: var(--spacing-1);
+}

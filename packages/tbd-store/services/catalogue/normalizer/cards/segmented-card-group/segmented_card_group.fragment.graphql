@@ -1,0 +1,15 @@
+fragment segmentedCardGroup on SegmentedCardGroup {
+  __typename
+  urn
+  full: items(first: $numberOfFilledCardsInCardGroup) {
+    ...fullSegmentedCardGroupItems
+  }
+  partials: items {
+    ...partialsSegmentedCardGroupItems
+  }
+}
+
+fragment segmentedCardGroupPartial on SegmentedCardGroup {
+  __typename
+  urn
+}

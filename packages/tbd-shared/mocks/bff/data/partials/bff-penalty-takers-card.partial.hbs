@@ -1,0 +1,52 @@
+"__typename": "{{__typename}}{{^__typename}}PenaltyTakersCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:penaltyTakers:acO6QhQAAF2E2RnN/e/35449296{{/urn}}",
+"penaltyTakersCardTitle": {
+  {{#with penaltyTakersCardTitle}}
+    "__typename": "{{__typename}}{{^__typename}}DisplayNameTitle{{/__typename}}",
+    "name": "{{name}}{{^name}}Penalty Takers{{/name}}"
+  {{else}}
+    "__typename": "DisplayNameTitle",
+    "name": "Penalty Takers"
+  {{/with}}
+},
+"penaltyTakersCardSubtitle": {{#with penaltyTakersCardSubtitle}}{ "__typename": "{{__typename}}{{^__typename}}DisplayNameTitle{{/__typename}}", "name": "{{name}}" }{{else}}null{{/with}},
+"penaltyTakersCardFooter": {{#with penaltyTakersCardFooter}}{ "__typename": "{{__typename}}{{^__typename}}DisplayNameTitle{{/__typename}}", "name": "{{name}}" }{{else}}null{{/with}},
+"penaltyTakersCardTermsAndConditionsUrl": {{#if penaltyTakersCardTermsAndConditionsUrl}}"{{penaltyTakersCardTermsAndConditionsUrl}}"{{else}}null{{/if}},
+"event": {
+  {{#with event}}{{> bff-sportevent}}{{/with}}
+},
+"penaltyTakers": [
+  {{#each penaltyTakers}}
+    {
+      "__typename": "PenaltyTaker",
+      "player": {
+        "__typename": "FootballPlayerFixtureContext",
+        "urn": "{{player.urn}}{{^player.urn}}ppb:footballPlayerFixtureContext:{{inc @index 1}}{{/player.urn}}",
+        "player": {
+          {{#with player.player}}{{> bff-football-player}}{{/with}}
+        },
+        "team": {
+          {{#with player.team}}{{> bff-football-team}}{{/with}}
+        }
+      },
+      "toScore": {
+        "__typename": "ToScorePenalty",
+        "topLeft":      { {{#with toScore.topLeft}}     {{> bff-penalty-takers-runner}}{{/with}} },
+        "topCenter":    { {{#with toScore.topCenter}}   {{> bff-penalty-takers-runner}}{{/with}} },
+        "topRight":     { {{#with toScore.topRight}}    {{> bff-penalty-takers-runner}}{{/with}} },
+        "bottomLeft":   { {{#with toScore.bottomLeft}}  {{> bff-penalty-takers-runner}}{{/with}} },
+        "bottomCenter": { {{#with toScore.bottomCenter}}{{> bff-penalty-takers-runner}}{{/with}} },
+        "bottomRight":  { {{#with toScore.bottomRight}} {{> bff-penalty-takers-runner}}{{/with}} }
+      },
+      "toMiss": {
+        "__typename": "ToMissPenalty",
+        "leftPostMiss":      { {{#with toMiss.leftPostMiss}}     {{> bff-penalty-takers-runner}}{{/with}} },
+        "skyrocketCrossbar": { {{#with toMiss.skyrocketCrossbar}}{{> bff-penalty-takers-runner}}{{/with}} },
+        "rightPostMiss":     { {{#with toMiss.rightPostMiss}}    {{> bff-penalty-takers-runner}}{{/with}} },
+        "leftSave":          { {{#with toMiss.leftSave}}         {{> bff-penalty-takers-runner}}{{/with}} },
+        "centerSave":        { {{#with toMiss.centerSave}}       {{> bff-penalty-takers-runner}}{{/with}} },
+        "rightSave":         { {{#with toMiss.rightSave}}        {{> bff-penalty-takers-runner}}{{/with}} }
+      }
+    }{{#unless @last}},{{/unless}}
+  {{/each}}
+]

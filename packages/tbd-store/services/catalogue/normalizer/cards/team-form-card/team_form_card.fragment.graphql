@@ -1,0 +1,12 @@
+fragment teamFormCard on TeamFormCard {
+  __typename
+  urn
+  footballFixture: fixture {
+    ...footballFixtureWithRecentForm
+  }
+}
+
+fragment teamFormCardPartial on TeamFormCard {
+  __typename
+  urn
+}

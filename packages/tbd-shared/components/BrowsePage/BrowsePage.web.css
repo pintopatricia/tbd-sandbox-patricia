@@ -1,0 +1,7 @@
+.regulatoryCard {
+  padding: 0 var(--spacing-3);
+}
+
+.panelContent {
+  padding: 0 var(--spacing-3) var(--spacing-3);
+}

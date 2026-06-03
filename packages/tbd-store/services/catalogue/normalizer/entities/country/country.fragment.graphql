@@ -1,0 +1,10 @@
+fragment country on Country {
+  urn
+  code
+  flag {
+    vector
+    small
+    medium
+    large
+  }
+}

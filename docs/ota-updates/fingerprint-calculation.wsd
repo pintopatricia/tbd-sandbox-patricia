@@ -1,0 +1,102 @@
+@startuml fingerprint_calculation
+title @expo/fingerprint - Runtime Version Calculation per Platform
+
+skinparam DefaultFontName Helvetica
+skinparam rectangle {
+  BackgroundColor #FAFAFA
+  BorderColor #555
+}
+skinparam frame {
+  BackgroundColor #F0F0F0
+  BorderColor #888
+}
+
+frame "Common inputs" as common {
+  rectangle "package.json\n(dependencies, RN version)" as pkg
+  rectangle "app.config.json /\napp.config.{js,ts}\n(expo config block)" as appconfig
+  rectangle "Expo SDK version" as exposdk
+  rectangle "Autolinked native modules\n(node_modules/<native-deps>\nsource trees)" as autolink
+  rectangle "Hermes engine config\n(enabled/disabled)" as hermes
+}
+
+frame "iOS inputs" as iosFrame {
+  rectangle "ios/<project>.xcodeproj/\nproject.pbxproj" as pbxproj
+  rectangle "ios/Podfile" as podfile
+  rectangle "ios/Podfile.lock" as podlock
+  rectangle "ios/<project>/Info.plist" as infoplist
+  rectangle "ios/<project>/Expo.plist" as expoplist
+  rectangle "Native source files\n(AppDelegate.swift, etc.)" as iossrc
+  rectangle "expo-modules-autolinking\nresolved iOS modules" as iosautolink
+  rectangle "CocoaPods version" as cocoapods
+}
+
+frame "Android inputs" as androidFrame {
+  rectangle "android/build.gradle" as agradle
+  rectangle "android/settings.gradle" as settingsgradle
+  rectangle "android/app/build.gradle" as appgradle
+  rectangle "android/app/src/main/\nAndroidManifest.xml" as manifest
+  rectangle "android/app/src/main/res/\nvalues/*.xml" as resvalues
+  rectangle "Native source files\n(MainApplication.kt, etc.)" as androidsrc
+  rectangle "expo-modules-autolinking\nresolved Android modules" as androidautolink
+  rectangle "Gradle wrapper version" as gradlever
+}
+
+rectangle "Sort entries by key\nSHA-1 over the concatenated\nnormalized contents" as hashIos #FFF59D
+rectangle "Sort entries by key\nSHA-1 over the concatenated\nnormalized contents" as hashAndroid #FFF59D
+
+rectangle "**iOS runtimeVersion R_ios**\n(40-char hex)" as fpios #A5D6A7
+rectangle "**Android runtimeVersion R_and**\n(40-char hex)" as fpand #A5D6A7
+
+common --> hashIos
+iosFrame --> hashIos
+common --> hashAndroid
+androidFrame --> hashAndroid
+
+hashIos --> fpios
+hashAndroid --> fpand
+
+note top of common
+  Changing any of these inputs
+  changes BOTH platform fingerprints.
+  This is the bulk of "what is a runtime".
+end note
+
+note right of iosFrame
+  iOS and Android fingerprints almost
+  always differ. Same project, different
+  hex, because each platform pulls in its
+  own native code/configuration.
+end note
+
+note bottom of fpios
+  Embedded into:
+    ios/<project>/Expo.plist
+      EXUpdatesRuntimeVersion
+  Sent on every check via:
+    expo-runtime-version: R_ios
+
+  At build time, R_ios is computed and
+  substituted into the placeholder in
+  Expo.plist before native build.
+end note
+
+note bottom of fpand
+  Embedded into:
+    AndroidManifest.xml
+      expo.modules.updates.EXPO_RUNTIME_VERSION
+  Sent on every check via:
+    expo-runtime-version: R_and
+end note
+
+legend bottom
+  == How to compute ==
+  npx @expo/fingerprint fingerprint:generate --platform ios
+  npx @expo/fingerprint fingerprint:generate --platform android
+
+  == What to exclude ==
+  .fingerprintignore at repo root (gitignore-style globs).
+  Useful for paths that change without affecting the binary
+  (auto-generated metadata, test fixtures, etc.).
+end legend
+
+@enduml

@@ -1,0 +1,36 @@
+**/node_modules
+# Docker for native is Android only
+**/ios 
+Docker
+*Dockerfile
+Makefile
+*.md
+.dockerignore
+**/reports
+**/dist
+docs
+_templates
+.github
+storybook-static
+**/coverage
+jest.*js
+packages/tbd-lint-rules
+packages/jest-source-resolver
+packages/bff-visualizer
+# web/regression-tests TODO: try to exclude this by having several *.dockerignore
+.editorconfig
+.eslintignore
+.eslintrc
+.gitignore
+.stylelintrc
+.huskyrc
+.lintstagedrc
+.prettierignore
+.prettierrc
+commitlint.config.js
+*.spec
+.git
+!**/.yalc/**
+**/*.tsbuildinfo
+**/target
+**/dist

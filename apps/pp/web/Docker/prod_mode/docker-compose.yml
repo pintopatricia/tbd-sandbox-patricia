@@ -1,0 +1,45 @@
+version: "3.4"
+services:
+  webserver:
+    image: ppb/tbdpp/web/prod/webserver
+    build:
+      context: ${PWD}/../../../
+      args:
+        - GITHUB_TOKEN=${GITHUB_TOKEN}
+        - MONTEROSA_TOKEN=${MONTEROSA_TOKEN}
+      dockerfile: apps/pp/web/Docker/prod_mode/webserver.Dockerfile
+
+  http-webserver:
+    image: ppb/tbd/bff/http-webserver
+    build:
+      context: ${PWD}/../../../
+      args:
+        - GITHUB_TOKEN=${GITHUB_TOKEN}
+        - MONTEROSA_TOKEN=${MONTEROSA_TOKEN}
+        - BRAND=pp
+        - ENVIRONMENT=qa
+      dockerfile: apps/tbd-http-webserver/prod.Dockerfile
+    volumes:
+      - ${PWD}/../../../apps/tbd-http-webserver/config/certificates:/etc/bf-fabric/certificates/
+      - ${PWD}/../../../apps/tbd-http-webserver/config/webserver-config-http-pp-qa.json:/etc/bf-fabric/config-http.json
+
+  bff-gql:
+    image: docker.app.betfair/ppb/tbd/bff/bff-gql:local
+    ports:
+      - "8082:8082"
+    volumes:
+      - ${PWD}/../../bf-tbd-http-bff-gql/config/certificates:/etc/bf-fabric/certificates
+      - ${PWD}/../../bf-tbd-http-bff-gql/config/bff-gql-http-pp-qa.json:/etc/bf-fabric/bff-gql-http.json
+      - ${PWD}/../../bf-tbd-http-bff-gql/src/config:/app/dist/config
+
+  reverseproxy:
+    image: ppb/tbdpp/web/prod/reverseproxy-local
+    build:
+      context: ${PWD}/../../../
+      dockerfile: apps/pp/web/Docker/prod_mode/reverseproxy.Dockerfile
+    depends_on:
+      - bff-gql
+      - webserver
+    ports:
+      - "80:80"
+      - "443:443"

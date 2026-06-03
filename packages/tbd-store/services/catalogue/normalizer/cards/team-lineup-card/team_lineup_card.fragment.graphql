@@ -1,0 +1,4 @@
+fragment teamLineupCardPartial on TeamLineupCard {
+  __typename
+  urn
+}

@@ -1,0 +1,10 @@
+"betResult": "{{betResult}}",
+"legResults": [
+  {{#each legResults}}
+    {
+      {{> bff-obb-leg-result}}
+    }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+],
+"__typename": "{{__typename}}{{^__typename}}Result{{/__typename}}"

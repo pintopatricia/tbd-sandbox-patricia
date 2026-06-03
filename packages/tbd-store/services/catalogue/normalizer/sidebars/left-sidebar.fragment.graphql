@@ -1,0 +1,6 @@
+fragment leftSidebar on LeftSidebar {
+  __typename
+  items {
+    ...viewItems
+  }
+}

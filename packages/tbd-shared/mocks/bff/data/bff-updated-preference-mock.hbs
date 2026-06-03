@@ -1,0 +1,38 @@
+{
+   "data":{
+    {{#with data}}
+      "setPreferences":{
+      {{#with setPreferences}}
+         "result":[
+         {{#each result}}
+           {{#ifEquals __typename "PreferenceSingleChoice"}}
+           {{> bff-preference-single-choice }}
+           {{/ifEquals}}
+           {{#ifEquals __typename "ExchangeDefaultProductPreference"}}
+           {{> bff-preference-exc-default-product }}
+           {{/ifEquals}}
+           {{#ifEquals __typename "DefaultProductPreference"}}
+           {{> bff-preference-default-product }}
+           {{/ifEquals}}
+           {{#ifEquals __typename "LastViewedProductPreference"}}
+           {{> bff-preference-last-viewed-product }}
+           {{/ifEquals}}
+           {{#ifEquals __typename "UserProductsPreference"}}
+           {{> bff-preference-product }}
+           {{/ifEquals}}
+          {{#unless @last}},{{/unless}}
+         {{/each}}
+         ],
+         "error":[
+          {{#each error}}
+            {
+              "message": "{{message}}"
+            }
+          {{#unless @last}},{{/unless}}
+          {{/each}}
+        ]
+      {{/with}}
+      }
+    {{/with}}
+   }
+}

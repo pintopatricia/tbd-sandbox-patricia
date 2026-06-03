@@ -1,0 +1,93 @@
+{{#if filters}}
+  {{#with filters}}
+    "totalDaysRange": {{totalDaysRange}}{{^totalDaysRange}}90{{/totalDaysRange}},
+    {{#if orderType}}
+      {{#with orderType}}
+        "orderType": {
+          "defaultIndex": {{defaultIndex}}{{^defaultIndex}}0{{/defaultIndex}},
+          "items": [
+            {{#if items}}
+              {{#each items}}"{{this}}"{{#unless @last}},{{/unless}}{{/each}}
+            {{else}}
+              "OPEN", "SETTLED"
+            {{/if}}
+          ]
+        }
+      {{/with}}
+    {{else}}
+      "orderType": {
+        "items": [
+          "OPEN",
+          "SETTLED"
+        ],
+        "defaultIndex": 0
+      }
+    {{/if}},
+    {{#if productType}}
+      {{#with productType}}
+        "productType": {
+          "defaultIndex": {{defaultIndex}}{{^defaultIndex}}1{{/defaultIndex}},
+          "items": [
+            {{#if items}}
+              {{#each items}}"{{this}}"{{#unless @last}},{{/unless}}{{/each}}
+            {{else}}
+              "EXCHANGE", "SPORTSBOOK"
+            {{/if}}
+          ]
+        }
+      {{/with}}
+    {{else}}
+      "productType": {
+        "items": [
+          "EXCHANGE",
+          "SPORTSBOOK"
+        ],
+        "defaultIndex": 1
+      }
+    {{/if}},
+    {{#if matchedStatus}}
+      {{#with matchedStatus}}
+      "matchedStatus": {
+        "items": [
+        {{#each items}}
+          {
+              "filterURN": "{{filterURN}}",
+              "filter": "{{filter}}",
+              "numberOfBets": {{numberOfBets}}
+          }
+        {{#unless @last}},{{/unless}}{{/each}}
+        ],
+        "defaultIndex": {{defaultIndex}}{{^defaultIndex}}0{{/defaultIndex}}
+      },
+      {{/with}}
+    {{/if}}
+    {{#if marketIds}}
+      "marketIds": [
+        {{#each marketIds}}"{{this}}"{{#unless @last}},{{/unless}}{{/each}}
+      ],
+    {{else}}
+      "marketIds": [],
+    {{/if}}
+    "hasHeritageBets": false,
+    "isHeritageView": false
+  {{/with}}
+{{else}}
+  "totalDaysRange": 90,
+  "orderType": {
+    "items": [
+        "OPEN",
+        "SETTLED"
+    ],
+    "defaultIndex": 0
+  },
+  "productType": {
+    "items": [
+      "EXCHANGE",
+      "SPORTSBOOK"
+    ],
+    "defaultIndex": 1
+  },
+  "marketIds": []
+{{/if}}
+
+

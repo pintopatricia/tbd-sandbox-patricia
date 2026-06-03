@@ -1,0 +1,20 @@
+fragment obbLandingPageView on ObbLandingPageView {
+  __typename
+  urn
+  url
+  items {
+    ...viewItems
+  }
+  bottomBar @include(if: $withBottomBar) {
+    ...bottomBar
+  }
+  leftSidebar @include(if: $withLeftSidebar) {
+    ...leftSidebar
+  }
+  regulatoryData @include(if: $withRegulatoryData) {
+    ...regulatoryData
+  }
+  xsellBar {
+    ...XSellBar
+  }
+}

@@ -1,0 +1,20 @@
+# .github/actions/create-tag/action.yml
+name: "Create and push a tag to origin"
+description: "Creates a git tag with the providade name and pushes it to remote/origin"
+inputs:
+  tag-name:
+    description: "The tag to be created"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Create tag
+      shell: bash
+      id: create-tag
+      run: |
+        git tag ${{ inputs.tag-name }}
+    - name: Push tag to origin
+      shell: bash
+      id: push-tag
+      run: |
+        git push origin tag ${{ inputs.tag-name }}

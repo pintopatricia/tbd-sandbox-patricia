@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>UIDesignRequiresCompatibility</key>
+	<true/>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.betfair.multiples</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>bfe</string>
+				<string>bsm</string>
+				<string>fb292719384173526</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>FacebookAppID</key>
+	<string>292719384173526</string>
+	<key>FacebookDisplayName</key>
+	<string>Sports Betting from Betfair</string>
+	<key>GamingSettings</key>
+	<dict>
+		<key>GamesApiProduct</key>
+		<string>native-xsellexchange</string>
+		<key>RecentlyPlayedBucket</key>
+		<string>xsellexchange</string>
+		<key>RegulatoryApiProduct</key>
+		<string>bfrb</string>
+		<key>ResourcesVersion</key>
+		<string>27</string>
+		<key>SubDomain</key>
+		<string>exchangegaming</string>
+		<key>applicationId</key>
+		<string>BFRebuild</string>
+		<key>EnvironmentShort</key>
+		<string>betfair</string>
+		<key>AssetsDomainShort</key>
+		<string>betfair</string>
+	</dict>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>itms-apps</string>
+		<string>bfsportsbetting</string>
+		<string>cydia</string>
+		<string>undecimus</string>
+		<string>siloe</string>
+		<string>zbra</string>
+		<string>filza</string>
+		<string>activator</string>
+	</array>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<false/>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>betfair.pragmaticplay.net</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+			<key>gserver-betfairmars.redtiger.cash</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Betfair uses Bluetooth to connect to nearby devices for enhanced functionality.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Betfair needs Bluetooth access to communicate with nearby peripherals.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Betfair requires access to your location while it is in use, to improve user experience based on your location.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Betfair uses motion data to provide a more interactive experience based on device movement.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Betfair requires access to your location even when it is not in use, to provide location-based services.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Betfair requires access to your location even when it is not in use, to provide location-based services.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Pressing OK, will allow you to upload an image or send us a photo to verify your account.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Enabling Face ID allows you quick and secure access to your account.</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>Your data will be used to offer you a more personalised experience in Navigation, Messaging, Sporting Events and Promotions.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app requires access to the photo library to save and share images.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>This app requires access to the photo library to save and share images.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>notosans.ttf</string>
+		<string>notosans_bold.ttf</string>
+		<string>notosans_extra_condensed_900_italic.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>arm64</string>
+	</array>
+	<key>UIRequiresFullScreen</key>
+	<true/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+</dict>
+</plist>

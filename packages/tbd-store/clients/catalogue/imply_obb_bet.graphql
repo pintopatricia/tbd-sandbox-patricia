@@ -1,0 +1,92 @@
+query ImplyObbBets(
+  $implyBetsRequestInput: ImplyBetsRequestInput!
+  $throttlesOn: [String!]
+  $throttlesOff: [String!]
+  $productExclusions: [ProductExclusion!]
+)
+@productExclusions(productExclusions: $productExclusions)
+@throttlesOn(throttlesOn: $throttlesOn)
+@throttlesOff(throttlesOff: $throttlesOff) {
+  obb {
+    implyBets(implyBetsRequestInput: $implyBetsRequestInput) {
+      betDefinitions {
+        id
+        details {
+          minStake
+          maxStake
+          maxPayout
+          minStakeIncrement
+          currency
+          price {
+            decimal
+            fractional {
+              numerator
+              denominator
+            }
+          }
+        }
+        result {
+          resultCode
+          errorDetails
+        }
+      }
+      combinedBetDefinitions {
+        result {
+          resultCode
+          errorDetails
+        }
+        legs {
+          eventId {
+            supplier
+            id
+          }
+          expressionTemplateId
+          baseExpressionTemplateDefinitions {
+            expressionTemplateId
+          }
+          expressionParams {
+            baseBets {
+              params {
+                outcomeId
+                timePeriodId
+                participantIdA
+                participantIdB
+                squadAParticipantIds
+                squadBParticipantIds 
+                value
+                quantifier
+                participantIds
+                outcomeIds
+              }
+              templateId
+            }
+            x
+          }
+          betDefinitions
+          result {
+            errorDetails
+            resultCode
+          }
+        }
+        details {
+          minStake
+          maxStake
+          maxPayout
+          minStakeIncrement
+          currency
+          price {
+            decimal
+            fractional {
+              numerator
+              denominator
+            }
+          }
+        }
+      }
+      result {
+        resultCode
+        errorDetails
+      }
+    }
+  }
+}

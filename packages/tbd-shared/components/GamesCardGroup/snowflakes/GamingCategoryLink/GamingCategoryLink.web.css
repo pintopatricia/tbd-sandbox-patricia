@@ -1,0 +1,31 @@
+:root {
+  --white-border: rgb(255 255 255 / 0.05);
+}
+
+.gamingCategory {
+  display: flex;
+
+  flex-direction: column;
+
+  width: var(--gaming-card-size);
+  height: var(--gaming-card-size);
+  padding: var(--spacing-4) var(--spacing-3);
+  margin-right: var(--spacing-3);
+
+  color: var(--neutrals-text-default);
+
+  background-color: var(--neutrals-background-elevation3);
+  border: 1px solid var(--white-border);
+  border-radius: var(--spacing-1);
+}
+
+.icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+}
+
+.categoryButton {
+  margin: auto 0 0;
+
+  color: var(--action-tertiary-text-default);
+}

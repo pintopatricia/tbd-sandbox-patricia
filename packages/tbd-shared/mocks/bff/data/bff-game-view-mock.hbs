@@ -1,0 +1,23 @@
+{
+  "data": {
+    "View": {
+      "__typename": "GameView",
+      "urn": "{{urn}}{{^urn}}ppb:tbd:view:game:game1{{/urn}}",
+      "url": "{{url}}{{^url}}/casino/game:game1{{/url}}",
+      "items": {
+        {{> bff-items }}
+      },
+      "partialItems": {
+				"pageInfo": null,
+				{{> bff-partial-items }}
+			},
+      "bottomBar": {
+        {{> bff-bottom-bar-tiles }}
+      },
+      "navigationItem": {
+        "title": "{{title}}{{^title}}AGE OF THE GODS: GOD OF STORMS{{/title}}",
+        "__typename": "NavigationItem"
+      }
+    }
+  }
+}

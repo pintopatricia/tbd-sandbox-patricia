@@ -1,0 +1,6 @@
+fragment translatableText on TranslatableText {
+  translated
+  translate {
+    key
+  }
+}

@@ -1,0 +1,55 @@
+.placeholder {
+  display: flex;
+
+  align-items: center;
+
+  padding: var(--spacing-2) var(--spacing-2) var(--spacing-2) 0;
+
+  border-bottom: var(--spacing-half) solid var(--neutrals-border-elevation1);
+}
+
+.teamsContainer {
+  display: flex;
+
+  flex-direction: column;
+  flex-grow: 1;
+
+  padding: var(--spacing-1) 0;
+}
+
+.teamName {
+  width: 96px;
+  height: 16px;
+  margin: var(--spacing-half) 0;
+
+  background-color: var(--neutrals-background-elevation5);
+  border-radius: 4px;
+}
+
+.betButtons {
+  display: flex;
+
+  flex-direction: row;
+
+  gap: 1px;
+
+  overflow: hidden;
+
+  border-radius: 4px;
+}
+
+.betButton {
+  flex: 1;
+
+  width: var(--price-button-sbk-container-sizing);
+  height: var(--bet-button-height);
+
+  background-color: var(--neutrals-background-elevation3);
+}
+
+.statsButton {
+  width: 38px;
+  height: var(--bet-button-height);
+
+  background-color: var(--neutrals-background-elevation3);
+}

@@ -1,0 +1,12 @@
+web:
+  - apps/bf/web/**
+web-tests:
+  - apps/bf/web/regression-tests/**
+native:
+  - apps/bf/native/**
+native-tests:
+  - apps/bf/native/tests/**
+http-webserver:
+  - any: ["apps/tbd-http-webserver/**", "!apps/tbd-http-webserver/regression-tests/**"]
+http-webserver-tests:
+  - apps/tbd-http-webserver/regression-tests/**

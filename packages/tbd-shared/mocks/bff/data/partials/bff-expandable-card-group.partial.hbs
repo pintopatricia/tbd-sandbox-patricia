@@ -1,0 +1,15 @@
+"__typename":"ExpandableCardGroup",
+"urn":"{{urn}}{{^urn}}ppb:tbd:cardgroup:marketExpandable:924.265370417|1|1{{/urn}}",
+"expandableCardGroupTitle": {{#if expandableCardGroupTitle}}"{{expandableCardGroupTitle}}"{{else}}null{{/if}},
+"isExpandable": {{#if (defined isExpandable)}}{{isExpandable}}{{else}}false{{/if}},
+"isExpanded": {{#if (defined isExpanded)}}{{isExpanded}}{{else}}false{{/if}},
+{{#with full}}
+  "full":{
+    {{> bff-items }}
+  },
+{{/with}}
+{{#with partials}}
+  "partials":{
+    {{> bff-partial-items }}
+  }
+{{/with}}

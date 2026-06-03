@@ -1,0 +1,69 @@
+.betslipContainer {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: var(--betslip-stack);
+
+  /*
+    Prevents the overlap of the bottom bar and collapsed betslip
+    when the safe area inset bottom variable is in use.
+  */
+  padding-bottom: var(--safe-area-inset-bottom);
+
+  color: var(--neutrals-text-default);
+}
+
+.betslipContainerDesktop {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+  flex-grow: 1;
+
+  width: inherit;
+  padding-bottom: var(--spacing-6);
+  margin-right: var(--spacing-3);
+}
+
+.betslipContentWrapper {
+  display: flex;
+
+  flex-direction: column;
+  flex-grow: 1;
+
+  color: var(--neutrals-text-default);
+}
+
+.headerDesktop {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: var(--spacing-2);
+
+  background-color: var(--components-neutrals-bottomsheet-background-elevation1);
+  border-radius: 8px 8px 0 0;
+}
+
+.inputDesktopWrapper {
+  display: flex;
+
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.inputDesktopWrapper input {
+  min-width: 10px;
+
+  caret-color: var(--action-secondary-text-default);
+}
+
+.headerContentDesktop {
+  padding-left: 0;
+}
+
+.closeButton {
+  width: 24px;
+  height: 24px;
+}

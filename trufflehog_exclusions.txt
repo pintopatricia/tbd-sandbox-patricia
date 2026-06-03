@@ -1,0 +1,10 @@
+^\.yarn/
+^yarn\.lock
+^node_modules/
+^apps/.*/splunk-otel-web\.js
+
+# TMX Framework files
+^apps/.*/native/ios/TMX.*\.xcframework/
+
+# Monterosa keychain script
+^tools/ci/monterosa-gitlab-access.js

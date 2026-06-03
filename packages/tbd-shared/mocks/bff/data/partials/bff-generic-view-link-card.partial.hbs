@@ -1,0 +1,17 @@
+"__typename": "{{__typename}}{{^__typename}}GenericViewLinkCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:genericViewLink:generic:inplay{{/urn}}",
+"viewLink": {
+    "viewUrn": "{{viewLink.viewUrn}}{{^viewLink.viewUrn}}mockerURN{{/viewLink.viewUrn}}",
+    "viewUrl": "{{viewLink.viewUrl}}{{^viewLink.viewUrl}}mockerUrl{{/viewLink.viewUrl}}"
+},
+"badge": "{{badge}}{{^badge}}INPLAY{{/badge}}",
+"genericViewLinkTitle": {
+    "__typename": "{{genericViewLinkTitle.__typename}}{{^genericViewLinkTitle.__typename}}DisplayNameTitle{{/genericViewLinkTitle.__typename}}",
+    "name": "{{genericViewLinkTitle.name}}{{^genericViewLinkTitle.name}}Inplay{{/genericViewLinkTitle.name}}",
+    "translationKey": "{{genericViewLinkTitle.translationKey}}"
+},
+"sportIcon": {{#if sportIcon}}{
+    "sport": {
+        "sportId": {{sportIcon.sport.sportId}}{{^sportIcon.sport.sportId}}1{{/sportIcon.sport.sportId}}
+    }
+}{{else}}null{{/if}}

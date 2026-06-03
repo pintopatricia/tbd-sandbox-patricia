@@ -1,0 +1,17 @@
+"__typename": "{{__typename}}{{^__typename}}ObbSquadBetParams{{/__typename}}",
+"participantIds": [
+  {{#each participantIds}}
+    {
+      {{> bff-obb-participant}}
+    }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+],
+"outcomeIds": [
+  {{#each outcomeIds}}
+    "{{this}}"{{#unless @last}},{{/unless}}
+  {{/each}}
+],
+"value": {{value}},
+"timePeriodId": "{{timePeriodId}}",
+"quantifier": "{{quantifier}}"

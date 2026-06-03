@@ -1,0 +1,9 @@
+{
+{{#with result}}
+  "resultCode": "{{resultCode}}",
+  {{#if errorDetails}}
+    "errorDetails": "{{errorDetails}}",
+  {{/if}}
+  "__typename": "{{__typename}}{{^__typename}}ObbResult{{/__typename}}"
+{{/with}}
+},

@@ -1,0 +1,20 @@
+{
+  "data": {
+    "Cards": [
+      {{#each cards}}
+        {
+          "__typename": "{{__typename}}{{^__typename}}MarketCard{{/__typename}}",
+          "urn":"{{urn}}{{^urn}}ppb:tbd:card:market:xxx{{/urn}}",
+          {{#if displayRunners}}
+              "displayRunners": {
+              {{#with displayRunners}}
+                {{> bff-display-runners-updates}}
+              {{/with}}
+              }
+          {{/if}}
+        }
+        {{#unless @last}},{{/unless}}
+      {{/each}}
+    ]
+  }
+}

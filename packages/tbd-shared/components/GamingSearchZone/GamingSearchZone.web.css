@@ -1,0 +1,66 @@
+.resultsContainer {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 0 var(--spacing-3);
+
+  margin: 0 var(--spacing-3) 0 var(--spacing-3);
+}
+
+div.overlayGaming {
+  height: calc(100% - var(--header-height) - var(--bottom-bar-height-sizing));
+
+  background-color: var(--page-background-colour);
+}
+
+div.overlayGamingDesktop {
+  background-color: var(--page-background-colour);
+}
+
+.gameContainer {
+  margin-bottom: var(--spacing-3);
+}
+
+.pinGamingSearch {
+  align-content: center;
+  align-items: center;
+
+  max-height: 500px;
+  padding-bottom: var(--header-input-container-padding);
+  overflow: hidden;
+
+  background-color: var(--page-background-colour);
+  opacity: 1;
+
+  transition:
+    max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s ease;
+}
+
+.searchBarVisible {
+  pointer-events: auto;
+}
+
+.searchBarHidden {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  pointer-events: none;
+
+  opacity: 0;
+}
+
+@media (max-width: 640px) {
+  .resultsContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .rectangleResult {
+    grid-column: 1 / 3;
+
+    height: 50vw;
+  }
+}

@@ -1,0 +1,34 @@
+"__typename": "PopularBettingOpportunity",
+{{#if type}}
+"type": "{{type}}",
+{{/if}}
+"count": {{count}}{{^count}}123{{/count}},
+"urn": "{{urn}}{{^urn}}ppb:bettingOpportunity:popular:bo-1|1|0|0{{/urn}}",
+"id": "{{id}}{{^id}}0{{/id}}",
+"displayName": "{{displayName}}{{^displayName}}Betting Opportunity{{/displayName}}",
+"headline": {{#if headline}}true{{else}}false{{/if}},
+"featured": {{#if featured}}true{{else}}false{{/if}},
+{{#if selections}}
+    "selections": [
+        {{#each selections}}
+            {
+            {{#with market}}
+                "market": {
+                {{> bff-market}}
+                },
+            {{/with}}
+            {{#with runner}}
+                "runner": {
+                "runnerURN": "{{runnerURN}}{{^runnerURN}}ppb:sbkRunner:924.1/1{{/runnerURN}}",
+                "selectionId": {{selectionId}}{{^selectionId}}1{{/selectionId}}
+                }
+            {{else}}
+                "runner": {
+                "runnerURN": "ppb:sbkRunner:924.1/1",
+                "selectionId": 1
+                }
+            {{/with}}
+            }{{#unless @last}},{{/unless}}
+        {{/each}}
+    ]
+{{/if}}

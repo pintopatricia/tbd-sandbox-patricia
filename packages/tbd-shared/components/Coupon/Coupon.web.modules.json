@@ -1,0 +1,9 @@
+{
+  "couponContainer": ".e050104376d5250d-couponContainer",
+  "couponEventScoreContainer": ".e050104376d5250d-couponEventScoreContainer",
+  "couponSupportingContentButton": ".e050104376d5250d-couponSupportingContentButton",
+  "fixtureHeaderContainer": ".e050104376d5250d-fixtureHeaderContainer",
+  "statsContainer": ".e050104376d5250d-statsContainer",
+  "betButtonsContainer": ".e050104376d5250d-betButtonsContainer",
+  "statsButtonContainer": ".e050104376d5250d-statsButtonContainer"
+}

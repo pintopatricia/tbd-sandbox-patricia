@@ -1,0 +1,42 @@
+"__typename": "PopularMultiplesBetBuilderCard",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:popularmultiplesbetbuilder:bo-1|1|0|0{{/urn}}",
+{{#if cmsConfiguredTitle.name}}
+  "cmsConfiguredTitle": {
+    "name": "{{cmsConfiguredTitle.name}}"
+  },
+{{/if}}
+{{#with popularbettingopportunity}}
+  "popularbettingopportunity": {
+    "__typename": "PopularBettingOpportunity",
+    "count": {{count}}{{^count}}123{{/count}},
+    "urn": "{{urn}}{{^urn}}ppb:bettingOpportunity:popular:bo-1|1|0|0{{/urn}}",
+    "id": "{{id}}{{^id}}bo-1|1|0|0{{/id}}",
+    "type": {{#if type}}"{{type}}"{{else}}null{{/if}},
+    {{#if selections}}
+      "selections": [
+        {{#each selections}}
+          {
+            {{#with market}}
+              "market": {
+                {{> bff-market}}
+              },
+            {{/with}}
+            {{#if raceRunner}}
+              "raceRunner": {
+              {{#with raceRunner}}
+                {{> bff-race-runner }}
+              {{/with}}
+              },
+            {{/if}}
+            {{#with runner}}
+              "runner": {
+                "runnerURN": "{{runnerURN}}{{^runnerURN}}ppb:sbkRunner:924.1/1{{/runnerURN}}",
+                "selectionId": {{selectionId}}{{^selectionId}}1{{/selectionId}}
+              }
+            {{/with}}
+          }{{#unless @last}},{{/unless}}
+        {{/each}}
+      ]
+    {{/if}}
+  }
+{{/with}}

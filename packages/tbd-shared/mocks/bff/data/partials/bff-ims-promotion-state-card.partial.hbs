@@ -1,0 +1,16 @@
+"__typename": "ImsPromotionStateCard",
+"title": "{{title}}{{^title}}Title{{/title}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:imsPromotionState:gaming-promotion-1{{/urn}}",
+{{#with promotion}}
+    "promotion": { {{> bff-ims-promotion }} },
+{{/with}}
+{{#if depositLink}}
+{{#with depositLink}}
+    "depositLink" : {
+    "viewUrn": "{{viewUrn}}{{^viewUrn}}ppb:tbd:view:depositLink{{/viewUrn}}",
+    "viewUrl": "{{viewUrl}}{{^viewUrl}}/imsPromotions/depositLink/example{{/viewUrl}}"
+    },
+{{/with}}
+{{else}}
+  "depositLink": null
+{{/if}}

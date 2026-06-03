@@ -1,0 +1,20 @@
+.container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.container > * + * {
+  margin-top: var(--spacing-2);
+}
+
+.controls {
+  margin-top: var(--spacing-4);
+}
+
+.notificationsListContainer {
+  margin-bottom: var(--spacing-3);
+}
+
+.notificationsListContainerExperiment {
+  margin-top: var(--spacing-3);
+}

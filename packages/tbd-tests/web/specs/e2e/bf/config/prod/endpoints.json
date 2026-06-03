@@ -1,0 +1,49 @@
+{
+  "X_APPLICATION": "K61C39rIC0WKzoQ7",
+
+  "SSO": {
+    "endpoint": "https://ssobf.prd.internal/api/login"
+  },
+
+  "FACETED_SEARCH_URL_OPTIONS": {
+    "hostname": "scan-prdbfg.prd.internal",
+    "port": 80,
+    "pathname": "/www/sports/navigation/facet/v1.0/search",
+    "protocol": "http"
+  },
+
+  "FCQ_VALIDATE_MARKETS_ELIGIBILITY_URL_OPTIONS": {
+    "hostname": "fcqbf.prd.internal",
+    "port": 80,
+    "pathname": "/fcq-service/v0.1/validateMarketsEligibility",
+    "protocol": "http"
+  },
+
+  "FCQ_GET_ELIGIBLE_BETS_URL_OPTIONS": {
+    "hostname": "fcqbf.prd.internal",
+    "port": 80,
+    "pathname": "/fcq-service/v0.1/getEligibleBets",
+    "protocol": "http"
+  },
+
+  "COS_GET_ELIGIBLE_MARKETS_URL_OPTIONS": {
+    "hostname": "cos.prd.internal",
+    "port": 80,
+    "pathname": "/cashout-service/readonly/v1/getEligibleMarkets",
+    "protocol": "http"
+  },
+
+  "COS_TRANSACTIONAL_URL_OPTIONS": {
+    "hostname": "cos.prd.internal",
+    "port": 80,
+    "pathname": "/cashout-service/transactional/v1/cashout",
+    "protocol": "http"
+  },
+
+  "SCO_SPORTSBOOK_CASHOUT_BET_URL_OPTIONS": {
+    "hostname": "sco.betfair.com/ ",
+    "port": 80,
+    "pathname": "/www/sports/fixedodds/transactional/v1/cashoutBet",
+    "protocol": "http"
+  }
+}

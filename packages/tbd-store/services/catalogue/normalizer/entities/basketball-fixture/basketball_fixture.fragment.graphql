@@ -1,0 +1,27 @@
+fragment basketballFixture on BasketballFixture {
+  __typename
+  urn
+  runnerNames {
+    home
+    away
+  }
+  isAmericanFormat
+  score {
+    scoreHome: home
+    scoreAway: away
+  }
+  clock {
+    period
+    segment
+    timeElapsed
+    timeRemaining
+  }
+  periodScores {
+    score {
+      scoreHome: home
+      scoreAway: away
+    }
+    period
+    segment
+  }
+}

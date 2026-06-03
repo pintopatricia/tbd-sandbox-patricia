@@ -1,0 +1,183 @@
+name: Update CI Dashboard
+
+on:
+  workflow_run:
+    workflows:
+      - "iOS Release"
+      - "iOS Tests"
+      - "Build iOS App"
+      - "Android Release"
+      - "Android Tests"
+      - "Build Android App"
+    types: [completed]
+    branches: [master]
+  workflow_dispatch:
+    inputs:
+      ref:
+        type: string
+        description: Branch from which to generate the tag and build the app
+        required: false
+        default: 'master'
+
+jobs:
+  update-dashboard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Generate dashboard data
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          CONFIG=$(cat .github/ci-dashboard-config.json)
+          BRANDS=$(echo "$CONFIG" | jq -r '.brands[]')
+
+          CATEGORIES_JSON="[]"
+
+          while IFS= read -r CATEGORY; do
+            CAT_NAME=$(echo "$CATEGORY" | jq -r '.name')
+            CAT_ICON=$(echo "$CATEGORY" | jq -r '.icon')
+
+            WORKFLOWS_JSON="[]"
+
+            while IFS= read -r WF; do
+              WF_NAME=$(echo "$WF" | jq -r '.name')
+              WF_FILE=$(echo "$WF" | jq -r '.file')
+              WF_JOBS=$(echo "$WF" | jq -r '.jobs // [] | @json')
+
+              HAS_JOBS=$(echo "$WF" | jq '.jobs | length > 0')
+
+              # Fetch last 100 runs for this workflow
+              RUNS=$(gh api \
+                "repos/${REPO}/actions/workflows/${WF_FILE}/runs?per_page=100" \
+                --jq '.workflow_runs' 2>/dev/null || echo "[]")
+
+              BRANDS_JSON="[]"
+
+              for BRAND in $BRANDS; do
+                # Find latest run whose name/display_title contains the brand
+                RUN=$(echo "$RUNS" | jq --arg b "$BRAND" '
+                  map(select(
+                    (.name // "" | ascii_downcase | contains($b)) or
+                    (.display_title // "" | ascii_downcase | contains($b))
+                  )) | first // null')
+
+                if [ "$HAS_JOBS" = "true" ] && [ "$RUN" != "null" ] && [ -n "$RUN" ]; then
+                  RUN_ID=$(echo "$RUN" | jq -r '.id')
+
+                  # Fetch jobs for this run
+                  JOBS_DATA=$(gh api \
+                    "repos/${REPO}/actions/runs/${RUN_ID}/jobs" \
+                    --jq '.jobs' 2>/dev/null || echo "[]")
+
+                  JOBS_STATUS_JSON="[]"
+
+                  while IFS= read -r JOB_NAME; do
+                    # Match job by name (case-insensitive contains)
+                    JOB=$(echo "$JOBS_DATA" | jq --arg j "$JOB_NAME" '
+                      map(select(.name | ascii_downcase | contains($j))) | first // null')
+
+                    if [ "$JOB" = "null" ] || [ -z "$JOB" ]; then
+                      JOB_DATA=$(jq -n \
+                        --arg name "$JOB_NAME" \
+                        '{name: $name, status: "no_run", conclusion: null, url: null}')
+                    else
+                      JOB_DATA=$(echo "$JOB" | jq \
+                        --arg name "$JOB_NAME" \
+                        '{name: $name, status: .status, conclusion: .conclusion, url: .html_url}')
+                    fi
+
+                    JOBS_STATUS_JSON=$(echo "$JOBS_STATUS_JSON" | jq --argjson d "$JOB_DATA" '. + [$d]')
+                  done < <(echo "$WF_JOBS" | jq -r '.[]')
+
+                  BRAND_DATA=$(echo "$RUN" | jq \
+                    --arg brand "$BRAND" \
+                    --argjson jobs "$JOBS_STATUS_JSON" \
+                    '{
+                      brand: $brand,
+                      status: .status,
+                      conclusion: .conclusion,
+                      run_number: .run_number,
+                      url: .html_url,
+                      updated_at: .updated_at,
+                      actor: .actor.login,
+                      run_name: (.display_title // .name),
+                      jobs: $jobs
+                    }')
+
+                elif [ "$RUN" != "null" ] && [ -n "$RUN" ]; then
+                  BRAND_DATA=$(echo "$RUN" | jq \
+                    --arg brand "$BRAND" \
+                    '{
+                      brand: $brand,
+                      status: .status,
+                      conclusion: .conclusion,
+                      run_number: .run_number,
+                      url: .html_url,
+                      updated_at: .updated_at,
+                      actor: .actor.login,
+                      run_name: (.display_title // .name),
+                      jobs: []
+                    }')
+                else
+                  BRAND_DATA=$(jq -n \
+                    --arg brand "$BRAND" \
+                    '{brand: $brand, status: "no_run", conclusion: null, run_number: null, url: null, updated_at: null, actor: null, run_name: null, jobs: []}')
+                fi
+
+                BRANDS_JSON=$(echo "$BRANDS_JSON" | jq --argjson d "$BRAND_DATA" '. + [$d]')
+              done
+
+              WF_DATA=$(jq -n \
+                --arg name "$WF_NAME" \
+                --arg file "$WF_FILE" \
+                --argjson has_jobs "$HAS_JOBS" \
+                --argjson job_names "$WF_JOBS" \
+                --argjson brands "$BRANDS_JSON" \
+                '{name: $name, file: $file, has_jobs: $has_jobs, job_names: $job_names, brands: $brands}')
+
+              WORKFLOWS_JSON=$(echo "$WORKFLOWS_JSON" | jq --argjson d "$WF_DATA" '. + [$d]')
+
+            done < <(echo "$CONFIG" | jq -c --arg cat "$CAT_NAME" '.categories[] | select(.name == $cat) | .workflows[]')
+
+            CAT_DATA=$(jq -n \
+              --arg name "$CAT_NAME" \
+              --arg icon "$CAT_ICON" \
+              --argjson workflows "$WORKFLOWS_JSON" \
+              '{name: $name, icon: $icon, workflows: $workflows}')
+
+            CATEGORIES_JSON=$(echo "$CATEGORIES_JSON" | jq --argjson d "$CAT_DATA" '. + [$d]')
+
+          done < <(echo "$CONFIG" | jq -c '.categories[]')
+
+          FINAL=$(jq -n \
+            --arg generated "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            --argjson brands "$(echo "$CONFIG" | jq '.brands')" \
+            --argjson categories "$CATEGORIES_JSON" \
+            '{generated: $generated, brands: $brands, categories: $categories}')
+
+          echo "$FINAL" > /tmp/dashboard-data.json
+          echo "✅ Dashboard data generated"
+          cat /tmp/dashboard-data.json | jq .
+
+      - name: Checkout wiki
+        run: |
+          git clone "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.wiki.git" wiki-repo
+
+      - name: Inject data into wiki page
+        run: |
+          DATA=$(cat /tmp/dashboard-data.json)
+          ESCAPED=$(python3 -c 'import sys,json; print(json.dumps(sys.stdin.read()))' <<< "$DATA")
+          sed "s|\"__DASHBOARD_DATA_PLACEHOLDER__\"|${ESCAPED}|g" \
+            .github/wiki-dashboard.html > wiki-repo/Home.md
+
+      - name: Push to wiki
+        run: |
+          cd wiki-repo
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff --staged --quiet || git commit -m "chore: update CI dashboard [skip ci]"
+          git push

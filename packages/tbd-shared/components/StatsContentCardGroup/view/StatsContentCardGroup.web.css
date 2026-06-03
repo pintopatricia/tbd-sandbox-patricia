@@ -1,0 +1,11 @@
+.statsContent > * {
+  margin: 0 var(--spacing-3);
+}
+
+.statsContent > section {
+  padding: var(--spacing-2) 0;
+}
+
+[class*="childWrapper"]:has(.supportingContentItem) {
+  min-width: var(--supporting-content-button-stats-min-height);
+}

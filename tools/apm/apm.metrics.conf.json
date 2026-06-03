@@ -1,0 +1,81 @@
+{
+  "METRICS_TAGS": [
+    { "view": "firstView", "calc": "median" },
+    { "view": "repeatView", "calc": "median" }
+  ],
+  "METRICS_MAPPING": {
+    "loadTime": {
+      "name": "Load Time",
+      "collector": "@@calc.@@view.loadTime",
+      "storage": "perf.webpagetest.tbd.@@calc.@@view.loadTime"
+    },
+    "ttfb": {
+      "name": "Time To First Byte",
+      "collector": "@@calc.@@view.TTFB",
+      "storage": "perf.webpagetest.tbd.@@calc.@@view.ttfb"
+    },
+    "firstPaint": {
+      "name": "First Paint",
+      "collector": "@@calc.@@view.firstPaint",
+      "storage": "perf.webpagetest.tbd.@@calc.@@view.firstPaint"
+    },
+    "firstContentfulPaint": {
+      "name": "First Contentful Paint",
+      "collector": "@@calc.@@view.firstContentfulPaint",
+      "storage": "perf.webpagetest.tbd.@@calc.@@view.firstContentfulPaint"
+    },
+    "largestContentfulPaint": {
+      "name": "Largest Contentful Paint",
+      "collector": "@@calc.@@view['chromeUserTiming.LargestContentfulPaint']",
+      "storage": "perf.webpagetest.tbd.@@calc.@@view.largestContentfulPaint",
+      "spamStorage": "spam.tbd.web-mobile.vital.lcp.p75"
+    },
+    "cumulativeLayoutShift": {
+      "name": "Cumulative Layout Shift",
+      "collector": "@@calc.@@view['chromeUserTiming.CumulativeLayoutShift']",
+      "storage": "perf.webpagetest.tbd.@@calc.@@view.cumulativeLayoutShift",
+      "spamStorage": "spam.tbd.web-mobile.vital.cls.p75"
+    },
+    "firstInputDelay": {
+      "name": "First Input Delay",
+      "collector": "@@calc.@@view.maxFID",
+      "storage": "perf.webpagetest.tbd.@@calc.@@view.maxFID",
+      "spamStorage": "spam.tbd.web-mobile.vital.fid.p75"
+    },
+    "firstMeaningfulPaint": {
+      "name": "First Meaningful Paint",
+      "collector": "@@calc.@@view.firstMeaningfulPaint",
+      "storage": "perf.webpagetest.tbd.@@calc.@@view.firstMeaningfulPaint"
+    },
+    "fullyLoaded": {
+      "name": "Fully Loaded",
+      "collector": "@@calc.@@view.fullyLoaded",
+      "storage": "perf.webpagetest.tbd.@@calc.@@view.fullyLoaded"
+    },
+    "timeToInteractive": {
+      "name": "Time to Interactive",
+      "collector": "@@calc.@@view.TimeToInteractive",
+      "storage": "perf.webpagetest.tbd.@@calc.@@view.timeToInteractive"
+    },
+    "totalBlockingTime": {
+      "name": "Total Blocking Time",
+      "collector": "@@calc.@@view.TotalBlockingTime",
+      "storage": "perf.webpagetest.tbd.@@calc.@@view.totalBlockingTime"
+    },
+    "visualComplete": {
+      "name": "Visual Complete",
+      "collector": "@@calc.@@view.visualComplete",
+      "storage": "perf.webpagetest.tbd.@@calc.@@view.visualComplete"
+    },
+    "speedIndex": {
+      "name": "Speed Index",
+      "collector": "@@calc.@@view.SpeedIndex",
+      "storage": "perf.webpagetest.tbd.@@calc.@@view.speedIndex"
+    },
+    "firstInteractive": {
+      "name": "Speed Index",
+      "collector": "@@calc.@@view.FirstInteractive",
+      "storage": "perf.webpagetest.tbd.@@calc.@@view.firstInteractive"
+    }
+  }
+}

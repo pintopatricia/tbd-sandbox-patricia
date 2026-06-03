@@ -1,0 +1,186 @@
+:root {
+  --unread-notifications-width: 7px;
+  --unread-notifications-margin-top: 3px;
+}
+
+.section {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--section-elements-footer-vertical-gap-secondary);
+}
+
+.quickLinksList {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--quick-link-card-gap);
+
+  margin-top: var(--section-elements-footer-vertical-gap-secondary);
+  overflow: hidden;
+}
+
+.quickLinksList.collapsable {
+  gap: 0;
+
+  margin-top: 0;
+
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.shadow {
+  will-change: filter;
+
+  filter: var(--quick-link-drop-shadow);
+}
+
+.sectionTitle {
+  font: var(--section-elements-footer-title-typography);
+  color: var(--section-elements-footer-text-title-colour);
+  text-decoration-line: var(--section-elements-footer-title-typography-text-decoration-line);
+  text-transform: var(--section-elements-footer-title-typography-text-transform);
+  letter-spacing: var(--section-elements-footer-title-typography-letter-spacing);
+}
+
+.text {
+  font: var(--section-elements-footer-content-text-typography);
+  color: var(--section-elements-footer-text-content-text-colour);
+  text-decoration-line: var(--section-elements-footer-content-text-typography-text-decoration-line);
+  text-transform: var(--section-elements-footer-content-text-typography-text-transform);
+  letter-spacing: var(--section-elements-footer-content-text-typography-letter-spacing);
+}
+
+.imageContainer {
+  display: inline-block;
+
+  width: auto;
+  height: var(--section-elements-footer-logos-sizing);
+  margin-right: var(--section-elements-footer-wrap-gap);
+  margin-bottom: var(--section-elements-footer-wrap-gap);
+}
+
+.imageContainer:last-child {
+  margin-right: 0;
+}
+
+.imageContainer + .imageContainer {
+  width: auto;
+
+  text-align: unset;
+}
+
+.image {
+  height: var(--section-elements-footer-logos-sizing);
+}
+
+.largeImage .image {
+  height: 90px;
+}
+
+.alignLeft {
+  width: 100%;
+
+  text-align: left;
+}
+
+.alignRight {
+  width: 100%;
+
+  text-align: right;
+}
+
+.alignCenter {
+  width: 100%;
+
+  text-align: center;
+}
+
+.text,
+.text + .imageContainer,
+.link + .imageContainer {
+  margin-top: var(--section-elements-footer-vertical-gap-secondary);
+}
+
+.collapseContentSections > .link,
+.imageContainer + .text,
+.imageContainer + .link {
+  margin-top: 0;
+}
+
+.session {
+  margin-top: var(--spacing-4);
+}
+
+.title {
+  padding: var(--spacing-3);
+
+  background-color: var(--neutrals-background-elevation2);
+}
+
+.groupLinks + .groupLinks {
+  margin-top: var(--spacing-4);
+}
+
+.userDetails {
+  margin-top: var(--spacing-2);
+}
+
+.clockContainer {
+  display: flex;
+
+  margin-top: var(--spacing-3);
+  overflow: hidden;
+}
+
+.clockInline {
+  display: inline-block;
+
+  margin-top: 0;
+}
+
+.clockWithText {
+  display: flex;
+
+  align-items: center;
+
+  padding: var(--spacing-1);
+
+  background-color: var(--neutrals-background-elevation1);
+  border-radius: var(--spacing-1);
+}
+
+.clockText {
+  margin-right: var(--spacing-1-and-half);
+
+  color: var(--neutrals-text-default);
+}
+
+.reverse {
+  display: flex;
+
+  align-items: center;
+}
+
+.reverse > div:nth-child(1) {
+  flex: 1;
+
+  order: 2;
+}
+
+.reverse > div:nth-child(2) {
+  flex: 0 0 auto;
+
+  order: 1;
+}
+
+.reverse > div:nth-child(3) {
+  order: 3;
+}
+
+.reverse .unreadNotifications {
+  width: var(--unread-notifications-width);
+  margin-top: var(--unread-notifications-margin-top);
+}

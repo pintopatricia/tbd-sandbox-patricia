@@ -1,0 +1,27 @@
+.titleContainer {
+  display: flex;
+
+  gap: var(--minimised-horizontal-gap-primary);
+
+  align-items: center;
+
+  padding: 4px 0 4px 8px;
+
+  font: var(--minimised-supporting-text-typography);
+  color: var(--minimised-supporting-text-colour);
+  text-decoration-line: var(--minimised-supporting-text-typography-text-decoration-line);
+  text-transform: var(--minimised-supporting-text-typography-text-transform);
+  letter-spacing: var(--minimised-supporting-text-typography-letter-spacing);
+}
+
+.title {
+  display: -webkit-box;
+
+  overflow: hidden;
+
+  text-align: left;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+
+  -webkit-line-clamp: 2;
+}

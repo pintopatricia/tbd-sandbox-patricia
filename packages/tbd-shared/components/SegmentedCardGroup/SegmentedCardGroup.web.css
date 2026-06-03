@@ -1,0 +1,20 @@
+.segmentedCardGroupContainer {
+  margin-top: var(--spacing-card-top-default);
+}
+
+[class*="childWrapper"]:has(.segmentedCardGroup) {
+  position: relative;
+}
+
+[class*="childWrapper"]:has(.segmentedCardGroup):not(:last-child)::after {
+  position: absolute;
+  top: 25%;
+  right: 0;
+
+  width: var(--gutter-1);
+  height: 67%;
+
+  content: "";
+
+  background-color: var(--neutrals-background-elevation5);
+}

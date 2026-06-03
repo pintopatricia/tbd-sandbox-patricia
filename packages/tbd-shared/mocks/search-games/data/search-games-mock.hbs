@@ -1,0 +1,15 @@
+{
+    "results": "{{results}}{{^results}}0{{/results}}",
+    "content": [
+    {{#each content}}
+        {
+
+            "uid": "{{uid}}{{^uid}}game-1{{/uid}}",
+            "data": {
+                {{> bff-game-data }}
+            }
+        }
+        {{#unless @last}},{{/unless}}
+        {{/each}}
+    ]
+}

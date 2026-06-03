@@ -1,0 +1,19 @@
+.sectionHeader {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--section-header-vertical-gap);
+
+  background-color: var(--section-header-background-colour);
+}
+
+.title {
+  padding: var(--section-header-title-padding);
+
+  font: var(--section-header-title-typography);
+  color: var(--section-header-title-colour);
+  text-decoration-line: var(--section-header-title-typography-text-decoration-line);
+  text-transform: var(--section-header-title-typography-text-transform);
+  letter-spacing: var(--section-header-title-typography-letter-spacing);
+}

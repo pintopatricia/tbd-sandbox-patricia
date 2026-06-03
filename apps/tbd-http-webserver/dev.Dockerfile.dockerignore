@@ -1,0 +1,9 @@
+**/node_modules
+**/target
+**/coverage
+**/dist
+*.spec
+*.test.js
+dev.Dockerfile
+**/tsconfig.tsbuildinfo
+!**/.yalc/**

@@ -1,0 +1,26 @@
+fragment footballFixtureLite on FootballFixture {
+  urn
+  __typename
+  scheduledAt
+  startedAt
+  duration {
+    period
+    status
+    clock {
+      minute
+      second
+    }
+    stoppageMinutes
+  }
+  isAmericanFormat
+  runnerNames {
+    home
+    away
+  }
+  home {
+    name
+  }
+  away {
+    name
+  }
+}

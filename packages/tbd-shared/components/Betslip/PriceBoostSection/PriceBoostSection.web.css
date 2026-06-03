@@ -1,0 +1,7 @@
+.priceBoostMultisCard {
+  width: 100%;
+}
+
+.priceBoostMultis:not(:last-child) {
+  margin-bottom: var(--spacing-4);
+}

@@ -1,0 +1,37 @@
+"__typename": "BlurbCard",
+"urn": "ppb:tbd:card:blurb:Z-1uQRAAAB8AZ8lB/s/1",
+{{#with blurb}}
+"blurb": {
+    "__typename": "InformativeBlurb",
+    "isCollapsed": {{isCollapsed}},
+    {{#with title}}
+    "title": {
+        "__typename": "DisplayNameTitle",
+        "name": "{{name}}{{^name}}Page blurb title.{{/name}}"
+    },
+    {{/with}}
+    {{#with description}}
+    "description": {
+        "__typename": "DisplayNameTitle",
+        "name": "{{name}}{{^name}}Page blurb description.{{/name}}"
+    },
+    {{/with}}
+    {{#with supplementaryInfo}}
+    "supplementaryInfo": {
+        "__typename": "SupplementaryInfo",
+        {{#with label}}
+            "label": {
+                "__typename": "DisplayNameTitle",
+                "name": "{{name}}{{^name}}supplementaryInfo label{{/name}}"
+            },
+        {{/with}}
+        {{#with viewLink}}
+            "viewLink": { 
+                "__typename": "ViewLink",
+                "viewUrl": "{{viewUrl}}{{^viewUrl}}"https://casino.betfair.com/"{{/viewUrl}}"
+            }
+        {{/with}}
+    }
+    {{/with}}
+}
+{{/with}}

@@ -1,0 +1,13 @@
+"__typename": "TeamLineupCard",
+"footballFixture": {
+{{#with footballFixture}}
+  {{> bff-football-fixture-content}}
+{{/with}}
+},
+"sportevent": {
+{{#with sportevent}}
+  {{> bff-sportevent}}
+{{/with}}
+},
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:teamLineup:29359895{{/urn}}",
+"contentTitle": "{{contentTitle}}{{^contentTitle}}Team Lineups{{/contentTitle}}"

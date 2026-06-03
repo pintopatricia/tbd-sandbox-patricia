@@ -1,0 +1,16 @@
+fragment sportViewLinkCard on SportViewLinkCard {
+  __typename
+  urn
+  viewLink {
+    viewUrn
+    viewUrl
+  }
+  sport {
+    ...sportWithShortName
+  }
+}
+
+fragment sportViewLinkCardPartial on SportViewLinkCard {
+  __typename
+  urn
+}

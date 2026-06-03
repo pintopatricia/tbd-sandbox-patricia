@@ -1,0 +1,23 @@
+fragment marketRulesCard on MarketRulesCard {
+  __typename
+  urn
+  marketName
+  wallet
+  clarifications
+  marketBaseRate
+  discountAllowed
+  eventStartTime
+  marketBettingType
+  numberOfWinners
+  displayMode
+  sections {
+    name
+    content
+  }
+  footer
+}
+
+fragment marketRulesCardPartial on MarketRulesCard {
+  __typename
+  urn
+}

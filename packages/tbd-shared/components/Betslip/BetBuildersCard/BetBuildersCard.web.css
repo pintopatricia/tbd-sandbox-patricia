@@ -1,0 +1,7 @@
+.betBuildersCard {
+  width: 100%;
+}
+
+.betBuilder:not(:last-child) {
+  margin-bottom: var(--spacing-2);
+}

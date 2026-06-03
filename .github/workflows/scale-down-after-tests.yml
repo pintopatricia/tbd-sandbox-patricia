@@ -1,0 +1,41 @@
+name: scale-down-after-tests
+
+on:
+  issue_comment:
+    types: [created]
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  AWS_REGION: eu-west-1
+  PR_ID: ${{ github.event.issue.number }}
+
+jobs:
+  scale-down-after-tests:
+    if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, '--build-and-test-callback') && github.triggering_actor == 'svc-jenkins-admin'}}
+    runs-on:
+      group: FlutterGithubRunners
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_ACCESS_KEY_TOKEN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Scale down preview environment
+        run: |
+          brands=("ui" "bf" "sbg")
+          for brand in "${brands[@]}"; do
+            cluster_name="${btand}-tbdpeCluster"
+            service_name="${brand}-tbdpe${PR_ID}"
+            echo $service_name
+            service_arn=$(aws ecs list-services --cluster $cluster_name --query "serviceArns[?contains(@, '$service_name')]" --output text)
+            echo $service_arn
+
+            if [ -z ${service_arn} ]; then
+              echo "Cluster not found! Exiting"
+            else
+              echo "Turning off service: $service_name"
+              aws ecs update-service --cluster $cluster_name --service $service_arn --desired-count 0
+            fi
+          done

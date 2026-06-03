@@ -1,0 +1,47 @@
+{{#with averageGoalsScored}}
+  "averageGoalsScored": {
+    "__typename": "AverageTeamStats",
+    "home": {{home}}{{^home}}2{{/home}},
+    "away": {{away}}{{^away}}3{{/away}},
+    "firstHalf": {{firstHalf}}{{^firstHalf}}1{{/firstHalf}},
+    "secondHalf": {{secondHalf}}{{^secondHalf}}1{{/secondHalf}},
+    "overall": {{overall}}{{^overall}}2{{/overall}}
+   },
+{{/with}}
+{{#with averageGoalsConceded}}
+  "averageGoalsConceded": {
+    "__typename": "AverageTeamStats",
+    "home": {{home}}{{^home}}2{{/home}},
+    "away": {{away}}{{^away}}3{{/away}},
+    "firstHalf": {{firstHalf}}{{^firstHalf}}1{{/firstHalf}},
+    "secondHalf": {{secondHalf}}{{^secondHalf}}1{{/secondHalf}},
+    "overall": {{overall}}{{^overall}}2{{/overall}}
+   },
+{{/with}}
+{{#with averageBookingPoints}}
+  "averageBookingPoints": {
+  "__typename": "AverageTeamStats",
+    "home": {{home}}{{^home}}2{{/home}},
+    "away": {{away}}{{^away}}3{{/away}},
+    "firstHalf": {{firstHalf}}{{^firstHalf}}1{{/firstHalf}},
+    "secondHalf": {{secondHalf}}{{^secondHalf}}1{{/secondHalf}},
+    "overall": {{overall}}{{^overall}}2{{/overall}}
+   },
+{{/with}}
+{{#with averageCorners}}
+  "averageCorners": {
+    "__typename": "AverageTeamStats",
+    "home": {{home}}{{^home}}2{{/home}},
+    "away": {{away}}{{^away}}3{{/away}},
+    "firstHalf": {{firstHalf}}{{^firstHalf}}1{{/firstHalf}},
+    "secondHalf": {{secondHalf}}{{^secondHalf}}1{{/secondHalf}},
+    "overall": {{overall}}{{^overall}}2{{/overall}}
+   },
+{{/with}}
+{{#with bothTeamsToScore}}
+  "bothTeamsToScore": {
+    "__typename": "BothTeamsToScore",
+    "percentage": {{percentage}}{{^percentage}}50{{/percentage}}
+   },
+{{/with}}
+"averageShots": {{averageShots}}{{^averageShots}}1{{/averageShots}}

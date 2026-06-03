@@ -1,0 +1,10 @@
+"__typename": "{{__typename}}{{^__typename}}WalletRule{{/__typename}}",
+"name": "{{name}}{{^name}}Cash Total{{/name}}",
+"hideIfZero": "{{hideIfZero}}{{^hideIfZero}}false{{/hideIfZero}}",
+"withCurrency": "{{withCurrency}}{{^withCurrency}}true{{/withCurrency}}",
+"aggregationRules": [
+    {{#each aggregationRules}}{
+        {{> bff-aggregation-rule}}
+    }{{#unless @last}},{{/unless}}
+    {{/each}}
+]

@@ -1,0 +1,38 @@
+{{#if exchange}}
+  {{#with exchange}}
+    "exchange": {
+      {{#with market}}
+        "market": {
+        {{> bff-market}}
+        },
+      {{/with}}
+      "runners": [
+        {{#each runners}}
+          {
+            "runnerURN": "{{runnerURN}}{{^runnerURN}}excRunnerURN{{/runnerURN}}"
+          }{{#unless @last}},{{/unless}}
+        {{/each}}
+      ]
+    }
+  {{/with}}
+  {{#if sportsbook}},{{/if}}
+{{/if}}
+{{#if sportsbook}}
+  {{#with sportsbook}}
+    "sportsbook": {
+      {{#with market}}
+        "market": {
+        {{> bff-market}}
+        },
+      {{/with}}
+      "runners": [
+      {{#each runners}}
+        {
+        "__typename": "Runner",
+        "runnerURN": "{{runnerURN}}{{^runnerURN}}sbkRunnerURN{{/runnerURN}}"
+        }{{#unless @last}},{{/unless}}
+      {{/each}}
+      ]
+    }
+  {{/with}}
+{{/if}}

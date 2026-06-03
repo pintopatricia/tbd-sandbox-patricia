@@ -1,0 +1,12 @@
+fragment raceKind on RaceKind {
+  ... on HorseRaceKind {
+    runners {
+      ...raceRunner
+    }
+  }
+  ... on GreyhoundRaceKind {
+    runners {
+      ...greyhoundRaceRunner
+    }
+  }
+}

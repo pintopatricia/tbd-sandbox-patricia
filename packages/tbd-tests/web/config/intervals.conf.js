@@ -1,0 +1,1 @@
+export const WALLET_UPDATE_TIMEOUT = "00:00:40";

@@ -1,0 +1,10 @@
+.container {
+  margin: 0;
+}
+
+.raceDetailsContainer {
+  padding: var(--spacing-2);
+  margin-bottom: var(--gutter-1);
+
+  background-color: var(--race-market-card-header-background-colour);
+}

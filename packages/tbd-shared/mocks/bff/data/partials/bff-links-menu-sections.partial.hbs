@@ -1,0 +1,13 @@
+    "__typename": "{{__typename}}{{^__typename}}LinksMenuSections{{/__typename}}",
+    "title": "{{title}}{{^title}}My Betfair Rewards & Promotions{{/title}}",
+    "sectionType": "{{sectionType}}{{^sectionType}}GENERIC{{/sectionType}}",
+    "items": [
+        {{#each items}}{
+          "__typename": "RegulatoryLinkItem",
+          "url": "{{url}}{{^url}}{{/url}}",
+          "text": "{{text}}{{^text}}My Promotions{{/text}}",
+          "target": "{{target}}{{^target}}_self{{/target}}",
+          "alignment": "{{alignment}}{{^alignment}}LEFT{{/alignment}}"
+        }{{#unless @last}},{{/unless}}
+        {{/each}}
+    ]

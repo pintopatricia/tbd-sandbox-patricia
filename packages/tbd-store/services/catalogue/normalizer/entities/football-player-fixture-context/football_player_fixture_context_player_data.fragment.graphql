@@ -1,0 +1,38 @@
+fragment footballPlayerFixtureContextPlayerData on FootballPlayerFixtureContext {
+  __typename
+  urn
+  player {
+    urn
+    __typename
+    id
+    name
+    seasonStats {
+      matchesPlayed
+      averages {
+        shotsOnTarget
+        totalShots
+        goals
+        yellowCards
+        redCards
+        fouls
+        foulsWon
+        foulInvolvements
+        assists
+      }
+      totals {
+        shotsOnTarget
+        totalShots
+        goals
+        yellowCards
+        redCards
+        fouls
+        foulsWon
+        foulInvolvements
+        assists
+      }
+    }
+  }
+  team {
+    id
+  }
+}

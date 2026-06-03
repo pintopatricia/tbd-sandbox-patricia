@@ -1,0 +1,28 @@
+fragment swimlaneIndexedCardGroup on SwimlaneIndexedCardGroup {
+  __typename
+  urn
+  cardGroupTitle: title
+  displayName {
+    translationKey
+  }
+  icon {
+    vector
+  }
+  viewAll {
+    label
+    icon
+    viewLink {
+      viewUrn
+      viewUrl
+    }
+  }
+  hint
+  swimlaneItems: items {
+    ...fullSwimlaneIndexedCardGroupItems
+  }
+}
+
+fragment swimlaneIndexedCardGroupPartial on SwimlaneIndexedCardGroup {
+  __typename
+  urn
+}

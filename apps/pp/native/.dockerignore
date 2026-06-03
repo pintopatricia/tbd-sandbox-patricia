@@ -1,0 +1,10 @@
+**/node_modules
+Makefile
+*.md
+.dockerignore
+jest.*js
+.eslintignore
+.eslintrc
+.gitignore
+*.spec
+**/ios

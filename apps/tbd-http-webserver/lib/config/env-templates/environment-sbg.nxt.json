@@ -1,0 +1,608 @@
+{
+  "ENV": "localhost",
+  "PRODUCT_CLUSTER": "SBK",
+  "NEW_RELIC": false,
+  "SIGNALFX": true,
+  "SIGNALFX_SESSION_RECORDING": false,
+  "SIGNALFX_NAME": "Sky Bet",
+  "SIGNALFX_REALM": "eu0",
+  "SIGNALFX_ENVIRONMENT": "dev",
+  "SIGNALFX_ACCESS_TOKEN": "mZWRyr8mKfXiKrebIu8xqQ",
+  "BASE_PATH": "/",
+  "HOST": "www.skybet.{domain_extension}.nxt.ppbdev.com",
+  "HOMEPAGE_PATHS": "",
+  "ASSETS": {
+    "HOST": "",
+    "PATH": "ie1/tbd/assets",
+    "DC": "ie1",
+    "FONTS": ["SkyText_Md.woff2", "SkyText_Rg.woff2", "SSportsD_Md.woff2"]
+  },
+  "DESKTOP_HEADER_CONFIG": {
+    "authenticationConfiguration": {
+      "loginEndpoint": "https://identitysso.skybet.com.nxt.ppbdev.com/api/login",
+      "loginRedirectUrl": "https://www.skybet.com.nxt.ppbdev.com/",
+      "loginRedirectMethod": "POST",
+      "logoutEndpoint": "https://identitysso.skybet.com.nxt.ppbdev.com/api/logout",
+      "logoutRedirectUrl": "https://www.skybet.com.nxt.ppbdev.com/",
+      "logoutRedirectMethod": "POST"
+    },
+    "productDomain": "skybet.com.nxt.ppbdev.com",
+    "clientConfiguration": {
+      "version": "1",
+      "brand": "skybet",
+      "product": "sportsbook",
+      "channel": "desktop",
+      "platform": "",
+      "selectedTab": "sportsbook"
+    },
+    "contentConfiguration": {
+      "headerType": "REGULAR"
+    }
+  },
+  "BETSLIP_CONFIG": {
+    "collapseStrategy": "FIRST_OPEN"
+  },
+  "LOOP_CLIENT_CONFIG": {
+    "key": "I2HxRtanqRPZS2fS",
+    "brand": "SBG"
+  },
+  "ENDPOINTS": {
+    "SPAM": "",
+    "APPLE_PAY_PROXY": "https://myfunds.skybet.com.nxt.ppbdev.com/lib/js/apple_pay_proxy.min.js",
+    "MY_ACCOUNT": "https://myaccount.skybet.com.nxt.ppbdev.com",
+    "GENERAL_TERMS_AND_COND": "https://support.skybet.com/app/answers/detail/sky-bet-market-rules",
+    "PROMOS": "https://promos.skybet.com.nxt.ppbdev.com",
+    "DEPOSIT": {
+      "path": "deposit",
+      "host": "https://myfunds.skybet.com.nxt.ppbdev.com/"
+    },
+    "SPEND_BUDGET": {
+      "path": "my-budget",
+      "host": "https://myspendbudget.skybet.com.nxt.ppbdev.com/"
+    },
+    "EXCHANGE_SITE": {
+      "path": "exchange",
+      "host": "https://www.skybet.com.nxt.ppbdev.com/"
+    },
+    "OSG": {
+      "path": "",
+      "host": "wss://osg.skybet.com.nxt.ppbdev.com/"
+    },
+    "ERO": {
+      "path": "www/sports/exchange/readonly/v1/",
+      "host": ""
+    },
+    "ETX": {
+      "path": "www/sports/exchange/transactional/v1/",
+      "host": ""
+    },
+    "SMP": {
+      "path": "www/sports/fixedodds/readonly/v1/",
+      "host": ""
+    },
+    "NSS": {
+      "path": "NotificationSubscription/v1/",
+      "host": ""
+    },
+    "SER": {
+      "path": "SportsbookEventReadOnlyService/v1/",
+      "host": ""
+    },
+    "SPB": {
+      "path": "www/sports/fixedodds/transactional/v1/",
+      "host": ""
+    },
+    "SIB": {
+      "path": "www/sports/fixedodds/transactional/v1/",
+      "host": ""
+    },
+    "SIB_LITE": {
+      "path": "www/sports/fixedodds-lite/transactional/v1/",
+      "host": ""
+    },
+    "COS_READONLY": {
+      "path": "cashout-service/readonly/v1/",
+      "host": ""
+    },
+    "COS_TRANSACTIONAL": {
+      "path": "cashout-service/transactional/v1/",
+      "host": ""
+    },
+    "FCQ": {
+      "path": "fcq-service/v0.1/",
+      "host": ""
+    },
+    "SCO": {
+      "path": "www/sports/fixedodds/transactional/v1/",
+      "host": ""
+    },
+    "CATALOGUE": {
+      "path": "api/tbd/bff-gql/v11",
+      "host": ""
+    },
+    "WAS": {
+      "path": "wallet-service/v3.0/",
+      "host": ""
+    },
+    "LBR": {
+      "path": "www/sports/exchange/reporting/live/v1/",
+      "host": ""
+    },
+    "LOGOUT": {
+      "path": "api/logout/",
+      "host": "https://identitysso.skybet.com.nxt.ppbdev.com"
+    },
+    "BLH": {
+      "path": "graphql",
+      "host": "https://blh.skybet.com.nxt.ppbdev.com"
+    },
+    "SCA": {
+      "path": "graphql/",
+      "host": ""
+    },
+    "USP": {
+      "path": "usp-preferences/v1.0/",
+      "host": ""
+    },
+    "GAME_LAUNCHER": {
+      "path": "launcher/",
+      "host": "https://launcher.skybet.com.nxt.ppbdev.com/"
+    },
+    "PROMOTIONS_CDN": {
+      "path": "",
+      "host": "https://promotions.cdnppb.net.nxt.ppbdev.com"
+    },
+    "PMA_S3_PROMOTIONS_CDN": {
+      "path": "",
+      "host": "https://pmasbg-assets.skybet.com.nxt.ppbdev.com"
+    },
+    "GAMING_SEARCH": {
+      "path": "api/gfe/search-games/v1/search-games",
+      "host": ""
+    },
+    "XTSD": {
+      "path": "LoadRunnerInfoChartAction/",
+      "host": ""
+    },
+    "CBS": {
+      "path": "CustomerBehaviourService/v2.0/",
+      "host": "",
+      "channel": "Betfair Rebuild Mobile"
+    },
+    "SMD": {
+      "path": "SeoMetadata/v1/",
+      "host": ""
+    },
+    "SSC": {
+      "path": "api/v1.0/content",
+      "host": ""
+    },
+    "SPANISH_DECREE_NOTIFICATION": {
+      "path": "ws/notifications",
+      "host": "wss://gmd.skybet.com.nxt.ppbdev.com/"
+    },
+    "LIVE_DEALER_EVENT_SOURCE": {
+      "path": "feeds/",
+      "host": "https://gmd.skybet.com.nxt.ppbdev.com/"
+    },
+    "USER_ACTIVITY": {
+      "path": "api/gfe/user-activity/v1/favourite-games/",
+      "host": "https://gfe.betfair.{domain_extension}.nxt.ppbdev.com/"
+    },
+    "LIVE_DEALER_WS": {
+      "path": "api/gfe/fanout/v2/",
+      "host": ""
+    },
+    "HANDLE_BANNER_ACTION": {
+      "path": "myaccountx/rest/handleBannerAction",
+      "host": ""
+    },
+    "WMS": {
+      "path": "",
+      "host": "https://messaging.skybet.com.nxt.ppbdev.com/"
+    },
+    "WMSV2": {
+      "path": "",
+      "host": "http://wmssbg.nxt.internal/"
+    },
+    "BCE": {
+      "path": "api/sports/bce/v1.0/",
+      "host": ""
+    },
+    "EGA": {
+      "path": "",
+      "host": "https://graphs.betfair.{domain_extension}.nxt.ppbdev.com/"
+    },
+    "BME": {
+      "path": "",
+      "host": ""
+    },
+    "LPS": {
+      "path": "exposure/v1/log",
+      "host": "https://lps.skybet.com.nxt.ppbdev.com/"
+    }
+  },
+  "CATALOG": {
+    "FILLED_CARDS_PER_CARD_GROUP": 2,
+    "FILLED_CARDS_PER_VIEW": 3,
+    "FILLED_CARDS_PER_LAZY_LOAD": 4
+  },
+  "EXPERIMENTATIONS_KEY": "Rp9mDx9wgF7Ch2AQ",
+  "APP_IDENTIFIERS": {
+    "IOS": {
+      "product": "skybet_native",
+      "product_id": "100",
+      "app_key": "YpSA8eTvLXonmZb7",
+      "cbs_channel": "Betfair Rebuild Mobile"
+    },
+    "ANDROID": {
+      "product": "skybet_native",
+      "product_id": "100",
+      "app_key": "V5sNqJQVGxRSjIf6",
+      "cbs_channel": "Betfair Rebuild Mobile"
+    },
+    "WEB_MOBILE": {
+      "product": "sportsbook",
+      "product_id": "110",
+      "app_key": "9Fs5bFQ2XfGSPgep",
+      "cbs_channel": "Betfair Rebuild Mobile"
+    },
+    "WEB_DESKTOP": {
+      "product": "sportsbook",
+      "product_id": "110",
+      "app_key": "DuJYiLaRflSsueCd",
+      "cbs_channel": "Betfair Rebuild Mobile"
+    }
+  },
+  "REN_USER_AGENTS": {
+    "MOBILE": "RENSBG Android",
+    "DESKTOP": "RENSBG Desktop"
+  },
+  "SSO_URL": "https://identitysso.skybet.com.nxt.ppbdev.com/view/login?redirectMethod=GET&product=bfrebuild",
+  "JOIN_FALLBACK_URL": "https://uss.skybet.com.nxt.ppbdev.com/s/signup/",
+  "JURISDICTION_URL_CONFIGS": {
+    "BRAZIL": {
+      "defaultLocale": "pt_BR",
+      "LOCALE_TO_BASE_HREF": {
+        "en_GB": "/betting/en/",
+        "pt_BR": "/apostas/"
+      },
+      "BASE_HREF_TO_LOCALE": {
+        "/apostas/": "pt_BR",
+        "/betting/en/": "en_GB"
+      }
+    },
+    "DENMARK": {
+      "defaultLocale": "da",
+      "LOCALE_TO_BASE_HREF": {
+        "da": "/væddemål/"
+      },
+      "BASE_HREF_TO_LOCALE": {
+        "/væddemål/": "da"
+      }
+    },
+    "INTERNATIONAL": {
+      "defaultLocale": "en_GB",
+      "LOCALE_TO_BASE_HREF": {
+        "en_GB": "/",
+        "en": "/",
+        "pt_BR": "/apostas/br/",
+        "es_419": "/apuestas/es/",
+        "ru": "/делать-ставки/ru/",
+        "de": "/wetten/de/",
+        "fi": "/vedonlyönti/fi/",
+        "no": "/oddsspill/no/",
+        "hu": "/fogadás/hu/"
+      },
+      "BASE_HREF_TO_LOCALE": {
+        "/": "en_GB",
+        "/apostas/br/": "pt_BR",
+        "/apuestas/es/": "es_419",
+        "/делать-ставки/ru/": "ru",
+        "/wetten/de/": "de",
+        "/vedonlyönti/fi/": "fi",
+        "/oddsspill/no/": "no",
+        "/fogadás/hu/": "hu"
+      }
+    },
+    "SPAIN": {
+      "defaultLocale": "es",
+      "LOCALE_TO_BASE_HREF": {
+        "en_GB": "/en/",
+        "es": "/apuestas/"
+      },
+      "BASE_HREF_TO_LOCALE": {
+        "/apuestas/": "es",
+        "/en/": "en_GB"
+      }
+    },
+    "ITALY": {
+      "defaultLocale": "it",
+      "LOCALE_TO_BASE_HREF": {
+        "it": "/scommesse/"
+      },
+      "BASE_HREF_TO_LOCALE": {
+        "/scommesse/": "it"
+      }
+    },
+    "ROMANIA": {
+      "defaultLocale": "ro",
+      "LOCALE_TO_BASE_HREF": {
+        "en_GB": "/en/",
+        "ro": "/pariuri/"
+      },
+      "BASE_HREF_TO_LOCALE": {
+        "/pariuri/": "ro",
+        "/en/": "en_GB"
+      }
+    }
+  },
+  "DOMAIN_EXTENSIONS": {
+    "BRAZIL": "bet.br",
+    "DENMARK": "com",
+    "INTERNATIONAL": "com",
+    "SPAIN": "es",
+    "ITALY": "it",
+    "ROMANIA": "ro"
+  },
+  "CLOUDFLARE_WHITELIST_DOMAINS": [],
+  "GTM": {
+    "ID": "GTM-57TQ96RL",
+    "DEBUG_KEYS": "&gtm_auth=AREkTNdJnp2YZOPOs51Ddw&gtm_preview=env-5&gtm_cookies_win=x"
+  },
+  "EXTERNAL_LINKS": {
+    "MAX_PAYOUT": {
+      "INTERNATIONAL": {
+        "default": "https://support.skybet.com/app/answers/detail/maximum-winnings"
+      }
+    },
+    "CASHOUT_SUSPENDED_WHY_IS_THIS": {
+      "INTERNATIONAL": {
+        "default": "https://support.skybet.com/app/answers/detail/cash-out#suspended"
+      }
+    },
+    "OPTA_FOOTBALL_STATISTICS": {
+      "INTERNATIONAL": {
+        "default": "https://support.skybet.com/app/answers/detail/opta-football-statistics-definitions/"
+      }
+    },
+    "SELF_EXCLUSION_SAFER_GAMBLING": {
+      "INTERNATIONAL": {
+        "default": "https://playerprotection.skybet.com.nxt.ppbdev.com"
+      }
+    },
+    "SELF_EXCLUSION_SUPPORT": {
+      "INTERNATIONAL": {
+        "default": "https://support.skybet.com.nxt.ppbdev.com/app/home"
+      }
+    },
+    "SKY_VEGAS": {
+      "INTERNATIONAL": {
+        "default": "https://skyvegas.com.nxt.ppbdev.com/"
+      }
+    },
+    "SKY_VEGAS_LIVE": {
+      "INTERNATIONAL": {
+        "default": "https://skyvegas.com.nxt.ppbdev.com/p/live"
+      }
+    },
+    "SKY_CASINO": {
+      "INTERNATIONAL": {
+        "default": "https://skycasino.com.nxt.ppbdev.com/"
+      }
+    },
+    "SKY_CASINO_LIVE": {
+      "INTERNATIONAL": {
+        "default": "https://skycasino.com.nxt.ppbdev.com/p/live-casino"
+      }
+    },
+    "SKY_SPORTS": {
+      "INTERNATIONAL": {
+        "default": "https://www.skysports.com.nxt.ppbdev.com/"
+      }
+    },
+    "SKY_BINGO": {
+      "INTERNATIONAL": {
+        "default": "https://www.skybingo.com.nxt.ppbdev.com/"
+      }
+    },
+    "SKY_POKER": {
+      "INTERNATIONAL": {
+        "default": "https://www.skypoker.com.nxt.ppbdev.com/"
+      }
+    },
+    "SPORTING_LIFE": {
+      "INTERNATIONAL": {
+        "default": "https://test.spl.timeformsportinglife.com/"
+      }
+    },
+    "SUPER_6": {
+      "INTERNATIONAL": {
+        "default": "https://s6-k8s.test.s6.sbgservices.com/"
+      }
+    },
+    "SUPER_SUB": {
+      "INTERNATIONAL": {
+        "default": "https://promotions.skybet.com/skybet-super-sub/"
+      }
+    },
+    "ITV7": {
+      "INTERNATIONAL": {
+        "default": "https://staging.test.itv7.sbgservices.com/"
+      }
+    },
+    "SAFER_GAMBLING_LOGGED_IN": {
+      "INTERNATIONAL": {
+        "default": "https://playerprotection.skybet.com.nxt.ppbdev.com/"
+      }
+    },
+    "SAFER_GAMBLING_LOGGED_OUT": {
+      "INTERNATIONAL": {
+        "default": "https://support.skybet.com/app/answers/detail/safer-gambling"
+      }
+    },
+    "LOYALTY_CLUB": {
+      "INTERNATIONAL": {
+        "default": "https://promos.skybet.com.nxt.ppbdev.com/skybetclub"
+      }
+    }
+  },
+  "PARTNER_IDS_PER_SEARCH_ENGINE": {
+    "bing": {
+      "h": "7400028",
+      "c": {
+        "1": "7400031",
+        "2": "7400090",
+        "3": "7400088",
+        "4": "7400087",
+        "6": "7400033",
+        "7": "7400032",
+        "3503": "7400091",
+        "2378961": "7400089",
+        "other": "7400092"
+      },
+      "e": {
+        "1": "7400031",
+        "2": "7400090",
+        "3": "7400088",
+        "4": "7400087",
+        "6": "7400033",
+        "3503": "7400091",
+        "2378961": "7400089",
+        "other": "7400092"
+      },
+      "s": {
+        "1": "7400031",
+        "2": "7400090",
+        "3": "7400088",
+        "4": "7400087",
+        "6": "7400033",
+        "7": "7400032",
+        "29125756": "7560055",
+        "3503": "7400091",
+        "2378961": "7400089",
+        "other": "7400092"
+      },
+      "r": {
+        "7": "7400032",
+        "other": "7400092"
+      },
+      "mwe": {
+        "1": "7400031",
+        "2": "7400090",
+        "3": "7400088",
+        "4": "7400087",
+        "6": "7400033",
+        "7": "7400032",
+        "3503": "7400091",
+        "2378961": "7400089",
+        "other": "7400092"
+      },
+      "om": {
+        "1": "7400031",
+        "2": "7400090",
+        "3": "7400088",
+        "4": "7400087",
+        "6": "7400033",
+        "7": "7400032",
+        "3503": "7400091",
+        "2378961": "7400089",
+        "other": "7400092"
+      },
+      "gm": {
+        "1": "7400094",
+        "other": "7400094"
+      },
+      "ap": {
+        "7": "7400032",
+        "other": "7400092"
+      },
+      "inplay": {
+        "other": "7400092"
+      }
+    },
+    "yandex": "7400000",
+    "other": "7400000",
+    "google": {
+      "h": "7400001",
+      "c": {
+        "1": "7400005",
+        "2": "7400020",
+        "3": "7400011",
+        "4": "7400015",
+        "6": "7400013",
+        "7": "7400008",
+        "3503": "7400023",
+        "2378961": "7400018",
+        "other": "7400026"
+      },
+      "e": {
+        "1": "7400006",
+        "2": "7400021",
+        "3": "7400011",
+        "4": "7400016",
+        "6": "7400013",
+        "7": "7400009",
+        "3503": "7400024",
+        "2378961": "7400018",
+        "other": "7400027"
+      },
+      "s": {
+        "1": "7400004",
+        "2": "7400019",
+        "3": "7400010",
+        "4": "7400014",
+        "6": "7400012",
+        "7": "7400007",
+        "29125756": "7560054",
+        "3503": "7400022",
+        "2378961": "7400017",
+        "other": "7400025"
+      },
+      "r": {
+        "7": "7400009",
+        "other": "7400027"
+      },
+      "gm": {
+        "1": "7400093",
+        "other": "7400093"
+      },
+      "mwe": {
+        "1": "7400006",
+        "2": "7400021",
+        "3": "7400011",
+        "4": "7400016",
+        "6": "7400013",
+        "7": "7400009",
+        "3503": "7400024",
+        "2378961": "7400018",
+        "other": "7400027"
+      },
+      "om": {
+        "1": "7400006",
+        "2": "7400021",
+        "3": "7400011",
+        "4": "7400016",
+        "6": "7400013",
+        "7": "7400009",
+        "3503": "7400024",
+        "2378961": "7400018",
+        "other": "7400027"
+      },
+      "ap": {
+        "7": "7400009",
+        "other": "7400027"
+      },
+      "inplay": {
+        "other": "7400027"
+      }
+    }
+  },
+  "REFRESH_STALE_TIMEOUTS": {
+    "default": 140,
+    "PackagedCreatedBetsCard": 60,
+    "FilteredCouponCardGroup": 140,
+    "PopularSwimlaneCardGroup": 140,
+    "RacingSwimlaneCardGroup": 140
+  }
+}

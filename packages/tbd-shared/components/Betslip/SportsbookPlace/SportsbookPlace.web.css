@@ -1,0 +1,11 @@
+.notificationsListContainer {
+  margin-bottom: var(--spacing-2);
+}
+
+.quickStakes {
+  margin-bottom: var(--spacing-1);
+}
+
+.keyboardContainer > * + * {
+  margin-top: var(--spacing-2);
+}

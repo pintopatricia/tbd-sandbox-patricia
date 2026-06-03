@@ -1,0 +1,23 @@
+fragment competitionViewLinkCard on CompetitionViewLinkCard {
+  __typename
+  urn
+  viewLink {
+    viewUrn
+    viewUrl
+  }
+  competition {
+    ...competition
+  }
+}
+
+fragment competitionViewLinkCardBasic on CompetitionViewLinkCard {
+  __typename
+  urn
+  viewLink {
+    viewUrn
+    viewUrl
+  }
+  competition {
+    ...competitionBasic
+  }
+}

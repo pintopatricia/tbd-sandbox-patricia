@@ -1,0 +1,22 @@
+{
+  "name": "@ppb/wdio-lazy-element",
+  "version": "0.6.1",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint ./ --quiet",
+    "test:coverage": "echo 'no test:coverage task'",
+    "test:branch:coverage": "echo 'no test:branch:coverage task'",
+    "format": "echo 'no format task'",
+    "typecheck": "echo 'no typecheck task'"
+  },
+  "devDependencies": {
+    "@babel/core": "7.28.5",
+    "@babel/eslint-parser": "7.28.5",
+    "eslint": "9.17.0",
+    "typescript-eslint": "8.18.2"
+  },
+  "dependencies": {
+    "@types/node": "24.12.4"
+  }
+}

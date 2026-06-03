@@ -1,0 +1,28 @@
+version: "3.6"
+services:
+  selenium-hub:
+    image: docker.app.betfair/selenium/hub:4.14.1
+    ports:
+      - "4444:4444"
+    environment:
+      - NODE_MAX_INSTANCES=10
+    logging:
+      driver: "none"
+
+  chrome:
+    image: docker.app.betfair/selenium/node-chrome:117.0-20230920
+    logging:
+      driver: none
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_GRID_URL=http://selenium-hub:4444
+      - SE_NODE_MAX_INSTANCES=10
+      - SE_NODE_MAX_SESSIONS=10
+      - SE_NODE_OVERRIDE_MAX_SESSIONS=true
+      - START_XVFB=false

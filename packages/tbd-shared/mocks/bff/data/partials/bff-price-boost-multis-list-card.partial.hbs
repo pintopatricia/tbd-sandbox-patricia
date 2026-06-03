@@ -1,0 +1,26 @@
+"__typename": "PriceBoostMultisListCard",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:priceboostmultislist:Zp5nEBAAACIAlHmk/s/1{{/urn}}",
+"pbmTitle": {
+  "__typename": "DisplayNameTitle",
+  "name": {{#if title}}"{{title}}"{{else}}null{{/if}}
+},
+"showWasPrice": true,
+"items": {
+  "edges": [
+    {{#each edges}}
+      {
+        "cursor": {{#if cursor}}"{{cursor}}"{{else}}null{{/if}},
+        "__typename": "PriceBoostMultisListCardItemEdge",
+        {{#with node}}
+        "node": {
+          {{> bff-betting-opportunity}}
+        }
+        {{/with}}
+      }{{#unless @last}},{{/unless}}
+    {{/each}}
+  ],
+  "pageInfo": {
+    "endCursor": {{#if endCursor}}"{{endCursor}}"{{else}}null{{/if}},
+    "hasNextPage": {{#if hasNextPage}}true{{else}}false{{/if}}
+  }
+}

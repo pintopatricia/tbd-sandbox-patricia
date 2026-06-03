@@ -1,0 +1,14 @@
+{
+  "container": ".f3a59385ef64233e-container",
+  "squadsContainer": ".f3a59385ef64233e-squadsContainer",
+  "microPlayerContainer": ".f3a59385ef64233e-microPlayerContainer",
+  "microPlayerContainerSquadBet": ".f3a59385ef64233e-microPlayerContainerSquadBet",
+  "betButtonsContainer": ".f3a59385ef64233e-betButtonsContainer",
+  "vsText": ".f3a59385ef64233e-vsText",
+  "vsContainer": ".f3a59385ef64233e-vsContainer",
+  "textContainer": ".f3a59385ef64233e-textContainer",
+  "headerWrapper": ".f3a59385ef64233e-headerWrapper",
+  "header": ".f3a59385ef64233e-header",
+  "title": ".f3a59385ef64233e-title",
+  "icon": ".f3a59385ef64233e-icon"
+}

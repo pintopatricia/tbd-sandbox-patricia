@@ -1,0 +1,18 @@
+fragment extraWalletCard on ExtraWalletCard {
+  __typename
+  urn
+  badges
+  extraWallet {
+    ...extraWallet
+  }
+  restrictions {
+    single
+    acca
+    sameGameMulti
+  }
+}
+
+fragment extraWalletCardPartial on ExtraWalletCard {
+  __typename
+  urn
+}

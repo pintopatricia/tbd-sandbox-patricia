@@ -1,0 +1,14 @@
+fragment broadcastsCardDeprecated on BroadcastsCard {
+  __typename
+  urn
+  broadcasts {
+    dataVizUrl
+    liveVideoUrl
+  }
+  isCollapsed
+}
+
+fragment broadcastsCardPartial on BroadcastsCard {
+  __typename
+  urn
+}

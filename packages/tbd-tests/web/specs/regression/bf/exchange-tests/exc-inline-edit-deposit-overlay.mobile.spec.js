@@ -1,0 +1,278 @@
+const {
+  CardPO,
+  InlinePanelPO,
+  ExchangeInlineEditPanelPO,
+  ExchangeInlinePlacePanelPO,
+  ExchangeUnmatchedCardPO,
+  OverlayPO,
+  AppPO,
+  EventPagePO,
+  SuccessfulDepositContentPO,
+  ExchangeMarketPO,
+  UserProfileHeaderPO,
+  RunnerPO,
+  ExchangeInlineReceiptPanelPO,
+  NudgesNumberInputFieldPO,
+} = require("../../../../page-objects");
+const { getMarkets } = require("@flutter-global/uki-channels-http-clients/mock-index").ERO;
+const { getPlaceBetResponse } = require("@flutter-global/uki-channels-http-clients/mock-index").ETX;
+const { searchOrders, getMarketPositionViews } = require("@flutter-global/uki-channels-http-clients/mock-index").LBR;
+const { getWallets } = require("@flutter-global/uki-channels-http-clients/mock-index").WALLET;
+const { getEventLayout } = require("@ppb/tbd-shared/mocks/bff/bff.controller");
+const { getPaymentsWebGateway } = require("../../../../mock-essentials/controllers/html/html-controller");
+const { getIndexHTML } = require("../../../../mock-essentials/controllers/webserver/webserver-controller");
+
+const MockService = require("../../../../mock-essentials/mocking-service");
+const routes = require("../../../../../utils/routes");
+const { triggerPaymentsWebEvent } = require("../../../../helpers/paymentsWeb.util");
+
+const eventPagePO = new EventPagePO();
+const firstCardPO = new CardPO(eventPagePO.markets[0]);
+const exchangeMarketPO = new ExchangeMarketPO(firstCardPO.exchangeMarket);
+const firstRunnerExchangePO = new RunnerPO(exchangeMarketPO.runnerList[0]);
+
+const inlinePanelPO = new InlinePanelPO();
+const exchangeInlinePlacePanelPO = new ExchangeInlinePlacePanelPO();
+const exchangeInlineEditPanelPO = new ExchangeInlineEditPanelPO();
+const placeStakeFieldPO = new NudgesNumberInputFieldPO(exchangeInlinePlacePanelPO.inputs[1]);
+const editStakeFieldPO = new NudgesNumberInputFieldPO(exchangeInlineEditPanelPO.inputs[1]);
+const exchangeInlineReceiptPanelPO = new ExchangeInlineReceiptPanelPO();
+const exchangeUnmatchedCardPO = new ExchangeUnmatchedCardPO(exchangeInlineReceiptPanelPO.placedBetCards[0]);
+const overlayPO = new OverlayPO();
+const userProfileHeaderPO = new UserProfileHeaderPO(overlayPO.element);
+const successfulDepositContentPO = new SuccessfulDepositContentPO(overlayPO.element);
+
+const mockService = new MockService();
+
+const EVENT_ID = "29359895";
+
+const BFF_MOCK = {
+  urn: `ppb:tbd:view:event:${EVENT_ID}`,
+  hierarchy: {
+    __typename: "EventHierarchy",
+    sportevent: {
+      sport: {
+        name: "Football",
+        urn: "ppb:eventType:1",
+      },
+    },
+  },
+  edges: [
+    {
+      node: {
+        urn: "ppb:tbd:card:29436223:MATCH_ODDS",
+        __typename: "MarketCard",
+        cardTitle: "Match Odds",
+        displayRunners: {
+          exchange: {
+            market: {
+              __typename: "ExchangeMarket",
+              urn: "ppb:excMarket:1.160337355",
+              name: "Match Odds",
+              hierarchy: {
+                __typename: "EventHierarchy",
+                sportevent: {
+                  name: "Wolves v Man Utd",
+                  urn: `ppb:event:${EVENT_ID}`,
+                },
+              },
+              runners: [
+                {
+                  runnerURN: "ppb:excRunner:1.160337355/48044/0",
+                  selectionId: 48044,
+                  name: "Wolves",
+                },
+                {
+                  runnerURN: "ppb:excRunner:1.160337355/48351/0",
+                  selectionId: 48351,
+                  name: "Man Utd",
+                },
+                {
+                  runnerURN: "ppb:excRunner:1.160337355/58805/0",
+                  selectionId: 58805,
+                  name: "The Draw",
+                },
+              ],
+            },
+            runners: [
+              { runnerURN: "ppb:excRunner:1.160337355/48044/0" },
+              { runnerURN: "ppb:excRunner:1.160337355/48351/0" },
+              { runnerURN: "ppb:excRunner:1.160337355/58805/0" },
+            ],
+          },
+        },
+      },
+    },
+  ],
+
+  partialEdges: [
+    {
+      node: {
+        urn: "ppb:tbd:card:29436223:MATCH_ODDS",
+        __typename: "MarketCard",
+      },
+    },
+  ],
+};
+
+const WAS_MOCK = [{ amount: "5.00", walletName: "MAIN" }];
+
+const WAS_FIRST_DEPOSIT_MOCK = [{ amount: "7.00", walletName: "MAIN" }];
+
+const ERO_MOCK = [
+  {
+    runners: [
+      {
+        selectionId: "48044",
+        availableToBack: [{ price: 1.1, size: 100 }],
+        availableToLay: [{ price: 1.01, size: 110 }],
+      },
+      {
+        selectionId: "48351",
+        availableToBack: [{ price: 2.1, size: 200 }],
+        availableToLay: [{ price: 2.2, size: 210 }],
+      },
+      { selectionId: "58805", availableToBack: [], availableToLay: [] },
+    ],
+  },
+];
+
+const ETX_INSUFFICIENT_FUNDS_PLACE_MOCK = {
+  marketId: "1.160337355",
+  status: "FAILURE",
+  instructionReports: [
+    {
+      betId: "11111111111",
+      status: "FAILURE",
+      instructionErrorCode: "INSUFFICIENT_FUNDS",
+      side: "LAY",
+    },
+  ],
+
+  orderErrorCode: "INSUFFICIENT_FUNDS",
+};
+
+const ETX_PLACE_MOCK = {
+  marketId: "1.160337355",
+  status: "SUCCESS",
+  instructionReports: [
+    {
+      betId: "11111111111",
+      status: "SUCCESS",
+      price: 1.01,
+      size: 7,
+      side: "LAY",
+      averagePriceMatched: 0,
+      sizeMatched: 0,
+      orderStatus: "EXECUTABLE",
+    },
+  ],
+};
+
+const POSITION_VIEWS = {
+  marketPositions: [
+    {
+      marketId: "1.160337355",
+      selections: [
+        {
+          selectionId: 48044,
+          orders: [
+            {
+              marketId: "1.160337355",
+              selectionId: 48044,
+              betId: "1:11111111111",
+              size: 3,
+              sizeRemaining: 3,
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+describe("Betslip - Exchange Successful Deposit Overlay", () => {
+  beforeAll(async () => {
+    await mockService.mockHttpRequest(await getIndexHTML(BFF_MOCK.urn));
+    await mockService.mockHttpRequest(getEventLayout(BFF_MOCK));
+    await mockService.mockHttpRequest(getWallets(WAS_MOCK));
+    await mockService.mockHttpRequest(getPaymentsWebGateway());
+    await mockService.mockHttpRequest(getMarkets(ERO_MOCK));
+    await mockService.mockHttpRequest(getPlaceBetResponse(ETX_PLACE_MOCK));
+    await mockService.mockHttpRequest(getMarketPositionViews(POSITION_VIEWS));
+    await mockService.mockHttpRequest(searchOrders());
+    await browser.url(`${routes.getEventViewUrl(EVENT_ID)}`);
+    await browser.waitUntil(
+      AppPO.exchangeRunnerBetButtonHasPrice({
+        market: eventPagePO.markets[0],
+        price: 1.1,
+      }),
+    );
+  });
+
+  describe("When the user has placed an unmatched bet", () => {
+    beforeAll(async () => {
+      await firstRunnerExchangePO.exchangeBetButtons[0].waitForClickable();
+      await firstRunnerExchangePO.exchangeBetButtons[0].click();
+      await browser.waitUntilDisplayed(inlinePanelPO.element, "Selection hasn't been added");
+
+      await placeStakeFieldPO.setValue(2);
+      await exchangeInlinePlacePanelPO.placeButton.waitForClickable();
+      await exchangeInlinePlacePanelPO.placeButton.click();
+      await browser.waitUntilDisplayed(exchangeInlineReceiptPanelPO.element);
+    });
+
+    it("[PRPI-5377] The receipt panel is displayed", async () => {
+      expect(await exchangeInlineReceiptPanelPO.element.isDisplayed()).toBe(true);
+    });
+
+    describe("When the user edits the bet and has insufficient amount to place and presses 'Deposit to Place Bet'", () => {
+      beforeAll(async () => {
+        await exchangeUnmatchedCardPO.confirm.waitForClickable();
+        await exchangeUnmatchedCardPO.confirm.click();
+        await browser.waitUntilDisplayed(exchangeInlineEditPanelPO.element, "Exchange edit panel not displayed");
+        await mockService.mockHttpRequest(getPlaceBetResponse(ETX_INSUFFICIENT_FUNDS_PLACE_MOCK));
+
+        await editStakeFieldPO.setValue(21);
+        await exchangeInlineEditPanelPO.place.waitForClickable();
+        await exchangeInlineEditPanelPO.place.click();
+
+        await browser.waitUntilEquals(exchangeInlineEditPanelPO.place, "Deposit to Place Bet");
+
+        await exchangeInlineEditPanelPO.place.waitForClickable();
+        await exchangeInlineEditPanelPO.place.click();
+
+        await browser.waitUntilDisplayed(overlayPO.element, "Overlay not displayed");
+        await browser.waitUntilDisplayed(userProfileHeaderPO.element, "User profile not displayed");
+      });
+
+      it("[PRPI-5378] The User Profile overlay should be displayed", async () => {
+        expect(await userProfileHeaderPO.element.isDisplayed()).toBe(true);
+      });
+
+      describe("When the user does a successful deposit", () => {
+        beforeAll(async () => {
+          await mockService.mockHttpRequest(getPlaceBetResponse(ETX_PLACE_MOCK));
+          await mockService.mockHttpRequest(getWallets(WAS_FIRST_DEPOSIT_MOCK));
+          await triggerPaymentsWebEvent({ action: "DEPOSIT_SUCCESS" });
+          await browser.waitUntilDisplayed(
+            successfulDepositContentPO.element,
+            "Successful deposit content not displayed",
+          );
+        });
+
+        it("[PRPI-5379] Should show an overlay with an icon", async () => {
+          expect(await successfulDepositContentPO.icon.isDisplayed()).toBe(true);
+        });
+
+        it("[PRPI-5379] Should show an overlay title with 'Deposit Successful!'", async () => {
+          expect(await successfulDepositContentPO.title.getText()).toBe("Deposit Successful!");
+        });
+
+        it("[PRPI-5379] Should show an overlay subtitle with 'Placing Bet...'", async () => {
+          expect(await successfulDepositContentPO.subtitle.getText()).toBe("Placing Bet...");
+        });
+      });
+    });
+  });
+});

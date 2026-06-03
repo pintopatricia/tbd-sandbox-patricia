@@ -1,0 +1,33 @@
+.scrollableReceipt {
+  display: flex;
+
+  max-height: calc(var(--vh) - var(--header-height) - var(--betslip-top-offset));
+}
+
+.scrollableReceiptModal {
+  max-height: calc(
+    var(--vh) - var(--header-height) - var(--betslip-top-offset) - var(--receipt-title-container-sizing)
+  );
+}
+
+.scrollableReceiptDesktop {
+  max-height: calc(
+    var(--vh) - var(--ssc-desktop-header-placeholder-height) - var(--spacing-12) - var(--spacing-6) -
+      var(--betslip-top-offset)
+  );
+
+  background-color: var(--components-neutrals-bottomsheet-background-elevation1);
+}
+
+@supports (max-height: 100svh) {
+  .scrollableReceipt {
+    max-height: calc(100svh - var(--header-height) - var(--betslip-top-offset));
+  }
+
+  .scrollableReceiptDesktop {
+    max-height: calc(
+      100svh - var(--ssc-desktop-header-placeholder-height) - var(--spacing-12) - var(--spacing-6) -
+        var(--betslip-top-offset)
+    );
+  }
+}

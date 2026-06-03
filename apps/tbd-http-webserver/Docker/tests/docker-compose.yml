@@ -1,0 +1,13 @@
+version: "3.4"
+services:
+  mockServer:
+    image: mockserver/mockserver:5.15.0
+    environment:
+      - MOCKSERVER_PROPERTY_FILE=/config/mockserver.properties
+    command: -serverPort 1081
+    volumes:
+      - type: bind
+        source: ${PWD}/regression-tests/config/mockserver.properties
+        target: /config/mockserver.properties
+    ports:
+      - "1081:1081"

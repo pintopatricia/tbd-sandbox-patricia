@@ -1,0 +1,52 @@
+.container {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--spacing-3);
+
+  margin: var(--spacing-3) 0;
+}
+
+.header {
+  display: flex;
+
+  gap: var(--title-large-horizontal-gap);
+
+  align-items: flex-end;
+  justify-content: space-between;
+
+  min-height: var(--scrollable-swimlane-container-sizing);
+}
+
+.title {
+  flex-shrink: 2;
+
+  font: var(--scrollable-swimlane-title-typography);
+  color: var(--card-title-colour);
+  text-decoration-line: var(--scrollable-swimlane-title-typography-text-decoration-line);
+  text-transform: var(--scrollable-swimlane-title-typography-text-transform);
+  letter-spacing: var(--scrollable-swimlane-title-typography-letter-spacing);
+}
+
+.modalContent {
+  display: flex;
+
+  flex-direction: column;
+  flex-grow: 1;
+
+  gap: var(--spacing-4);
+}
+
+.unavailableIcon svg {
+  width: var(--empty-state-icon-sizing);
+  height: var(--empty-state-icon-sizing);
+
+  fill: var(--empty-state-icon-color);
+}
+
+.unavailableIcon {
+  height: var(--empty-state-icon-sizing);
+}

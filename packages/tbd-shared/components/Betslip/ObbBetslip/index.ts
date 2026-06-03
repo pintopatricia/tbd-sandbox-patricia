@@ -1,0 +1,8 @@
+import { makeMapStateToProps, StateProps, ContainerProps } from "./map-to-props-factory";
+import { createUniversalConnector } from "../../universal-connector-factory";
+import { ComponentProps } from "./props";
+
+export default createUniversalConnector<StateProps | false, {}, ContainerProps, ComponentProps>(
+  makeMapStateToProps,
+  {},
+);

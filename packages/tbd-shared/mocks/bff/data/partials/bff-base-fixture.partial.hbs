@@ -1,0 +1,25 @@
+"__typename": "{{__typename}}{{^__typename}}BaseFixture{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:fixture:31237287{{/urn}}",
+"sportevent": {
+  {{#with sportevent}}
+    {{> bff-sportevent}}
+  {{/with}}
+},
+"mainMarket": {
+  {{#with mainMarket}}
+    {{#if exchange}}
+    "exchange": {
+      {{#with exchange}}
+          {{> bff-market}}
+      {{/with}}
+    }{{#if sportsbook}},{{/if}}
+    {{/if}}
+    {{#if sportsbook}}
+    "sportsbook": {
+      {{#with sportsbook}}
+        {{> bff-market}}
+      {{/with}}
+    }
+    {{/if}}
+  {{/with}}
+}

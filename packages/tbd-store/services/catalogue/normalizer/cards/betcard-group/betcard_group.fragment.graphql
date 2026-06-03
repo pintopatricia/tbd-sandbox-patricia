@@ -1,0 +1,23 @@
+fragment betCardGroup on BetCardGroup {
+  __typename
+  urn
+  aggregatorId
+  aggregatorDesc
+  full: items {
+    edges {
+      node {
+        ...fixtureCard
+        ...eventHeaderCard
+        ...raceDetailsCard
+        ...sportsbookBetCard
+        ...sportsbookExpandableLegCardGroup
+        ...marketBetCardGroup
+      }
+    }
+  }
+}
+
+fragment betCardGroupPartial on BetCardGroup {
+  __typename
+  urn
+}

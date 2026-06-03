@@ -1,0 +1,36 @@
+fragment footballPlayerFixtureContextFixtureData on FootballPlayerFixtureContext {
+  __typename
+  urn
+  fixture {
+    ...footballFixtureTeamsJerseys
+  }
+}
+
+fragment footballFixtureTeamsJerseys on FootballFixture {
+  urn
+  __typename
+  home {
+    id
+    name
+    jerseys {
+      color
+      url
+      type
+    }
+    statsAllSeason {
+      matchesPlayed
+    }
+  }
+  away {
+    id
+    name
+    jerseys {
+      color
+      url
+      type
+    }
+    statsAllSeason {
+      matchesPlayed
+    }
+  }
+}

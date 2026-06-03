@@ -1,0 +1,22 @@
+{{#if jockeyName}}
+  "jockeyName": "{{jockeyName}}",
+{{/if}}
+{{#if trainerName}}
+  "trainerName": "{{trainerName}}",
+{{/if}}
+"saddleCloth": "{{saddleCloth}}{{^saddleCloth}}7{{/saddleCloth}}",
+{{#if weight}}
+  "weight": {
+    "kilograms": "{{weight.kilograms}}",
+    "pounds": "{{weight.pounds}}",
+    "stones": "{{weight.stones}}"
+  },
+{{/if}}
+
+{{#if equipmentDescription}}
+  "equipmentDescription": "{{equipmentDescription}}",
+{{/if}}
+{{#if silk}}
+"silk": "{{silk}}",
+{{/if}}
+"draw": {{#if draw includeZero=true}}{{draw}}{{else}}null{{/if}}

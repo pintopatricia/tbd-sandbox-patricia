@@ -1,0 +1,11 @@
+.customLogo {
+  display: flex;
+
+  width: auto;
+  height: 100%;
+}
+
+.customLogo.gameInfo {
+  width: auto;
+  height: 80px;
+}

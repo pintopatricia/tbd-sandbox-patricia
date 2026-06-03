@@ -1,0 +1,14 @@
+const { PLACED_BET_CARD: EXCHANGE_UNMATCHED_CARD } = require("../PlacedBetCard/PlacedBetCard.native.selectors");
+
+const NOTIFICATIONS = `${EXCHANGE_UNMATCHED_CARD}-notifications`;
+const ACTIONS_CONTAINER = `${EXCHANGE_UNMATCHED_CARD}-actions`;
+const CANCEL = `${EXCHANGE_UNMATCHED_CARD}-cancel`;
+const CONFIRM = `${EXCHANGE_UNMATCHED_CARD}-edit`;
+
+module.exports = {
+  EXCHANGE_UNMATCHED_CARD,
+  NOTIFICATIONS,
+  ACTIONS_CONTAINER,
+  CANCEL,
+  CONFIRM,
+};

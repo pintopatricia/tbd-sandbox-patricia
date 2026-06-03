@@ -1,0 +1,7 @@
+.searchBar {
+  margin: var(--spacing-2) 0 0;
+}
+
+.filtersContainer {
+  margin-top: var(--spacing-2);
+}

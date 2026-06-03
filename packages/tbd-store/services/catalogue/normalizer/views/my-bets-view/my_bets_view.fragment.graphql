@@ -1,0 +1,56 @@
+fragment myBetsView on MyBetsView {
+  __typename
+  urn
+  url
+  filters {
+    orderType {
+      items
+      defaultIndex
+    }
+    productType {
+      items
+      defaultIndex
+    }
+    marketIds
+    matchedStatus {
+      items {
+        filterURN
+        filter
+        numberOfBets
+      }
+      defaultIndex
+    }
+    totalDaysRange
+    hasHeritageBets
+    isHeritageView
+  }
+  transactionHistoryLink {
+    viewUrn
+    viewUrl
+  }
+  settlementLink
+  hasEmptyStateImage
+  items(first: 4, after: $cursor) {
+    ...viewItems
+  }
+  bottomBar @include(if: $withBottomBar) {
+    ...bottomBar
+  }
+  leftSidebar @include(if: $withLeftSidebar) {
+    ...leftSidebar
+  }
+  regulatoryData @include(if: $withRegulatoryData) {
+    ...regulatoryData
+  }
+  xsellBar {
+    ...XSellBar
+  }
+  headerItems {
+    edges {
+      node {
+        ...GenericSwitcherCard
+      }
+      theme
+    }
+  }
+}

@@ -1,0 +1,89 @@
+.container {
+  display: flex;
+
+  flex-direction: column;
+
+  margin: 0;
+}
+
+.searchResultsContainer {
+  margin: var(--spacing-3) 0 var(--spacing-6);
+}
+
+.searchResultsContainer p {
+  padding: var(--section-header-title-padding);
+}
+
+.searchBar {
+  margin: var(--spacing-2) 0 var(--spacing-3);
+}
+
+.searchBarGaming {
+  margin: var(--page-vertical-gap-primary) 0;
+}
+
+.defaultContainer {
+  margin: 0 0 var(--spacing-3);
+}
+
+.noResultsLabel {
+  padding: 0;
+  margin: 0 0 var(--search-result-list-vertical-gap) 0;
+
+  color: var(--search-result-item-text-content-text-colour);
+}
+
+.noResultsLabelGaming {
+  padding: var(--section-header-title-padding);
+  margin-bottom: var(--search-result-list-vertical-gap);
+
+  color: var(--search-result-item-text-content-text-colour);
+}
+
+.outOfIdeasLabel {
+  margin-top: var(--page-vertical-gap-primary);
+
+  color: var(--search-result-item-text-content-text-colour);
+}
+
+.outOfIdeasLabelGaming,
+.numberOfResultsLabel,
+.recommendedGamesContainer {
+  margin: 0 0 var(--spacing-3);
+
+  color: var(--search-result-item-text-content-text-colour);
+}
+
+.searchResultsGamingContainer,
+.recommendedGamesWrapper {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--search-result-list-vertical-gap);
+}
+
+.searchResultsGamingContainer > :first-child,
+.recommendedGamesWrapper p {
+  padding: var(--section-header-title-padding);
+}
+
+.gaming,
+.outOfIdeasLabelGaming,
+.numberOfResultsLabel {
+  margin: 0;
+}
+
+.searchHistoryLabel {
+  font: var(--gaming-search-container-label-typography);
+  color: var(--gaming-search-container-label-colour);
+}
+
+.searchHistoryContainer {
+  padding: var(--gaming-search-container-top-section-padding);
+}
+
+.searchHistoryPebblesContainer {
+  padding-top: var(--gaming-search-container-top-section-vertical-gap);
+  padding-bottom: var(--gaming-search-container-bottom-section-padding);
+}

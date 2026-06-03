@@ -1,0 +1,147 @@
+fragment outcomeBasedDetails on OutcomeBasedDetails {
+  expressionInfo {
+    templateId
+    templateVersion
+    result
+    params {
+      ... on ObbSquadVsSquadTemplateParams {
+            squadAParticipantIds
+            squadBParticipantIds
+            outcomeIds
+            timePeriodId
+            quantifier
+          }
+      ... on ObbXOfNTemplateParams {
+        x
+      }
+      ... on ObbSquadBetTemplateParams {
+        outcomeIds
+        timePeriodId
+        participantIds
+        value
+        quantifier
+      }
+      ... on ObbPvpTemplateParams {
+        outcomeId
+        timePeriodId
+        participantIdA
+        participantIdB
+      }
+      ... on ObbSquadVsSquadTemplateParams {
+            squadAParticipantIds
+            squadBParticipantIds
+            outcomeIds
+            timePeriodId
+            quantifier
+          }
+    }
+    expressionComponents {
+      leftOperand {
+        ... on Outcome {
+          outcomeId
+          timePeriodId
+          participantId
+        }
+        ... on Literal {
+          decimal
+        }
+        ... on Operator {
+          operator
+        }
+      }
+      operator
+      rightOperand {
+        ... on Outcome {
+          outcomeId
+          timePeriodId
+          participantId
+        }
+        ... on Literal {
+          decimal
+        }
+        ... on Operator {
+          operator
+        }
+      }
+    }
+    expressionMetadata {
+      participants {
+        name
+        id
+      }
+    }
+    subExpressionInfos {
+      __typename
+      templateId
+      templateVersion
+      result
+      params {
+        ... on ObbSquadVsSquadTemplateParams {
+            squadAParticipantIds
+            squadBParticipantIds
+            outcomeIds
+            timePeriodId
+            quantifier
+          }
+        ... on ObbXOfNTemplateParams {
+          x
+        }
+        ... on ObbSquadBetTemplateParams {
+          outcomeIds
+          timePeriodId
+          participantIds
+          value
+          quantifier
+        }
+        ... on ObbPvpTemplateParams {
+          outcomeId
+          timePeriodId
+          participantIdA
+          participantIdB
+        }
+        ... on ObbSquadVsSquadTemplateParams {
+            squadAParticipantIds
+            squadBParticipantIds
+            outcomeIds
+            timePeriodId
+            quantifier
+          }
+      }
+      expressionComponents {
+        leftOperand {
+          ... on Outcome {
+            outcomeId
+            timePeriodId
+            participantId
+          }
+          ... on Literal {
+            decimal
+          }
+          ... on Operator {
+            operator
+          }
+        }
+        operator
+        rightOperand {
+          ... on Outcome {
+            outcomeId
+            timePeriodId
+            participantId
+          }
+          ... on Literal {
+            decimal
+          }
+          ... on Operator {
+            operator
+          }
+        }
+      }
+      expressionMetadata {
+        participants {
+          name
+          id
+        }
+      }
+    }
+  }
+}

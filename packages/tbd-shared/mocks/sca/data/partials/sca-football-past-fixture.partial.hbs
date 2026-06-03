@@ -1,0 +1,22 @@
+{{#each this}}
+  {
+  "opponent":"{{opponent}}{{^opponent}}Fiorentina{{/opponent}}",
+  "outcome":"{{outcome}}{{^outcome}}WIN{{/outcome}}",
+  "side":"{{side}}{{^side}}HOME{{/side}}",
+  {{#if score}}
+    {{#with score}}
+      "score": { {{> sca-score}} },
+    {{/with}}
+  {{else}}
+    "score": { home: 2, away: 2 },
+  {{/if}}
+  {{#with penaltyShootoutScore}}
+    "penaltyShootoutScore": { {{> sca-score}} },
+  {{/with}}
+  {{#with extraTimeScore}}
+    "extraTimeScore": { {{> sca-score}} },
+  {{/with}}
+  "startAt":"{{startAt}}{{^startAt}}2020-01-31T19:45:00Z{{/startAt}}"
+  }
+  {{#unless @last}},{{/unless}}
+{{/each}}

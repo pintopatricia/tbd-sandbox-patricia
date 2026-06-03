@@ -1,0 +1,7 @@
+"markets": [
+  {{#each markets}}
+    {
+      {{> bff-market}}
+    }{{#unless @last}},{{/unless}}
+  {{/each}}
+]

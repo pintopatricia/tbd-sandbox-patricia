@@ -1,0 +1,30 @@
+fragment favouriteMarketsNavigationTabPartial on FavouriteMarketsNavigationTab {
+  __typename
+  urn
+  badgeText {
+    ...translatableText
+  }
+  tabViewLink: viewLink {
+    viewUrl
+    viewUrn
+  }
+  metadata {
+    total {
+      ...favouriteMarketsCountMetadata
+    }
+  }
+}
+
+fragment favouriteMarketsNavigationTabLite on FavouriteMarketsNavigationTab {
+  ...favouriteMarketsNavigationTabPartial
+  partials: items {
+    ...partialsFavouriteMarketsNavigationTabItems
+  }
+}
+
+fragment favouriteMarketsNavigationTab on FavouriteMarketsNavigationTab {
+  ...favouriteMarketsNavigationTabLite
+  full: items(first: 1) {
+    ...fullFavouriteMarketsNavigationTabItems
+  }
+}

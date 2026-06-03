@@ -1,0 +1,38 @@
+"__typename": "{{__typename}}{{^__typename}}ObbOnboardingCardsCardGroup{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:obb:card:onboardingCards:aTlm5hIAACIAfTQD/e/33755137{{/urn}}",
+"obbOnboardingCardsCardGroupTitle": {
+  {{#with obbOnboardingCardsCardGroupTitle}}
+    {{> bff-obb-display-name}}
+  {{/with}}
+},
+"obbOnboardingCardsCardGroupBadgeLabel": {{#if obbOnboardingCardsCardGroupBadgeLabel}}{
+  {{#with obbOnboardingCardsCardGroupBadgeLabel}}
+    {{> bff-obb-display-name}}
+  {{/with}}
+}{{else}}null{{/if}},
+"event": {
+  {{#with event}}
+    {{> bff-sportevent}}
+  {{/with}}
+},
+"onboardingCards": [
+  {{#each onboardingCards}}
+    {
+      "__typename": "{{__typename}}{{^__typename}}ObbOnboardingCard{{/__typename}}",
+      "participants": [
+        {{#each participants}}
+          {
+            {{> bff-obb-participant}}
+          }{{#unless @last}},{{/unless}}
+        {{/each}}
+      ],
+      "legs": [
+        {{#each legs}}
+          {
+            {{> bff-obb-leg}}
+          }{{#unless @last}},{{/unless}}
+        {{/each}}
+      ]
+    }{{#unless @last}},{{/unless}}
+  {{/each}}
+]

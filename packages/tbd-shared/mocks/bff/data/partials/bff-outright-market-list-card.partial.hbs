@@ -1,0 +1,32 @@
+"__typename": "OutrightMarketListCard",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:outrightMarketList:Y1FoEBEAADtSDlBF/c/1234{{/urn}}",
+"title": "{{title}}{{^title}}Golf{{/title}}",
+"numberOfRowsToDisplay": {{numberOfRowsToDisplay}}{{^numberOfRowsToDisplay}}3{{/numberOfRowsToDisplay}},
+{{#if favouriteMarketsState}}
+  "favouriteMarketsState": {
+    {{> bff-favourite-markets-state favouriteMarketsState}}
+  },
+{{/if}}
+"markets": [
+{{#each markets}}
+  {
+    "__typename": "SportsbookMarket",
+    "urn": "{{urn}}{{^urn}}ppb:sbkMarket:924.277968047{{/urn}}",
+    "name": "{{name}}{{^name}}Winner{{/name}}",
+    "hierarchy": {
+      {{> bff-hierarchy hierarchy}}
+    },
+    "sport": {
+    {{#if sport}}
+      {{#with sport}}
+        {{> bff-sport}}
+      {{/with}}
+    {{/if}}
+    },
+    "runners": [
+      {{> bff-runners }}
+    ],
+    "isOddsboostMarketType": false
+  }{{#unless @last}},{{/unless}}
+{{/each}}
+]

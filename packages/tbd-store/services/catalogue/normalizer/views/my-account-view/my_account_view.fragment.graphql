@@ -1,0 +1,22 @@
+fragment myAccountView on MyAccountView {
+  __typename
+  urn
+  url
+  wizardUrl
+  __typename
+  items {
+    ...viewItems
+  }
+  bottomBar @include(if: $withBottomBar) {
+    ...bottomBar
+  }
+  leftSidebar @include(if: $withLeftSidebar) {
+    ...leftSidebar
+  }
+  regulatoryData @include(if: $withRegulatoryData) {
+    ...regulatoryData
+  }
+  xsellBar {
+    ...XSellBar
+  }
+}

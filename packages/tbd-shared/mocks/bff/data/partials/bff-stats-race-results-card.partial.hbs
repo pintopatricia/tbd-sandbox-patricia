@@ -1,0 +1,32 @@
+"__typename": "StatsRaceResultsCard",
+"urn": "{{urn}}{{^urn}}ppb:tbd:stats:card:raceResults:1{{/urn}}",
+"raceResultsRunners": [
+  {{#each runners}}
+    {
+      "horse": {
+        {{#if horse}}
+            {{#with horse}}
+                "name": "{{name}}{{^name}}PHOTOGRAPH (IRE){{/name}}",
+                "performance": {
+                  {{#if performance}}
+                    {{#with performance}}                     
+                      "positionOfficial": {{#if positionOfficial}}{{positionOfficial}}{{else}}null{{/if}},
+                      "positionStatusCode": {{#if positionStatusCode}}"{{positionStatusCode}}"{{else}}null{{/if}}
+                    {{/with}}
+                  {{/if}}
+                }
+            {{/with}}
+        {{/if}}
+      },
+      "details": {
+        {{#if details}}
+            {{#with details}}
+              "silk": {{#if silk}}"{{silk}}"{{else}}null{{/if}},
+              "saddleCloth": "{{saddleCloth}}{{^saddleCloth}}7{{/saddleCloth}}"
+            {{/with}}
+        {{/if}}
+      },
+      "isBetSelection": {{#if isBetSelection}}true{{else}}false{{/if}}
+    }{{#unless @last}},{{/unless}}
+  {{/each}}
+]

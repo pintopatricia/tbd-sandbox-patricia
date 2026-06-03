@@ -1,0 +1,13 @@
+"__typename": "MatchTimelineCard",
+"footballFixture": {
+{{#with footballFixture}}
+  {{> bff-football-fixture-content}}
+{{/with}}
+},
+"sportevent": {
+{{#with sportevent}}
+  {{> bff-sportevent}}
+{{/with}}
+},
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:matchTimeline:29465861{{/urn}}",
+"contentTitle": "{{contentTitle}}{{^contentTitle}}Match Timeline{{/contentTitle}}"

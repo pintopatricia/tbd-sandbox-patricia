@@ -1,0 +1,65 @@
+"__typename": "{{__typename}}{{^__typename}}ObbPvpCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:obb:card:pvp:ZypGlBIAAB8AKdsj/e/29359895{{/urn}}",
+{{#if title}}
+{{#with title}}
+  "title": {
+    {{> bff-obb-display-name}}
+  },
+{{/with}}
+{{/if}}
+"event": {
+  {{#with event}}
+    {{> bff-sportevent}}
+  {{/with}}
+},
+"title": {
+  "name": "{{title.name}}"
+},
+{{#if participantInfo}}
+  {{#with participantInfo}}
+    "participantInfo": {
+      {{> bff-obb-display-name}}
+    },
+  {{/with}}
+{{/if}}
+"teams": {
+  "home": {
+    {{#with teams.home}}
+      {{> bff-football-team}}
+    {{/with}}
+  },
+  "away": {
+    {{#with teams.away}}
+      {{> bff-football-team}}
+    {{/with}}
+  }
+},
+"participants": [
+  {{#each participants}}
+    {
+      {{> bff-obb-participant}}
+    }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+],
+"filterTags": [
+  {{#each filterTags}}
+    {
+      {{> bff-obb-filter-tag}}
+    }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+],
+"incidentType": {
+  {{#with incidentType}}
+    {{> bff-obb-incident-type}}
+  {{/with}}
+},
+"defaultLegs": [
+  {{#each defaultLegs}}
+    {
+      {{> bff-obb-leg}}
+    }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+]

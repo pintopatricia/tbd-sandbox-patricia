@@ -1,0 +1,20 @@
+fragment searchZone on SearchZone {
+  __typename
+  urn
+  searchZoneItems: items(first: $numberOfFilledCardsInCardGroup) {
+    edges {
+      node {
+        # Cards
+        ...searchBarCard
+
+        # Groups
+        ...gamingCardGroup
+      }
+    }
+  }
+}
+
+fragment searchZonePartial on SearchZone {
+  __typename
+  urn
+}

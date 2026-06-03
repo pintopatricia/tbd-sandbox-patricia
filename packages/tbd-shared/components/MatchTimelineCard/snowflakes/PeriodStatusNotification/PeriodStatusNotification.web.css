@@ -1,0 +1,17 @@
+.periodStatusNotificationContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  width: 100%;
+  padding: var(--spacing-2);
+  margin-bottom: var(--spacing-1);
+
+  background-color: var(--neutrals-background-elevation2);
+  border-radius: 4px;
+}
+
+.title {
+  color: var(--neutrals-text-default);
+  text-align: center;
+}

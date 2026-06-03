@@ -1,0 +1,28 @@
+fragment sportView on SportView {
+  __typename
+  urn
+  url
+  title
+  canonicalUrl
+  sport {
+    ...sport
+  }
+  items(autoPageSize: true) {
+    ...viewItems
+  }
+  partialItems: items {
+    ...viewItemsPartial
+  }
+  bottomBar @include(if: $withBottomBar) {
+    ...bottomBar
+  }
+  leftSidebar @include(if: $withLeftSidebar) {
+    ...leftSidebar
+  }
+  regulatoryData @include(if: $withRegulatoryData) {
+    ...regulatoryData
+  }
+  xsellBar {
+    ...XSellBar
+  }
+}

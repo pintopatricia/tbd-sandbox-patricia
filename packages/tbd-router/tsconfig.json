@@ -1,0 +1,22 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    /* Modules */
+    "module": "commonjs",
+    "rootDir": ".",
+
+    /* Emit */
+    "noEmit": false,
+    "outDir": "dist",
+
+    /* Language and Environment */
+    "lib": ["es2021"],
+    "target": "es2021"
+  },
+  "include": ["**/*.ts"],
+  "references": [
+    {
+      "path": "../tbd-store/tsconfig.json"
+    }
+  ]
+}

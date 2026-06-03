@@ -1,0 +1,15 @@
+fragment marketBetCard on MarketBetCard {
+  __typename
+  urn
+  betCardGroupURN
+  marketBetCardGroupURN
+  marketBet {
+    ...exchangeMarketBet
+  }
+  matchedStatus
+}
+
+fragment marketBetCardPartial on MarketBetCard {
+  __typename
+  urn
+}

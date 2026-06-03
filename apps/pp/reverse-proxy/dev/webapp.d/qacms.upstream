@@ -1,0 +1,3 @@
+upstream apitbd {
+    server tbdpp-qacms.qa.internal;
+}

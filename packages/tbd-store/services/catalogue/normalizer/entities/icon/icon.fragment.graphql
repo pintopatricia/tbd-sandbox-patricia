@@ -1,0 +1,7 @@
+fragment icon on Icon {
+  ... on SportIcon {
+    sport {
+      sportId
+    }
+  }
+}

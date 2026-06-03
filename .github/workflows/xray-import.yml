@@ -1,0 +1,559 @@
+name: xray-import
+
+on:
+  workflow_call:
+    inputs:
+      junit_artifact_name:
+        required: false
+        type: string
+      junit_artifact_url:
+        required: false
+        type: string
+      source_run_id:
+        required: false
+        type: string
+      jira_project_key:
+        required: true
+        type: string
+      xray_test_plan_key:
+        required: false
+        type: string
+      summary_prefix:
+        required: false
+        type: string
+        default: "Web Tests"
+      pr_id:
+        required: false
+        type: string
+      test_type:
+        required: true
+        type: string
+      brand:
+        required: true
+        type: string
+      environment:
+        required: false
+        type: string
+      execution_started_at:
+        required: false
+        type: string
+      execution_finished_at:
+        required: false
+        type: string
+      execution_duration_seconds:
+        required: false
+        type: string
+      build_id:
+        required: false
+        type: string
+      build_url:
+        required: false
+        type: string
+      platform:
+        required: false
+        type: string
+        default: "web"
+      batch_size:
+        required: false
+        type: string
+        default: ""
+
+  workflow_dispatch:
+    inputs:
+      junit_artifact_name:
+        required: false
+        type: string
+      junit_artifact_url:
+        required: false
+        type: string
+      source_run_id:
+        required: false
+        type: string
+      jira_project_key:
+        required: true
+        type: string
+      xray_test_plan_key:
+        required: false
+        type: string
+      summary_prefix:
+        required: false
+        default: "Web Tests"
+        type: string
+      pr_id:
+        required: false
+        type: string
+      test_type:
+        required: true
+        type: string
+      brand:
+        required: true
+        type: string
+      environment:
+        required: false
+        type: string
+      execution_started_at:
+        required: false
+        type: string
+      execution_finished_at:
+        required: false
+        type: string
+      execution_duration_seconds:
+        required: false
+        type: string
+      build_id:
+        required: false
+        type: string
+      build_url:
+        required: false
+        type: string
+      platform:
+        required: false
+        type: string
+        default: "web"
+      batch_size:
+        required: false
+        type: string
+        default: ""
+
+jobs:
+  xray:
+    runs-on: centos-self-hosted-large
+    timeout-minutes: 180
+    env:
+      JIRA_BASE_URL: https://jira.services.flutteruki.com
+      JIRA_TOKEN: ${{ secrets.JIRA_TOKEN }}
+      REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: Normalize test type for Xray
+        id: normalize_test_type
+        shell: bash
+        run: |
+          set -euo pipefail
+          case "${{ inputs.test_type }}" in
+            regression) echo "xray_test_type=regression-tests" >> "$GITHUB_OUTPUT" ;;
+            visual) echo "xray_test_type=visual-tests" >> "$GITHUB_OUTPUT" ;;
+            e2e) echo "xray_test_type=e2e-tests" >> "$GITHUB_OUTPUT" ;;
+            *) echo "xray_test_type=${{ inputs.test_type }}" >> "$GITHUB_OUTPUT" ;;
+          esac
+
+      - name: Resolve Xray test plan
+        id: resolved_plan
+        if: ${{ inputs.xray_test_plan_key == '' }}
+        uses: ./.github/actions/xray
+        with:
+          test_type: ${{ inputs.test_type }}
+          brand: ${{ inputs.brand }}
+          environment: ${{ inputs.environment }}
+          platform: ${{ inputs.platform }}
+
+      - name: Determine effective Xray test plan key
+        id: effective_plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          PLAN_KEY="${{ inputs.xray_test_plan_key }}"
+          if [ -z "$PLAN_KEY" ]; then
+            PLAN_KEY="${{ steps.resolved_plan.outputs.test_plan_key }}"
+          fi
+
+          if [ -z "$PLAN_KEY" ]; then
+            echo "::error::Could not determine Xray test plan key"
+            exit 1
+          fi
+
+          echo "test_plan_key=$PLAN_KEY" >> "$GITHUB_OUTPUT"
+          echo "Using Xray test plan key: $PLAN_KEY"
+
+      - name: Download JUnit from Jenkins (URL)
+        if: ${{ inputs.junit_artifact_url != '' }}
+        shell: bash
+        env:
+          JENKINS_USER: ${{ secrets.JENKINS_TBD_USER }}
+          JENKINS_TOKEN: ${{ secrets.JENKINS_TBD_USER_TOKEN }}
+        run: |
+          set -euo pipefail
+          mkdir -p ./junit
+          echo "Downloading JUnit from: ${{ inputs.junit_artifact_url }}"
+
+          curl -fsSL -L \
+            -u "${JENKINS_USER}:${JENKINS_TOKEN}" \
+            "${{ inputs.junit_artifact_url }}" \
+            -o junit-results.zip
+
+          unzip -o junit-results.zip -d ./junit
+          if [ -d "./junit/reports/junit" ]; then
+            mv ./junit/reports/junit/*.xml ./junit/ || true
+          fi
+          ls -la ./junit
+
+      - name: Download JUnit artifact from source workflow run
+        if: ${{ inputs.junit_artifact_url == '' && inputs.source_run_id != '' }}
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SOURCE_RUN_ID: ${{ inputs.source_run_id }}
+          ARTIFACT_NAME: ${{ inputs.junit_artifact_name }}
+        run: |
+          set -euo pipefail
+
+          mkdir -p ./junit
+
+          echo "Looking for artifact '${ARTIFACT_NAME}' in run ${SOURCE_RUN_ID}"
+
+          API_URL="https://api.github.com/repos/${REPO}/actions/runs/${SOURCE_RUN_ID}/artifacts"
+
+          ARTIFACT_ID="$(
+            curl -fsSL \
+              -H "Authorization: Bearer ${GH_TOKEN}" \
+              -H "Accept: application/vnd.github+json" \
+              "${API_URL}" \
+            | jq -r --arg NAME "${ARTIFACT_NAME}" '
+                .artifacts[]
+                | select(.name == $NAME and .expired == false)
+                | .id
+              ' \
+            | head -n 1
+          )"
+
+          if [ -z "${ARTIFACT_ID}" ]; then
+            echo "::error::Artifact '${ARTIFACT_NAME}' not found in workflow run ${SOURCE_RUN_ID}"
+            exit 1
+          fi
+
+          echo "Found artifact id: ${ARTIFACT_ID}"
+
+          curl -fsSL \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            -L "https://api.github.com/repos/${REPO}/actions/artifacts/${ARTIFACT_ID}/zip" \
+            -o artifact.zip
+
+          unzip -o artifact.zip -d ./junit
+          ls -la ./junit
+
+      - name: Download JUnit artifact (same workflow fallback)
+        if: ${{ inputs.junit_artifact_url == '' && inputs.source_run_id == '' }}
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ inputs.junit_artifact_name }}
+          path: ./junit
+
+      - name: Patch JUnit for Xray
+        shell: bash
+        run: |
+          set -euo pipefail
+          node ./packages/tbd-tests/utils/extractXrayData.js ./junit
+
+      - name: Ensure Jira test keys exist
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if ! compgen -G "./junit/junit-*.xml" > /dev/null; then
+            echo "::error::No patched JUnit files found in ./junit"
+            exit 1
+          fi
+
+          if ! grep -RqsE 'PRPI[- ]+[0-9]+' ./junit/junit-*.xml; then
+            echo "::error::No Jira test keys found in JUnit. Aborting Xray import."
+            exit 1
+          fi
+
+      - name: Debug JUnit volume
+        id: debug_junit_volume
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          ALL_XML_COUNT=$(find ./junit -type f -name '*.xml' | wc -l | tr -d ' ')
+          PATCHED_XML_COUNT=$(find ./junit -type f -name 'junit-*.xml' | wc -l | tr -d ' ')
+
+          echo "All XML files count: ${ALL_XML_COUNT}"
+          echo "Patched junit-* files count: ${PATCHED_XML_COUNT}"
+
+          echo "all_xml_count=${ALL_XML_COUNT}" >> "$GITHUB_OUTPUT"
+          echo "patched_xml_count=${PATCHED_XML_COUNT}" >> "$GITHUB_OUTPUT"
+
+      - name: Prepare Test Execution JSON
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          TEST_ENV_VALUE="${{ inputs.environment }}"
+          [ -n "$TEST_ENV_VALUE" ] || TEST_ENV_VALUE="unknown"
+
+          ID_VALUE=""
+          if [ -n "${{ inputs.pr_id }}" ]; then
+            ID_VALUE="#${{ inputs.pr_id }}"
+          elif [ -n "${{ inputs.build_id }}" ]; then
+            ID_VALUE="build #${{ inputs.build_id }}"
+          else
+            ID_VALUE="run #${{ github.run_id }}"
+          fi
+
+          PLATFORM_VALUE="${{ inputs.platform }}"
+          [ -n "$PLATFORM_VALUE" ] || PLATFORM_VALUE="web"
+
+          TEST_TYPE_VALUE="${{ steps.normalize_test_type.outputs.xray_test_type }}"
+          BRAND_VALUE="${{ inputs.brand }}"
+
+          SUMMARY="${TEST_TYPE_VALUE} - ${BRAND_VALUE} - ${TEST_ENV_VALUE} - ${PLATFORM_VALUE} - ${ID_VALUE}"
+
+          DESC="Triggered by GitHub Actions run #${{ github.run_id }}"
+          if [ -n "${{ inputs.build_url }}" ]; then
+            DESC="Triggered by Jenkins: ${{ inputs.build_url }}"
+          elif [ -n "${{ inputs.pr_id }}" ]; then
+            DESC="Triggered by PR #${{ inputs.pr_id }}"
+          fi
+
+          cat > xray-test-exec.json <<JSON
+          {
+            "fields": {
+              "project": { "key": "${{ inputs.jira_project_key }}" },
+              "summary": "${SUMMARY}",
+              "issuetype": { "name": "Test Execution" },
+              "description": "${DESC}",
+              "labels": ["${TEST_TYPE_VALUE}"],
+              "fixVersions": [
+                { "name": "${BRAND_VALUE}" }
+              ],
+              "environment": "${PLATFORM_VALUE}",
+              "customfield_10103": "PRPI-519",
+              "customfield_30827": ["${TEST_ENV_VALUE}"]
+            }
+          }
+          JSON
+
+          cat xray-test-exec.json
+
+      - name: Create explicit Jira Test Execution for batched imports
+        id: create_exec
+        if: ${{ inputs.batch_size != '' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          RESPONSE_FILE="create-test-exec-response.json"
+
+          curl -fsSL \
+            -X POST \
+            -H "Authorization: Bearer ${JIRA_TOKEN}" \
+            -H "Content-Type: application/json" \
+            -H "Accept: application/json" \
+            --data @xray-test-exec.json \
+            "${JIRA_BASE_URL}/rest/api/2/issue" \
+            > "${RESPONSE_FILE}"
+
+          cat "${RESPONSE_FILE}"
+
+          TEST_EXEC_KEY="$(jq -r '.key // empty' "${RESPONSE_FILE}")"
+
+          if [ -z "${TEST_EXEC_KEY}" ]; then
+            echo "::error::Could not create Jira Test Execution"
+            exit 1
+          fi
+
+          echo "issue_key=${TEST_EXEC_KEY}" >> "$GITHUB_OUTPUT"
+          echo "Created explicit Test Execution: ${TEST_EXEC_KEY}"
+
+      - name: Import to Xray (single pass)
+        id: xray_single
+        if: ${{ inputs.batch_size == '' && steps.normalize_test_type.outputs.xray_test_type != 'regression-tests' }}
+        timeout-minutes: 20
+        uses: mikepenz/xray-action@v3
+        with:
+          xrayCloud: "false"
+          xrayBaseUrl: ${{ env.JIRA_BASE_URL }}
+          xrayToken: ${{ secrets.JIRA_TOKEN }}
+          projectKey: ${{ inputs.jira_project_key }}
+          testPlanKey: ${{ steps.effective_plan.outputs.test_plan_key }}
+          testFormat: "junit"
+          testPaths: "junit/junit-*.xml"
+          testExecutionJson: "xray-test-exec.json"
+          failOnImportError: "true"
+          testMerge: "false"
+          combineInSingleTestExec: "true"
+          importRetryLimit: "1"
+          importParallelism: "1"
+          responseTimeout: "120000"
+
+      - name: Normalize Test Execution key (single pass)
+        id: normalize_exec_key_single
+        if: ${{ steps.xray_single.outputs.testExecKey != '' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          RAW_KEY='${{ steps.xray_single.outputs.testExecKey }}'
+          echo "Raw testExecKey: $RAW_KEY"
+
+          FIRST_KEY=$(printf '%s\n' "$RAW_KEY" | grep -oE 'PRPI-[0-9]+' | head -n 1 || true)
+
+          if [ -z "$FIRST_KEY" ]; then
+            echo "::error::Could not extract a valid Jira issue key from testExecKey output"
+            exit 1
+          fi
+
+          echo "issue_key=$FIRST_KEY" >> "$GITHUB_OUTPUT"
+          echo "Normalized issue key: $FIRST_KEY"
+
+      - name: Split JUnit files into batches
+        id: split_batches
+        if: ${{ inputs.batch_size != '' || steps.normalize_test_type.outputs.xray_test_type == 'regression-tests' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+
+          BATCH_SIZE="${{ inputs.batch_size }}"
+          if ! [[ "$BATCH_SIZE" =~ ^[0-9]+$ ]] || [ "$BATCH_SIZE" -le 0 ]; then
+            echo "::error::batch_size must be a positive integer"
+            exit 1
+          fi
+
+          mkdir -p junit-batches
+
+          files=(./junit/junit-*.xml)
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "::error::No junit XML files found to batch"
+            exit 1
+          fi
+
+          batch_num=1
+          count_in_batch=0
+
+          for file in "${files[@]}"; do
+            batch_dir=$(printf "junit-batches/batch-%03d" "${batch_num}")
+            mkdir -p "${batch_dir}"
+            cp "${file}" "${batch_dir}/"
+            count_in_batch=$((count_in_batch + 1))
+
+            if [ "${count_in_batch}" -ge "${BATCH_SIZE}" ]; then
+              batch_num=$((batch_num + 1))
+              count_in_batch=0
+            fi
+          done
+
+          echo "Created batch directories:"
+          find junit-batches -mindepth 1 -maxdepth 1 -type d | sort
+
+          BATCH_COUNT=$(find junit-batches -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')
+          echo "Total batch directories: ${BATCH_COUNT}"
+          echo "batch_count=${BATCH_COUNT}" >> "$GITHUB_OUTPUT"
+
+      - name: Debug batch sizes
+        if: ${{ inputs.batch_size != '' || steps.normalize_test_type.outputs.xray_test_type == 'regression-tests' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for dir in junit-batches/*; do
+            echo "$dir -> $(find "$dir" -type f -name '*.xml' | wc -l) files"
+          done
+
+      - name: Import to Xray in batches
+        id: xray_batched
+        if: ${{ inputs.batch_size != '' || steps.normalize_test_type.outputs.xray_test_type == 'regression-tests' }}
+        shell: bash
+        env:
+          TEST_EXEC_KEY: ${{ steps.create_exec.outputs.issue_key }}
+          TEST_PLAN_KEY: ${{ steps.effective_plan.outputs.test_plan_key }}
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+
+          if [ -z "${TEST_EXEC_KEY}" ]; then
+            echo "::error::Missing explicit Test Execution key for batched import"
+            exit 1
+          fi
+
+          IMPORT_BASE="${JIRA_BASE_URL}/rest/raven/1.0/import/execution/junit"
+          QUERY="projectKey=${{ inputs.jira_project_key }}&testExecKey=${TEST_EXEC_KEY}"
+
+          if [ -n "${TEST_PLAN_KEY}" ]; then
+            QUERY="${QUERY}&testPlanKey=${TEST_PLAN_KEY}"
+          fi
+
+          TOTAL_BATCH_XMLS=0
+          FAILED_BATCH_XMLS=0
+
+          for xml in $(find junit-batches -type f -name '*.xml' | sort); do
+            TOTAL_BATCH_XMLS=$((TOTAL_BATCH_XMLS + 1))
+            echo "Importing ${xml}"
+
+            SUCCESS=false
+            for attempt in 1 2 3; do
+              echo "Attempt ${attempt} for ${xml}"
+
+              if curl -fsSL \
+                -X POST \
+                -H "Authorization: Bearer ${JIRA_TOKEN}" \
+                -F "file=@${xml}" \
+                "${IMPORT_BASE}?${QUERY}" \
+                > /dev/null; then
+                SUCCESS=true
+                echo "Imported ${xml} successfully"
+                break
+              fi
+
+              echo "Attempt ${attempt} failed for ${xml}"
+              sleep 5
+            done
+
+            if [ "${SUCCESS}" != "true" ]; then
+              echo "::error::Failed to import ${xml} after 3 attempts"
+              FAILED_BATCH_XMLS=$((FAILED_BATCH_XMLS + 1))
+            fi
+          done
+
+          echo "Total batch XML imports attempted: ${TOTAL_BATCH_XMLS}"
+          echo "Failed batch XML imports: ${FAILED_BATCH_XMLS}"
+
+          if [ "${FAILED_BATCH_XMLS}" -gt 0 ]; then
+            echo "::error::One or more batch XML imports failed"
+            exit 1
+          fi
+
+          echo "issue_key=${TEST_EXEC_KEY}" >> "$GITHUB_OUTPUT"
+
+      - name: Finalize Jira Test Execution
+        if: ${{ steps.normalize_exec_key_single.outputs.issue_key != '' }}
+        continue-on-error: true
+        uses: ./.github/actions/jira-integration
+        with:
+          jira_base_url: ${{ env.JIRA_BASE_URL }}
+          jira_token: ${{ secrets.JIRA_TOKEN }}
+          issue_key: ${{ steps.normalize_exec_key_single.outputs.issue_key }}
+          test_plan_key: ${{ steps.effective_plan.outputs.test_plan_key }}
+          transition_id: "91"
+          worklog_seconds: ${{ inputs.execution_duration_seconds }}
+          assignee: svc-tbd-test-auto
+
+      - name: Finalize Jira Test Execution (batched)
+        if: ${{ steps.xray_batched.outputs.issue_key != '' }}
+        continue-on-error: true
+        uses: ./.github/actions/jira-integration
+        with:
+          jira_base_url: ${{ env.JIRA_BASE_URL }}
+          jira_token: ${{ secrets.JIRA_TOKEN }}
+          issue_key: ${{ steps.xray_batched.outputs.issue_key }}
+          test_plan_key: ${{ steps.effective_plan.outputs.test_plan_key }}
+          transition_id: "91"
+          worklog_seconds: ${{ inputs.execution_duration_seconds }}
+          assignee: svc-tbd-test-auto
+
+      - name: Report imported execution key
+        if: ${{ always() }}
+        shell: bash
+        run: |
+          echo "Single pass issue key: ${{ steps.normalize_exec_key_single.outputs.issue_key }}"
+          echo "Batched issue key: ${{ steps.xray_batched.outputs.issue_key }}"
+          echo "Patched junit xml count: ${{ steps.debug_junit_volume.outputs.patched_xml_count }}"
+          echo "All xml count: ${{ steps.debug_junit_volume.outputs.all_xml_count }}"
+          echo "Batch count: ${{ steps.split_batches.outputs.batch_count }}"

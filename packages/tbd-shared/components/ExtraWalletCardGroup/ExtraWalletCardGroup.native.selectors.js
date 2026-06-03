@@ -1,0 +1,7 @@
+const EXTRA_WALLET_CARD_GROUP = "extra-wallet-card-group";
+const EXTRA_WALLET_CARD_GROUP_FREE_BETS_AMOUNT = `${EXTRA_WALLET_CARD_GROUP}-free-bets-amount`;
+
+module.exports = {
+  EXTRA_WALLET_CARD_GROUP,
+  EXTRA_WALLET_CARD_GROUP_FREE_BETS_AMOUNT,
+};

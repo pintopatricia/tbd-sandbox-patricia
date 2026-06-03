@@ -1,0 +1,72 @@
+.container {
+  display: flex;
+}
+
+.leftColumn {
+  display: flex;
+
+  flex: 1;
+
+  gap: var(--sm-spacing-xxx-small);
+
+  align-items: center;
+}
+
+.jerseyContainer {
+  width: 32px;
+  height: 32px;
+}
+
+.jerseyContainer img {
+  width: 32px;
+  height: 32px;
+}
+
+.jerseyContainer svg {
+  width: 32px;
+  height: 32px;
+}
+
+.runnerContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+.runnerName {
+  display: -webkit-box;
+
+  overflow: hidden;
+
+  font: var(--sm-body-medium-base);
+  color: var(--sm-colours-text-static-neutral-base);
+  text-decoration: var(--sm-body-medium-base-text-decoration-line);
+  text-overflow: ellipsis;
+  text-transform: var(--sm-body-medium-base-text-transform);
+  letter-spacing: var(--sm-body-medium-base-letter-spacing);
+  word-break: break-word;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.runnerStats {
+  font: var(--sm-body-small-base);
+  color: var(--sm-colours-text-static-neutral-base);
+  text-decoration: var(--sm-body-small-base-text-decoration-line);
+  text-overflow: ellipsis;
+  text-transform: var(--sm-body-small-base-text-transform);
+  letter-spacing: var(--sm-body-small-base-letter-spacing);
+}
+
+.statValue {
+  font: var(--sm-body-small-strong);
+  text-decoration: var(--sm-body-small-strong-text-decoration-line);
+  text-transform: var(--sm-body-small-strong-text-transform);
+  letter-spacing: var(--sm-body-small-strong-letter-spacing);
+}
+
+.rightColumn {
+  display: flex;
+}

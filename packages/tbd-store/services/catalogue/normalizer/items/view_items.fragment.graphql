@@ -1,0 +1,151 @@
+fragment viewItems on ViewItemsConnection {
+  edges {
+    node {
+      # Read this before adding new entries: docs/guidelines/how-to-add-a-new-card.md
+
+      # Cards
+      ...accountBannersCard
+      ...balanceCard
+      ...broadcastsAndStatisticsCard
+      ...broadcastsCardDeprecated
+      ...budgetLimitsCard
+      ...competitionRegionCard
+      ...competitionViewLinkCard
+      ...contentSummaryCard
+      ...correctScoreCard
+      ...eventMarketCard
+      ...eventViewLinkCard
+      ...expandableMarketCard
+      ...fixtureCardWithStats
+      ...forbiddenContentCard
+      ...gameCard
+      ...gameInfoCard
+      ...gamingJackpotCard
+      ...gamingLinkCard
+      ...gamingPlayNewCard
+      ...gridCard
+      ...headToHeadCard
+      ...highlightedSelectionCard
+      ...imsPromotionDetailsCard
+      ...imsPromotionErrorCard
+      ...imsPromotionStateCard
+      ...imsPromotionTermsAndConditionsCard
+      ...linksCard
+      ...marketBetCard
+      ...marketBetSelectionCard
+      ...marketCard
+      ...marketExtendedCard
+      ...marketGraphsCard
+      ...marketRulesCard
+      ...marketViewLinkCard
+      ...matchStatsCard
+      ...matchStatSelectionCard
+      ...matchTimelineCard
+      ...outrightMarketListCard
+      ...popularMultiplesBetBuilderCard
+      ...packagedCreatedBetsCard
+      ...preferenceSingleChoiceCard
+      ...promotionCard
+      ...quickLinksCard
+      ...raceByTimeRangeCard
+      ...raceDetailsCard
+      ...raceMarketCard
+      ...raceViewLinkCard
+      ...raceViewLinksCard
+      ...regulatoryCard
+      ...rewardsCard
+      ...runnerInfoCard
+      ...searchBarCard
+      ...sportsbookBetCard
+      ...sportsbookBetInfoCard
+      ...sportsbookBetLegCard
+      ...teamFormCard
+      ...timeFormBroadCastsCard
+
+      # Groups
+      ...betCardGroup
+      ...betSharingCardGroup
+      ...expandableCardGroup
+      ...expandableCardGroup
+      ...filteredCouponCardGroup
+      ...futureRacingCardGroup
+      ...gamingCardGroup
+      ...marketBetCardGroup
+      ...marketBetExpandableCardGroup
+      ...marketBetSelectionCardGroup
+      ...navigationTabsList
+      ...pebbleCardGroup
+      ...racesByTimeRangeCardGroup
+      ...segmentedCardGroup
+      ...selectableitemsCardGroup
+      ...sportRibbonCardGroup
+      ...sportsbookBetLegCardGroup
+      ...sportsbookExpandableLegCardGroup
+      ...swimlaneCardGroup
+      ...halfTimeSpecialsSwimlaneCardGroup
+      ...swimlaneIndexedCardGroup
+      ...byTimeRangeMeetingCardGroup
+      ...viewZone
+      ...searchZone
+      ...racingSwimlaneCardGroup
+      ...popularSwimlaneCardGroup
+
+      # Apollo Migrated Cards
+      ...GamingPrizeMachineCard
+      ...SelfExclusionCard
+      ...StatsFormCardRecentForm
+      ...StatsFormCardCompetitionForm
+      ...StatsTeamsCardPreviousFive
+      ...StatsTeamsCardAllSeason
+      ...StatsHeadToHeadCard
+      ...StatsMatchStatsCard
+      ...StatsGoalsAndShotsCard
+      ...StatsPlayersInPlayCard
+      ...StatsBroadcastsCard
+      ...IncidentsCard
+      ...StatsLineupsCard
+      ...StatsLeagueTableCard
+      ...GenericSwitcherCard
+      ...RaceSwitcherCard
+      ...MiniPromoBannerCard
+      ...EditorialPromoCard
+      ...BetOpportunityPromoCard
+      ...SelectionPromoCard
+      ...LottoCard
+      ...PriceBoostMultiplePromoCard
+      ...StatsPebbleCardGroup
+      ...StatsContentCardGroup
+      ...SportsbookLotteriesBetLegCardGroup
+      ...PromotionsCardGroup
+      ...TeamLineupCard
+      ...MonterosaContentCard
+      ...EmbeddedContentCard
+      ...PopularSelectionsCard
+      ...QuicklinksGridCardGroup
+      ...EmbeddedViewCard
+      ...SportsbookChatbotCard
+      ...PenaltyTakersCard
+    }
+    theme
+  }
+  pageInfo @include(if: $withPageInfo) {
+    endCursor
+    hasNextPage
+  }
+}
+
+fragment viewItemsPartial on ViewItemsConnection {
+  edges {
+    node {
+      urn
+      __typename
+      ... on FixtureCard {
+        red7Scoreboard {
+          fullURL
+          origin
+        }
+      }
+    }
+    theme
+  }
+}

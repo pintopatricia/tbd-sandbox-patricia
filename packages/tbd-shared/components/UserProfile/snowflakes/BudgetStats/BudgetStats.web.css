@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--budget-stats-vertical-gap);
+}
+
+.statusContent {
+  display: flex;
+
+  gap: var(--budget-stats-horizontal-gap-primary);
+
+  align-items: center;
+}
+
+.statusText {
+  display: flex;
+
+  flex: 1;
+
+  gap: var(--budget-stats-horizontal-gap-secondary);
+
+  align-items: center;
+}
+
+.statusCurrencyValue {
+  font: var(--budget-stats-content-text-typography);
+  color: var(--budget-stats-text-content-text-colour);
+  text-decoration: var(--budget-stats-content-text-typography-text-decoration-line);
+  text-transform: var(--budget-stats-content-text-typography-text-transform);
+  letter-spacing: var(--budget-stats-content-text-typography-letter-spacing);
+}
+
+.statusRemainingText {
+  font: var(--budget-stats-label-typography);
+  color: var(--budget-stats-text-label-colour);
+  text-decoration: var(--budget-stats-label-typography-text-decoration-line);
+  text-transform: var(--budget-stats-label-typography-text-transform);
+  letter-spacing: var(--budget-stats-label-typography-letter-spacing);
+}

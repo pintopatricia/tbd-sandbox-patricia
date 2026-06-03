@@ -1,0 +1,133 @@
+.container {
+  display: flex;
+
+  flex-direction: column;
+
+  width: 100%;
+}
+
+.scrollable {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--sportsbook-receipt-panel-container-vertical-gap);
+
+  padding: var(--sportsbook-receipt-panel-container-padding);
+
+  scrollbar-width: none;
+
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scrollableMobile {
+  overflow-y: auto;
+}
+
+.scrollableDesktop {
+  scrollbar-width: thin;
+}
+
+.scrollable::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollableDesktop::-webkit-scrollbar {
+  display: block;
+
+  width: var(--sportsbook-receipt-panel-scrollbar-sizing);
+}
+
+.scrollableDesktop::-webkit-scrollbar-thumb {
+  background-color: var(--sportsbook-receipt-panel-scrollbar-background-colour);
+  border-radius: var(--sportsbook-receipt-panel-scrollbar-border-radius);
+}
+
+.singles,
+.castBetContainer,
+.betBuilders {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--sportsbook-receipt-panel-card-vertical-gap-big);
+}
+
+.multiples,
+.combinationSummary {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--sportsbook-receipt-panel-bet-info-vertical-gap);
+
+  padding: var(--sportsbook-receipt-panel-bet-info-padding);
+}
+
+.summary {
+  display: flex;
+
+  flex-flow: column nowrap;
+  flex-shrink: 0;
+
+  gap: var(--sportsbook-receipt-panel-summary-vertical-gap);
+
+  padding: var(--sportsbook-receipt-panel-summary-padding);
+}
+
+.receiptContentContainer {
+  padding: var(--sportsbook-receipt-panel-card-padding);
+
+  background-color: var(--sportsbook-receipt-panel-card-background-colour);
+  border-radius: var(--sportsbook-receipt-panel-card-border-radius);
+}
+
+.receiptContentContainer,
+.betBuilder,
+.single,
+.alertContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--sportsbook-receipt-panel-card-vertical-gap);
+}
+
+.singleSignposting {
+  display: flex;
+
+  align-self: flex-end;
+
+  height: 24px;
+}
+
+.boostedMultiplesHeader {
+  display: flex;
+
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.boostedMultiplesIcon {
+  width: var(--sportsbook-receipt-panel-icon-sizing-width);
+  height: var(--sportsbook-receipt-panel-icon-sizing-heigth);
+}
+
+.boostedMultiplesIcon > svg {
+  width: 100%;
+  height: 100%;
+
+  color: var(--sportsbook-receipt-panel-icon-colour);
+}
+
+.option {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  height: var(--bet-summary-option-height-sizing);
+}

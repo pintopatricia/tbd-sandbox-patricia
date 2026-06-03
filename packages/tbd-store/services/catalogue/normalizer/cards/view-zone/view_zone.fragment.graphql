@@ -1,0 +1,82 @@
+fragment viewZone on ViewZone {
+  __typename
+  urn
+  title
+  viewZoneItems: items(first: $numberOfFilledCardsInCardGroup) {
+    edges {
+      node {
+        # Cards
+        ...accountBannersCard
+        ...balanceCard
+        ...broadcastsAndStatisticsCard
+        ...broadcastsCardDeprecated
+        ...budgetLimitsCard
+        ...competitionViewLinkCard
+        ...contentSummaryCard
+        ...eventMarketCard
+        ...eventViewLinkCard
+        ...fixtureCard
+        ...gameCard
+        ...gameInfoCard
+        ...gamingJackpotCard
+        ...gamingLinkCard
+        ...gamingPlayNewCard
+        ...genericViewLinkCard
+        ...headToHeadCard
+        ...highlightedSelectionCard
+        ...linksCard
+        ...marketCard
+        ...marketExtendedCard
+        ...marketGraphsCard
+        ...marketViewLinkCard
+        ...matchStatsCard
+        ...matchStatSelectionCard
+        ...matchTimelineCard
+        ...promotionCard
+        ...quickLinksCard
+        ...raceDetailsCard
+        ...raceMarketCard
+        ...raceViewLinkCard
+        ...raceViewLinksCard
+        ...rewardsCard
+        ...searchBarCard
+        ...sportsbookBetCard
+        ...sportViewLinkCard
+        ...teamFormCard
+
+        # Groups
+        ...gamingCardGroup
+        ...pebbleCardGroup
+        ...segmentedCardGroup
+        ...swimlaneCardGroup
+        ...halfTimeSpecialsSwimlaneCardGroup
+        ...swimlaneIndexedCardGroup
+        ...byTimeRangeMeetingCardGroup
+        ...racingSwimlaneCardGroup
+
+        # Apollo Migrated Cards
+        ...GamingPrizeMachineCard
+        ...StatsPebbleCardGroup
+        ...StatsContentCardGroup
+        ...StatsPlayersInPlayCard
+        ...MiniPromoBannerCard
+        ...EditorialPromoCard
+        ...BetOpportunityPromoCard
+        ...SelectionPromoCard
+        ...LottoCard
+        ...PriceBoostMultiplePromoCard
+        ...SportsbookLotteriesBetLegCardGroup
+        ...TeamLineupCard
+        ...MonterosaContentCard
+        ...PopularSelectionsCard
+        ...SportsbookChatbotCard
+        ...PenaltyTakersCard
+      }
+    }
+  }
+}
+
+fragment viewZonePartial on ViewZone {
+  __typename
+  urn
+}

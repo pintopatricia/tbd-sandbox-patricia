@@ -1,0 +1,23 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    /* Modules */
+    "module": "esnext",
+    "typeRoots": ["./@types", "../../node_modules/@types"],
+    "types": ["webpack-env", "window"],
+
+    /* Interop Constraints */
+    "isolatedModules": false,
+
+    /* Language and Environment */
+    "lib": ["dom", "ESNext", "ESNext.Intl"],
+    "target": "es6"
+  },
+  "include": ["**/*.ts*", "../../node_modules/@ppb/the-wall-web/custom.d.ts"],
+  "exclude": ["node_modules", "dist", "**/*.test.*", "**/*.native.*", "**/*.android.*", "**/*.ios.*"],
+  "references": [
+    {
+      "path": "../tbd-store/tsconfig.json"
+    }
+  ]
+}

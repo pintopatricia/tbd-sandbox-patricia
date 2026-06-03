@@ -1,0 +1,17 @@
+mutation SetConfirmCashoutPreferenceMutation(
+  $urn: URN!
+  $value: Boolean!
+  $throttlesOn: [String!]
+  $throttlesOff: [String!]
+  $productExclusions: [ProductExclusion!]
+)
+@productExclusions(productExclusions: $productExclusions)
+@throttlesOn(throttlesOn: $throttlesOn)
+@throttlesOff(throttlesOff: $throttlesOff) {
+  setPreferences(input: { confirmCashoutPreference: { urn: $urn, value: $value } }) {
+    result {
+      ...confirmCashoutPreference
+    }
+    error
+  }
+}

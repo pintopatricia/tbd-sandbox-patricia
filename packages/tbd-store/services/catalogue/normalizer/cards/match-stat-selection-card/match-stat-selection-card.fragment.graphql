@@ -1,0 +1,22 @@
+fragment matchStatSelectionCard on MatchStatSelectionCard {
+  __typename
+  urn
+  matchStatTitle: title {
+    playerNames
+    combiner
+  }
+  matchStatSubtitle: subtitle
+  market {
+    ...sportsbookMarket
+  }
+  runner {
+    runnerURN
+  }
+  statsDescription
+  incidentType
+}
+
+fragment matchStatSelectionCardPartial on MatchStatSelectionCard {
+  __typename
+  urn
+}

@@ -1,0 +1,97 @@
+.sbkPlacePanel {
+  display: flex;
+
+  flex-direction: column;
+
+  width: 100%;
+  max-height: calc(var(--vh) - var(--header-height) - var(--betslip-top-offset) - var(--expandable-handle-height));
+
+  /*
+  * Allows containers that use this component to transform it
+  * into a scrollable component with flex column and max-height/height
+  */
+  overflow-y: auto;
+
+  background-color: var(--sportsbook-place-panel-container-colour);
+
+  /*
+  * Without this, render issues happen in the panel with the scroll
+  * In firefox in conjunction with scrolling into view
+  */
+  transform: translate3d(0, 0, 0);
+
+  scroll-behavior: smooth;
+}
+
+.desktopView {
+  flex-grow: 1;
+
+  max-height: calc(
+    var(--vh) - var(--ssc-desktop-header-placeholder-height) - var(--betslip-top-offset) - var(--spacing-8) -
+      var(--spacing-half) - var(--expandable-handle-height)
+  );
+
+  background-color: var(--components-neutrals-bottomsheet-background-elevation1);
+  border-radius: 0 0 8px 8px;
+}
+
+@supports (max-height: 100svh) {
+  .sbkPlacePanel {
+    max-height: calc(100svh - var(--header-height) - var(--betslip-top-offset) - var(--expandable-handle-height));
+  }
+
+  .desktopView {
+    max-height: calc(
+      100svh - var(--ssc-desktop-header-placeholder-height) - var(--betslip-top-offset) - var(--spacing-8) -
+        var(--spacing-half) - var(--expandable-handle-height)
+    );
+  }
+}
+
+.cardContainer {
+  background-color: var(--card-background-colour);
+  filter: var(--sportsbook-place-panel-collapse-drop-shadow);
+  border-radius: var(--card-border-radius);
+}
+
+.cardContent {
+  padding: var(--sportsbook-place-panel-collapse-content-padding);
+}
+
+.scrollable {
+  display: flex;
+
+  flex-direction: column;
+
+  scrollbar-width: none;
+
+  gap: var(--sportsbook-place-panel-vertical-gap-primary);
+
+  padding: var(--sportsbook-place-panel-top-content-padding);
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scrollableDesktop {
+  scrollbar-width: thin;
+}
+
+.scrollable::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollableDesktop::-webkit-scrollbar {
+  display: block;
+
+  width: 8px;
+}
+
+.scrollableDesktop::-webkit-scrollbar-thumb {
+  background-color: var(--neutrals-background-elevation6);
+  border-radius: 8px;
+}
+
+.blurbContainer {
+  margin: var(--spacing-1) var(--spacing-2) 0 var(--spacing-2);
+}

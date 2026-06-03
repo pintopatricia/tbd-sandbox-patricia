@@ -1,0 +1,7 @@
+.reUseSelectionsButtonContainer {
+  height: var(--bet-button-height);
+  margin-bottom: var(--spacing-2);
+  overflow: hidden;
+
+  border-radius: var(--spacing-1);
+}

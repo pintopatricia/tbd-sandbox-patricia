@@ -1,0 +1,73 @@
+:root {
+  --player-shirt-number-font-size: 48px;
+  --player-shirt-number-line-height: 72px;
+}
+
+.container {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--spacing-2);
+
+  width: 100%;
+}
+
+.loadingLabel {
+  padding: var(--page-header-padding);
+
+  font: var(--page-header-title-typography);
+  color: var(--card-group-title-colour);
+  text-decoration-line: var(--page-header-title-typography-text-decoration-line);
+  text-transform: var(--page-header-title-typography-text-transform);
+  letter-spacing: var(--page-header-title-typography-letter-spacing);
+}
+
+.header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: var(--page-header-padding);
+}
+
+.header .playerInfo {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--card-group-horizontal-gap);
+}
+
+.header .playerName {
+  font: var(--page-header-title-typography);
+
+  /* stylelint-disable-next-line scale-unlimited/declaration-strict-value, property-disallowed-list */
+  font-size: 20px;
+  color: var(--card-group-title-colour);
+  text-decoration-line: var(--page-header-title-typography-text-decoration-line);
+  text-transform: var(--page-header-title-typography-text-transform);
+  letter-spacing: var(--page-header-title-typography-letter-spacing);
+}
+
+.header .playerPosition {
+  font: var(--avb-fixture-medium-label-typography);
+  color: var(--card-group-title-colour);
+  text-decoration-line: var(--avb-fixture-medium-label-typography-text-decoration-line);
+  text-transform: var(--avb-fixture-medium-label-typography-text-transform);
+  letter-spacing: var(--avb-fixture-medium-label-typography-letter-spacing);
+}
+
+.header .playerShirtNumber {
+  font: var(--card-group-title-typography);
+
+  /* stylelint-disable-next-line scale-unlimited/declaration-strict-value, property-disallowed-list */
+  font-size: var(--player-shirt-number-font-size);
+  /* stylelint-disable-next-line scale-unlimited/declaration-strict-value, property-disallowed-list */
+  line-height: var(--player-shirt-number-line-height);
+  color: var(--card-group-title-colour);
+  text-decoration-line: var(--card-group-title-typography-text-decoration-line);
+  text-transform: var(--card-group-title-typography-text-transform);
+  letter-spacing: var(--card-group-title-typography-letter-spacing);
+}

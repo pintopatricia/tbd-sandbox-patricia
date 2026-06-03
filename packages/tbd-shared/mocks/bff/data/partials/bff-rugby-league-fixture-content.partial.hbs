@@ -1,0 +1,29 @@
+"__typename": "{{__typename}}{{^__typename}}RugbyLeagueFixture{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:fixture:56789123{{/urn}}",
+"id": "{{id}}{{^id}}56789123{{/id}}",
+"isAmericanFormat": {{#if isAmericanFormat}}true{{else}}false{{/if}},
+"runnerNames": {{#if runnerNames}}{
+  "home": "{{runnerNames.home}}{{^runnerNames.home}}St Helens{{/runnerNames.home}}",
+  "away": "{{runnerNames.away}}{{^runnerNames.away}}Wigan Warriors{{/runnerNames.away}}"
+}{{else}}null{{/if}},
+{{#if score}}
+{{#with score}}
+"score": {
+  "away": {{away}}{{^away}}18{{/away}},
+  "home": {{home}}{{^home}}24{{/home}}
+}
+{{/with}}
+{{else}}
+"score": null
+{{/if}},
+{{#if halfTimeScore}}
+{{#with halfTimeScore}}
+"halfTimeScore": {
+  "away": {{away}}{{^away}}6{{/away}},
+  "home": {{home}}{{^home}}12{{/home}}
+}
+{{/with}}
+{{else}}
+"halfTimeScore": null
+{{/if}}
+

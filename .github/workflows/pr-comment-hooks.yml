@@ -1,0 +1,615 @@
+name: pr-comment-hooks
+
+# The issue_comment event runs from master, changes to this file therefore
+# have to be merged to master to test. Using reusable workflows here will
+# minimize this, as the workflow used will be from your branch.
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions: write-all
+
+jobs:
+  find-pr-branch:
+    if: ${{ github.event.issue.pull_request &&
+      github.actor != 'svc-jenkins-admin' &&
+      startsWith(github.event.comment.body, '/')
+      }}
+    runs-on: ubuntu-latest
+    outputs:
+      comment_branch: ${{ steps.get-branch.outputs.comment_branch }}
+    steps:
+      - uses: actions/github-script@v7
+        id: get-pr
+        with:
+          script: |
+            return await github.rest.pulls.get({
+              owner: "Flutter-Global",
+              repo: "tbd",
+              pull_number: ${{ github.event.issue.number }}
+            });
+      - id: get-branch
+        run: echo "comment_branch=${{ fromJSON(steps.get-pr.outputs.result).data.head.ref }}" >> $GITHUB_OUTPUT
+
+  build-android-bf-from-pr-comment:
+    if: ${{ github.event.issue.pull_request && (
+      contains(github.event.comment.body, '/build-android-bf-app') ||
+      contains(github.event.comment.body, '/build-android-apps') ||
+      contains(github.event.comment.body, '/build-native-apps')
+      ) }}
+    needs: find-pr-branch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        id: set-result
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: "Flutter-Global",
+              repo: "tbd",
+              workflow_id: ".github/workflows/build-android-app.yml",
+              ref: "${{ needs.find-pr-branch.outputs.comment_branch }}",
+              inputs: {
+                brand: "bf",
+                buildType: "inhouse",
+                releaseMode: "internal",
+                buildAbi: "all",
+                environment: "qa",
+                apkName: "Betfair-PR-${{github.event.issue.number}}",
+                pr_id: "${{ github.event.issue.number }}",
+              },
+            });
+  build-android-sbg-from-pr-comment:
+    if: ${{ github.event.issue.pull_request && (
+      contains(github.event.comment.body, '/build-android-sbg-app') ||
+      contains(github.event.comment.body, '/build-android-apps') ||
+      contains(github.event.comment.body, '/build-native-apps')
+      ) }}
+    needs: find-pr-branch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        id: set-result
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: "Flutter-Global",
+              repo: "tbd",
+              workflow_id: ".github/workflows/build-android-app.yml",
+              ref: "${{ needs.find-pr-branch.outputs.comment_branch }}",
+              inputs: {
+                brand: "sbg",
+                buildType: "inhouse",
+                releaseMode: "internal",
+                buildAbi: "all",
+                environment: "qa",
+                apkName: "Skybet-PR-${{github.event.issue.number}}",
+                pr_id: "${{ github.event.issue.number }}",
+              },
+            });
+  build-android-pp-from-pr-comment:
+    if: ${{ github.event.issue.pull_request && (
+      contains(github.event.comment.body, '/build-android-pp-app') ||
+      contains(github.event.comment.body, '/build-android-apps') ||
+      contains(github.event.comment.body, '/build-native-apps')
+      ) }}
+    needs: find-pr-branch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        id: set-result
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: "Flutter-Global",
+              repo: "tbd",
+              workflow_id: ".github/workflows/build-android-app.yml",
+              ref: "${{ needs.find-pr-branch.outputs.comment_branch }}",
+              inputs: {
+                brand: "pp",
+                buildType: "inhouse",
+                releaseMode: "internal",
+                buildAbi: "all",
+                environment: "qa",
+                apkName: "PaddyPower-PR-${{github.event.issue.number}}",
+                pr_id: "${{ github.event.issue.number }}",
+              },
+            });
+  build-android-app-bf-from-pr-comment:
+    if:
+      ${{ contains(github.event.comment.body, '--rebuild') &&
+      github.event.issue.pull_request && (
+      !contains(github.event.comment.body, 'FAILURE') ||
+      !contains(github.event.comment.body, 'SUCCESS')) && (
+      contains(github.event.comment.body, '/run-android-regression-tests') ||
+      contains(github.event.comment.body, '/run-android-visual-tests') ||
+      contains(github.event.comment.body, '/run-android-all-tests') ||
+      (contains(github.event.comment.body, '/run-android-e2e-tests') && !contains(github.event.comment.body, '--brand=sbg')))
+      }}
+    needs: [ find-pr-branch ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        id: set-result
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: "Flutter-Global",
+              repo: "tbd",
+              workflow_id: ".github/workflows/build-android-app.yml",
+              ref: "${{ needs.find-pr-branch.outputs.comment_branch }}",
+              inputs: {
+                brand: "bf",
+                buildType: "inhouse",
+                releaseMode: "internal",
+                buildAbi: "all",
+                environment: "qa",
+                artifactoryPath: "tbd-native/android/",
+                branch: "${{ needs.find-pr-branch.outputs.comment_branch }}",
+                apkName: "Betfair-PR-${{github.event.issue.number}}",
+                pr_id: "${{ github.event.issue.number }}",
+              },
+            });
+
+  build-android-app-sbg-from-pr-comment:
+    if:
+      ${{ contains(github.event.comment.body, '--rebuild') &&
+      github.event.issue.pull_request && (
+      !contains(github.event.comment.body, 'FAILURE') ||
+      !contains(github.event.comment.body, 'SUCCESS')) && (
+      contains(github.event.comment.body, '/run-android-e2e-tests') && !contains(github.event.comment.body, '--brand=bf'))
+      }}
+    needs: [ find-pr-branch ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        id: set-result
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: "Flutter-Global",
+              repo: "tbd",
+              workflow_id: ".github/workflows/build-android-app.yml",
+              ref: "${{ needs.find-pr-branch.outputs.comment_branch }}",
+              inputs: {
+                brand: "sbg",
+                buildType: "inhouse",
+                releaseMode: "internal",
+                buildAbi: "all",
+                environment: "qa",
+                artifactoryPath: "tbd-native/android/",
+                branch: "${{ needs.find-pr-branch.outputs.comment_branch }}",
+                apkName: "Skybet-PR-${{github.event.issue.number}}",
+                pr_id: "${{ github.event.issue.number }}",
+              },
+            });
+
+  run-android-all-tests-from-pr-comment:
+    needs:
+      [
+        find-pr-branch,
+        build-android-app-bf-from-pr-comment,
+        build-android-app-sbg-from-pr-comment,
+      ]
+    runs-on: ubuntu-self-hosted
+    if: ${{ always() &&
+      github.event.issue.pull_request && (
+      !contains(github.event.comment.body, 'FAILURE') ||
+      !contains(github.event.comment.body, 'SUCCESS')) && (
+      contains(github.event.comment.body, '/run-android-regression-tests') ||
+      contains(github.event.comment.body, '/run-android-visual-tests') ||
+      contains(github.event.comment.body, '/run-android-all-tests') ||
+      contains(github.event.comment.body, '/run-android-e2e-tests'))
+      }}
+    steps:
+      - id: set-test-type
+        name: Set test type
+        run: |
+          if [[ "${{ github.event.comment.body }}" =~ "android-regression-tests" ]]; then
+            echo "test-type=regression" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.event.comment.body }}" =~ "android-e2e-tests" ]]; then
+            echo "test-type=e2e" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.event.comment.body }}" =~ "android-visual-tests" ]]; then
+            echo "test-type=visual" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.event.comment.body }}" =~ "android-all-tests" ]]; then
+            echo "test-type=visual,regression" >> $GITHUB_OUTPUT
+          fi
+      - uses: actions/github-script@v7
+        id: run-android-tests
+        with:
+          script: |
+            const testsArray = "${{ steps.set-test-type.outputs.test-type }}".split(',');
+            for(let i = 0; i < testsArray.length; i++) {
+              const testType = testsArray[i];
+              const testsEnv = (testType === 'e2e') ? "qa" : "mockserver";
+              if (testType === 'e2e' && ${{ !contains(github.event.comment.body, '--brand=bf') }}) {
+                // For e2e tests without bf brand only
+                await github.rest.actions.createWorkflowDispatch({
+                  owner: "Flutter-Global",
+                  repo: "tbd",
+                  workflow_id: ".github/workflows/android-tests.yml",
+                  ref: "${{ needs.find-pr-branch.outputs.comment_branch }}",
+                  inputs: {
+                    test_type: testsArray[i],
+                    apk_name: "Skybet-PR-${{github.event.issue.number}}.apk",
+                    pr_id: "${{ github.event.issue.number }}",
+                    brand: "sbg",
+                    is_merge_queue: false,
+                    comment_id: "${{ github.event.comment.id }}",
+                    env: testsEnv
+                  },
+                });
+              }
+
+              await github.rest.actions.createWorkflowDispatch({
+                owner: "Flutter-Global",
+                repo: "tbd",
+                workflow_id: ".github/workflows/android-tests.yml",
+                ref: "${{ needs.find-pr-branch.outputs.comment_branch }}",
+                inputs: {
+                  test_type: testsArray[i],
+                  apk_name: "Betfair-PR-${{github.event.issue.number}}.apk",
+                  pr_id: "${{ github.event.issue.number }}",
+                  is_merge_queue: false,
+                  comment_id: "${{ github.event.comment.id }}",
+                  env: testsEnv
+                },
+              });
+            };
+
+  run-web-tests-from-pr-comment:
+    # run on all comments on PRs,
+    # and the comment is not a result of a test run
+    if: ${{ github.event.issue.pull_request && (
+      !contains(github.event.comment.body, 'FAILURE') ||
+      !contains(github.event.comment.body, 'SUCCESS')) && (
+      contains(github.event.comment.body, '/run-web-regression-tests') ||
+      contains(github.event.comment.body, '/run-web-visual-tests') ||
+      contains(github.event.comment.body, '/run-web-e2e-tests') ||
+      contains(github.event.comment.body, '/run-web-all-tests'))
+      }}
+    needs: find-pr-branch
+    runs-on: ubuntu-latest
+    steps:
+      - id: set-test-type
+        name: Set test type
+        run: |
+          if [[ "${{ github.event.comment.body }}" =~ "regression-tests" ]]; then
+            echo "test-type=regression-tests" >> $GITHUB_OUTPUT
+            echo "script-extension=web:regression:bf:qa:ci" >> $GITHUB_OUTPUT
+            echo "brand=bf" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.event.comment.body }}" =~ "e2e-tests" ]]; then
+            echo "test-type=e2e-tests" >> $GITHUB_OUTPUT
+            BRAND=$(echo "${{ github.event.comment.body }}" | sed -E 's/.*--brand=([^[:space:]]+).*/\1/')
+            # Check brand
+            if [[ "$BRAND" != "bf" && "$BRAND" != "sbg" && "$BRAND" != "ps" ]]; then
+              echo "❌ Invalid Brand "; exit 1
+            fi
+            ENV=$(echo "${{ github.event.comment.body }}" | sed -E 's/.*--env=([^[:space:]]+).*/\1/')
+            # Check environment
+            if [[ "$ENV" != "drk" && "$ENV" != "qa" && "$ENV" != "prod" && "$ENV" != "nxt" ]]; then
+              echo "❌ Invalid ENV: $ENV"; exit 1
+            fi
+            DC=$(echo "${{ github.event.comment.body }}" | sed -nE 's/.*--dc=([^[:space:]]+).*/\1/p')
+            # Check DC (optional)
+            if [[ -n "$DC" ]]; then
+              if [[ "$DC" != "1" && "$DC" != "2" ]]; then
+                echo "❌ Invalid DC "; exit 1
+              fi
+            fi
+
+            if [[ -n "$DC" ]]; then
+              echo "script-extension=web:e2e:$BRAND:$ENV:$DC:ci" >> $GITHUB_OUTPUT
+            else
+              echo "script-extension=web:e2e:$BRAND:$ENV:ci" >> $GITHUB_OUTPUT
+            fi
+
+            echo "brand=$BRAND" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.event.comment.body }}" =~ "visual-tests" ]]; then
+            echo "test-type=visual-tests" >> $GITHUB_OUTPUT
+            echo "script-extension=web:visual:bf:qa:ci" >> $GITHUB_OUTPUT
+            echo "brand=bf" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.event.comment.body }}" =~ "all-tests" ]]; then
+            echo "test-type=regression-tests,visual-tests" >> $GITHUB_OUTPUT
+            echo "script-extension=web:regression:bf:qa:ci,web:visual:bf:qa:ci" >> $GITHUB_OUTPUT
+            echo "brand=bf" >> $GITHUB_OUTPUT
+          fi
+      - name: Get Base URL
+        id: get-base-url
+        run: |
+          BASE_URL=$(echo "${{ github.event.comment.body }}" | grep -o 'https://[^ ]*' || echo "")
+          if [ "$BASE_URL" = "" ]; then
+            echo "No BASE_URL found in comment."
+            echo "base-url=''" >> $GITHUB_OUTPUT
+          else
+            echo "Extracted BASE_URL: $BASE_URL"
+            echo "base-url=${BASE_URL}" >> $GITHUB_OUTPUT
+          fi
+      - uses: actions/github-script@v7
+        id: run-web-tests
+        with:
+          script: |
+            const testTypes = "${{ steps.set-test-type.outputs.test-type }}".split(',');
+            const scriptExtensions = "${{ steps.set-test-type.outputs.script-extension }}".split(',');
+
+            for(let i = 0; i < testTypes.length; i++) {
+              await github.rest.actions.createWorkflowDispatch({
+                owner: "Flutter-Global",
+                repo: "tbd",
+                workflow_id: ".github/workflows/web-tests.yml",
+                ref: "${{ needs.find-pr-branch.outputs.comment_branch }}",
+                inputs: {
+                  test_type: testTypes[i],
+                  script_extension: scriptExtensions[i],
+                  brand: "${{ steps.set-test-type.outputs.brand }}",
+                  base_url: "${{ steps.get-base-url.outputs.base-url }}",
+                  pr_id: "${{ github.event.issue.number }}",
+                  comment_id: "${{ github.event.comment.id }}",
+                  is_merge_queue: false
+                },
+              });
+            }
+  run-http-webserver-tests-from-pr-comment:
+    # run on all comments on PRs,
+    # and the comment is not a result of a test run
+    if: ${{ github.event.issue.pull_request && (
+      !contains(github.event.comment.body, 'FAILURE') ||
+      !contains(github.event.comment.body, 'SUCCESS')) && (
+      contains(github.event.comment.body, '/run-http-webserver-tests'))
+      }}
+    needs: find-pr-branch
+    runs-on: ubuntu-self-hosted
+    steps:
+      - uses: actions/github-script@v7
+        id: run-webserver-tests
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: "Flutter-Global",
+              repo: "tbd",
+              workflow_id: ".github/workflows/http-webserver-tests.yml",
+              ref: "${{ needs.find-pr-branch.outputs.comment_branch }}",
+              inputs: {
+                pr_id: "${{ github.event.issue.number }}",
+                is_merge_queue: false,
+                comment_id: "${{ github.event.comment.id }}"
+              },
+            });
+
+  build-ios-app-from-pr-comment:
+    if: ${{ github.event.issue.pull_request && (
+      !contains(github.event.comment.body, 'FAILURE') ||
+      !contains(github.event.comment.body, 'SUCCESS')) && (
+      contains(github.event.comment.body, '/build-ios-bf-app') ||
+      contains(github.event.comment.body, '/build-ios-apps') ||
+      contains(github.event.comment.body, '/build-ios-firebase-apps') ||
+      contains(github.event.comment.body, '/build-native-apps') ||
+      contains(github.event.comment.body, '/build-ios-bf-tests-app') ||
+      contains(github.event.comment.body, '/build-ios-bf-firebase-app') ||
+      contains(github.event.comment.body, '/build-ios-sbg-app') ||
+      contains(github.event.comment.body, '/build-ios-sbg-firebase-app') ||
+      contains(github.event.comment.body, '/build-ios-pp-app') ||
+      contains(github.event.comment.body, '/build-ios-pp-firebase-app'))
+      }}
+    needs: find-pr-branch
+    runs-on: ubuntu-self-hosted
+    steps:
+      - uses: actions/github-script@v7
+        id: build-ios-app
+        with:
+          script: |
+            const commentBody = "${{ github.event.comment.body }}";
+            let configs = [];
+
+            // Determine which configs to use based on comment
+            if (commentBody.includes('/build-ios-bf-app')) {
+              configs = [
+                { brand: "bf", is_testing_app: false },
+                { brand: "bf", is_testing_app: true }
+              ];
+            } else if (commentBody.includes('/build-ios-apps')) {
+              configs = [
+                { brand: "bf", is_testing_app: false },
+                { brand: "bf", is_testing_app: true },
+                { brand: "sbg", is_testing_app: false },
+                { brand: "pp", is_testing_app: false }
+              ];
+            } else if (commentBody.includes('/build-native-apps') || commentBody.includes('/build-native-apps')) {
+              configs = [
+                { brand: "bf", is_testing_app: false },
+                { brand: "bf", is_testing_app: true },
+                { brand: "sbg", is_testing_app: false },
+                { brand: "pp", is_testing_app: false }
+              ];
+            } else if (commentBody.includes('/build-ios-firebase-apps')) {
+              configs = [
+                { brand: "bf", is_testing_app: false },
+                { brand: "sbg", is_testing_app: false },
+                { brand: "pp", is_testing_app: false }
+              ];
+            } else if (commentBody.includes('/build-ios-bf-tests-app')) {
+              configs = [
+                { brand: "bf", is_testing_app: true }
+              ];
+            } else if (commentBody.includes('/build-ios-bf-firebase-app')) {
+              configs = [
+                { brand: "bf", is_testing_app: false }
+              ];
+            } else if (commentBody.includes('/build-ios-sbg-app')) {
+              configs = [
+                { brand: "sbg", is_testing_app: false }
+              ];
+            } else if (commentBody.includes('/build-ios-sbg-firebase-app')) {
+              configs = [
+                { brand: "sbg", is_testing_app: false }
+              ];
+            } else if (commentBody.includes('/build-ios-pp-app')) {
+              configs = [
+                { brand: "pp", is_testing_app: false }
+              ];
+            } else if (commentBody.includes('/build-ios-pp-firebase-app')) {
+              configs = [
+                { brand: "pp", is_testing_app: false }
+              ];
+            }
+
+            // Trigger workflow dispatch for each config
+            for (const config of configs) {
+              await github.rest.actions.createWorkflowDispatch({
+                owner: "Flutter-Global",
+                repo: "tbd",
+                workflow_id: ".github/workflows/build-ios-app.yml",
+                ref: "${{ needs.find-pr-branch.outputs.comment_branch }}",
+                inputs: {
+                  pr_id: "${{ github.event.issue.number }}",
+                  comment_id: "${{ github.event.comment.id }}",
+                  is_testing_app: config.is_testing_app.toString(),
+                  brand: config.brand
+                }
+              });
+            }
+
+  check-for-ios-build:
+    if: ${{ github.event.issue.pull_request && (
+      !contains(github.event.comment.body, 'FAILURE') ||
+      !contains(github.event.comment.body, 'SUCCESS')) && (
+      contains(github.event.comment.body, '/run-ios-e2e-tests') ||
+      contains(github.event.comment.body, '/run-ios-visual-tests') ||
+      contains(github.event.comment.body, '/run-ios-all-tests'))
+      }}
+    needs: find-pr-branch
+    runs-on: ubuntu-self-hosted
+    outputs:
+      app-build-name: ${{ steps.get-latest-app.outputs.app-build-name }}
+      brand: ${{ steps.resolve-brand.outputs.brand }}
+      brand_full_name: ${{ steps.resolve-brand.outputs.brand_full_name }}
+    steps:
+      - id: resolve-brand
+        name: Resolve brand
+        shell: bash
+        run: |
+          if [[ "${{ github.event.comment.body }}" =~ "--brand=sbg" ]]; then
+            echo "brand=sbg" >> $GITHUB_OUTPUT
+            echo "brand_full_name=SkyBet" >> $GITHUB_OUTPUT
+          else
+            echo "brand=bf" >> $GITHUB_OUTPUT
+            echo "brand_full_name=Betfair" >> $GITHUB_OUTPUT
+          fi
+
+      - id: get-latest-app
+        name: Get latest iOS app
+        shell: bash
+        run: |
+          BRAND_FULL_NAME="${{ steps.resolve-brand.outputs.brand_full_name }}"
+          BRAND="${{ steps.resolve-brand.outputs.brand }}"
+          PR_ID="${{ github.event.issue.number }}"
+          # If --rebuild is requested fall back to
+          # the expected app name convention so downstream jobs can reference it
+          # after the rebuild completes.
+          if [[ "${{ github.event.comment.body }}" =~ "--rebuild" ]]; then
+            APP_BUILD_NAME="${BRAND_FULL_NAME}-PR-${PR_ID}.app.zip"
+          else
+            APP_BUILD_NAME=$(curl -s https://artifactory-prd.prd.betfair/artifactory/tbd-native/ios/${BRAND}/pull-requests/ \
+            | grep -oE "${BRAND_FULL_NAME}-PR-${PR_ID}\.app\.zip" \
+            | head -1)
+          fi
+          echo "app-build-name=${APP_BUILD_NAME}" >> $GITHUB_OUTPUT
+
+      - name: Validate app exists
+        if: ${{ !contains(github.event.comment.body, '--rebuild') }}
+        run: |
+          if [ -z "${{ steps.get-latest-app.outputs.app-build-name }}" ]; then
+            echo "❌ No iOS app found for this PR"
+            exit 1
+          fi
+
+      - name: Debug app build name
+        run: |
+          echo "Brand: ${{ steps.resolve-brand.outputs.brand }}"
+          echo "App build name: ${{ steps.get-latest-app.outputs.app-build-name }}"
+
+  build-ios-app-for-tests-from-pr-comment:
+    needs: [find-pr-branch, check-for-ios-build]
+    if: ${{ contains(github.event.comment.body, '--rebuild') &&
+      github.event.issue.pull_request && (
+      !contains(github.event.comment.body, 'FAILURE') ||
+      !contains(github.event.comment.body, 'SUCCESS')) && (
+      contains(github.event.comment.body, '/run-ios-e2e-tests') ||
+      contains(github.event.comment.body, '/run-ios-visual-tests') ||
+      contains(github.event.comment.body, '/run-ios-all-tests'))
+      }}
+    uses: ./.github/workflows/build-ios-app.yml
+    with:
+      pr_id: ${{ github.event.issue.number }}
+      comment_id: ${{ github.event.comment.id }}
+      is_testing_app: true
+      brand: ${{ needs.check-for-ios-build.outputs.brand }}
+    secrets: inherit
+
+  run-ios-all-tests-from-pr-comment:
+    needs:
+      [
+        find-pr-branch,
+        check-for-ios-build,
+        build-ios-app-for-tests-from-pr-comment
+      ]
+    runs-on: ubuntu-self-hosted
+    if: ${{ always() &&
+      github.event.issue.pull_request &&
+      needs.check-for-ios-build.result == 'success' &&
+      (needs.build-ios-app-for-tests-from-pr-comment.result == 'success' ||
+       needs.build-ios-app-for-tests-from-pr-comment.result == 'skipped') && (
+      !contains(github.event.comment.body, 'FAILURE') ||
+      !contains(github.event.comment.body, 'SUCCESS')) && (
+      contains(github.event.comment.body, '/run-ios-visual-tests') ||
+      contains(github.event.comment.body, '/run-ios-all-tests') ||
+      contains(github.event.comment.body, '/run-ios-e2e-tests'))
+      }}
+    steps:
+      - id: set-test-type
+        name: Set test type
+        run: |
+          if [[ "${{ github.event.comment.body }}" =~ "run-ios-e2e-tests" ]]; then
+            echo "test-type=e2e" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.event.comment.body }}" =~ "run-ios-visual-tests" ]]; then
+            echo "test-type=visual" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.event.comment.body }}" =~ "run-ios-all-tests" ]]; then
+            echo "test-type=e2e,visual" >> $GITHUB_OUTPUT
+          fi
+
+          # Extract baselines branch if provided
+          BASELINES=$(echo "${{ github.event.comment.body }}" | sed -nE 's/.*--baselines=([^[:space:]]+).*/\1/p')
+          if [[ -n "$BASELINES" ]]; then
+            echo "baselines_branch=$BASELINES" >> $GITHUB_OUTPUT
+          else
+            echo "baselines_branch=master" >> $GITHUB_OUTPUT
+          fi
+
+      - uses: actions/github-script@v7
+        id: run-ios-tests
+        with:
+          script: |
+            const testsArray = "${{ steps.set-test-type.outputs.test-type }}".split(',');
+
+            for (let i = 0; i < testsArray.length; i++) {
+              const testType = testsArray[i];
+              const testsEnv = (testType === 'e2e') ? "qa" : "mockserver";
+
+              await github.rest.actions.createWorkflowDispatch({
+                owner: "Flutter-Global",
+                repo: "tbd",
+                workflow_id: ".github/workflows/ios-tests.yml",
+                ref: "${{ needs.find-pr-branch.outputs.comment_branch }}",
+                inputs: {
+                  test_type: testType,
+                  app_name: "${{ needs.check-for-ios-build.outputs.app-build-name }}",
+                  pr_id: "${{ github.event.issue.number }}",
+                  brand: "${{ needs.check-for-ios-build.outputs.brand }}",
+                  is_merge_queue: false,
+                  comment_id: "${{ github.event.comment.id }}",
+                  env: testsEnv,
+                  baselines_branch: "${{ steps.set-test-type.outputs.baselines_branch }}"
+                },
+              });
+            }

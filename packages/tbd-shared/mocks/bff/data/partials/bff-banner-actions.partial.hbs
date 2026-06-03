@@ -1,0 +1,27 @@
+"label": {{#if label}}"{{label}}"{{else}}null{{/if}},
+"gaLabel": {{#if gaLabel}}"{{gaLabel}}"{{else}}null{{/if}},
+"minimizedLabel": {{#if minimizedLabel}}"{{minimizedLabel}}"{{else}}null{{/if}},
+"type": {{#if type}}"{{type}}"{{else}}null{{/if}},
+"buttonType": {{#if buttonType}}"{{buttonType}}"{{else}}null{{/if}},
+"path": {{#if path}}"{{path}}"{{else}}null{{/if}},
+"url": {{#if url}}"{{url}}"{{else}}null{{/if}},
+"target": {{#if target}}"{{target}}"{{else}}null{{/if}},
+"action": {{#if action}}"{{action}}"{{else}}null{{/if}},
+"data": {{#if data}}"{{data}}"{{else}}null{{/if}},
+{{#if actionFinalize}}
+"actionFinalize": { {{#with actionFinalize}}
+  "onErrorBanner": {
+   {{#with onErrorBanner}}
+   {{> bff-banner-details}}
+   {{/with}}
+   },
+   "onSuccessBanner": {
+   {{#with onSuccessBanner}}
+   {{> bff-banner-details}}
+   {{/with}}
+   }
+{{/with}}
+}
+{{else}}
+"actionFinalize": null
+{{/if}}

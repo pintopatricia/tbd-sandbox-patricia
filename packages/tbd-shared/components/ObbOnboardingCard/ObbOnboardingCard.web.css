@@ -1,0 +1,98 @@
+.container {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--mash-ups-card-squad-vertical-gap);
+}
+
+.squadsContainer {
+  display: flex;
+
+  justify-content: space-between;
+}
+
+.microPlayerContainer {
+  display: flex;
+
+  flex: 1;
+
+  gap: var(--mash-ups-card-squad-vertical-gap);
+
+  justify-content: center;
+
+  min-width: 125px;
+}
+
+.microPlayerContainerSquadBet {
+  width: 300px;
+}
+
+.betButtonsContainer {
+  display: flex;
+
+  gap: var(--spacing-2);
+}
+
+.betButtonsContainer > * {
+  flex: 1;
+}
+
+.vsText {
+  margin-right: var(--spacing-2);
+  margin-left: var(--spacing-2);
+
+  font: var(--mash-ups-card-squads-label-typography);
+  color: var(--mash-ups-card-squads-label-colour);
+}
+
+.vsContainer {
+  display: flex;
+
+  align-items: center;
+}
+
+.textContainer {
+  flex: 1;
+}
+
+.headerWrapper {
+  display: flex;
+}
+
+.header {
+  display: flex;
+
+  gap: var(--card-header-horizontal-gap);
+
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  padding-bottom: var(--card-header-medium-padding);
+}
+
+.title {
+  display: flex;
+
+  align-items: center;
+
+  overflow: hidden;
+
+  font: var(--card-header-medium-title-typography);
+  color: var(--card-header-primary-title-colour);
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+}
+
+.icon {
+  width: var(--card-header-icon-sizing);
+  height: var(--card-header-icon-sizing);
+}
+
+.icon > svg {
+  width: var(--card-header-icon-sizing);
+  height: var(--card-header-icon-sizing);
+}

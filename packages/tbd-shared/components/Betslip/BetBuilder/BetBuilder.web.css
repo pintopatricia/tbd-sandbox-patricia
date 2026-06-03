@@ -1,0 +1,42 @@
+.bet {
+  width: 100%;
+}
+
+.bet > * + * {
+  margin-top: var(--spacing-2);
+}
+
+.description {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.subtitle,
+.title {
+  color: var(--neutrals-text-default);
+}
+
+.titleContainer {
+  display: flex;
+
+  justify-content: space-between;
+}
+
+.popularBadge {
+  display: flex;
+
+  padding: var(--spacing-1) var(--spacing-2);
+
+  background-color: var(--messaging-warning-background-elevation2);
+  border-radius: 4px;
+}
+
+.popularIcon {
+  width: var(--icon-size-small);
+  height: var(--icon-size-small);
+}
+
+.popularLabel {
+  margin-left: var(--spacing-1);
+}

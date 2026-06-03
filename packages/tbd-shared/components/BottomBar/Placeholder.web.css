@@ -1,0 +1,11 @@
+.placeholder {
+  position: fixed;
+  bottom: 0;
+  z-index: var(--bottom-bar-stack);
+
+  width: 100%;
+  height: var(--bottom-bar-height-sizing);
+
+  background-color: var(--components-navigation-bottombar-background-default);
+  border-top: 1px solid var(--components-navigation-bottombar-border-default);
+}

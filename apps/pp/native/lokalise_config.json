@@ -1,0 +1,29 @@
+{
+  "projects": [
+    {
+      "vault": {
+        "tla": "tbd",
+        "az": "common",
+        "key": "lokalise_token",
+        "ssl_verify": "false",
+        "version": "v2"
+      },
+      "name": "TBD",
+      "id": "734655486880a34788a847.93580096",
+      "deploy_paths": ["./generated/translations"],
+      "options": {
+        "format": "json",
+        "original_filenames": false,
+        "replace_breaks": false,
+        "bundle_structure": "%LANG_ISO%.json",
+        "export_sort": "a_z",
+        "export_empty_as": "base",
+        "include_comments": false,
+        "include_description": false,
+        "filter_langs": ["da", "de", "en", "en_GB", "es", "es_419", "fi", "hu", "it", "no", "pt_BR", "ro", "ru", "sv"],
+        "json_unescaped_slashes": true,
+        "exclude_tags": ["offline"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+"__typename": "LoyaltyPromotion",
+"urn": "{{urn}}{{^urn}}ppb:tbd:loyaltyPromotion:MINICHECKMATE1{{/urn}}",
+"name": "{{name}}{{^name}}Mini Checkmate Test{{/name}}",
+"title": "{{title}}{{^title}}Mini Checkmate Test Title{{/title}}",
+{{#with promoImage}}
+"promoImage": {
+  "url": "{{url}}{{^url}}https://pma-s3.betfair.com/cpp/bf/2023/6/9/mockedImage.jpg{{/url}}"
+},
+{{else}}
+"promoImage": null,
+{{/with}}
+{{#with state}}
+"state": {
+  "optInState": "{{optInState}}{{^optInState}}ONGOING{{/optInState}}",
+  {{#with label}}
+  "label": {
+    "__typename": "{{__typename}}{{^__typename}}DisplayNameTitle{{/__typename}}",
+    "name": "{{name}}{{^name}}I18N.PROMO.STATE.LABEL.OPTED_IN{{/name}}"
+  },
+  {{/with}}
+  {{#with link}}
+  "link": {
+    {{#with label}}
+    "label": {
+      "__typename": "{{__typename}}{{^__typename}}DisplayNameTitle{{/__typename}}",
+      "name": "{{name}}{{^name}}Opted in{{/name}}"
+    },
+    {{/with}}
+    {{#with viewLink}}
+    "viewLink": {
+      "viewUrl": "{{viewUrl}}{{^viewUrl}}https://www.nxt.com.betfair/betting/{{/viewUrl}}",
+      "viewUrn": "{{viewUrn}}{{^viewUrn}}ppb:tbd:view:external:external{{/viewUrn}}",
+      "viewDisplayMode": "{{viewDisplayMode}}{{^viewDisplayMode}}BLANK_INAPP{{/viewDisplayMode}}"
+    }
+    {{/with}}
+  }
+  {{/with}}
+},
+{{/with}}
+{{#with termsAndConditions}}
+"termsAndConditions": {
+    "summary":  "{{summary}}{{^summary}}null{{/summary}}",
+    {{#with link}}
+    "link": {
+        {{#with label}}
+        "label": {
+          "__typename": "{{__typename}}{{^__typename}}DisplayNameTitle{{/__typename}}",
+          "translationKey": "{{translationKey}}{{^translationKey}}I18N.PROMO.T&C.TEXT{{/translationKey}}"
+        },
+        {{/with}}
+        {{#with viewLink}}
+        "viewLink": {
+          "viewUrl": "{{viewUrl}}{{^viewUrl}}https://www.nxt.com.betfair/betting/{{/viewUrl}}",
+          "viewUrn": "{{viewUrn}}{{^viewUrn}}ppb:tbd:view:external:external/{{/viewUrn}}",
+          "viewDisplayMode": "{{viewDisplayMode}}{{^viewDisplayMode}}BLANK_INAPP{{/viewDisplayMode}}"
+        }
+        {{/with}}
+    }
+    {{/with}}
+}
+{{/with}}

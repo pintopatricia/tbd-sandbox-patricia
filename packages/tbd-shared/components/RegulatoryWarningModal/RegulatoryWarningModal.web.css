@@ -1,0 +1,88 @@
+.modalContent {
+  /* Overrides of --sm-promotion-heading-1 */
+  --modal-content-header-typography-font-size: 24px;
+
+  /* These local tokens were created because the warning message needs to keep these styling values
+  independently of Brand and theming for Regulatory reasons */
+  --warning-message-background-colour: #fff;
+  --warning-message-inner-border: 18px solid #18181a;
+  --warning-message-outer-border: 0 0 0 2px #fff;
+  --warning-message-padding: 14px 6px;
+  --warning-message-vertical-gap: 8px;
+  --warning-message-title-colour: #18181a;
+  --warning-message-title-typography: normal 700 22px/115% "Helvetica";
+  --warning-message-text-colour: #18181a;
+  --warning-message-text-typography: normal 700 14px/115% "Helvetica";
+  --warning-message-link-typography-text-decoration-underline: underline;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--sm-spacing-small);
+
+  padding: var(--sm-spacing-x-small);
+
+  background-image: url("../../assets/images/regulatory-warning-modal-background.png");
+  background-position: top center;
+}
+
+.modalContentHeader {
+  display: flex;
+
+  gap: var(--sm-spacing-x-small);
+
+  align-items: center;
+  justify-content: center;
+}
+
+.modalContentHeader > svg {
+  flex-shrink: 0;
+
+  width: var(--sm-sizing-ui-large-150);
+  height: var(--sm-sizing-ui-large-150);
+
+  fill: var(--sm-colours-icon-interactive-primary-inverse-active);
+}
+
+.modalContentHeaderTitle {
+  font: var(--sm-promotion-heading-1);
+  /* stylelint-disable-next-line property-disallowed-list */
+  font-size: var(--modal-content-header-typography-font-size);
+  color: var(--sm-colours-text-static-promotion-inverse);
+  text-decoration-line: var(--sm-promotion-heading-1-text-decoration-line);
+  text-transform: var(--sm-promotion-heading-1-text-transform);
+  letter-spacing: var(--sm-promotion-heading-1-letter-spacing);
+}
+
+.warningMessageContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--warning-message-vertical-gap);
+
+  padding: var(--warning-message-padding);
+
+  background-color: var(--warning-message-background-colour);
+  border: var(--warning-message-inner-border);
+  box-shadow: var(--warning-message-outer-border);
+}
+
+.warningMessageTitle {
+  font: var(--warning-message-title-typography);
+  color: var(--warning-message-title-colour);
+  text-align: center;
+}
+
+.warningMessageText {
+  font: var(--warning-message-text-typography);
+  color: var(--warning-message-text-colour);
+  text-align: center;
+  white-space: pre-line;
+}
+
+.warningMessageText .warningMessageLink {
+  color: var(--warning-message-text-colour);
+  text-decoration-line: var(--warning-message-link-typography-text-decoration-underline);
+}

@@ -1,0 +1,197 @@
+/* stylelint-disable declaration-property-value-allowed-list */
+.promotionCard {
+  position: relative;
+
+  width: 100%;
+  height: var(--promo-card-height);
+  overflow: hidden;
+
+  background-color: var(--neutrals-background-elevation2);
+  background-position: center;
+  background-size: cover;
+  border-radius: var(--spacing-1);
+}
+
+.promotionImageContainer::after {
+  position: absolute;
+  left: -200px;
+
+  width: 384px;
+  height: 100%;
+
+  content: "";
+
+  background: var(--components-promotions-background-diagonal);
+
+  transform: skew(45deg);
+  transform-origin: top center;
+}
+
+.promotionCardLink {
+  height: 100%;
+}
+
+.promotionImage {
+  position: absolute;
+
+  width: 100%;
+
+  object-fit: cover;
+}
+
+.promotionSummary {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+
+  max-width: var(--promo-content-max-width);
+  margin-top: var(--spacing-1);
+  overflow: hidden;
+
+  color: var(--agnostic-neutrals-text-alternative);
+  text-overflow: ellipsis;
+}
+
+.promotionTermsAndConditionsLink {
+  margin-top: var(--spacing-1);
+
+  color: var(--agnostic-action-tertiary-text-default);
+}
+
+.promotionTermsAndConditionsLabel {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+
+  text-align: left;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+.promotionOverlay {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.promotionOverlay::before,
+.promotionOverlay::after {
+  position: absolute;
+
+  width: 48px;
+  height: 48px;
+
+  content: "";
+
+  background-color: var(--signposting-generosity-background-default);
+  opacity: 0.6;
+
+  transform: rotate(45deg);
+  transform-origin: 0 100%;
+}
+
+.promotionOverlay::before {
+  bottom: 0;
+  left: -34px;
+}
+
+.promotionOverlay::after {
+  top: -48px;
+  right: -14px;
+}
+
+.promotionContent {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  color: var(--neutrals-text-default);
+}
+
+.promotionHeader {
+  width: 100%;
+  padding-top: var(--spacing-5);
+  padding-right: var(--spacing-3);
+  padding-left: var(--spacing-3);
+}
+
+.promotionHeaderContent {
+  padding-bottom: var(--spacing-2);
+}
+
+.promotionBody {
+  width: 100%;
+  height: 100%;
+  padding: 0 var(--spacing-3);
+}
+
+.promotionFooter {
+  position: absolute;
+  bottom: 0;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  width: 100%;
+  padding-right: var(--spacing-3);
+  padding-bottom: var(--spacing-3);
+  padding-left: var(--spacing-3);
+
+  background: var(--components-promotions-background-bottom);
+}
+
+.promotionTermsAndConditions {
+  padding-right: var(--spacing-3);
+}
+
+.promoDescriptionContainer {
+  display: flex;
+
+  flex-grow: 1;
+
+  min-width: 33%;
+}
+
+.promotionAction {
+  max-width: 66%;
+}
+
+.promotionAction button {
+  white-space: nowrap;
+}
+
+.oddsBoostTag {
+  height: var(--promo-odds-boost-tag-height);
+}
+
+.oddsBoostTag > svg {
+  height: var(--promo-odds-boost-tag-height);
+}
+
+.linkTag {
+  color: var(--agnostic-signposting-generosity-text-default);
+}
+
+.betButton {
+  display: flex;
+
+  flex-shrink: 0;
+
+  min-width: var(--bet-button-width);
+  min-height: var(--bet-button-height);
+  overflow: hidden;
+
+  background-color: var(--neutrals-background-elevation2);
+  border-radius: 4px;
+}

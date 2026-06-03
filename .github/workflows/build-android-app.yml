@@ -1,0 +1,523 @@
+name: build-android-app
+on:
+  workflow_call:
+    inputs:
+      brand:
+        required: true
+        type: string
+      is_deploy:
+        type: boolean
+        description: Is this workflow being triggered as part of a deploy process?
+        required: false
+        default: false
+      deploy_tag:
+        type: string
+        description: If this workflow is being triggered as part of a deploy process, what is the tag being deployed?
+        required: false
+        default: ''
+      ref:
+        type: string
+        description: Branch or tag to build from
+        required: false
+      buildType:
+        required: true
+        type: string
+      releaseMode:
+        required: true
+        type: string
+      environment:
+        required: true
+        type: string
+      buildAbi:
+        default: all
+        type: string
+      artifactoryPath:
+        type: string
+        description: location in artifactory to upload to
+      apkName:
+        type: string
+        description: override apk name
+      useCache:
+        default: true
+        type: boolean
+      branch:
+        type: string
+    outputs:
+      apk_name:
+        value: ${{ jobs.build-android.outputs.apk_name }}
+      pr_id:
+        value: ${{ jobs.build-android.outputs.pr_id }}
+      artifact_name:
+        description: 'Name of the built artifact'
+        value: ${{ jobs.compute-brand-and-artifact-name.outputs.artifact_name }}
+
+  workflow_dispatch:
+    inputs:
+      pr_id:
+        type: string
+        description: PR the comment is made on
+        required: false
+      brand:
+        type: choice
+        description: What brand to build
+        required: true
+        options:
+          - bf
+          - sbg
+          - pp
+      is_deploy:
+        type: boolean
+        description: Is this workflow being triggered as part of a deploy process?
+        required: false
+        default: false
+      deploy_tag:
+        type: string
+        description: If this workflow is being triggered as part of a deploy process, what is the tag being deployed?
+        required: false
+        default: ''
+      ref:
+        type: string
+        description: Branch or tag to build from
+        required: false
+        default: 'master'
+      buildType:
+        type: choice
+        description: What buildType to use
+        required: true
+        options:
+          - release
+          - staging
+          - inhouse
+          - debug
+        default: inhouse
+      releaseMode:
+        type: choice
+        description: What release mode to configure the app with
+        required: true
+        options:
+          - internal
+          - production
+      environment:
+        type: choice
+        description: What environment to build the app for
+        required: true
+        options:
+          - qa
+          - nxt
+          - prf
+          - prd
+      buildAbi:
+        type: choice
+        description: ABI(s) to include in the build
+        options:
+          - x86
+          - x86_64
+          - arm64-v8a
+          - armeabi-v7a
+          - all
+        default: all
+      artifactoryPath:
+        type: string
+        description: location in artifactory to upload to
+      apkName:
+        type: string
+        description: override apk name
+      useCache:
+        description: uncheck if you want to do a build with no cache
+        default: true
+        type: boolean
+
+# Ensures that additional commits on the same PR cancels the previous github run.
+# This helps to ensure that our apps are not unnecessarily using resources.
+concurrency:
+  group: ${{ github.workflow }}-${{ inputs.branch != '' && inputs.branch || github.ref }}-${{inputs.brand}}-${{inputs.buildType}}-${{inputs.environment}}-${{inputs.releaseMode}}
+  cancel-in-progress: true
+permissions: write-all
+
+jobs:
+  compute-brand-and-artifact-name:
+    runs-on: ubuntu-latest
+    outputs:
+      artifact_name: ${{ steps.set-artifact-name.outputs.artifact_name }}
+      brand_full_name: ${{ steps.set-brand.outputs.brand_full_name }}
+      target_url: ${{ steps.workflow-url.outputs.workflow_url }}
+    steps:
+      - name: Set brand
+        id: set-brand
+        run: |
+          if [[ "${{ inputs.brand }}" == "bf" ]]; then
+            echo "brand_full_name=Betfair" >> $GITHUB_OUTPUT
+          elif [[ "${{ inputs.brand }}" == "sbg" ]]; then
+            echo "brand_full_name=SkyBet" >> $GITHUB_OUTPUT
+          elif [[ "${{ inputs.brand }}" == "pp" ]]; then
+            echo "brand_full_name=PaddyPower" >> $GITHUB_OUTPUT
+          fi
+      - name: Set artifact name
+        id: set-artifact-name
+        run: |
+          brand="${{ steps.set-brand.outputs.brand_full_name }}"
+          if [ -n "${{ inputs.apkName }}" ]; then
+            apk_name=${{ inputs.apkName }}
+            apk_name="${apk_name//\//-}"
+            artifact_name=${apk_name}.apk
+          elif [[ "${{ inputs.is_deploy }}" == "true" ]]; then
+              artifact_name="${brand}-${{ inputs.deploy_tag }}.apk"
+          else
+            artifact_name="${brand}.apk"
+          fi
+          echo "artifact_name=${artifact_name}" >> $GITHUB_OUTPUT
+      - name: Get Running Workflow URL
+        id: workflow-url
+        run: |
+          echo "workflow_url=https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> $GITHUB_OUTPUT
+
+
+  build-android:
+    runs-on: centos-self-hosted-large
+    needs: compute-brand-and-artifact-name
+    permissions:
+      contents: "read"
+      statuses: "write"
+      id-token: "write"
+      pull-requests: "write"
+    outputs:
+      artifact_name: ${{ needs.compute-brand-and-artifact-name.outputs.artifact_name }}
+      sha: ${{ steps.set-ref-sha.outputs.sha }}
+      target_url: ${{ needs.compute-brand-and-artifact-name.outputs.target_url }}
+      brand_full_name: ${{ needs.compute-brand-and-artifact-name.outputs.brand_full_name }}
+      pr_id: ${{ steps.get_pr_number.outputs.number }}
+    env:
+      GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      MONTEROSA_TOKEN: ${{ secrets.MONTEROSA_TOKEN }}
+      ARTIFACT_NAME: ${{ needs.compute-brand-and-artifact-name.outputs.artifact_name }}
+      BRAND_FULL_NAME: ${{ needs.compute-brand-and-artifact-name.outputs.brand_full_name }}
+    steps:
+      - uses: actions/checkout@v4
+        if: ${{inputs.pr_id}}
+        with:
+          fetch-depth: 1
+          ref: refs/pull/${{ inputs.pr_id }}/head
+
+      - uses: actions/checkout@v4
+        if: ${{!inputs.pr_id}}
+        with:
+          fetch-depth: 1
+          ref: ${{ inputs.ref || github.ref }}
+
+      - name: Set ref and sha variables
+        id: set-ref-sha
+        run: |
+          if [ -n "${{ inputs.branch }}" ]; then
+            echo "ref=refs/heads/${{ inputs.branch }}" >> $GITHUB_OUTPUT
+          else
+            echo "ref=${{ inputs.ref || github.ref }}" >> $GITHUB_OUTPUT
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Get PR number
+        id: get_pr_number
+        run: |
+          echo "number=$(echo "${{ github.ref }}" | sed -n 's|.*/pr-\([0-9]*\)-.*|\1|p')" >> $GITHUB_OUTPUT
+
+
+      - uses: actions/github-script@v7
+        if: ${{ inputs.pr_id }}
+        with:
+          script: |
+            await github.rest.repos.createCommitStatus({
+              owner: "Flutter-Global",
+              repo: "tbd",
+              sha: "${{ steps.set-ref-sha.outputs.sha }}",
+              state: "pending",
+              description: "Android build is running, click to view",
+              target_url: "${{ needs.compute-brand-and-artifact-name.outputs.target_url }}",
+              context: "build-android-${{ inputs.brand }}"
+            });
+
+      - name: Configure AWS credentials
+        if: ${{inputs.useCache}}
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: "arn:aws:iam::509882276346:role/AWS20_GithubOidcRole-repo"
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          role-skip-session-tagging: true
+          aws-region: eu-west-1
+
+      - name: Cache node modules
+        if: ${{inputs.useCache}}
+        id: node-cache
+        uses: runs-on/cache@v4
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+        env:
+          SEGMENT_DOWNLOAD_TIMEOUT_MINS: 2
+          RUNS_ON_S3_BUCKET_CACHE: "tbd-github-runner-s3-bucket-cache"
+          AWS_REGION: "eu-west-1"
+
+      - name: Cache gradle cache
+        if: ${{inputs.useCache}}
+        id: gradle-cache
+        uses: runs-on/cache@v4
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles(format('apps/{0}/native/**/*.gradle', inputs.brand)) }}
+        env:
+          SEGMENT_DOWNLOAD_TIMEOUT_MINS: 2
+          RUNS_ON_S3_BUCKET_CACHE: "tbd-github-runner-s3-bucket-cache"
+          AWS_REGION: "eu-west-1"
+
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: Install Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          packages: ""
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Install node dependencies
+        if: steps.node-cache.outputs.cache-hit != 'true'
+        run: yarn install --immutable-cache
+
+      - name: Run prepare
+        run: |
+          yarn prepare
+          cd apps/${{ inputs.brand }}/native
+          yarn environment ${{inputs.environment}}
+          yarn releaseMode ${{inputs.releaseMode}}
+
+      - name: Import Vault Secrets Betfair
+        if: ${{ inputs.brand == 'bf' }}
+        id: import-bf-secrets
+        env:
+          SECRET_PATH: tla_tbdn/data/jenkins
+        uses: hashicorp/vault-action@v3
+        with:
+          url: https://vault-prd.prd.betfair
+          method: ldap
+          username: ${{ secrets.VAULT_USER }}
+          password: ${{ secrets.VAULT_PASSWORD }}
+          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          secrets: |
+            ${{ env.SECRET_PATH }} facebook_app_id | FB_APP_ID ;
+            ${{ env.SECRET_PATH }} facebook_app_token | FB_APP_TOKEN ;
+
+      - name: Import Vault Secrets SkyBet
+        if: ${{ inputs.brand == 'sbg' }}
+        id: import-sbg-secrets
+        env:
+          SECRET_PATH: tla_tbdnsbg/data/jenkins
+        uses: hashicorp/vault-action@v3
+        with:
+          url: https://vault-prd.prd.betfair
+          method: ldap
+          username: ${{ secrets.VAULT_USER }}
+          password: ${{ secrets.VAULT_PASSWORD }}
+          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          secrets: |
+            ${{ env.SECRET_PATH }} facebook_app_id | FB_APP_ID ;
+            ${{ env.SECRET_PATH }} facebook_app_token | FB_APP_TOKEN ;
+
+      - name: Import Vault Secrets PaddyPower
+        if: ${{ inputs.brand == 'pp' }}
+        id: import-pp-secrets
+        env:
+          SECRET_PATH: tla_tbdnpp/data/jenkins
+        uses: hashicorp/vault-action@v3
+        with:
+          url: https://vault-prd.prd.betfair
+          method: ldap
+          username: ${{ secrets.VAULT_USER }}
+          password: ${{ secrets.VAULT_PASSWORD }}
+          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          secrets: |
+            ${{ env.SECRET_PATH }} facebook_app_id | FB_APP_ID ;
+            ${{ env.SECRET_PATH }} facebook_app_token | FB_APP_TOKEN ;
+
+      - name: Configure facebook app
+        run: |
+          sed -i "s/FACEBOOK_APP_ID/${FB_APP_ID}/g" apps/${{inputs.brand}}/native/android/app/src/main/res/values/configs.xml
+          sed -i "s/FACEBOOK_APP_TOKEN/${FB_APP_TOKEN}/g" apps/${{inputs.brand}}/native/android/app/src/main/res/values/configs.xml
+        shell: bash
+
+      - name: Set native build number
+        if: ${{ inputs.deploy_tag != '' }}
+        run: echo "NATIVE_BUILD_NUMBER=${{ inputs.deploy_tag }}" >> $GITHUB_ENV
+
+      - name: Run RN codegen (New Arch)
+        run: |
+          cd apps/${{inputs.brand}}/native/android
+          ./gradlew generateCodegenArtifactsFromSchema
+
+      - name: Build
+        env:
+          ENABLE_A11Y_TESTS_MODE: 1
+        run: |
+          cd apps/${{inputs.brand}}/native/android
+          if ${{inputs.buildAbi == 'all'}}; then
+            echo "building with all ABIs"
+            ./gradlew assemble${{inputs.buildType}} --max-workers 15
+          else
+            echo "building with ABI ${{inputs.buildAbi}}"
+            ./gradlew assemble${{inputs.buildType}} --max-workers 15 -PreactNativeArchitectures=${{inputs.buildAbi}}
+          fi
+
+      - name: Rename APP file
+        run: mv ./apps/${{inputs.brand}}/native/android/app/build/outputs/apk/play/${{inputs.buildType}}/app-play-${{inputs.buildType}}.apk ~/${{env.ARTIFACT_NAME}}
+
+      - name: Upload Artifact
+        id: upload-zip-artifact-github
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: ~/${{ env.ARTIFACT_NAME }}
+
+
+  publish-to-artifactory:
+    runs-on: centos-self-hosted-large
+    needs: build-android
+    if: needs.build-android.result == 'success'
+    outputs:
+      artifactory_path: ${{ steps.set-artifactory-path.outputs.artifactory_path }}
+    env:
+      ARTIFACT_NAME: ${{ needs.build-android.outputs.artifact_name }}
+      BRAND_FULL_NAME: ${{ needs.build-android.outputs.brand_full_name }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          sparse-checkout: |
+            .github/actions/publish-artifactory
+
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        id: download-artifact
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: downloaded-artifacts
+
+      - name: Set Artifactory path
+        id: set-artifactory-path
+        run: |
+          if [[ "${{ inputs.artifactoryPath }}" != "" ]]; then
+            echo "artifactory_path=${{ inputs.artifactoryPath }}" >> $GITHUB_OUTPUT
+          elif [[ "${{ inputs.pr_id }}" != "" ]]; then
+            echo "artifactory_path=tbd-native/android/${{ inputs.brand }}/pull-requests/" >> $GITHUB_OUTPUT
+          else
+            echo "artifactory_path=tbd-native/android/${{ inputs.brand }}/qa/" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Publish APP to Artifactory
+        id: publish-artifactory
+        uses: ./.github/actions/publish-artifactory
+        with:
+          artifactory_path: ${{ steps.set-artifactory-path.outputs.artifactory_path }}
+          path: ${{steps.download-artifact.outputs.download-path}}/${{env.ARTIFACT_NAME}}
+
+      - name: Rename APP file to latest
+        if: ${{ inputs.is_deploy }}
+        run: |
+          SOURCE_PATH="${{steps.download-artifact.outputs.download-path}}/${{env.ARTIFACT_NAME}}"
+          DEST_PATH="${{steps.download-artifact.outputs.download-path}}/${{env.BRAND_FULL_NAME}}-latest.apk"
+          mv "$SOURCE_PATH" "$DEST_PATH"
+
+      - name: Publish APP Latest to Artifactory
+        if: ${{ inputs.is_deploy }}
+        uses: ./.github/actions/publish-artifactory
+        with:
+          artifactory_path: ${{ steps.set-artifactory-path.outputs.artifactory_path }}
+          path: ${{steps.download-artifact.outputs.download-path}}/${{env.BRAND_FULL_NAME}}-latest.apk
+
+
+  publish-qr-code:
+    concurrency:
+      group: publish-qr-code
+      cancel-in-progress: false
+    runs-on: centos-self-hosted-large
+    needs: [build-android, publish-to-artifactory]
+    if: ${{(needs.build-android.result == 'success') && inputs.pr_id }}
+    env:
+      ARTIFACTORY_PATH: ${{ needs.publish-to-artifactory.outputs.artifactory_path }}
+      ARTIFACT_NAME: ${{ needs.build-android.outputs.artifact_name }}
+
+    steps:
+      - uses: actions/checkout@v4
+        if: inputs.pr_id != ''
+        with:
+          fetch-depth: 1
+          repository: "Flutter-Global/tbd-qrcode"
+          ref: "main"
+          token: ${{ secrets.QR_CODE_TOKEN }}
+          path: tbd-qrcode
+
+      - name: Upload qr code to tbd-qrcode
+        if: inputs.pr_id != ''
+        run: |
+          LINK_TO_APP="https://artifactory-prd.prd.betfair/artifactory/${{env.ARTIFACTORY_PATH}}${{env.ARTIFACT_NAME}}"
+          npx qrcode@1.5.3 -o ./tbd-qrcode/QR-CODE-${{env.ARTIFACT_NAME}}.png $LINK_TO_APP
+          cd tbd-qrcode
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add QR-CODE-${{env.ARTIFACT_NAME}}.png
+          git commit -m "add QRCode for PR ${{inputs.pr_id}}"
+          git push origin main
+
+  comment-on-pr:
+    runs-on: centos-self-hosted-large
+    needs: [ build-android, publish-qr-code, publish-to-artifactory ]
+    if: ${{ always() && inputs.pr_id}}
+    env:
+      ARTIFACTORY_PATH: ${{ needs.publish-to-artifactory.outputs.artifactory_path }}
+      ARTIFACT_NAME: ${{ needs.build-android.outputs.artifact_name }}
+      target_url: ${{ needs.build-android.outputs.target_url }}
+      sha: ${{ needs.build-android.outputs.sha }}
+    steps:
+      - name: Comment on PR with QR Code
+        if: inputs.pr_id != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const LINK_TO_APP = "https://artifactory-prd.prd.betfair/artifactory/${{env.ARTIFACTORY_PATH}}${{env.ARTIFACT_NAME}}"
+            const qrCodeArtifactUrl = "https://github.com/Flutter-Global/tbd-qrcode/blob/main/QR-CODE-${{env.ARTIFACT_NAME}}.png?raw=true";
+
+            const commentBody = `
+              :rocket: **Android Build Complete**
+              - **Brand**: ${{inputs.brand}}
+              - **APK Name**: \`${{env.ARTIFACT_NAME}}\`
+              - **APK URL**: [Download APK](${LINK_TO_APP})
+              - **APK QR**:
+                ![Download APK](${qrCodeArtifactUrl})
+            `;
+
+            await github.rest.issues.createComment({
+              owner: "Flutter-Global",
+              repo: "tbd",
+              issue_number: parseInt(${{inputs.pr_id}}, 10),
+              body: commentBody,
+            });
+      - name: Commit Status
+        uses: actions/github-script@v7
+        if: always()
+        with:
+          script: |
+            await github.rest.repos.createCommitStatus({
+              owner: "Flutter-Global",
+              repo: "tbd",
+              sha: "${{ env.sha }}",
+              state: "${{ job.status }}",
+              description: "Android Build has run, click for more detail",
+              target_url: "${{ env.workflow_url }}",
+              context: "build-android-${{ inputs.brand }}"
+            });

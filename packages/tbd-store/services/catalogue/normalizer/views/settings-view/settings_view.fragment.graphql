@@ -1,0 +1,24 @@
+fragment settingsView on SettingsView {
+  __typename
+  urn
+  url
+  settings {
+    text
+    url
+  }
+  items {
+    ...viewItems
+  }
+  bottomBar @include(if: $withBottomBar) {
+    ...bottomBar
+  }
+  leftSidebar @include(if: $withLeftSidebar) {
+    ...leftSidebar
+  }
+  regulatoryData @include(if: $withRegulatoryData) {
+    ...regulatoryData
+  }
+  xsellBar {
+    ...XSellBar
+  }
+}

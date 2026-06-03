@@ -1,0 +1,22 @@
+fragment obbCardsStackedLayout on ObbCardsStackedLayout {
+  __typename
+  urn
+  title {
+    ... on DisplayNameTitle {
+      name
+    }
+  }
+  badge {
+    name
+  }
+  maxCardsToDisplay
+  cards {
+    edges {
+      node {
+        ...obbPvpCard
+        ...obbSquadBetCard
+        ...obbSquadVsSquadCard
+      }
+    }
+  }
+}

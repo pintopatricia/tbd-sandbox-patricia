@@ -1,0 +1,24 @@
+fragment hydratedMarketHierarchy on MarketHierarchy {
+  __typename
+  ... on RaceHierarchy {
+    race {
+      ...raceWithRaceRunners
+    }
+    meeting {
+      ...meeting
+    }
+  }
+  ... on EventHierarchy {
+    sportevent {
+      ...sportEvent
+    }
+  }
+  ... on EventCompetitionHierarchy {
+    sportevent {
+      ...sportEvent
+    }
+    competition {
+      ...competitionBasic
+    }
+  }
+}

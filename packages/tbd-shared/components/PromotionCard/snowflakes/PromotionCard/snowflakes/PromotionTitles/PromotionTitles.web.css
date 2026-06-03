@@ -1,0 +1,30 @@
+.container {
+  margin: 0;
+}
+
+.promotionTitles {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+
+  color: var(--agnostic-neutrals-text-alternative);
+  text-overflow: ellipsis;
+  word-break: keep-all;
+}
+
+.title {
+  max-width: var(--promo-content-max-width);
+
+  text-transform: uppercase;
+}
+
+.subtitle {
+  -webkit-line-clamp: 2;
+
+  max-width: var(--promo-content-max-width);
+
+  color: var(--agnostic-signposting-generosity-text-default);
+  text-transform: uppercase;
+}

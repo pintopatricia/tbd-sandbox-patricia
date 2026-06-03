@@ -1,0 +1,162 @@
+{
+  "project_info": {
+    "project_number": "237660054779",
+    "project_id": "bfapps-production",
+    "storage_bucket": "bfapps-production.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237660054779:android:bb20d2fb278c6b91547c5e",
+        "android_client_info": {
+          "package_name": "com.betfair.arcade.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_A3KxaDyqvxDP8G-yi5dn5pbLRfgcdos"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237660054779:android:55fef2c04d547614547c5e",
+        "android_client_info": {
+          "package_name": "com.betfair.bingo.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_A3KxaDyqvxDP8G-yi5dn5pbLRfgcdos"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237660054779:android:f4cdecd58ebdbff1547c5e",
+        "android_client_info": {
+          "package_name": "com.betfair.casino.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_A3KxaDyqvxDP8G-yi5dn5pbLRfgcdos"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237660054779:android:4b7fb94bf6a0178f547c5e",
+        "android_client_info": {
+          "package_name": "com.betfair.exchange"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_A3KxaDyqvxDP8G-yi5dn5pbLRfgcdos"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237660054779:android:264b95c0f4fd4857547c5e",
+        "android_client_info": {
+          "package_name": "com.betfair.sportsbook"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_A3KxaDyqvxDP8G-yi5dn5pbLRfgcdos"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237660054779:android:5b67c1d4bbf466f4547c5e",
+        "android_client_info": {
+          "package_name": "com.betfair.vegas.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_A3KxaDyqvxDP8G-yi5dn5pbLRfgcdos"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237660054779:android:fabb2981a8353758547c5e",
+        "android_client_info": {
+          "package_name": "com.betfair.vegasromania.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_A3KxaDyqvxDP8G-yi5dn5pbLRfgcdos"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237660054779:android:fa12bdb4273afd08547c5e",
+        "android_client_info": {
+          "package_name": "com.betfair.xgames.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_A3KxaDyqvxDP8G-yi5dn5pbLRfgcdos"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

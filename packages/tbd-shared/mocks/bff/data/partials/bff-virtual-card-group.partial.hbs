@@ -1,0 +1,34 @@
+"__typename": "VirtualCardGroup",
+"urn": "{{{urn}}}{{^urn}}ppb:tbd:cardgroup:virtual:TODO{{/urn}}",
+{{#with items}}
+"items":{
+  "edges": [
+    {{#each edges}}
+      {
+        {{#if __typename}}
+        "__typename": "{{__typename}}",
+        {{/if}}
+        {{#if isClosed}}
+        "isClosed": {{isClosed}},
+        {{/if}}
+        {{#if isDisabled}}
+        "isDisabled": {{isDisabled}},
+        {{/if}}
+        {{#if startTime}}
+          "startTime": "{{startTime}}",
+        {{/if}}
+        {{#with node}}
+            "node": {
+              {{#ifEquals __typename "VirtualMarketCard"}}
+              {{> bff-virtual-market-card}}
+              {{/ifEquals}}
+              {{#ifEquals __typename "VirtualEventDetailsCard"}}
+              {{> bff-virtual-event-details-card}}
+              {{/ifEquals}}
+            }
+        {{/with}}
+      }{{#unless @last}},{{/unless}}
+    {{/each}}
+  ]
+}
+{{/with}}

@@ -1,0 +1,29 @@
+fragment futureRacingCardGroup on FutureRacingCardGroup {
+  __typename
+  urn
+  filterOptions {
+    ...futureRacingOptions
+  }
+  full: items(first: $numberOfFilledCardsInCardGroup) {
+    ...fullFutureRacingCardGroupItems
+  }
+  partials: items {
+    ...partialsFutureRacingCardGroupItems
+  }
+}
+
+fragment futureRacingCardGroupWithItemsFiltered on FutureRacingCardGroup {
+  __typename
+  urn
+  full: items(first: $numberOfFilledCardsInCardGroup, filterBy: $futureRacingFilterBy) {
+    ...fullFutureRacingCardGroupItems
+  }
+  partials: items(filterBy: $futureRacingFilterBy) {
+    ...partialsFutureRacingCardGroupItems
+  }
+}
+
+fragment futureRacingCardGroupPartial on FutureRacingCardGroup {
+  __typename
+  urn
+}

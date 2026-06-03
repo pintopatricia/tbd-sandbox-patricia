@@ -1,0 +1,16 @@
+
+"__typename": "ObbBettingOpportunity",
+"participants": [
+    {{#each participants}}
+        {
+            {{> bff-obb-participant}}
+        }
+        {{#unless @last}},{{/unless}}
+    {{/each}}
+    ],
+
+{{#with leg}}
+"leg": {
+        {{> bff-obb-leg}}
+    }
+{{/with}}

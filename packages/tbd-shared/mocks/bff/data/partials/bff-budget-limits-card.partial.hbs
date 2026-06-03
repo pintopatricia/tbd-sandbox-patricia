@@ -1,0 +1,17 @@
+"__typename": "{{__typename}}{{^__typename}}BudgetLimitsCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:budgetLimitsCard:myaccount#budgetLimitsCard{{/urn}}",
+"limits": {{#if limits}}
+    [
+    {{#each limits}}
+      {
+               "amount": {{amount}}{{^amount}}500{{/amount}},
+               "category": "{{category}}{{^category}}NDL{{/category}}",
+               "remain": {{remain}}{{^remain}}400{{/remain}},
+               "reset": "{{reset}}{{^reset}}02/03/2021, 00:00{{/reset}}"
+           }
+    {{#unless @last}},{{/unless}}
+    {{/each}}
+    ]
+{{else}}
+[]
+{{/if}}

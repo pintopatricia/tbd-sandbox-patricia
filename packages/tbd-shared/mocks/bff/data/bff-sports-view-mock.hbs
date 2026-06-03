@@ -1,0 +1,27 @@
+{
+	"data": {
+		"View": {
+			"__typename": "SportView",
+			"urn": "{{urn}}{{^urn}}ppb:tbd:view:sport:1{{/urn}}",
+			"title": "{{title}}{{^title}}{{/title}}",
+			"sport": {
+				{{> bff-sport sport}}
+			},
+			"leftSidebar": {
+				{{> bff-leftside-bar }}
+			},
+			"items": {
+				"pageInfo": null,
+				{{> bff-items }}
+			},
+			"partialItems": {
+				"pageInfo": null,
+				{{> bff-partial-items }}
+			},
+			"bottomBar": {
+				{{> bff-bottom-bar-tiles }}
+			},
+			"category": "BETTING"
+		}
+	}
+}

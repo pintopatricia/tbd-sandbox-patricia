@@ -1,0 +1,35 @@
+.obbEnhancedTrackingContainer {
+  display: grid;
+
+  gap: var(--spacing-1);
+
+  margin: var(--spacing-2) 0 var(--spacing-1);
+}
+
+.trackingBarContainer {
+  width: 75%;
+}
+
+.statsListTrackingContainer {
+  display: grid;
+
+  gap: var(--sportsbook-bet-leg-card-player-vertical-gap);
+}
+
+.statsListTrackingLineContainer {
+  display: flex;
+
+  gap: var(--spacing-2);
+
+  align-items: center;
+}
+
+.playerNameStyle {
+  font: var(--sportsbook-bet-leg-card-player-name-label-typography);
+  color: var(--sportsbook-bet-leg-card-player-label-colour);
+}
+
+.playerProgressTitle {
+  font: var(--sportsbook-bet-leg-card-player-label-typography);
+  color: var(--sportsbook-bet-leg-card-player-label-colour);
+}

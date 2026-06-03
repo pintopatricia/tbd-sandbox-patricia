@@ -1,0 +1,15 @@
+"__typename": "{{__typename}}{{^__typename}}ObbCardsStackedLayout{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:obb:cardslayout:stacked:ZypHaxIAACEAKdxz/obb_cards_layout$b65dbf9d-53fd-4969-83ee-f59b444ec72a/e/34274618{{/urn}}",
+{{#if title}}
+{{#with title}}
+  "title": {
+    {{> bff-obb-display-name}}
+  },
+{{/with}}
+{{/if}}
+"maxCardsToDisplay": {{maxCardsToDisplay}}{{^maxCardsToDisplay}}2{{/maxCardsToDisplay}},
+{{#with cards}}
+"cards":{
+    {{> bff-obb-cards-connection}}
+}
+{{/with}}

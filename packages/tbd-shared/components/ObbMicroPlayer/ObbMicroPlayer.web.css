@@ -1,0 +1,216 @@
+.microPlayer {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  width: var(--micro-player-width-sizing);
+  overflow: hidden;
+}
+
+.microPlayer.multiVariant {
+  width: 100%;
+
+  border-top-left-radius: var(--micro-player-background-border-radius);
+  border-top-right-radius: var(--micro-player-background-border-radius);
+}
+
+.jerseyContainer {
+  position: relative;
+
+  display: flex;
+
+  justify-content: center;
+
+  width: 100%;
+  min-height: var(--micro-player-container-top-sizing);
+  overflow: hidden;
+}
+
+.jerseyContainer:has(.jerseyLarge) {
+  min-height: var(--micro-player-jersey-large-sizing, 50px);
+}
+
+.jerseyContainerBackground {
+  background-color: var(--micro-player-background-top-colour);
+}
+
+.jersey {
+  width: var(--micro-player-jersey-sizing);
+  height: var(--micro-player-jersey-sizing);
+}
+
+.jerseyLarge {
+  width: var(--micro-player-jersey-large-sizing, 50px);
+  height: var(--micro-player-jersey-large-sizing, 50px);
+}
+
+.multiVariant .jersey {
+  position: absolute;
+  bottom: -3px;
+
+  width: calc(var(--micro-player-jersey-sizing) - 3px);
+  height: calc(var(--micro-player-jersey-sizing) - 3px);
+}
+
+.multiVariant .jerseyLarge {
+  position: absolute;
+  bottom: -3px;
+
+  width: calc(var(--micro-player-jersey-large-sizing, 56px));
+  height: calc(var(--micro-player-jersey-large-sizing, 56px));
+}
+
+/* Center shirt (index 0) */
+.jersey.center {
+  transform-origin: center bottom;
+}
+
+.jersey.center.posLeft {
+  transform: translateX(-14.5px);
+}
+
+.jersey.center.posRight {
+  transform: translateX(14.5px);
+}
+
+.nameContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: var(--micro-player-container-bottom-sizing);
+  padding: var(--micro-player-spacing);
+
+  background-color: var(--micro-player-background-bottom-colour);
+}
+
+.firstName {
+  font: var(--micro-player-label-typography);
+}
+
+.lastName {
+  font: var(--micro-player-label-big-typography);
+}
+
+.firstName,
+.lastName {
+  width: 100%;
+  max-width: var(--micro-player-width-sizing);
+  overflow: hidden;
+
+  color: var(--micro-player-label-colour);
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.multiplePlayers {
+  color: var(--micro-player-label-colour);
+  text-align: center;
+}
+
+.multipleFirstName {
+  font: var(--micro-player-label-typography);
+}
+
+.multipleLastName {
+  font: var(--micro-player-secondary-label-typography);
+}
+
+.multipleFirstName,
+.multipleLastName {
+  align-self: baseline;
+
+  height: fit-content;
+}
+
+.nameEmptyState {
+  width: 100%;
+
+  font: var(--micro-player-label-typography);
+  color: var(--micro-player-label-colour);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.playersDisabledLabel {
+  font: var(--micro-player-secondary-label-typography);
+  color: var(--micro-player-secondary-label-colour);
+  text-align: center;
+}
+
+/* Levels (distance from center) */
+.level1 {
+  transform: translateX(var(--micro-player-jersey-big-position)) scale(var(--micro-player-jersey-big-scale));
+}
+
+.level1.posRight {
+  transform: translateX(calc(var(--micro-player-jersey-big-position) * -1)) scale(var(--micro-player-jersey-big-scale));
+}
+
+.level1.pair {
+  transform: translateX(30px) scale(var(--micro-player-jersey-big-scale));
+}
+
+.level1.posRight.pair {
+  transform: translateX(-30px) scale(var(--micro-player-jersey-big-scale));
+}
+
+.level2 {
+  transform: translateX(35px) scale(var(--micro-player-jersey-medium-scale));
+}
+
+.level2.posRight {
+  transform: translateX(-35px) scale(var(--micro-player-jersey-medium-scale));
+}
+
+.level2.pair {
+  transform: translateX(47px) scale(var(--micro-player-jersey-medium-scale));
+}
+
+.level2.posRight.pair {
+  transform: translateX(-47px) scale(var(--micro-player-jersey-medium-scale));
+}
+
+.level3 {
+  transform: translateX(45px) scale(var(--micro-player-jersey-small-scale));
+}
+
+.level3.posRight {
+  transform: translateX(-45px) scale(var(--micro-player-jersey-small-scale));
+}
+
+.microPlayerWrapper {
+  position: relative;
+
+  width: 100%;
+}
+
+.removePlayerContainer {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
+
+.removePlayerTouchContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 45px;
+  height: 45px;
+}
+
+.removePlayerButton {
+  width: var(--micro-player-close-icon-sizing);
+  height: var(--micro-player-close-icon-sizing);
+
+  cursor: pointer;
+}

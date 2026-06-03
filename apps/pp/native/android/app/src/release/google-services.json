@@ -1,0 +1,143 @@
+{
+  "project_info": {
+    "project_number": "1092527525904",
+    "project_id": "ppapps-production",
+    "storage_bucket": "ppapps-production.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092527525904:android:14133bd6ae875df5ac7a95",
+        "android_client_info": {
+          "package_name": "com.betdash"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsL3diIFkmSF95zOLd2bbjHtlBSFtRDqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092527525904:android:b13ec56fb75d949fac7a95",
+        "android_client_info": {
+          "package_name": "com.paddypower.bingo.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsL3diIFkmSF95zOLd2bbjHtlBSFtRDqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092527525904:android:5e2e2c507f285f4aac7a95",
+        "android_client_info": {
+          "package_name": "com.paddypower.casino.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsL3diIFkmSF95zOLd2bbjHtlBSFtRDqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092527525904:android:30fa3868cb5536fcac7a95",
+        "android_client_info": {
+          "package_name": "com.paddypower.fantasy.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsL3diIFkmSF95zOLd2bbjHtlBSFtRDqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092527525904:android:7a01f4adcd02879dac7a95",
+        "android_client_info": {
+          "package_name": "com.paddypower.games.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsL3diIFkmSF95zOLd2bbjHtlBSFtRDqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092527525904:android:ad3b846f4169258dac7a95",
+        "android_client_info": {
+          "package_name": "com.paddypower.sportsbook.u.inhouse"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsL3diIFkmSF95zOLd2bbjHtlBSFtRDqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092527525904:android:4b52d4b04a7efe47ac7a95",
+        "android_client_info": {
+          "package_name": "com.paddypower.vegas.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsL3diIFkmSF95zOLd2bbjHtlBSFtRDqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

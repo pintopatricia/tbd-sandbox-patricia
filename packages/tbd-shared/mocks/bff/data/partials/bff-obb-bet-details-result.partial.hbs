@@ -1,0 +1,18 @@
+
+"resultCode": "{{resultCode}}",
+{{#if errorDetails}}
+  "errorDetails": "{{errorDetails}}",
+{{/if}}
+"legResults":[
+  {{#each legResults}}
+    {
+      "resultCode": "{{resultCode}}",
+      {{#if errorDetails}}
+        "errorDetails": "{{errorDetails}}",
+      {{/if}}
+      "__typename": "{{__typename}}{{^__typename}}ObbResult{{/__typename}}"
+    }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+],
+"__typename": "{{__typename}}{{^__typename}}Result{{/__typename}}"

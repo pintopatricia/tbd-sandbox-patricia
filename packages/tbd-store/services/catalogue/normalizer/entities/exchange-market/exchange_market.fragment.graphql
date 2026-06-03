@@ -1,0 +1,24 @@
+fragment exchangeMarket on ExchangeMarket {
+  __typename
+  urn
+  name
+  marketType
+  marketTypeName
+  hierarchy {
+    ...marketHierarchy
+  }
+  bettingType
+  eachWayDivisor
+  numberOfWinners
+  sport {
+    ...sport
+  }
+  runners {
+    __typename
+    runnerURN
+    name
+    selectionId
+    handicap
+    resultType
+  }
+}

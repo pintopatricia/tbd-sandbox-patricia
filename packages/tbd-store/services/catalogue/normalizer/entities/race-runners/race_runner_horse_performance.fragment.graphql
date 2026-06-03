@@ -1,0 +1,48 @@
+fragment raceRunnerHorsePerformance on RaceRunner {
+  __typename
+  urn
+  rating123
+  ratingStars
+  selectionId
+  raceURN
+  form
+  rating
+  comments
+  status
+  horse {
+    name
+    sireName
+    damName
+    damSireName
+    age
+    color
+    sex
+    bred
+    performance {
+      positionOfficial
+      distanceBeatenStatus
+      positionStatusCode
+      isp {
+        decimal
+        fractional {
+          numerator
+          denominator
+        }
+        americanOdd
+        favourite
+      }
+      bspAdvantage
+    }
+  }
+  details {
+    jockeyName
+    trainerName
+    saddleCloth
+    weight {
+      stones
+    }
+    equipmentDescription
+    silk
+    draw
+  }
+}

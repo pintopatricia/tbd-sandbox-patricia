@@ -1,0 +1,70 @@
+name: android-smoke-tests
+run-name: Android - ${{ inputs.brand }} - ${{ inputs.test_type }} - ${{ inputs.apk_name }}
+on:
+  workflow_call:
+    inputs:
+      test_type:
+        required: true
+        type: string
+        description: Type of test to run
+      brand:
+        required: false
+        default: "bf"
+        type: string
+        description: Brand against which to run the tests
+      env:
+        required: false
+        default: "drk"
+        type: string
+        description: Environment against which to run the tests
+      apk_name:
+        type: string
+        description: 'The app build number to use to run tests against the env selected'
+        required: true
+
+  workflow_dispatch:
+    inputs:
+      test_type:
+        required: true
+        type: choice
+        description: Type of test to run
+        options:
+          - smoke
+      brand:
+        required: false
+        default: "bf"
+        type: string
+        description: Brand against which to run the tests
+      env:
+        required: true
+        type: choice
+        description: Environment against which to run the tests
+        options:
+          - drk
+          - prod
+      apk_name:
+        type: string
+        description: 'The app build number to use to run tests against the env selected'
+        required: true
+
+env:
+  VAULT_USER: ${{ secrets.VAULT_USER }}
+  VAULT_PASSWORD: ${{ secrets.VAULT_PASSWORD }}
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  MONTEROSA_TOKEN: ${{ secrets.MONTEROSA_TOKEN }}
+
+concurrency:
+  group: android-smoke-test-${{ inputs.brand }}-${{ inputs.test_type }}-${{ inputs.apk_name }}
+  cancel-in-progress: true
+
+jobs:
+  common:
+    uses: ./.github/workflows/android-tests.yml
+    secrets: inherit
+    permissions: write-all
+    with:
+      brand: ${{ inputs.brand }}
+      test_type: smoke
+      apk_name: ${{ inputs.apk_name }}
+      env: ${{ inputs.env }}
+      is_merge_queue: false

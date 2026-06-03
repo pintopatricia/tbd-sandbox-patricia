@@ -1,0 +1,21 @@
+version: "3.4"
+services:
+  http-webserver-proxy-dev:
+    image: ppb/tbd/bff/tests/http-webserver-proxy-dev
+    build:
+      context: ${PWD}
+      dockerfile: ./Docker/tests/dev-regression.Dockerfile
+    environment:
+      - NODE_ENV=dev
+      - TZ=America/Los_Angeles
+      - GLOBAL_AGENT_HTTP_PROXY=http://mockServer:1081
+      - NODE_TLS_REJECT_UNAUTHORIZED=0
+    command: "nodemon --enable-experimental-regexp-engine-on-excessive-backtracks -r ./regression-tests/config/mock-date.js -r 'global-agent/bootstrap' --inspect=0.0.0.0 --signal SIGINT --exec 'DEBUG=bff* node' /fabric/bin/fabric.js run /etc/bf-fabric/config-http.json"
+    volumes:
+      - ${PWD}/config/certificates/:/etc/bf-fabric/certificates
+      - ${PWD}/config/webserver-config-http-bf-qa.json:/etc/bf-fabric/config-http.json
+      - ${PWD}/lib:/fabric/deploy/tbd-http-webserver/lib
+      - ${PWD}/lib/config/environment.json:/fabric/deploy/tbd-http-webserver/dist/tbd-http-webserver-v1/lib/config/environment.json:ro
+    ports:
+      - "8081:8081"
+      - "9229:9229"

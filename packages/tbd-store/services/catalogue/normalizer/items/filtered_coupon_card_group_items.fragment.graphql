@@ -1,0 +1,22 @@
+fragment fullFilteredCouponCardGroupItems on FilteredCouponCardGroupItemsConnection {
+  edges {
+    node {
+      # Read this before adding new entries: docs/guidelines/how-to-add-a-new-card.md
+      ...eventMarketCard
+      ...couponHeaderCard
+    }
+  }
+}
+
+fragment partialsFilteredCouponCardGroupItems on FilteredCouponCardGroupItemsConnection {
+  edges {
+    node {
+      # Read this before adding new entries: docs/guidelines/how-to-add-a-new-card.md
+      ...eventMarketCardPartial
+      ...couponHeaderCardPartial
+    }
+  }
+  pageInfo {
+    hasNextPage
+  }
+}

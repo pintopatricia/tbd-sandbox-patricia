@@ -1,0 +1,14 @@
+fragment displayNameTitle on DisplayNameTitle {
+  __typename
+  name
+}
+
+fragment displayNameTranslationKey on DisplayNameTranslationKey {
+  __typename
+  translationKey
+}
+
+fragment displayName on DisplayName {
+  ...displayNameTitle
+  ...displayNameTranslationKey
+}

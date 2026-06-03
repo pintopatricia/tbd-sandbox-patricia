@@ -1,0 +1,15 @@
+.raceMarketCardContainer {
+  overflow: hidden; /* makes sure children respect the border radius */
+
+  background: var(--race-market-card-background-colour);
+  border: var(--race-market-card-border);
+  border-radius: var(--race-market-card-border-radius);
+}
+
+.raceMarketCardContainer a {
+  display: block;
+
+  padding: var(--race-market-card-header-padding);
+
+  background-color: var(--race-market-card-header-background-colour);
+}

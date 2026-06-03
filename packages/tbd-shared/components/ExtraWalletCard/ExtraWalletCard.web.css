@@ -1,0 +1,15 @@
+.extraWalletCard {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--option-vertical-gap);
+}
+
+.badges {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: var(--option-horizontal-gap-secondary);
+}

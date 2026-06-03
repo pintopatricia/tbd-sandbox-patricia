@@ -1,0 +1,332 @@
+name: build-android
+
+on:
+  workflow_dispatch:
+    inputs:
+      brand:
+        type: choice
+        description: What brand to build
+        required: true
+        options:
+          - bf
+          - sbg
+          - pp
+      buildType:
+        type: choice
+        description: What buildType to use
+        required: true
+        options:
+          - release
+          - staging
+          - inhouse
+          - debug
+        default: inhouse
+      releaseMode:
+        type: choice
+        description: What release mode to configure the app with
+        required: true
+        options:
+          - internal
+          - production
+      environment:
+        type: choice
+        description: What environment to build the app for
+        required: true
+        options:
+          - qa
+          - nxt
+          - prf
+          - prd
+      buildAbi:
+        type: choice
+        description: ABI(s) to include in the build
+        options:
+          - x86
+          - x86_64
+          - arm64-v8a
+          - armeabi-v7a
+          - all
+        default: all
+      artifactoryPath:
+        type: string
+        description: location in artifactory to upload to
+        default: tbd-native/android/
+      apkName:
+        type: string
+        description: override apk name
+      comment_pr_id:
+        type: string
+        description: Add a PR ID if you want the QR code link to the build posted as a comment there
+      useCache:
+        description: uncheck if you want to do a build with no cache
+        default: true
+        type: boolean
+  workflow_call:
+    inputs:
+      brand:
+        required: true
+        type: string
+      buildType:
+        required: true
+        type: string
+      releaseMode:
+        required: true
+        type: string
+      environment:
+        required: true
+        type: string
+      buildAbi:
+        default: all
+        type: string
+      artifactoryPath:
+        type: string
+        description: location in artifactory to upload to
+        default: tbd-native/android/
+      apkName:
+        type: string
+        description: override apk name
+      useCache:
+        default: true
+        type: boolean
+      branch:
+        type: string
+    outputs:
+      apk_name:
+        value: ${{ jobs.build-android.outputs.apk_name }}
+      pr_id:
+        value: ${{ jobs.build-android.outputs.pr_id }}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ inputs.branch != '' && inputs.branch || github.ref }}-${{inputs.brand}}-${{inputs.buildType}}-${{inputs.environment}}-${{inputs.releaseMode}}
+  cancel-in-progress: true
+
+jobs:
+  build-android:
+    runs-on: centos-self-hosted-large
+    permissions:
+      contents: "read"
+      statuses: "write"
+      id-token: "write"
+      pull-requests: "write"
+    env:
+      GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      MONTEROSA_TOKEN: ${{ secrets.MONTEROSA_TOKEN }}
+    outputs:
+      apk_name: ${{ steps.apk-name.outputs.apk_name }}
+      pr_id: ${{ steps.get_pr_number.outputs.number }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          ref: ${{ inputs.branch }}
+      - name: Set ref and sha variables
+        id: set-ref-sha
+        run: |
+          if [ -n "${{ inputs.branch }}" ]; then
+            echo "ref=refs/heads/${{ inputs.branch }}" >> $GITHUB_OUTPUT
+            sha=$(git ls-remote origin refs/heads/${{ inputs.branch }} | awk '{print $1}')
+            echo "sha=$sha" >> $GITHUB_OUTPUT
+          else
+            echo "ref=${{ github.ref }}" >> $GITHUB_OUTPUT
+            echo "sha=${{ github.sha }}" >> $GITHUB_OUTPUT
+          fi
+      - name: Get Running Workflow URL
+        id: workflow-url
+        run: |
+          echo "workflow_url=https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> $GITHUB_OUTPUT
+
+      - name: Get PR number
+        id: get_pr_number
+        run: |
+          echo "number=$(echo "${{ github.ref }}" | sed -n 's|.*/pr-\([0-9]*\)-.*|\1|p')" >> $GITHUB_OUTPUT
+
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.repos.createCommitStatus({
+              owner: "Flutter-Global",
+              repo: "tbd",
+              sha: "${{ steps.set-ref-sha.outputs.sha }}",
+              state: "pending",
+              description: "Android build is running, click to view",
+              target_url: "${{ steps.workflow-url.outputs.workflow_url }}",
+              context: "build-android-${{ inputs.brand }}"
+            });
+      - name: Determine APK name
+        id: apk-name
+        run: |
+          if [ -n "${{ inputs.apkName }}" ]; then
+            apk_name=${{ inputs.apkName }}.apk
+            apk_name="${apk_name//\//-}"
+            echo "apk_name=$apk_name" >> $GITHUB_OUTPUT
+          else
+            echo "apk_name=Betfair-${{ inputs.brand }}-${{ inputs.buildAbi }}-${{ inputs.buildType }}-${{ github.run_number }}.apk" >> $GITHUB_OUTPUT
+          fi
+      - name: Configure AWS credentials
+        if: ${{inputs.useCache}}
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: "arn:aws:iam::509882276346:role/AWS20_GithubOidcRole-repo"
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          role-skip-session-tagging: true
+          aws-region: eu-west-1
+      - name: Cache node modules
+        if: ${{inputs.useCache}}
+        id: node-cache
+        uses: runs-on/cache@v4
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+        env:
+          SEGMENT_DOWNLOAD_TIMEOUT_MINS: 2
+          RUNS_ON_S3_BUCKET_CACHE: "tbd-github-runner-s3-bucket-cache"
+          AWS_REGION: "eu-west-1"
+      - name: Cache gradle cache
+        if: ${{inputs.useCache}}
+        id: gradle-cache
+        uses: runs-on/cache@v4
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles(format('apps/{0}/native/**/*.gradle', inputs.brand)) }}
+        env:
+          SEGMENT_DOWNLOAD_TIMEOUT_MINS: 2
+          RUNS_ON_S3_BUCKET_CACHE: "tbd-github-runner-s3-bucket-cache"
+          AWS_REGION: "eu-west-1"
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+      - name: Install Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          packages: ""
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+      - name: Install node dependencies
+        if: steps.node-cache.outputs.cache-hit != 'true'
+        run: yarn install --immutable-cache
+      - name: Run prepare
+        run: |
+          yarn prepare
+          cd apps/bf/native
+          yarn environment ${{inputs.environment}}
+          yarn releaseMode ${{inputs.releaseMode}}
+      - name: Import Vault Secrets Betfair
+        if: ${{ inputs.brand == 'bf' }}
+        id: import-bf-secrets
+        env:
+          SECRET_PATH: tla_tbdn/data/jenkins
+        uses: hashicorp/vault-action@v3
+        with:
+          url: https://vault-prd.prd.betfair
+          method: ldap
+          username: ${{ secrets.VAULT_USER }}
+          password: ${{ secrets.VAULT_PASSWORD }}
+          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          secrets: |
+            ${{ env.SECRET_PATH }} facebook_app_id | FB_APP_ID ;
+            ${{ env.SECRET_PATH }} facebook_app_token | FB_APP_TOKEN ;
+      - name: Import Vault Secrets SkyBet
+        if: ${{ inputs.brand == 'sbg' }}
+        id: import-sbg-secrets
+        env:
+          SECRET_PATH: tla_tbdnsbg/data/jenkins
+        uses: hashicorp/vault-action@v3
+        with:
+          url: https://vault-prd.prd.betfair
+          method: ldap
+          username: ${{ secrets.VAULT_USER }}
+          password: ${{ secrets.VAULT_PASSWORD }}
+          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          secrets: |
+            ${{ env.SECRET_PATH }} facebook_app_id | FB_APP_ID ;
+            ${{ env.SECRET_PATH }} facebook_app_token | FB_APP_TOKEN ;
+      - name: Configure facebook app
+        run: |
+          sed -i "s/FACEBOOK_APP_ID/${FB_APP_ID}/g" apps/${{inputs.brand}}/native/android/app/src/main/res/values/configs.xml
+          sed -i "s/FACEBOOK_APP_TOKEN/${FB_APP_TOKEN}/g" apps/${{inputs.brand}}/native/android/app/src/main/res/values/configs.xml
+        shell: bash
+      - name: Run RN codegen (New Arch)
+        run: |
+          cd apps/${{inputs.brand}}/native/android
+          ./gradlew generateCodegenArtifactsFromSchema
+      - name: Build
+        env:
+          ENABLE_A11Y_TESTS_MODE: 1
+        run: |
+          cd apps/${{inputs.brand}}/native/android
+          if ${{inputs.buildAbi == 'all'}}; then
+            echo "building with all ABIs"
+            ./gradlew assemble${{inputs.buildType}} --max-workers 15
+          else
+            echo "building with ABI ${{inputs.buildAbi}}"
+            ./gradlew assemble${{inputs.buildType}} --max-workers 15 -PreactNativeArchitectures=${{inputs.buildAbi}}
+          fi
+      - name: Rename APK file
+        run: mv ./apps/${{inputs.brand}}/native/android/app/build/outputs/apk/play/${{inputs.buildType}}/app-play-${{inputs.buildType}}.apk ~/${{steps.apk-name.outputs.apk_name}}
+      - name: Publish APK to Artifactory
+        id: publish-artifactory
+        uses: ./.github/actions/publish-artifactory
+        with:
+          artifactory_path: ${{inputs.artifactoryPath}}
+          path: ~/${{steps.apk-name.outputs.apk_name}}
+      - uses: actions/checkout@v4
+        if: inputs.comment_pr_id != ''
+        with:
+          fetch-depth: 1
+          repository: "Flutter-Global/tbd-qrcode"
+          ref: "main"
+          token: ${{ secrets.QR_CODE_TOKEN }}
+          path: tbd-qrcode
+      - name: upload qr code to tbd-qrcode
+        if: inputs.comment_pr_id != ''
+        run: |
+          LINK_TO_APP="https://artifactory-prd.prd.betfair/artifactory/${{inputs.artifactoryPath}}/${{ inputs.brand }}/pull-requests/${{steps.apk-name.outputs.apk_name}}"
+          node_modules/.bin/qrcode -o ./tbd-qrcode/QR-CODE-${{steps.apk-name.outputs.apk_name}}.png $LINK_TO_APP
+          cd tbd-qrcode
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add QR-CODE-${{steps.apk-name.outputs.apk_name}}.png
+          git commit -m "add QRCode for PR ${{inputs.comment_pr_id}}"
+          git push origin main
+      - name: Comment on PR with QR Code
+        if: inputs.comment_pr_id != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const apkUrl = "https://artifactory-prd.prd.betfair/artifactory/${{inputs.artifactoryPath}}/${{steps.apk-name.outputs.apk_name}}";
+            const qrCodeArtifactUrl = "https://github.com/Flutter-Global/tbd-qrcode/blob/main/QR-CODE-${{steps.apk-name.outputs.apk_name}}.png?raw=true";
+
+            const commentBody = `
+              :rocket: **Android Build Complete**
+              - **Brand**: ${{inputs.brand}}
+              - **APK Name**: \`${{steps.apk-name.outputs.apk_name}}\`
+              - **APK URL**: [Download APK](${apkUrl})
+              - **APK QR**:
+                ![Download APK](${qrCodeArtifactUrl})
+            `;
+
+            await github.rest.issues.createComment({
+              owner: "Flutter-Global",
+              repo: "tbd",
+              issue_number: parseInt(${{inputs.comment_pr_id}}, 10),
+              body: commentBody,
+            });
+      - uses: actions/github-script@v7
+        if: always()
+        with:
+          script: |
+            await github.rest.repos.createCommitStatus({
+              owner: "Flutter-Global",
+              repo: "tbd",
+              sha: "${{ steps.set-ref-sha.outputs.sha }}",
+              state: "${{ job.status }}",
+              description: "Android Build has run, click for more detail",
+              target_url: "${{ steps.workflow-url.outputs.workflow_url }}",
+              context: "build-android-${{ inputs.brand }}"
+            });

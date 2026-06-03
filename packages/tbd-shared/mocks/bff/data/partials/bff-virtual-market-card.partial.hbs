@@ -1,0 +1,16 @@
+"__typename": "{{__typename}}{{^__typename}}VirtualMarketCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:virtualMarket:924.307595994{{/urn}}",
+"title": "{{title}}{{^title}}Win or Each Way{{/title}}",
+"marketHierarchy": {
+  {{> bff-hierarchy marketHierarchy}}
+},
+"displayRunners": {
+  {{#with displayRunners}}
+    {{> bff-virtual-display-runners}}
+  {{/with}}
+},
+"gameRulesViewLink": {
+    "viewDisplayMode": "{{viewDisplayMode}}{{^viewDisplayMode}}BLANK_BROWSER_WEBVIEW{{/viewDisplayMode}}",
+    "viewUrl": "{{viewUrl}}{{^viewUrl}}https://support.betfair.com/app/answers/detail/a_id/5977/{{/viewUrl}}",
+    "viewUrn": "{{viewUrn}}{{^viewUrn}}ppb:tbd:view:external{{/viewUrn}}"
+}

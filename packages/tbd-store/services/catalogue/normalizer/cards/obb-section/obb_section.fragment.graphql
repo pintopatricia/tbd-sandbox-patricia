@@ -1,0 +1,20 @@
+fragment obbSection on ObbSection {
+  __typename
+  urn
+  obbSectionTitle: title {
+    ...displayName
+  }
+  icon {
+    id
+    category
+  }
+  isExpanded
+  layouts {
+    edges {
+      node {
+        ...obbCardsStackedLayout
+        ...obbCardsSwimlaneLayout
+      }
+    }
+  }
+}

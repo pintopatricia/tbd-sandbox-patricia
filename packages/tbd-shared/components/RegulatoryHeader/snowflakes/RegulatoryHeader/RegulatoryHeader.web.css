@@ -1,0 +1,70 @@
+.container {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--regulatory-header-vertical-gap);
+
+  padding: var(--regulatory-header-padding);
+
+  background-color: var(--regulatory-header-background-colour);
+}
+
+.section {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: var(--regulatory-header-vertical-gap);
+}
+
+.textItem {
+  font: var(--regulatory-header-text-content-text-typography);
+  color: var(--regulatory-header-text-content-text-colour);
+  text-align: center;
+  text-decoration: var(--regulatory-header-text-content-text-typography-text-decoration-line);
+  text-transform: var(--regulatory-header-text-content-text-typography-text-transform);
+  letter-spacing: var(--regulatory-header-text-content-text-typography-letter-spacing);
+}
+
+.linkItem {
+  font: var(--regulatory-header-text-link-typography);
+  color: var(--regulatory-header-text-link-colour);
+  text-decoration: var(--regulatory-header-text-link-typography-text-decoration-line);
+  text-transform: var(--regulatory-header-text-link-typography-text-transform);
+  letter-spacing: var(--regulatory-header-text-link-typography-letter-spacing);
+  white-space: nowrap;
+}
+
+.imageItem {
+  display: inline-block;
+
+  max-height: var(--regulatory-header-image-height);
+}
+
+.sessionItem {
+  display: flex;
+
+  flex-grow: 1;
+
+  gap: var(--session-horizontal-gap);
+
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.sessionItemLabel {
+  font: var(--session-content-text-typography);
+  color: var(--session-text-content-text-colour);
+  text-decoration: var(--session-content-text-typography-text-decoration-line);
+  text-transform: var(--session-content-text-typography-text-transform);
+  letter-spacing: var(--session-content-text-typography-letter-spacing);
+}
+
+.sessionItemTime {
+  font: var(--session-content-text-highlighted-typography);
+  color: var(--session-text-content-text-highlighted-colour);
+  text-decoration: var(--session-content-text-highlighted-typography-text-decoration-line);
+  text-transform: var(--session-content-text-highlighted-typography-text-transform);
+  letter-spacing: var(--session-content-text-highlighted-typography-letter-spacing);
+}

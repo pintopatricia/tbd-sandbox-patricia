@@ -1,0 +1,48 @@
+.userProfile {
+  margin: 0;
+}
+
+.title {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--user-profile-content-vertical-gap);
+
+  margin-bottom: var(--spacing-6);
+
+  color: var(--neutrals-text-default);
+}
+
+.lastLogin {
+  font: var(--user-profile-header-supporting-text-bottom-typography);
+  color: var(--user-profile-content-supporting-text-colour);
+  text-decoration-line: var(--user-profile-header-supporting-text-bottom-typography-text-decoration-line);
+  text-transform: var(--user-profile-header-supporting-text-bottom-typography-text-transform);
+  letter-spacing: var(--user-profile-header-supporting-text-bottom-typography-letter-spacing);
+}
+
+.cashBalances {
+  margin-bottom: var(--spacing-6);
+}
+
+.sectionGroupMenu:not(:last-of-type) {
+  margin-bottom: var(--spacing-6);
+}
+
+.rewardsContainer {
+  margin-bottom: var(--spacing-6);
+}
+
+.iconWrapper {
+  width: 18px;
+  height: 18px;
+}
+
+.rewardsCardContainer {
+  overflow: hidden;
+}
+
+.card {
+  margin-bottom: var(--spacing-6);
+}

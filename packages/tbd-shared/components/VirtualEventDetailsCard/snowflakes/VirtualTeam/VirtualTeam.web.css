@@ -1,0 +1,62 @@
+.team {
+  position: relative;
+
+  display: flex;
+
+  flex: 1 1 0;
+
+  gap: var(--team-medium-horizontal-gap-primary);
+
+  align-items: center;
+
+  padding-left: var(--team-medium-padding);
+
+  white-space: normal;
+}
+
+.reverseOrder {
+  flex-direction: row-reverse;
+}
+
+.reverseOrder.team {
+  padding-right: var(--team-medium-padding);
+  padding-left: 0;
+}
+
+.teamNameLabel {
+  font: var(--team-medium-label-typography);
+  color: var(--team-text-label-colour);
+  text-decoration-line: var(--team-medium-label-typography-text-decoration-line);
+  text-transform: var(--team-medium-label-typography-text-transform);
+  letter-spacing: var(--team-medium-label-typography-letter-spacing);
+}
+
+.teamName {
+  display: flex;
+
+  gap: var(--team-medium-horizontal-gap-secondary);
+
+  align-items: center;
+
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
+
+.teamName > * {
+  display: -webkit-box;
+
+  overflow: hidden;
+
+  word-break: break-word;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.singleLine .teamName > * {
+  word-break: break-word;
+  -webkit-line-clamp: 1;
+}
+
+.reverseOrder .teamName {
+  text-align: right;
+}

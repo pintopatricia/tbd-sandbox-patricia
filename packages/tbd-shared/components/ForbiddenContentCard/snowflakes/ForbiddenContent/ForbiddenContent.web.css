@@ -1,0 +1,57 @@
+.container {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--forbidden-content-vertical-gap);
+
+  align-items: center;
+  justify-content: center;
+
+  padding: var(--forbidden-content-padding);
+
+  border-radius: var(--forbidden-content-border-radius);
+}
+
+.light,
+.dark {
+  color: var(--forbidden-content-text-content-text-colour);
+
+  background-color: var(--forbidden-content-background-colour);
+}
+
+.transparent {
+  background-color: transparent;
+}
+
+.lock {
+  width: var(--forbidden-content-icon-sizing);
+  height: var(--forbidden-content-icon-sizing);
+
+  fill: var(--forbidden-content-icon-colour);
+}
+
+.label {
+  font: var(--forbidden-content-content-text-typography);
+  text-align: center;
+  text-decoration: var(--forbidden-content-content-text-typography-text-decoration-line);
+  text-transform: var(--forbidden-content-content-text-typography-text-transform);
+  letter-spacing: var(--forbidden-content-content-text-typography-letter-spacing);
+}
+
+.light .label a,
+.dark .label a {
+  font: var(--forbidden-content-link-typography);
+  color: var(--forbidden-content-text-link-colour);
+  text-decoration: var(--forbidden-content-link-typography-text-decoration-line);
+  text-transform: var(--forbidden-content-link-typography-text-transform);
+  letter-spacing: var(--forbidden-content-link-typography-letter-spacing);
+}
+
+.default {
+  height: var(--forbidden-content-large-container-sizing);
+}
+
+.small {
+  height: var(--forbidden-content-small-container-sizing);
+}

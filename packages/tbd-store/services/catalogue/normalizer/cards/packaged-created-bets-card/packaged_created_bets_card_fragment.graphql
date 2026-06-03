@@ -1,0 +1,19 @@
+fragment packagedCreatedBetsCard on PackagedCreatedBetsCard {
+  __typename
+  urn
+  pcbLayout: layout
+  pcbTitle: title {
+    ...displayNameTitle
+  }
+  favouriteMarketsState {
+    ...favouriteMarketsStateLite
+  }
+  items(first: $first, after: $cursor) {
+    ...packagedCreatedBetsItems
+  }
+}
+
+fragment packagedCreatedBetsCardPartial on PackagedCreatedBetsCard {
+  __typename
+  urn
+}

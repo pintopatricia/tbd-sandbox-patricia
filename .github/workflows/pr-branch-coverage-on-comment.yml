@@ -1,0 +1,81 @@
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  branch_coverage_check:
+    if: ${{ github.event.issue.pull_request && github.event.comment.body == '/run-branch-coverage'}}
+    runs-on:
+      group: FlutterGithubRunners
+    env:
+      GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      MONTEROSA_TOKEN: ${{ secrets.MONTEROSA_TOKEN }}
+      PR_ID: ${{ github.event.issue.number }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: refs/pull/${{ env.PR_ID }}/head
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+      - name: Install yarn
+        run: npm install -g yarn@1.22.10
+        shell: bash
+      - name: Install dependencies
+        run: yarn install --immutable-cache
+      - name: Run test coverage
+        run: |
+          yarn prepare
+          rm -rf node_modules/canvas
+          yarn mono:test:branch
+
+      - uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: coverage/cobertura-coverage.xml
+          badge: true
+          fail_below_min: true
+          format: markdown
+          hide_branch_rate: false
+          hide_complexity: false
+          indicators: true
+          output: file
+          thresholds: "90 95"
+
+      - name: Message success
+        if: ${{ success() }}
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const fs = require('fs');
+            const testResults = fs.readFileSync('code-coverage-results.md', 'utf8');
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `<details>
+              <summary>✅ The minimum coverage was met. Click here for more details.</summary>
+
+              ${testResults}
+              </details>`
+            })
+
+      - name: Message failure
+        if: ${{ failure() }}
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const fs = require('fs');
+            const testResults = fs.readFileSync('code-coverage-results.md', 'utf8');
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `<details>
+              <summary>❌ The minimum coverage was not met. Click here for more details.</summary>
+
+              ${testResults}
+              </details>`
+            })

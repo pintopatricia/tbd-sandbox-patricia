@@ -1,0 +1,15 @@
+fragment priceBoostMultisListCardItems on PriceBoostMultisListCardItemsConnection {
+  edges {
+    ... on PriceBoostMultisListCardItemEdge {
+      cursor
+      __typename
+      node {
+        ...popularBettingOpportunity
+      }
+    }
+  }
+  pageInfo {
+    endCursor
+    hasNextPage
+  }
+}

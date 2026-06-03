@@ -1,0 +1,36 @@
+"__typename": "StatsSupportingContentButtonsCardGroup",
+"urn": "{{urn}}{{^urn}}ppb:tbd:stats:cardgroup:supportingContentButtons:1|1|my-bets{{/urn}}",
+{{#with full}}
+"full":{
+  "__typename":"StatsSupportingContentButtonsLayoutItemsConnection",
+  {{> bff-items }}  
+},
+{{/with}}
+{{#with partials}}
+"partials":{
+  "__typename":"StatsSupportingContentButtonsLayoutItemsConnection",
+  "edges":[
+   {{#each edges}}
+    {
+      "__typename":"{{typename}}{{^typename}}StatsSupportingContentButtonsCardEdge{{/typename}}",
+      {{#if displayName}}
+      {{#with displayName}}
+      "displayName": {
+        "__typename":"{{__typename}}{{^__typename}}DisplayNameTranslationKey{{/__typename}}",
+        "translationKey":{{#if translationKey}}"{{translationKey}}"{{else}}null{{/if}}
+      },
+      {{/with}}
+      {{else}}
+      "displayName": null,
+      {{/if}}
+      {{#with node}}
+      "node":{
+        "__typename":"{{__typename}}{{^__typename}}StatsMatchStatsCard{{/__typename}}",
+        "urn":"{{urn}}{{^urn}}ppb:tbd:stats:card:matchStats:1{{/urn}}"
+      }
+      {{/with}}
+    }{{#unless @last}},{{/unless}}
+    {{/each}}
+  ]
+}
+{{/with}}

@@ -1,0 +1,77 @@
+"__typename": "{{__typename}}{{^__typename}}FootballPlayerFixture{{/__typename}}",
+"id": "{{id}}{{^id}}12345{{/id}}",
+"urn": "{{urn}}{{^urn}}urn:player:1{{/urn}}",
+"name": "{{name}}{{^name}}Cristiano Ronaldo{{/name}}",
+"matchName": {{#if matchName}}"{{matchName}}"{{else}}null{{/if}},
+"shirtNumber": {{shirtNumber}}{{^shirtNumber}}21{{/shirtNumber}},
+"position": "{{position}}{{^position}}FORWARD{{/position}}",
+"positionDescription": "{{positionDescription}}{{^positionDescription}}Complete Forward{{/positionDescription}}",
+"formationPlace": {{formationPlace}}{{^formationPlace}}0{{/formationPlace}},
+"startingType": "{{startingType}}{{^startingType}}LINEUP{{/startingType}}"
+{{#if stats}}
+{{#with stats}}
+,"stats": [
+  {
+    "stats": {
+        "totalShots": {{totalShots}}{{^totalShots}}3{{/totalShots}},
+        "shotsOnTarget": {{shotsOnTarget}}{{^shotsOnTarget}}2{{/shotsOnTarget}},
+        "foulsWon": {{foulsWon}}{{^foulsWon}}1{{/foulsWon}},
+        "assists": {{assists}}{{^assists}}0{{/assists}},
+        "fouls": {{fouls}}{{^fouls}}0{{/fouls}},
+        "tacklesWon": {{tacklesWon}}{{^tacklesWon}}0{{/tacklesWon}},
+        "blockedShots": {{blockedShots}}{{^blockedShots}}0{{/blockedShots}},
+        "offsides": {{offsides}}{{^offsides}}0{{/offsides}},
+        "interceptions": {{interceptions}}{{^interceptions}}0{{/interceptions}},
+        "goalkeeperSaves": {{goalkeeperSaves}}{{^goalkeeperSaves}}0{{/goalkeeperSaves}},
+        "foulInvolvements": {{foulInvolvements}}{{^foulInvolvements}}1{{/foulInvolvements}},
+        "__typename": "FootballPlayerFixtureGameStats"
+    },
+  "__typename": "FootballPlayerFixtureStats"
+  }
+]
+{{/with}}
+{{/if}}
+{{#if seasonStats}}
+  {{#with seasonStats}}
+  ,"seasonStats": {
+    "matchesPlayed": {{matchesPlayed}}{{^matchesPlayed}}1{{/matchesPlayed}},
+    {{#with averages}}
+     "averages": {
+        "fouls": {{fouls}}{{^fouls}}0{{/fouls}},
+        "goals": {{goals}}{{^goals}}1.0{{/goals}},
+        "redCards": {{redCards}}{{^redCards}}1.0{{/redCards}},
+        "yellowCards": {{yellowCards}}{{^yellowCards}}1.0{{/yellowCards}},
+        "yellowRedCards": {{yellowRedCards}}{{^yellowRedCards}}1.0{{/yellowRedCards}},
+        "shotsOnTarget": {{shotsOnTarget}}{{^shotsOnTarget}}1.0{{/shotsOnTarget}},
+        "totalShots": {{totalShots}}{{^totalShots}}1.0{{/totalShots}},
+        "passes": {{passes}}{{^passes}}1.0{{/passes}},
+        "foulsWon": {{foulsWon}}{{^foulsWon}}1.0{{/foulsWon}},
+        "assists": {{assists}}{{^assists}}1.0{{/assists}},
+        "foulInvolvements": {{foulInvolvements}}{{^foulInvolvements}}1{{/foulInvolvements}},
+        "tacklesMade": {{#if tacklesMade}}{{tacklesMade}}{{else}}null{{/if}},
+        "__typename": "{{__typename}}{{^__typename}}FootballPlayerFixtureStat{{/__typename}}"
+     },
+     {{/with}}
+     {{#with totals}}
+     "totals": {
+        "goals": {{goals}}{{^goals}}2{{/goals}},
+        "fouls": {{fouls}}{{^fouls}}2{{/fouls}},
+        "firstGoalScored": {{firstGoalScored}}{{^firstGoalScored}}3{{/firstGoalScored}},
+        "lastGoalScored": {{lastGoalScored}}{{^lastGoalScored}}1{{/lastGoalScored}},
+        "shotsOnTarget": {{shotsOnTarget}}{{^shotsOnTarget}}1{{/shotsOnTarget}},
+        "yellowCards": {{yellowCards}}{{^yellowCards}}2{{/yellowCards}},
+        "redCards": {{redCards}}{{^redCards}}2{{/redCards}},
+        "passes": {{passes}}{{^passes}}1.0{{/passes}},
+        "foulsWon": {{foulsWon}}{{^foulsWon}}1.0{{/foulsWon}},
+        "assists": {{assists}}{{^assists}}1.0{{/assists}},
+        "foulInvolvements": {{foulInvolvements}}{{^foulInvolvements}}1{{/foulInvolvements}},
+        "tacklesMade": {{#if tacklesMade}}{{tacklesMade}}{{else}}null{{/if}}
+    },
+    {{/with}}
+    "__typename": "{{__typename}}{{^__typename}}FootballPlayerFixtureSeasonStats{{/__typename}}"
+  }
+  {{/with}}
+  {{else}}
+  ,"seasonStats": null
+{{/if}}
+

@@ -1,0 +1,19 @@
+# URL to the git repo containing all the certificates
+git_url("https://github.com/Flutter-Global/tbd-provisioning-profiles.git")
+
+# The bundle identifier(s) of your app (comma-separated)
+app_identifier([
+  "com.paddypower.sportsbook.debug",
+  "com.paddypower.sportsbook.qa",
+  "com.paddypower.sportsbook.debug.NotificationExtension",
+  "com.paddypower.sportsbook.qa.NotificationExtension",
+])
+
+# The name of your Developer Portal team if you're in multiple teams
+team_name "Paddy Power PLC"
+
+# The ID of your Developer Portal team if you're in multiple teams
+team_id "RZ84EK8LNN"
+
+# Setting verbose to true to help debugging when facing certificates and keychain issues.
+verbose(true)

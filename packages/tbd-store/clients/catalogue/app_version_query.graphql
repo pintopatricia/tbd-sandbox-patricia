@@ -1,0 +1,17 @@
+query AppVersion($throttlesOn: [String!], $throttlesOff: [String!])
+@throttlesOn(throttlesOn: $throttlesOn)
+@throttlesOff(throttlesOff: $throttlesOff) {
+  AppVersion {
+    # Please, avoid breaking changes here since we always use the latest BFF version to retrieve it
+    urn
+    url
+    downloadUrl
+    storeUrl
+    versionCode
+    minVersionCode
+    minOSVersion
+    blackList {
+      versioncode
+    }
+  }
+}

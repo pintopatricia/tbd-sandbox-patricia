@@ -1,0 +1,21 @@
+fragment gamingLinkCard on GamingLinkCard {
+  __typename
+  urn
+  games {
+    releaseDate
+    uid
+  }
+  link {
+    label
+    icon
+    viewLink {
+      viewUrn
+      viewUrl
+    }
+  }
+}
+
+fragment gamingLinkCardPartial on GamingLinkCard {
+  __typename
+  urn
+}

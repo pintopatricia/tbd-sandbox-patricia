@@ -1,0 +1,75 @@
+@keyframes slideInFromBottom {
+  from {
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.collapsedHeader {
+  position: fixed;
+  bottom: calc(var(--bottom-bar-height-sizing) + var(--safe-area-inset-bottom));
+
+  /*
+  * Use the dedicated collapsed betslip stacking token.
+  *
+  * The bottom bar uses `--bottom-bar-stack`; keeping the collapsed header on
+  * `--betslip-collapsed-stack` prevents the header from covering the bottom bar
+  * while the page content/dots are mounting during mobile scroll.
+  */
+  z-index: var(--betslip-collapsed-stack);
+
+  display: flex;
+
+  flex-direction: row;
+
+  align-items: center;
+
+  width: 100%;
+  min-height: var(--expandable-container-sizing);
+
+  background-color: var(--expandable-header-background-colour);
+  border-radius: var(--expandable-border-radius);
+
+  animation: slideInFromBottom 300ms cubic-bezier(0.8, 0, 0.8, 1);
+}
+
+.collapsedHeaderContent {
+  flex: 1;
+
+  min-width: 0;
+}
+
+.collapsedHeaderAction {
+  padding: var(--expandable-icon-padding);
+}
+
+.collapsedIcon {
+  width: var(--expandable-icon-sizing);
+  height: var(--expandable-icon-sizing);
+
+  color: var(--expandable-icon-colour);
+}
+
+.minimizedTitle {
+  font: var(--minimised-title-typography);
+  color: var(--minimised-title-colour);
+  text-decoration-line: var(--minimised-title-typography-text-decoration-line);
+  text-transform: var(--minimised-title-typography-text-transform);
+  letter-spacing: var(--minimised-title-typography-letter-spacing);
+  white-space: nowrap;
+}
+
+.minimizedSupportingText {
+  font: var(--minimised-supporting-text-typography);
+  color: var(--minimised-supporting-text-colour);
+  text-decoration-line: var(--minimised-supporting-text-typography-text-decoration-line);
+  text-transform: var(--minimised-supporting-text-typography-text-transform);
+  letter-spacing: var(--minimised-supporting-text-typography-letter-spacing);
+}
+
+.webWrappedVersion {
+  --bottom-bar-height-sizing: 0px;
+}

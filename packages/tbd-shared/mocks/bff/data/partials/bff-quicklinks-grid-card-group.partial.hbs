@@ -1,0 +1,52 @@
+"__typename": "QuicklinksGridCardGroup",
+"urn": "{{urn}}{{^urn}}ppb:tbd:cardgroup:quicklinksGrid:YJlMQREAAHJJY7xU/s/1{{/urn}}",
+"quicklinksGridTitle": "{{quicklinksGridTitle}}{{^quicklinksGridTitle}}{{/quicklinksGridTitle}}",
+{{#with items}}
+  "items":{
+    "edges": [
+      {{#each edges}}
+        {
+          "isExpanded": {{isExpanded}},
+          "label": {{#if label}}"{{label}}"{{else}}null{{/if}},
+          "style": {{#if style}}"{{style}}"{{else}}null{{/if}},
+          "icon":{{#if icon}}{{#with icon}}
+          {
+            "category": "{{category}}",
+            "id": "{{id}}"
+          }
+          {{/with}}{{else}}null{{/if}},
+            {{#with node}}
+              "node": {
+                {{> bff-card-types }}
+              }
+            {{/with}}
+        }{{#unless @last}},{{/unless}}
+      {{/each}}
+    ]
+  },
+{{/with}}
+{{#with partials}}
+  "partials":{
+    "edges": [
+      {{#each edges}}
+        {
+          "isExpanded": {{isExpanded}},
+          "label": {{#if label}}"{{label}}"{{else}}null{{/if}},
+          "style": {{#if style}}"{{style}}"{{else}}null{{/if}},
+          "icon":{{#if icon}}{{#with icon}}
+          {
+            "category": "{{category}}",
+            "id": "{{id}}"
+          }
+          {{/with}}{{else}}null{{/if}},
+            {{#with node}}
+              "node": {
+                "__typename": "{{__typename}}{{^__typename}}EventViewLinkCard{{/__typename}}",
+                "urn": "{{urn}}{{^urn}}ppb:tbd:card:eventViewLink::29359895{{/urn}}"
+              }
+            {{/with}}
+        }{{#unless @last}},{{/unless}}
+      {{/each}}
+    ]
+  }
+{{/with}}

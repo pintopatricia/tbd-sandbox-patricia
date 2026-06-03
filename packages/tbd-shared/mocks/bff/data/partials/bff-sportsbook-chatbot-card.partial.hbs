@@ -1,0 +1,20 @@
+"__typename": "SportsbookChatbotCard",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:sportsbook-chatbot:default{{/urn}}",
+"chatId": "{{chatId}}{{^chatId}}default-chat-id{{/chatId}}",
+"startDate": "{{startDate}}{{^startDate}}2020-01-01T00:00:00.000Z{{/startDate}}",
+"endDate": "{{endDate}}{{^endDate}}2099-01-01T00:00:00.000Z{{/endDate}}",
+"displayWindowOffset": {{displayWindowOffset}}{{^displayWindowOffset}}24{{/displayWindowOffset}},
+"chatContext": {
+    "eventId": "{{chatContext.eventId}}{{^chatContext.eventId}}33755137{{/chatContext.eventId}}",
+    "eventName": "{{chatContext.eventName}}{{^chatContext.eventName}}Default Event{{/chatContext.eventName}}"
+},
+"infoTitle": null,
+"infoDescription": null,
+"startingPrompts": [
+    {{#each startingPrompts}}
+    {
+        "__typename": "DisplayNameTitle",
+        "name": "{{this}}"
+    }{{#unless @last}},{{/unless}}
+    {{/each}}
+]

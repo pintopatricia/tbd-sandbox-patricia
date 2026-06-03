@@ -1,0 +1,12 @@
+"__typename":"{{__typename}}{{^__typename}}CompetitionViewLinkCard{{/__typename}}",
+"urn":"{{urn}}{{^urn}}ppb:tbd:card:competitionViewLink:12345{{/urn}}",
+"competition": {
+  {{> bff-competition competition }}
+},
+"viewLink": {
+    {{#if viewLink}}
+        {{#with viewLink}}
+        {{> bff-view-link}}
+        {{/with}}
+    {{/if}}
+}

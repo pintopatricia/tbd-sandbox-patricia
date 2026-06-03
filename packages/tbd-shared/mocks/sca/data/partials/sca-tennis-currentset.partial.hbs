@@ -1,0 +1,19 @@
+"currentSet": {
+  "duration": null,
+  "number": {{number}}{{^number}}1{{/number}},
+  "teamAScore": {{teamAScore}}{{^teamAScore}}15{{/teamAScore}},
+  "teamBScore": {{teamBScore}}{{^teamBScore}}0{{/teamBScore}},
+  {{#with currentGame}}
+  "currentGame": {
+    "number": 1,
+    "pointNumber": null,
+    "pointWinner": "AWAY",
+    "serveNumber": null,
+    "teamAScore": "{{teamAScore}}{{^teamAScore}}15{{/teamAScore}}",
+    "teamBScore": "{{teamBScore}}{{^teamBScore}}30{{/teamBScore}}",
+    {{#if teamServing}}"teamServing": "{{teamServing}}",{{/if}}
+    "type": "{{type}}{{^type}}NORMAL{{/type}}"
+  },
+  {{/with}}
+  "previousGames": null
+},

@@ -1,0 +1,26 @@
+fragment navigationTabsList on NavigationTabsList {
+  __typename
+  urn
+  tabsTitle: title
+  full: items(first: 1, selectedOnly: true) {
+    edges {
+      node {
+        ...navigationTab
+        ...favouriteMarketsNavigationTab
+      }
+    }
+  }
+  partials: items {
+    edges {
+      node {
+        ...navigationTabPartial
+        ...favouriteMarketsNavigationTabPartial
+      }
+    }
+  }
+}
+
+fragment navigationTabsListPartial on NavigationTabsList {
+  __typename
+  urn
+}

@@ -1,0 +1,127 @@
+query Card(
+  $urn: [URN!]!
+  $numberOfFilledCardsInCardGroup: Int = 3
+  $first: Int
+  $cursor: String
+  $preferences: LayoutPreferencesInput
+  $productExclusions: [ProductExclusion!]
+  $experiments: [ExperimentsInput!]
+  $throttlesOn: [String!]
+  $throttlesOff: [String!]
+)
+@preferences(preferences: $preferences)
+@productExclusions(productExclusions: $productExclusions)
+@experiments(experiments: $experiments)
+@throttlesOn(throttlesOn: $throttlesOn)
+@throttlesOff(throttlesOff: $throttlesOff) {
+  Cards(cardsURN: $urn) {
+    # Read this before adding new entries: docs/guidelines/how-to-add-a-new-card.md
+
+    # Cards
+    ...accountBannersCard
+    ...balanceCard
+    ...blurbCard
+    ...broadcastsCardDeprecated
+    ...broadcastsAndStatisticsCard
+    ...competitionViewLinkCard
+    ...contentSummaryCard
+    ...correctScoreCard
+    ...eventMarketCard
+    ...eventViewLinkCard
+    ...fixtureCard
+    ...gameCard
+    ...gameInfoCard
+    ...gamingJackpotCard
+    ...gamingLinkCard
+    ...gamingPlayNewCard
+    ...genericViewLinkCard
+    ...headToHeadCard
+    ...highlightedSelectionCard
+    ...imsPromotionDetailsCard
+    ...imsPromotionStateCard
+    ...imsPromotionTermsAndConditionsCard
+    ...linksCard
+    ...marketCard
+    ...marketExtendedCard
+    ...marketGraphsCard
+    ...marketRulesCard
+    ...marketViewLinkCard
+    ...eventStatsCard
+    ...matchStatsCard
+    ...matchStatSelectionCard
+    ...matchTimelineCard
+    ...outrightMarketListCard
+    ...promotionCard
+    ...quickLinksCard
+    ...raceDetailsCard
+    ...raceMarketCard
+    ...raceViewLinkCard
+    ...raceViewLinksCard
+    ...rewardsCard
+    ...runnerInfoCard
+    ...sportsbookBetCard
+    ...sportViewLinkCard
+    ...teamFormCard
+    ...timeFormBroadCastsCard
+    ...raceByTimeRangeCard
+    ...imsPromotionErrorCard
+    ...preferenceSingleChoiceCard
+    ...regulatoryCard
+    ...forbiddenContentCard
+    ...sportsbookBetLegCard
+    ...sportsbookBetInfoCard
+    ...competitionRegionCard
+    ...budgetLimitsCard
+    ...couponHeaderCard
+    ...raceResultsCard
+    ...expandableMarketCard
+    ...gridCard
+    ...virtualEventDetailsCard
+    ...virtualMarketCard
+    ...virtualCardGroup
+    ...popularBetBuilderCard
+    ...popularMultiplesBetBuilderCard
+    ...packagedCreatedBetsCard
+    ...priceBoostMultisListCard
+    ...marketBetCard
+    ...marketBetSelectionCard
+    ...searchBarCard
+    ...extraWalletCard
+    ...priceBoostMultisCard
+    ...obbEventPopularsCard
+
+    # Groups
+    ...swimlaneCardGroup
+    ...halfTimeSpecialsSwimlaneCardGroup
+    ...expandableCardGroup
+    ...navigationTabsList
+    ...racesByTimeRangeCardGroup
+    ...futureRacingCardGroup
+    ...navigationTab
+    ...favouriteMarketsNavigationTab
+    ...navigationTabsList
+    ...pebbleCardGroup
+    ...segmentedCardGroup
+    ...viewZone
+    ...searchZone
+    ...filteredCouponCardGroup
+    ...betCardGroup
+    ...sportsbookBetLegCardGroup
+    ...gamingCardGroup
+    ...swimlaneIndexedCardGroup
+    ...byTimeRangeMeetingCardGroup
+    ...selectableitemsCardGroup
+    ...sportRibbonCardGroup
+    ...marketBetCardGroup
+    ...marketBetExpandableCardGroup
+    ...marketBetSelectionCardGroup
+    ...betSharingCardGroup
+    ...extraWalletCardGroup
+    ...obbCardGroup
+    ...racingSwimlaneCardGroup
+    ...popularSwimlaneCardGroup
+    ...obbCreatedBetsCardGroup
+    ...localTbdPromotionsHubCardGroup
+    ...obbOnboardingCardsCardGroup
+  }
+}

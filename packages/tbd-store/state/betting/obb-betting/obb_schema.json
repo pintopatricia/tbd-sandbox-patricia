@@ -1,0 +1,306 @@
+{
+  "$ref": "#/definitions/ObbBettingState",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "AboveMaxPayoutValidation": {
+      "additionalProperties": false,
+      "properties": {
+        "data": { "$ref": "#/definitions/MaximumPayoutThresholdMetadata" },
+        "severity": { "$ref": "#/definitions/ObbValidationSeverities" },
+        "type": { "$ref": "#/definitions/ObbValidationTypes.ABOVE_MAX_PAYOUT" }
+      },
+      "required": ["type", "data", "severity"],
+      "type": "object"
+    },
+    "AboveMaxStakeValidation": {
+      "additionalProperties": false,
+      "properties": {
+        "data": { "$ref": "#/definitions/MaximumStakeThresholdMetadata" },
+        "severity": { "$ref": "#/definitions/ObbValidationSeverities" },
+        "type": { "$ref": "#/definitions/ObbValidationTypes.ABOVE_MAX_STAKE" }
+      },
+      "required": ["type", "data", "severity"],
+      "type": "object"
+    },
+    "BaseBet": {
+      "additionalProperties": false,
+      "properties": { "params": { "$ref": "#/definitions/ObbLegParams" }, "templateId": { "type": "string" } },
+      "required": ["templateId", "params"],
+      "type": "object"
+    },
+    "BaseExpressionTemplateDefinitions": {
+      "additionalProperties": false,
+      "properties": {
+        "baseExpressionTemplateDefinitions": {
+          "anyOf": [
+            { "items": { "$ref": "#/definitions/BaseExpressionTemplateDefinitions" }, "type": "array" },
+            { "type": "null" }
+          ]
+        },
+        "expressionTemplateId": { "type": "string" }
+      },
+      "required": ["expressionTemplateId"],
+      "type": "object"
+    },
+    "BelowMinStakeValidation": {
+      "additionalProperties": false,
+      "properties": {
+        "data": { "$ref": "#/definitions/MinimumStakeThresholdMetadata" },
+        "severity": { "$ref": "#/definitions/ObbValidationSeverities" },
+        "type": { "$ref": "#/definitions/ObbValidationTypes.BELOW_MIN_STAKE" }
+      },
+      "required": ["type", "data", "severity"],
+      "type": "object"
+    },
+    "BetType": { "const": "SINGLE", "type": "string" },
+    "FailuresMap": {
+      "additionalProperties": false,
+      "properties": {
+        "betslip": { "type": ["string", "null"] },
+        "legs": { "$ref": "#/definitions/Record%3Cstring%2Cstring%3E" },
+        "potentialBets": { "$ref": "#/definitions/Record%3Cstring%2Cstring%3E" }
+      },
+      "required": ["betslip", "potentialBets", "legs"],
+      "type": "object"
+    },
+    "FractionalOdds": {
+      "additionalProperties": false,
+      "properties": { "denominator": { "type": "number" }, "numerator": { "type": "number" } },
+      "required": ["numerator", "denominator"],
+      "type": "object"
+    },
+    "IncrementOutOfRangeMetadata": {
+      "additionalProperties": false,
+      "properties": { "closest": { "type": "number" }, "currentStake": { "type": "number" } },
+      "required": ["currentStake", "closest"],
+      "type": "object"
+    },
+    "IncrementOutOfRangeValidation": {
+      "additionalProperties": false,
+      "properties": {
+        "data": { "$ref": "#/definitions/IncrementOutOfRangeMetadata" },
+        "severity": { "$ref": "#/definitions/ObbValidationSeverities" },
+        "type": { "$ref": "#/definitions/ObbValidationTypes.INCREMENT_OUT_OF_RANGE" }
+      },
+      "required": ["type", "data", "severity"],
+      "type": "object"
+    },
+    "MaximumPayoutThresholdMetadata": {
+      "additionalProperties": false,
+      "properties": { "currentPayout": { "type": "number" }, "max": { "type": "number" } },
+      "required": ["currentPayout", "max"],
+      "type": "object"
+    },
+    "MaximumStakeThresholdMetadata": {
+      "additionalProperties": false,
+      "properties": { "currentStake": { "type": "number" }, "max": { "type": "number" } },
+      "required": ["currentStake", "max"],
+      "type": "object"
+    },
+    "MinimumStakeThresholdMetadata": {
+      "additionalProperties": false,
+      "properties": { "currentStake": { "type": "number" }, "min": { "type": "number" } },
+      "required": ["currentStake", "min"],
+      "type": "object"
+    },
+    "ObbBetslipValidations": { "$ref": "#/definitions/AboveMaxPayoutValidation" },
+    "ObbBettingState": {
+      "additionalProperties": false,
+      "properties": {
+        "failures": { "$ref": "#/definitions/FailuresMap" },
+        "legs": { "$ref": "#/definitions/ObbLegMap" },
+        "maxPayoutLimits": {
+          "additionalProperties": false,
+          "properties": { "error": { "type": ["number", "null"] }, "warning": { "type": ["number", "null"] } },
+          "required": ["warning", "error"],
+          "type": "object"
+        },
+        "potentialBets": { "$ref": "#/definitions/ObbPotentialBetMap" },
+        "totalPotentialReturns": { "type": ["number", "null"] },
+        "totalStake": { "type": ["number", "null"] },
+        "validations": { "$ref": "#/definitions/ObbValidations" }
+      },
+      "required": [
+        "legs",
+        "potentialBets",
+        "totalStake",
+        "totalPotentialReturns",
+        "validations",
+        "maxPayoutLimits",
+        "failures"
+      ],
+      "type": "object"
+    },
+    "ObbEvent": {
+      "additionalProperties": false,
+      "properties": { "eventId": { "type": "number" }, "name": { "type": "string" }, "urn": { "type": "string" } },
+      "required": ["urn", "name", "eventId"],
+      "type": "object"
+    },
+    "ObbLeg": {
+      "additionalProperties": false,
+      "properties": {
+        "event": { "$ref": "#/definitions/ObbEvent" },
+        "id": { "type": "string" },
+        "metadata": { "$ref": "#/definitions/ObbLegMetadata" },
+        "params": { "$ref": "#/definitions/ObbLegParams" },
+        "quote": { "$ref": "#/definitions/ObbQuote" },
+        "templateId": { "type": "string" }
+      },
+      "required": ["id", "templateId", "event", "metadata", "params"],
+      "type": "object"
+    },
+    "ObbLegMap": { "$ref": "#/definitions/Record%3Cstring%2CObbLeg%3E" },
+    "ObbLegMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "card": { "type": "string" },
+        "competitionIds": { "type": "string" },
+        "competitionNames": { "type": "string" },
+        "eventsIds": { "type": "string" },
+        "eventsNames": { "type": "string" },
+        "layout": { "type": "string" },
+        "legDescription": { "type": "string" },
+        "legTypeDescription": { "type": "string" },
+        "obbBettingLegsQuotes": { "type": "string" },
+        "outcomeDescription": { "type": "string" },
+        "participantsDescription": { "type": "string" },
+        "sportsIds": { "type": "string" },
+        "sportsNames": { "type": "string" },
+        "tabName": { "type": "string" }
+      },
+      "required": ["legDescription", "legTypeDescription"],
+      "type": "object"
+    },
+    "ObbLegParams": {
+      "anyOf": [
+        { "$ref": "#/definitions/ObbPvpLegParams" },
+        { "$ref": "#/definitions/ObbXOfNLegParams" },
+        { "$ref": "#/definitions/ObbSquadBetLegParams" },
+        { "$ref": "#/definitions/ObbSquadVsSquadBetLegParams" }
+      ]
+    },
+    "ObbPotentialBet": {
+      "additionalProperties": false,
+      "properties": {
+        "betType": { "$ref": "#/definitions/BetType" },
+        "id": { "type": "string" },
+        "legs": { "items": { "type": "string" }, "type": "array" },
+        "maxPayout": { "type": ["number", "null"] },
+        "maxStake": { "type": ["number", "null"] },
+        "minStake": { "type": ["number", "null"] },
+        "minStakeIncrement": { "type": ["number", "null"] },
+        "potentialReturns": { "type": ["number", "null"] },
+        "quote": { "$ref": "#/definitions/ObbQuote" },
+        "stake": { "type": ["number", "null"] }
+      },
+      "required": [
+        "id",
+        "betType",
+        "legs",
+        "stake",
+        "potentialReturns",
+        "maxStake",
+        "minStake",
+        "maxPayout",
+        "minStakeIncrement"
+      ],
+      "type": "object"
+    },
+    "ObbPotentialBetMap": { "$ref": "#/definitions/Record%3Cstring%2CObbPotentialBet%3E" },
+    "ObbPotentialBetsValidations": {
+      "anyOf": [
+        { "$ref": "#/definitions/AboveMaxPayoutValidation" },
+        { "$ref": "#/definitions/AboveMaxStakeValidation" },
+        { "$ref": "#/definitions/BelowMinStakeValidation" },
+        { "$ref": "#/definitions/IncrementOutOfRangeValidation" }
+      ]
+    },
+    "ObbPrice": {
+      "additionalProperties": false,
+      "properties": { "decimal": { "type": "number" }, "fractional": { "$ref": "#/definitions/FractionalOdds" } },
+      "required": ["decimal", "fractional"],
+      "type": "object"
+    },
+    "ObbPvpLegParams": {
+      "additionalProperties": false,
+      "properties": {
+        "outcomeId": { "type": "string" },
+        "participantIdA": { "type": "string" },
+        "participantIdB": { "type": "string" },
+        "timePeriodId": { "type": "string" }
+      },
+      "required": ["outcomeId", "participantIdA", "participantIdB", "timePeriodId"],
+      "type": "object"
+    },
+    "ObbQuote": {
+      "additionalProperties": false,
+      "properties": { "price": { "$ref": "#/definitions/ObbPrice" } },
+      "required": ["price"],
+      "type": "object"
+    },
+    "ObbSquadBetLegParams": {
+      "additionalProperties": false,
+      "properties": {
+        "outcomeIds": { "items": { "type": "string" }, "type": "array" },
+        "participantIds": { "items": { "type": "string" }, "type": "array" },
+        "quantifier": { "type": "string" },
+        "timePeriodId": { "type": "string" },
+        "value": { "type": "number" }
+      },
+      "required": ["participantIds", "outcomeIds", "value", "timePeriodId", "quantifier"],
+      "type": "object"
+    },
+    "ObbSquadVsSquadBetLegParams": {
+      "additionalProperties": false,
+      "properties": {
+        "outcomeIds": { "items": { "type": "string" }, "type": "array" },
+        "quantifier": { "type": "string" },
+        "squadAParticipantIds": { "items": { "type": "string" }, "type": "array" },
+        "squadBParticipantIds": { "items": { "type": "string" }, "type": "array" },
+        "timePeriodId": { "type": "string" }
+      },
+      "required": ["squadAParticipantIds", "squadBParticipantIds", "outcomeIds", "timePeriodId", "quantifier"],
+      "type": "object"
+    },
+    "ObbValidationSeverities": { "enum": ["ERROR", "WARNING"], "type": "string" },
+    "ObbValidationTypes.ABOVE_MAX_PAYOUT": { "const": "ABOVE_MAX_PAYOUT", "type": "string" },
+    "ObbValidationTypes.ABOVE_MAX_STAKE": { "const": "ABOVE_MAX_STAKE", "type": "string" },
+    "ObbValidationTypes.BELOW_MIN_STAKE": { "const": "BELOW_MIN_STAKE", "type": "string" },
+    "ObbValidationTypes.INCREMENT_OUT_OF_RANGE": { "const": "INCREMENT_OUT_OF_RANGE", "type": "string" },
+    "ObbValidations": {
+      "additionalProperties": false,
+      "properties": {
+        "betslip": { "items": { "$ref": "#/definitions/ObbBetslipValidations" }, "type": "array" },
+        "potentialBets": {
+          "$ref": "#/definitions/Record%3Cstring%2Cdef-alias-1509564353-3339-3502-1509564353-0-4937%5B%5D%3E"
+        }
+      },
+      "required": ["betslip", "potentialBets"],
+      "type": "object"
+    },
+    "ObbXOfNLegParams": {
+      "additionalProperties": false,
+      "properties": {
+        "baseBets": { "items": { "$ref": "#/definitions/BaseBet" }, "type": "array" },
+        "baseExpressionTemplateDefinitions": {
+          "items": { "$ref": "#/definitions/BaseExpressionTemplateDefinitions" },
+          "type": "array"
+        },
+        "x": { "type": "number" }
+      },
+      "required": ["x", "baseExpressionTemplateDefinitions", "baseBets"],
+      "type": "object"
+    },
+    "Record<string,ObbLeg>": { "additionalProperties": { "$ref": "#/definitions/ObbLeg" }, "type": "object" },
+    "Record<string,ObbPotentialBet>": {
+      "additionalProperties": { "$ref": "#/definitions/ObbPotentialBet" },
+      "type": "object"
+    },
+    "Record<string,def-alias-1509564353-3339-3502-1509564353-0-4937[]>": {
+      "additionalProperties": { "items": { "$ref": "#/definitions/ObbPotentialBetsValidations" }, "type": "array" },
+      "type": "object"
+    },
+    "Record<string,string>": { "additionalProperties": { "type": "string" }, "type": "object" }
+  }
+}

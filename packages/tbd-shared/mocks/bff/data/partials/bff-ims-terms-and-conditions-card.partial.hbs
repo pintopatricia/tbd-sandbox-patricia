@@ -1,0 +1,25 @@
+"__typename": "ImsPromotionTermsAndConditionsCard",
+"title": "{{title}}{{^title}}Terms & Conditions{{/title}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:imsPromotionTermsAndConditions:gaming-promotion-1{{/urn}}",
+{{#with promotion}}
+    "promotion": {
+        "termsAndConditions": [
+        {{#each termsAndConditions}}
+            {
+            "spans": [
+            {{#each spans}}
+                {
+                "start": {{start}}{{^start}}1{{/start}},
+                "end": {{end}}{{^end}}5{{/end}},
+                "style": "{{style}}{{^style}}strong{{/style}}",
+                "url": {{#if url}}"{{url}}"{{else}}null{{/if}}
+                }{{#unless @last}},{{/unless}}
+            {{/each}}
+            ],
+            "type": "{{type}}{{^type}}paragraph{{/type}}",
+            "text": "{{text}}{{^text}}Terms and Conditions{{/text}}"
+            }{{#unless @last}},{{/unless}}
+        {{/each}}
+        ]
+    }
+{{/with}}

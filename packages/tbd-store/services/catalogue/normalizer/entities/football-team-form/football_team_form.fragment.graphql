@@ -1,0 +1,18 @@
+fragment footballTeamForm on FootballTeamForm {
+  opponent
+  outcome
+  startAt
+  side
+  score {
+    home
+    away
+  }
+  extraTimeScore {
+    home
+    away
+  }
+  penaltyShootoutScore {
+    home
+    away
+  }
+}

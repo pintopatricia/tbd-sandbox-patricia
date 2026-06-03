@@ -1,0 +1,27 @@
+div.box {
+  padding: var(--spacing-4);
+
+  color: var(--neutrals-text-default);
+
+  background-color: var(--neutrals-background-elevation3);
+  border-radius: var(--spacing-1);
+}
+
+div.box:not(:last-child) {
+  margin-right: var(--spacing-3);
+}
+
+.titleWrapper {
+  display: flex;
+
+  margin-bottom: var(--spacing-4);
+}
+
+.iconWrapper {
+  width: 22px;
+  height: 22px;
+}
+
+.title {
+  margin-left: var(--spacing-1);
+}

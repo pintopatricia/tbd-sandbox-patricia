@@ -1,0 +1,20 @@
+mutation setFavouriteMarketMutation(
+  $contentSectionURN: URN!
+  $isFavourite: Boolean!
+  $throttlesOn: [String!]
+  $throttlesOff: [String!]
+)
+@throttlesOn(throttlesOn: $throttlesOn)
+@throttlesOff(throttlesOff: $throttlesOff) {
+  setFavouriteMarket(contentSectionURN: $contentSectionURN, isFavourite: $isFavourite) {
+    result {
+      favouriteMarketsState {
+        ...favouriteMarketsState
+      }
+      favouriteMarketsNavigationTab {
+        ...favouriteMarketsNavigationTabLite
+      }
+    }
+    error
+  }
+}

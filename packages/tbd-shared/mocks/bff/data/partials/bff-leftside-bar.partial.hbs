@@ -1,0 +1,14 @@
+{{#if leftSidebar}}
+  "__typename": "LeftSidebar",
+  {{#with leftSidebar}}
+    "items": {
+      {{> bff-items items}}
+    }
+  {{/with}}
+{{else}}
+  "__typename": "LeftSidebar",
+  "items": {
+    "edges": []
+  },
+  "pageInfo": null
+{{/if}}

@@ -1,0 +1,14 @@
+fragment extraWallet on ExtraWallet {
+  __typename
+  urn
+  walletId: id
+  indexedId
+  amount
+  expirationDate
+  walletType
+  lostLegs
+  maxReturn
+  maxFinPos
+  ghostLegs
+  fixedOdds
+}

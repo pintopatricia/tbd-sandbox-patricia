@@ -1,0 +1,28 @@
+fragment volleyballFixtureDeprecated on VolleyballFixture {
+  __typename
+  urn
+  runnerNames {
+    home
+    away
+  }
+  isAmericanFormat
+  currentSet {
+    volleyballSetNumber: number
+    volleyballSetScore: score {
+      home
+      away
+    }
+    volleyballCurrentServer: currentServer
+  }
+  homeScore
+  awayScore
+  previousSets {
+    volleyballSetNumber: number
+    volleyballSetScore: score {
+      home
+      away
+    }
+    volleyballCurrentServer: currentServer
+  }
+}
+

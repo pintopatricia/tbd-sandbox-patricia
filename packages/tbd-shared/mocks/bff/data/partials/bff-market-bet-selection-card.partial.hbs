@@ -1,0 +1,39 @@
+"__typename": "MarketBetSelectionCard",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:marketBetSelection:313870439677-M{{/urn}}",
+"id": "{{id}}{{^id}}313870439677{{/id}}",
+"handicap": 0,
+"placedDate": "{{placedDate}}{{^placedDate}}2023-07-17T11:43:56.000Z{{/placedDate}}",
+"settledDate": {{#if settledDate}}"{{settledDate}}"{{else}}null{{/if}},
+"matchedDate": "{{matchedDate}}{{^matchedDate}}2023-07-17T11:43:56.000Z{{/matchedDate}}",
+"deviceId": "{{deviceId}}{{^deviceId}}web-123{{/deviceId}}",
+"price": {{price}}{{^price}}1.1640816326530612{{/price}},
+"runnerDesc": "{{runnerDesc}}{{^runnerDesc}}Labour{{/runnerDesc}}",
+"side": "{{side}}{{^side}}LAY{{/side}}",
+"isCashout": {{#if isCashout}}{{isCashout}}{{else}}false{{/if}},
+"size": {{size}}{{^size}}0.98{{/size}},
+"liability": {{#if liability}}{{liability}}{{else}}0{{/if}},
+"profit": {{profit}}{{^profit}}0.98{{/profit}},
+"result": {{#if result}}"{{result}}"{{else}}null{{/if}},
+"bspLiability": {{#if isBsp}}{{isBsp}}{{else}}null{{/if}},
+"isBsp": {{#if isBsp}}{{isBsp}}{{else}}false{{/if}},
+"isFreeBet": {{#if isFreeBet}}{{isFreeBet}}{{else}}false{{/if}},
+"freeBetSize": {{freeBetSize}}{{^freeBetSize}}0{{/freeBetSize}},
+"priceMatched": {{priceMatched}}{{^priceMatched}}1.1640816326530612{{/priceMatched}},
+"selectionId": {{selectionId}}{{^selectionId}}1111884{{/selectionId}},
+"isUnmatched": {{isUnmatched}}{{^isUnmatched}}false{{/isUnmatched}},
+{{#if editViewLink}}
+"editViewLink": {
+  {{#with editViewLink}}
+  "viewUrn": "{{viewUrn}}{{^viewUrn}}ppb:tbd:view:generic:exchangeLightMarket:313870439677-M{{/viewUrn}}",
+  "viewUrl": "{{viewUrl}}{{^viewUrl}}Not Implemented{{/viewUrl}}",
+  "viewDisplayMode":"{{viewDisplayMode}}{{^viewDisplayMode}}BLANK_INAPP{{/viewDisplayMode}}"
+  {{/with}}
+},
+{{/if}}
+{{#if marketBetCardGroupURN}}
+"marketBetCardGroupURN": "{{marketBetCardGroupURN}}",
+{{/if }}
+"marketBetURN": "{{marketBetURN}}{{^marketBetURN}}ppb:marketBet:1.167249009{{/marketBetURN}}",
+"runnerURN": "{{runnerURN}}{{^runnerURN}}ppb:excRunner:1.167249009/1111884/0{{/runnerURN}}",
+"marketURN": "{{marketURN}}{{^marketURN}}ppb:excMarket:1.167249009{{/marketURN}}"
+

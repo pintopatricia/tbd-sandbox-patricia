@@ -1,0 +1,30 @@
+fragment promotionsHubView on PromotionsHubView {
+  __typename
+  title
+  urn
+  url
+  items {
+    edges {
+      node {
+        __typename
+        ...localTbdPromotionsHubCardGroup
+        ... on RegulatoryCard {
+          urn
+        }
+      }
+    }
+  }
+  category
+  bottomBar @include(if: $withBottomBar) {
+    ...bottomBar
+  }
+  leftSidebar @include(if: $withLeftSidebar) {
+    ...leftSidebar
+  }
+  regulatoryData @include(if: $withRegulatoryData) {
+    ...regulatoryData
+  }
+  xsellBar {
+    ...XSellBar
+  }
+}

@@ -1,0 +1,14 @@
+fragment priceBoostMultisListCard on PriceBoostMultisListCard {
+  __typename
+  urn
+  pbmTitle: title {
+    ...displayNameTitle
+  }
+  showWasPrice
+  items(first: $first, after: $cursor) {
+    ...priceBoostMultisListCardItems
+  }
+  blurbs {
+    ...informativeBlurb
+  }
+}

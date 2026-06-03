@@ -1,0 +1,205 @@
+.container {
+  margin: 0;
+}
+
+.title {
+  display: -webkit-box;
+
+  margin: var(--spacing-2) 0;
+  overflow: hidden;
+
+  color: var(--neutrals-text-default);
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.resultsTable {
+  display: grid;
+
+  grid-template-columns: 46px 36px auto auto;
+
+  row-gap: var(--spacing-2);
+}
+
+.headerText {
+  padding: var(--spacing-3) 0;
+
+  color: var(--neutrals-text-disabled);
+  text-transform: uppercase;
+}
+
+.alignTextRight {
+  text-align: right;
+}
+
+.textOverflow {
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tableInfo {
+  display: flex;
+
+  align-items: center;
+
+  padding: var(--spacing-1) 0;
+}
+
+.infoIcon {
+  width: 14px;
+  height: 14px;
+  margin-right: var(--spacing-2);
+}
+
+.ranLabel {
+  color: var(--neutrals-text-secondary);
+}
+
+.positionLabel {
+  display: inline-block;
+
+  max-width: 38px;
+  height: var(--results-table-position-size);
+  padding: 0 var(--spacing-1);
+
+  color: var(--neutrals-text-default);
+  text-align: center;
+  text-transform: uppercase;
+
+  background-color: var(--neutrals-background-elevation5);
+  border-radius: 2px;
+}
+
+.distanceLabel {
+  color: var(--neutrals-text-secondary);
+}
+
+.startingPriceLabel {
+  color: var(--neutrals-text-default);
+  text-align: right;
+}
+
+.runnerContainer {
+  display: flex;
+
+  overflow: hidden;
+}
+
+.silkContainer {
+  width: 25px;
+}
+
+.silk {
+  margin-left: var(--spacing-2);
+}
+
+.horseInfoContainer {
+  display: flex;
+
+  overflow: hidden;
+}
+
+.leftColumn {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  min-width: 24px;
+  margin-right: var(--spacing-1);
+  margin-left: var(--spacing-2);
+}
+
+.saddleCloth {
+  color: var(--neutrals-text-default);
+  text-align: center;
+}
+
+.drawNumber {
+  color: var(--neutrals-text-secondary);
+  text-align: center;
+}
+
+.trainerName,
+.jockeyName {
+  overflow: hidden;
+
+  color: var(--neutrals-text-secondary);
+  text-overflow: ellipsis;
+  word-break: break-all;
+  white-space: nowrap;
+}
+
+.fav {
+  color: var(--neutrals-text-secondary);
+  text-align: right;
+}
+
+.horseInformationWrapper {
+  margin-right: var(--spacing-2);
+  overflow: hidden;
+
+  text-transform: capitalize;
+}
+
+.horseInformation {
+  overflow: hidden;
+
+  color: var(--neutrals-text-default);
+  text-overflow: ellipsis;
+  word-break: break-all;
+  white-space: nowrap;
+}
+
+.winnerRibbonContainer {
+  display: flex;
+
+  align-items: center;
+
+  width: var(--icon-size);
+  height: var(--icon-size);
+}
+
+.dnfsBoard {
+  display: flex;
+
+  padding: var(--spacing-2);
+  margin-top: var(--spacing-2);
+
+  color: var(--neutrals-text-default);
+
+  background-color: var(--messaging-info-background-elevation1);
+  border-radius: 4px;
+}
+
+.dnfIcon {
+  display: flex;
+
+  align-self: center;
+
+  width: var(--icon-size);
+  height: var(--icon-size);
+  margin-right: var(--spacing-2);
+  margin-left: var(--spacing-half);
+}
+
+.dnfCodesContainer {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  margin-left: var(--spacing-half);
+}
+
+.dnfItem {
+  margin-right: var(--spacing-3);
+}
+
+.dnfCode {
+  margin-right: var(--spacing-1);
+}

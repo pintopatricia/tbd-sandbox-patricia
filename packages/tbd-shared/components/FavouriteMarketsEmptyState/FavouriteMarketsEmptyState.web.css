@@ -1,0 +1,7 @@
+.favouriteMarketsEmptyState {
+  padding: 0 var(--spacing-3);
+}
+
+.cardContent {
+  padding: 0 var(--spacing-6);
+}

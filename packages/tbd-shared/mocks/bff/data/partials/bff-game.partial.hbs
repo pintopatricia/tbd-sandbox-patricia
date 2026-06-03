@@ -1,0 +1,162 @@
+"__typename": "{{__typename}}{{^__typename}}Game{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:game:XNFKwhEAACUA5auJ{{/urn}}",
+"name": "{{name}}{{^name}}Bonanza{{/name}}",
+"launchId": "{{launchId}}{{^launchId}}bonanza-anx{{/launchId}}",
+"mainProduct": "{{mainProduct}}{{^mainProduct}}casino{{/mainProduct}}",
+"provider": {
+    "name": "{{name}}{{^name}}Blueprint{{/name}}",
+    "uid": "{{uid}}{{^uid}}gp-nx{{/uid}}"
+},
+"copyrightText": {{#if copyrightText}}"{{copyrightText}}"{{else}}null{{/if}},
+"rtp": {{#if rtp}}"{{rtp}}"{{else}}null{{/if}},
+{{#if viewLink}}
+    {{#with viewLink}}
+    "viewLink": {
+        "viewUrn": "{{viewUrn}}{{^viewUrn}}ppb:tbd:view:game:bonanza-anx{{/viewUrn}}",
+        "viewUrl": "{{viewUrl}}{{^viewUrl}}/casino/gaming/bonanza-anx/game:bonanza-anx{{/viewUrl}}"
+    },
+    {{/with}}
+{{else}}
+    "viewLink": null,
+{{/if}}
+{{#if flattened}}
+    {{#with flattened}}
+      "flattened" : {
+            {{> bff-game-tile-visuals }}
+        },
+    {{/with}}
+{{else}}
+    "flattened": null,
+{{/if}}
+{{#if background}}
+    {{#with background}}
+        "background" : {
+            {{> bff-game-tile-visuals }}
+        },
+    {{/with}}
+{{else}}
+    "background": null,
+{{/if}}
+{{#if logo}}
+    {{#with logo}}
+        "logo" : {
+            {{> bff-game-tile-visuals  }}
+        },
+    {{/with}}
+{{else}}
+    "logo": null,
+{{/if}}
+"backgroundColor": {{#if backgroundColor}}"{{backgroundColor}}"{{else}}null{{/if}},
+"customBackgroundColor": {{#if customBackgroundColor}}"{{customBackgroundColor}}"{{else}}null{{/if}},
+"gameType": {{#if gameType}}"{{gameType}}"{{else}}null{{/if}},
+"gameVolatility": {{#if gameVolatility}}"{{gameVolatility}}"{{else}}null{{/if}},
+"gameTheme": {{#if gameTheme}}"{{gameTheme}}"{{else}}null{{/if}},
+"jackpotType": {{#if jackpotType}}"{{jackpotType}}"{{else}}null{{/if}},
+"gameStudio": {{#if gameStudio}}"{{gameStudio}}"{{else}}null{{/if}},
+"minStake": {{#if minStake}}"{{minStake}}"{{else}}null{{/if}},
+"maxStake": {{#if maxStake}}"{{maxStake}}"{{else}}null{{/if}},
+"gameHelp": {{#if gameHelp}}"{{gameHelp}}"{{else}}null{{/if}},
+{{#if gameMechanics}}
+  "gameMechanics": [
+    {{#each gameMechanics}}
+      "{{this}}"{{#unless @last}},{{/unless}}
+    {{/each}}
+  ],
+{{else}}
+    "gameMechanics": [],
+{{/if}}
+{{#if description}}
+    "description" : {
+    {{#with description}}
+          "content": [
+        {{#each content}}
+              {
+                "spans": [
+                {{#each spans}}
+                  {
+                  "start": {{start}}{{^start}}1{{/start}},
+                  "end": {{end}}{{^end}}5{{/end}},
+                  "style": "{{style}}{{^style}}strong{{/style}}",
+                  "url": {{#if url}}"{{url}}"{{else}}null{{/if}}
+                  }{{#unless @last}},{{/unless}}
+                {{/each}}
+                ],
+              "type": "{{type}}{{^type}}paragraph{{/type}}",
+                "text": "{{text}}{{^text}}Game Info{{/text}}"
+              }{{#unless @last}},{{/unless}}
+          {{/each}}
+        ],
+        "headline": "{{#if headline}}{{headline}}{{else}}null{{/if}}"
+        },
+    {{/with}}
+{{else}}
+    "description": null,
+{{/if}}
+{{#if feedData}}
+    {{#with feedData}}
+        "feedData": {
+        "availableSeats": {{#if availableSeats}}{{availableSeats}}{{else}}null{{/if}},
+        "jackpot": {{#if jackpot}}{{jackpot}}{{else}}null{{/if}},
+        {{#if lastNumbers}}
+            "lastNumbers": [
+            {{#each lastNumbers}}
+                {
+                "color": "{{color}}{{^color}}RED{{/color}}",
+                "number": {{number}}{{^number}}0{{/number}}
+                }{{#unless @last}},{{/unless}}
+            {{/each}}
+            ]
+        {{else}}
+            "lastNumbers": null
+        {{/if}}
+        },
+    {{/with}}
+{{else}}
+    "feedData": null,
+{{/if}}
+"rgsCodeMobile": {{#if rgsCodeMobile}}"{{rgsCodeMobile}}"{{else}}null{{/if}},
+"jackpotLogo": {{#if jackpotLogo}}"{{jackpotLogo}}"{{else}}null{{/if}},
+{{#if customLogo}}
+{{#with customLogo}}
+"customLogo": {
+  "name": {{#if name}}"{{name}}"{{else}}null{{/if}},
+  {{#if image}}
+    {{#with image}}
+     "image": {
+       "dimensions": {
+          "width": {{width}}{{^width}}120{{/width}},
+          "height": {{height}}{{^height}}120{{/height}}
+       },
+       "alt": null,
+       "url": "{{url}}{{^url}}null{{/url}}"
+     }
+     {{/with}}
+  {{else}}
+     "image": null
+  {{/if}}
+},
+{{/with}}
+{{else}}
+  "customLogo": null,
+{{/if}}
+"hasDemo": {{#if hasDemo}}"{{hasDemo}}"{{else}}false{{/if}},
+"label": {{#if label}}"{{label}}"{{else}}null{{/if}},
+{{#if screenshots}}
+  "screenshots": [
+    {{#each screenshots}}
+      {
+        "url": {{#if url}}"{{url}}"{{else}}null{{/if}},
+        "alt": {{#if alt}}"{{alt}}"{{else}}null{{/if}},
+        "dimensions": {{#if dimensions}}
+          {
+            "width": {{#if dimensions.width}}{{dimensions.width}}{{else}}null{{/if}},
+            "height": {{#if dimensions.height}}{{dimensions.height}}{{else}}null{{/if}}
+          }
+        {{else}}null{{/if}},
+        "__typename": {{#if __typename}}"{{__typename}}"{{else}}null{{/if}}
+      }{{#unless @last}},{{/unless}}
+    {{/each}}
+  ]
+{{else}}
+  "screenshots": null
+{{/if}}

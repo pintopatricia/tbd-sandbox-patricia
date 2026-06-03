@@ -1,0 +1,18 @@
+"edges": [
+{{#each edges}}
+    {{#if node}}
+      {
+        {{#with node}}
+          "node": {
+              {{> bff-obb-cards-layout}}
+          }
+        {{/with}}
+      } {{#unless @last}},{{/unless}}
+    {{else}}
+      null{{#unless @last}},{{/unless}}
+    {{/if}}
+{{/each}}
+]
+{{#if pageInfo}},
+  {{> bff-page-info}}
+{{/if}}

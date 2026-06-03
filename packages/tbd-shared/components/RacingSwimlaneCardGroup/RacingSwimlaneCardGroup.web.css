@@ -1,0 +1,40 @@
+[class*="childWrapper"]:has(.swimlaneItemContainer) {
+  --swimlane-item-container-width: 87%;
+  display: block;
+}
+
+[class*="childWrapper"]:has(.swimlaneItemContainer.snap) {
+  width: var(--swimlane-item-container-width);
+  max-width: var(--swimlane-item-container-max-width);
+  margin-left: var(--spacing-3);
+  scroll-snap-align: start;
+  scroll-margin: 0 var(--spacing-3);
+}
+
+.swimlaneItemContainer.snap {
+  max-width: 100%;
+}
+
+[class*="childWrapper"]:has(.extended.snap) {
+  width: 93%;
+  max-width: none;
+}
+
+[class*="childWrapper"]:has(.swimlaneItemContainer.snap):last-child {
+  margin-right: var(--spacing-3);
+}
+
+/* DESKTOP specific overwrites */
+@media screen and (min-width: 900px) {
+  [class*="childWrapper"]:has(.swimlaneItemContainer.snap) {
+    margin-left: 0;
+  }
+
+  [class*="childWrapper"]:has(.swimlaneItemContainer.snap):not(:last-child) {
+    margin-right: var(--spacing-3);
+  }
+
+  [class*="childWrapper"]:has(.swimlaneItemContainer.snap):last-child {
+    margin-right: 0;
+  }
+}

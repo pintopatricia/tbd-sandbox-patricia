@@ -1,0 +1,30 @@
+{
+  "data": {
+    "View": {
+      "__typename": "MaintenanceView",
+      "urn": "ppb:tbd:view:maintenance:maintenance",
+      "url": "{{url}}{{^url}}/view/maintenance:maintenance{{/url}}",
+      "redirectUrl": "{{redirectUrl}}",
+      "products": [
+      {{#each products}}
+        {
+          "product": "{{product}}",
+          "status": "{{status}}",
+          "viewLink": { "viewUrn": "{{viewUrn}}", "viewUrl": "{{viewUrl}}" },
+          "name": { "translate": { "key": "{{name}}" } }
+        }{{#unless @last}},{{/unless}}
+      {{/each}}
+      ],
+      "items": {
+        {{> bff-items }}
+      },
+      "twitterUrl": "{{twitterUrl}}",
+      "regulatoryData": {
+        {{> bff-regulatory-data }}
+      },
+      "bottomBar": {
+				{{> bff-bottom-bar-tiles }}
+			}
+    }
+  }
+}

@@ -1,0 +1,14 @@
+fragment imsPromotionErrorCard on ImsPromotionErrorCard {
+  __typename
+  urn
+  errorCode
+  seeAll {
+    viewUrn
+    viewUrl
+  }
+}
+
+fragment imsPromotionErrorCardPartial on ImsPromotionErrorCard {
+  __typename
+  urn
+}

@@ -1,0 +1,29 @@
+"__typename": "{{__typename}}{{^__typename}}ExchangeMarket{{/__typename}}",
+"name": "{{name}}{{^name}}Match Odds{{/name}}",
+"urn": "{{urn}}{{^urn}}ppb:excMarket:1.160337355{{/urn}}",
+"marketType": "{{marketType}}{{^marketType}}MATCH_ODDS{{/marketType}}",
+"marketTypeName": "{{marketTypeName}}{{^marketTypeName}}Match Odds{{/marketTypeName}}",
+"bettingType": "{{bettingType}}{{^bettingType}}ODDS{{/bettingType}}",
+"template": "{{template}}{{^template}}DEFAULT{{/template}}",
+"eachWayDivisor": {{eachWayDivisor}}{{^eachWayDivisor}}null{{/eachWayDivisor}},
+"numberOfWinners": {{numberOfWinners}}{{^numberOfWinners}}1{{/numberOfWinners}},
+{{#unless noLiveData}}
+  {{> bff-market-live-data liveData}},
+{{/unless}}
+"sport": {
+{{> bff-sport sport}}
+},
+"hierarchy": {
+  {{> bff-hierarchy hierarchy}}
+},
+"runners": [
+  {{> bff-runners }}
+],
+{{#with marketRulesViewLink}}
+  "marketRulesViewLink": {
+    "viewUrl": "{{viewUrl}}",
+    "viewUrn": "{{viewUrn}}"
+  },
+{{/with}}
+"isOddsboostMarketType": {{#if isOddsboostMarketType}}{{isOddsboostMarketType}}{{else}}false{{/if}},
+"isSuperSub": {{#if isSuperSub}}{{isSuperSub}}{{else}}false{{/if}}

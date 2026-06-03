@@ -1,0 +1,349 @@
+{
+  "errors":[],
+  "data": {
+    "football": {
+      "fixture": [
+        {{#each fixture}}
+          {
+            {{#with home}}
+              "home": { {{> sca-football-team }} },
+            {{/with}}
+            {{#with away}}
+              "away": { {{> sca-football-team }} },
+            {{/with}}
+            {{#with broadcasts}}
+              "broadcasts": { {{> sca-broadcasts }} },
+            {{/with}}
+            "scheduledAt": "{{scheduledAt}}{{^scheduledAt}}2010-10-14T18:45{{/scheduledAt}}",
+            {{#if startedAt}}"startedAt": "{{startedAt}}{{^startedAt}}{{/startedAt}}",{{/if}}
+            {{#with firstLegScore}}
+              "firstLegScore": { {{> sca-score }} },
+            {{/with}}
+            {{#if score}}
+              {{#with score}}
+                "score": { {{> sca-score }} },
+              {{/with}}
+            {{else}}
+              "score": null,
+            {{/if}}
+            {{#with aggregateLegScore}}
+              "aggregateLegScore": { {{> sca-score }} },
+            {{/with}}
+            "duration": {
+            {{#if duration}}
+              {{#with duration}}
+                "period": "{{period}}{{^period}}REGULAR{{/period}}",
+                "status": "{{status}}{{^status}}PRE_MATCH{{/status}}",
+                {{#with clock}}
+                  "clock":{ {{> sca-clock }} },
+                {{/with}}
+                "stoppageMinutes": {{stoppageMinutes}}{{^stoppageMinutes}}null{{/stoppageMinutes}}
+              {{/with}}
+            {{else}}
+              "period":"REGULAR",
+              "status":"PRE_MATCH",
+              "clock":{
+              "minute":23,
+              "second":48
+              },
+              "stoppageMinutes": null
+            {{/if}}
+            },
+            {{#if head2head}}
+              {{#with head2head}}
+                "head2head":{
+                "home":[
+                {{#with home}}
+                  {{> sca-football-past-fixture }}
+                {{/with}}
+                ],
+                "away":[
+                {{#with away}}
+                  {{> sca-football-past-fixture }}
+                {{/with}}
+                ]
+                },
+              {{/with}}
+            {{else}}
+              "head2head": null,
+            {{/if}}
+            {{#if stats}}
+                "stats": [
+                {{#each stats}}
+                    {
+                    {{#if period}} "period": "{{period}}{{^period}}REGULAR{{/period}}", {{else}} "period": null, {{/if}}
+                    "periodStatus": "{{periodStatus}}{{^periodStatus}}PRE_MATCH{{/periodStatus}}",
+                    {{#if home}}
+                      {{#with home}}
+                          "home": {
+                          {{> sca-football-game-stats }}
+                          },
+                      {{/with}}
+                    {{else}}
+                        "home" : null,
+                    {{/if}}
+                    {{#if away}}
+                      {{#with away}}
+                          "away": {
+                          {{> sca-football-game-stats }}
+                          }
+                      {{/with}}
+                    {{else}}
+                        "away": null
+                    {{/if}}
+                    }
+                    {{#unless @last}},{{/unless}}
+                {{/each}}
+                ],
+            {{else}}
+                "stats": null,
+            {{/if}}
+            {{#if players}}
+              "players": [
+                {{#each players}}
+                  {
+                    {{> sca-football-player }},
+                    {{#if substitutions}}
+                      "substitutions": [
+                        {{#each substitutions}}
+                          {
+                            "player": {
+                              "__typename": "FootballPlayer",
+                              {{#if stats}}
+                                "stats": [
+                                  {{#each stats}}
+                                    {
+                                      "periodDetails": {
+                                        {{#if period}}
+                                          "period": "{{period}}",
+                                        {{else}}
+                                          "period": null,
+                                        {{/if}}
+                                        "periodStatus": "{{periodStatus}}{{^periodStatus}}PRE_MATCH{{/periodStatus}}"
+                                      },
+                                      "stats": {
+                                        {{> sca-football-game-stats }}
+                                      }
+                                    }
+                                    {{#unless @last}},{{/unless}}
+                                  {{/each}}
+                                ],
+                              {{else}}
+                                "stats": null,
+                              {{/if}}
+                              {{> sca-football-player }}
+                            },
+                            "__typename": "FootballPlayerSub"
+                          }{{#unless @last}},{{/unless}}
+                        {{/each}}
+                      ],
+                    {{/if}}
+                    {{#if stats}}
+                      "stats": [
+                        {{#each stats}}
+                            {
+                              "periodDetails": {
+                                {{#if period}} "period": "{{period}}", {{else}} "period": null, {{/if}}
+                                "periodStatus": "{{periodStatus}}{{^periodStatus}}PRE_MATCH{{/periodStatus}}"
+                              },
+                              "stats": {
+                                {{> sca-football-game-stats }}
+                              }
+                            }
+                            {{#unless @last}},{{/unless}}
+                        {{/each}}
+                        ]
+                    {{else}}
+                      "stats": null
+                    {{/if}}
+                  }{{#unless @last}},{{/unless}}
+                {{/each}}
+              ],
+            {{else}}
+              "players": null,
+            {{/if}}
+            {{#if recentForm}}
+              {{#with recentForm}}
+                "recentForm":{
+                "home":[
+                {{#with home}}
+                  {{> sca-football-past-fixture }}
+                {{/with}}
+                ],
+                "away":[
+                {{#with away}}
+                  {{> sca-football-past-fixture }}
+                {{/with}}
+                ]
+                },
+              {{/with}}
+            {{else}}
+              "recentForm": null,
+            {{/if}}
+            {{#if penaltyShootout}}
+              {{#with penaltyShootout}}
+                "penaltyShootout": {
+                {{#if firstTeamToShoot}} "firstTeamToShoot": "{{firstTeamToShoot}}{{^firstTeamToShoot}}HOME{{/firstTeamToShoot}}", {{else}} "firstTeamToShoot": null, {{/if}}
+                {{#if nextTeamToShoot}} "nextTeamToShoot": "{{nextTeamToShoot}}{{^nextTeamToShoot}}HOME{{/nextTeamToShoot}}", {{else}} "nextTeamToShoot": null, {{/if}}
+                "format": "{{format}}{{^format}}ABAB{{/format}}",
+                "penaltyScores" : [
+                {{#each penaltyScores}}
+                  {
+                  "penaltyNumber": {{penaltyNumber}}{{^penaltyNumber}}1{{/penaltyNumber}},
+                  "side": "{{side}}{{^side}}HOME{{/side}}",
+                  "shotResult": "{{shotResult}}{{^shotResult}}SCORE{{/shotResult}}"
+                  }{{#unless @last}},{{/unless}}
+                {{/each}}
+                ]},
+              {{/with}}
+            {{else}}
+              "penaltyShootout": null,
+            {{/if}}
+            {{#if incidents}}
+              {{#with incidents}}
+                "incidents": [
+                {{> sca-football-incident}}
+                ],
+              {{/with}}
+            {{else}}
+              "incidents": null,
+            {{/if}}
+            "id": {{eventId}}{{^eventId}}29465861{{/eventId}}
+          }
+          {{#unless @last}},{{/unless}}
+        {{/each}}
+        ]
+    },
+    "horseRacing": {
+      "race": [
+        {{#each race}}
+          {
+            "id": "{{id}}{{^id}}123456{{/id}}",
+            {{#if details}}
+              "details": {
+              {{#with details}}
+                "status": "{{status}}{{^status}}GOING_DOWN{{/status}}",
+                "resultType": "{{resultType}}{{^resultType}}null{{/resultType}}"
+              {{/with}}
+              }
+            {{/if}}
+          }
+          {{#unless @last}},{{/unless}}
+        {{/each}}
+      ]
+    },
+    "tennis": {
+      "match": [
+        {{#each match}}
+        {
+
+          "scheduledStartTime": "{{scheduledStartTime}}{{^scheduledStartTime}}2077-01-16T20:00:00Z{{/scheduledStartTime}}",
+
+          {{#with matchStatus}}
+            "status": {
+              "status": "{{status}}{{^status}}INTERRUPTED{{/status}}",
+              {{#if reason}}
+                "reason": "{{reason}}{{^reason}}HEAT_DELAY{{/reason}}"
+              {{else}}
+                "reason": null
+              {{/if}}
+            },
+          {{/with}}
+
+          "teamAScore": {{teamAScore}}{{^teamAScore}}1{{/teamAScore}},
+          "teamBScore": {{teamBScore}}{{^teamBScore}}1{{/teamBScore}},
+
+          {{#with currentSet}}
+            {{> sca-tennis-currentset }}
+          {{/with}}
+
+          "id": "{{id}}{{^id}}31111111{{/id}}"
+        }
+        {{#unless @last}},{{/unless}}
+        {{/each}}
+      ]
+    },
+    "basketball": {
+      "fixture": [
+        {{#each fixture}}
+          { {{> bff-basketball-fixture-content}} }
+        {{#unless @last}},{{/unless}}
+        {{/each}}
+      ]
+    },
+    "cricket": {
+      "fixture": [
+        {{#each cricketFixture}}
+          { {{> bff-cricket-fixture-content}} }
+        {{#unless @last}},{{/unless}}
+        {{/each}}
+      ]
+    },
+    "tableTennis": {
+      "fixture": [
+        {{#each tableTennisFixture}}
+          { {{> bff-table-tennis-fixture-content}} }
+        {{#unless @last}},{{/unless}}
+        {{/each}}
+      ]
+    },
+    "americanFootball": {
+      "fixture": [
+        {{#each americanFootballFixture}}
+          { {{> sca-american-football-fixture-content}} }
+        {{#unless @last}},{{/unless}}
+        {{/each}}
+      ]
+    },
+    "rugbyUnion": {
+      "fixture": [
+        {{#each rugbyUnionFixture}}
+          { {{> bff-rugby-union-fixture-content}} }
+        {{#unless @last}},{{/unless}}
+        {{/each}}
+      ]
+    },
+    "iceHockey": {
+      "fixture": [
+        {{#each iceHockeyFixture}}
+          { {{> bff-ice-hockey-fixture-content}} }
+        {{#unless @last}},{{/unless}}
+        {{/each}}
+      ]
+    },
+    "rugbyLeague": {
+      "fixture": [
+        {{#each rugbyLeagueFixture}}
+          { {{> bff-rugby-league-fixture-content}} }
+        {{#unless @last}},{{/unless}}
+        {{/each}}
+      ]
+    },
+    "snooker": {
+      "fixture": [
+        {{#each snookerFixture}}
+          { {{> bff-snooker-fixture-content}} }
+        {{#unless @last}},{{/unless}}
+        {{/each}}
+      ]
+    },
+    "volleyball": {
+      "fixture": [
+        {{#each volleyballFixture}}
+          { {{> bff-volleyball-fixture-content}} }
+        {{#unless @last}},{{/unless}}
+        {{/each}}
+      ]
+    },
+    "australianRules": {
+      "fixture": [
+        {{#each australianRulesFixture}}
+          { {{> bff-australian-rules-fixture-content}} }
+        {{#unless @last}},{{/unless}}
+        {{/each}}
+      ]
+    }
+  },
+  "extensions": null,
+  "dataPresent": true
+}

@@ -1,0 +1,32 @@
+fragment gamingCardGroup on GamingCardGroup {
+  __typename
+  urn
+  cardGroupTitle: title
+  displayName {
+    translationKey
+  }
+  defaultLayout
+  layouts
+  type
+  viewAll {
+    label
+    icon
+    viewLink {
+      viewUrn
+      viewUrl
+    }
+  }
+  full: items(first: $numberOfFilledCardsInCardGroup) {
+    ...fullGameCardGroupItems
+  }
+  partials: items {
+    ...partialsGameCardGroupItems
+  }
+  decoration
+  gameTileSize
+}
+
+fragment gamingCardGroupPartial on GamingCardGroup {
+  __typename
+  urn
+}

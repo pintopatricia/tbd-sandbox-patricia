@@ -1,0 +1,61 @@
+"__typename": "PopularSelectionsCard",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:popularselections:1{{/urn}}",
+"title": {{#if title}}"{{title}}"{{else}}null{{/if}},
+"visibleSelectionsLimit": {{visibleSelectionsLimit}}{{^visibleSelectionsLimit}}6{{/visibleSelectionsLimit}},
+"isExpandable": {{isExpandable}}{{^isExpandable}}true{{/isExpandable}},
+"isExpandedByDefault": {{isExpandedByDefault}}{{^isExpandedByDefault}}true{{/isExpandedByDefault}},
+"popularDisplayMode": "{{popularDisplayMode}}{{^popularDisplayMode}}LIST{{/popularDisplayMode}}",
+{{#if popularSelectionsCardItems}}
+  "popularSelectionsCardItems": [
+    {{#each popularSelectionsCardItems}}
+      {
+        "__typename": "{{__typename}}{{^__typename}}PopularSelectionsItem{{/__typename}}",
+        "runner": {
+          "__typename": "{{runner.__typename}}{{^runner.__typename}}Runner{{/runner.__typename}}",
+          "runnerURN": "{{runner.runnerURN}}{{^runner.runnerURN}}ppb:sbkRunner:924.1/1{{/runner.runnerURN}}",
+          "name": "{{runner.name}}{{^runner.name}}Runner{{/runner.name}}",
+          "selectionId": {{runner.selectionId}}{{^runner.selectionId}}1{{/runner.selectionId}},
+          "participantId": {{#if runner.participantId}}"{{runner.participantId}}"{{else}}null{{/if}},
+          "runnerLiveData": {{#if runner.runnerLiveData}}{
+            "__typename": "{{runner.runnerLiveData.__typename}}{{^runner.runnerLiveData.__typename}}SportsbookRunnerLiveData{{/runner.runnerLiveData.__typename}}",
+            "urn": "{{runner.runnerLiveData.urn}}",
+            "runnerStatus": "{{runner.runnerLiveData.runnerStatus}}{{^runner.runnerLiveData.runnerStatus}}ACTIVE{{/runner.runnerLiveData.runnerStatus}}",
+            "odds": {
+              "__typename": "{{runner.runnerLiveData.odds.__typename}}{{^runner.runnerLiveData.odds.__typename}}SportsbookOdds{{/runner.runnerLiveData.odds.__typename}}",
+              "decimal": {{runner.runnerLiveData.odds.decimal}},
+              "fractional": {
+                "__typename": "{{runner.runnerLiveData.odds.fractional.__typename}}{{^runner.runnerLiveData.odds.fractional.__typename}}FractionalOdds{{/runner.runnerLiveData.odds.fractional.__typename}}",
+                "numerator": {{runner.runnerLiveData.odds.fractional.numerator}},
+                "denominator": {{runner.runnerLiveData.odds.fractional.denominator}}
+              }
+            },
+            "displayOdds": {
+              "__typename": "{{runner.runnerLiveData.displayOdds.__typename}}{{^runner.runnerLiveData.displayOdds.__typename}}SportsbookOdds{{/runner.runnerLiveData.displayOdds.__typename}}",
+              "decimal": {{runner.runnerLiveData.displayOdds.decimal}},
+              "fractional": {
+                "__typename": "{{runner.runnerLiveData.displayOdds.fractional.__typename}}{{^runner.runnerLiveData.displayOdds.fractional.__typename}}FractionalOdds{{/runner.runnerLiveData.displayOdds.fractional.__typename}}",
+                "numerator": {{runner.runnerLiveData.displayOdds.fractional.numerator}},
+                "denominator": {{runner.runnerLiveData.displayOdds.fractional.denominator}}
+              }
+            }
+          }{{else}}null{{/if}}
+        },
+        "market": {
+          "__typename": "{{market.__typename}}{{^market.__typename}}SportsbookMarket{{/market.__typename}}",
+          "urn": "{{market.urn}}{{^market.urn}}ppb:sbkMarket:924.1{{/market.urn}}",
+          "name": "{{market.name}}{{^market.name}}Match Odds{{/market.name}}",
+          "liveData": {{#if market.liveData}}{
+            "__typename": "{{market.liveData.__typename}}{{^market.liveData.__typename}}SportsbookMarketLiveData{{/market.liveData.__typename}}",
+            "urn": "{{market.liveData.urn}}",
+            "sportsbookMarketStatus": "{{market.liveData.sportsbookMarketStatus}}{{^market.liveData.sportsbookMarketStatus}}OPEN{{/market.liveData.sportsbookMarketStatus}}",
+            "bspMarket": {{#if market.liveData.bspMarket}}true{{else}}false{{/if}}
+          }{{else}}null{{/if}}
+        },
+        "stats": {
+          "__typename": "{{stats.__typename}}{{^stats.__typename}}PopularSelectionsItemStats{{/stats.__typename}}",
+          "betCount": {{stats.betCount}}{{^stats.betCount}}100{{/stats.betCount}}
+        }
+      }{{#unless @last}},{{/unless}}
+    {{/each}}
+  ]
+{{/if}}

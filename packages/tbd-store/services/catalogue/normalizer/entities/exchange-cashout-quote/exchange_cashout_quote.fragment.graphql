@@ -1,0 +1,10 @@
+fragment exchangeCashoutQuote on ExchangeCashoutQuote {
+  __typename
+  urn
+  marketURN
+  marketBetURN
+  value
+  profit
+  currentLiability
+  status
+}

@@ -1,0 +1,31 @@
+"__typename": "{{__typename}}{{^__typename}}BroadcastsAndStatisticsCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:broadcastsAndStatistics:YIA-BhEAACIAMO7n/e/31760538{{/urn}}",
+"statisticsViewLink":
+  {{#if statisticsViewLink}}
+    {
+    {{#with statisticsViewLink}}
+      "viewUrn": {{#if viewUrn}}"{{viewUrn}}"{{else}}null{{/if}},
+      "viewUrl": {{#if viewUrl}}"{{viewUrl}}"{{else}}null{{/if}}
+    {{/with}}
+    },
+  {{else}}
+    null,
+  {{/if}}
+"sportevent": {
+  "sport": {
+    "name": "Football",
+    "urn": "ppb:eventType:1"
+    }
+  },
+"eventBroadCasts":
+  {{#if eventBroadCasts}}
+    {
+    {{#with eventBroadCasts}}
+      "dataVizUrl": {{#if dataVizUrl}}"{{dataVizUrl}}"{{else}}null{{/if}},
+      "liveVideoUrl": {{#if liveVideoUrl}}"{{liveVideoUrl}}"{{else}}null{{/if}}
+    {{/with}}
+    },
+  {{else}}
+    null,
+  {{/if}}
+"eventBroadCastsIsCollapsed": true

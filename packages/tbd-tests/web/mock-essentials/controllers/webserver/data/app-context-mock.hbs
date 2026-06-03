@@ -1,0 +1,781 @@
+{
+  "AppContext": {
+    "urn": "ppb:tbd:appContext:appContext",
+    "userdetails":{
+        "countryCode":"{{countryCode}}{{^countryCode}}IE{{/countryCode}}",
+        "currencyCode":"{{currencyCode}}{{^currencyCode}}USD{{/currencyCode}}",
+        "localeCode":"{{localeCode}}{{^localeCode}}en{{/localeCode}}",
+        "localeCodeBcp47":"{{localeCodeBcp47}}{{^localeCodeBcp47}}en-US{{/localeCodeBcp47}}",
+        "timezone":"{{timezone}}{{^timezone}}Europe/London{{/timezone}}",
+        "firstName":"{{firstName}}{{^firstName}}firstName{{/firstName}}",
+        "lastName":"{{lastName}}{{^lastName}}lastName{{/lastName}}",
+        "region":"{{regiion}}{{^region}}ALL_REGIONS{{/region}}",
+        "excSettings":{{excSettings}}{{^excSettings}}null{{/excSettings}},
+        "jurisdictionalData": {
+          "contractNumber": {{contractNumber}}{{^contractNumber}}null{{/contractNumber}},
+          "nationalIdentifier": {{nationalIdentifier}}{{^nationalIdentifier}}null{{/nationalIdentifier}}
+        },
+        "migrationData": {
+          "heritageAccountId": {{heritageAccountId}}{{^heritageAccountId}}null{{/heritageAccountId}},
+          "heritageSecondaryAccountId": {{heritageSecondaryAccountId}}{{^heritageSecondaryAccountId}}null{{/heritageSecondaryAccountId}},
+          "heritageSystem": {{heritageSystem}}{{^heritageSystem}}null{{/heritageSystem}},
+          "migrationDate": {{migrationDate}}{{^migrationDate}}null{{/migrationDate}},
+          "migrationInformation": {{migrationInformation}}{{^migrationInformation}}null{{/migrationInformation}}
+        },
+        "exchangeSettings": {
+          "discount": {{exchangeDiscount}}{{^exchangeDiscount}}0{{/exchangeDiscount}},
+          "currencyDetails": {
+            "minStake": {{minStake}}{{^minStake}}2{{/minStake}},
+            "minBspLiability": {{minBspLiability}}{{^minBspLiability}}10{{/minBspLiability}},
+            "currencyCode":"{{currencyCode}}{{^currencyCode}}GBP{{/currencyCode}}",
+            "currencyId": {{currencyId}}{{^currencyId}}2{{/currencyId}}
+          }
+        },
+        "accountId": {{accountId}}{{^accountId}}123456{{/accountId}},
+        "loggedIn": {{loggedIn}}{{^loggedIn}}true{{/loggedIn}},
+        "lastLoginDate": "{{lastLoginDate}}{{^lastLoginDate}}2023-01-01T12:00:00.000Z{{/lastLoginDate}}",
+        "jurisdiction": {
+          "jurisdiction": "{{jurisdiction}}{{^jurisdiction}}INTERNATIONAL{{/jurisdiction}}"
+        },
+        "productExclusions":
+        {{#if productExclusions}}
+          [
+              {{#each productExclusions}}
+                "{{this}}"{{#unless @last}},{{/unless}}
+              {{/each}}
+          ],
+          {{else}}
+          [],
+        {{/if}}
+        "bucketId": {{bucketId}}{{^bucketId}}1{{/bucketId}}
+    },
+    "activeExperiments": [],
+    "throttles": [
+      {
+        "name": "BOXEVER",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "CMS_COMPETITION_VIEW",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "GAMING_JACKPOTS",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "GAMING_PRIZE_MACHINE",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "TAPPABLE_HEADER_EVENT_VIEW",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "TAPPABLE_HEADER_MARKET_VIEW",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "TAPPABLE_HEADER_SPORT_VIEW",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "TAPPABLE_HEADER_COMPETITION_VIEW",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "TAPPABLE_HEADER_RACE_VIEW",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "FOOTBALL_BROADCASTS_CARD",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "SEO_CONTENT_SUMMARY_CARD",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "BOXEVER_PREFERENCES",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "DISCOUNT_BONUS_NRA",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "IMS_PROMOS",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "PRICE_BOOST_OFFERS",
+        "__typename": "FeatureThrottle",
+        {{#if PRICE_BOOST_OFFERS}}
+          {{#with PRICE_BOOST_OFFERS}}
+              "isActive": {{#if isActive}}true{{else}}false{{/if}}
+          {{/with}}
+        {{else}}
+          "isActive": false
+        {{/if}}
+      },
+      {
+        "name": "USE_SERVER_PUSH",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "EXCHANGE_EVENT_RECOMMENDER",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "VIRTUALS_VIEW",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "SELF_EXCLUSION",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "AFFORDABILITY",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "PRODUCT_SWITCHER",
+        "__typename": "FeatureThrottle",
+        {{#if PRODUCT_SWITCHER}}
+          {{#with PRODUCT_SWITCHER}}
+              "isActive": {{#if isActive}}true{{else}}false{{/if}}
+          {{/with}}
+        {{else}}
+          "isActive": false
+        {{/if}}
+      },
+      {
+        "name": "RACE_RESULTS",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "FEEDBACK_BUTTON_NATIVE",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "GENERIC_SWITCHER_CARD",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "KHOJ_HISTORICAL_RACES",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "PRODUCT_SWITCHER_NATIVE",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "POPULAR_BET_BUILDER",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "VIRTUALS_EVENT_ROTATION",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "CSL_OPTIMIZED_QUERIES",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "MULTI_BET_BUILDER_ONBOARDING",
+        "__typename": "FeatureThrottle",
+        {{#if MULTI_BET_BUILDER_ONBOARDING}}
+          {{#with MULTI_BET_BUILDER_ONBOARDING}}
+              "isActive": {{#if isActive}}true{{else}}false{{/if}}
+          {{/with}}
+        {{else}}
+          "isActive": false
+        {{/if}}
+      },
+      {
+        "name": "DAILY_PAYOUT_LIMIT",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "PRESERVE_LAYOUT",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "POPULAR_MULTIPLES_BET_BUILDER",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "TAB_DROP_CONDITIONS",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "MI_PROMO_BANNERS",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "INJECT_MI_SCRIPT",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "BROWSE_CASINO_WEB",
+        "__typename": "FeatureThrottle",
+        {{#if BROWSE_CASINO_WEB}}
+          {{#with BROWSE_CASINO_WEB}}
+          "isActive": {{#if isActive}}true{{else}}false{{/if}}
+          {{/with}}
+        {{else}}
+          "isActive": true
+        {{/if}}
+      },
+      {
+        "name": "BROWSE_CASINO_ANDROID",
+        "__typename": "FeatureThrottle",
+        {{#if BROWSE_CASINO_ANDROID}}
+          {{#with BROWSE_CASINO_ANDROID}}
+          "isActive": {{#if isActive}}true{{else}}false{{/if}}
+          {{/with}}
+        {{else}}
+          "isActive": true
+        {{/if}}
+      },
+      {
+        "name": "MATCH_ODDS_90_COUPON_BLURB",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "USER_FAVOURITE_GAMES",
+        "__typename": "FeatureThrottle",
+        {{#if USER_FAVOURITE_GAMES}}
+          {{#with USER_FAVOURITE_GAMES}}
+              "isActive": {{#if isActive}}true{{else}}false{{/if}}
+          {{/with}}
+        {{else}}
+          "isActive": false
+        {{/if}}
+      },
+      {
+        "name": "MI_PROMO_BANNERS_NATIVE_V5",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "PARTIAL_PRODUCT_SPLASH_VIEW",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "CSL_PARTIAL_CONTENT_SECTIONS",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "DISABLE_GAMING",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "PROMO_REVAMP",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "BROWSE_CASINO_IOS",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "VIEW_OPEN_BETS",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "SPORT_RIBBON_CARD_GROUP",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "LES_EXPERIMENT_SERVICE",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "EXC_ONBOARDING_JOURNEY",
+        "__typename": "FeatureThrottle",
+        {{#if EXC_ONBOARDING_JOURNEY}}
+          {{#with EXC_ONBOARDING_JOURNEY}}
+            "isActive": {{#if isActive}}true{{else}}false{{/if}}
+          {{/with}}
+        {{else}}
+        "isActive": false
+        {{/if}}
+      },
+      {
+        "name": "EXC_ALLOWED_JURISDICTION",
+        "__typename": "FeatureThrottle",
+        {{#if EXC_ALLOWED_JURISDICTION}}
+          {{#with EXC_ALLOWED_JURISDICTION}}
+            "isActive": {{#if isActive}}true{{else}}false{{/if}}
+          {{/with}}
+        {{else}}
+        "isActive": false
+        {{/if}}
+      },
+      {
+        "name": "EXC_FEEDBACK_BUTTON",
+        "__typename": "FeatureThrottle",
+        {{#if EXC_FEEDBACK_BUTTON}}
+          {{#with EXC_FEEDBACK_BUTTON}}
+            "isActive": {{#if isActive}}true{{else}}false{{/if}}
+          {{/with}}
+        {{else}}
+        "isActive": false
+        {{/if}}
+      },
+      {
+        "name": "LOYALTY_REWARDS",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "CLIENT_REDIRECT",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "NEME_ELIGIBLE",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "HR_PUSH_NOTIFICATIONS_SUPPORT",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "ENABLE_GA4",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "MY_BETS_VIEW_RE_USE_SELECTIONS",
+        "__typename": "FeatureThrottle",
+        {{#if MY_BETS_VIEW_RE_USE_SELECTIONS}}
+          {{#with MY_BETS_VIEW_RE_USE_SELECTIONS}}
+              "isActive": {{#if isActive}}true{{else}}false{{/if}}
+          {{/with}}
+        {{else}}
+          "isActive": false
+        {{/if}}
+      },
+      {
+        "name": "DISABLE_PRIZE_MACHINE_PLUS",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "PPH_NO_REQ_BATCHING",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "DESKTOP_EXPERIENCE",
+        "__typename": "FeatureThrottle",
+        {{#if DESKTOP_EXPERIENCE}}
+          {{#with DESKTOP_EXPERIENCE}}
+              "isActive": {{#if isActive}}true{{else}}false{{/if}}
+          {{/with}}
+        {{else}}
+          "isActive": true
+        {{/if}}
+      },
+      {
+        "name": "BET_CONFIRMATION_STEP",
+        "__typename": "FeatureThrottle",
+        {{#if BET_CONFIRMATION_STEP}}
+          {{#with BET_CONFIRMATION_STEP}}
+              "isActive": {{#if isActive}}true{{else}}false{{/if}}
+          {{/with}}
+        {{else}}
+          "isActive": false
+        {{/if}}
+      },
+      {
+        "name": "FAVOURITE_MARKETS_TOOLTIP",
+        "__typename": "FeatureThrottle",
+        {{#if FAVOURITE_MARKETS_TOOLTIP}}
+          {{#with FAVOURITE_MARKETS_TOOLTIP}}
+              "isActive": {{#if isActive}}true{{else}}false{{/if}}
+          {{/with}}
+        {{else}}
+          "isActive": false
+        {{/if}}
+      },
+      {
+        "name": "POPULAR_BET_BUILDER_SELECTION_TYPE_ICON",
+        "__typename": "FeatureThrottle",
+        {{#if POPULAR_BET_BUILDER_SELECTION_TYPE_ICON}}
+          {{#with POPULAR_BET_BUILDER_SELECTION_TYPE_ICON}}
+              "isActive": {{#if isActive}}true{{else}}false{{/if}}
+          {{/with}}
+        {{else}}
+          "isActive": false
+        {{/if}}
+      },
+      {
+        "name": "BFF_APP_CONTEXT",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "DISABLE_ALL_COMPETITIONS_FILTER_COUPON",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "MY_BETS_WIN_LOSE_VOID",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "NEW_SCA_POLLER",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "PPH_SINGLE_REQ_STRAT",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "DISABLE_UA",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "ENABLE_SKYBETCLUB_TRACKER",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "ENABLE_BETFAIRCLUB_TRACKER",
+        "__typename": "FeatureThrottle",
+        {{#if ENABLE_BETFAIRCLUB_TRACKER}}
+          {{#with ENABLE_BETFAIRCLUB_TRACKER}}
+              "isActive": {{#if isActive}}true{{else}}false{{/if}}
+          {{/with}}
+        {{else}}
+          "isActive": false
+        {{/if}}
+      },
+      {
+        "name": "SUPER_SUB_MARKET_BLURBS",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "STAKE_FOCUS",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "MOBILE_BETSLIP_SP",
+        "isActive": false,
+        "__typename": "FeatureThrottle"
+      },
+      {
+        "name": "CASHOUT_AUTH_REDIRECT",
+        "__typename": "FeatureThrottle",
+        {{#if CASHOUT_AUTH_REDIRECT}}
+          {{#with CASHOUT_AUTH_REDIRECT}}
+              "isActive": {{#if isActive}}true{{else}}false{{/if}}
+          {{/with}}
+        {{else}}
+          "isActive": false
+        {{/if}}
+      },
+      {
+        "name": "MY_BETS_STATS",
+        "__typename": "FeatureThrottle",
+        {{#if MY_BETS_STATS}}
+          {{#with MY_BETS_STATS}}
+              "isActive": {{#if isActive}}true{{else}}false{{/if}}
+          {{/with}}
+        {{else}}
+          "isActive": false
+        {{/if}}
+      },
+      {
+        "name": "CASHOUT_SUSPENSION_REASONS",
+        "__typename": "FeatureThrottle",
+        {{#if CASHOUT_SUSPENSION_REASONS}}
+          {{#with CASHOUT_SUSPENSION_REASONS}}
+              "isActive": {{#if isActive}}true{{else}}false{{/if}}
+          {{/with}}
+        {{else}}
+          "isActive": true
+        {{/if}}
+      },
+      {
+        "name": "LPS_FE_EXPOSURE",
+        "__typename": "FeatureThrottle",
+        {{#if LPS_FE_EXPOSURE}}
+          {{#with LPS_FE_EXPOSURE}}
+              "isActive": {{#if isActive}}true{{else}}false{{/if}}
+          {{/with}}
+        {{else}}
+          "isActive": true
+        {{/if}}
+      },
+      {
+        "name": "CONFIRM_CASHOUT_PREFERENCE",
+        "__typename": "FeatureThrottle",
+        {{#if CONFIRM_CASHOUT_PREFERENCE}}
+          {{#with CONFIRM_CASHOUT_PREFERENCE}}
+              "isActive": {{#if isActive}}true{{else}}false{{/if}}
+          {{/with}}
+        {{else}}
+          "isActive": false
+        {{/if}}
+      }
+    ],
+    "brandSettings": [
+      {
+        "name": "MINIMIZE_BETSLIP",
+        "isActive": false,
+        "__typename": "BrandSetting"
+      },
+      {
+        "name": "SKYBETCLUB",
+        "__typename": "BrandSetting",
+        {{#if SKYBETCLUB}}
+          {{#with SKYBETCLUB}}
+              "isActive": {{#if isActive}}true{{else}}false{{/if}}
+          {{/with}}
+        {{else}}
+          "isActive": false
+        {{/if}}
+      },
+      {
+        "name": "BETFAIRCLUB",
+        "__typename": "BrandSetting",
+        {{#if BETFAIRCLUB}}
+          {{#with BETFAIRCLUB}}
+              "isActive": {{#if isActive}}true{{else}}false{{/if}}
+          {{/with}}
+        {{else}}
+          "isActive": false
+        {{/if}}
+      },
+      {
+        "name": "HIGHLIGHTED_HEADER",
+        "__typename": "BrandSetting",
+        {{#if HIGHLIGHTED_HEADER}}
+          {{#with HIGHLIGHTED_HEADER}}
+              "isActive": {{#if isActive}}true{{else}}false{{/if}}
+          {{/with}}
+        {{else}}
+          "isActive": false
+        {{/if}}
+      }
+      {{#if brandSettings}}
+        ,
+        {{#each brandSettings}}
+          {
+            "name": "{{@key}}",
+            "isActive": {{this}},
+            "__typename": "BrandSetting"
+          }
+          {{#unless @last}},{{/unless}}
+        {{/each}}
+      {{/if}}
+    ],
+    "preferences": {
+      "confirmCashout": {
+        "urn": "ppb:tbd:preference:confirmCashout:confirmCashout",
+        "shouldConfirmCashout": {{shouldConfirmCashout}}{{^shouldConfirmCashout}}false{{/shouldConfirmCashout}},
+        "__typename": "ConfirmCashoutPreference"
+      },
+      "exchangeConfirmBetPlacement": {
+        "urn": "ppb:tbd:preference:confirmExchangeBetPlacement:exchangeBetPlacement",
+        "shouldConfirmBetPlacement": true,
+        "__typename": "ConfirmExchangeBetPlacementPreference"
+      },
+      "oddsMovement": {
+        "urn": "ppb:tbd:preference:oddsMovement:oddsMovement",
+        "shouldAcceptOddsMovement": false,
+        "__typename": "OddsMovementPreference"
+      },
+      "showBalances": {
+        "urn": "ppb:tbd:preference:showBalances:showbalances",
+        "shouldShowBalances": true,
+        "__typename": "ShowBalancesPreference"
+      },
+      "quickStakes": {
+        "urn": "ppb:tbd:preference:quickStakes:quickStakes",
+        "selectedQuickStakes": [
+          {
+            "stake": 5,
+            "__typename": "QuickStake"
+          },
+          {
+            "stake": 10,
+            "__typename": "QuickStake"
+          },
+          {
+            "stake": 20,
+            "__typename": "QuickStake"
+          },
+          {
+            "stake": 50,
+            "__typename": "QuickStake"
+          }
+        ],
+        "__typename": "QuickStakesPreference"
+      },
+      "exchangeOddsDisplay": {
+        "urn": "ppb:tbd:preference:exchangeOddsDisplay:exchangeOddsDisplayPreference",
+        "selectedOddsDisplayFormat": "DECIMAL",
+        "__typename": "ExchangeOddsDisplayPreference"
+      },
+      "sportsbookOddsDisplay": {
+        "urn": "ppb:tbd:preference:sporsbookOddsDisplay:sportsbookOddsDisplayPreference",
+        "selectedOddsDisplayFormat": "{{sportsbookOddsDisplay}}{{^sportsbookOddsDisplay}}DECIMAL{{/sportsbookOddsDisplay}}",
+        "__typename": "SportsbookOddsDisplayPreference"
+      },
+      "favoriteSports": {
+        "urn": "ppb:tbd:preference:favoriteSports:FavoriteSports",
+        "selectedFavoriteSports": [],
+        "__typename": "FavoriteSportsPreference"
+      },
+      "defaultProduct": {
+        "urn": "ppb:tbd:preference:defaultProduct:DefaultProduct",
+        "selectedDefaultProduct": "SPORTSBOOK",
+        "__typename": "DefaultProductPreference"
+      },
+      "exchangeDefaultProduct": {
+        "urn": "ppb:tbd:preference:exchangeDefaultProduct:ExchangeDefaultProduct",
+        "selectedExchangeDefaultProduct": "UNASSIGNED",
+        "__typename": "ExchangeDefaultProductPreference"
+      },
+      "products": {
+        "urn": "ppb:tbd:preference:userProducts:UserProducts",
+        "selectedProduct": [
+          "SPORTSBOOK",
+          "GAMES"
+        ],
+        "__typename": "UserProductsPreference"
+      },
+      "lastViewedProduct": {
+        "urn": "ppb:tbd:preference:lastViewedProduct:LastViewedProduct",
+        "selectedLastViewedProduct": "SPORTSBOOK",
+        "__typename": "LastViewedProductPreference"
+      },
+      "__typename": "Preferences"
+    },
+    "registration": {
+      "joinNowLabel": "Join Now",
+      "joinNowLink": "https://btfr.co/linker/join-now-en-sbk",
+      "__typename": "RegistrationData"
+    },
+    "pollcadences": {
+      "ERO": 2001,
+      "SMP": 2000,
+      "WAS": 30000,
+      "LBR": 1000,
+      "SIB": 5000,
+      "SER": 10000,
+      "BLH": {
+        "inPlay": 5000,
+        "notInPlay": 30000,
+        "__typename": "PlayStateCadence"
+      },
+      "SCA": {
+        "loggedIn": {
+          "default": {
+            "inPlay": 5000,
+            "notInPlay": 30000,
+            "__typename": "PlayStateCadence"
+          },
+          "__typename": "Cadence"
+        },
+        "loggedOut": {
+          "default": {
+            "inPlay": 5000,
+            "notInPlay": 30000,
+            "__typename": "PlayStateCadence"
+          },
+          "__typename": "Cadence"
+        },
+        "__typename": "LoginStateCadence"
+      },
+      "COS": {
+        "loggedIn": {
+          "default": {
+            "inPlay": 5000,
+            "notInPlay": 13000,
+            "__typename": "PlayStateCadence"
+          },
+          "sports": [
+            {
+              "sportId": "7",
+              "inPlay": 1000,
+              "notInPlay": 13000,
+              "__typename": "SportPlayStateCadence"
+            }
+          ],
+          "__typename": "Cadence"
+        },
+        "loggedOut": {
+          "default": {
+            "inPlay": 1000000,
+            "notInPlay": 1000000,
+            "__typename": "PlayStateCadence"
+          },
+          "__typename": "Cadence"
+        },
+        "__typename": "LoginStateCadence"
+      },
+      "JACKPOT_ZONE": 60000,
+      "MY_BETS": 5000,
+      "POPULAR_BETS": 45000,
+      "REFRESH_CARDS": 10000,
+      "POLLING_DEBOUNCE": 300,
+      "__typename": "PollingCadences"
+    },
+    "__typename": "AppContextDetails"
+  }
+}

@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--market-rules-section-card-vertical-gap);
+
+  padding: var(--market-rules-section-card-padding);
+
+  font: var(--market-rules-section-label-typography);
+  color: var(--market-rules-section-label-colour);
+  text-decoration-line: var(--market-rules-section-label-typography-text-decoration-line);
+  text-transform: var(--market-rules-section-label-typography-text-transform);
+  letter-spacing: var(--market-rules-section-label-typography-letter-spacing);
+
+  background-color: var(--market-rules-section-background-colour);
+  border-radius: var(--market-rules-section-border-radius);
+}
+
+.title {
+  font: var(--market-rules-section-title-typography);
+  color: var(--market-rules-section-title-colour);
+  text-decoration-line: var(--market-rules-section-title-typography-text-decoration-line);
+  text-transform: var(--market-rules-section-title-typography-text-transform);
+  letter-spacing: var(--market-rules-section-title-typography-letter-spacing);
+}

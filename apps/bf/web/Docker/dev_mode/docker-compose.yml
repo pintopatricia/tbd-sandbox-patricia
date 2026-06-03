@@ -1,0 +1,45 @@
+name: tbd-${BRAND:-bf}
+
+services:
+  http-webserver:
+    image: docker.app.betfair/ppb/tbd/bff/http-webserver:latest
+    restart: always
+    volumes:
+      - ${PROJECT_ROOT}/${BFF_WEBSERVER_PATH}/config/certificates:/etc/bf-fabric/certificates/
+      - ${PROJECT_ROOT}/${BFF_WEBSERVER_PATH}/config/webserver-config-http-${BRAND:-bf}-${ENV:-qa}.json:/etc/bf-fabric/config-http.json
+      - ${PROJECT_ROOT}/${BFF_WEBSERVER_PATH}/lib/config/environment.json:/fabric/deploy/tbd-http-webserver/dist/tbd-http-webserver-v1/lib/config/environment.json:ro
+      - ${PROJECT_ROOT}/${BFF_WEBSERVER_PATH}/lib/config/environment-backend.json:/fabric/deploy/tbd-http-webserver/dist/tbd-http-webserver-v1/lib/config/environment-backend.json
+      - tbd-assets:/var/tmp/webserver/tbd-assets
+  webserver:
+    image: ppb/tbd${BRAND:-bf}/web/dev/webserver
+    ports:
+      - "9001:9001"
+    build:
+      context: ${PROJECT_ROOT}
+      dockerfile: ${APP_PATH}/Docker/dev_mode/Dockerfile
+      args:
+        - GITHUB_TOKEN=${GITHUB_TOKEN}
+        - MONTEROSA_TOKEN=${MONTEROSA_TOKEN}
+        - BRAND=${BRAND:-bf}
+        - BUNDLER_WEBSOCKET_URL=${BUNDLER_WEBSOCKET_URL}
+        - ENVIRONMENT=${ENV:-dev}
+    restart: always
+    volumes:
+      - ${PROJECT_ROOT}/yarn.lock:/usr/app/yarn.lock
+      - ${PROJECT_ROOT}/${APP_PATH}:/usr/app/${APP_PATH}
+      - ${PROJECT_ROOT}/packages/tbd-router:/usr/app/packages/tbd-router
+      - ${PROJECT_ROOT}/packages/tbd-shared:/usr/app/packages/tbd-shared
+      - ${PROJECT_ROOT}/packages/tbd-store:/usr/app/packages/tbd-store
+      # bookmark node_modules folders for avoiding adding directories to Docker Volume
+      - /usr/app/packages/tbd-router/node_modules
+      - /usr/app/packages/tbd-shared/node_modules
+      - /usr/app/packages/tbd-store/node_modules
+      # "tbd-assets" named volume to share with other services/containers
+      - tbd-assets:/usr/app/${APP_PATH}/dist
+    environment:
+      - BRAND=${BRAND:-bf}
+      - ENVIRONMENT=${ENV:-dev}
+
+volumes:
+  tbd-assets:
+    name: tbd-assets-${BRAND:-bf}-${ENV:-dev}

@@ -1,0 +1,53 @@
+name: android-tests-on-demand
+# This workflow can be used to run all android tests and runs on a daily basis to help identify flakey tests
+on:
+  workflow_dispatch:
+  # run every day at 3am
+  schedule:
+    - cron: "0 3 * * *"
+env:
+  VAULT_USER: ${{ secrets.VAULT_USER }}
+  VAULT_PASSWORD: ${{ secrets.VAULT_PASSWORD }}
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  MONTEROSA_TOKEN: ${{ secrets.MONTEROSA_TOKEN }}
+jobs:
+  android_regression_tests:
+    name: Android Regression Tests
+    uses: ./.github/workflows/legacy-android-tests.yml
+    with:
+      test_type: regression-tests
+      apk_name: "Betfair-latest.apk"
+      is_merge_queue: false
+    secrets: inherit
+  android_visual_tests:
+    name: android Visual Tests
+    uses: ./.github/workflows/legacy-android-tests.yml
+    with:
+      test_type: visual-tests
+      apk_name: "Betfair-latest.apk"
+      is_merge_queue: false
+    secrets: inherit
+  android_visual_desktop_tests:
+    name: android Visual Desktop Tests
+    uses: ./.github/workflows/legacy-android-tests.yml
+    with:
+      test_type: visual-tests-desktop
+      apk_name: "Betfair-latest.apk"
+      is_merge_queue: false
+    secrets: inherit
+  android_core_tests:
+    name: android Core Tests
+    uses: ./.github/workflows/legacy-android-tests.yml
+    with:
+      test_type: core-tests
+      apk_name: "Betfair-latest.apk"
+      is_merge_queue: false
+    secrets: inherit
+  android_e2e_tests:
+    name: android E2E Tests
+    uses: ./.github/workflows/legacy-android-tests.yml
+    with:
+      test_type: e2e-tests
+      apk_name: "Betfair-latest.apk"
+      is_merge_queue: false
+    secrets: inherit

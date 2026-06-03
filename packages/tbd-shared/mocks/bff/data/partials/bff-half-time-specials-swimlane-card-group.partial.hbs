@@ -1,0 +1,42 @@
+"__typename":"HalfTimeSpecialsSwimlaneCardGroup",
+"urn": "{{urn}}{{^urn}}ppb:tbd:cardgroup:halfTimeSpecialsSwimlane:aCyq4RAAACMAaNgm/e/34304462{{/urn}}",
+"halfTimeSpecialsCardGroupTitle": {{#if halfTimeSpecialsCardGroupTitle}}"{{halfTimeSpecialsCardGroupTitle}}"{{else}}null{{/if}},
+"cardGroupSubtitle": {{#if cardGroupSubtitle}}"{{cardGroupSubtitle}}"{{else}}null{{/if}},
+"displayName": {{#if displayName}}"{{displayName}}"{{else}}null{{/if}},
+"isDecorated": {{#if isDecorated}}{{isDecorated}}{{else}}null{{/if}},
+"isIconSupportingTitle":{{#if isIconSupportingTitle}}{{isIconSupportingTitle}}{{else}}null{{/if}},
+{{#with halfTimeSpecialsFull}}
+    "halfTimeSpecialsFull":{
+        "__typename": "{{__typename}}{{^__typename}}HalfTimeSpecialsSwimlaneCardGroupItemsConnection{{/__typename}}",
+        {{!-- {{> bff-items }} --}}
+        "edges": [
+            {{#each edges}}
+                {
+                    "__typename": "{{__typename}}{{^__typename}}HalfTimeSpecialsSwimlaneCardGroupItemEdge{{/__typename}}",
+                    {{#with node}}
+                    "node": {
+                        {{> bff-card-types}}
+                    }
+                    {{/with}}
+                }
+            {{/each}}
+        ] 
+    },
+{{/with}}
+{{#with halfTimeSpecialsPartials}}
+    "halfTimeSpecialsPartials":{
+        "__typename": "{{__typename}}{{^__typename}}HalfTimeSpecialsSwimlaneCardGroupItemsConnection{{/__typename}}",
+        "edges": [
+            {{#each edges}}
+                {
+                    "__typename": "{{__typename}}{{^__typename}}HalfTimeSpecialsSwimlaneCardGroupItemEdge{{/__typename}}",
+                    {{#with node}}
+                    "node": {
+                        "__typename": "{{__typename}}{{^__typename}}MatchStatSelectionCard{{/__typename}}",
+                        "urn": "{{urn}}{{^urn}}ppb:tbd:card:matchStatSelection:924.458273536/83631682{{/urn}}"
+                    }
+                    {{/with}}
+                }
+            {{/each}}]
+    }
+{{/with}}

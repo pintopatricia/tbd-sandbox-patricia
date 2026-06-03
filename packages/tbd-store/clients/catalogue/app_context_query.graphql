@@ -1,0 +1,191 @@
+fragment sportsFragment on SportPlayStateCadence {
+  sportId
+  inPlay
+  notInPlay
+}
+
+query AppContext($throttlesOn: [String!], $throttlesOff: [String!])
+@throttlesOn(throttlesOn: $throttlesOn)
+@throttlesOff(throttlesOff: $throttlesOff) {
+  AppContext {
+    urn
+    userdetails {
+      accountId
+      loggedIn
+      jurisdiction {
+        jurisdiction
+      }
+      region
+      bucketId
+      countryCode
+      localeCode
+      localeCodeBcp47
+      timezone
+      currencyCode
+      exchangeSettings {
+        discount
+        currencyDetails {
+          minBspLiability
+          minStake
+          currencyCode
+          currencyId
+        }
+      }
+      excSettings {
+        discount
+        currencyDetails {
+          minBspLiability
+          minStake
+          currencyCode
+          currencyId
+        }
+      }
+      firstName
+      lastName
+      lastLoginDate
+      jurisdictionalData {
+        nationalIdentifier
+        contractNumber
+      }
+      productExclusions
+      migrationData {
+        heritageAccountId
+        heritageSecondaryAccountId
+        heritageSystem
+        migrationInformation
+        migrationDate
+      }
+    }
+    activeExperiments { 
+      name 
+      variant 
+    }
+    throttles {
+      name
+      isActive
+    }
+    brandSettings {
+      name
+      isActive
+    }
+    preferences {
+      confirmCashout {
+        urn
+        shouldConfirmCashout
+      }
+      exchangeConfirmBetPlacement {
+        urn
+        shouldConfirmBetPlacement
+      }
+      oddsMovement {
+        urn
+        shouldAcceptOddsMovement
+      }
+      showBalances {
+        urn
+        shouldShowBalances
+      }
+      quickStakes {
+        urn
+        selectedQuickStakes {
+          stake
+        }
+      }
+      exchangeOddsDisplay {
+        urn
+        selectedOddsDisplayFormat
+      }
+      sportsbookOddsDisplay {
+        urn
+        selectedOddsDisplayFormat
+      }
+      favoriteSports {
+        urn
+        selectedFavoriteSports {
+          urn
+          sportId
+        }
+      }
+      defaultProduct {
+        urn
+        selectedDefaultProduct
+      }
+      exchangeDefaultProduct {
+        urn
+        selectedExchangeDefaultProduct
+      }
+      products {
+        urn
+        selectedProduct
+      }
+      lastViewedProduct {
+        urn
+        selectedLastViewedProduct
+      }
+      phoenixMigratedUser {
+        urn
+        isPhoenixMigratedUser
+      }
+      exchangeDefaultMode {
+        urn
+        selectedExchangeDefaultMode
+      }
+    }
+    registration {
+      joinNowLabel
+      joinNowLink
+    }
+    pollcadences {
+      ERO
+      SMP
+      WAS
+      LBR
+      SIB
+      SER
+      BLH {
+        inPlay
+        notInPlay
+      }
+      BME {
+        inPlay
+        notInPlay
+      }
+      SCA {
+        loggedIn {
+          default {
+            inPlay
+            notInPlay
+          }
+        }
+        loggedOut {
+          default {
+            inPlay
+            notInPlay
+          }
+        }
+      }
+      COS {
+        loggedIn {
+          default {
+            inPlay
+            notInPlay
+          }
+          sports {
+            ...sportsFragment
+          }
+        }
+        loggedOut {
+          default {
+            inPlay
+            notInPlay
+          }
+        }
+      }
+      JACKPOT_ZONE
+      MY_BETS
+      POPULAR_BETS
+      REFRESH_CARDS
+      POLLING_DEBOUNCE
+    }
+  }
+}

@@ -1,0 +1,57 @@
+.container {
+  display: flex;
+
+  gap: var(--option-horizontal-gap-primary);
+
+  align-items: center;
+
+  width: 100%;
+}
+
+.content {
+  display: flex;
+
+  flex: 1;
+
+  gap: var(--sm-spacing-x-small);
+
+  align-items: center;
+}
+
+.infoIcon {
+  display: flex;
+
+  flex-shrink: 0;
+
+  align-items: center;
+  justify-content: center;
+
+  width: var(--option-icon-small-sizing);
+  height: var(--option-icon-small-sizing);
+  aspect-ratio: 1/1;
+}
+
+.textContent {
+  display: flex;
+
+  flex: 1 0 0;
+  flex-direction: column;
+
+  gap: var(--option-vertical-gap);
+
+  align-items: flex-start;
+}
+
+.label {
+  font: var(--rich-text-content-text-highlighted-typography);
+  color: var(--rich-text-text-content-text-colour);
+}
+
+.oddsRange {
+  font: var(--rich-text-caption-supporting-text-typography);
+  color: var(--option-default-text-supporting-text-colour);
+}
+
+.toggle {
+  flex-shrink: 0;
+}

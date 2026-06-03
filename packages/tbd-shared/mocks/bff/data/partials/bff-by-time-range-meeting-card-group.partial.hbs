@@ -1,0 +1,18 @@
+"__typename":"ByTimeRangeMeetingCardGroup",
+"urn": "{{urn}}{{^urn}}ppb:tbd:cardgroup:byTimeRangeMeeting:7|34442875|15{{/urn}}",
+{{#with items}}
+    "meetingItems":{
+        {{> bff-items }}
+    },
+{{/with}}
+"cardGroupTitle": {{#if cardGroupTitle}}"{{cardGroupTitle}}"{{else}}null{{/if}}
+{{#with displayName}}
+    ,"displayName":{
+        "translationKey":"{{translationKey}}{{^translationKey}}translationKey{{/translationKey}}",
+    }
+{{/with}}
+{{#with icon}}
+    ,"icon":{
+        "vector":{{#if vector}}"{{vector}}"{{else}}null{{/if}},
+    }
+{{/with}}

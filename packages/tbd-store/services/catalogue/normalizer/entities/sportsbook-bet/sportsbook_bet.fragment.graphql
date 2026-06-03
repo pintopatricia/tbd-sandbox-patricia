@@ -1,0 +1,63 @@
+fragment sportsbookBet on SportsbookBet {
+  urn
+  __typename
+  betReceiptId
+  id
+  isSettled
+  profitAndLoss
+  originalPotentialWin
+  potentialWinForPlace
+  isOddsBoosted
+  isLotteries
+  betType
+  isEachWay
+  isSGM
+  isSGMMulti
+  isPBM
+  isPBS
+  has90MinBet
+  currentSize
+  numLines
+  currentSizePerLine
+  isAccaInsuranceReward
+  isMoneyBackReward
+  ghostLegToken {
+    tokenId
+    repricedDecimalOdds
+    payout
+  }
+  mutations {
+    eligibility {
+      mutation
+    }
+  }
+  betPrice {
+    decimal
+    fractional {
+      numerator
+      denominator
+    }
+  }
+  originalBetPrice {
+    decimal
+    fractional {
+      numerator
+      denominator
+    }
+  }
+  legs {
+    urn
+  }
+  result
+  resultType
+  cashoutQuote {
+    ...sportsbookCashoutQuote
+  }
+  bonus
+  product
+  edges {
+    reason
+    status
+  }
+  lowestEventStartTime
+}

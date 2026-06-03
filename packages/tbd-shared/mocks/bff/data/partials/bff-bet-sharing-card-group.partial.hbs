@@ -1,0 +1,17 @@
+"__typename": "BetSharingCardGroup",
+"urn": "{{urn}}{{^urn}}ppb:tbd:cardgroup:betSharing:1{{/urn}}",
+{{#with full}}
+"full": {
+  {{> bff-items }}
+}
+{{/with}}
+{{#with partials}},
+"partials": {
+  {{> bff-partial-items }}
+}
+{{/with}},
+"bet": {
+{{#with bet}}
+  {{> bff-sbk-bet }}
+{{/with}}
+}

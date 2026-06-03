@@ -1,0 +1,296 @@
+.container {
+  margin: var(--spacing-3);
+
+  border-radius: 16px;
+  box-shadow:
+    var(--casino-styw-border-primary) 0 0 0 1px,
+    var(--casino-styw-border-secondary) 0 0 0 3px,
+    var(--casino-styw-border-primary) 0 0 0 4px;
+}
+
+.staticContainer {
+  background-repeat: no-repeat;
+  background-position: 102%;
+  background-size: contain;
+}
+
+.contentContainer {
+  position: relative;
+
+  display: flex;
+
+  height: inherit;
+  overflow: hidden;
+
+  border-radius: 16px;
+  box-shadow: var(--casino-styw-border-primary) 1px 1px 10px 3px;
+}
+
+.leftContentWidget {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  width: 60vw;
+  padding-top: 15px;
+  padding-left: 14px;
+  overflow: hidden;
+
+  color: var(--casino-roulette-text-default);
+}
+
+.titleContainer {
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+.title {
+  padding: 2px 8px;
+  /* stylelint-disable-next-line scale-unlimited/declaration-strict-value */
+  margin: 0 2vw 0 0;
+
+  text-transform: uppercase;
+
+  background-color: var(--casino-roulette-background-default);
+  /* stylelint-disable property-no-vendor-prefix */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.title::after {
+  white-space: pre;
+
+  content: "\a";
+}
+
+.timerContainer {
+  padding-top: var(--spacing-2);
+}
+
+.rightContentWidget {
+  display: flex;
+
+  width: 40vw;
+  padding: var(--spacing-2) var(--spacing-2) var(--spacing-2) 0;
+
+  color: var(--neutrals-text-default);
+}
+
+.rightContainerWidget {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  width: 136px;
+  height: 100%;
+  margin-left: auto;
+}
+
+.gameBadgeContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: auto;
+
+  width: 48px;
+  height: 38px;
+
+  text-transform: uppercase;
+
+  transform: none;
+}
+
+.activeLogoImage {
+  width: 136px;
+  height: 136px;
+  clip-path: polygon(0% 0%, 78% 0%, 100% 16%, 100% 100%, 0% 100%);
+}
+
+.staticLogoImage {
+  width: 136px;
+  height: 136px;
+}
+
+.moreInfoLink {
+  z-index: 1;
+
+  flex: none;
+
+  max-width: 90%;
+  padding: 2px 6px 4px;
+
+  /* stylelint-disable-next-line scale-unlimited/declaration-strict-value */
+  margin-top: -8px;
+
+  color: var(--agnostic-action-tertiary-text-default);
+
+  background: var(--components-promotions-background-casino-t-cs);
+  border-radius: 4px;
+}
+
+.button {
+  display: block;
+
+  min-width: 110px;
+  max-width: fit-content;
+  padding: 14px;
+  margin-top: var(--spacing-2);
+  margin-bottom: var(--spacing-4);
+  /* stylelint-disable-next-line property-disallowed-list */
+  line-height: var(--line-height-4);
+  color: var(--agnostic-neutrals-text-default);
+  text-align: center;
+
+  background: var(--agnostic-action-primary-background-default);
+  border-radius: var(--spacing-1);
+}
+
+.backgroundImageContainer {
+  position: absolute;
+  right: 0;
+  z-index: -1;
+
+  width: 74%;
+  height: 100%;
+}
+
+.staticBackground {
+  clip-path: polygon(48% -2%, 100% 0%, 100% 16%, 100% 100%, 0% 100%);
+}
+
+.activeBackground {
+  clip-path: polygon(53% 0, 53% 0, 100% 0, 100% 100%, 0 100%);
+
+  animation: animationImage 0.6s forwards 0.4s;
+}
+
+@media screen and (max-width: 400px) {
+  .staticContainer {
+    background-size: 60% 100%;
+  }
+
+  .title {
+    /* stylelint-disable-next-line scale-unlimited/declaration-strict-value */
+    margin: 0 4vw 0 0;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .staticContainer {
+    background-size: 52% 100%;
+  }
+
+  .leftContentWidget {
+    z-index: 2;
+  }
+
+  .rightContentWidget {
+    width: 44vw;
+  }
+
+  .button {
+    width: 40vw;
+    /* stylelint-disable-next-line scale-unlimited/declaration-strict-value */
+    margin-bottom: 10%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .contentContainer {
+    align-items: center;
+  }
+
+  .container {
+    margin: var(--spacing-6);
+  }
+
+  .staticContainer {
+    background-size: 40% 100%;
+  }
+
+  .leftContentWidget {
+    display: flex;
+
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: left;
+
+    width: 70vw;
+    padding: 10px 0;
+  }
+
+  .titleContainer {
+    width: 40vw;
+    overflow: hidden;
+
+    color: var(--neutrals-text-default);
+  }
+
+  .title {
+    padding: 2px 4px 2px 34px;
+    margin: var(--spacing-5) 0;
+    /* stylelint-disable-next-line property-disallowed-list */
+    font-size: var(--text-size-10);
+    /* stylelint-disable-next-line property-disallowed-list */
+    line-height: var(--line-height-7);
+  }
+
+  .subtitle {
+    /* stylelint-disable-next-line property-disallowed-list */
+    font-size: var(--text-size-7);
+  }
+
+  .rightContentWidget {
+    width: 30vw;
+    padding: 12px 8px;
+  }
+
+  .rightContainerWidget {
+    width: 161px;
+  }
+
+  .activeRightContainerWidget {
+    display: flex;
+
+    width: 161px;
+  }
+
+  .activeLogoImage {
+    width: 161px;
+    height: 161px;
+  }
+
+  .staticLogoImage {
+    width: 161px;
+    height: 161px;
+    margin-bottom: 0;
+  }
+
+  .backgroundImageContainer {
+    width: 46%;
+  }
+
+  .staticBackground {
+    clip-path: polygon(54% -2%, 100% 0%, 100% 16%, 100% 100%, 0% 100%);
+  }
+
+  .button {
+    z-index: 2;
+  }
+}
+
+@keyframes animationImage {
+  0% {
+    clip-path: polygon(53% 0, calc(100% - 48px) 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  100% {
+    clip-path: polygon(53% 0%, calc(100% - 48px) 0, 100% calc(0% + 18px), 100% 100%, 0 100%);
+  }
+}

@@ -1,0 +1,6 @@
+fragment defaultProductPreference on DefaultProductPreference {
+  __typename
+  urn
+  defaultProductOptions
+  selectedDefaultProduct
+}

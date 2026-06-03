@@ -1,0 +1,21 @@
+.successfulDeposit {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+
+  color: var(--neutrals-text-default);
+}
+
+.successfulDepositIcon {
+  width: 54px;
+  height: 54px;
+}
+
+.successfulDepositTitle {
+  margin: var(--spacing-2) 0;
+}

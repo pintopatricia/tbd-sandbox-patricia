@@ -1,0 +1,27 @@
+"moreInfoDetails": [
+{{#each moreInfoDetails}}
+  {
+    "type": "{{type}}{{^type}}heading5{{/type}}",
+    "text": "{{text}}{{^text}}Heading{{/text}}",
+    "spans": {{#if spans}}
+    [
+      {{#each spans}}
+        {
+          "start": {{start}}{{^start}}0{{/start}},
+          "end": {{end}}{{^end}}25{{/end}},
+          "viewLink": {
+            {{#if viewLink}}
+              {{#with viewLink}}
+                {{> bff-view-link}}
+              {{/with}}
+            {{/if}}
+          }
+        }{{#unless @last}},{{/unless}}
+      {{/each}}
+    ]
+    {{else}}
+    null
+    {{/if}}
+  }{{#unless @last}},{{/unless}}
+{{/each}}
+]

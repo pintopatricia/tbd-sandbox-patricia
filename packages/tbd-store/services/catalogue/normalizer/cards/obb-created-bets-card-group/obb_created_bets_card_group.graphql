@@ -1,0 +1,22 @@
+fragment obbCreatedBetsCardGroup on ObbCreatedBetsCardGroup {
+  __typename
+  urn
+  obbCreatedBetsCardGroupTitle: title {
+    ...displayName
+  }
+  headerBadgeLabel {
+    ...displayName
+  }
+  headerViewLink {
+    viewUrn
+    viewUrl
+  }
+  cards {
+    edges {
+      cursor
+      node {
+        ...obbCreatedBetsCard
+      }
+    }
+  }
+}

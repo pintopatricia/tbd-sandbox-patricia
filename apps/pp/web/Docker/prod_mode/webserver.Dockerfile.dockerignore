@@ -1,0 +1,23 @@
+# Ignore everything
+**
+.git
+
+# Allowed files and directories
+!.yarnrc.yml
+!yarn.lock
+!package.json
+!packages/**
+!apps/pp/web/**
+!src/**
+!tools/**
+!babel.config.js
+!.browserslistrc
+!pql-manifest*
+!.yarn
+!apps/pp/reverse-proxy/**
+
+# Ignore unnecessary files inside allowed directories
+# This should go after the allowed directories
+**/node_modules/
+**/dist
+**/regression-tests

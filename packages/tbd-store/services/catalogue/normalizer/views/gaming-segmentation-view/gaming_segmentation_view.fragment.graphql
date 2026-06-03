@@ -1,0 +1,23 @@
+fragment gamingSegmentationView on GamingSegmentationView {
+  __typename
+  urn
+  url
+  items(first: $numberOfFilledCardsInView) {
+    ...viewItems
+  }
+  partialItems: items(first: 100) {
+    ...viewItemsPartial
+  }
+  bottomBar @include(if: $withBottomBar) {
+    ...bottomBar
+  }
+  leftSidebar @include(if: $withLeftSidebar) {
+    ...leftSidebar
+  }
+  regulatoryData @include(if: $withRegulatoryData) {
+    ...regulatoryData
+  }
+  xsellBar {
+    ...XSellBar
+  }
+}

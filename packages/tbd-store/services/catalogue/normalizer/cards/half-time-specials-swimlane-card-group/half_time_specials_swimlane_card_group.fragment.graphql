@@ -1,0 +1,35 @@
+fragment halfTimeSpecialsSwimlaneCardGroup on HalfTimeSpecialsSwimlaneCardGroup {
+  __typename
+  urn
+  halfTimeSpecialsCardGroupTitle: title
+  cardGroupSubtitle: subtitle
+  displayName {
+    translationKey
+  }
+  isDecorated
+  isIconSupportingTitle
+  halfTimeSpecialsFull: items(first: $numberOfFilledCardsInCardGroup) {
+    edges {
+      node {
+        ...matchStatSelectionCard
+      }
+    }
+  }
+  halfTimeSpecialsPartials: items {
+    ... on HalfTimeSpecialsSwimlaneCardGroupItemsConnection {
+      edges {
+        node {
+          ... on MatchStatSelectionCard {
+            urn
+            __typename
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment halfTimeSpecialsSwimlaneCardGroupPartial on HalfTimeSpecialsSwimlaneCardGroup {
+  __typename
+  urn
+}

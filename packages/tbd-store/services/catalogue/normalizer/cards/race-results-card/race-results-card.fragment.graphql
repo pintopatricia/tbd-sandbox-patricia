@@ -1,0 +1,12 @@
+fragment raceResultsCard on RaceResultsCard {
+  __typename
+  urn
+  race {
+    ...raceWithRaceRunnersPerformance
+  }
+}
+
+fragment raceResultsCardPartial on RaceResultsCard {
+  __typename
+  urn
+}

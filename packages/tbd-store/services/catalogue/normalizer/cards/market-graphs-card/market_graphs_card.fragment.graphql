@@ -1,0 +1,15 @@
+fragment marketGraphsCard on MarketGraphsCard {
+  __typename
+  urn
+  market {
+    ...exchangeMarketLiveData
+  }
+  runner {
+    ...runnerMarketGraph
+  }
+}
+
+fragment marketGraphsCardPartial on MarketGraphsCard {
+  __typename
+  urn
+}

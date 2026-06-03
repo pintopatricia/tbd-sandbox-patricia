@@ -1,0 +1,47 @@
+/* FIXME REMOVE THIS */
+:root {
+  --my-bets-header-title-mobile-padding: 0px 12px 0px 12px;
+  --my-bets-header-title-desktop-padding: 0px;
+}
+
+.header {
+  margin: 0 calc(var(--generic-switcher-card-desktop-left-right-margin) * -1);
+}
+
+.myBetsHeader {
+  display: flex;
+
+  flex-direction: column;
+
+  width: 100%;
+  margin: 0;
+
+  background-color: var(--my-bets-header-background-colour);
+}
+
+.content {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--my-bets-header-vertical-gap-secondary);
+}
+
+.myBetsHeaderAddOn {
+  display: flex;
+
+  align-items: flex-end;
+
+  background: var(--tabs-group-regular-background-colour);
+}
+
+/* Mobile */
+@media screen and (max-width: 899px) {
+  .sectionContainer {
+    padding: var(--my-bets-header-title-mobile-padding);
+  }
+
+  .header {
+    margin: 0;
+  }
+}

@@ -1,0 +1,19 @@
+fragment byTimeRangeMeetingCardGroup on ByTimeRangeMeetingCardGroup {
+  __typename
+  urn
+  cardGroupTitle: title
+  displayName {
+    translationKey
+  }
+  icon {
+    vector
+  }
+  meetingItems: items {
+    ...fullByTimeRangeMeetingCardGroupItems
+  }
+}
+
+fragment byTimeRangeMeetingCardGroupPartial on ByTimeRangeMeetingCardGroup {
+  __typename
+  urn
+}

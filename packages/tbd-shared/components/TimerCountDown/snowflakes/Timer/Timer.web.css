@@ -1,0 +1,35 @@
+.timerContainer {
+  display: flex;
+
+  flex: content;
+  flex-direction: column;
+
+  gap: var(--timer-horizontal-gap);
+
+  align-items: center;
+
+  width: fit-content;
+}
+
+.countDownTimer {
+  display: flex;
+
+  flex-direction: row;
+
+  gap: var(--timer-horizontal-gap);
+}
+
+.timerTopLabel {
+  font: var(--timer-title-typography);
+  color: var(--timer-title-colour);
+  text-decoration-line: var(--timer-title-typography-text-decoration-line);
+  text-transform: var(--timer-title-typography-text-transform);
+  letter-spacing: var(--timer-title-typography-letter-spacing);
+}
+
+.timerSign {
+  padding: var(--timer-padding);
+
+  font: var(--timer-label-typography);
+  color: var(--timer-title-colour);
+}

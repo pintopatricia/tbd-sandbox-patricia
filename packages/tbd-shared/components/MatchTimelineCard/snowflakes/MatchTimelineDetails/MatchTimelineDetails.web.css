@@ -1,0 +1,32 @@
+.matchTimelineDetails {
+  padding: var(--spacing-6) var(--spacing-2);
+
+  color: var(--neutrals-text-default);
+}
+
+.matchTimelineWrapper {
+  margin-bottom: var(--spacing-4);
+}
+
+.incidentEventsWrapper {
+  margin-bottom: var(--spacing-4);
+}
+
+.minuteByMinute {
+  text-align: center;
+}
+
+.minuteByMinuteTitle {
+  margin-bottom: var(--spacing-3);
+
+  color: var(--neutrals-text-default);
+  text-align: center;
+}
+
+.matchStats {
+  justify-content: center;
+
+  padding-right: var(--spacing-3);
+  padding-left: var(--spacing-3);
+  margin-bottom: var(--spacing-3);
+}

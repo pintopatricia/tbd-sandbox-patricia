@@ -1,0 +1,23 @@
+fragment virtualMarketCard on VirtualMarketCard {
+  __typename
+  urn
+  title
+  marketHierarchy {
+    ...virtualMarketHierarchy
+  }
+  displayRunners {
+    market {
+      ...virtualMarket
+    }
+  }
+  gameRulesViewLink {
+    viewUrn
+    viewUrl
+    viewDisplayMode
+  }
+}
+
+fragment virtualMarketCardPartial on VirtualMarketCard {
+  __typename
+  urn
+}

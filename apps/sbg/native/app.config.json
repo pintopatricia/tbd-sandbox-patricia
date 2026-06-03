@@ -1,0 +1,87 @@
+{
+  "APP_KEYS": {
+    "android": "V5sNqJQVGxRSjIf6",
+    "ios": "YpSA8eTvLXonmZb7"
+  },
+  "LOADING_URL": {
+    "subdomain": "apitbdn",
+    "domain": "skybet.com"
+  },
+  "ADOBE_APP_KEYS": {
+    "ios": {
+      "dev": "826cce81-3e22-4546-bb33-7c9fa8a6edb0",
+      "prod": "94c5f6d5-3ac6-4278-a1e2-b8214e99148b"
+    },
+    "android": {
+      "dev": "c72ee999-157f-459b-b5be-258c802dd0b4",
+      "prod": "1e3dfd84-fa30-40de-b6cd-7527dd9ed337"
+    }
+  },
+  "QM_KEYS": {
+    "android": "976717e3-5955-4fcf-8222-ac3dc2fb9303",
+    "ios": "f64dfbec-2711-4e78-8ce0-5f6fac288d57"
+  },
+  "QUALTRICS_KEYS": {
+    "brand": "paddypower",
+    "project": "ZN_5jehAW3mucykanI"
+  },
+  "SIGNALFX_CONFIGURATION": {
+    "endpoint": {
+      "realm": "eu0",
+      "rumAccessToken": "mZWRyr8mKfXiKrebIu8xqQ"
+    },
+    "session": {
+      "samplingRate": 0.2
+    },
+    "appName": "Sky Bet",
+    "deploymentEnvironment": "dev",
+    "appStartEnabled": true,
+    "enableDebugLogging": false
+  },
+  "SIGNALFX_MODULE_CONFIGURATION": {
+    "crashReportingModule": false,
+    "interactionsModule": true,
+    "networkMonitorModule": true,
+    "startupModule": true
+  },
+  "ONE_TRUST_KEYS": {
+    "ios": {
+      "dev": "019542f6-4ea8-7723-b256-ebf5a3731781-test",
+      "prod": "019542f6-4ea8-7723-b256-ebf5a3731781"
+    },
+    "android": {
+      "dev": "019542f7-aeb1-716d-a1c3-6f29ea557c43-test",
+      "prod": "019542f7-aeb1-716d-a1c3-6f29ea557c43"
+    }
+  },
+  "FEEDBACK_WEBVIEW_URL": "https://tbdassets.betfair.net",
+  "TBDN_DEFAULT_ENVIRONMENT": "qa",
+  "TBDN_RELEASE_MODE": "internal",
+  "TBDN_IOS_DEVICE_NAME": "iPhone 14",
+  "TBDN_IOS_PLATFORM_VERSION": "26.2",
+  "TBDN_CATALOGUE_VERSION": "v11",
+  "TBDN_INITIAL_COOKIES": "",
+  "TBDN_INITIAL_CUSTOM_ENVIRONMENT": "",
+  "expo": {
+    "name": "Sky Bet",
+    "slug": "tbd-native-sbg",
+    "jsEngine": "hermes",
+    "runtimeVersion": {
+      "policy": "fingerprint"
+    },
+    "updates": {
+      "enabled": true,
+      "url": "https://tbdnota.tools.flutter.com/manifest",
+      "codeSigningMetadata": {
+        "keyid": "main",
+        "alg": "rsa-v1_5-sha256"
+      },
+      "requestHeaders": {
+        "expo-channel-name": "sbg-production"
+      },
+      "codeSigningCertificate": "./certs/certificate.pem",
+      "checkAutomatically": "NEVER",
+      "fallbackToCacheTimeout": 0
+    }
+  }
+}

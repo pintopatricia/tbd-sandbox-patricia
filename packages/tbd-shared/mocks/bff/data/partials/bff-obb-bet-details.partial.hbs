@@ -1,0 +1,24 @@
+"id": "{{id}}",
+"receiptId": "{{receiptId}}",
+"betType": "{{betType}}",
+"placedDate": "{{placedDate}}",
+{{#if price}}
+  {{#with price}}
+    "price":
+      {
+        {{> bff-sportsbook-odds}}
+      },
+  {{/with}}
+{{/if}}
+"stake": {{stake}},
+"potentialPayout": {{potentialPayout}},
+"currency": "{{currency}}",
+"outcomeBasedLegs": [
+  {{#each outcomeBasedLegs}}
+    {
+      {{> bff-obb-placed-outcome-based-leg}}
+    }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+  ],
+"__typename": "{{__typename}}{{^__typename}}BetDetails{{/__typename}}"

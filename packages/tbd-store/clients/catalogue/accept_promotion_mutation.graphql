@@ -1,0 +1,18 @@
+mutation AcceptPromotion(
+  $urn: URN!
+  $amount: Float
+  $throttlesOn: [String!]
+  $throttlesOff: [String!]
+  $productExclusions: [ProductExclusion!]
+)
+@productExclusions(productExclusions: $productExclusions)
+@throttlesOn(throttlesOn: $throttlesOn)
+@throttlesOff(throttlesOff: $throttlesOff) {
+  acceptPromotion(urn: $urn, amount: $amount) {
+    responseCode
+    responseMessage
+    promotion {
+      ...imsPromotion
+    }
+  }
+}

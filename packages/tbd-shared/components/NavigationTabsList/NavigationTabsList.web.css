@@ -1,0 +1,20 @@
+.container {
+  margin: 0;
+}
+
+.container > * {
+  gap: var(--tabs-group-regular-vertical-gap);
+}
+
+.settingsView {
+  display: flex;
+
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.settingsView > :first-child {
+  position: sticky;
+  top: 0;
+  z-index: var(--header-stack);
+}

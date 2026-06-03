@@ -1,0 +1,13 @@
+"__typename": "{{__typename}}{{^__typename}}ObbPvpParams{{/__typename}}",
+"participantIdA": {
+    {{#with participantIdA}}
+        {{> bff-obb-participant}}
+    {{/with}}
+},
+"participantIdB": {
+    {{#with participantIdB}}
+        {{> bff-obb-participant}}
+    {{/with}}
+},
+"outcomeId": "{{outcomeId}}{{^outcomeId}}GOALS_TIME_ADJUSTED{{/outcomeId}}",
+"timePeriodId": "{{timePeriodId}}{{^timePeriodId}}MATCH{{/timePeriodId}}"

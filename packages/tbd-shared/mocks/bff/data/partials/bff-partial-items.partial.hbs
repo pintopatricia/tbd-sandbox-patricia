@@ -1,0 +1,419 @@
+"edges": [
+  {{#each partialEdges}}
+    {
+      {{#if date}}"date": "{{date}}",{{/if}}
+      {{#with node}}
+        "node": {
+          {{#ifEquals __typename "ObbEventPopularsCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:obb:card:eventPopulars:aTlm5hIAACIAfTQD/e/33755137{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "ObbCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:obb:cardgroup:ZylnFBIAAB8AKIpz/e/33755137{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "FixtureCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:fixture:29359895{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "EventHeaderCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:eventHeader:1179447017/0{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "BroadcastsCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:raceBroadcasts:1.1{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "MarketCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:market:29436223{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "EventMarketCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:eventPrimaryMarket:29359895{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "SwimlaneCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:group#topInplayEventsInSport#1{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "RacingSwimlaneCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:group#racingSwimlane{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "PopularSwimlaneCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:cardgroup:popularSwimlane:1{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "SwimlaneIndexedCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:group:swimlaneindexed#topInplayEventsInSport#1{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "ByTimeRangeMeetingCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:cardgroup:byTimeRangeMeeting:7|34442929|15{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "FutureRacingCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:future#1{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "RacesByTimeRangeCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:racesbytime#1{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "FilteredCouponCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:cardgroup:filtered#1{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "ExpandableCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:cardgroup:expandable:924.1|1|1{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "HighlightedSelectionCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:highlightedSelection:924.235739888/35458128{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "PebbleCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:pebbleMarkets:924.229299861{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "EventViewLinkCard"}}
+          "__typename": "{{__typename}}",
+          "urn":"ppb:tbd:card:eventViewLink:{{eventId}}{{^eventId}}29359895{{/eventId}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "HeadToHeadCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:headToHead:29465861{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "TeamFormCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:teamForm:29465861{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "MatchStatsCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:matchStats:29359895{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "EventStatsCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:eventStats:29359895{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "MatchTimelineCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:matchTimeline:29465861{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "TeamLineupCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:teamLineup:29359895{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "QuickLinksCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:quickLinks:allCompetitions:1{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "QuicklinksGridCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:cardgroup:quicklinksGrid:YJlMQREAAHJJY7xU/s/1{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "ViewZone"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:view:zone:multifunctionalModule:1{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "ContentSummaryCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:contentSummary:sport:1{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "SegmentedCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:segmented:card:group:ppb|tbd|card|group|curatedGames|segmented-zone{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "GameInfoCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:game:game-1{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "RaceDetailsCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:raceDetails:1.171782025/24000991/0{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "RaceMarketCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:raceMarket:1.171344945/16257108/0{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "RaceViewLinksCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:raceViewLinks:7|30174778.1630|DROPDOWN{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "RaceSwitcherCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:raceswitcher:30184830.1205{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "GenericSwitcherCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:genericswitcher:1{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "NavigationTabsList"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:navigationTabsList:YGx5NRIAADPXa1tE/s/1{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "NavigationTab"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:view:navigationTab:YGxxkxIAACIAazfZ/s/1{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "FavouriteMarketsNavigationTab"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:favouriteMarkets:navigationTab:favourite-markets/e/1{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "RunnerInfoCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:runnerInfo:130446147.1550/24542844{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "MarketGraphsCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:recentRaces:30518412.0220/38093494{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "ImsPromotionStateCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:imsPromotionState:gaming-imsPromotion1{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "ImsPromotionDetailsCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:imsPromotionDetails:gaming-imsPromotion1{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "ImsPromotionTermsAndConditionsCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:imsPromotionTermsAndConditions:gaming-promotion-1{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "SportViewLinkCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:sportViewLink:1{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "CompetitionViewLinkCard"}}
+          "__typename": "{{__typename}}",
+            "urn": "{{urn}}{{^urn}}ppb:tbd:card:competitionViewLink:12345{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "EmbeddedViewCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:embeddedView:personalDetails{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "PreferenceSingleChoiceCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:preference:singleChoice:sportsbookOddsDisplay{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename null}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:market:29436223{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "ImsPromotionErrorCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:imsPromotionError:gaming-promotion-1{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "BetCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:bet:group:betcardgroup-1{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "RegulatoryCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:regulatory:footer{{/urn}}"
+          {{/ifEquals}}
+          {{#ifEquals __typename "ForbiddenContentCard"}}
+            {{> bff-forbidden-content-card }}
+          {{/ifEquals}}
+        {{#ifEquals __typename "SportsbookBetCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:sbkBet:926229536{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "SportsbookExpandableLegCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:group:sbkExpandableLeg:1179447017{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "SportsbookLotteriesBetLegCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:cardgroup:sbkLotteriesBetLeg:1111111111{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "SportsbookBetLegCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:sbkBetLeg:1179447017/0{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "BetLegCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:sbkBetLeg:1179447017/0{{/urn}}"
+          {{/ifEquals}}
+        {{#ifEquals __typename "GenericViewLinkCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:genericViewLink:generic:12345{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "CompetitionRegionCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:competitionRegion:12345{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "CouponHeaderCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:couponheader:2134{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "GamingCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:group:gaming:2134{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "RaceResultsCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:raceResults:30174778.1630{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "TimeFormBroadCastsCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:timeFormBroadCasts:30280765.1830{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "GridCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:grid:default{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "MarketExtendedCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:marketExtended:default{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "VirtualEventDetailsCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:virtualEventDetails:10|13532200{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "ExpandableMarketCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:expandableMarket:1.198689239;924.306543421|0|false|false{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "VirtualMarketCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:virtualMarket:924.307595994{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "PopularBetBuilderCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:bettingOpportunity:popular:bo-1|1|0|0{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "PopularSelectionsCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:popularselections:1{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "PopularMultiplesBetBuilderCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:bettingOpportunity:popular:bo-1|1|0|0{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "CorrectScoreCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:correctScore:924.1|1{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "SelectableItemsCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{{urn}}}{{^urn}}ppb:tbd:cardgroup:selectableItems:Ytki8REAACYA-5OJ/s/7{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "OutrightMarketListCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:outrightMarketList:Y1FoEBEAADtSDlBF/c/1234{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "PromotionCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:promotion:cms/Y5c_2BAAACMAHvSq{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "MiniPromoBannerCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:miniPromoBanner:ZOi-hhAAACcAEI21/s/1{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "LoyaltyPromotion"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:loyaltyPromotion:MINICHECKMATE1{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "SportRibbonCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:cardgroup:sportRibbon:YJlMQREAAHJJY7xU/cv/home{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "MarketBetCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:cardgroup:marketBetCard:1.167249009|OPEN{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "MarketBetCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:marketBet:1.167249197{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "MarketBetExpandableCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:cardgroup:marketBetExpandableCard:1.167249197|OPEN{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "MarketBetSelectionCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:cardgroup:marketBetSelectionCard:1.215601058|OPEN{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "MarketBetSelectionCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:marketBetSelection:315519424937-M{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "EmbeddedContentCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:embeddedContent:1{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "SportsbookBetInfoCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:sbkBetInfo:1179447017{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "PackagedCreatedBetsCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:packagedcreatedbets:Zp5nEBAAACIAlHmk/s/1{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "PriceBoostMultisListCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:priceboostmultislist:Zp5nEBAAACIAlHmk/s/1{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "PriceBoostMultisCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:priceboostmultis:Zp5nEBAAACIAlHmk/s/1{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "PriceBoostMultiplePromoCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:priceboostmultiplepromocard:pph/B10G10ASCOTSTAT3{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "StatsContentCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:stats:cardgroup:statsContent:Zo_esxAAACIAftCe/e/1{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "StatsBroadcastsCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:stats:card:broadcasts:1{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "StatsPlayersInPlayCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:stats:card:playersInPlay:1{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "IncidentsCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:incident:29465861{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "StatsLineupsCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:stats:card:lineups:1{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "BlurbCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:blurb:Z-1uQRAAAB8AZ8lB/s/1{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "HalfTimeSpecialsSwimlaneCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:cardgroup:halfTimeSpecialsSwimlane:aCyq4RAAACMAaNgm/e/12345{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "LottoCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:lotto:aKdBBxAAACAAf-Hv/s/29125756{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "SportsbookChatbotCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:sportsbook-chatbot:default{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "ObbCreatedBetsCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:obb:createdBetsCardGroup:aMvBuBIAACIAVFHF/cv/home{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "PenaltyTakersCard"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:tbd:card:penaltyTakers:acO6QhQAAF2E2RnN/e/35449296{{/urn}}"
+        {{/ifEquals}}
+        {{#ifEquals __typename "ObbOnboardingCardsCardGroup"}}
+          "__typename": "{{__typename}}",
+          "urn": "{{urn}}{{^urn}}ppb:obb:card:onboardingCards:aTlm5hIAACIAfTQD/e/33755137{{/urn}}"
+        {{/ifEquals}}
+        }
+      {{/with}}
+    }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+]

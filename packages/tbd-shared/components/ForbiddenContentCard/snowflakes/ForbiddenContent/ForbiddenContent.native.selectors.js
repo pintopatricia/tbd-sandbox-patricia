@@ -1,0 +1,7 @@
+const FORBIDDEN_CONTENT = "forbidden-content";
+const FORBIDDEN_CONTENT_LABEL_CONTAINER = `${FORBIDDEN_CONTENT}-label-container`;
+
+module.exports = {
+  FORBIDDEN_CONTENT,
+  FORBIDDEN_CONTENT_LABEL_CONTAINER,
+};

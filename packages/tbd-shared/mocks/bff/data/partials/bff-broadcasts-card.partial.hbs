@@ -1,0 +1,9 @@
+"__typename": "{{__typename}}{{^__typename}}BroadcastsCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:broadcast:30265860.1800{{/urn}}",
+"isCollapsed": {{#unless isCollapsed}}false{{else}}true{{/unless}},
+{{#with broadcasts}}
+"broadcasts": {
+  "dataVizUrl": {{#if dataVizUrl}}"{{dataVizUrl}}"{{else}}null{{/if}},
+  "liveVideoUrl": {{#if liveVideoUrl}}"{{liveVideoUrl}}"{{else}}null{{/if}}
+}
+{{/with}}

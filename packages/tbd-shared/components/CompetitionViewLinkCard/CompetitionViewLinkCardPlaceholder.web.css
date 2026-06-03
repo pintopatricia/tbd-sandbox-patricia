@@ -1,0 +1,5 @@
+.placeholder {
+  width: 88px;
+  height: 68px;
+  padding: var(--spacing-2);
+}

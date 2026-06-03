@@ -1,0 +1,129 @@
+.card {
+  display: flex;
+
+  flex-direction: column;
+
+  width: var(--squad-bet-card-secondary-width);
+  overflow: hidden;
+
+  background-color: var(--card-background-colour);
+  filter: var(--card-drop-shadow);
+  border-radius: var(--card-border-radius);
+}
+
+.header {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--football-scoreboard-vertical-gap);
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  padding: var(--squad-bet-card-secondary-header-padding);
+
+  background-color: var(--squad-bet-card-secondary-header-background-colour);
+}
+
+.durationContainer {
+  width: var(--squad-bet-card-secondary-placeholder-large-width);
+  height: var(--squad-bet-card-secondary-placeholder-medium-height);
+}
+
+.teamsRow {
+  display: flex;
+
+  flex-direction: row;
+
+  gap: var(--football-scoreboard-horizontal-gap);
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: var(--team-medium-container-min-height-sizing);
+}
+
+.teamContainer {
+  flex: 1;
+
+  min-width: 0;
+  height: var(--squad-bet-card-secondary-placeholder-medium-height);
+}
+
+.scoreContainer {
+  flex-shrink: 0;
+
+  width: var(--squad-bet-card-secondary-placeholder-small-width);
+  height: var(--squad-bet-card-secondary-placeholder-xsmall-height);
+}
+
+.outcomesContainer {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.marketSection {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--squad-bet-card-secondary-vertical-gap);
+
+  padding: var(--squad-bet-card-secondary-padding);
+}
+
+.marketContent {
+  display: flex;
+
+  flex-direction: row;
+
+  gap: var(--squad-bet-card-secondary-vertical-gap);
+
+  align-items: center;
+}
+
+.marketContentContainer {
+  flex: 1;
+
+  height: var(--squad-bet-card-secondary-placeholder-large-height);
+}
+
+.buttonContainer {
+  width: var(--squad-bet-card-secondary-placeholder-xsmall-width);
+  height: var(--squad-bet-card-secondary-placeholder-large-height);
+}
+
+.statsContainer {
+  width: 100%;
+}
+
+.statsPlaceholderContainer {
+  width: 100%;
+  height: var(--squad-bet-card-secondary-placeholder-medium-height);
+}
+
+.footer {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: flex-end;
+}
+
+.seeAllContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: var(--squad-bet-card-secondary-padding);
+}
+
+.linkContainer {
+  width: var(--squad-bet-card-secondary-placeholder-large-width);
+  height: var(--squad-bet-card-secondary-placeholder-medium-height);
+}

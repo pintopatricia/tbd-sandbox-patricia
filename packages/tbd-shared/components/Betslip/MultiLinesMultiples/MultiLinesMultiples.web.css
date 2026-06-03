@@ -1,0 +1,14 @@
+.container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.controls {
+  padding: var(--spacing-2) 0;
+
+  border-top: 1px solid var(--neutrals-border-elevation3);
+}
+
+.multiple {
+  margin: 0;
+}

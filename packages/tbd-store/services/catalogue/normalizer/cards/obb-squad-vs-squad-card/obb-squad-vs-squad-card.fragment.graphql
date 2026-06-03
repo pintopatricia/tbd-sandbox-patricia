@@ -1,0 +1,50 @@
+fragment obbSquadVsSquadCard on ObbSquadVsSquadCard {
+  __typename
+  urn
+  title {
+    ...displayName
+  }
+  outcomesText: outcomesLabel {
+    ...displayName
+  }
+  statsText: statsLabel {
+    ...displayName
+  }
+  showModalEntryPoint
+  participantInfo {
+    ...displayName
+  }
+  filterTags {
+    label {
+      ...displayName
+    }
+    type
+  }
+  event {
+    __typename
+    urn
+    name
+    eventId
+  }
+  eventParticipants {
+    ...obbFootballPlayer
+  }
+  firstSquadParticipants {
+    ... on ObbFootballPlayer {
+      __typename
+      urn
+    }
+  }
+  secondSquadParticipants {
+    ... on ObbFootballPlayer {
+      __typename
+      urn
+    }
+  }
+  incidentType {
+    id
+  }
+  defaultLegs {
+    ...obbLeg
+  }
+}

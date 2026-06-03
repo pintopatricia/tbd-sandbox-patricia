@@ -1,0 +1,19 @@
+{
+  "playerCardContainer": "._2292222bae9567ae-playerCardContainer",
+  "playerInfoContainer": "._2292222bae9567ae-playerInfoContainer",
+  "playerNameContainer": "._2292222bae9567ae-playerNameContainer",
+  "firstName": "._2292222bae9567ae-firstName",
+  "lastName": "._2292222bae9567ae-lastName",
+  "position": "._2292222bae9567ae-position",
+  "playerValuesContainer": "._2292222bae9567ae-playerValuesContainer",
+  "playerStats": "._2292222bae9567ae-playerStats",
+  "statsLabel": "._2292222bae9567ae-statsLabel",
+  "statsContainer": "._2292222bae9567ae-statsContainer",
+  "statsValue": "._2292222bae9567ae-statsValue",
+  "odds": "._2292222bae9567ae-odds",
+  "placeholder": "._2292222bae9567ae-placeholder",
+  "highlighted": "._2292222bae9567ae-highlighted",
+  "labelDisabled": "._2292222bae9567ae-labelDisabled",
+  "supportingTextDisabled": "._2292222bae9567ae-supportingTextDisabled",
+  "statsDisabled": "._2292222bae9567ae-statsDisabled"
+}

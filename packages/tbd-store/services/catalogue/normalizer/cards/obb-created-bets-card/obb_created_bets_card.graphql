@@ -1,0 +1,26 @@
+fragment obbCreatedBetsCard on ObbCreatedBetsCard {
+  __typename
+  urn
+  fixture {
+    ...fixture
+    sportevent {
+      ...sportEvent
+    }
+  }
+  eventViewLink {
+    viewUrn
+    viewUrl
+  }
+  footerViewLink {
+    viewUrn
+    viewUrl
+  }
+  bettingOpportunities {
+    participants {
+      ...obbFootballPlayer
+    }
+    leg {
+      ...obbLeg
+    }
+  }
+}

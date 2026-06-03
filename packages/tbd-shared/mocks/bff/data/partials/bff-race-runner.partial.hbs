@@ -1,0 +1,42 @@
+"__typename": "{{__typename}}{{^__typename}}RaceRunner{{/__typename}}",
+"urn":"{{urn}}{{^urn}}ppb:tbd:racerunner:30446147.1550/24542844{{/urn}}",
+"raceURN":"{{raceURN}}{{^raceURN}}ppb:tbd:race:30446147.1550{{/raceURN}}",
+"selectionId": {{selectionId}}{{^selectionId}}111111111{{/selectionId}},
+{{#if form}}
+  "form": "{{form}}",
+{{/if}}
+{{#if apprenticeClaim}}
+  "apprenticeClaim": "{{apprenticeClaim}}",
+{{/if}}
+{{#if crsDisWinFavText}}
+  "crsDisWinFavText": "{{crsDisWinFavText}}",
+{{/if}}
+{{#if rating}}
+  "rating": "{{rating}}",
+{{/if}}
+{{#if rating123}}
+  "rating123": {{rating123}},
+{{/if}}
+{{#if ratingStars}}
+  "ratingStars": {{ratingStars}},
+{{/if}}
+{{#if comments}}
+  "comments": "{{comments}}",
+{{/if}}
+{{#if status}}
+  "status": "{{status}}",
+{{/if}}
+"horse": {
+  {{#if horse}}
+      {{#with horse}}
+          {{> bff-horse-details}}
+      {{/with}}
+  {{/if}}
+},
+"details": {
+  {{#if details}}
+      {{#with details}}
+          {{> bff-race-runner-details}}
+      {{/with}}
+  {{/if}}
+}

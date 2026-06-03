@@ -1,0 +1,21 @@
+# Ignore everything
+**
+
+# Allowed files and directories
+!packages/**
+!.yarnrc.yml
+!yarn.lock
+!package.json
+!apps/sbg/native/**
+!.yarn/**
+!pql-manifest*
+
+# Ignore unnecessary files inside allowed directories
+# This should go after the allowed directories
+**/node_modules/
+**/dist
+**/ios
+**/reports
+**/coverage
+apps/sbg/native/android/app/build
+**/storybook-visual-tests

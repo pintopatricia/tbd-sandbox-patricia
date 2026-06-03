@@ -1,0 +1,15 @@
+query BetsResult($bets: [InputBet!]!) {
+  betsResult(bets: $bets) {
+    resultType
+    legs {
+      legNumber
+      runners {
+        id
+        marketId
+        result
+        resultType
+      }
+    }
+    result
+  }
+}

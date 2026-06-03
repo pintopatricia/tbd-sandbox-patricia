@@ -1,0 +1,10 @@
+fragment preferenceSingleChoice on PreferenceSingleChoice {
+  __typename
+  urn
+  preferenceKey
+  preferenceValues {
+    value
+    translationKey
+  }
+  selectedValueIndex
+}

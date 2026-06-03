@@ -1,0 +1,111 @@
+[class*="childWrapper"]:has(.navigation),
+.navigation {
+  width: 200px;
+}
+
+[class*="childWrapper"]:has(.swimlaneItemContainer) {
+  --swimlane-item-container-width: 87%;
+}
+
+[class*="childWrapper"]:has(.highlightedSelection) {
+  width: var(--swimlane-item-container-width);
+  max-width: var(--swimlane-item-container-max-width);
+}
+
+.highlightedSelection {
+  max-width: 100%;
+}
+
+[class*="childWrapper"]:has(.competitionViewLink) {
+  flex-grow: 0;
+}
+
+[class*="childWrapper"]:has(.game) {
+  width: 70vw;
+}
+
+[class*="childWrapper"]:has(.gamingLink) {
+  height: var(--highlighted-link-card-container-sizing);
+}
+
+[class*="childWrapper"]:has(.swimlaneItemContainer.sportviewlink) {
+  flex-grow: initial;
+
+  max-width: 94px;
+}
+
+.swimlaneItemContainer.sportviewlink {
+  max-width: 94px;
+}
+
+[class*="childWrapper"]:has(.swimlaneItemContainer.byTimeRangeMeeting) {
+  display: flex;
+
+  flex-grow: 0;
+
+  min-width: 59px;
+}
+
+[class*="childWrapper"]:has(.swimlaneItemContainer.promoCard) {
+  align-self: flex-end;
+}
+
+[class*="childWrapper"]:has(.swimlaneItemContainer.snap) {
+  display: block;
+
+  width: var(--swimlane-item-container-width);
+  max-width: var(--swimlane-item-container-max-width);
+  margin-left: var(--spacing-3);
+  scroll-snap-align: start;
+  scroll-margin: 0 var(--spacing-3);
+}
+
+.swimlaneItemContainer.snap {
+  max-width: 100%;
+}
+
+[class*="childWrapper"]:has(.swimlaneItemContainer.supportingContent) {
+  flex: 0 0 100px;
+
+  height: 56px;
+  padding: 0 var(--spacing-1);
+}
+
+[class*="childWrapper"]:has(.extended.snap),
+[class*="childWrapper"]:has(.highlightedSelection.extended) {
+  display: block;
+
+  width: 93%;
+  max-width: none;
+}
+
+[class*="childWrapper"]:has(.swimlaneItemContainer.snap):last-child {
+  margin-right: var(--spacing-3);
+}
+
+[class*="childWrapper"]:has(.swimlaneItemContainer.supportingContent):first-child {
+  margin-left: var(--spacing-3);
+}
+
+[class*="childWrapper"]:has(.swimlaneItemContainer.competitionViewLink):not(:last-child) {
+  margin-right: var(--spacing-half);
+}
+
+.swimlaneItemContainer {
+  width: 100%;
+}
+
+/* DESKTOP specific overwrites */
+@media screen and (min-width: 900px) {
+  [class*="childWrapper"]:has(.swimlaneItemContainer.snap) {
+    margin-left: 0;
+  }
+
+  [class*="childWrapper"]:has(.swimlaneItemContainer.snap):not(:last-child) {
+    margin-right: var(--spacing-3);
+  }
+
+  [class*="childWrapper"]:has(.swimlaneItemContainer.snap):last-child {
+    margin-right: 0;
+  }
+}

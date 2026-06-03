@@ -1,0 +1,25 @@
+{
+  "data": {
+    {{#with withAppContext}}
+      "AppContext": {{> bff-app-context }},
+    {{/with}}
+    "GamingSearch": {
+        "__typename": "{{__typename}}{{^__typename}}GamingSearchCardConnection{{/__typename}}",
+        "edges": [
+          {{#each gamingSearch.edges}}
+            {
+              "__typename": "{{__typename}}{{^__typename}}GamingCardEdge{{/__typename}}",
+              "node": {
+                "__typename": "{{node.__typename}}{{^node.__typename}}GameCard{{/node.__typename}}",
+                "urn": "{{node.urn}}",
+                {{#with node.game}}
+                 "game": { {{> bff-game }} }
+                {{/with}}
+              }
+            }
+            {{#unless @last}},{{/unless}}
+          {{/each}}
+        ]
+    }
+  }
+}

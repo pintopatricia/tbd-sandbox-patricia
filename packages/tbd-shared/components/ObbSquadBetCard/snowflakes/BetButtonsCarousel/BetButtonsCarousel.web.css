@@ -1,0 +1,57 @@
+.carouselContainer {
+  box-sizing: border-box;
+  display: flex;
+
+  align-items: center;
+
+  width: 100%;
+}
+
+.carouselOuter {
+  flex: 1;
+
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+
+  scrollbar-width: none;
+
+  -ms-overflow-style: none;
+}
+
+.carouselOuter::-webkit-scrollbar {
+  display: none;
+}
+
+.carouselViewport {
+  display: flex;
+
+  width: fit-content;
+}
+
+.itemContainerStyle {
+  height: var(--price-button-sbk-container-sizing);
+  padding: 0 calc(var(--bet-button-carousel-buttons-horizontal-gap) / 2);
+}
+
+.carouselArrow {
+  height: var(--price-button-sbk-container-sizing);
+
+  cursor: pointer;
+}
+
+.carouselArrowLeft {
+  margin-right: calc(
+    var(--bet-button-carousel-swimlane-horizontal-gap) - (var(--bet-button-carousel-buttons-horizontal-gap) / 2)
+  );
+}
+
+.carouselArrowRight {
+  margin-left: calc(
+    var(--bet-button-carousel-swimlane-horizontal-gap) - (var(--bet-button-carousel-buttons-horizontal-gap) / 2)
+  );
+}
+
+.carouselIconContainer {
+  width: var(--bet-button-carousel-icon-sizing);
+  height: var(--bet-button-carousel-icon-sizing);
+}

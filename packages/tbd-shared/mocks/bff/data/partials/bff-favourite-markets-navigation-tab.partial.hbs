@@ -1,0 +1,31 @@
+"__typename": "FavouriteMarketsNavigationTab",
+"urn": "{{{urn}}}{{^urn}}ppb:tbd:favouriteMarkets:navigationTab:favourite-markets/e/34731560{{/urn}}",
+{{#with tabTitle}}
+  "tabTitle": {
+    {{> bff-translatable-text}}
+  },
+{{/with}}
+{{#with tabViewLink}}
+  "tabViewLink": {
+    {{> bff-view-link}}
+  },
+{{/with}}
+{{#with metadata}}
+  "metadata": {
+    {{#with total}}
+      "total": {
+        {{> bff-favourite-markets-count-metadata}}
+      }
+    {{/with}}
+  },
+{{/with}}
+{{#with full}}
+  "full": {
+    {{> bff-items}}
+  },
+{{/with}}
+{{#with partials}}
+  "partials": {
+    {{> bff-partial-items}}
+  }
+{{/with}}

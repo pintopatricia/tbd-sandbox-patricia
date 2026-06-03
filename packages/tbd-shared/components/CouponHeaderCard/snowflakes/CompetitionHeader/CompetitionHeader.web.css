@@ -1,0 +1,99 @@
+.competitionHeader {
+  display: flex;
+
+  gap: var(--competition-header-horizontal-gap-primary);
+
+  align-items: center;
+
+  height: var(--competition-header-container-sizing);
+  padding: var(--competition-header-padding);
+
+  background-color: var(--competition-header-default-background-colour);
+}
+
+.competitionHeader:hover {
+  color: var(--competition-header-hover-text-content-text-colour);
+
+  background-color: var(--competition-header-hover-background-colour);
+}
+
+.titleLink {
+  display: flex;
+
+  flex-grow: 1;
+
+  align-items: center;
+
+  height: 100%;
+  overflow: hidden;
+
+  font: var(--competition-header-default-title-typography);
+  color: var(--competition-header-default-text-title-colour);
+  text-decoration-line: var(--competition-header-default-title-typography-text-decoration-line);
+  text-transform: var(--competition-header-default-title-typography-text-transform);
+  letter-spacing: var(--competition-header-default-title-typography-letter-spacing);
+}
+
+.titleLink:hover {
+  font: var(--competition-header-hover-title-typography);
+  color: var(--competition-header-hover-text-title-colour);
+  text-decoration-line: var(--competition-header-hover-title-typography-text-decoration-line);
+  text-transform: var(--competition-header-hover-title-typography-text-transform);
+  letter-spacing: var(--competition-header-hover-title-typography-letter-spacing);
+}
+
+.titleLink:focus {
+  text-decoration: none;
+}
+
+.title {
+  flex-grow: 1;
+
+  align-items: flex-start;
+
+  overflow: hidden;
+
+  font: var(--competition-header-default-title-typography);
+  color: var(--competition-header-default-text-title-colour);
+  text-decoration-line: var(--competition-header-default-title-typography-text-decoration-line);
+  text-overflow: ellipsis;
+  text-transform: var(--competition-header-default-title-typography-text-transform);
+  letter-spacing: var(--competition-header-default-title-typography-letter-spacing);
+  white-space: nowrap;
+}
+
+.columns {
+  display: flex;
+
+  flex-shrink: 0;
+
+  gap: var(--competition-header-horizontal-gap-secondary);
+
+  height: 100%;
+}
+
+.column {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: var(--competition-header-column-sizing);
+
+  font: var(--competition-header-content-text-typography);
+  color: var(--competition-header-default-text-content-text-colour);
+  text-decoration-line: var(--competition-header-content-text-typography-text-decoration-line);
+  text-transform: var(--competition-header-content-text-typography-text-transform);
+  letter-spacing: var(--competition-header-content-text-typography-letter-spacing);
+}
+
+.columnText {
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.columnStats {
+  width: var(--competition-header-stats-column-sizing);
+}

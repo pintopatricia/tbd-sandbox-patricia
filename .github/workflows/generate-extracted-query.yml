@@ -1,0 +1,81 @@
+name: generate extracted query file
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - packages/tbd-shared/**/*.graphql.ts
+      - packages/tbd-store/**/*.graphql.ts
+      - packages/tbd-shared/**/*.graphql.ts
+      - packages/tbd-shared/**/*.graphql.tsx
+      - packages/tbd-store/clients/catalogue/**/*.graphql
+      - packages/tbd-store/services/catalogue/**/*.graphql
+  workflow_dispatch:
+
+jobs:
+  generate-extracted-query:
+    runs-on:
+      ubuntu-self-hosted
+    env:
+      GITHUB_TOKEN: ${{secrets.BFF_PAT}}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+      - name: Install yarn
+        run: corepack enable
+      - name: Cache node dependencies
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Install node dependencies
+        run: yarn install
+      - name: Build Projects
+        run: yarn run prepare
+      - name: Get last workflow run ID
+        id: get-last-run-id
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const runs = await github.rest.actions.listWorkflowRuns({
+              owner: "Flutter-Global",
+              repo: "tbd",
+              workflow_id: 'generate-extracted-query.yml',
+              status: 'success'
+            });
+            const lastRun = runs.data.workflow_runs
+              .sort((a, b) => new Date(b.run_started_at).getTime() - new Date(a.run_started_at).getTime())
+              .find((run) => run.conclusion === "success");
+            return lastRun.id
+      - name: Download removed query file
+        uses: actions/download-artifact@v4
+        with:
+          name: extracted_queries
+          path: ../
+          run-id: ${{ steps.get-last-run-id.outputs.result }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Move committed generated query file
+        run: cp ../extracted_queries_v10.json packages/tbd-store/clients/catalogue/extracted_queries_v10.json
+      - name: Generate Files
+        run: yarn run compile-graphql
+      - name: Check for differences
+        run: |
+          diff_output=$(git diff packages/tbd-store/clients/catalogue/extracted_queries_v10.json)
+          if [ -n "$diff_output" ]; then
+            echo "Differences found between $file1 and $file2:"
+            echo "$diff_output"
+
+            exit 1
+          else
+            echo "No differences found between $file1 and $file2."
+          fi
+      - name: Upload altered query file
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: extracted_queries
+          path: packages/tbd-store/clients/catalogue/extracted_queries_v10.json

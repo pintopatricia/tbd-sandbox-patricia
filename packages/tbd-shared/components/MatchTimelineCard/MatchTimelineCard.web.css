@@ -1,0 +1,30 @@
+.matchTimelineCard {
+  height: 100%;
+}
+
+.content {
+  display: flex;
+
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.newEventContainer {
+  position: fixed;
+  top: 100px;
+  z-index: var(--header-stack);
+
+  width: 100%;
+
+  text-align: center;
+}
+
+.newEventContainer button {
+  padding: var(--spacing-2) var(--spacing-4);
+  margin: auto;
+
+  text-align: center;
+
+  background-color: var(--neutrals-background-elevation4);
+  border-radius: 4px;
+}

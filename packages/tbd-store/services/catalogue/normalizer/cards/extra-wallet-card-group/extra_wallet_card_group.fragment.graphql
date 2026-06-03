@@ -1,0 +1,19 @@
+fragment extraWalletCardGroup on ExtraWalletCardGroup {
+  __typename
+  urn
+  amount
+  helpUrl
+  bonusPageUrl
+  full: items {
+    edges {
+      node {
+        ...extraWalletCard
+      }
+    }
+  }
+}
+
+fragment extraWalletCardGroupPartial on ExtraWalletCardGroup {
+  __typename
+  urn
+}

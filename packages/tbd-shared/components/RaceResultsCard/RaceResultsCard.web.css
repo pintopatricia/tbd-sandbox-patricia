@@ -1,0 +1,28 @@
+.container {
+  margin: 0;
+}
+
+.winningAndBspTitle,
+.winningTime,
+.bspAdvantage {
+  padding-top: var(--spacing-1);
+
+  color: var(--neutrals-text-default);
+}
+
+.winningAndBspTitle {
+  margin: var(--spacing-5) 0 var(--spacing-4) 0;
+}
+
+.winningTimeLabel,
+.bspAdvantageLabel {
+  padding-top: var(--spacing-1);
+
+  color: var(--neutrals-text-secondary);
+}
+
+.infoWrapper {
+  display: flex;
+
+  flex-direction: column;
+}

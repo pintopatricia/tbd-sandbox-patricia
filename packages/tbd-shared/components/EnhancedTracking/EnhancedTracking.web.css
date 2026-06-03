@@ -1,0 +1,12 @@
+.enhancedTrackingContainer {
+  display: flex;
+
+  gap: var(--spacing-1);
+
+  width: 75%;
+  margin: var(--spacing-2) 0 var(--spacing-1);
+}
+
+.enhancedTracking {
+  width: 100%;
+}

@@ -1,0 +1,11 @@
+{
+  "footerContainer": ".d73101e19f445025-footerContainer",
+  "summaryContainer": ".d73101e19f445025-summaryContainer",
+  "freeBetsContainer": ".d73101e19f445025-freeBetsContainer",
+  "oddsMovementAlertContainer": ".d73101e19f445025-oddsMovementAlertContainer",
+  "actions": ".d73101e19f445025-actions",
+  "removeButton": ".d73101e19f445025-removeButton",
+  "trashIcon": ".d73101e19f445025-trashIcon",
+  "screenReaderOnly": ".d73101e19f445025-screenReaderOnly",
+  "termsContainer": ".d73101e19f445025-termsContainer"
+}

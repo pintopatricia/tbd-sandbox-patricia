@@ -1,0 +1,126 @@
+/* stylelint-disable property-disallowed-list */
+@import url("@ppb/the-wall-web/reset.css");
+@import url("@ppb/the-wall-common/base-theme.css");
+@import url("@ppb/the-wall-design-tokens/generated/betfair/core/web/fonts.css");
+@import url("@ppb/the-wall-design-tokens/generated/betfair/semantic/web/sports.dark.css");
+@import url("@ppb/the-wall-design-tokens/generated/betfair/semantic/web/sports.light.css") (prefers-color-scheme: light);
+@import url("@ppb/the-wall-design-tokens/generated/betfair/core/web/sports.dark.css");
+@import url("@ppb/the-wall-design-tokens/generated/betfair/core/web/sports.light.css") (prefers-color-scheme: light);
+
+/* noto-sans-latin-ext-400-normal */
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/noto-sans-latin-ext-400-normal.woff2") format("woff2");
+  font-display: swap;
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* noto-sans-latin-400-normal */
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/noto-sans-latin-400-normal.woff2") format("woff2");
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC,
+    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* noto-sans-latin-ext-700-normal */
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/noto-sans-latin-ext-700-normal.woff2") format("woff2");
+  font-display: swap;
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* noto-sans-latin-700-normal */
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/noto-sans-latin-700-normal.woff2") format("woff2");
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC,
+    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* noto-sans-extra-condensed-latin-900-italic */
+@font-face {
+  font-family: "NotoSans ExtraCondensed";
+  font-style: italic;
+  font-weight: 900;
+  src: url("../fonts/noto-sans-extra-condensed-latin-900-italic.woff2") format("woff2");
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC,
+    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/*
+  Default font scaling approach for accessibility using standard CSS properties.
+  This serves as the base implementation for most browsers (excluding Safari).
+  
+  - font-size: Uses clamp() to enforce minimum and maximum font sizes for dynamic 
+    font scaling, ensuring we don't break the layout while still providing 
+    accessibility benefits for users who need larger text, along with 
+    env(preferred-text-scale) usage in the preferered value to add dynamic font 
+    scaling for browsers that support the standard env(preferred-text-scale) 
+    environment variable.
+*/
+:global(html) {
+  height: 100%;
+  font-size: clamp(
+    var(--font-scale-min-px),
+    calc(var(--brand-base-factor) * 100% * env(preferred-text-scale)),
+    var(--font-scale-max-px)
+  );
+}
+
+/*
+  This CSS block uses the @supports rule to implement dynamic type for accessibility 
+  on browsers that support the 'font: -apple-system-body' property.
+  
+  - Targets the global HTML element.
+  - Sets the font to '-apple-system-body', which automatically respects the user's 
+    preferred text size settings on Apple devices, providing better accessibility 
+    for users who need larger text.
+  - Defines a custom CSS variable '--apple-system-body' and sets it to true, 
+    which serves as a detection flag for the JavaScript useEffect listener in App.web.tsx.
+    The JS checks for this variable to determine if -apple-system-body is supported
+    and active, then applies font size restrictions to prevent text from becoming too large.
+*/
+@supports (font: -apple-system-body) {
+  :global(html) {
+    font: -apple-system-body;
+    --apple-system-body: true;
+  }
+}
+
+:global(body) {
+  position: relative;
+
+  height: 100%;
+  overflow: auto;
+
+  font-family: "Noto Sans", Arial, "Helvetica Neue", Helvetica, sans-serif;
+
+  background-color: var(--page-background-colour);
+
+  /*
+    This variable is used to add extra padding bottom to the bottom bar
+    on Chromium based browsers in iOS to avoid overlaping with system UI elements.
+  */
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/*
+  This override is to fix line-height's putting icons outside the button area when 
+  accessibility font scaling is at extreme sizes on Desktop browsers.
+*/
+:global(button) {
+  line-height: 0;
+}

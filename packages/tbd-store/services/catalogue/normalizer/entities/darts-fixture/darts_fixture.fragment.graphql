@@ -1,0 +1,30 @@
+fragment dartsFixture on DartsFixture {
+  __typename
+  urn
+  isAmericanFormat
+  runnerNames {
+    home
+    away
+  }
+  dartsFixtureType: type
+
+  dartsScore: score {
+    home
+    away
+  }
+
+  currentSet {
+    number
+    score {
+      home
+      away
+    }
+  }
+  previousSets {
+    number
+    score {
+      home
+      away
+    }
+  }
+}

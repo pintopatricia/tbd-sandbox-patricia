@@ -1,0 +1,20 @@
+{
+  "extends": "@react-native/typescript-config",
+  "compilerOptions": {
+    /* Type Checking */
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "types": ["react-native", "node"]
+  },
+  "include": [
+    "**/*.ts*",
+    "../../../node_modules/@ppb/the-wall-native/declarations.d.ts",
+    "../../../packages/tbd-shared/@types"
+  ],
+  "exclude": ["node_modules", "ios", "android"],
+  "references": [
+    {
+      "path": "../../../packages/tbd-store/tsconfig.json"
+    }
+  ]
+}

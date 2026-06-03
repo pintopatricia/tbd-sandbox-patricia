@@ -1,0 +1,54 @@
+.title {
+  flex-grow: 1;
+
+  font: var(--counter-aggregator-title-typography);
+  color: var(--counter-aggregator-text-title-colour);
+  text-decoration: var(--counter-aggregator-title-typography-text-decoration-line);
+  text-transform: var(--counter-aggregator-title-typography-text-transform);
+  letter-spacing: var(--counter-aggregator-title-typography-letter-spacing);
+}
+
+.subtitle {
+  font: var(--counter-aggregator-content-text-typography);
+  color: var(--counter-aggregator-text-content-text-colour);
+  text-align: start;
+  text-decoration: var(--counter-aggregator-content-text-typography-text-decoration-line);
+  text-transform: var(--counter-aggregator-content-text-typography-text-transform);
+  letter-spacing: var(--counter-aggregator-content-text-typography-letter-spacing);
+}
+
+.headerContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--counter-aggregator-vertical-gap);
+
+  justify-content: center;
+
+  width: 100%;
+}
+
+.titleContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contentTop {
+  display: flex;
+
+  gap: var(--counter-aggregator-horizontal-gap-secondary);
+
+  align-items: center;
+}
+
+.titleButton {
+  align-self: flex-end;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

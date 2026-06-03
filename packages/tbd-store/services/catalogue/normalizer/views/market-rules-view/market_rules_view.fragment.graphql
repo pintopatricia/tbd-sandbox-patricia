@@ -1,0 +1,13 @@
+fragment marketRulesView on MarketRulesView {
+  __typename
+  urn
+  url
+  title
+  category
+  items {
+    ...viewItems
+  }
+  xsellBar {
+    ...XSellBar
+  }
+}

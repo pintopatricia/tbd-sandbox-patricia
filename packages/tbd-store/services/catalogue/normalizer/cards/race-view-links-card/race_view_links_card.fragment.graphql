@@ -1,0 +1,24 @@
+fragment raceViewLinksCard on RaceViewLinksCard {
+  __typename
+  urn
+  race {
+    ...raceWithRaceDetails
+  }
+  raceViewLinks {
+    race {
+      ...raceWithRaceDetails
+    }
+    viewLink {
+      viewUrn
+      viewUrl
+    }
+    marketPromo: promotion {
+      signposting
+    }
+  }
+}
+
+fragment raceViewLinksCardPartial on RaceViewLinksCard {
+  __typename
+  urn
+}

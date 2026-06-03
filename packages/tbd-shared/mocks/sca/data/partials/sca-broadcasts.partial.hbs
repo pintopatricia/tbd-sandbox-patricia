@@ -1,0 +1,22 @@
+{{#with viz}}
+  "viz": {
+  "isAvailable": {{isAvailable}}{{^isAvailable}}false{{/isAvailable}},
+  "player": "{{player}}{{^player}}Data Viz{{/player}}"
+  },
+{{/with}}
+{{#with liveVideo}}
+  "liveVideo": {
+  "isAvailable": {{isAvailable}}{{^isAvailable}}false{{/isAvailable}},
+  "isPaddocAvailable": {{isPaddocAvailable}}{{^isPaddocAvailable}}false{{/isPaddocAvailable}},
+  "startAt": "{{startAt}}{{^startAt}}2020-01-31T19:45:00Z{{/startAt}}",
+  "endAt": "{{endAt}}{{^endAt}}2020-01-31T21:45:00Z{{/endAt}}",
+  "lobby": "{{lobby}}{{^lobby}}Betfair TV{{/lobby}}",
+  "player": "{{player}}{{^player}}Betfair TV{{/player}}"
+  },
+{{/with}}
+{{#with broadcasters}}
+  "broadcasters": [
+  {{> sca-broadcaster}}
+  ],
+{{/with}}
+"id": {{id}}{{^id}}12345{{/id}}

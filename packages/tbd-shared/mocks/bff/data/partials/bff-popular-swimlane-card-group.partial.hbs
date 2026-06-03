@@ -1,0 +1,38 @@
+"__typename":"PopularSwimlaneCardGroup",
+"urn": "{{urn}}{{^urn}}ppb:tbd:cardgroup:popularSwimlane:1{{/urn}}",
+{{#with full}}
+    "fullItems":{
+        {{> bff-items }}
+    },
+{{/with}}
+    "partialItems":{
+        "edges": [
+          {{#if partials}}
+            {{#with partials}}
+              {{#each edges}}
+                  {
+                  {{#with node}}
+                      "node": {
+                          "__typename": "{{__typename}}{{^__typename}}PopularBetBuilderCard{{/__typename}}",
+                          "urn": "{{urn}}{{^urn}}ppb:tbd:card:popularbetbuilder:bo-1|1|0|0{{/urn}}"
+                      }
+                  {{/with}}
+                  }{{#unless @last}},{{/unless}}
+              {{/each}}
+            {{/with}}
+          {{else}}
+            {{#each partialEdges}}
+                {
+                {{#with node}}
+                    "node": {
+                        "__typename": "{{__typename}}{{^__typename}}PopularBetBuilderCard{{/__typename}}",
+                        "urn": "{{urn}}{{^urn}}ppb:tbd:card:popularbetbuilder:bo-1|1|0|0{{/urn}}"
+                    }
+                {{/with}}
+                }{{#unless @last}},{{/unless}}
+            {{/each}}
+          {{/if}}
+        ]
+    },
+"popularSwimlaneCardGroupTitle": {{#if title}}"{{title}}"{{else}}{{#if cardGroupTitle}}"{{cardGroupTitle}}"{{else}}null{{/if}}{{/if}},
+"displayName": {{#if displayName}}{{#with displayName}}{ "translationKey": "{{translationKey}}" }{{/with}}{{else}}null{{/if}}

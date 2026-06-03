@@ -1,0 +1,38 @@
+"__typename": "{{__typename}}{{^__typename}}VolleyballFixture{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:fixture:88888888{{/urn}}",
+"isAmericanFormat": {{#if isAmericanFormat}}true{{else}}false{{/if}},
+"runnerNames": {{#if runnerNames}}{
+  "home": "{{runnerNames.home}}{{^runnerNames.home}}Brazil{{/runnerNames.home}}",
+  "away": "{{runnerNames.away}}{{^runnerNames.away}}USA{{/runnerNames.away}}"
+}{{else}}null{{/if}},
+"id": "{{id}}{{^id}}88888888{{/id}}",
+{{#if currentSet}}
+{{#with currentSet}}
+"currentSet": {
+  {{> bff-volleyball-scores}}
+},
+{{/with}}
+{{else}}
+"currentSet": null,
+{{/if}}
+{{#if previousSets}}
+"previousSets": [
+  {{#each previousSets}}
+    { {{> bff-volleyball-scores}} }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+],
+{{else}}
+"previousSets": null,
+{{/if}}
+{{#if homeScore}}
+"homeScore": {{homeScore}},
+{{else}}
+"homeScore": null,
+{{/if}}
+{{#if awayScore}}
+"awayScore": {{awayScore}}
+{{else}}
+"awayScore": null
+{{/if}}
+

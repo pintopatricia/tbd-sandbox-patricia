@@ -1,0 +1,18 @@
+name: webserver-bump-slack
+
+on:
+  repository_dispatch:
+    types: [webserver-bump]
+
+jobs:
+  slack-notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Slack notification
+        uses: slackapi/slack-github-action@v2.0.0
+        with:
+          method: chat.postMessage
+          token: ${{ secrets.SLACK_WEBHOOK_URL_MERGE_QUEUE }}
+          payload: |
+            channel: '#tbd-alerts'
+            text: ":warning: Webserver Bump Alert :warning:\nHey team :wave:\na new version of webserver strand has just been pushed.\n:eyes: Take a look at <${{ github.event.client_payload.pr_url }}|View PR>\nThanks for staying on top of it! :rocket:"

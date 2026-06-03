@@ -1,0 +1,26 @@
+"name": "{{name}}{{^name}}PHOTOGRAPH (IRE){{/name}}",
+"sireName": "{{sireName}}{{^sireName}}KODIAC{{/sireName}}",
+"damName": "{{damName}}{{^damName}}PHOTOGRAPH (IRE){{/damName}}",
+"damSireName": "{{damSireName}}{{^damSireName}}{{/damSireName}}",
+"age": {{age}}{{^age}}3{{/age}},
+"color": "{{color}}{{^color}}BAY{{/color}}",
+"sex": "{{sex}}{{^sex}}Sex{{/sex}}",
+"bred": "{{bred}}{{^bred}}Bred{{/bred}}",
+"performance": {
+  {{#if performance}}
+    {{#with performance}}
+      {{> bff-horse-performance }}
+    {{/with}}
+  {{/if}}
+},
+"pastPerformances":
+  {{#if pastPerformances}}
+    [
+    {{#each pastPerformances}}
+      {
+        {{> bff-horse-performance }}
+      }
+      {{#unless @last}},{{/unless}}
+    {{/each}}
+    ]
+  {{else}}null{{/if}}

@@ -1,0 +1,70 @@
+query View(
+  $urn: URN!
+  $withBottomBar: Boolean = false
+  $withLeftSidebar: Boolean = false
+  $withRegulatoryData: Boolean = false
+  $withXSellBar: Boolean = false
+  $numberOfFilledCardsInCardGroup: Int!
+  $numberOfFilledCardsInView: Int!
+  $withPageInfo: Boolean = false
+  $first: Int
+  $cursor: String
+  $preferences: LayoutPreferencesInput
+  $productExclusions: [ProductExclusion!]
+  $experiments: [ExperimentsInput!]
+  $throttlesOn: [String!]
+  $throttlesOff: [String!]
+  $decorationsOnly: Boolean! = false
+)
+@preferences(preferences: $preferences)
+@productExclusions(productExclusions: $productExclusions)
+@experiments(experiments: $experiments)
+@throttlesOn(throttlesOn: $throttlesOn)
+@throttlesOff(throttlesOff: $throttlesOff) {
+  View(viewURN: $urn) {
+    ...ViewDecorations @include(if: $decorationsOnly)
+    ...FullView @skip(if: $decorationsOnly)
+  }
+}
+
+fragment ViewDecorations on View {
+  __typename
+  urn
+  url
+  bottomBar @include(if: $withBottomBar) { ...bottomBar }
+  leftSidebar @include(if: $withLeftSidebar) { ...leftSidebar }
+  regulatoryData @include(if: $withRegulatoryData) { ...regulatoryData }
+  xsellBar @include(if: $withXSellBar) { ...XSellBar }
+}
+
+fragment FullView on View {
+  ...eventView
+  ...sportView
+  ...marketView
+  ...allMarketsView
+  ...allCompetitionsView
+  ...gameView
+  ...gamingCategoryView
+  ...competitionView
+  ...gamingView
+  ...imsPromotionView
+  ...promotionsView
+  ...myBetsView
+  ...myAccountView
+  ...browseView
+  ...settingsView
+  ...raceView
+  ...runnerView
+  ...maintenanceView
+  ...genericView
+  ...gamingSegmentationView
+  ...notFoundView
+  ...marketRulesView
+  ...selfExcludedView
+  ...obbLandingPageView
+  ...promotionsHubView
+  ... on RaceMeetingView {
+    __typename
+    urn
+  }
+}

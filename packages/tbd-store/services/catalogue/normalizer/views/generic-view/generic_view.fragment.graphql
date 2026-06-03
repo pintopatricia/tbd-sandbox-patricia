@@ -1,0 +1,33 @@
+fragment genericView on GenericView {
+  __typename
+  urn
+  url
+  title
+  canonicalUrl
+  category
+  viewHeader {
+    title
+    titleImage
+    subTitle
+    badge
+  }
+  items(autoPageSize: true) {
+    ...viewItems
+  }
+  partialItems: items {
+    ...viewItemsPartial
+  }
+
+  bottomBar @include(if: $withBottomBar) {
+    ...bottomBar
+  }
+  leftSidebar @include(if: $withLeftSidebar) {
+    ...leftSidebar
+  }
+  regulatoryData @include(if: $withRegulatoryData) {
+    ...regulatoryData
+  }
+  xsellBar {
+    ...XSellBar
+  }
+}

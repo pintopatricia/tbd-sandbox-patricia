@@ -1,0 +1,11 @@
+.imsPromoMessage {
+  color: var(--neutrals-text-default);
+}
+
+.infoText {
+  margin: var(--spacing-3) 0;
+}
+
+.recommendedText {
+  margin-top: var(--spacing-12);
+}

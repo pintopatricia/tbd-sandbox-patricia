@@ -1,0 +1,129 @@
+require_relative "lib/helpers"
+import("GamingFastfile")
+
+default_platform(:ios)
+
+platform :ios do
+  before_all do
+    validate_env_variables()
+
+    create_keychain(
+      name: ENV["MATCH_KEYCHAIN_NAME"],
+      password: ENV["MATCH_KEYCHAIN_PASSWORD"],
+      default_keychain: true,
+      unlock: true,
+      timeout: 3600
+    )
+
+    unlock_keychain(
+      path: ENV["MATCH_KEYCHAIN_NAME"],
+      password: ENV["MATCH_KEYCHAIN_PASSWORD"]
+    )
+
+    update_code_signing_settings(
+      use_automatic_signing: false,
+      path: "tbd_native.xcodeproj"
+    )
+  end
+
+  desc "Build and uploads our In-House app to Firebase for the stakeholders"
+  lane :in_house do
+    begin
+      match(
+        type: "adhoc",
+        app_identifier: ["com.paddypower.sportsbook.qa", "com.paddypower.sportsbook.qa.NotificationExtension"],
+        git_branch: "PaddyPowerPLC",
+        keychain_name: ENV["MATCH_KEYCHAIN_NAME"],
+        keychain_password: ENV["MATCH_KEYCHAIN_PASSWORD"],
+        readonly: true
+      )
+
+      if (is_running_in_gh)
+        new_build_number = "0." + get_build_number() + ".0" if ENV['IS_MR_BUILD']
+        update_app_version(new_build_number)
+      end
+
+      update_info_plist(
+        plist_path: "tbd_native/Info.plist",
+        display_name: "PaddyPower (In-House)"
+      )
+
+      # temporary step to differentiate TBD apps from the rest
+      # remove this block after migration work
+      set_info_plist_value(
+        path: "tbd_native/Info.plist",
+        key: "CFBundleShortVersionString",
+        value: "[TBD] #{get_build_number}"
+      )
+
+      # changes push notifications environment to production
+      # keys / secrets can be found on company https://www.airship.com/ account
+      update_plist(
+        plist_path: "AirshipConfig.plist",
+        block: proc do |plist|
+          plist[:inProduction] = "YES"
+        end
+      )
+      update_plist(
+        plist_path: "AirshipConfig.plist",
+        block: proc do |plist|
+          plist[:productionAppKey] = "AEXQbPYpTAOHZsOkGmPQEw"
+        end
+      )
+      update_plist(
+        plist_path: "AirshipConfig.plist",
+        block: proc do |plist|
+          plist[:productionAppSecret] = "O7MdZX0wRdyTOnOfafcLIg"
+        end
+      )
+
+      add_badge(
+        no_badge: true,
+        shield: "IH-#{get_encoded_build_number_label()}-green",
+        shield_gravity: 'South',
+        shield_scale: '0.75'
+      )
+
+      gym(
+        workspace: "tbd_native.xcworkspace",
+        scheme: "tbd_native",
+        configuration: "In_House",
+        silent: true,
+        suppress_xcode_output: true,
+        clean: true,
+        export_options: {
+          method: "enterprise"
+        }
+      )
+
+      firebase_app_distribution(
+        app: '1:1075061757738:ios:1ca54045997d4b930bb053',
+        groups: 'pptbd-teams',
+        ipa_path: 'PaddyPower.ipa',
+        release_notes: get_release_notes(),
+        service_credentials_file: 'service_account.json'
+      )
+
+      upload_symbols_to_crashlytics(
+        dsym_path: lane_context[SharedValues::DSYM_OUTPUT_PATH],
+        app_id: "1:1075061757738:ios:1ca54045997d4b930bb053",
+        debug: true
+      )
+
+      if ENV['IS_MR_BUILD']
+        latest_release = firebase_app_distribution_get_latest_release(
+          app: "1:1075061757738:ios:1ca54045997d4b930bb053",
+          service_credentials_file: 'service_account.json'
+        )
+
+        new_link = "https://appdistribution.firebase.google.com/" + latest_release[:name].gsub(/projects\/[0-9]+\/apps\//, "testerapps/")
+
+        File.write("../link_to_app", new_link)
+      end
+    ensure
+      delete_keychain(
+        name: ENV["MATCH_KEYCHAIN_NAME"]
+      )
+    end
+  end
+end

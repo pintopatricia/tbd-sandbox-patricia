@@ -1,0 +1,10 @@
+fragment race on Race {
+  __typename
+  urn
+  startTime
+  raceId
+  name
+  meeting {
+    ...meeting
+  }
+}

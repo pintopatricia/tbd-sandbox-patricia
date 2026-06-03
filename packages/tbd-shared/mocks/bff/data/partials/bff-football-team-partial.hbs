@@ -1,0 +1,47 @@
+"id": {{id}}{{^id}}56085{{/id}},
+"name": "{{name}}{{^name}}Rangers{{/name}}",
+{{#if formation}}
+"formation": "{{formation}}",
+{{else}}
+"formation": null,
+{{/if}}
+{{#if color}}
+  "color": "{{color}}",
+{{else}}
+  "color": null,
+{{/if}}
+{{#if crest}}
+{{#with crest}}
+  "crest": { {{> bff-crest }} },
+{{/with}}
+{{else}}
+  "crest": null,
+{{/if}}
+{{#if jerseys}}
+  "jerseys": [
+    {{#each jerseys}}
+      {
+        "__typename": "{{__typename}}{{^__typename}}FootballJersey{{/__typename}}",
+        "type": "{{type}}",
+        "color": "{{color}}",
+        "url": "{{url}}"
+      }{{#unless @last}},{{/unless}}
+    {{/each}}
+  ],
+{{else}}
+  "jerseys": [],
+{{/if}}
+{{#if squad}}
+{{#with squad}}
+  "squad": { {{> bff-football-squad }} },
+{{/with}}
+{{else}}
+  "squad": null,
+{{/if}}
+{{#if statsAllSeason}}
+{{#with statsAllSeason}}
+  "statsAllSeason": { {{> bff-stats-all-season }} }
+{{/with}}
+{{else}}
+  "statsAllSeason": null
+{{/if}}

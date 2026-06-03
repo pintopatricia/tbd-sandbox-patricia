@@ -1,0 +1,410 @@
+name: 'Android Release Deploy Workflow'
+run-name: "Android Release Deploy [android_release-${{ inputs.brand }}-${{ inputs.flavor }}-${{ inputs.tag-number }}]"
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag-number:
+        description: 'The number on the tag "###-android_<brand>_releasable" to release from'
+        type: string
+        required: true
+      brand:
+        type: choice
+        description: 'The brand to target for the release build'
+        required: true
+        options:
+          - bf
+          - sbg
+        default: bf
+      flavor:
+        type: choice
+        description: 'The flavor to build and deploy android release'
+        required: false
+        options:
+          - brazil
+          - common
+        default: common
+      firebase-deploy:
+        type: boolean
+        description: 'Deploy to firebase?'
+        required: true
+        default: true
+      store-deploy:
+        type: boolean
+        description: 'Deploy to play store?'
+        required: true
+        default: true
+      aws-deploy-dev:
+        type: boolean
+        description: 'Deploy to aws dev?'
+        required: true
+        default: true
+      aws-deploy-prod:
+        type: boolean
+        description: 'Deploy to aws prod?'
+        required: true
+        default: false
+
+  workflow_call:
+    inputs:
+      brand:
+        description: 'The brand to target for the release build'
+        type: string
+        required: true
+        default: bf
+      flavor:
+        type: string
+        description: 'The flavor to build and deploy android release'
+        required: false
+        default: common
+      tag-number:
+        description: 'The number on the tag "###-android_<brand>_releasable" to release from'
+        type: string
+        required: true
+      firebase-deploy:
+        type: boolean
+        description: 'Deploy to Firebase?'
+        required: true
+        default: true
+      store-deploy:
+        type: boolean
+        description: 'Deploy to app store?'
+        required: true
+        default: true
+      aws-deploy-dev:
+        type: boolean
+        description: 'Deploy to aws dev?'
+        required: true
+        default: true
+      aws-deploy-prod:
+        type: boolean
+        description: 'Deploy to aws prod?'
+        required: true
+        default: false
+
+env:
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  MONTEROSA_TOKEN: ${{ secrets.MONTEROSA_TOKEN }}
+jobs:
+  get-app-identifier:
+    runs-on:
+      group: FlutterGithubRunners
+    outputs:
+      app_identifier: ${{ steps.get-app-identifier-step.outputs.app_identifier }}
+    steps:
+      - name: "Get App Identifier"
+        id: get-app-identifier-step
+        run: |
+          if [[ "${{ inputs.flavor }}" != "common" ]]; then
+            echo "app_identifier=android_${{ inputs.brand }}_${{ inputs.flavor }}_release-${{ inputs.tag-number }}" >> $GITHUB_OUTPUT
+          else
+            echo "app_identifier=android_${{ inputs.brand }}_release-${{ inputs.tag-number }}" >> $GITHUB_OUTPUT
+          fi
+
+  play-store-deploy:
+    name: Deploy Play Store
+    if: ${{ inputs.store-deploy }}
+    needs: get-app-identifier
+    env:
+      APP_IDENTIFIER: ${{ needs.get-app-identifier.outputs.app_identifier }}
+    runs-on:
+      group: FlutterGithubRunners
+    steps:
+      - name: "Checkout version [${{ env.APP_IDENTIFIER }}]"
+        id: checkout-tag
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag-number }}-android_${{ inputs.brand }}_releasable
+
+      - name: "Get Betfair Package Name"
+        if: ${{ inputs.brand == 'bf' }}
+        id: get-bf-app-identifier
+        run: |
+          if [[ "${{ inputs.flavor }}" == "common" ]]; then
+            echo "PACKAGE_NAME=com.betfair.sportsbook" >> $GITHUB_ENV
+          else
+            echo "PACKAGE_NAME=com.betfair.sportsbook.${{ inputs.flavor }}" >> $GITHUB_ENV
+          fi
+
+      - name: "Get Skybet Package Name"
+        if: ${{ inputs.brand == 'sbg' }}
+        id: get-sbg-app-identifier
+        run: |
+          echo "PACKAGE_NAME=com.skybet.app.skybet" >> $GITHUB_ENV
+
+      - name: Import Skybet Common Vault Secrets
+        id: import-sbg-common-secrets
+        if: ${{ inputs.brand == 'sbg' && inputs.flavor == 'common' }}
+        env:
+          SECRET_PATH: tla_tbdnsbg/data/jenkins
+        uses: hashicorp/vault-action@v3
+        with:
+          url: https://vault-prd.prd.betfair
+          method: ldap
+          username: ${{ secrets.VAULT_USER }}
+          password: ${{ secrets.VAULT_PASSWORD }}
+          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          secrets: |
+            ${{ env.SECRET_PATH }} playStoreCredentials | PLAY_STORE_CREDENTIALS ;
+
+      - name: Import Betfair Common Vault Secrets
+        id: import-bf-common-secrets
+        if: ${{ inputs.brand == 'bf' && inputs.flavor == 'common' }}
+        env:
+          SECRET_PATH: tla_tbdn/data/jenkins
+        uses: hashicorp/vault-action@v3
+        with:
+          url: https://vault-prd.prd.betfair
+          method: ldap
+          username: ${{ secrets.VAULT_USER }}
+          password: ${{ secrets.VAULT_PASSWORD }}
+          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          secrets: |
+            ${{ env.SECRET_PATH }} playStoreCredentials | PLAY_STORE_CREDENTIALS ;
+
+      - name: Import Betfair Brazil Vault Secrets
+        id: import-bf-brazil-secrets
+        if: ${{ inputs.brand == 'bf' && inputs.flavor == 'brazil' }}
+        env:
+          SECRET_PATH: tla_tbdn/data/jenkins
+        uses: hashicorp/vault-action@v3
+        with:
+          url: https://vault-prd.prd.betfair
+          method: ldap
+          username: ${{ secrets.VAULT_USER }}
+          password: ${{ secrets.VAULT_PASSWORD }}
+          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          secrets: |
+            ${{ env.SECRET_PATH }} playStoreBrazilCredentials | PLAY_STORE_CREDENTIALS ;
+
+      - name: Create service_account.json
+        run: |
+          echo $PLAY_STORE_CREDENTIALS | base64 --decode > service_account.json
+
+      - name: Download Artifact from Artifactory
+        if: ${{ inputs.brand == 'bf' && inputs.flavor == 'common' }}
+        uses: ./.github/actions/download-artifactory
+        with:
+          artifactory_path: "tbd-native/android/${{ inputs.brand }}/release/store/${{ env.APP_IDENTIFIER }}.aab"
+          path: "./"
+      - name: Download Artifact from Artifactory
+        if: ${{ !(inputs.brand == 'bf' && inputs.flavor == 'common') }}
+        uses: ./.github/actions/download-artifactory
+        with:
+          artifactory_path: "tbd-native/android/${{ inputs.brand }}/release/${{ env.APP_IDENTIFIER }}.aab"
+          path: "./"
+
+      - name: Upload .aab to Internal Track
+        id: upload_internal
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJson: service_account.json
+          packageName: ${{ env.PACKAGE_NAME }}
+          releaseName: ${{ inputs.tag-number }}
+          releaseFiles: ${{ env.APP_IDENTIFIER }}.aab
+          track: internal
+          status: draft
+
+  firebase-deploy:
+    name: Deploy to Firebase
+    if: ${{ inputs.firebase-deploy }}
+    needs: get-app-identifier
+    env:
+      APP_IDENTIFIER: ${{ needs.get-app-identifier.outputs.app_identifier }}
+    runs-on:
+      group: FlutterGithubRunners
+    steps:
+      - name: "Checkout version [${{ env.APP_IDENTIFIER }}]"
+        id: checkout-tag
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag-number }}-android_${{ inputs.brand }}_releasable
+
+      - name: Import Skybet Common Vault Secrets
+        if: ${{ inputs.brand == 'sbg' && inputs.flavor == 'common' }}
+        id: import-sbg-common-secrets
+        env:
+          SECRET_PATH: tla_tbdnsbg/data/jenkins
+        uses: hashicorp/vault-action@v3
+        with:
+          url: https://vault-prd.prd.betfair
+          method: ldap
+          username: ${{ secrets.VAULT_USER }}
+          password: ${{ secrets.VAULT_PASSWORD }}
+          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          secrets: |
+            ${{ env.SECRET_PATH }} firebase_prod_service_account | FIREBASE_SERVICE_ACCOUNT ;
+            ${{ env.SECRET_PATH }} firebase_prod_app_id | FIREBASE_APP_ID ;
+
+      - name: Import Betfair Common Vault Secrets
+        if: ${{ inputs.brand == 'bf' && inputs.flavor == 'common' }}
+        id: import-bf-common-secrets
+        env:
+          SECRET_PATH: tla_tbdn/data/jenkins
+        uses: hashicorp/vault-action@v3
+        with:
+          url: https://vault-prd.prd.betfair
+          method: ldap
+          username: ${{ secrets.VAULT_USER }}
+          password: ${{ secrets.VAULT_PASSWORD }}
+          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          secrets: |
+            ${{ env.SECRET_PATH }} firebase_prod_service_account | FIREBASE_SERVICE_ACCOUNT ;
+            ${{ env.SECRET_PATH }} firebase_prod_app_id | FIREBASE_APP_ID ;
+
+      - name: Import Betfair Brazil Vault Secrets
+        id: import-brazil-secrets
+        if: ${{ inputs.brand == 'bf' && inputs.flavor == 'brazil' }}
+        env:
+          SECRET_PATH: tla_tbdn/data/jenkins
+        uses: hashicorp/vault-action@v3
+        with:
+          url: https://vault-prd.prd.betfair
+          method: ldap
+          username: ${{ secrets.VAULT_USER }}
+          password: ${{ secrets.VAULT_PASSWORD }}
+          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          secrets: |
+            ${{ env.SECRET_PATH }} firebase_prod_service_account | FIREBASE_SERVICE_ACCOUNT ;
+            ${{ env.SECRET_PATH }} firebase_prod_brazil_app_id | FIREBASE_APP_ID ;
+
+      - name: Create service_account.json
+        run: |
+          echo $FIREBASE_SERVICE_ACCOUNT | base64 --decode > service_account.json
+
+      - name: Download Artifact from Artifactory
+        uses: ./.github/actions/download-artifactory
+        with:
+          artifactory_path: "tbd-native/android/${{ inputs.brand }}/release/${{ env.APP_IDENTIFIER }}.apk"
+          path: "./"
+
+      - name: Upload Artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.7.1
+        with:
+          appId: ${{ env.FIREBASE_APP_ID }}
+          serviceCredentialsFile: service_account.json
+          file: ${{ env.APP_IDENTIFIER }}.apk
+          groups: "bfrb-teams"
+          releaseNotes: "Release build for '${{ env.APP_IDENTIFIER }}' - run id: ${{ github.run_id }}"
+
+  aws-dev-deploy:
+    name: Deploy to AWS Dev
+    if: ${{ inputs.aws-deploy-dev && inputs.brand == 'bf' && inputs.flavor == 'common' }}
+    needs: get-app-identifier
+    env:
+      APP_IDENTIFIER: ${{ needs.get-app-identifier.outputs.app_identifier }}
+      AWS_ACL: 'bucket-owner-full-control'
+    runs-on:
+      group: FlutterGithubRunners
+    steps:
+      - name: "Checkout version [${{ env.APP_IDENTIFIER }}]"
+        id: checkout-tag
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag-number }}-android_${{ inputs.brand }}_releasable
+      - name: Import Vault Secrets
+        id: import-secrets
+        env:
+          SECRET_PATH: tla_tbdn/data/jenkins
+        uses: hashicorp/vault-action@v3
+        with:
+          url: https://vault-prd.prd.betfair
+          method: ldap
+          username: ${{ secrets.VAULT_USER }}
+          password: ${{ secrets.VAULT_PASSWORD }}
+          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          secrets: |
+            ${{ env.SECRET_PATH }} tbd_apk_uploader_cf_zone | CF_ZONE ;
+            ${{ env.SECRET_PATH }} tbdnart_cf_purge_token | CF_AUTH_TOKEN ;
+            ${{ env.SECRET_PATH }} tbdnart_cf_email | CF_AUTH_EMAIL ;
+            ${{ env.SECRET_PATH }} tbd_apk_uploader_secret_access_key | AWS_SECRET_ACCESS_KEY ;
+            ${{ env.SECRET_PATH }} tbd_apk_uploader_aws_region | AWS_DEFAULT_REGION ;
+            ${{ env.SECRET_PATH }} tbd_apk_uploader_aws_bucket | AWS_BUCKET ;
+            ${{ env.SECRET_PATH }} tbd_apk_uploader_access_key_id | AWS_ACCESS_KEY_ID ;
+      - name: Download Artifact from Artifactory
+        if: ${{ !inputs.run-id }}
+        uses: ./.github/actions/download-artifactory
+        with:
+          artifactory_path: "tbd-native/android/${{ inputs.brand }}/release/${{ env.APP_IDENTIFIER }}.apk"
+          path: "./"
+
+      - name: Publish APK to AWS S3
+        id: publish-aws
+        uses: ./.github/actions/publish-aws
+        with:
+          artifact_base_path: "./${{ env.APP_IDENTIFIER }}.apk"
+          artifact_s3_path: "${{ env.AWS_BUCKET }}/android/${{ env.APP_IDENTIFIER }}.apk"
+          acl: "${{ env.AWS_ACL }}"
+          purge-cache: false
+
+      - name: Publish apk aws path
+        id: publish-apk-aws-path
+        env:
+          CF_FILE: 'https://tbdnart.cdnppb.net/android/${{ env.APP_IDENTIFIER }}.apk'
+        run: |
+          echo "Published to AWS dev app: '${{ env.APP_IDENTIFIER }}' for download: ${{ env.CF_FILE }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+  aws-prod-deploy:
+    name: Deploy to AWS Prod
+    if: ${{ inputs.aws-deploy-prod && inputs.brand == 'bf' && inputs.flavor == 'common' }}
+    needs: get-app-identifier
+    env:
+      APP_IDENTIFIER: ${{ needs.get-app-identifier.outputs.app_identifier }}
+      AWS_APK_NAME: 'betfair-sports-betting'
+      AWS_ACL: 'bucket-owner-full-control'
+      CF_FILE: 'https://tbdnart.cdnppb.net/android/betfair-sports-betting.apk'
+    runs-on:
+      group: FlutterGithubRunners
+    steps:
+      - name: "Checkout version [${{ env.APP_IDENTIFIER }}]"
+        id: checkout-tag
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag-number }}-android_${{ inputs.brand }}_releasable
+      - name: Import Vault Secrets
+        id: import-secrets
+        env:
+          SECRET_PATH: tla_tbdn/data/jenkins
+        uses: hashicorp/vault-action@v3
+        with:
+          url: https://vault-prd.prd.betfair
+          method: ldap
+          username: ${{ secrets.VAULT_USER }}
+          password: ${{ secrets.VAULT_PASSWORD }}
+          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          secrets: |
+            ${{ env.SECRET_PATH }} tbd_apk_uploader_cf_zone | CF_ZONE ;
+            ${{ env.SECRET_PATH }} tbdnart_cf_purge_token | CF_AUTH_TOKEN ;
+            ${{ env.SECRET_PATH }} tbdnart_cf_email | CF_AUTH_EMAIL ;
+            ${{ env.SECRET_PATH }} tbd_apk_uploader_secret_access_key | AWS_SECRET_ACCESS_KEY ;
+            ${{ env.SECRET_PATH }} tbd_apk_uploader_aws_region | AWS_DEFAULT_REGION ;
+            ${{ env.SECRET_PATH }} tbd_apk_uploader_aws_bucket | AWS_BUCKET ;
+            ${{ env.SECRET_PATH }} tbd_apk_uploader_access_key_id | AWS_ACCESS_KEY_ID ;
+      - name: Download Artifact
+        if: ${{ inputs.run-id }}
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.APP_IDENTIFIER }}.apk
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ inputs.run-id }}
+
+      - name: Download Artifact from Artifactory
+        if: ${{ !inputs.run-id }}
+        uses: ./.github/actions/download-artifactory
+        with:
+          artifactory_path: "tbd-native/android/${{ inputs.brand }}/release/${{ env.APP_IDENTIFIER }}.apk"
+          path: "./"
+      - name: Publish APK to AWS S3
+        id: publish-aws
+        uses: ./.github/actions/publish-aws
+        with:
+          artifact_base_path: "./${{ env.APP_IDENTIFIER }}.apk"
+          artifact_s3_path: "${{ env.AWS_BUCKET }}/android/${{ env.AWS_APK_NAME }}.apk"
+          acl: "${{ env.AWS_ACL }}"
+          purge-cache: true
+      - name: Publish apk aws path
+        id: publish-apk-aws-path
+        run: |
+          echo "Published to AWS prod app: '${{ env.APP_IDENTIFIER }}' for download: ${{ env.CF_FILE }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY

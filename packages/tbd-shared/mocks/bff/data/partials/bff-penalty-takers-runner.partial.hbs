@@ -1,0 +1,31 @@
+"__typename": "Runner",
+"runnerURN": "{{runnerURN}}{{^runnerURN}}ppb:sbkRunner:1.0/0/0{{/runnerURN}}",
+"name": "{{name}}{{^name}}Goal{{/name}}",
+"selectionId": {{selectionId}}{{^selectionId}}1{{/selectionId}},
+"resultType": {{#if resultType}}"{{resultType}}"{{else}}null{{/if}},
+"market": {
+  "__typename": "SportsbookMarket",
+  "urn": "{{market.urn}}{{^market.urn}}ppb:sbkMarket:1.0{{/market.urn}}",
+  "name": "{{market.name}}{{^market.name}}To Score - Top Left{{/market.name}}",
+  "liveData": {
+    "__typename": "SportsbookMarketLiveData",
+    "urn": "{{market.liveData.urn}}{{^market.liveData.urn}}ppb:sbkMarketLiveData:1.0{{/market.liveData.urn}}",
+    "sportsbookMarketStatus": "{{market.liveData.sportsbookMarketStatus}}{{^market.liveData.sportsbookMarketStatus}}OPEN{{/market.liveData.sportsbookMarketStatus}}"
+  }
+},
+"runnerLiveData": {
+  "__typename": "SportsbookRunnerLiveData",
+  "urn": "{{runnerLiveData.urn}}{{^runnerLiveData.urn}}ppb:sbkRunnerLiveData:1.0/0/0{{/runnerLiveData.urn}}",
+  "runnerURN": "{{runnerLiveData.runnerURN}}{{^runnerLiveData.runnerURN}}ppb:sbkRunner:1.0/0/0{{/runnerLiveData.runnerURN}}",
+  "runnerStatus": "{{runnerLiveData.runnerStatus}}{{^runnerLiveData.runnerStatus}}ACTIVE{{/runnerLiveData.runnerStatus}}",
+  "odds": {
+    "__typename": "SportsbookOdds",
+    "decimal": {{runnerLiveData.odds.decimal}}{{^runnerLiveData.odds.decimal}}3.5{{/runnerLiveData.odds.decimal}},
+    "fractional": { {{#with runnerLiveData.odds.fractional}}{{> bff-fractional-odds}}{{else}}"__typename":"SportsbookFractionalOdds","numerator":5,"denominator":2{{/with}} }
+  },
+  "displayOdds": {
+    "__typename": "SportsbookOdds",
+    "decimal": {{runnerLiveData.displayOdds.decimal}}{{^runnerLiveData.displayOdds.decimal}}3.5{{/runnerLiveData.displayOdds.decimal}},
+    "fractional": { {{#with runnerLiveData.displayOdds.fractional}}{{> bff-fractional-odds}}{{else}}"__typename":"SportsbookFractionalOdds","numerator":5,"denominator":2{{/with}} }
+  }
+}

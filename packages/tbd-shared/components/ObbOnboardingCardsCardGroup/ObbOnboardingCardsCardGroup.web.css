@@ -1,0 +1,17 @@
+.card {
+  /* TODO: replace with a design token once an onboarding-card width token ships in @ppb/the-wall-design-tokens */
+  width: 315px;
+
+  scroll-snap-align: start;
+  scroll-margin: 0 var(--spacing-3);
+}
+
+@media screen and (min-width: 900px) {
+  .firstCard {
+    margin-left: 0;
+  }
+
+  .lastCard {
+    margin-right: 0;
+  }
+}

@@ -1,0 +1,21 @@
+:root {
+  --football-timeline-stack: 1;
+}
+
+.minuteByMinuteContainer {
+  position: relative;
+}
+
+.minuteByMinuteContainer::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  z-index: var(--football-timeline-stack);
+
+  content: "";
+
+  border-left: 1px solid var(--signposting-inplay-border-disabled);
+
+  transform: translate(-50%);
+}

@@ -1,0 +1,3 @@
+upstream apitbdsbg {
+    server tbdsbg.qa.internal;
+}

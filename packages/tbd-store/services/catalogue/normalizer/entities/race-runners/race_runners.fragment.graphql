@@ -1,0 +1,35 @@
+fragment raceRunner on RaceRunner {
+  __typename
+  urn
+  raceURN
+  rating123
+  ratingStars
+  selectionId
+  form
+  apprenticeClaim
+  crsDisWinFavText
+  rating
+  comments
+  status
+  horse {
+    name
+    sireName
+    damName
+    damSireName
+    age
+    color
+    sex
+    bred
+  }
+  details {
+    jockeyName
+    trainerName
+    saddleCloth
+    weight {
+      stones
+    }
+    equipmentDescription
+    silk
+    draw
+  }
+}

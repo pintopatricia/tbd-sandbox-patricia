@@ -1,0 +1,65 @@
+.popularBetBuilderCard {
+  overflow: hidden;
+
+  background-color: var(--popular-bet-builder-card-background-colour);
+  border-radius: var(--popular-bet-builder-card-border-radius);
+}
+
+.header {
+  display: flex;
+
+  gap: var(--popular-bet-builder-card-header-horizontal-gap);
+
+  padding: var(--popular-bet-builder-card-header-padding);
+
+  background-color: var(--popular-bet-builder-card-header-background-colour);
+}
+
+.headerFixture {
+  background-color: var(--popular-bet-builder-card-highlighted-header-background-colour);
+}
+
+.fixtureHeader {
+  display: block;
+
+  flex: 1;
+}
+
+.content {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--popular-bet-builder-card-content-vertical-gap);
+
+  padding: var(--popular-bet-builder-card-content-padding);
+}
+
+.bubbleItemsContainer {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.boostedIconContainer {
+  align-self: center;
+
+  width: var(--popular-bet-builder-card-header-boost-icon-box-sizing);
+  height: var(--popular-bet-builder-card-header-boost-icon-box-sizing);
+  padding: var(--popular-bet-builder-card-header-boost-icon-box-padding);
+
+  background-color: var(--popular-bet-builder-card-header-boost-icon-box-colour);
+  border-radius: var(--popular-bet-builder-card-header-boost-icon-box-border-radius);
+}
+
+.boostedIcon {
+  width: var(--popular-bet-builder-card-header-boost-icon-sizing);
+  height: var(--popular-bet-builder-card-header-boost-icon-sizing);
+}
+
+.selectionTypeIcon {
+  flex-shrink: 0;
+
+  width: var(--bubble-item-icon-sizing);
+  height: var(--bubble-item-icon-sizing);
+}

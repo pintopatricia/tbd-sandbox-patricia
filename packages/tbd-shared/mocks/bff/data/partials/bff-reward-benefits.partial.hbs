@@ -1,0 +1,31 @@
+"benefitsPackages": {
+"rewardsStatus": "{{rewardsStatus}}{{^rewardsStatus}}OPTED_IN{{/rewardsStatus}}",
+"lastMonthTradedMarkets": {{#if lastMonthTradedMarkets}}{{lastMonthTradedMarkets}}{{else}}null{{/if}},
+"currentMonthTradedMarkets": {{#if currentMonthTradedMarkets}}{{currentMonthTradedMarkets}}{{else}}null{{/if}},
+"currentMonth": {{#if currentMonth}}"{{currentMonth}}"{{else}}null{{/if}},
+"nextMonth": {{#if nextMonth}}"{{nextMonth}}"{{else}}null{{/if}},
+"availablePackages": {{#if availablePackages}}
+    [
+    {{#each availablePackages}}
+      { {{> bff-benefits-package}} }
+    {{#unless @last}},{{/unless}}
+    {{/each}}
+    ],
+{{else}}
+[],
+{{/if}}
+"qualifiedBenefitsPackage": {{#if qualifiedBenefitsPackage}}
+    {{#with qualifiedBenefitsPackage}}
+        { {{> bff-benefits-package}} },
+    {{/with}}
+{{else}}
+null,
+{{/if}}
+"chosenBenefitsPackage":  {{#if chosenBenefitsPackage}}
+    {{#with chosenBenefitsPackage}}
+        { {{> bff-benefits-package}} }
+    {{/with}}
+{{else}}
+null
+{{/if}}
+}

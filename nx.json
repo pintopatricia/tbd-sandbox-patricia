@@ -1,0 +1,45 @@
+{
+  "extends": "nx/presets/npm.json",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "format",
+          "lint",
+          "test:coverage",
+          "typecheck"
+        ]
+      }
+    }
+  },
+  "workspaceLayout": {
+    "appsDir": "apps",
+    "libsDir": "packages"
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "prepare": {
+      "dependsOn": [
+        "^prepare"
+      ]
+    },
+    "typecheck": {
+      "dependsOn": [
+        "^prepare"
+      ]
+    },
+    "test:coverage": {
+      "dependsOn": [
+        "^prepare"
+      ]
+    }
+  },
+  "affected": {
+    "defaultBase": "origin/master"
+  }
+}

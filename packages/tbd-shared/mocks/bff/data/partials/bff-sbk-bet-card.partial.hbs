@@ -1,0 +1,24 @@
+"__typename":"{{__typename}}{{^__typename}}SportsbookBetCard{{/__typename}}",
+"urn":"{{urn}}{{^urn}}ppb:tbd:card:sbkBet:926229536{{/urn}}",
+{{#if betSharingViewLink}}
+"betSharingViewLink":{
+{{#with betSharingViewLink}}
+  "viewUrn": "{{viewUrn}}{{^viewUrn}}ppb:tbd:view:generic:betSharing:123{{/viewUrn}}"
+{{/with}}
+},
+{{/if}}
+"navigationLinks": [
+   {{#each navigationLinks}}
+      {
+         "marketBetUrn":"{{marketBetUrn}}{{^marketBetUrn}}ppb:marketBet:924.237747664{{/marketBetUrn}}",
+         "viewUrn":"{{viewUrn}}{{^viewUrn}}ppb:tbd:view:event:2022802{{/viewUrn}}",
+         "viewUrl":"{{viewUrl}}{{^viewUrl}}/soccer/english-premier-league/english-premier-league/e-2022802{{/viewUrl}}"
+      }
+      {{#unless @last}},{{/unless}}
+   {{/each}}
+],
+"bet":{
+{{#with bet}}
+  {{> bff-sbk-bet }}
+{{/with}}
+}

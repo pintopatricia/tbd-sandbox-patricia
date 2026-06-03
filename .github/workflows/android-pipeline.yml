@@ -1,0 +1,168 @@
+name: Android Pipeline
+run-name: Android - ${{ inputs.brand }} - ${{ inputs.build_number }}${{ format(' run test "{0}"', inputs.run_tests) }}
+on:
+  workflow_dispatch:
+    inputs:
+      brand:
+        type: choice
+        description: Brand to build the app for
+        required: true
+        default: 'bf'
+        options:
+          - bf
+          - sbg
+          - pp
+      build_number:
+        type: string
+        description: Build number to use
+        required: true
+      run_tests:
+        type: boolean
+        description: Whether to run tests or not
+        required: true
+        default: true
+  workflow_call:
+    inputs:
+      brand:
+        type: string
+        description: Brand to build the app for
+        required: true
+        default: 'bf'
+      build_number:
+        type: string
+        description: Build number to use
+        required: true
+      run_tests:
+        type: boolean
+        description: Whether to run tests or not
+        required: true
+        default: true
+permissions: write-all
+env:
+  NX_BASE: origin/${{github.base_ref}}
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  RELEASABLE_TAG: "${{ inputs.build_number }}-android_${{ inputs.brand }}_releasable"
+
+jobs:
+  build-android-test-app:
+    uses: ./.github/workflows/build-android-app.yml
+    secrets: inherit
+    with:
+      brand: ${{ inputs.brand }}
+      is_deploy: true
+      deploy_tag: ${{ inputs.build_number }}
+      ref: '${{ inputs.build_number }}-android_${{ inputs.brand }}'
+      buildType: 'inhouse'
+      releaseMode: 'internal'
+      environment: 'qa'
+      branch: ${{ inputs.build_number }}-android_${{ inputs.brand }}
+  android-tests-e2e:
+    if: ${{ inputs.run_tests }}
+    needs: build-android-test-app
+    uses: ./.github/workflows/android-tests.yml
+    with:
+      test_type: e2e
+      brand: ${{ inputs.brand }}
+      apk_name: ${{ needs.build-android-test-app.outputs.artifact_name }}
+      is_merge_queue: false
+      tag: ${{ inputs.build_number }}-android_${{ inputs.brand }}
+    secrets: inherit
+  upload-android-firebase-inhouse-app:
+    if: ${{ always() && !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled') }}
+    needs: [android-tests-e2e, build-android-test-app]
+    runs-on: centos-self-hosted-large # this step requires more internal resources
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Import Skybet Common Vault Secrets
+        if: ${{ inputs.brand == 'sbg' }}
+        id: import-sbg-common-secrets
+        env:
+          SECRET_PATH: tla_tbdnsbg/data/jenkins
+        uses: hashicorp/vault-action@v3
+        with:
+          url: https://vault-prd.prd.betfair
+          method: ldap
+          username: ${{ secrets.VAULT_USER }}
+          password: ${{ secrets.VAULT_PASSWORD }}
+          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          secrets: |
+            ${{ env.SECRET_PATH }} firebase_inhouse_service_account | FIREBASE_SERVICE_ACCOUNT ;
+            ${{ env.SECRET_PATH }} firebase_inhouse_app_id | FIREBASE_APP_ID ;
+
+      - name: Import Betfair Common Vault Secrets
+        if: ${{ inputs.brand == 'bf' }}
+        id: import-bf-common-secrets
+        env:
+          SECRET_PATH: tla_tbdn/data/jenkins
+        uses: hashicorp/vault-action@v3
+        with:
+          url: https://vault-prd.prd.betfair
+          method: ldap
+          username: ${{ secrets.VAULT_USER }}
+          password: ${{ secrets.VAULT_PASSWORD }}
+          caCertificate: ${{ secrets.VAULT_CA_CERT }}
+          secrets: |
+            ${{ env.SECRET_PATH }} firebase_inhouse_service_account | FIREBASE_SERVICE_ACCOUNT ;
+            ${{ env.SECRET_PATH }} firebase_inhouse_app_id | FIREBASE_APP_ID ;
+
+      - name: Create service account file
+        shell: bash
+        run: |
+          echo "$FIREBASE_SERVICE_ACCOUNT" | base64 --decode > service_account.json
+
+      - name: Download APK from Artifactory
+        uses: ./.github/actions/download-artifactory
+        with:
+          artifactory_path: "tbd-native/android/${{ inputs.brand }}/qa/${{ needs.build-android-test-app.outputs.artifact_name }}"
+          path: "./"
+
+      - name: Build release notes
+        id: release-notes
+        shell: bash
+        run: |
+          COMMIT_MESSAGE="$(git log -1 --pretty=%s)"
+          COMMIT_HASH="$(git rev-parse --short HEAD)"
+          COMMITTER_NAME="$(git log -1 --pretty=%cn)"
+          BRANCH_NAME="origin/${{ inputs.build_number }}-android_${{ inputs.brand }}"
+          RUN_URL="https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+
+          {
+            echo 'value<<EOF'
+            echo "App target: Play"
+            echo "commit message: ${COMMIT_MESSAGE}"
+            echo "commit hash: ${COMMIT_HASH}"
+            echo "committer name: ${COMMITTER_NAME}"
+            echo "branch: ${BRANCH_NAME}"
+            echo "GitHub Run URL: ${RUN_URL}"
+            echo "GitHub Run ID: ${GITHUB_RUN_ID}"
+            echo "E2E result: ${{ needs.android-tests-e2e.result || 'not-run' }}"
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Upload APK to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.7.1
+        with:
+          appId: ${{ env.FIREBASE_APP_ID }}
+          serviceCredentialsFile: service_account.json
+          file: ${{ needs.build-android-test-app.outputs.artifact_name }}
+          groups: ${{ inputs.brand == 'bf' && 'bfrb-teams' || inputs.brand == 'sbg' && 'sbgtbd-teams' || inputs.brand == 'pp' && 'pptbd-teams' }}
+          releaseNotes: ${{ steps.release-notes.outputs.value }}
+  create-releasable-tag:
+    runs-on: ubuntu-latest
+    needs: upload-android-firebase-inhouse-app
+    if: ${{ always() && needs.upload-android-firebase-inhouse-app.result == 'success' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.build_number }}-android_${{ inputs.brand }}
+          fetch-depth: 1
+          sparse-checkout: |
+            .github/actions/create-tag
+      - name: Create Releasable Tag
+        id: create-releasable-tag
+        uses: ./.github/actions/create-tag
+        with:
+          tag-name: ${{ env.RELEASABLE_TAG }}

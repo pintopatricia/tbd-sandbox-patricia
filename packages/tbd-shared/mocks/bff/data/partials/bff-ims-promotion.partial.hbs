@@ -1,0 +1,78 @@
+"__typename": "ImsPromotion",
+"urn": "{{urn}}{{^urn}}ppb:imsPromotion:gaming-promotion-1{{/urn}}",
+"headline": "{{headline}}{{^headline}}Headline{{/headline}}",
+"subHeadline": {{#if subHeadline}}"{{subHeadline}}"{{else}}null{{/if}},
+"bonusInstanceCode": {{#if bonusInstanceCode}}"{{bonusInstanceCode}}"{{else}}null{{/if}},
+{{#if image}}
+  {{#with image}}
+      "image" : {
+          {{#if alt}} "alt": "{{alt}}{{^alt}}randomAlt{{/alt}}" {{else}} "alt": null {{/if}},
+          "url": "{{url}}{{^url}}URL{{/url}}",
+          {{#with dimensions}}
+          "dimensions": {
+            "height": {{height}}{{^height}}123{{/height}},
+            "width": {{width}}{{^width}}123{{/width}}
+          }
+          {{/with}}
+      },
+  {{/with}}
+{{else}}
+    "image": null,
+{{/if}}
+"ctaText": "{{ctaText}}{{^ctaText}}Accept{{/ctaText}}",
+"layout": "{{layout}}{{^layout}}BUY_IN{{/layout}}",
+"status": "{{status}}{{^status}}NOT_OPTED_IN{{/status}}",
+"timeLeft": {{#if timeLeft}}{{timeLeft}}{{else}}null{{/if}},
+"wagerType": {{#if wagerType}}"{{wagerType}}"{{else}}null{{/if}},
+"percentCompleted": {{#if percentCompleted}}{{percentCompleted}}{{else}}null{{/if}},
+"bonusWagering": {{#if bonusWagering}}{{bonusWagering}}{{else}}null{{/if}},
+"bonusAwarded": {{#if bonusAwarded}}{{bonusAwarded}}{{else}}null{{/if}},
+"currentBonusBalance": {{#if currentBonusBalance}}{{currentBonusBalance}}{{else}}null{{/if}},
+"amountOnPendingWinnings": {{#if amountOnPendingWinnings}}{{amountOnPendingWinnings}}{{else}}null{{/if}},
+{{#if freeSpins}}
+{{#with freeSpins}}
+  "freeSpins" : {
+    "initialFreeSpins": {{initialFreeSpins}}{{^initialFreeSpins}}{{/initialFreeSpins}},
+    "remainingFreeSpins": {{remainingFreeSpins}}{{^remainingFreeSpins}}{{/remainingFreeSpins}}
+  },
+{{/with}}
+{{else}}
+  "freeSpins": null,
+{{/if}}
+{{#if goldenChips}}
+{{#with goldenChips}}
+    "goldenChips" : {
+    "initialGoldenChips": {{initialGoldenChips}}{{^initialGoldenChips}}{{/initialGoldenChips}},
+    "remainingGoldenChips": {{remainingGoldenChips}}{{^remainingGoldenChips}}{{/remainingGoldenChips}},
+    "goldenChipsAmount": {{goldenChipsAmount}}{{^goldenChipsAmount}}{{/goldenChipsAmount}}
+    },
+{{/with}}
+{{else}}
+  "goldenChips": null,
+{{/if}}
+{{#if buyIn}}
+{{#with buyIn}}
+    "buyIn" : {
+    "buyInMinValue": {{#if buyInMinValue}}{{buyInMinValue}}{{else}}null{{/if}},
+    "buyInMaxValue": {{#if buyInMaxValue}}{{buyInMaxValue}}{{else}}null{{/if}},
+    "boughtIn": {{#if boughtIn}}{{boughtIn}}{{else}}null{{/if}},
+    {{#if intervals}}
+          "intervals" : [
+          {{#each intervals}}
+            {
+            "amount": {{#if amount}}{{amount}}{{else}}null{{/if}},
+            "percentage": {{#if percentage}}{{percentage}}{{else}}null{{/if}},
+            "min": {{min}}{{^min}}0{{/min}},
+            "max": {{max}}{{^max}}10{{/max}}
+            }{{#unless @last}},{{/unless}}
+          {{/each}}
+          ]
+    {{else}}
+        "intervals": null,
+    {{/if}}
+    },
+{{/with}}
+{{else}}
+  "buyIn": null,
+{{/if}}
+"wageringLeft": {{#if wageringLeft}}{{wageringLeft}}{{else}}null{{/if}}

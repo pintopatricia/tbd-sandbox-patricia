@@ -1,0 +1,39 @@
+fragment marketBetSelectionCard on MarketBetSelectionCard {
+  __typename
+  urn
+  id
+  handicap
+  placedDate
+  settledDate
+  matchedDate
+  price
+  runnerDesc
+  side
+  isCashout
+  size
+  profit
+  result
+  isFreeBet
+  freeBetSize
+  priceMatched
+  selectionId
+  deviceId
+  isUnmatched
+  isBsp
+  bspLiability
+  liability
+  editViewLink {
+    viewUrn
+    viewUrl
+    viewDisplayMode
+  }
+  marketBetURN
+  runnerURN
+  marketURN
+  marketBetCardGroupURN
+}
+
+fragment marketBetSelectionCardPartial on MarketBetSelectionCard {
+  __typename
+  urn
+}

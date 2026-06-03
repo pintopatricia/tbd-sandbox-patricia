@@ -1,0 +1,13 @@
+{
+    "data": {
+        "View": {
+            "__typename": "MyAccountView",
+            "urn": "{{urn}}{{^urn}}ppb:tbd:view:myAccountView:90{{/urn}}",
+            "url": "{{url}}{{^url}}/navigation/myAccountView:90{{/url}}",
+            "wizardUrl": {{#if wizardUrl}}"{{wizardUrl}}"{{else}}null{{/if}},
+            "items": {
+                {{> bff-items items}}
+            }
+        }
+    }
+}

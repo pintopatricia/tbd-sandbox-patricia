@@ -1,0 +1,8 @@
+fragment promotionNavigationAction on PromotionNavigationAction {
+  label
+  viewLink {
+    viewUrn
+    viewUrl
+    viewDisplayMode
+  }
+}

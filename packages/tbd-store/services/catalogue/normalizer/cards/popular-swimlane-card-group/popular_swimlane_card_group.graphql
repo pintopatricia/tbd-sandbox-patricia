@@ -1,0 +1,29 @@
+fragment popularSwimlaneCardGroup on PopularSwimlaneCardGroup {
+  __typename
+  urn
+  popularSwimlaneCardGroupTitle: title
+  displayName {
+    translationKey
+  }
+  fullItems: items(first: $numberOfFilledCardsInCardGroup) {
+    edges {
+      node {
+        ...popularBetBuilderCard
+        ...popularMultiplesBetBuilderCard
+      }
+    }
+  }
+  partialItems: items {
+    edges {
+      node {
+        ...popularBetBuilderCardPartial
+        ...popularMultiplesBetBuilderCardPartial
+      }
+    }
+  }
+}
+
+fragment popularSwimlaneCardGroupPartial on PopularSwimlaneCardGroup {
+  __typename
+  urn
+}

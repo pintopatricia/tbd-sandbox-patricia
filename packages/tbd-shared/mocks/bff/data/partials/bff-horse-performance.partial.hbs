@@ -1,0 +1,39 @@
+"race": {
+  {{#with race}}
+    "details": {
+      {{#with details}}
+        "scheduledTime": "{{scheduledTime}}{{^scheduledTime}}2020-01-01T00:00:00Z{{/scheduledTime}}",
+        "distance": {
+          "miles": {{distance.miles}}{{^distance.miles}}0{{/distance.miles}},
+          "furlongs": {{distance.furlongs}}{{^distance.furlongs}}0{{/distance.furlongs}},
+          "yards": {{distance.yards}}{{^distance.yards}}0{{/distance.yards}}
+        },
+        "numberOfRunners": {{#if numberOfRunners}}{{numberOfRunners}}{{else}}null{{/if}},
+        "going": {{#if going}}"{{going}}"{{else}}null{{/if}},
+        "type": {{#if type}}"{{type}}"{{else}}null{{/if}}
+      {{/with}}
+    },
+    "venue": "{{venue}}",
+    "raceUrl": {{#if raceUrl}}"{{raceUrl}}"{{else}}null{{/if}}
+  {{/with}}
+},
+"positionOfficial": {{#if positionOfficial}}{{positionOfficial}}{{else}}null{{/if}},
+"positionStatusCode": {{#if positionStatusCode}}"{{positionStatusCode}}"{{else}}null{{/if}},
+"performanceComment": {{#if performanceComment}}"{{performanceComment}}"{{else}}null{{/if}},
+"distanceBeatenStatus": {{#if distanceBeatenStatus}}"{{distanceBeatenStatus}}"{{else}}null{{/if}},
+"bspAdvantage": {{#if bspAdvantage}}{{bspAdvantage}}{{else}}null{{/if}},
+"isp": {
+  {{#if isp}}
+    {{#with isp}}
+      "decimal":{{decimal}}{{^decimal}}1.86{{/decimal}},
+      {{#with fractional}}
+        "fractional":{
+          "numerator":{{numerator}}{{^numerator}}43{{/numerator}},
+          "denominator":{{denominator}}{{^denominator}}50{{/denominator}}
+        },
+      {{/with}}
+      "americanOdd": {{americanOdd}}{{^americanOdd}}250{{/americanOdd}},
+      "favourite": {{#if favourite}}{{favourite}}{{else}}false{{/if}}
+    {{/with}}
+  {{/if}}
+}

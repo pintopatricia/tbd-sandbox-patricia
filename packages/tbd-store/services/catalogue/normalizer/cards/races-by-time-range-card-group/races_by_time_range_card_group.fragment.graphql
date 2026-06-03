@@ -1,0 +1,29 @@
+fragment racesByTimeRangeCardGroup on RacesByTimeRangeCardGroup {
+  __typename
+  urn
+  filterOptions {
+    ...byTimeRangeOptions
+  }
+  full: items(first: $numberOfFilledCardsInCardGroup) {
+    ...fullRacesByTimeRangeCardGroupItems
+  }
+  partials: items {
+    ...partialsRacesByTimeRangeCardGroupItems
+  }
+}
+
+fragment racesByTimeRangeCardGroupWithItemsFiltered on RacesByTimeRangeCardGroup {
+  __typename
+  urn
+  full: items(first: $numberOfFilledCardsInCardGroup, filterBy: $racesByTimeRangeFilterBy) {
+    ...fullRacesByTimeRangeCardGroupItems
+  }
+  partials: items(filterBy: $racesByTimeRangeFilterBy) {
+    ...partialsRacesByTimeRangeCardGroupItems
+  }
+}
+
+fragment racesByTimeRangeCardGroupPartial on RacesByTimeRangeCardGroup {
+  __typename
+  urn
+}

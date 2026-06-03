@@ -1,0 +1,3 @@
+NSCameraUsageDescription = "Apăsând OK, vei putea să încarci o imagine sau să ne trimiți o fotografie pentru a verifica contul tău.";
+NSFaceIDUsageDescription = "Activarea Face ID îți permite accesul rapid și securizat la contul tău.";
+NSUserTrackingUsageDescription = "Datele tale vor fi utilizate pentru a-ţi oferi o experiență mai personalizată legată de navigare, mesaje, evenimente sportive și promoții.";

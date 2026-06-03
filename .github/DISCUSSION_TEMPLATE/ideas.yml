@@ -1,0 +1,43 @@
+title: "[Idea] "
+labels: ["Share your thoughts on how to enhance the developer experience."]
+body:
+
+  - type: textarea
+    id: idea_summary
+    attributes:
+      label: Briefly Summarise Your Idea
+      description: Provide a concise overview of your suggestion for improving the developer experience.
+      placeholder: "e.g., Streamline the code review process, enhance documentation discoverability, optimise build times..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: detailed_description
+    attributes:
+      label: Detailed Description
+      description: |
+        Elaborate on your idea, providing as much detail as possible. Consider the following:
+        * What is the current pain point or problem?
+        * How would your idea address this?
+        * What are the potential benefits for developers?
+        * Are there any technical challenges or considerations?
+        * How could we implement this idea (if you have thoughts)?
+    validations:
+      required: true
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples (Optional)
+      description: Share specific scenarios or examples to demonstrate how your idea would be used or how it would improve things.
+      placeholder: "e.g., A new command-line tool could automate X, a visual dashboard could provide Y insights..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: related_resources
+    attributes:
+      label: Related Resources (Optional)
+      description: Include links to relevant documentation, articles, blog posts, or other resources that support your idea or provide additional context.
+    validations:
+      required: false

@@ -1,0 +1,74 @@
+name: circuit-breaker-unblock
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: Reason for unblocking merges
+        required: true
+        type: string
+concurrency:
+  group: circuit-breaker-unblock
+  cancel-in-progress: true
+
+jobs:
+  unblock:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PULL_NUMBER: ${{ github.event.number }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            tools/circuit-breaker/
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Update pull requests
+        uses: actions/github-script@v7
+        id: update-pull-requests
+        with:
+          script: |
+            const { default: updatePrs } =  await import('${{ github.workspace }}/tools/circuit-breaker/updatePrs.mjs');
+            return updatePrs(github, 'unblock');
+      - name: Send PR comment notification (unblocking merges)
+        id: slack
+        uses: slackapi/slack-github-action@v1
+        with:
+          payload: |
+            {
+              "USER": "${{ github.actor }}",
+              "MESSAGE": "${{ inputs.reason }}"
+            }
+        env:
+          SLACK_WEBHOOK_URL: "${{ secrets.SLACK_WEBHOOK_URL_CIRCUIT_BREAKER_UNBLOCK }}"
+      - name: Get latest block/unblock workflow run ID
+        uses: actions/github-script@v7
+        id: get-last-run-id
+        with:
+          script: |
+            const { default: getLatestWorkflowRunId } =  await import('${{ github.workspace }}/tools/circuit-breaker/getLatestWorkflowRunId.mjs');
+            const runId = await getLatestWorkflowRunId(github);
+            console.log("Retrieved Run ID:", runId);
+            return runId;
+      - name: Download latest artifact from the workflow run
+        if: steps.get-last-run-id.outputs.result != ''
+        uses: actions/download-artifact@v4
+        with:
+          name: incidents
+          path: artifacts
+          run-id: ${{ steps.get-last-run-id.outputs.result }}
+          github-token: ${{ secrets.CIRCUIT_BREAKER_PAT }}
+      - name: Update incidents.txt to unblock
+        run: |
+          if [ ! -f artifacts/incidents.txt ]; then touch artifacts/incidents.txt; fi
+          sed -i.bak -e 's/blocked=true/blocked=false/g' artifacts/incidents.txt
+      - name: Display updated incidents.txt
+        run: cat artifacts/incidents.txt
+      - name: Archive incidents.txt
+        uses: actions/upload-artifact@v4
+        with:
+          name: incidents
+          path: artifacts/incidents.txt

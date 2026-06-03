@@ -1,0 +1,92 @@
+/* stylelint-disable property-disallowed-list */
+@import url("@ppb/the-wall-web/reset.css");
+@import url("@ppb/the-wall-common/base-theme.css");
+@import url("@ppb/the-wall-design-tokens/generated/sky/core/web/sports.light.css");
+@import url("@ppb/the-wall-design-tokens/generated/sky/semantic/web/sports.light.css");
+@import url("@ppb/the-wall-design-tokens/generated/sky/core/web/fonts.css");
+
+@font-face {
+  font-family: "Sky Text";
+  font-weight: 400;
+  src: url("../fonts/SkyText_Rg.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Sky Text";
+  font-weight: 500;
+  src: url("../fonts/SkyText_Md.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SSportsD";
+  font-weight: 500;
+  src: url("../fonts/SSportsD_Md.woff2") format("woff2");
+  font-display: swap;
+}
+
+/*
+  Default font scaling approach for accessibility using standard CSS properties.
+  This serves as the base implementation for most browsers (excluding Safari).
+
+  - font-size: Uses clamp() to enforce minimum and maximum font sizes for dynamic
+    font scaling, ensuring we don't break the layout while still providing
+    accessibility benefits for users who need larger text, along with
+    env(preferred-text-scale) usage in the preferered value to add dynamic font
+    scaling for browsers that support the standard env(preferred-text-scale)
+    environment variable.
+*/
+:global(html) {
+  height: 100%;
+  font-size: clamp(
+    var(--font-scale-min-px),
+    calc(var(--brand-base-factor) * 100% * env(preferred-text-scale)),
+    var(--font-scale-max-px)
+  );
+}
+
+/*
+  This CSS block uses the @supports rule to implement dynamic type for accessibility
+  on browsers that support the 'font: -apple-system-body' property.
+
+  - Targets the global HTML element.
+  - Sets the font to '-apple-system-body', which automatically respects the user's
+    preferred text size settings on Apple devices, providing better accessibility
+    for users who need larger text.
+  - Defines a custom CSS variable '--apple-system-body' and sets it to true,
+    which serves as a detection flag for the JavaScript useEffect listener in App.web.tsx.
+    The JS checks for this variable to determine if -apple-system-body is supported
+    and active, then applies font size restrictions to prevent text from becoming too large.
+*/
+@supports (font: -apple-system-body) {
+  :global(html) {
+    font: -apple-system-body;
+    --apple-system-body: true;
+  }
+}
+
+:global(body) {
+  position: relative;
+
+  height: 100%;
+  overflow: auto;
+
+  font-family: "Sky Text", Arial, "Helvetica Neue", Helvetica, sans-serif;
+
+  background-color: var(--page-background-colour);
+
+  /*
+    This variable is used to add extra padding bottom to the bottom bar
+    on Chromium based browsers in iOS to avoid overlaping with system UI elements.
+  */
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/*
+  This override is to fix line-height's putting icons outside the button area when
+  accessibility font scaling is at extreme sizes on Desktop browsers.
+*/
+:global(button) {
+  line-height: 0;
+}

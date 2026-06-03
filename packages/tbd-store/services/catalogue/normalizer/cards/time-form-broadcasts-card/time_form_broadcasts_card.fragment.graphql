@@ -1,0 +1,18 @@
+fragment timeFormBroadCastsCard on TimeFormBroadCastsCard {
+  __typename
+  urn
+  raceBroadCasts: broadcasts {
+    dataVizUrl
+    liveVideoUrl
+  }
+  selectedRace: race {
+    ...raceWithRaceRunners
+  }
+  availableToSubscribe
+  raceToSubscribe
+}
+
+fragment timeFormBroadCastsCardPartial on TimeFormBroadCastsCard {
+  __typename
+  urn
+}

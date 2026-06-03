@@ -1,0 +1,18 @@
+services:
+  reverseproxy:
+    image: ppb/tbd${BRAND:-bf}/dev/reverseproxy-nxt
+    build:
+      context: ${PROJECT_ROOT}/${REVERSE_PROXY_DIR}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ${PROJECT_ROOT}/${REVERSE_PROXY_DIR}/dev/webapp.d/nxt.apitbd-remote.locations.conf:/etc/nginx/conf.d/custom.locations.conf
+      - ${PROJECT_ROOT}/${REVERSE_PROXY_DIR}/dev/webapp.d/nxt.locations.conf:/etc/nginx/conf.d/locations.conf
+      - ${PROJECT_ROOT}/${REVERSE_PROXY_DIR}/dev/webapp.d/nxt.upstream:/etc/nginx/conf.d/nxt.upstream
+    depends_on:
+      - http-webserver
+      - webserver
+
+volumes:
+  tbd-assets:

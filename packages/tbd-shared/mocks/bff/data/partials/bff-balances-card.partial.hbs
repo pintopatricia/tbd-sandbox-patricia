@@ -1,0 +1,19 @@
+"__typename": "{{__typename}}{{^__typename}}BalanceCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:balance:myaccount#balanceCard{{/urn}}",
+"wallets": [
+         {{#each wallets}}
+
+               {
+                  "name": "{{name}}{{^name}}wallet.name{{/name}}"    
+               }
+        {{#unless @last}},{{/unless}}
+        {{/each}}
+   ],
+"walletSections": [
+      {{#each walletSections}}
+         {
+            {{>bff-wallets-section}}
+         }
+      {{#unless @last}},{{/unless}}
+      {{/each}}
+]

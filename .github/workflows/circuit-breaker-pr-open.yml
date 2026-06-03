@@ -1,0 +1,32 @@
+name: circuit-breaker-pr-open
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+jobs:
+  set-new-pr-status:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PULL_NUMBER: ${{ github.event.number }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            tools/circuit-breaker/updateSinglePr.mjs
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Check for hotfix label
+        id: check-for-hotfix-label
+        run: echo "isHotfix=$(echo '${{ toJSON(github.event.pull_request.labels.*.name) }}' | grep -qi 'hotfix' && echo true || echo false)" >> $GITHUB_OUTPUT
+      - name: Update opened PR
+        uses: actions/github-script@v7
+        id: update-opened-pr
+        with:
+          script: |
+            const { default: updateSinglePr } =  await import('${{ github.workspace }}/tools/circuit-breaker/updateSinglePr.mjs');
+            const prNumber = ${{ github.event.number }};
+            const forceUnblock = ${{ steps.check-for-hotfix-label.outputs.isHotfix }};
+            return updateSinglePr(github, prNumber, forceUnblock);

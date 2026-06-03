@@ -1,0 +1,29 @@
+fragment raceByTimeRangeCard on RaceByTimeRangeCard {
+  __typename
+  urn
+  race {
+    ...raceWithRaceDetails
+  }
+  viewLink {
+    viewUrn
+    viewUrl
+  }
+  marketPromo: promotion {
+    signposting
+  }
+  winner
+  winnerIsp {
+    favourite
+    decimal
+    fractional {
+      numerator
+      denominator
+    }
+    americanOdd
+  }
+}
+
+fragment raceByTimeRangeCardPartial on RaceByTimeRangeCard {
+  __typename
+  urn
+}

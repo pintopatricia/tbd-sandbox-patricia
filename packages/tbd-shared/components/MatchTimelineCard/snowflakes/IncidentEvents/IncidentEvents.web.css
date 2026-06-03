@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+
+  margin: 0;
+}
+
+.incidentColumn {
+  display: flex;
+
+  flex: 1;
+  flex-direction: column;
+
+  gap: var(--incident-events-vertical-gap);
+
+  width: 50%;
+  overflow: hidden;
+}
+
+.scoreboardVariantHomeColumn {
+  padding: var(--incident-events-scoreboard-right-padding);
+}
+
+.scoreboardVariantAwayColumn {
+  padding: var(--incident-events-scoreboard-left-padding);
+}
+
+.defaultVariantHomeColumn {
+  padding: var(--incident-events-default-right-padding);
+
+  border-right: var(--incident-events-border);
+}
+
+.defaultVariantAwayColumn {
+  padding: var(--incident-events-default-left-padding);
+}
+
+.iconContainer {
+  flex-shrink: 0;
+}

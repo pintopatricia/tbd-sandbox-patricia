@@ -1,0 +1,36 @@
+fragment gamingPlayNewCard on GamingPlayNewCard {
+  __typename
+  urn
+  title
+  subtitle
+  backgroundImage {
+    url
+    width
+    height
+  }
+  logoImage {
+    url
+    width
+    height
+  }
+  termsAndConditions {
+    summary
+    url
+    label {
+      ...displayName
+    }
+    viewLink {
+      viewUrn
+      viewUrl
+      viewDisplayMode
+    }
+  }
+  endDate
+  optInState
+  tags
+}
+
+fragment gamingPlayNewCardPartial on GamingPlayNewCard {
+  __typename
+  urn
+}

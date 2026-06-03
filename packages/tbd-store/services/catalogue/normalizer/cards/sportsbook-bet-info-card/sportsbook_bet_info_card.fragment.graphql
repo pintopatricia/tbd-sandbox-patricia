@@ -1,0 +1,19 @@
+fragment sportsbookBetInfoCard on SportsbookBetInfoCard {
+  __typename
+  urn
+  placedDate
+  settledDate
+  betReceiptId
+  regulatorBetId
+  deviceId
+  selections {
+    marketUrn
+    runnerUrn
+  }
+  product
+}
+
+fragment sportsbookBetInfoCardPartial on SportsbookBetInfoCard {
+  __typename
+  urn
+}

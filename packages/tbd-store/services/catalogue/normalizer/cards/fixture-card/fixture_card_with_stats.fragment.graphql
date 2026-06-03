@@ -1,0 +1,10 @@
+fragment fixtureCardWithStats on FixtureCard {
+  ...fixtureCard
+  fixture {
+    ...fixtureWithStats
+  }
+}
+
+fragment fixtureCardWithStatsPartial on FixtureCard {
+  ...fixtureCardPartial
+}

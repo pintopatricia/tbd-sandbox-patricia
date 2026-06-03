@@ -1,0 +1,85 @@
+.container {
+  display: flex;
+
+  gap: var(--incident-horizontal-gap-small);
+
+  align-items: center;
+
+  max-width: 100%;
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}
+
+.minute {
+  display: flex;
+
+  align-items: center;
+
+  font: var(--incident-content-text-typography);
+  color: var(--incident-text-content-text-colour);
+  text-decoration-line: var(--incident-content-text-typography-text-decoration-line);
+  text-transform: var(--incident-content-text-typography-text-transform);
+  letter-spacing: var(--incident-content-text-typography-letter-spacing);
+}
+
+.reverse .minute {
+  text-align: right;
+}
+
+.player {
+  word-break: break-word;
+}
+
+.player.lines {
+  width: 100%;
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.player,
+.player.lines {
+  font: var(--incident-label-typography);
+  color: var(--incident-text-label-colour);
+  text-decoration-line: var(--incident-label-typography-text-decoration-line);
+  text-transform: var(--incident-label-typography-text-transform);
+  letter-spacing: var(--incident-label-typography-letter-spacing);
+}
+
+.reverse .player,
+.reverse .player.lines {
+  text-align: right;
+}
+
+.iconWrapper {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.iconWrapper svg {
+  display: flex;
+}
+
+.wrapContainer {
+  display: flex;
+
+  gap: var(--incident-horizontal-gap);
+
+  max-width: 100%;
+}
+
+.wrapContainer.lines,
+.reverse .wrapContainer.lines {
+  flex-direction: column-reverse;
+
+  gap: 0;
+}
+
+.reverse .wrapContainer.lines {
+  align-items: end;
+}

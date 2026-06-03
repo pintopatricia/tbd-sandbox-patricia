@@ -1,0 +1,21 @@
+.container {
+  overflow: hidden;
+
+  border-radius: 4px;
+}
+
+.collapseHeaderContainer {
+  display: flex;
+
+  gap: var(--card-horizontal-gap);
+
+  align-items: center;
+}
+
+.collapseHeaderContainer > img {
+  width: var(--card-flag-sizing);
+  height: var(--card-flag-sizing);
+
+  border: var(--card-flag-border);
+  border-radius: 50%; /* makes the border circular around the flag icon */
+}

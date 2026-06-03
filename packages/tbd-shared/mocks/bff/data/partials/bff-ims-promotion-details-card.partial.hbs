@@ -1,0 +1,23 @@
+"__typename": "ImsPromotionDetailsCard",
+"title": "{{title}}{{^title}}Details{{/title}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:imsPromotionState:gaming-promotion-1{{/urn}}",
+{{#with promotion}}
+    "promotion": {
+      "details": [
+      {{#each details}}
+          {
+          {{#each spans}}
+              {
+              "start": {{start}}{{^start}}1{{/start}},
+              "end": {{end}}{{^end}}5{{/end}},
+              "style": "{{style}}{{^style}}strong{{/style}}",
+              "url": {{#if url}}"{{url}}"{{else}}null{{/if}}
+              }{{#unless @last}},{{/unless}}
+          {{/each}}
+          "type": "{{type}}{{^type}}paragraph{{/type}}",
+          "text": "{{text}}{{^text}}Game Info{{/text}}"
+          }{{#unless @last}},{{/unless}}
+      {{/each}}
+      ]
+    }
+{{/with}}

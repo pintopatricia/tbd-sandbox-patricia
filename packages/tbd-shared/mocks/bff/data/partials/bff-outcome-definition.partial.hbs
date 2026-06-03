@@ -1,0 +1,39 @@
+{{#with outcomeDefinition}}
+{
+  {{#with query}}
+  "query": {
+    "sport": "{{sport}}{{^sport}}football{{/sport}}",
+    {{#if periodDefinition}}
+    {{#with periodDefinition}}
+    "periodDefinition": {
+      {{#if period}}
+      "period": "{{period}}",
+      {{/if}}
+      "periodStatus": "{{periodStatus}}{{^periodStatus}}FULL{{/periodStatus}}"
+    },
+    {{/with}}
+    {{/if}}
+    {{#if participant}}
+    {{#with participant}}
+    "participant": {
+      {{#if side}}
+      "side": "{{side}}",
+      {{/if}}
+      "type": "{{type}}{{^type}}TEAM{{/type}}"
+      {{#if participantId}},
+      "participantId": "{{participantId}}"
+      {{/if}}
+    },
+    {{/with}}
+    {{/if}}
+    "outcome": "{{outcome}}{{^outcome}}goals{{/outcome}}"
+  },
+  {{/with}}
+  {{#with statsThresholdDef}}
+  "statsThresholdDef": {
+    "threshold": {{threshold}}{{^threshold}}2{{/threshold}},
+    "comparison": "{{comparison}}{{^comparison}}LESS_THAN{{/comparison}}"
+  }
+  {{/with}}
+}
+{{/with}}

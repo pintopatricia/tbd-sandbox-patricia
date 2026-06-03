@@ -1,0 +1,5 @@
+.tooltip {
+  position: absolute;
+
+  width: var(--mash-ups-card-width);
+}

@@ -1,0 +1,24 @@
+.card {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  min-width: 155px;
+  min-height: 48px;
+  padding: var(--spacing-2);
+
+  text-align: center;
+
+  background-color: var(--neutrals-background-elevation2);
+  border-radius: 4px;
+}
+
+.middleTitle {
+  color: var(--signposting-inplay-text-default);
+}
+
+.middleDescription {
+  color: var(--neutrals-text-default);
+}

@@ -1,0 +1,33 @@
+.container {
+  /* just a class to have the ability of select the element */
+}
+
+.aggregatorBody {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--spacing-2);
+
+  padding: var(--spacing-2) var(--spacing-2) 0;
+  overflow: auto;
+}
+
+.legCardGroup {
+  flex-grow: 1;
+
+  background-color: var(--neutrals-background-elevation3);
+  border-radius: var(--sportsbook-bet-leg-card-group-container-border-radius);
+}
+
+.legGroupContainer {
+  flex-grow: 1;
+}
+
+.dividerContainer {
+  padding-bottom: var(--spacing-2);
+}
+
+.card {
+  margin: 0;
+}

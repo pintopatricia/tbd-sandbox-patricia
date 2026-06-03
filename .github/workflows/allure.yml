@@ -1,0 +1,101 @@
+name: allure
+run-name: Allure Report Generation for ${{ inputs.test_type }} - ${{ inputs.platform }} - ${{ inputs.brand }}
+on:
+  workflow_call:
+    inputs:
+      results_folder_name:
+        required: true
+        type: string
+      test_type:
+        required: true
+        type: string
+      brand:
+        required: false
+        default: "bf"
+        type: string
+      history_group:
+        required: true
+        type: string
+      platform:
+        required: true
+        type: string
+
+jobs:
+  save_allure_report:
+    runs-on: [ubuntu-self-hosted, x64]
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      TEST_TYPE: ${{ inputs.test_type }}
+      HISTORY_GROUP: ${{ inputs.history_group }}
+      GH_RUN_ID: ${{ github.run_id }}
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - uses: actions/download-artifact@v4
+        id: download-artifact
+        with:
+          name: ${{inputs.results_folder_name}}
+          path: ${{inputs.results_folder_name}}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: "arn:aws:iam::509882276346:role/AWS20_GithubOidcRole-repo"
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: eu-west-1
+          role-skip-session-tagging: true
+
+      - name: Download Allure history from S3 Bucket
+        run: |
+          RESULTS_PATH="${{steps.download-artifact.outputs.download-path}}"
+          aws s3 cp \
+          s3://awsdxrstbd-bucket/allure-report/${{inputs.platform}}/${{inputs.brand}}/${TEST_TYPE}/${HISTORY_GROUP}/latest/history \
+          previous-history \
+          --recursive || echo "No previous history found"
+
+          echo "Adding history into $RESULTS_PATH/history"
+          mkdir -p "$RESULTS_PATH/history"
+          cp -r previous-history/* "$RESULTS_PATH/history/" || echo "No history copied"
+
+      - name: Install Allure CLI
+        run: npm install -g allure-commandline
+
+      - name: Generate Allure report
+        run: |
+          RESULTS_PATH="${{steps.download-artifact.outputs.download-path}}"
+          RESULTS_OUTPUT="allure-report"
+          echo "Inputs:"
+          echo "  PLATFORM: ${{inputs.platform}}"
+          echo "  BRAND: ${{inputs.brand}}"
+          echo "  RESULTS_PATH: $RESULTS_PATH"
+          echo "  TEST_TYPE: $TEST_TYPE"
+          echo "  HISTORY_GROUP: $HISTORY_GROUP"
+          echo "  GH_RUN_ID: $GH_RUN_ID"
+          echo "Generating Allure report from $RESULTS_PATH"
+          npx allure generate "$RESULTS_PATH" --clean --single-file -o "$RESULTS_OUTPUT"
+          npx allure generate "$RESULTS_PATH" --clean -o "${RESULTS_OUTPUT}-history"
+          echo "Allure report generated at $RESULTS_OUTPUT"
+
+      - name: Upload Allure report to S3 Bucket
+        run: |
+          aws s3 cp allure-report-history/history \
+          s3://awsdxrstbd-bucket/allure-report/${{inputs.platform}}/${{inputs.brand}}/${TEST_TYPE}/${HISTORY_GROUP}/${GH_RUN_ID}/history \
+          --recursive
+          aws s3 cp allure-report/index.html \
+          s3://awsdxrstbd-bucket/allure-report/${{inputs.platform}}/${{inputs.brand}}/${TEST_TYPE}/${HISTORY_GROUP}/${GH_RUN_ID}/
+          echo "Allure report uploaded to S3 bucket at s3://awsdxrstbd-bucket/allure-report/${{inputs.platform}}/${{inputs.brand}}/${TEST_TYPE}/${HISTORY_GROUP}/${GH_RUN_ID}/"
+
+          aws s3 cp allure-report-history/history \
+          s3://awsdxrstbd-bucket/allure-report/${{inputs.platform}}/${{inputs.brand}}/${TEST_TYPE}/${HISTORY_GROUP}/latest/history \
+          --recursive
+          aws s3 cp allure-report/index.html \
+          s3://awsdxrstbd-bucket/allure-report/${{inputs.platform}}/${{inputs.brand}}/${TEST_TYPE}/${HISTORY_GROUP}/latest/
+          echo "Report available at: https://awsdxrstbd-bucket.s3.eu-west-1.amazonaws.com/allure-report/${{inputs.platform}}/${{inputs.brand}}/${TEST_TYPE}/${HISTORY_GROUP}/${GH_RUN_ID}/index.html"

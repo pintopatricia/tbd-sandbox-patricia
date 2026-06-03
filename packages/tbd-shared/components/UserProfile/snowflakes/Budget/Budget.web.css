@@ -1,0 +1,68 @@
+.container {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--budget-vertical-gap-primary);
+}
+
+.title {
+  font: var(--budget-title-typography);
+  color: var(--budget-text-title-colour);
+  text-decoration: var(--budget-title-typography-text-decoration-line);
+  text-transform: var(--budget-title-typography-text-transform);
+  letter-spacing: var(--budget-title-typography-letter-spacing);
+}
+
+.budgetContent {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--budget-vertical-gap-secondary);
+
+  padding: var(--budget-padding);
+
+  background-color: var(--budget-background-colour);
+  border-radius: var(--budget-border-radius);
+}
+
+.supportingContent {
+  display: flex;
+
+  gap: var(--budget-horizontal-gap-secondary);
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reset {
+  flex: 1;
+
+  font: var(--budget-supporting-text-typography);
+  color: var(--budget-text-supporting-text-colour);
+  text-decoration: var(--budget-supporting-text-typography-text-decoration-line);
+  text-transform: var(--budget-supporting-text-typography-text-transform);
+  letter-spacing: var(--budget-supporting-text-typography-letter-spacing);
+}
+
+.linkContent {
+  display: flex;
+
+  gap: var(--budget-horizontal-gap-tertiary);
+
+  align-items: center;
+}
+
+.linkText {
+  font: var(--budget-link-typography);
+  color: var(--budget-text-link-colour);
+  text-decoration: var(--budget-link-typography-text-decoration-line);
+  text-transform: var(--budget-link-typography-text-transform);
+  letter-spacing: var(--budget-link-typography-letter-spacing);
+}
+
+.linkIcon {
+  width: var(--budget-action-icon-sizing);
+  height: var(--budget-action-icon-sizing);
+}

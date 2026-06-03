@@ -1,0 +1,26 @@
+fragment popularBettingOpportunity on PopularBettingOpportunity {
+  __typename
+  urn
+  id
+  count
+  selections {
+    __typename
+    market {
+      ...sportsbookMarket
+    }
+    runner {
+      runnerURN
+      selectionId
+    }
+    raceRunner {
+      ...raceRunnerLite
+    }
+  }
+  displayName
+  type
+}
+
+fragment popularBettingOpportunityPartial on PopularBettingOpportunity {
+  __typename
+  urn
+}

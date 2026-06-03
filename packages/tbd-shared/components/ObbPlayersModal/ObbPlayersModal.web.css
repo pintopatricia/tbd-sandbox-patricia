@@ -1,0 +1,15 @@
+.container {
+  display: grid;
+
+  gap: var(--spacing-2);
+
+  width: 100%;
+}
+
+.playersModalHeader {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--spacing-2);
+}

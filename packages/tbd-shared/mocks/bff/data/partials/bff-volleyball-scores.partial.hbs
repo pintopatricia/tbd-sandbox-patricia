@@ -1,0 +1,8 @@
+"currentServer": {{#if currentServer}}"{{currentServer}}"{{else}}null{{/if}},
+"number": {{number}}{{^number}}1{{/number}},
+{{#with score}}
+"score": {
+  "away": {{away}}{{^away}}0{{/away}},
+  "home": {{home}}{{^home}}0{{/home}}
+}
+{{/with}}

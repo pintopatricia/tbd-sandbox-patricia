@@ -1,0 +1,20 @@
+query Markets(
+  $URNs: [URN!]!
+  $preferences: LayoutPreferencesInput
+  $throttlesOn: [String!]
+  $throttlesOff: [String!]
+  $productExclusions: [ProductExclusion!]
+)
+@productExclusions(productExclusions: $productExclusions)
+@preferences(preferences: $preferences)
+@throttlesOn(throttlesOn: $throttlesOn)
+@throttlesOff(throttlesOff: $throttlesOff) {
+  Markets(URNs: $URNs) {
+    ... on SportsbookMarket {
+      ...sportsbookMarketBetting
+    }
+    ... on ExchangeMarket {
+      ...exchangeMarketBetting
+    }
+  }
+}

@@ -1,0 +1,61 @@
+"__typename": "{{__typename}}{{^__typename}}RaceByTimeRangeCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:raceViewLink:7|30269293.1410{{/urn}}",
+"race": {
+  "__typename": "Race",
+  {{#with race}}
+    "urn":"{{urn}}{{^urn}}ppb::race:7|30269293.1410{{/urn}}",
+    "startTime":"{{startTime}}{{^startTime}}2020-07-13T14:10:00.000Z{{/startTime}}",
+    {{#if details}}
+      "details": {
+         "resultType": "{{details.resultType}}{{^details.resultType}}FULL_RESULTS{{/details.resultType}}"
+      },
+    {{/if}}
+  {{/with}}
+  "meeting": {
+    "__typename": "Meeting",
+    "urn": "{{meetingId}}{{^meetingId}}ppb:meeting:30269293{{/meetingId}}",
+    "sport": {
+      "__typename": "Sport",
+      "urn": "ppb:sport:7",
+      "sportId": 7
+    },
+    "countryFlag": {
+      "vector": null,
+      "small": "https://sca.cdnppb.net/Assets/logo/small/5701.png",
+      "medium": "https://sca.cdnppb.net/Assets/logo/medium/5701.png",
+      "large": "https://sca.cdnppb.net/Assets/logo/big/5701.png"
+    }
+  }
+},
+{{#if marketPromo}}
+  "marketPromo": {
+  {{#with marketPromo}}
+    "signposting": "{{signposting}}{{^signposting}}MONEY_BACK{{/signposting}}"
+  {{/with}}
+  },
+{{/if}}
+{{#with viewLink}}
+  "viewLink": {
+    "viewUrl": "{{viewUrl}}{{^viewUrl}}/horse-racing{{/viewUrl}}",
+    "viewUrn": "{{viewUrn}}{{^viewUrn}}ppb:tbd:view:sport:7{{/viewUrn}}"
+  }
+{{/with}}
+{{#if winner}}
+  ,"winner": "{{winner}}",
+{{/if}}
+{{#with winnerIsp}}
+  "winnerIsp": {
+      "favourite": {{#if favourite}}{{favourite}}{{else}}false{{/if}},
+      {{#if decimal}}
+        "decimal": {{decimal}},
+      {{/if}}
+      {{#if fractional}}
+        "fractional": {
+      {{#with fractional}}
+          "numerator": {{numerator}}{{^numerator}}1{{/numerator}},
+          "denominator": {{denominator}}{{^denominator}}2{{/denominator}}
+      {{/with}}
+        }
+      {{/if}}
+  }
+{{/with}}

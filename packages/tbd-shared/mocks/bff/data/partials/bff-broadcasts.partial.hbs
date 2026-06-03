@@ -1,0 +1,18 @@
+"broadcasts": {
+	"viz":
+	{{#if viz}}
+		{{#with viz}}
+			{ "player": "{{player}}{{^player}}url{{/player}}" },
+		{{/with}}
+	{{else}}
+		null,
+	{{/if}}
+    "liveVideo":
+	{{#if liveVideo}}
+		{{#with liveVideo}}
+			{ "player": "{{player}}{{^player}}url{{/player}}" }
+		{{/with}}
+	{{else}}
+		null
+	{{/if}}
+}

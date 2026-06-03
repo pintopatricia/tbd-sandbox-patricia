@@ -1,0 +1,22 @@
+"__typename": "{{__typename}}{{^__typename}}VirtualMarket{{/__typename}}",
+"marketId": "{{marketId}}{{^marketId}}924.307595994{{/marketId}}",
+"marketType": "{{marketType}}{{^marketType}}WIN{{/marketType}}",
+"name": "{{name}}{{^name}}Win or Each Way{{/name}}",
+"urn": "{{urn}}{{^urn}}ppb:virtualMarket:924.307595994{{/urn}}",
+"hasEachWay": {{hasEachWay}}{{^hasEachWay}}false{{/hasEachWay}},
+"eachWayPlaces": {{eachWayPlaces}}{{^eachWayPlaces}}null{{/eachWayPlaces}},
+"eachWayFraction": {{eachWayFraction}}{{^eachWayFraction}}null{{/eachWayFraction}},
+"status": "{{status}}{{^status}}OPEN{{/status}}",
+"event": {
+  {{> bff-virtual-event event}}
+},
+"sport": {
+  {{> bff-virtual-sport sport}}
+},
+"runners": [
+  {{#each runners}}
+    {
+      {{> bff-virtual-runner this}}
+    }{{#unless @last}},{{/unless}}
+  {{/each}}
+]

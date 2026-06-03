@@ -1,0 +1,21 @@
+{
+  "swimlaneItemContainer": ".dfe06a2f1ddb1bd0-swimlaneItemContainer",
+  "snap": ".dfe06a2f1ddb1bd0-snap",
+  "scrollableSwimlaneLeft": ".dfe06a2f1ddb1bd0-scrollableSwimlaneLeft",
+  "scrollableSwimlaneRight": ".dfe06a2f1ddb1bd0-scrollableSwimlaneRight",
+  "container": ".dfe06a2f1ddb1bd0-container",
+  "navigation": ".dfe06a2f1ddb1bd0-navigation",
+  "supportingContent": ".dfe06a2f1ddb1bd0-supportingContent",
+  "highlightedSelection": ".dfe06a2f1ddb1bd0-highlightedSelection",
+  "highlightedContainer": ".dfe06a2f1ddb1bd0-highlightedContainer",
+  "titleContainer": ".dfe06a2f1ddb1bd0-titleContainer",
+  "title": ".dfe06a2f1ddb1bd0-title",
+  "subtitle": ".dfe06a2f1ddb1bd0-subtitle",
+  "extended": ".dfe06a2f1ddb1bd0-extended",
+  "competitionViewLink": ".dfe06a2f1ddb1bd0-competitionViewLink",
+  "game": ".dfe06a2f1ddb1bd0-game",
+  "gamingLink": ".dfe06a2f1ddb1bd0-gamingLink",
+  "sportviewlink": ".dfe06a2f1ddb1bd0-sportviewlink",
+  "byTimeRangeMeeting": ".dfe06a2f1ddb1bd0-byTimeRangeMeeting",
+  "promoCard": ".dfe06a2f1ddb1bd0-promoCard"
+}

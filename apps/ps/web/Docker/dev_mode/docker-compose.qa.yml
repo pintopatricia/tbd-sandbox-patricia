@@ -1,0 +1,18 @@
+version: "3.4"
+services:
+  reverseproxy:
+    image: ppb/tbdps/dev/reverseproxy-qa
+    build:
+      context: ${PWD}/../reverse-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ${PWD}/../reverse-proxy/dev/webapp.d/apitbd-remote.locations.conf:/etc/nginx/conf.d/custom.locations.conf
+      - ${PWD}/../reverse-proxy/dev/webapp.d/qa.locations.conf:/etc/nginx/conf.d/locations.conf
+      - ${PWD}/../reverse-proxy/dev/webapp.d/qa.upstream:/etc/nginx/conf.d/qa.upstream
+    depends_on:
+      - http-webserver
+      - webserver
+volumes:
+  tbd-assets:

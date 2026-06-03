@@ -1,0 +1,23 @@
+fragment fullFutureRacingCardGroupItems on FutureRacingCardGroupItemsConnection {
+  edges {
+    date
+    node {
+      # Read this before adding new entries: docs/guidelines/how-to-add-a-new-card.md
+
+      ...quickLinksCard
+    }
+  }
+}
+
+fragment partialsFutureRacingCardGroupItems on FutureRacingCardGroupItemsConnection {
+  edges {
+    date
+    node {
+      urn
+      __typename
+    }
+  }
+  pageInfo {
+    hasNextPage
+  }
+}

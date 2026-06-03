@@ -1,0 +1,44 @@
+{{#with eventId}}
+  "eventId": {
+    "supplier": "{{supplier}}",
+    "id": "{{id}}",
+    "__typename": "EventId"
+  },
+{{/with}}
+"expressionTemplateId": "{{expressionTemplateId}}",
+{{#with baseExpressionTemplateDefinitions}}
+  "baseExpressionTemplateDefinitions": [
+    {{#each baseExpressionTemplateDefinitions}}
+      {
+        {{> bff-obb-base-expression-template}}
+      }
+      {{#unless @last}},{{/unless}}
+    {{/each}}
+  ],
+{{/with}}
+{{#with expressionParams}}
+  "expressionParams": {
+    {{#if baseBets}}
+      "baseBets": [
+        {{#each baseBets}}
+          {
+            {{> bff-obb-base-bet}}
+          }
+          {{#unless @last}},{{/unless}}
+        {{/each}}
+      ],
+    {{/if}}
+    "x": {{x}},
+    "__typename": "{{__typename}}{{^__typename}}ExpressionParams{{/__typename}}"
+  },
+{{/with}}
+"betDefinitions": [
+  {{#each betDefinitions}}
+    "{{this}}"{{#unless @last}},{{/unless}}
+  {{/each}}
+],
+{{#with result}}
+  "result": {
+    {{> bff-obb-bet-imply-result}}
+  }
+{{/with}}

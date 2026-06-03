@@ -1,0 +1,49 @@
+{{#ifEquals __typename "EventCompetitionHierarchy"}}
+  "__typename": "EventCompetitionHierarchy",
+  "sportevent": {
+  {{#if sportevent}}
+    {{#with sportevent}}
+      {{> bff-sportevent}}
+    {{/with}}
+  {{else}}
+    {{> bff-sportevent}}
+  {{/if}}
+  },
+  "competition": {
+  {{#if competition}}
+    {{#with competition}}
+      {{> bff-competition }}
+    {{/with}}
+  {{else}}
+    {{> bff-competition}}
+  {{/if}}
+  }
+{{else ifEquals __typename "RaceHierarchy"}}
+  "__typename": "RaceHierarchy",
+  "race": {
+  {{#if race}}
+    {{#with race}}
+      {{> bff-race}}
+    {{/with}}
+  {{/if}}
+  },
+  "meeting": {
+  {{#if meeting}}
+    {{#with meeting}}
+      {{> bff-meeting}}
+    {{/with}}
+  {{else}}
+    {{> bff-meeting}}
+  {{/if}}
+  }
+{{else ifEquals __typename "VirtualEventHierarchy"}}
+  "__typename": "VirtualEventHierarchy",
+  "virtualEvent": {
+      {{> bff-virtual-event virtualEvent}}
+  }
+{{else}}
+  "__typename": "EventHierarchy",
+  "sportevent": {
+    {{> bff-sportevent sportevent}}
+  }
+{{/ifEquals}}

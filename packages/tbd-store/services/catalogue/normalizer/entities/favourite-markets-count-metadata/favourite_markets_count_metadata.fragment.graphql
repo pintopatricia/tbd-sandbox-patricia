@@ -1,0 +1,6 @@
+fragment favouriteMarketsCountMetadata on FavouriteMarketsCountMetadata {
+  __typename
+  urn
+  limit
+  currentCount
+}

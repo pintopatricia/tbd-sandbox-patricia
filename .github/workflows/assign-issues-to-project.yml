@@ -1,0 +1,17 @@
+name: Auto Assign ADRs to project board
+
+on:
+  issues:
+    types:
+      - opened
+      - reopened
+
+jobs:
+  add-to-project:
+    name: Add issue to project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/add-to-project@v1.0.2
+        with:
+          project-url: https://github.com/orgs/Flutter-Global/projects/262
+          github-token: ${{ secrets.GH_ACTIONS_ADR_TOKEN }}

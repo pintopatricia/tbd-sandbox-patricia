@@ -1,0 +1,49 @@
+.scoresContainer {
+  padding-top: var(--spacing-6);
+  padding-bottom: var(--spacing-6);
+}
+
+.resultsContainer {
+  display: flex;
+
+  justify-content: center;
+}
+
+.resultContainer {
+  flex: 50%;
+
+  padding-top: var(--spacing-4);
+  padding-bottom: var(--spacing-4);
+}
+
+.resultsContainer:first-child .resultContainer {
+  padding-top: 0;
+}
+
+.resultsContainer:last-child .resultContainer {
+  padding-bottom: 0;
+}
+
+.homeContainer {
+  padding-right: var(--spacing-4);
+
+  border-right: 1px solid var(--neutrals-border-elevation1);
+}
+
+.awayContainer {
+  padding-left: var(--spacing-4);
+}
+
+.container {
+  display: flex;
+
+  flex-direction: column;
+  flex-grow: 1;
+
+  justify-content: space-between;
+}
+
+.caption {
+  margin: var(--spacing-3);
+  margin-top: 0;
+}

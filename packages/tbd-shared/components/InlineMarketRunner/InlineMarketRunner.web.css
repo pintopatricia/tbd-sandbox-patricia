@@ -1,0 +1,36 @@
+.betButtonContainer {
+  width: 100%;
+  height: var(--bet-button-height);
+}
+
+.marketContainer {
+  flex: 1 1 0;
+
+  width: 100%;
+  min-width: 0;
+}
+
+.labels {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 0;
+  padding-bottom: var(--spacing-1);
+
+  color: var(--neutrals-text-default);
+  text-align: center;
+}
+
+.container {
+  width: 100%;
+}
+
+.container:not(:last-child) .labels {
+  margin-right: var(--spacing-1);
+}
+
+.handicap {
+  flex-shrink: 0;
+}

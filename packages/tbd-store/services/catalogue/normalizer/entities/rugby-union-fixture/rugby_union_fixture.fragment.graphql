@@ -1,0 +1,17 @@
+fragment rugbyUnionFixture on RugbyUnionFixture {
+  __typename
+  urn
+  runnerNames {
+    home
+    away
+  }
+  isAmericanFormat
+  score {
+    scoreHome: home
+    scoreAway: away
+  }
+  halfTimeScore {
+    halfTimeScoreHome: home
+    halfTimeScoreAway: away
+  }
+}

@@ -1,0 +1,16 @@
+"__typename": "{{__typename}}{{^__typename}}HighlightedSelectionCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:highlightedSelection:924.235739888/35458128{{/urn}}",
+"title":"{{title}}{{^title}}All teams to score in the UEFA Champions League (in 90 mins){{/title}}",
+{{#with market}}
+"market": {
+  {{> bff-market}}
+  },
+{{/with}}
+{{#with runner}}
+"runner":{
+  "runnerURN": "{{runnerURN}}{{^runnerURN}}ppb:sbkRunner:924.235739888/35458130{{/runnerURN}}",
+  "selectionId": "{{selectionId}}{{^selectionId}}35458130{{/selectionId}}",
+  "handicap": 0
+},
+{{/with}}
+"displayPreviousOdd": {{displayPreviousOdd}}{{^displayPreviousOdd}}false{{/displayPreviousOdd}}

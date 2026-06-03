@@ -1,0 +1,8 @@
+"__typename":"PreferenceSingleChoiceCard",
+"urn":"{{urn}}{{^urn}}ppb:tbd:preference:singleChoice:sportsbookOddsDisplay{{/urn}}",
+"title":"{{title}}{{^title}}I18N.PREFERENCES.SPORTSBOOK_ODDS_DISPLAY.TITLE{{/title}}",
+"description":"{{description}}{{^description}}I18N.PREFERENCES.SPORTSBOOK_ODDS_DISPLAY.DESCRIPTION{{/description}}",
+"cardLayout":"{{cardLayout}}{{^cardLayout}}RADIO{{/cardLayout}}",
+{{#with preference}}
+"preference":{{> bff-preference-single-choice }}
+{{/with}}

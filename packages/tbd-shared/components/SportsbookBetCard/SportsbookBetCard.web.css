@@ -1,0 +1,13 @@
+.accaFreezeSignPostingContainer {
+  display: flex;
+
+  gap: 4px;
+
+  padding: 4px;
+}
+
+.superSubIconContainer {
+  width: 81px;
+  margin: var(--sportsbook-bet-panel-container-vertical-gap);
+  margin-bottom: 0;
+}

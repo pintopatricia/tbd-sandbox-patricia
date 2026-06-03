@@ -1,0 +1,84 @@
+title: "[Issue] "
+labels: ["Issues"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Help us improve your developer experience! Share details about any bugs, glitches, or frustrations you encounter.
+
+  - type: checkboxes
+    id: prerequisites
+    attributes:
+      label: Getting Started
+      description: Let's make this productive! Please check the following -
+      options:
+        - label: I've looked at the Read Me and other documentations to check if this is a known issue.
+          required: true
+        - label: I've checked if a similar discussion already exists.
+          required: true
+        - label: I'm providing enough details for others to reproduce and understand the problem.
+          required: true
+
+  - type: textarea
+    id: what
+    attributes:
+      label: Describe the Issue
+      description: |
+        Please provide details on the problem you're facing.  To help us understand, consider:
+        * What steps lead to the issue?
+        * What did you expect to happen?
+        * What actually happened instead?
+        * Are there any error messages or logs?
+        * What tools/technologies are involved?
+        * What's the impact on your workflow?
+      placeholder: "Example: When running 'yarn start' in our project's monorepo, I get a 'dependency tree is invalid' error. This blocks our development workflow, preventing new dependencies from being added."
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Value in Resolving (Optional)
+      description: Describe the positive outcomes we can expect by addressing this issue. How will it improve the developer experience or the overall development process?
+      placeholder: "e.g., Fixing this will speed up onboarding, reduce context switching, or eliminate a common source of errors."
+    validations:
+      required: false
+
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Who's Affected? (Optional)
+      description: Help us understand who's experiencing this.
+      options:
+        - Individual contributors (e.g., myself or a few colleagues)
+        - A specific team or group (e.g., the frontend team)
+        - Multiple teams or a broader user base
+    validations:
+      required: false
+
+  - type: textarea
+    id: how
+    attributes:
+      label: Ideas or Workarounds? (Optional)
+      description: Have you tried anything to address this issue? Any potential fixes or temporary solutions you've explored are welcome here.
+      placeholder: "Example: I tried updating the linter configuration and clearing the cache, but the build still fails. Maybe we could investigate alternative build tools or tweak our CI/CD pipeline..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: other
+    attributes:
+      label: Alternative Solutions (Optional)
+      description: Is there another way to solve this? We welcome unconventional ideas.
+      placeholder: "Example: Perhaps we could use a different library for handling XYZ, or we could..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Potential Downsides or Concerns
+      description: What are the potential negative impacts on developer experience, productivity, or workflows if we implement a solution (or don't address this issue)?
+      placeholder: "Examples: Increased build times, introducing breaking changes, added complexity for new contributors..."
+    validations:
+      required: true

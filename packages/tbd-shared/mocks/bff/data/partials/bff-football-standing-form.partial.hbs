@@ -1,0 +1,18 @@
+{{#if rank}}
+{{#with rank}}
+  "rank": {
+    {{> bff-standing-rank}}
+  },
+{{/with}}
+{{else}}
+  "rank": null,
+{{/if}}
+{{#if team}}
+{{#with team}}
+  "team": {
+    {{> bff-standing-team}}
+  }
+{{/with}}
+{{else}}
+  "team": null
+{{/if}}

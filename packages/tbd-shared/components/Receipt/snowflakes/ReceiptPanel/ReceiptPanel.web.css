@@ -1,0 +1,32 @@
+.receipt {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--receipt-panel-vertical-gap);
+
+  background-color: var(--receipt-panel-background-colour);
+  border-radius: var(--receipt-panel-border-radius);
+  box-shadow: var(--receipt-panel-shadow);
+}
+
+.container {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--receipt-panel-container-vertical-gap);
+
+  padding: var(--receipt-panel-container-padding);
+  overflow: hidden;
+
+  border-radius: var(--receipt-panel-container-border-radius);
+}
+
+.betReceiptContainer {
+  background-color: var(--receipt-panel-container-background-colour);
+}
+
+.segmentsWrap {
+  padding: var(--receipt-panel-container-bet-segments-padding);
+}

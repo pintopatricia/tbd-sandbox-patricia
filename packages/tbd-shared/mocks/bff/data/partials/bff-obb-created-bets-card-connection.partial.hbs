@@ -1,0 +1,17 @@
+"edges": [
+{{#each edges}}
+    {{#if node}}
+      {
+        {{#with node}}
+          "cursor": "{{cursor}}{{^cursor}}ppb:obb:card:createdBets:aMvBuBIAACIAVFHF|obb_created_bets_card$de0a930c-c325-4b6c-9637-0b4725dd9159/cv/home{{/cursor}}",
+          "node": {
+              {{> bff-obb-created-bets-card}}
+          }
+        {{/with}}
+      } {{#unless @last}},{{/unless}}
+    {{else}}
+      null{{#unless @last}},{{/unless}}
+    {{/if}}
+{{/each}}
+],
+"__typename": "ObbCreatedBetsCardConnection"

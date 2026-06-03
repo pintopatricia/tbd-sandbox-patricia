@@ -1,0 +1,106 @@
+.container {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--sportsbook-bet-panel-container-vertical-gap);
+
+  overflow: hidden;
+
+  background-color: var(--sportsbook-bet-panel-background-colour);
+  border-radius: var(--sportsbook-bet-panel-border-radius);
+}
+
+.containerBody {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--sportsbook-bet-panel-container-vertical-gap);
+
+  padding: var(--sportsbook-bet-panel-container-padding);
+}
+
+.headerContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--bet-title-vertical-gap);
+
+  padding: var(--bet-title-padding);
+
+  background-color: var(--bet-title-background-colour);
+}
+
+.title {
+  font: var(--bet-title-title-typography);
+  color: var(--bet-title-text-title-colour);
+  text-decoration-line: var(--bet-title-title-typography-text-decoration-line);
+  text-transform: var(--bet-title-title-typography-text-transform);
+  letter-spacing: var(--bet-title-title-typography-letter-spacing);
+}
+
+.titleIndicatorsContainer {
+  display: flex;
+
+  flex-direction: row;
+
+  gap: var(--bet-title-horizontal-gap);
+}
+
+.statusLabelContainer {
+  display: flex;
+
+  flex: 1;
+  flex-direction: column;
+
+  gap: var(--bet-title-vertical-gap);
+}
+
+.buttonsContainer {
+  display: flex;
+
+  align-items: center;
+}
+
+.subtitle {
+  font: var(--bet-title-subtitle-typography);
+  color: var(--bet-title-text-subtitle-colour);
+  text-decoration-line: var(--bet-title-subtitle-typography-text-decoration-line);
+  text-transform: var(--bet-title-subtitle-typography-text-transform);
+  letter-spacing: var(--bet-title-subtitle-typography-letter-spacing);
+}
+
+.supportingTextContainer {
+  display: flex;
+
+  gap: var(--bet-title-horizontal-gap);
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.supportingText {
+  display: block;
+
+  overflow: hidden;
+
+  font: var(--bet-title-supporting-text-typography);
+  color: var(--bet-title-text-supporting-text-colour);
+  text-decoration-line: var(--bet-title-supporting-text-typography-text-decoration-line);
+  text-transform: var(--bet-title-supporting-text-typography-text-transform);
+  letter-spacing: var(--bet-title-supporting-text-typography-letter-spacing);
+}
+
+.bog {
+  display: flex;
+}
+
+.betSegmentInfo {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: var(--sportsbook-bet-panel-labels-horizontal-gap);
+}

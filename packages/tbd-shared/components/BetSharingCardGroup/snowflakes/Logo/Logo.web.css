@@ -1,0 +1,24 @@
+.brand {
+  width: var(--brand-logo-default-width-sizing);
+  height: var(--brand-logo-default-height-sizing);
+
+  fill: var(--brand-logo-shape-colour);
+}
+
+.games {
+  width: var(--brand-logo-games-width-sizing);
+  height: var(--brand-logo-games-height-sizing);
+
+  fill: var(--brand-logo-shape-colour);
+}
+
+.exchange {
+  width: var(--brand-logo-exchange-width-sizing);
+  height: var(--brand-logo-exchange-height-sizing);
+
+  fill: var(--brand-logo-shape-colour);
+}
+
+.logoContainer {
+  display: flex;
+}

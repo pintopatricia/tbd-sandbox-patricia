@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+
+  flex-direction: column;
+
+  row-gap: var(--quick-link-card-title-gap);
+}
+
+.listContainer {
+  will-change: filter;
+
+  border-radius: var(--quick-link-border-radius);
+}
+
+.list {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.primaryList {
+  gap: var(--quick-link-card-gap);
+}
+
+.title {
+  font: var(--quick-link-card-title-typography);
+  color: var(--quick-link-card-title-colour);
+  text-decoration-line: var(--quick-link-card-title-typography-text-decoration-line);
+  text-transform: var(--quick-link-card-title-typography-text-transform);
+  letter-spacing: var(--quick-link-card-title-typography-letter-spacing);
+}
+
+.icon {
+  width: var(--quick-link-icon-sizing);
+  height: var(--quick-link-icon-sizing);
+}

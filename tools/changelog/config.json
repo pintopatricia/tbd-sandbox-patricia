@@ -1,0 +1,402 @@
+{
+  "TBD": {
+    "project_name": "The Betting Destination - Site",
+    "project_tla": "TBD",
+    "job_package_name": "tbd_package",
+    "compare_environment": "prd",
+    "confluence": {
+      "tree": ["Release Notes - TBD - Build @@BUILD - @@ENV - @@DATE"],
+      "baseUrl": "https://flutteruki.atlassian.net/",
+      "space": "SPX",
+      "parentId": "892076944",
+      "pageLink": "https://flutteruki.atlassian.net/pages/viewpage.action?pageId="
+    },
+    "artifactory": {
+      "manifest_path": "releases/tbd_package/ie1/qa/tbd-manifest-",
+      "dependencies": [
+        {
+          "json_path_to_dependencies": "tbd-mobile-site.dependencies",
+          "type": "strands",
+          "name": "Strands",
+          "component": "TBD Mobile Site"
+        }
+      ]
+    },
+    "components": [
+      {
+        "sort_priority": 0,
+        "component_name": "TBD Mobile Site",
+        "jenkins": {
+          "build_parameter_name": "tbd_build"
+        },
+        "github": {
+          "project_link": "/Flutter-Global/tbd",
+          "dependencies": [
+            {
+              "file_path": "apps/bf/web/package.json",
+              "json_path_to_dependencies": "dependencies",
+              "type": "nodemodules",
+              "name": "Node Modules"
+            },
+            {
+              "file_path": "packages/tbd-shared/package.json",
+              "json_path_to_dependencies": "dependencies",
+              "type": "nodemodules",
+              "name": "TBD Shared Node Modules"
+            }
+          ],
+          "inner_source_dependencies": [
+            {
+              "package_name": "@ppb/the-wall-web",
+              "project_link": "/Flutter-Global/the-wall",
+              "tag_type": "package-tag",
+              "git_type": "github"
+            },
+            {
+              "package_name": "@ppb/uki-accounts-reactnative",
+              "project_link": "/Flutter-Global/uki-accounts-reactnative",
+              "tag_type": "v-tag",
+              "git_type": "github"
+            },
+            {
+              "package_name": "@ppb/the-wall-native",
+              "project_link": "/Flutter-Global/the-wall",
+              "tag_type": "package-tag",
+              "git_type": "github"
+            },
+            {
+              "package_name": "@ppb/the-wall-common",
+              "project_link": "/Flutter-Global/the-wall",
+              "tag_type": "package-tag",
+              "git_type": "github"
+            },
+            {
+              "package_name": "@ppb/the-wall-web",
+              "project_link": "/Flutter-Global/the-wall",
+              "tag_type": "package-tag",
+              "git_type": "github"
+            },
+            {
+              "package_name": "@ppb/the-wall-icons",
+              "project_link": "/Flutter-Global/the-wall",
+              "tag_type": "package-tag",
+              "git_type": "github"
+            },
+            {
+              "package_name": "@ppb/the-wall-design-tokens",
+              "project_link": "/Flutter-Global/the-wall",
+              "tag_type": "package-tag",
+              "git_type": "github"
+            },
+            {
+              "package_name": "@ppb/tbd-urn-codecs",
+              "project_link": "/Flutter-Global/tbd-bff",
+              "tag_type": "package-tag",
+              "git_type": "github"
+            },
+            {
+              "package_name": "@ppb/tbd-routes",
+              "project_link": "/Flutter-Global/tbd-bff",
+              "tag_type": "package-tag",
+              "git_type": "github"
+            },
+            {
+              "package_name": "@ppb/tbd-components-navigation/components/GenericSwitcherCard",
+              "project_link": "/Flutter-Global/tbd-components",
+              "tag_type": "package-tag",
+              "git_type": "github"
+            },
+            {
+              "package_name": "@ppb/tbd-components-navigation/components/RaceSwitcherCard",
+              "project_link": "/Flutter-Global/tbd-components",
+              "tag_type": "package-tag",
+              "git_type": "github"
+            }
+          ]
+        },
+        "commits_regex": "(\\w+-\\d+)"
+      },
+      {
+        "sort_priority": 0,
+        "component_name": "TBD Mobile Site - I2",
+        "jenkins": {
+          "build_parameter_name": "tbd_conf_build"
+        },
+        "github": {
+          "project_link": "/Flutter-Global/tbd-configrepo-i2-ppb",
+          "dependencies": []
+        },
+        "commits_regex": "(\\w+-\\d+)"
+      },
+      {
+        "sort_priority": 1,
+        "component_name": "TBD Chef Cookbooks",
+        "jenkins": {
+          "build_parameter_name": "tbd_chef_build"
+        },
+        "github": {
+          "project_link": "/Flutter-Global/tbd-chef"
+        },
+        "commits_regex": "(\\w+-\\d+)"
+      }
+    ],
+    "email": {
+      "prd": {
+        "mailing_list": ["CareBears@blip.pt"]
+      },
+      "qa": {
+        "mailing_list": ["CareBears@blip.pt"]
+      },
+      "prf": {
+        "mailing_list": ["CareBears@blip.pt"]
+      },
+      "nxt": {
+        "mailing_list": ["CareBears@blip.pt"]
+      },
+      "drk": {
+        "mailing_list": ["CareBears@blip.pt"]
+      }
+    }
+  },
+  "TBDN": {
+    "project_name": "The Betting Destination - Native Strands",
+    "project_tla": "TBDN",
+    "job_package_name": "tbdn_package",
+    "compare_environment": "prd",
+    "confluence": {
+      "tree": ["Release Notes - TBDN - Build @@BUILD - @@ENV - @@DATE"],
+      "baseUrl": "https://flutteruki.atlassian.net/",
+      "space": "SPX",
+      "parentId": "892076944",
+      "pageLink": "https://flutteruki.atlassian.net/pages/viewpage.action?pageId="
+    },
+    "artifactory": {
+      "manifest_path": "releases/tbdn_package/ie1/qa/tbdn-manifest-",
+      "dependencies": [
+        {
+          "json_path_to_dependencies": "tbd-native.dependencies",
+          "type": "strands",
+          "name": "Strands",
+          "component": "TBDN Native Strands"
+        }
+      ]
+    },
+    "components": [
+      {
+        "sort_priority": 0,
+        "component_name": "TBDN Native Strands",
+        "jenkins": {
+          "build_parameter_name": "tbdn_build"
+        },
+        "github": {
+          "project_link": "/Flutter-Global/tbd",
+          "dependencies": []
+        },
+        "commits_regex": "(\\w+-\\d+)"
+      },
+      {
+        "sort_priority": 0,
+        "component_name": "TBDN Native Strands - I2",
+        "jenkins": {
+          "build_parameter_name": "tbdn_conf_build"
+        },
+        "github": {
+          "project_link": "/Flutter-Global/tbdn-configrepo-i2-ppb",
+          "dependencies": []
+        },
+        "commits_regex": "(\\w+-\\d+)"
+      },
+      {
+        "sort_priority": 1,
+        "component_name": "TBDN Chef Cookbooks",
+        "jenkins": {
+          "build_parameter_name": "tbdn_chef_build"
+        },
+        "github": {
+          "project_link": "/Flutter-Global/tbd-native-chef"
+        },
+        "commits_regex": "(\\w+-\\d+)"
+      }
+    ],
+    "email": {
+      "prd": {
+        "mailing_list": ["CareBears@blip.pt"]
+      },
+      "qa": {
+        "mailing_list": ["CareBears@blip.pt"]
+      },
+      "prf": {
+        "mailing_list": ["CareBears@blip.pt"]
+      },
+      "nxt": {
+        "mailing_list": ["CareBears@blip.pt"]
+      },
+      "drk": {
+        "mailing_list": ["CareBears@blip.pt"]
+      }
+    }
+  },
+  "TBDSBG": {
+    "project_name": "The Betting Destination - SBG Site",
+    "project_tla": "TBDSBG",
+    "job_package_name": "tbdsbg_package",
+    "compare_environment": "prd",
+    "confluence": {
+      "tree": ["Release Notes - TBD SBG - Build @@BUILD - @@ENV - @@DATE"],
+      "baseUrl": "https://flutteruki.atlassian.net/",
+      "space": "SPX",
+      "parentId": "892076944",
+      "pageLink": "https://flutteruki.atlassian.net/pages/viewpage.action?pageId="
+    },
+    "artifactory": {
+      "manifest_path": "releases/tbdsbg_package/ie1/qa/tbdsbg-manifest-",
+      "dependencies": [
+        {
+          "json_path_to_dependencies": "tbdsbg-mobile-site.dependencies",
+          "type": "strands",
+          "name": "Strands",
+          "component": "TBD SBG Mobile Site"
+        }
+      ]
+    },
+    "components": [
+      {
+        "sort_priority": 0,
+        "component_name": "TBD SBG Mobile Site",
+        "jenkins": {
+          "build_parameter_name": "tbdsbg_build"
+        },
+        "github": {
+          "project_link": "/Flutter-Global/tbd",
+          "dependencies": [
+            {
+              "file_path": "apps/sbg/web/package.json",
+              "json_path_to_dependencies": "dependencies",
+              "type": "nodemodules",
+              "name": "Node Modules"
+            }
+          ]
+        },
+        "commits_regex": "(\\w+-\\d+)"
+      },
+      {
+        "sort_priority": 0,
+        "component_name": "TBD SBG Mobile Site - I2",
+        "jenkins": {
+          "build_parameter_name": "tbdsbg_conf_build"
+        },
+        "github": {
+          "project_link": "/Flutter-Global/tbdsbg-configrepo-i2-ppb",
+          "dependencies": []
+        },
+        "commits_regex": "(\\w+-\\d+)"
+      },
+      {
+        "sort_priority": 1,
+        "component_name": "TBD Chef Cookbooks",
+        "jenkins": {
+          "build_parameter_name": "tbdsbg_chef_build"
+        },
+        "github": {
+          "project_link": "/Flutter-Global/tbdsbg-web-chef"
+        },
+        "commits_regex": "(\\w+-\\d+)"
+      }
+    ],
+    "email": {
+      "prd": {
+        "mailing_list": ["CareBears@blip.pt"]
+      },
+      "qa": {
+        "mailing_list": ["CareBears@blip.pt"]
+      },
+      "prf": {
+        "mailing_list": ["CareBears@blip.pt"]
+      },
+      "nxt": {
+        "mailing_list": ["CareBears@blip.pt"]
+      },
+      "drk": {
+        "mailing_list": ["CareBears@blip.pt"]
+      }
+    }
+  },
+  "TBDNSBG": {
+    "project_name": "The Betting Destination - SBG Native Strands",
+    "project_tla": "TBDNSBG",
+    "job_package_name": "tbdnsbg_package",
+    "compare_environment": "prd",
+    "confluence": {
+      "tree": ["Release Notes - TBDNSBG - Build @@BUILD - @@ENV - @@DATE"],
+      "baseUrl": "https://flutteruki.atlassian.net/",
+      "space": "SPX",
+      "parentId": "892076944",
+      "pageLink": "https://flutteruki.atlassian.net/pages/viewpage.action?pageId="
+    },
+    "artifactory": {
+      "manifest_path": "releases/tbdnsbg_package/ie1/qa/tbdnsbg-manifest-",
+      "dependencies": [
+        {
+          "json_path_to_dependencies": "tbdsbg-native.dependencies",
+          "type": "strands",
+          "name": "Strands",
+          "component": "TBDN SBG Native Strands"
+        }
+      ]
+    },
+    "components": [
+      {
+        "sort_priority": 0,
+        "component_name": "TBDN SBG Native Strands",
+        "jenkins": {
+          "build_parameter_name": "tbdnsbg_build"
+        },
+        "github": {
+          "project_link": "/Flutter-Global/tbd",
+          "dependencies": []
+        },
+        "commits_regex": "(\\w+-\\d+)"
+      },
+      {
+        "sort_priority": 0,
+        "component_name": "TBDN SBG Native Strands - I2",
+        "jenkins": {
+          "build_parameter_name": "tbdnsbg_conf_build"
+        },
+        "github": {
+          "project_link": "/Flutter-Global/tbdnsbg-configrepo-i2-ppb",
+          "dependencies": []
+        },
+        "commits_regex": "(\\w+-\\d+)"
+      },
+      {
+        "sort_priority": 1,
+        "component_name": "TBDN SBG Chef Cookbooks",
+        "jenkins": {
+          "build_parameter_name": "tbdnsbg_chef_build"
+        },
+        "github": {
+          "project_link": "/Flutter-Global/tbdsbg-native-chef"
+        },
+        "commits_regex": "(\\w+-\\d+)"
+      }
+    ],
+    "email": {
+      "prd": {
+        "mailing_list": ["CareBears@blip.pt"]
+      },
+      "qa": {
+        "mailing_list": ["CareBears@blip.pt"]
+      },
+      "prf": {
+        "mailing_list": ["CareBears@blip.pt"]
+      },
+      "nxt": {
+        "mailing_list": ["CareBears@blip.pt"]
+      },
+      "drk": {
+        "mailing_list": ["CareBears@blip.pt", "DL-designsystemreleases@flutteruki.com"]
+      }
+    }
+  }
+}

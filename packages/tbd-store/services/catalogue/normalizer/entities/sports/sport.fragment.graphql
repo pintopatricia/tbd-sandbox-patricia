@@ -1,0 +1,6 @@
+fragment sport on Sport {
+  __typename
+  urn
+  name
+  sportId
+}

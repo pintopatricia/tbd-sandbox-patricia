@@ -1,0 +1,91 @@
+name: circuit-breaker-block
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: Reason for blocking merges
+        required: true
+        type: string
+concurrency:
+  group: circuit-breaker-block
+  cancel-in-progress: true
+
+jobs:
+  block:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+      PULL_NUMBER: ${{ github.event.number }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            tools/circuit-breaker/
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Update pull requests
+        uses: actions/github-script@v7
+        id: update-pull-requests
+        with:
+          script: |
+            const { default: updatePrs } =  await import('${{ github.workspace }}/tools/circuit-breaker/updatePrs.mjs');
+            return updatePrs(github, 'block');
+      - name: Send PR comment notification (blocking merges)
+        id: slack
+        uses: slackapi/slack-github-action@v1
+        with:
+          payload: |
+            {
+              "USER": "${{ github.actor }}",
+              "MESSAGE": "${{ inputs.reason }}"
+            }
+        env:
+          SLACK_WEBHOOK_URL: "${{ secrets.SLACK_WEBHOOK_URL_CIRCUIT_BREAKER_BLOCK }}"
+      - name: Get latest block/unblock workflow run ID
+        uses: actions/github-script@v7
+        id: get-last-run-id
+        with:
+          script: |
+            const { default: getLatestWorkflowRunId } =  await import('${{ github.workspace }}/tools/circuit-breaker/getLatestWorkflowRunId.mjs');
+            const runId = await getLatestWorkflowRunId(github);
+            console.log("Retrieved Run ID:", runId);
+            return runId;
+      - name: Check for existing incidents artifact
+        if: steps.get-last-run-id.outputs.result != ''
+        id: check-artifact
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const runId = ${{ steps.get-last-run-id.outputs.result }};
+            const { data: { artifacts } } = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: runId
+            });
+            const incidentsArtifact = artifacts.some(a => a.name === "incidents");
+            console.log("Incidents artifact exists:", incidentsArtifact);
+            return incidentsArtifact;
+      - name: Download latest artifact from the workflow run
+        if: steps.check-artifact.outputs.result == 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: incidents
+          path: artifacts
+          run-id: ${{ steps.get-last-run-id.outputs.result }}
+          github-token: ${{ secrets.CIRCUIT_BREAKER_PAT }}
+      - name: Ensure incidents.txt exists if no artifact found
+        run: |
+          mkdir -p artifacts
+          touch artifacts/incidents.txt
+      - name: Append new incident to incidents.txt
+        run: |
+          echo "${{ inputs.reason }} - ${{ github.actor }} - blocked=true" >> artifacts/incidents.txt
+      - name: Display updated incidents.txt
+        run: cat artifacts/incidents.txt
+      - name: Archive incidents.txt
+        uses: actions/upload-artifact@v4
+        with:
+          name: incidents
+          path: artifacts/incidents.txt

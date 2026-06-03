@@ -1,0 +1,124 @@
+"__typename": "{{__typename}}{{^__typename}}BetLeg{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:sbkBetLeg:1176090458/0{{/urn}}",
+"type":"{{type}}{{^type}}SS{{/type}}",
+{{#if result}}
+  "result": "{{result}}",
+{{/if}}
+{{#if resultType}}
+  "resultType": "{{resultType}}",
+{{/if}}
+"legNumber":{{legNumber}}{{^legNumber}}1{{/legNumber}},
+{{#if mutations}}
+"mutations": {
+{{#with mutations}}
+  "eligibility": [
+  {{#each eligibility}}
+    {
+      "mutation": "{{mutation}}{{^mutation}}AccaFreeze{{/mutation}}",
+      "mutationAvailability": "{{mutationAvailability}}{{^mutationAvailability}}Available{{/mutationAvailability}}",
+      "details": {
+        "homeTeamScore": "{{homeTeamScore}}{{^homeTeamScore}}5{{/homeTeamScore}}",
+        "awayTeamScore": "{{awayTeamScore}}{{^awayTeamScore}}1{{/awayTeamScore}}"
+      },
+      "__typename": "{{__typename}}{{^__typename}}BetLegMutationEligibility{{/__typename}}"
+    }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+  ],
+  {{#if details}}
+    "details": [
+    {{#each details}}
+      {
+        "freezeDetails": {
+          {{#with freezeDetails}}
+            "homeTeamName": "{{homeTeamName}}{{^homeTeamName}}Matt{{/homeTeamName}}",
+            "awayTeamName": "{{awayTeamName}}{{^awayTeamName}}AWESOME{{/awayTeamName}}",
+            "homeTeamScore": "{{homeTeamScore}}{{^homeTeamScore}}2{{/homeTeamScore}}",
+            "awayTeamScore": "{{awayTeamScore}}{{^awayTeamScore}}1{{/awayTeamScore}}",
+            "minute": "{{minute}}{{^minute}}45{{/minute}}"
+          {{/with}}
+        }
+      }
+    {{/each}}
+    ],
+  {{else}}
+    "details": [],
+  {{/if}}
+  "__typename": "{{__typename}}{{^__typename}}BetLegMutation{{/__typename}}"
+{{/with}}
+},
+{{/if}}
+{{#if outcomeBasedDetails}}
+"outcomeBasedDetails": {
+  {{#with outcomeBasedDetails}}
+    "expressionInfo": {
+      {{#with expressionInfo}}
+        {{> bff-expression-info}}
+      {{/with}}
+    }
+  {{/with}}
+},
+{{/if}}
+"parts":[
+  {{#each parts}}
+       {
+       "__typename": "{{__typename}}{{^__typename}}LegPart{{/__typename}}",
+       {{#if price}}
+          "price":{
+          {{#with price}}
+             "decimal":{{decimal}}{{^decimal}}1.86{{/decimal}},
+             "fractional":{
+                "numerator":{{numerator}}{{^numerator}}43{{/numerator}},
+                "denominator":{{denominator}}{{^denominator}}50{{/denominator}}
+             }
+          {{/with}}
+          },
+       {{/if}}
+       {{#if originalPrice}}
+          "originalPrice":{
+          {{#with originalPrice}}
+             "decimal":{{decimal}}{{^decimal}}1.86{{/decimal}},
+             {{#with fractional}}
+             "fractional":{
+                "numerator":{{numerator}}{{^numerator}}43{{/numerator}},
+                "denominator":{{denominator}}{{^denominator}}50{{/denominator}}
+             }
+             {{/with}}
+          {{/with}}
+          },
+       {{/if}}
+          "priceType": "{{priceType}}{{^priceType}}LIVE{{/priceType}}",
+          "marketBetUrn":"{{marketBetUrn}}{{^marketBetUrn}}ppb:marketBet:924.237747664{{/marketBetUrn}}",
+          "marketId": "{{marketId}}{{^marketId}}924.237747664{{/marketId}}",
+          {{#if eventUrn}}
+          "eventUrn": "{{eventUrn}}",
+          {{/if}}
+          "eventDescription":"{{eventDescription}}{{^eventDescription}}Spezia v Entella{{/eventDescription}}",
+          "eventMarketDescription":"{{eventMarketDescription}}{{^eventMarketDescription}}Match Odds{{/eventMarketDescription}}",
+          "marketType":"{{marketType}}{{^marketType}}MATCH_ODDS{{/marketType}}",
+          "selectionId": {{selectionId}}{{^selectionId}}1{{/selectionId}},
+          "selectionName":"{{selectionName}}{{^selectionName}}Spezia{{/selectionName}}",
+          {{#if sportId}}
+          "sportId": {{sportId}},
+          {{/if}}
+          {{#if handicap}}
+          "handicap":{{handicap}},
+          {{/if}}
+          {{#if eachwayPlaces}}
+          "eachwayPlaces": {{eachwayPlaces}},
+          {{/if}}
+          "eachwayFactor":{
+            "numerator":1,
+            "denominator":5
+          },
+          {{#if outcomeDefinitionExp}}
+          "outcomeDefinitionExp": {{> bff-outcome-definition-exp}},
+          {{/if}}
+          {{#if isSuperSub}}
+          "isSuperSub": {{isSuperSub}},
+          {{/if}}
+          "rule4Deductions": {{rule4Deductions}}{{^rule4Deductions}}0{{/rule4Deductions}}
+       }
+       {{#unless @last}},{{/unless}}
+    {{/each}}
+]

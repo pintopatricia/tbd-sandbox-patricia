@@ -1,0 +1,17 @@
+const RACE_RESULTS_CARD = "race-results-card";
+const WINNING_TIME_AND_BSP_ADVANTAGE_LABEL = `${RACE_RESULTS_CARD}-winning-bsp-label`;
+const WINNING_TIME_LABEL = `${RACE_RESULTS_CARD}-winning-time-label`;
+const BSP_ADVANTAGE_LABEL = `${RACE_RESULTS_CARD}-bsp-advantage-label`;
+const WINNING_TIME = `${RACE_RESULTS_CARD}-winning-time`;
+const BSP_ADVANTAGE = `${RACE_RESULTS_CARD}-bsp-advantage`;
+const STATUS_ALERT = `${RACE_RESULTS_CARD}-status-alert`;
+
+module.exports = {
+  RACE_RESULTS_CARD,
+  WINNING_TIME_AND_BSP_ADVANTAGE_LABEL,
+  WINNING_TIME_LABEL,
+  BSP_ADVANTAGE_LABEL,
+  WINNING_TIME,
+  BSP_ADVANTAGE,
+  STATUS_ALERT,
+};

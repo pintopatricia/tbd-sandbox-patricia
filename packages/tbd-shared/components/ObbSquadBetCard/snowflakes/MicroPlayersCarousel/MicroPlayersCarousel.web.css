@@ -1,0 +1,119 @@
+.container {
+  position: relative;
+
+  display: flex;
+
+  width: 100%;
+}
+
+.microPlayersCarousel {
+  position: relative;
+}
+
+.microPlayersCarousel > section > div {
+  box-sizing: border-box;
+
+  margin: 0 calc(var(--spacing-2) * -1);
+  overscroll-behavior-x: contain;
+  scroll-padding-left: var(--spacing-2);
+}
+
+.carouselContainer > div:first-child {
+  padding-left: var(--spacing-2);
+}
+
+.carouselContainer > div:last-child {
+  padding-right: var(--spacing-2);
+}
+
+.carouselContainer > div:first-of-type {
+  margin-left: var(--spacing-2);
+}
+
+.microPlayersCarousel > section > div > [class*="childWrapper"]:first-of-type {
+  margin-left: var(--spacing-2);
+}
+
+.microPlayersCarousel > section > div > [class*="childWrapper"]:first-child {
+  padding-left: var(--spacing-2);
+}
+
+.microPlayersCarousel > section > div > [class*="childWrapper"]:last-child {
+  padding-right: var(--spacing-2);
+}
+
+.carouselContainer {
+  box-sizing: border-box;
+  display: flex;
+
+  gap: var(--bet-button-carousel-buttons-horizontal-gap);
+
+  margin: 0 calc(var(--spacing-2) * -1);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-behavior: smooth;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.carouselContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.microPlayerContainer {
+  flex-grow: 0;
+
+  margin-right: var(--micro-player-swimlane-horizontal-gap);
+}
+
+.lastPlayer {
+  margin-right: 0;
+}
+
+.carouselArrow {
+  visibility: hidden;
+
+  > button {
+    top: 50%;
+
+    transform: translateY(-50%);
+  }
+}
+
+.container:hover .carouselArrow {
+  visibility: visible;
+}
+
+.carouselArrowLeft {
+  > button {
+    left: 0;
+  }
+}
+
+.carouselArrowRight {
+  > button {
+    right: 0;
+  }
+}
+
+.playerCarouselClickable {
+  cursor: pointer;
+}
+
+.editSquadButtonIcon {
+  position: absolute;
+  top: var(--spacing-1-and-half);
+  right: 0;
+
+  box-sizing: content-box;
+
+  width: var(--icon-size-small);
+  height: var(--icon-size-small);
+
+  /* TODO: GRNSPT-623 - if the experiment's Nudge Player Picker variant 2 goes to production, we need to
+  ask the design team to create a new token for the button's background color and also for the border */
+  background-color: var(--primary-button-primary-default-background-colour);
+  border: var(--ladders-stepper-default-border);
+  border-radius: calc(var(--spacing-2) + var(--spacing-half));
+}

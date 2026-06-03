@@ -1,0 +1,218 @@
+name: 'Android Release'
+run-name: "Android Release [android_release-${{ inputs.brand }}-${{ inputs.tag-number }}]"
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag-number:
+        description: 'The number on the tag "###-android-<brand>-releasable" to release from'
+        type: string
+        required: true
+      brand:
+        type: choice
+        description: 'The brand to target for the release build'
+        required: true
+        options:
+          - bf
+          - sbg
+        default: bf
+      publish:
+        description: 'Should this build be published?'
+        type: boolean
+        required: true
+        default: true
+
+      use-cache:
+        description: 'Should this use gradle cache?'
+        type: boolean
+        required: true
+        default: true
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  MONTEROSA_TOKEN: ${{ secrets.MONTEROSA_TOKEN }}
+  TAG_NUMBER: ${{ inputs.tag-number }}
+  NATIVE_BUILD_NUMBER: ${{ inputs.tag-number }}
+
+concurrency:
+  group: release-${{ github.workflow }}-${{ inputs.brand }}-${{ inputs.tag-number }}
+  cancel-in-progress: true
+
+jobs:
+  build-sbg-common:
+    if: ${{ inputs.brand == 'sbg' }}
+    uses: ./.github/workflows/android-release-build.yml
+    secrets: inherit
+    permissions: write-all
+    with:
+      brand: ${{ inputs.brand }}
+      tag-number: ${{ inputs.tag-number }}
+      flavor: 'common'
+      use-cache: ${{ inputs.use-cache }}
+
+  deploy-sbg-common:
+    needs: build-sbg-common
+    if: ${{ inputs.publish && inputs.brand == 'sbg' }}
+    uses: ./.github/workflows/android-release-deploy.yml
+    secrets: inherit
+    permissions: write-all
+    with:
+      brand: ${{ inputs.brand }}
+      tag-number: ${{ inputs.tag-number }}
+      flavor: 'common'
+      store-deploy: true
+      firebase-deploy: true
+      aws-deploy-dev: false
+      aws-deploy-prod: false
+
+  build-bf-common:
+    if: ${{ inputs.brand == 'bf' }}
+    uses: ./.github/workflows/android-release-build.yml
+    secrets: inherit
+    permissions: write-all
+    with:
+      brand: ${{ inputs.brand }}
+      tag-number: ${{ inputs.tag-number }}
+      flavor: 'common'
+      use-cache: ${{ inputs.use-cache }}
+
+  deploy-bf-common:
+    needs: build-bf-common
+    if: ${{ inputs.publish && inputs.brand == 'bf' }}
+    uses: ./.github/workflows/android-release-deploy.yml
+    secrets: inherit
+    permissions: write-all
+    with:
+      brand: ${{ inputs.brand }}
+      tag-number: ${{ inputs.tag-number }}
+      flavor: 'common'
+      store-deploy: false
+      firebase-deploy: true
+      aws-deploy-dev: true
+      aws-deploy-prod: false
+
+  build-bf-playstore:
+    if: ${{ inputs.brand == 'bf' }}
+    uses: ./.github/workflows/android-release-build.yml
+    secrets: inherit
+    permissions: write-all
+    with:
+      brand: ${{ inputs.brand }}
+      tag-number: ${{ inputs.tag-number }}
+      flavor: 'common'
+      use-cache: ${{ inputs.use-cache }}
+      override-loading-subdomain: true
+
+  deploy-bf-playstore:
+    needs: build-bf-playstore
+    if: ${{ inputs.publish && inputs.brand == 'bf' }}
+    uses: ./.github/workflows/android-release-deploy.yml
+    secrets: inherit
+    permissions: write-all
+    with:
+      brand: ${{ inputs.brand }}
+      tag-number: ${{ inputs.tag-number }}
+      flavor: 'common'
+      store-deploy: true
+      firebase-deploy: false
+      aws-deploy-dev: false
+      aws-deploy-prod: false
+
+  build-bf-brazil:
+    if: ${{ inputs.brand == 'bf'}}
+    uses: ./.github/workflows/android-release-build.yml
+    secrets: inherit
+    permissions: write-all
+    with:
+      brand: ${{ inputs.brand }}
+      tag-number: ${{ inputs.tag-number }}
+      use-cache: ${{ inputs.use-cache }}
+      flavor: 'brazil'
+
+  deploy-bf-brazil:
+    needs: build-bf-brazil
+    if: ${{ inputs.publish && inputs.brand == 'bf' }}
+    uses: ./.github/workflows/android-release-deploy.yml
+    secrets: inherit
+    permissions: write-all
+    with:
+      brand: ${{ inputs.brand }}
+      tag-number: ${{ inputs.tag-number }}
+      flavor: 'brazil'
+      store-deploy: true
+      firebase-deploy: true
+      aws-deploy-dev: false
+      aws-deploy-prod: false
+
+  send-slack-notification-sbg:
+    name: Send Slack Release Notification SBG
+    if: ${{ inputs.publish && inputs.brand == 'sbg' }}
+    needs: [build-sbg-common]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prepare Slack message
+        id: slack-message
+        shell: bash
+        run: |
+          TAG_NUMBER="${{ inputs.tag-number }}"
+          BASE_URL="https://artifactory-prd.prd.betfair/artifactory"
+          APK_URL="${BASE_URL}/tbd-native/android/sbg/release/android_sbg_release-${TAG_NUMBER}.apk"
+
+          MESSAGE=$(printf "%s\n\n%s\n%s\n" \
+            "Hi all, there's a new :android: :sky-bet-8642: \`${TAG_NUMBER}\` app available for testing." \
+            "APK:" \
+            "• <${APK_URL}|Download SBG>")
+
+          {
+            echo "message<<EOF"
+            echo "$MESSAGE"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Send to Slack
+        continue-on-error: true
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          payload: |
+            {
+              "text": ${{ toJson(steps.slack-message.outputs.message) }}
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_RELEASE_WEBHOOK_URL }}
+
+  send-slack-notification-bf:
+    name: Send Slack Release Notification BF
+    if: ${{ inputs.publish && inputs.brand == 'bf' }}
+    needs: [build-bf-common, build-bf-brazil]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prepare Slack message
+        id: slack-message
+        shell: bash
+        run: |
+          TAG_NUMBER="${{ inputs.tag-number }}"
+          BASE_URL="https://artifactory-prd.prd.betfair/artifactory"
+          BF_COMMON_URL="${BASE_URL}/tbd-native/android/bf/release/android_bf_release-${TAG_NUMBER}.apk"
+          BF_BRAZIL_URL="${BASE_URL}/tbd-native/android/bf/release/android_bf_brazil_release-${TAG_NUMBER}.apk"
+
+          MESSAGE=$(printf "%s\n\n%s\n%s\n%s\n" \
+            "Hi all, there's a new :android: :bf: \`${TAG_NUMBER}\` app available for testing." \
+            "APKs:" \
+            "• <${BF_COMMON_URL}|Download BF>" \
+            "• <${BF_BRAZIL_URL}|Download BF Brazil>")
+
+          {
+            echo "message<<EOF"
+            echo "$MESSAGE"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Send to Slack
+        continue-on-error: true
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          payload: |
+            {
+              "text": ${{ toJson(steps.slack-message.outputs.message) }}
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_RELEASE_WEBHOOK_URL }}

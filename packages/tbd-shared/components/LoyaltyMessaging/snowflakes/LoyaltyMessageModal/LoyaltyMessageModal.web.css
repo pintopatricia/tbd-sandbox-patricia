@@ -1,0 +1,25 @@
+.loyaltyMessageModal {
+  margin: 0;
+}
+
+.container {
+  display: contents;
+}
+
+.message {
+  display: flex;
+
+  flex-direction: column;
+
+  min-height: var(--spacing-10);
+  overflow: auto;
+
+  font: var(--loyalty-message-modal-content-text-typography);
+  color: var(--loyalty-message-modal-text-content-text-colour);
+  word-break: break-word;
+}
+
+.terms {
+  font: var(--loyalty-message-modal-tc-link-typography);
+  color: var(--loyalty-message-modal-text-tc-link-colour);
+}

@@ -1,0 +1,10 @@
+fragment sportEvent on SportsEvent {
+  __typename
+  urn
+  eventId
+  name
+  openDate
+  competition {
+    ...competitionBasic
+  }
+}

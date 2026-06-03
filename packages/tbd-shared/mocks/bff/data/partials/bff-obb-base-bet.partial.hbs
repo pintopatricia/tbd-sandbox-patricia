@@ -1,0 +1,24 @@
+{{#ifEquals templateId "playerVsPlayer"}}
+  {{#with params}}
+  "params": {
+      {{> bff-obb-pvp-leg-params}}
+    },
+  {{/with}}
+{{/ifEquals}}
+{{#ifEquals templateId "participantsCombined"}}
+  {{#with params}}
+  "params": {
+    {{> bff-obb-participants-combined-leg-params}}
+   },
+  {{/with}}
+{{/ifEquals}}
+{{#ifEquals templateId "squadVsSquad"}}
+  {{#with params}}
+  "params": {
+    {{> bff-obb-squad-vs-squad-leg-params}}
+   },
+  {{/with}}
+{{/ifEquals}}
+"templateId": "{{templateId}}",
+"__typename": "{{__typename}}{{^__typename}}BaseBet{{/__typename}}"
+

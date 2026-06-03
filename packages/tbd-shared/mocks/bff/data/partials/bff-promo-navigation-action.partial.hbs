@@ -1,0 +1,19 @@
+"__typename": "PromoNavigationAction",
+"link": {
+{{#with link}}
+  {{#with label}}
+  "label": {
+    "__typename": "{{#if __typename}}{{__typename}}{{else}}DisplayNameTranslationKey{{/if}}",
+    "translationKey": {{#if translationKey}}"{{translationKey}}"{{else}}null{{/if}},
+    "name": {{#if name}}"{{name}}"{{else}}null{{/if}}
+  }
+  {{/with}}
+  {{#with viewLink}},
+  "viewLink": {
+    "viewDisplayMode": "{{viewDisplayMode}}{{^viewDisplayMode}}BLANK_INAPP{{/viewDisplayMode}}",
+    "viewUrl": "{{viewUrl}}{{^viewUrl}}https://promos.nxt.com.betfair/promotion?promoCode=STYWBFRB{{/viewUrl}}",
+    "viewUrn": "{{viewUrn}}{{^viewUrn}}ppb:tbd:view:external:external{{/viewUrn}}"
+  }
+  {{/with}}
+{{/with}}
+}

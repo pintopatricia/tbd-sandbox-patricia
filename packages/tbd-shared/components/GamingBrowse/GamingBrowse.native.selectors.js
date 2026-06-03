@@ -1,0 +1,21 @@
+const GAMING_BROWSE = "gaming-browse";
+const GAMING_BROWSE_SEARCH_CONTAINER = `${GAMING_BROWSE}-search-container`;
+const GAMING_BROWSE_SEARCH_RESULTS = `${GAMING_BROWSE}-search-results`;
+const GAMING_BROWSE_SEARCH_BAR = `${GAMING_BROWSE}-search-bar`;
+const RECOMMENDED_GAMES_CONTAINER = `${GAMING_BROWSE}-recommended-games-container`;
+const NUMBER_OF_RESULTS_LABEL = `${GAMING_BROWSE}-number-of-results-label`;
+const OUT_OF_IDEAS_LABEL = `${GAMING_BROWSE}-out-of-ideas-label`;
+const NO_RESULTS_LABEL = `${GAMING_BROWSE}-no-results-label`;
+const RESULT_ITEM = `${GAMING_BROWSE}-result-item`;
+
+module.exports = {
+  GAMING_BROWSE,
+  GAMING_BROWSE_SEARCH_CONTAINER,
+  GAMING_BROWSE_SEARCH_RESULTS,
+  GAMING_BROWSE_SEARCH_BAR,
+  RECOMMENDED_GAMES_CONTAINER,
+  NUMBER_OF_RESULTS_LABEL,
+  OUT_OF_IDEAS_LABEL,
+  NO_RESULTS_LABEL,
+  RESULT_ITEM,
+};

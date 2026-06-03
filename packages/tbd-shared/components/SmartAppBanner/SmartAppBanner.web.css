@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+
+  column-gap: var(--downloader-banner-horizontal-gap);
+
+  align-items: center;
+
+  padding: var(--downloader-banner-padding);
+
+  background: var(--downloader-banner-background-colour);
+}
+
+.closeButton,
+.closeButton svg {
+  width: var(--downloader-banner-icon-sizing);
+  height: var(--downloader-banner-icon-sizing);
+
+  fill: var(--downloader-banner-icon-colour);
+}
+
+.brandLogoIcon {
+  width: var(--downloader-banner-asset-sizing);
+  height: var(--downloader-banner-asset-sizing);
+}
+
+.textContainer {
+  display: flex;
+
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.title {
+  font: var(--downloader-banner-label-typography);
+  color: var(--downloader-banner-label-colour);
+  text-decoration-line: var(--downloader-banner-label-typography-text-decoration-line);
+  text-transform: var(--downloader-banner-label-typography-text-transform);
+  letter-spacing: var(--downloader-banner-label-typography-letter-spacing);
+}
+
+.subtitle {
+  font: var(--downloader-banner-supporting-text-typography);
+  color: var(--downloader-banner-supporting-text-colour);
+  text-decoration-line: var(--downloader-banner-supporting-text-typography-text-decoration-line);
+  text-transform: var(--downloader-banner-supporting-text-typography-text-transform);
+  letter-spacing: var(--downloader-banner-supporting-text-typography-letter-spacing);
+}
+
+.downloadButton {
+  min-width: var(--downloader-banner-primary-button-min-width-sizing);
+}

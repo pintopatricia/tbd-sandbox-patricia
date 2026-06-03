@@ -1,0 +1,55 @@
+.icon {
+  display: flex;
+
+  justify-content: center;
+
+  width: var(--half-time-pulse-label-width);
+
+  background-color: var(--status-label-branded-background-colour);
+  border-radius: var(--status-label-border-radius);
+
+  animation: iconBurstAnimation 10s ease-in-out infinite;
+}
+
+.text {
+  z-index: 1;
+
+  box-sizing: border-box;
+
+  padding: var(--status-label-small-padding);
+
+  font: var(--status-label-text-small-typography);
+  color: var(--status-label-branded-label-colour);
+}
+
+@keyframes iconBurstAnimation {
+  0% {
+    opacity: 0;
+
+    transform: scale(0);
+  }
+
+  6% {
+    opacity: 1;
+
+    transform: scale(1.4);
+  }
+
+  10% {
+    opacity: 1;
+
+    transform: scale(1);
+  }
+
+  96% {
+    opacity: 1;
+
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform: scale(0);
+  }
+}

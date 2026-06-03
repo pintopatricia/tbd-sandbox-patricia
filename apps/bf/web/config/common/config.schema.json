@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TBD Environment Configuration",
+  "type": "object",
+  "required": ["BRAND", "ENV", "WORKSPACE_NAME", "APP_PATH", "COMPOSE_PROJECT_NAME", "BFF_PATH", "BFF_WEBSERVER_PATH"],
+  "properties": {
+    "BRAND": {
+      "type": "string",
+      "enum": ["bf", "sbg", "ps", "pp"],
+      "description": "Brand code"
+    },
+    "ENV": {
+      "type": "string",
+      "enum": ["qa", "nxt", "dev", "qacms"],
+      "description": "Environment"
+    },
+    "WORKSPACE_NAME": {
+      "type": "string",
+      "pattern": "^@ppb/",
+      "description": "Yarn workspace (package.json 'name')"
+    },
+    "APP_PATH": {
+      "type": "string",
+      "pattern": "^apps/",
+      "description": "Path for each brand"
+    },
+    "COMPOSE_PROJECT_NAME": {
+      "type": "string",
+      "description": "Name of the compose project, to avoid conflicts"
+    },
+    "BFF_PATH": {
+      "type": "string",
+      "pattern": "^apps/",
+      "description": "BFF directory"
+    },
+    "BFF_WEBSERVER_PATH": {
+      "type": "string",
+      "pattern": "^apps/",
+      "description": "BFF Webserver directory"
+    },
+    "BUNDLER_WEBSOCKET_URL": {
+      "type": "string",
+      "description": "WebSocket URL for the bundler"
+    },
+    "$extends": {
+      "type": "string",
+      "description": "Path to base configuration file to extend from"
+    }
+  }
+}

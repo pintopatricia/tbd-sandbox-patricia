@@ -1,0 +1,9 @@
+const FOOTER_SESSION = "footer-session";
+const FOOTER_SESSION_TEXT = `${FOOTER_SESSION}-text`;
+const FOOTER_SESSION_TIME = `${FOOTER_SESSION}-time`;
+
+module.exports = {
+  FOOTER_SESSION,
+  FOOTER_SESSION_TEXT,
+  FOOTER_SESSION_TIME,
+};

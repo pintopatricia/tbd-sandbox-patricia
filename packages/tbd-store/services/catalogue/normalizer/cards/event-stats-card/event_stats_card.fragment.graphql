@@ -1,0 +1,10 @@
+fragment eventStatsCard on EventStatsCard {
+  __typename
+  urn
+  matchStatsUrl
+}
+
+fragment eventStatsCardPartial on EventStatsCard {
+  __typename
+  urn
+}

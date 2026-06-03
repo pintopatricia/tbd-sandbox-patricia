@@ -1,0 +1,21 @@
+fragment sportsbookBetCard on SportsbookBetCard {
+  __typename
+  urn
+  navigationLinks {
+    marketBetUrn
+    viewUrn
+    viewUrl
+  }
+  bet {
+    ...sportsbookBet
+  }
+  betSharingViewLink {
+    viewUrn
+    viewUrl
+  }
+}
+
+fragment sportsbookBetCardPartial on SportsbookBetCard {
+  __typename
+  urn
+}

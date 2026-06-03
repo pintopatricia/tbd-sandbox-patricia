@@ -1,0 +1,35 @@
+fragment navigationTab on NavigationTab {
+  __typename
+  urn
+  badgeText {
+    ...translatableText
+  }
+  tabTitle: title {
+    ...translatableText
+  }
+  tabViewLink: viewLink {
+    viewUrl
+    viewUrn
+  }
+  full: items(first: 1) {
+    ...fullNavigationTabItems
+  }
+  partials: items {
+    ...partialsNavigationTabItems
+  }
+}
+
+fragment navigationTabPartial on NavigationTab {
+  __typename
+  urn
+  badgeText {
+    ...translatableText
+  }
+  tabTitle: title {
+    ...translatableText
+  }
+  tabViewLink: viewLink {
+    viewUrl
+    viewUrn
+  }
+}

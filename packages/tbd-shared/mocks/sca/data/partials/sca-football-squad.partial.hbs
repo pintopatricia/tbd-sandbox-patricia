@@ -1,0 +1,7 @@
+{{#if manager}} "manager": "{{manager}}{{^manager}}Steven Gerrard{{/manager}}", {{else}} "manager": null, {{/if}}
+"players": [
+{{#each players}}
+  { {{> sca-football-player }} }
+  {{#unless @last}},{{/unless}}
+{{/each}}
+]

@@ -1,0 +1,24 @@
+{
+	"data": {
+		"View": {
+			"__typename": "GamingCategoryView",
+			"urn": "{{urn}}{{^urn}}ppb:tbd:view:gamingCategory:live-table{{/urn}}",
+			"url": "{{url}}{{^url}}/casino/c/live-table/gamingCategory:live-table{{/url}}",
+			"items": {
+				{{> bff-items }}
+			},
+			"partialItems": {
+				"pageInfo": null,
+				{{> bff-partial-items }}
+			},
+			"bottomBar": {
+        		{{> bff-bottom-bar-tiles }}
+			},
+      "navigationItem": {
+         "title": "{{title}}{{^title}}LIVE TABLE{{/title}}",
+         "__typename": "NavigationItem"
+      }
+		}
+	}
+}
+

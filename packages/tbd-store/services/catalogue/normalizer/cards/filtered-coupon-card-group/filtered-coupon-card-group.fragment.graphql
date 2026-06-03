@@ -1,0 +1,40 @@
+fragment filteredCouponCardGroup on FilteredCouponCardGroup {
+  __typename
+  urn
+  has90Min(first: 10)
+  filteredCouponTitle: title
+  filterOptions {
+    ...filteredCouponOptions
+  }
+  viewAll {
+    label
+    icon
+    viewLink {
+      viewUrn
+      viewUrl
+    }
+  }
+  full: items(first: 10) {
+    ...fullFilteredCouponCardGroupItems
+  }
+  partials: items {
+    ...partialsFilteredCouponCardGroupItems
+  }
+}
+
+fragment filteredCouponCardGroupWithItemsFiltered on FilteredCouponCardGroup {
+  __typename
+  urn
+  has90Min(first: 10, filterBy: $filteredCouponFilterBy, sortBy: $sortBy)
+  full: items(first: 10, filterBy: $filteredCouponFilterBy, sortBy: $sortBy) {
+    ...fullFilteredCouponCardGroupItems
+  }
+  partials: items(filterBy: $filteredCouponFilterBy, sortBy: $sortBy) {
+    ...partialsFilteredCouponCardGroupItems
+  }
+}
+
+fragment filteredCouponCardGroupPartial on FilteredCouponCardGroup {
+  __typename
+  urn
+}

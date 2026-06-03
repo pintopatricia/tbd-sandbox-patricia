@@ -1,0 +1,58 @@
+# .github/actions/build-web-app/action.yml
+name: "Build Cloudflare Pages Web App"
+description: "Builds the web app and deploys it to Cloudflare Pages."
+inputs:
+  cloudflare-api-token:
+    description: "Cloudflare API token with permissions to deploy to Cloudflare Pages"
+    required: true
+  cloudflare-account-id:
+    description: "Cloudflare account ID for the Pages project"
+    required: true
+  github-token:
+    description: "GitHub token for authentication"
+    required: true
+outputs:
+  url:
+    description: "The URL of the deployed web app"
+    value: ${{ steps.publish.outputs.deployment-url }}
+runs:
+  using: "composite"
+  steps:
+    - name: Git config
+      shell: bash
+      run: |
+        git config --global pack.window 1
+        git config --global http.postBuffer 157286400
+        git config --global core.compression 0
+
+    - uses: actions/setup-node@v4
+      with:
+        node-version-file: ".nvmrc"
+
+    - name: Install yarn and cache dependencies
+      shell: bash
+      run: |
+        npm install -g yarn@1.22.10
+        yarn workspaces focus @ppb/tbdbf-webapp
+
+    - name: Build Web Static Assets, Create folder structure and prepare for upload
+      shell: bash
+      run: |
+        yarn prepare
+        cd apps/bf/web
+        yarn build:local
+        mkdir -p temp/betting/tbd/assets
+        cp -a dist/. temp/betting/tbd/assets/
+        cd temp/betting/tbd/assets
+        rm -f stats.json
+        rm -f extracted_queries*
+
+    - name: Publish
+      id: publish
+      uses: cloudflare/wrangler-action@v3
+      with:
+        workingDirectory: apps/bf/web
+        apiToken: ${{ inputs.cloudflare-api-token }}
+        accountId: ${{ inputs.cloudflare-account-id }}
+        command: pages deploy temp/ --project-name=tbd-tests --branch=${{ github.ref_name }}
+        gitHubToken: ${{ inputs.github-token }}

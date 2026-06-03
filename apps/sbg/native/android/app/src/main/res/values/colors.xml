@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#18181a</color>
+    <color name="text">#fff</color>
+    <color name="text_splash_screen">#ffffff</color>
+    <color name="splashscreen_bg">#E7EEF1</color>
+    <color name="splashscreen_bg_end">#A8BAC4</color>
+    <color name="splash_blue_120">#00277C</color>
+    <color name="splashscreen_bg_start">#0D2051</color>
+    <color name="alert_background">#ffffff</color>
+    <color name="alert_title">#D9000000</color>
+    <color name="alert_message">#99000000</color>
+    <color name="alert_button">#1E58C4</color>
+    <color name="navigation_bg">#F4F4F4</color>
+    <color name="divider_white_50">#80FFFFFF</color>
+</resources>

@@ -1,0 +1,30 @@
+.bet {
+  display: inline-flex;
+
+  flex-direction: column;
+
+  gap: var(--bet-builder-summary-vertical-gap);
+
+  width: 100%;
+  padding: var(--bet-builder-summary-padding);
+}
+
+.description {
+  display: flex;
+}
+
+.title {
+  font: var(--bet-builder-summary-title-typography);
+  color: var(--bet-builder-summary-title-colour);
+  text-decoration-line: var(--bet-builder-summary-title-typography-text-decoration-line);
+  text-transform: var(--bet-builder-summary-title-typography-text-transform);
+  letter-spacing: var(--bet-builder-summary-title-typography-letter-spacing);
+}
+
+.selections {
+  display: block;
+}
+
+.summary {
+  display: block;
+}

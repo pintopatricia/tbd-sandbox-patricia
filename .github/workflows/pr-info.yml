@@ -1,0 +1,97 @@
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  add_info_comment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `
+              <details>
+                <summary>Web 🛠️</summary>
+
+              ### Run Web Tests - will deploy a cloudflare page if no --base-url is provided
+              #### Mock Tests targetting PR without /betting
+              - \`/run-web-all-tests [--base-url=https://<brand>-tbdpe<id>.sportschannels-dev.aws.private/](OPTIONAL)\` - runs all web tests [Check the runs here][web_tests_job]
+              - \`/run-web-regression-tests [--base-url=https://<brand>-tbdpe<id>.sportschannels-dev.aws.private/](OPTIONAL)\` - runs web regression tests [Check the runs here][web_tests_job]
+              - \`/run-web-visual-tests [--base-url=https://<brand>-tbdpe<id>.sportschannels-dev.aws.private/](OPTIONAL)\` - runs web visual tests [Check the runs here][web_tests_job]
+              #### Tests that will run against real data and should target specific endpoint
+              - \`/run-web-e2e-tests --brand=|bf or sbg or ps| --env=|qa or nxt or drk or prod| --dc=|1 or 2|\` - runs web e2e tests
+              - \`/run-http-webserver-tests\` - runs [http-webserver regression tests][tbd_ci_web_http_webserver]
+              - \`/run-branch-coverage\` - runs [unit tests coverage][tbd_ci_build_test_coverage] for the files you changed
+
+              ### Flexible Environments
+              - \`/build-flexible-environment-bf [--bff-image-version=<version>](OPTIONAL)\` - Creates a bf environment where you can test your feature and writes the URL as a comment. [Check the runs here][create_flex_env_bf_action]
+              - \`/build-flexible-environment-bf-nxt [--bff-image-version=<version>](OPTIONAL)\` - Creates a bf environment like NXT where you can test your feature and writes the URL as a comment. [Check the runs here][create_flex_env_bf_action]
+              - \`/build-flexible-environment-bf-qacms [--bff-image-version=<version>](OPTIONAL)\` - It does the same as the label before but your environment will use the **dev cms**. [Check the runs here][create_flex_env_bf_action]
+              - \`/build-flexible-environment-sbg-nxt [--bff-image-version=<version>](OPTIONAL)\` - Creates an sbg environment like NXT where you can test your feature and writes the URL as a comment. [Check the runs here][create_flex_env_sbg_action]
+              - \`/build-flexible-environment-sbg [--bff-image-version=<version>](OPTIONAL)\` - Creates an sbg environment like QA where you can test your feature and writes the URL as a comment. [Check the runs here][create_flex_env_sbg_action]
+              - \`/build-flexible-environment-sbg-qacms [--bff-image-version=<version>](OPTIONAL)\` - It does the same as the label before but your environment will use the **dev cms**. [Check the runs here][create_flex_env_sbg_action]
+              - \`/build-flexible-environment-ps [--bff-image-version=<version>](OPTIONAL)\` - Creates a ps environment where you can test your feature and writes the URL as a comment. [Check the runs here][create_flex_env_ps_action]
+              - \`/build-flexible-environment-ps-nxt [--bff-image-version=<version>](OPTIONAL)\` - Creates a ps environment like NXT where you can test your feature and writes the URL as a comment. [Check the runs here][create_flex_env_ps_action]
+              - \`/build-flexible-environment-pp [--bff-image-version=<version>](OPTIONAL)\` - Creates a pp environment where you can test your feature and writes the URL as a comment. [Check the runs here][create_flex_env_pp_action]
+              - \`/build-flexible-environment-pp-nxt [--bff-image-version=<version>](OPTIONAL)\` - Creates a pp environment like NXT where you can test your feature and writes the URL as a comment. [Check the runs here][create_flex_env_pp_action]
+
+              [tbd_ci_web_http_webserver]: https://jenkins-prd.prd.betfair/job/tbd_ci_build_test_grid_for_http-webserver-tests/
+              [tbd_ci_build_test_coverage]: https://jenkins-prd.prd.betfair/view/TBD/job/tbd_ci_build_test_coverage/
+              [tbdn_build_ios_tests_app_mr]: https://jenkins-prd.prd.betfair/job/tbdn_build_ios_tests_app_mr/
+              [tbdn_build_android_tests_app_mr]: https://jenkins-prd.prd.betfair/job/tbdn_build_android_tests_app_mr/
+              [tbdn_visual_tests_ios_mr]: https://jenkins-prd.prd.betfair/view/TBDN/job/tbdn_visual_tests_ios_mr/
+              [build_android_job]: https://github.com/Flutter-Global/tbd/actions/workflows/build-android-app.yml
+              [web_tests_job]: https://github.com/Flutter-Global/tbd/actions/workflows/web-tests.yml
+              </details>
+              <details>
+                <summary>Native 🛠️</summary>
+
+              ### Build Apps
+              #### Betfair
+              - \`/build-ios-bf-app\` - [builds an iOS BF test app] (for Simulator/automated tests) and [builds an iOS BF Firebase app] (for real devices/manual testing). Runs on Github Runners
+              - \`/build-ios-bf-tests-app\` - [builds an iOS BF test app] used for automated tests and manual testing on Simulator. Runs on Github Runners
+              - \`/build-ios-bf-firebase-app\` - [builds an iOS BF Firebase app] for manual testing and distribution on real devices. Runs on Github Runners
+              - \`/build-android-bf-app\` - [builds an Android BF app][build_android_job] for testing on emulators or real devices
+
+              #### Sky Bet
+              - \`/build-ios-sbg-app\` - [builds an iOS SBG Firebase app] for manual testing and distribution on real devices. Runs on Github Runners
+              - \`/build-ios-sbg-firebase-app\` - [builds an iOS SBG Firebase app] for manual testing and distribution on real devices. Runs on Github Runners
+              - \`/build-android-sbg-app\` - [builds an Android SBG app][build_android_job] for testing on emulators or real devices
+
+              #### PaddyPower
+              - \`/build-ios-pp-app\` - [builds an iOS PP test app] (for Simulator/automated tests) and [builds an iOS PP Firebase app] (for real devices/manual testing). Runs on Github Runners
+              - \`/build-ios-pp-firebase-app\` - [builds an iOS PP Firebase app] for manual testing and distribution on real devices. Runs on Github Runners
+              - \`/build-android-pp-app\` - [builds an Android PP app][build_android_job] for testing on emulators or real devices
+
+              #### MultiBrand
+              - \`/build-ios-apps\` - builds iOS test apps [Betfair] (Simulator) & iOS Firebase apps [Betfair], [Sky Bet] & [PaddyPower] (real devices). Runs on Github Runners
+              - \`/build-ios-firebase-apps\` - builds iOS Firebase apps [Betfair], [Sky Bet] & [PaddyPower] for manual testing on real devices. Runs on Github Runners
+              - \`/build-android-apps\` - builds Android apps [Betfair][tbdn_build_android_tests_app_mr], [Sky Bet][build_android_job] & [PaddyPower][build_android_job] for emulators or real devices
+              - \`/build-native-apps\` - builds all native apps - Android and iOS for Betfair, Sky Bet and PaddyPower.
+
+              ### Tests
+              - \`/run-ios-visual-tests [--baselines=<Flutter-Global/tbd-native-visual-tests-baseline branch name>]\` - runs [iOS visual tests] to validate UI components against baseline images. Runs on Github Runners
+              - \`/run-ios-e2e-tests\` - runs [iOS e2e tests] to verify critical user journeys. Runs on Github Runners
+              - \`/run-ios-all-tests\` - runs [iOS e2e tests] to verify critical user journeys and [iOS visual tests] to validate UI components against baseline images. Runs on Github Runners
+              - \`/run-android-all-tests  [--rebuild](OPTIONAL)\` - runs the complete [Android test suite][android_tests_job] (regression, visual, e2e). Requires a previously built app. Use --rebuild if none exists for this PR, or to force a fresh build before running the tests.
+              - \`/run-android-regression-tests [--rebuild](OPTIONAL)\` - runs [Android regression tests][android_tests_job] to verify existing functionality hasn't broken. Requires a previously built app. Use --rebuild if none exists for this PR, or to force a fresh build before running the tests.
+              - \`/run-android-visual-tests [--rebuild](OPTIONAL)\` - runs [Android visual tests][android_tests_job] to validate UI components against baseline images. Requires a previously built app. Use --rebuild if none exists for this PR, or to force a fresh build before running the tests.
+              - \`/run-android-e2e-tests [--rebuild](OPTIONAL) [--brand](OPTIONAL:bf or sbg)\` - runs [Android e2e tests][android_tests_job] to verify critical user journeys. Requires a previously built app. Use --rebuild if none exists for this PR, or to force a fresh build before running the tests.
+              - \`/run-branch-coverage\` - runs [unit tests coverage][tbd_ci_build_test_coverage] for the files you changed to ensure adequate testing
+
+              [tbd_ci_build_test_grid]: https://jenkins-prd.prd.betfair/job/tbd_ci_build_test_grid/
+              [tbd_ci_build_test_coverage]: https://jenkins-prd.prd.betfair/view/TBD/job/tbd_ci_build_test_coverage/
+              [tbdnsbg_build_android_tests_app_mr]: https://jenkins-prd.prd.betfair/job/tbdnsbg_build_android_tests_app_mr/
+              [tbdn_build_android_tests_app_mr]: https://jenkins-prd.prd.betfair/job/tbdn_build_android_tests_app_mr/
+              [create_flex_env_bf_action]: https://github.com/Flutter-Global/tbd/actions/workflows/create-flex-env-bf.yml
+              [create_flex_env_ui_action]: https://github.com/Flutter-Global/tbd/actions/workflows/create-flex-env-ui.yml
+              [create_flex_env_sbg_action]: https://github.com/Flutter-Global/tbd/actions/workflows/create-flex-env-sbg.yml
+              [android_tests_job]: https://github.com/Flutter-Global/tbd/actions/workflows/android-tests.yml
+              </details>
+              `
+            })

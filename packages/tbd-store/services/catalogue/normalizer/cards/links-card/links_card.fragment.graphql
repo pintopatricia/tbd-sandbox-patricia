@@ -1,0 +1,26 @@
+fragment linksCard on LinksCard {
+  __typename
+  urn
+  section {
+    ... on LinksMenuSections {
+      __typename
+      title
+      sectionType
+      sectionLabel
+      items {
+        ... on RegulatoryLinkItem {
+          __typename
+          url
+          text
+          target
+          alignment
+        }
+      }
+    }
+  }
+}
+
+fragment linksCardPartial on LinksCard {
+  __typename
+  urn
+}

@@ -1,0 +1,87 @@
+fragment sportsbookBetLeg on BetLeg {
+  __typename
+  urn
+  type
+  result
+  resultType
+  legNumber
+  mutations {
+    eligibility {
+      mutation
+      mutationAvailability
+      details {
+        gameDetails {
+          minute
+          homeTeamName
+          homeTeamScore
+          awayTeamName
+          awayTeamScore
+        }
+      }
+    }
+    details {
+      freezeDetails {
+        minute
+        homeTeamName
+        homeTeamScore
+        awayTeamName
+        awayTeamScore
+      }
+    }
+  }
+  parts {
+    marketBetUrn
+    marketId
+    sportId
+    eventUrn
+    price {
+      decimal
+      fractional {
+        numerator
+        denominator
+      }
+    }
+    originalPrice {
+      decimal
+      fractional {
+        numerator
+        denominator
+      }
+    }
+    priceType
+    eventDescription
+    eventMarketDescription
+    marketType
+    selectionId
+    selectionName
+    handicap
+    eachwayPlaces
+    eachwayFactor {
+      numerator
+      denominator
+    }
+    rule4Deductions
+    deadHeatWinDeductions
+    deadHeatEachwayDeductions
+    outcomeDefinitionExp {
+      ...outcomeDefinitionExp
+    }
+    participants {
+      participantId
+      type
+      side
+    }
+    isSuperSub
+    raceRunner {
+      ...raceRunner
+    }
+    raceRunnerKind {
+      ...raceRunner
+      ...greyhoundRaceRunner
+    }
+    raceUrn
+  }
+  outcomeBasedDetails {
+      ... outcomeBasedDetails
+    }
+}

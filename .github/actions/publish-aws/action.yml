@@ -1,0 +1,51 @@
+# .github/actions/publish-aws/action.yml
+name: "Publish to AWS"
+description: "Publish an artifact to AWS S3"
+inputs:
+  artifact_base_path:
+    description: "Path to artifact on the runner"
+    required: true
+  artifact_s3_path:
+    description: "Path to artifact on the s3 bucket"
+    required: true
+  acl:
+    description: "ACL used to bucket upload"
+    required: true
+  purge-cache:
+    description: "Purge the cache after upload"
+    required: false
+
+runs:
+  using: "composite"
+  steps:
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_DEFAULT_REGION }}
+
+    - name: Deploy to AWS Dev
+      shell: bash
+      run: |
+        aws s3 cp ${{ inputs.artifact_base_path }} s3://${{ inputs.artifact_s3_path }} --acl ${{ inputs.acl }}
+
+    - name: Purge Cloudflare Cache
+      shell: bash
+      if: ${{ inputs.purge-cache == 'true' }}
+      run: |
+        # Check if all needed parameters are set
+        if ([ -z "$CF_AUTH_EMAIL" ] || [ -z "$CF_AUTH_TOKEN" ] || [ -z "$CF_ZONE" ] || [ -z "$CF_FILE" ]) then
+          echo "Error: Missing CloudFlare configurations. (CF_ZONE/CF_AUTH_EMAIL/CF_AUTH_TOKEN/CF_FILE"
+          exit 1;
+        fi
+
+        # Purge Cache
+        cloudFlare_result=$(curl -s -X POST "https://api.cloudflare.com/client/v4/zones/$CF_ZONE/purge_cache" \
+            -H "X-Auth-Email: $CF_AUTH_EMAIL" \
+            -H "Authorization: Bearer $CF_AUTH_TOKEN" \
+            -H "Content-Type: application/json" \
+            --data '{"files":['\"${CF_FILE}\"']}')
+        echo $cloudFlare_result
+        echo "Done!"
+        echo "Cache purged for $CF_FILE in zone $CF_ZONE"

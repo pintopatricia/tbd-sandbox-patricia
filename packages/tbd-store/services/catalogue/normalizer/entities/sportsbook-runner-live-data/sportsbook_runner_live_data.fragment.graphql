@@ -1,0 +1,23 @@
+fragment sportsbookRunnerLiveData on SportsbookRunnerLiveData {
+  __typename
+  urn
+  marketURN
+  runnerURN
+  selectionId
+  runnerStatus
+  handicap
+  odds {
+    decimal
+    fractional {
+      denominator
+      numerator
+    }
+  }
+  displayOdds {
+    decimal
+    fractional {
+      denominator
+      numerator
+    }
+  }
+}

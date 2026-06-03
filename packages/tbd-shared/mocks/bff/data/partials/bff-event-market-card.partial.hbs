@@ -1,0 +1,45 @@
+"__typename": "{{__typename}}{{^__typename}}EventMarketCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:eventPrimaryMarket:29359895{{/urn}}",
+"title": "{{title}}{{^title}}Wolves v Man Utd{{/title}}",
+"runnerViewLinks":
+{{#if runnerViewLinks}}
+  [
+  {{#each runnerViewLinks}}{
+  "viewUrn": "{{viewUrn}}{{^viewUrn}}mockerURN{{/viewUrn}}",
+  "viewUrl": "{{viewUrl}}{{^viewUrl}}mockerUrl{{/viewUrl}}",
+  "runnerUrn": "{{runnerUrn}}{{^runnerUrn}}"ppb:excRunner:1.171826696/27871644/0"{{/runnerUrn}}"
+  }{{#unless @last}},{{/unless}}{{/each}}
+  ],
+{{else}}
+  [],
+{{/if}}
+"displayRunners": {
+{{#with displayRunners}}
+  {{> bff-display-runners}}
+{{/with}}
+},
+"statsPebble": {
+{{#with statsPebble}}
+  "__typename": "StatsPebbleCardGroup",
+  "urn": "{{urn}}{{^urn}}ppb:tbd:stats:cardPebble:1{{/urn}}"
+{{/with}}
+},
+"sportevent": {
+{{#with sportevent}}
+  {{> bff-sportevent}}
+{{/with}}
+},
+"fixture": {
+  {{#ifEquals fixture.__typename "BaseFixture"}}
+    {{> bff-base-fixture fixture}}
+  {{else}}
+    {{> bff-fixture fixture}}
+  {{/ifEquals}}
+},
+"eventViewLink": {
+  {{#with eventViewLink}}
+    {{> bff-view-link}}
+  {{/with}}
+},
+"videoAvailable": {{#unless videoAvailable}}false{{else}}true{{/unless}},
+"isSuperSubEligible": {{#unless isSuperSubEligible}}false{{else}}true{{/unless}}

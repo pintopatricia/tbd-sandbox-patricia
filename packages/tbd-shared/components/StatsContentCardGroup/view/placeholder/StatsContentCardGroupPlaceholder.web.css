@@ -1,0 +1,15 @@
+.statsContent {
+  display: flex;
+
+  gap: var(--spacing-2);
+
+  width: 100%;
+  padding: var(--spacing-2) 0;
+}
+
+.supportingContentItem {
+  flex: 1;
+
+  min-width: var(--supporting-content-button-stats-min-height);
+  height: calc(var(--supporting-content-button-icon-sizing) + var(--spacing-2) * 2);
+}

@@ -1,0 +1,202 @@
+.freezeCard {
+  width: 100%;
+
+  /* stylelint-disable-next-line scale-unlimited/declaration-strict-value, property-disallowed-list */
+  line-height: normal;
+
+  background-color: var(--freeze-card-default-background-colour);
+  filter: var(--freeze-card-drop-shadow);
+  border: var(--freeze-card-default-border);
+  border-radius: var(--freeze-card-border-radius);
+}
+
+.freezeCardFinished {
+  background-color: var(--freeze-card-finished-background-colour);
+  border: var(--freeze-card-finished-border);
+}
+
+.freezeCardSuspended {
+  background-color: var(--freeze-card-suspended-background-colour);
+  border: var(--freeze-card-suspended-border);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.freezeCardIneligible {
+  background-color: var(--freeze-card-ineligible-background-colour);
+  border: var(--freeze-card-ineligible-border);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.freezeCardActive {
+  background-color: var(--freeze-card-active-background-colour);
+  border: var(--freeze-card-active-border);
+}
+
+@media (hover: hover) {
+  .freezeCardActive:hover {
+    background-color: var(--freeze-card-hover-background-colour);
+    border: var(--freeze-card-hover-border);
+  }
+
+  .freezeCardActive:hover .iconActive {
+    fill: var(--freeze-card-hover-icon-colour);
+  }
+
+  .freezeCardActive:hover .labelActive {
+    color: var(--freeze-card-hover-text-label-colour);
+  }
+
+  .freezeCardActive:hover .contentTextActive {
+    color: var(--freeze-card-hover-text-content-text-colour);
+  }
+}
+
+.freezeCardSelected {
+  background-color: var(--freeze-card-selected-background-colour);
+  border: var(--freeze-card-selected-border);
+}
+
+.top {
+  padding: var(--freeze-card-top-padding);
+}
+
+.divider {
+  width: 100%;
+
+  color: var(--freeze-card-divider-colour);
+
+  border-radius: var(--divider-border-radius);
+}
+
+.bottom {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--freeze-card-vertical-gap);
+
+  justify-content: flex-start;
+
+  padding: var(--freeze-card-bottom-padding);
+}
+
+.content {
+  display: flex;
+
+  flex-direction: row;
+
+  gap: var(--freeze-card-horizontal-gap-secondary);
+
+  align-items: center;
+  justify-content: left;
+}
+
+.dynamic {
+  display: flex;
+
+  flex-direction: row;
+
+  gap: var(--freeze-card-horizontal-gap);
+
+  align-items: center;
+  justify-content: left;
+
+  overflow: hidden;
+}
+
+.icon {
+  flex-shrink: 0;
+
+  width: var(--freeze-card-icon-sizing);
+  height: var(--freeze-card-icon-sizing);
+
+  fill: var(--freeze-card-default-icon-colour);
+}
+
+.iconFinished {
+  fill: var(--freeze-card-finished-icon-colour);
+}
+
+.iconSuspended {
+  fill: var(--freeze-card-suspended-icon-colour);
+}
+
+.iconIneligible {
+  fill: var(--freeze-card-ineligible-icon-colour);
+}
+
+.iconActive {
+  fill: var(--freeze-card-active-icon-colour);
+}
+
+.iconSelected {
+  fill: var(--freeze-card-selected-icon-colour);
+}
+
+.label {
+  overflow: hidden;
+
+  font: var(--freeze-card-label-typography);
+  color: var(--freeze-card-default-text-label-colour);
+  text-decoration-line: var(--freeze-card-label-typography-text-decoration-line);
+  text-overflow: ellipsis;
+  text-transform: var(--freeze-card-label-typography-text-transform);
+  letter-spacing: var(--freeze-card-label-typography-letter-spacing);
+  white-space: nowrap;
+}
+
+.labelFinished {
+  color: var(--freeze-card-finished-text-label-colour);
+}
+
+.labelSuspended {
+  color: var(--freeze-card-suspended-text-label-colour);
+}
+
+.labelIneligible {
+  color: var(--freeze-card-ineligible-text-label-colour);
+}
+
+.labelActive {
+  color: var(--freeze-card-active-text-label-colour);
+}
+
+.labelSelected {
+  color: var(--freeze-card-selected-text-label-colour);
+}
+
+.contentText {
+  flex-shrink: 0;
+
+  font: var(--freeze-card-content-text-typography);
+  color: var(--freeze-card-default-text-content-text-colour);
+  text-decoration-line: var(--freeze-card-content-text-typography-text-decoration-line);
+  text-transform: var(--freeze-card-content-text-typography-text-transform);
+  letter-spacing: var(--freeze-card-content-text-typography-letter-spacing);
+}
+
+.contentTextFinished {
+  color: var(--freeze-card-finished-text-content-text-colour);
+}
+
+.contentTextSuspended {
+  color: var(--freeze-card-suspended-text-content-text-colour);
+}
+
+.contentTextIneligible {
+  color: var(--freeze-card-ineligible-text-content-text-colour);
+}
+
+.contentTextActive {
+  color: var(--freeze-card-active-text-content-text-colour);
+}
+
+.contentTextSelected {
+  color: var(--freeze-card-selected-text-content-text-colour);
+}
+
+.statusLabel {
+  flex-shrink: 0;
+
+  margin-left: auto;
+}

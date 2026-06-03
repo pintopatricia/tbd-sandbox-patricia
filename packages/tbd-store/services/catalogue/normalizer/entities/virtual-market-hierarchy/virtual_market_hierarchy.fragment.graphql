@@ -1,0 +1,8 @@
+fragment virtualMarketHierarchy on VirtualMarketHierarchy {
+  __typename
+  ... on VirtualEventHierarchy {
+    virtualEvent {
+      ...virtualEvent
+    }
+  }
+}

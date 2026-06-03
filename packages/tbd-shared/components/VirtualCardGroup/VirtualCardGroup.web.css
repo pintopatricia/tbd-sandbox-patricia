@@ -1,0 +1,7 @@
+.container {
+  margin: 0;
+}
+
+.cardItem:not(:last-child) {
+  margin-bottom: var(--spacing-2);
+}

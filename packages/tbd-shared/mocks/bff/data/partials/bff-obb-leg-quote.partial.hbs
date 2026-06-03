@@ -1,0 +1,19 @@
+
+"eventId": {
+  {{#with eventId}}
+    {{#if id}}
+      "id": "{{id}}",
+    {{/if}}
+    {{#if supplier}}
+      "supplier": "{{supplier}}"
+    {{/if}}
+  {{/with}}
+},
+"prices": [
+{{#each prices}}
+  {
+    {{> bff-obb-quote-price}}
+  }
+  {{#unless @last}},{{/unless}}
+{{/each}}
+]

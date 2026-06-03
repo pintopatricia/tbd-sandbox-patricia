@@ -1,0 +1,24 @@
+name: pr-stale-check
+# Stale PRs are labelled after 4 weeks of inactivity and closed after 6 weeks of inactivity.
+on:
+    workflow_dispatch:
+    # run every day at 8am
+    schedule:
+        - cron: "0 8 * * *"
+jobs:
+    stale:
+        runs-on: ubuntu-latest
+        permissions:
+            issues: write
+            pull-requests: write
+
+        steps:
+            - uses: actions/stale@v7
+              with:
+                  repo-token: ${{ secrets.GITHUB_TOKEN }}
+                  days-before-pr-stale: 28
+                  days-before-pr-close: 14
+                  stale-pr-message: "This issue is stale because it has been open for 4 weeks with no activity. It will be closed in 2 weeks if no further activity occurs."
+                  close-pr-message: "This issue was closed because it has been inactive for 6 weeks."
+                  stale-pr-label: "stale"
+                  remove-stale-when-updated: true

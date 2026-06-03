@@ -1,0 +1,28 @@
+"__typename": "{{__typename}}{{^__typename}}RugbyUnionFixture{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:fixture:45617892{{/urn}}",
+"id": "{{id}}{{^id}}45617892{{/id}}",
+"isAmericanFormat": {{#if isAmericanFormat}}true{{else}}false{{/if}},
+"runnerNames": {{#if runnerNames}}{
+  "home": "{{runnerNames.home}}{{^runnerNames.home}}New York Knicks{{/runnerNames.home}}",
+  "away": "{{runnerNames.away}}{{^runnerNames.away}}Philadelphia 76ers{{/runnerNames.away}}"
+}{{else}}null{{/if}},
+{{#if score}}
+{{#with score}}
+"score": {
+  "away": {{scoreAway}}{{^scoreAway}}27{{/scoreAway}},
+  "home": {{scoreHome}}{{^scoreHome}}12{{/scoreHome}}
+}
+{{/with}}
+{{else}}
+"score": null
+{{/if}},
+{{#if halfTimeScore}}
+{{#with halfTimeScore}}
+"halfTimeScore": {
+  "away": {{halfTimeScoreAway}}{{^halfTimeScoreAway}}15{{/halfTimeScoreAway}},
+  "home": {{halfTimeScoreHome}}{{^halfTimeScoreHome}}11{{/halfTimeScoreHome}}
+}
+{{/with}}
+{{else}}
+"halfTimeScore": null
+{{/if}}

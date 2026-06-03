@@ -1,0 +1,29 @@
+fragment raceWithRaceDetails on Race {
+  __typename
+  urn
+  startTime
+  name
+  raceId
+  verdict
+  winningTime
+  meeting {
+    ...meeting
+  }
+  details {
+    scheduledTime
+    resultType
+    distance {
+      miles
+      furlongs
+      yards
+    }
+    numberOfRunners
+    numberOfNonRunners
+    numberOfParticipants
+    raceClass
+    raceDetailsTitle: title
+    going
+    status
+    type
+  }
+}

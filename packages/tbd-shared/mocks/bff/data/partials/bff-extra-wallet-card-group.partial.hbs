@@ -1,0 +1,15 @@
+"__typename": "ExtraWalletCardGroup",
+"urn": "{{urn}}{{^urn}}ppb:tbd:cardgroup:extraWalletCardGroup:extraWallets{{/urn}}",
+"amount": {{amount}}{{^amount}}40.0{{/amount}},
+{{#if helpUrl}}
+  "helpUrl": "{{helpUrl}}",
+{{/if}}
+{{#if bonusPageUrl}}
+  "bonusPageUrl": "{{bonusPageUrl}}",
+{{/if}}
+{{#with full}}
+"full":{
+  "__typename":"ExtraWalletCardGroupConnection",
+  {{> bff-items }}
+}
+{{/with}}

@@ -1,0 +1,9 @@
+.title {
+  margin: 0 0 0 var(--spacing-3);
+
+  color: var(--neutrals-text-default);
+}
+
+.viewZoneContainer > div:nth-of-type(1) {
+  margin-top: var(--spacing-card-top-default);
+}

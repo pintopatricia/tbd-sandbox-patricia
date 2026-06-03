@@ -1,0 +1,47 @@
+fragment fixture on Fixture {
+  ... on FootballFixture {
+    ...footballFixture
+  }
+  ... on BaseFixture {
+    ...baseFixture
+  }
+  ... on TennisMatch {
+    ...tennisFixtureDeprecated
+  }
+  ... on BaseballFixture {
+    ...baseballFixture
+  }
+  ... on BasketballFixture {
+    ...basketballFixture
+  }
+  ... on CricketFixture {
+    ...cricketFixture
+  }
+  ... on TableTennisFixture {
+    ...tableTennisFixture
+  }
+  ... on IceHockeyFixture {
+    ...iceHockeyFixture
+  }
+  ... on AmericanFootballFixture {
+    ...americanFootballFixture
+  }
+  ... on RugbyUnionFixture {
+    ...rugbyUnionFixture
+  }
+  ... on RugbyLeagueFixture {
+    ...rugbyLeagueFixtureDeprecated
+  }
+  ... on SnookerFixture {
+    ...snookerFixture
+  }
+  ... on VolleyballFixture {
+    ...volleyballFixtureDeprecated
+  }
+  ... on AustralianRulesFixture {
+    ...australianRulesFixture
+  }
+  ... on DartsFixture {
+    ...dartsFixture
+  }
+}

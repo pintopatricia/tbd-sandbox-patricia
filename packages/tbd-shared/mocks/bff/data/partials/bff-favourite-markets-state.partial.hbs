@@ -1,0 +1,13 @@
+"__typename": "FavouriteMarketsState",
+"urn": "{{{urn}}}{{^urn}}some urn{{/urn}}",
+{{#with metadata}}
+  "metadata": {
+    "sport": {
+      {{> bff-favourite-markets-count-metadata sport}}
+    },
+    "total": {
+      {{> bff-favourite-markets-count-metadata total}}
+    }
+  },
+{{/with}}
+"isFavourite": {{#if isFavourite}}true{{else}}false{{/if}}

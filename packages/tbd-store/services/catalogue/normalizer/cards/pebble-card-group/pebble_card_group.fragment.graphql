@@ -1,0 +1,43 @@
+fragment pebbleCardGroup on PebbleCardGroup {
+  ...pebbleCardGroupEnrichedPartial
+  pebbleCardGroupIcon: icon
+  outerTitle {
+    ...translatableText
+  }
+  viewOpenBets {
+    viewUrl
+    viewUrn
+  }
+  viewAll {
+    title {
+      ...displayName
+    }
+    viewLink {
+      viewUrl
+      viewUrn
+    }
+  }
+  selectedItemUrn
+  full: items(first: 1, selectedOnly: true) {
+    ...fullPebbleCardGroupItems
+  }
+  partials: items {
+    ...partialsPebbleCardGroupItems
+  }
+}
+
+fragment pebbleCardGroupPartial on PebbleCardGroup {
+  __typename
+  urn
+}
+
+fragment pebbleCardGroupEnrichedPartial on PebbleCardGroup {
+  ...pebbleCardGroupPartial
+  pebbleExpanded
+  pebbleCardGroupTitle: title {
+    ...translatableText
+  }
+  favouriteMarketsState {
+    ...favouriteMarketsStateLite
+  }
+}

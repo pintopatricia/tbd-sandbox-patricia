@@ -1,0 +1,11 @@
+"__typename": "PriceBoostMultisCard",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:priceboostmultis:Zp5nEBAAACIAlHmk/s/1{{/urn}}",
+"pbmTitle": {
+  "__typename": "DisplayNameTitle",
+  "name": {{#if title}}"{{title}}"{{else}}null{{/if}}
+},
+"popularbettingopportunity": {
+  {{#with popularbettingopportunity}}
+    {{> bff-betting-opportunity}}
+  {{/with}}
+}

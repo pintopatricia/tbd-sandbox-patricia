@@ -1,0 +1,31 @@
+.container {
+  margin: 0;
+}
+
+.inputsContainer {
+  display: flex;
+}
+
+.input {
+  display: flex;
+
+  flex: 1 1 0;
+}
+
+.input + .input {
+  margin-left: var(--spacing-2);
+}
+
+.freebets,
+.placeButton,
+.notifications {
+  margin-top: var(--spacing-2);
+}
+
+.placeButton {
+  margin-bottom: var(--spacing-1);
+}
+
+.quickStakes {
+  padding: var(--spacing-1) 0;
+}

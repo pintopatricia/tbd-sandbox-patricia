@@ -1,0 +1,29 @@
+.secondaryEventCard {
+  display: flex;
+
+  flex-direction: column;
+
+  height: 100%;
+  min-height: var(--scrollable-swimlane-min-height);
+  padding: var(--spacing-3);
+
+  color: var(--neutrals-text-default);
+  text-decoration: none;
+
+  background-color: var(--neutrals-background-elevation3);
+  border-radius: 4px;
+}
+
+.startTimeContainer {
+  padding-top: var(--spacing-3);
+}
+
+.runnerNameAway {
+  flex-grow: 1;
+
+  padding-top: var(--spacing-1);
+}
+
+.inplay {
+  color: var(--signposting-inplay-text-default);
+}

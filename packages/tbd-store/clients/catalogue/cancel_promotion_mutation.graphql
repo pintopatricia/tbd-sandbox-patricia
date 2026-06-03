@@ -1,0 +1,18 @@
+mutation cancelPromotion(
+  $urn: URN!
+  $bonusInstanceCode: String!
+  $throttlesOn: [String!]
+  $throttlesOff: [String!]
+  $productExclusions: [ProductExclusion!]
+)
+@productExclusions(productExclusions: $productExclusions)
+@throttlesOn(throttlesOn: $throttlesOn)
+@throttlesOff(throttlesOff: $throttlesOff) {
+  cancelPromotion(urn: $urn, bonusInstanceCode: $bonusInstanceCode) {
+    responseCode
+    responseMessage
+    promotion {
+      ...imsPromotion
+    }
+  }
+}

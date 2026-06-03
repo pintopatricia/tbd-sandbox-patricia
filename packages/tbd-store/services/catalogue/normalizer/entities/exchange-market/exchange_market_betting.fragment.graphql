@@ -1,0 +1,29 @@
+fragment exchangeMarketBetting on ExchangeMarket {
+  __typename
+  urn
+  liveData {
+    totalMatched
+    exchangeMarketStatus
+    inplay
+  }
+  name
+  marketType
+  marketTypeName
+  hierarchy {
+    ...hydratedMarketHierarchy
+  }
+  sport {
+    ...sport
+  }
+  bettingType
+  eachWayDivisor
+  numberOfWinners
+  runners {
+    __typename
+    runnerURN
+    name
+    selectionId
+    handicap
+    resultType
+  }
+}

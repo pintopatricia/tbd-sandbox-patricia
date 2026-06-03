@@ -1,0 +1,14 @@
+.expandableCardgroup,
+.expandableCardgroupItem {
+  margin: 0;
+}
+
+.headerTitle {
+  margin-bottom: var(--spacing-2);
+
+  color: var(--neutrals-text-default);
+}
+
+.highlightedSelection {
+  margin-top: var(--spacing-half);
+}

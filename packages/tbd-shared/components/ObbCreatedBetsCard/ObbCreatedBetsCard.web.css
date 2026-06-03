@@ -1,0 +1,38 @@
+.card {
+  display: flex;
+
+  flex-direction: column;
+
+  width: var(--squad-bet-card-secondary-width);
+  overflow: hidden;
+
+  background-color: var(--card-background-colour);
+  filter: var(--card-drop-shadow);
+  border-radius: var(--card-border-radius);
+}
+
+.fullWidthCard {
+  width: 100%;
+}
+
+.header {
+  width: 100%;
+  padding: var(--squad-bet-card-secondary-header-padding);
+
+  background-color: var(--squad-bet-card-secondary-header-background-colour);
+}
+
+.outcomesContainer {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.seeAllContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: var(--squad-bet-card-secondary-padding);
+}

@@ -1,0 +1,27 @@
+{{#if exchange}}
+  {{#with exchange}}
+    "exchange": {
+      "runners": [
+      {{#each runners}}
+        {
+        "runnerURN": "{{runnerURN}}{{^runnerURN}}excRunnerURN{{/runnerURN}}"
+        }{{#unless @last}},{{/unless}}
+      {{/each}}
+      ]
+    }
+  {{/with}}
+  {{#if sportsbook}},{{/if}}
+{{/if}}
+{{#if sportsbook}}
+  {{#with sportsbook}}
+    "sportsbook": {
+      "runners": [
+      {{#each runners}}
+        {
+        "runnerURN": "{{runnerURN}}{{^runnerURN}}sbkRunnerURN{{/runnerURN}}"
+        }{{#unless @last}},{{/unless}}
+      {{/each}}
+      ]
+    }
+  {{/with}}
+{{/if}}

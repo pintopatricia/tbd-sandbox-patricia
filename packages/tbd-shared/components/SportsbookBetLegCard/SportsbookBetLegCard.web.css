@@ -1,0 +1,23 @@
+.sportsIconContainer {
+  display: flex;
+
+  flex-shrink: 0;
+
+  align-items: "center";
+
+  width: var(--bet-selection-details-icon-sizing);
+  height: var(--bet-selection-details-icon-sizing);
+}
+
+.betLegCardContainer {
+  padding: var(--sportsbook-bet-leg-card-padding);
+}
+
+.betLegCardContent:not(:only-child) {
+  margin-bottom: var(--spacing-2);
+}
+
+.dividerContainer {
+  margin-top: var(--spacing-1);
+  margin-bottom: var(--spacing-1);
+}

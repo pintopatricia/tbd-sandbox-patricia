@@ -1,0 +1,27 @@
+"urn": "{{urn}}{{^urn}}ppb:fixture:31111111{{/urn}}",
+"__typename": "{{__typename}}{{^__typename}}TennisMatch{{/__typename}}",
+"isAmericanFormat": {{#if isAmericanFormat}}true{{else}}false{{/if}},
+"runnerNames": {{#if runnerNames}}{
+  "home": "{{runnerNames.home}}{{^runnerNames.home}}New York Knicks{{/runnerNames.home}}",
+  "away": "{{runnerNames.away}}{{^runnerNames.away}}Philadelphia 76ers{{/runnerNames.away}}"
+}{{else}}null{{/if}},
+
+"teamAScore": {{teamAScore}}{{^teamAScore}}1{{/teamAScore}},
+"teamBScore": {{teamBScore}}{{^teamBScore}}1{{/teamBScore}},
+
+{{#with matchStatus}}
+"status": {
+  "status": "{{status}}{{^status}}INTERRUPTED{{/status}}",
+  {{#if reason}}
+    "reason": "{{reason}}{{^reason}}HEAT_DELAY{{/reason}}"
+  {{else}}
+    "reason": null
+  {{/if}}
+},
+{{/with}}
+
+"scheduledStartTime": "{{scheduledStartTime}}{{^scheduledStartTime}}2032-12-06T11:30:00Z{{/scheduledStartTime}}",
+"gender": "{{gender}}{{^gender}}MALE{{/gender}}",
+"numberOfSets": 3,
+"surface": "{{surface}}{{^surface}}HARD{{/surface}}",
+"type": "{{type}}{{^type}}SINGLES{{/type}}"

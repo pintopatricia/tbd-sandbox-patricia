@@ -1,0 +1,15 @@
+.errorToastContainer {
+  position: fixed;
+  bottom: calc(var(--bottom-bar-height-sizing, 70px) + var(--spacing-3, 16px));
+  left: 50%;
+  z-index: var(--messaging-stack, 9999);
+
+  width: 90%;
+  max-width: 600px;
+
+  transform: translateX(-50%);
+}
+
+.errorToastWrapper {
+  background-color: var(--card-background-colour);
+}

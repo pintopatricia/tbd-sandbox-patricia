@@ -1,0 +1,48 @@
+fragment obbCardGroup on ObbCardGroup {
+  __typename
+  urn
+  obbCardGroupTitle: title {
+    ...displayName
+  }
+  event {
+    urn
+    name
+    eventId
+    openDate
+  }
+  moreInfoLabel {
+    ...displayName
+  }
+  moreInfo {
+    urn
+    moreInfoDetails {
+      type
+      text
+      spans {
+        start
+        end
+        style
+        viewLink {
+          viewUrn
+          viewUrl
+          viewDisplayMode
+        }
+      }
+    }
+  }
+  filterTags {
+    label {
+      ...displayName
+    }
+    type
+  }
+  showFilterTags
+  bettingWindowOffset
+  obbCardGroupSections: sections {
+    edges {
+      node {
+        ...obbSection
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+name: bundlesize
+on:
+  pull_request:
+    branches:
+      - master
+
+# Ensures that additional commits on the same PR cancels the previous github run.
+# This helps to ensure that our apps are not unnecessarily using resources.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  bundlesize:
+    runs-on: ubuntu-latest
+    env:
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+      NX_BASE: origin/${{github.base_ref}}
+      GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      MONTEROSA_TOKEN: ${{secrets.MONTEROSA_TOKEN}}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Fetch nx base branch
+        uses: Flutter-Global/tbd-custom-actions/.github/custom-actions/fetch-branch@master
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+      - name: Install dependencies
+        run: yarn install --immutable-cache
+      - name: Run bundle size check
+        run: |
+          yarn prepare
+          cd apps/bf/web
+          yarn build:local
+          yarn size

@@ -1,0 +1,22 @@
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:quickLinks:allCompetitions:1{{/urn}}",
+"quickLinksTitle": "{{quickLinksTitle}}{{^quickLinksTitle}}{{/quickLinksTitle}}",
+"__typename": "QuickLinksCard",
+"accordionTitle": "{{accordionTitle}}{{^accordionTitle}}{{/accordionTitle}}",
+"accordionExpanded": {{#if accordionExpanded}}"{{accordionExpanded}}"{{else}}null{{/if}},
+"label": {
+    "__typename": "{{label.__typename}}{{^label.__typename}}DisplayNameTranslationKey{{/label.__typename}}",
+    "translationKey": "{{label.translationKey}}"
+},
+"links": [
+  {{#each links}}
+    {
+      "icon": {{#if icon}}"{{icon}}"{{else}}null{{/if}},
+      "label": "{{label}}{{^label}}View All Competitions{{/label}}",
+      "target": "{{target}}{{^target}}_self{{/target}}",
+      "viewLink": {
+        "viewUrl": "{{viewLink.viewUrl}}{{^viewLink.viewUrl}}/football/s-1/allcompetitions{{/viewLink.viewUrl}}",
+        "viewUrn": "{{viewLink.viewUrn}}{{^viewLink.viewUrn}}ppb:tbd:view:allcompetitions:1{{/viewLink.viewUrn}}"
+      }
+    }{{#unless @last}},{{/unless}}
+  {{/each}}
+]

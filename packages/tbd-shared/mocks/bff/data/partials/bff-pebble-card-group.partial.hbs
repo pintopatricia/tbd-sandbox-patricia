@@ -1,0 +1,47 @@
+"__typename": "{{__typename}}{{^__typename}}PebbleCardGroup{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:pebbleMarkets:924.229299861{{/urn}}",
+{{#with pebbleCardGroupTitle}}
+"pebbleCardGroupTitle": {
+    {{> bff-translatable-text}}
+},
+{{/with}}
+"pebbleExpanded": {{#if (defined pebbleExpanded)}}{{pebbleExpanded}}{{else}}true{{/if}},
+"selectedItemUrn": "{{selectedItemUrn}}{{^selectedItemUrn}}ppb:tbd:card:market:924.229299861{{/selectedItemUrn}}",
+{{#with favouriteMarketsState}}
+  "favouriteMarketsState": {
+    {{> bff-favourite-markets-state}}
+  },
+{{/with}}
+{{#with full}}
+    "full":{
+        "edges": [
+          {{#each edges}}
+              {
+                "name": "{{name}}{{^name}}0.5{{/name}}",
+                {{#with node}}
+                  "node": {
+                    {{> bff-card-types }}
+                  }
+                {{/with}}
+              }{{#unless @last}},{{/unless}}
+          {{/each}}
+        ]
+    },
+{{/with}}
+{{#with partials}}
+    "partials":{
+        "edges": [
+        {{#each edges}}
+            {
+            "name": "{{name}}{{^name}}0.5{{/name}}",
+            {{#with node}}
+                "node": {
+                    "__typename": "{{__typename}}{{^__typename}}EventViewLinkCard{{/__typename}}",
+                    "urn": "{{urn}}{{^urn}}ppb:tbd:card:eventViewLink::29359895{{/urn}}"
+                }
+            {{/with}}
+            }{{#unless @last}},{{/unless}}
+        {{/each}}
+        ]
+    }
+{{/with}}

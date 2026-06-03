@@ -1,0 +1,13 @@
+fragment virtualCardGroup on VirtualCardGroup {
+  __typename
+  urn
+  items {
+    edges {
+      node {
+        ...pebbleCardGroup
+        ...virtualEventDetailsCard
+        ...virtualMarketCard
+      }
+    }
+  }
+}

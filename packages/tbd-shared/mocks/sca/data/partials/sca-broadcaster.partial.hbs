@@ -1,0 +1,13 @@
+{{#each this}}
+  {
+  "broadcasterType": "{{broadcasterType}}{{^broadcasterType}}RADIO{{/broadcasterType}}",
+  "name": "{{name}}{{^name}}BBC Radio{{/name}}",
+  "startAt": "{{startAt}}{{^startAt}}2020-01-31T19:45:00Z{{/startAt}}",
+  "endAt": "{{endAt}}{{^endAt}}2020-01-31T21:45:00Z{{/endAt}}",
+  {{#with logo}}
+    "logo" : { {{> sca-image }} },
+  {{/with}}
+  "url": "{{url}}{{^url}}https://www.betfair.com{{/url}}"
+  }
+  {{#unless @last}},{{/unless}}
+{{/each}}

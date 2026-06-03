@@ -1,0 +1,55 @@
+"__typename": "NavigationTabsList",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:navigationTabsList:YGx5NRIAADPXa1tE/s/1{{/urn}}",
+"tabsTitle": "{{tabsTitle}}{{^tabsTitle}}All Football{{/tabsTitle}}",
+"selectedTabUrn": {{#if selectedTabUrn}}"{{selectedTabUrn}}"{{else}}null{{/if}},
+{{#with full}}
+"full":{
+  {{> bff-items }}
+},
+{{/with}}
+{{#with partials}}
+"partials":{
+  "edges": [
+      {{#each edges}}
+        {
+        {{#with node}}
+          "node": {
+            "__typename": "{{__typename}}{{^__typename}}NavigationTab{{/__typename}}",
+            "urn": "{{{urn}}}{{^urn}}ppb:tbd:view:navigationTab:YGxxkxIAACIAazfZ/s/1{{/urn}}",
+            {{#with badgeText}}
+              "badgeText": {
+                {{> bff-translatable-text}}
+              },
+            {{/with}}
+            {{#ifEquals __typename "NavigationTab"}}
+              "tabTitle": {
+                {{#with tabTitle}}
+                  {{> bff-translatable-text}}
+                {{/with}}
+              },
+            {{/ifEquals}}
+            {{#ifEquals __typename "FavouriteMarketsNavigationTab"}}
+              {{#if metadata}}
+                "metadata": {
+                  "total": {
+                    {{> bff-favourite-markets-count-metadata metadata.total}}
+                  }
+                },
+              {{else}}
+                "metadata": null,
+              {{/if}}
+            {{/ifEquals}}
+            {{#if tabViewLink}}
+              "tabViewLink": {
+                {{> bff-view-link tabViewLink}}
+              }
+            {{else}}
+              "tabViewLink": null
+            {{/if}}
+          }
+        {{/with}}
+        }{{#unless @last}},{{/unless}}
+      {{/each}}
+  ]
+}
+{{/with}}

@@ -1,0 +1,18 @@
+"__typename": "GamingJackpotCard",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:gaming:jackpot:id/jackpotCard{{/urn}}",
+"logo": "{{logo}}{{^logo}}https://images.prismic.io/betfair-com-dev/29ddc91c-0d6e-4328-a5b4-8c6a8b1c27cc_BF_Daily_Jackpots.png?auto=compress,format&rect=0,0,438,334&w=189&h=144{{/logo}}",
+"jackpots": [
+{{#each jackpots}}
+	{
+		"__typename": "GamingJackpot",
+		"urn": "{{urn}}{{^urn}}ppb:gaming:jackpot:id/jackpotId{{/urn}}",
+		"dropText": {{#if dropText}}"{{dropText}}"{{else}}null{{/if}},
+		"dropTime": {{#if dropTime}}"{{dropTime}}"{{else}}null{{/if}},
+		"dropValue": {{#if dropValue}}{{dropValue}}{{else}}null{{/if}},
+		"name": "{{name}}{{^name}}BFRB RedTiger Progressive Jackpot Name{{/name}}",
+		"progress": {{progress}}{{^progress}}45{{/progress}},
+		"state": "{{state}}{{^state}}VERY_HOT{{/state}}",
+		"value": {{value}}{{^value}}49298.33{{/value}}
+	}{{#unless @last}},{{/unless}}
+{{/each}}
+]

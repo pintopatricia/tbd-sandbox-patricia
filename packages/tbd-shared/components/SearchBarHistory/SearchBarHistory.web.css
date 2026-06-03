@@ -1,0 +1,15 @@
+.searchHistoryContainer {
+  padding-top: var(--spacing-3);
+}
+
+.searchHistoryLabel {
+  margin-bottom: var(--spacing-2);
+
+  color: var(--neutrals-text-secondary);
+}
+
+.searchHistoryItemsContainer {
+  overflow: hidden;
+
+  border-radius: var(--spacing-1);
+}

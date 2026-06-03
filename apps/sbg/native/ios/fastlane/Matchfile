@@ -1,0 +1,17 @@
+# URL to the git repo containing all the certificates
+git_url("https://github.com/Flutter-Global/tbd-provisioning-profiles.git")
+
+# The bundle identifier(s) of your app (comma-separated)
+app_identifier([
+  "com.skybet.SkyBetTesting",
+  "com.skybet.SkyBetTesting.SkyBetNotificationServiceExtension",
+])
+
+# The name of your Developer Portal team if you're in multiple teams
+team_name "Bonne Terre Limited"
+
+# The ID of your Developer Portal team if you're in multiple teams
+team_id "5337HLKKD5"
+
+# Setting verbose to true to help debugging when facing certificates and keychain issues.
+verbose(true)

@@ -1,0 +1,25 @@
+fragment matchTimelineCard on MatchTimelineCard {
+  __typename
+  urn
+  footballFixture: fixture {
+    ...footballFixture
+    incidents {
+      ...footballIncident
+    }
+    stats {
+      period
+      periodStatus
+      home {
+        ...gameStats
+      }
+      away {
+        ...gameStats
+      }
+    }
+  }
+}
+
+fragment matchTimelineCardPartial on MatchTimelineCard {
+  __typename
+  urn
+}

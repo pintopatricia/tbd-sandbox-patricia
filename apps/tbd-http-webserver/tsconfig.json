@@ -1,0 +1,56 @@
+{
+  "compilerOptions": {
+    /* Type Checking */
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "strict": true,
+
+    /* Modules */
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "types": ["jest", "node"],
+
+    /* Emit */
+    "sourceMap": true,
+
+    /* JavaScript Support */
+    "allowJs": false,
+
+    /* Interop Constraints */
+    "esModuleInterop": true,
+    "isolatedModules": true,
+
+    /* Language and Environment */
+    "jsx": "react-jsx",
+
+    /* Completeness */
+    "skipLibCheck": true,
+    // Everything above is a copy of root tsconfig.json, it can't be extended right now because of Docker containers
+    // TODO it should be extended maybe through an indenpendent package
+
+    /* Modules */
+    "module": "commonjs",
+    "rootDir": ".",
+
+    /* Emit */
+    "noEmit": false,
+    "outDir": "dist/es5",
+
+    /* Interop Constraints */
+    "preserveSymlinks": true,
+
+    /* Language and Environment */
+    "lib": ["es2021"],
+    "target": "es2021"
+  },
+  "include": ["lib/**/*.ts"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts"],
+  "references": [
+    {
+      "path": "../../packages/tbd-store/tsconfig.json"
+    }
+  ]
+}

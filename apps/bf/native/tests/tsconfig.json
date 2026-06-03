@@ -1,0 +1,23 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    /* Modules */
+    "module": "commonjs",
+    "types": [
+      "node",
+      "@wdio/globals/types",
+      "@wdio/jasmine-framework",
+      "@types/jasmine",
+      "expect-webdriverio/jasmine",
+      "wdio-native-app-compare-service"
+    ],
+
+    /* Emit */
+    "inlineSourceMap": true,
+    "removeComments": true,
+
+    /* Language and Environment */
+    "lib": ["es2017"],
+    "target": "es2015"
+  }
+}

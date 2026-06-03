@@ -1,0 +1,82 @@
+.jackpotMerchandiseContainer {
+  position: relative;
+
+  display: flex;
+
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.content {
+  position: relative;
+  z-index: 4;
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+.logo {
+  position: relative;
+
+  text-align: center;
+}
+
+.logoImg {
+  width: 130px;
+  height: 106px;
+}
+
+.hotStatus .logoImg {
+  width: 150px;
+  height: 120px;
+}
+
+.jackpots {
+  position: relative;
+
+  width: 100%;
+  margin-top: var(--spacing-1);
+}
+
+.jackpotItem {
+  display: inline-flex;
+
+  width: 50%;
+}
+
+.jackpotItem:first-child {
+  display: flex;
+
+  width: 70%;
+  margin: 0 auto;
+}
+
+.hotStatus .jackpotItem:first-child {
+  padding-bottom: var(--spacing-4);
+}
+
+.backgroundDiamonds {
+  position: absolute;
+  z-index: 2;
+
+  width: 100%;
+  height: fit-content;
+
+  background: linear-gradient(transparent, var(--agnostic-neutrals-text-default));
+  /* stylelint-disable property-no-vendor-prefix */
+  -webkit-mask-image: linear-gradient(to top, transparent 25%, var(--agnostic-neutrals-text-default));
+  /* stylelint-disable-next-line dczajkowski/color-no-non-variables */
+  mask-image: linear-gradient(to top, transparent 25%, var(--agnostic-neutrals-text-default));
+}
+
+.diamond {
+  position: absolute;
+  z-index: 3;
+
+  width: 90%;
+  height: 78%;
+}

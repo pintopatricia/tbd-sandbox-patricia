@@ -1,0 +1,85 @@
+fragment footballIncident on FootballIncident {
+  clock {
+    minute
+    second
+  }
+  period
+  periodStatus
+  details {
+    ... on GoalIncident {
+      __typename
+      goalType
+      side
+      goalScorer {
+        ...footballPlayer
+      }
+      assist {
+        ...footballPlayer
+      }
+    }
+    ... on CardIncident {
+      __typename
+      cardType
+      side
+      player {
+        ...footballPlayer
+      }
+    }
+    ... on SubstitutionIncident {
+      __typename
+      side
+      playerIn {
+        ...footballPlayer
+      }
+      playerOut {
+        ...footballPlayer
+      }
+    }
+    ... on PenaltyIncident {
+      __typename
+      side
+      penaltyType
+    }
+    ... on PenaltyShootoutIncident {
+      __typename
+      side
+      penaltyShootoutType
+      player {
+        ...footballPlayer
+      }
+    }
+    ... on PeriodIncident {
+      __typename
+      periodType
+      period
+      status
+      injuryTime
+    }
+    ... on ShotIncident {
+      __typename
+      side
+      shotType
+      player {
+        ...footballPlayer
+      }
+    }
+    ... on SetPieceIncident {
+      __typename
+      side
+      setPieceType
+    }
+    ... on FoulIncident {
+      __typename
+      side
+      foulType
+      player {
+        ...footballPlayer
+      }
+    }
+    ... on AttackIncident {
+      __typename
+      side
+      attackType
+    }
+  }
+}

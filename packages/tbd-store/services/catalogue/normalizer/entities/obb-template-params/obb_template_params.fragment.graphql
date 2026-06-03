@@ -1,0 +1,50 @@
+fragment obbPvpTemplateParamsFragment on ObbPvpParams {
+  __typename
+  participantIdA {
+    ... on ObbFootballPlayer {
+      __typename
+      urn
+    }
+  }
+  participantIdB {
+    ... on ObbFootballPlayer {
+      __typename
+      urn
+    }
+  }
+  outcomeId
+  timePeriodId
+}
+
+fragment obbSquadBetTemplateParamsFragment on ObbSquadBetParams {
+  __typename
+  participantIds {
+    ... on ObbFootballPlayer {
+      __typename
+      urn
+    }
+  }
+  outcomeIds
+  value
+  timePeriodId
+  quantifier
+}
+
+fragment obbSquadVsSquadTemplateParamsFragment on ObbSquadVsSquadParams {
+  __typename
+  squadAParticipantIds {
+    ... on ObbFootballPlayer {
+      __typename
+      urn
+    }
+  }
+  squadBParticipantIds {
+    ... on ObbFootballPlayer {
+      __typename
+      urn
+    }
+  }
+  outcomeIds
+  timePeriodId
+  quantifier
+}

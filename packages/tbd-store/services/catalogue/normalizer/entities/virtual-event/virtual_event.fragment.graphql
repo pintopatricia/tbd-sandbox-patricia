@@ -1,0 +1,13 @@
+fragment virtualEvent on VirtualEvent {
+  __typename
+  distance
+  duration
+  eventId
+  name
+  openDate
+  sport {
+    ...virtualSport
+  }
+  urn
+  venue
+}

@@ -1,0 +1,2044 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0EC0FC7C282D9E8F0049B1AA /* IOSExitApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC0FC7B282D9E8F0049B1AA /* IOSExitApp.m */; };
+		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		274B5A2D271D8738003883C0 /* AirshipConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 274B5A2C271D8738003883C0 /* AirshipConfig.plist */; };
+		2B44FA692D0B36FA004DD281 /* full-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B44FA682D0B36FA004DD281 /* full-background.png */; };
+		2B44FA6B2D0B3714004DD281 /* Safer-Gambling.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B44FA6A2D0B3714004DD281 /* Safer-Gambling.png */; };
+		2B44FA6D2D0B371D004DD281 /* skybet-efl-logo-tagline.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B44FA6C2D0B371D004DD281 /* skybet-efl-logo-tagline.png */; };
+		2B44FA6F2D0B3724004DD281 /* skybet-logo-tagline.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B44FA6E2D0B3724004DD281 /* skybet-logo-tagline.png */; };
+		2BA08FF92E32255D00216068 /* RCTShortcutModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA08FF82E32255D00216068 /* RCTShortcutModule.m */; };
+		2EE579432FC88077009C65FF /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2EE579422FC88077009C65FF /* Expo.plist */; };
+		2F6D0B862767A57E00808C8E /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6D0B852767A57E00808C8E /* NotificationService.swift */; };
+		2F6D0B8A2767A57E00808C8E /* NotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2F6D0B832767A57E00808C8E /* NotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4A456AB826F0D9C300D73F56 /* Info.release.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4A456AB726F0D9C300D73F56 /* Info.release.plist */; };
+		58FA94212F3E6B9800483594 /* british-heart-foundation.png in Resources */ = {isa = PBXBuildFile; fileRef = 58FA941F2F3E6B9800483594 /* british-heart-foundation.png */; };
+		58FA94222F3E6B9800483594 /* skybet-efl-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 58FA94202F3E6B9800483594 /* skybet-efl-logo.png */; };
+		604893B82EE05E2E004CD5A1 /* TMXProfiling-companion.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 604893A82EE05DA0004CD5A1 /* TMXProfiling-companion.xcframework */; };
+		604893B92EE05E2E004CD5A1 /* TMXProfiling-companion.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 604893A82EE05DA0004CD5A1 /* TMXProfiling-companion.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		604893BA2EE05E30004CD5A1 /* TMXProfiling.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 604893AA2EE05DAA004CD5A1 /* TMXProfiling.xcframework */; };
+		604893BB2EE05E30004CD5A1 /* TMXProfiling.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 604893AA2EE05DAA004CD5A1 /* TMXProfiling.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		604893BC2EE05E31004CD5A1 /* TMXProfilingConnections-companion.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 604893B02EE05DD9004CD5A1 /* TMXProfilingConnections-companion.xcframework */; };
+		604893BD2EE05E31004CD5A1 /* TMXProfilingConnections-companion.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 604893B02EE05DD9004CD5A1 /* TMXProfilingConnections-companion.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		604893BE2EE05E33004CD5A1 /* TMXProfilingConnections.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 604893B22EE05DDF004CD5A1 /* TMXProfilingConnections.xcframework */; };
+		604893BF2EE05E33004CD5A1 /* TMXProfilingConnections.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 604893B22EE05DDF004CD5A1 /* TMXProfilingConnections.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		674A84872E126BAD00527964 /* TMXModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 674A84862E126BAD00527964 /* TMXModule.m */; };
+		76108D062C46DC7300F0FA2A /* SSportsD_Md.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76108D052C46DC3D00F0FA2A /* SSportsD_Md.ttf */; };
+		76108D072C46DC7600F0FA2A /* SkyText_Rg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76108D042C46DC3D00F0FA72 /* SkyText_Rg.ttf */; };
+		76108D072C46DC7600F0FAE6 /* SkyText_Md.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76108D042C46DC3D00F0FA2A /* SkyText_Md.ttf */; };
+		7D15A7AF242B749700E2CB79 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D15A7AE242B749600E2CB79 /* GoogleService-Info.plist */; };
+		7D497FEC2AFD2B9D00D16AA6 /* TBDPerformanceModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D497FEB2AFD2B9D00D16AA6 /* TBDPerformanceModule.m */; };
+		7DE14F8E24730C6500D495CE /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7DE14F8C24730BE600D495CE /* Settings.bundle */; };
+		806692062D95DB930002D109 /* TBDCurrentScreenModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 806692042D95DB930002D109 /* TBDCurrentScreenModule.m */; };
+		89EFC9322906E5AD00D24560 /* GamesLobbyObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EFC9312906E5AD00D24560 /* GamesLobbyObject.swift */; };
+		89EFC9342906E5B700D24560 /* GamesLobbyObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EFC9332906E5B700D24560 /* GamesLobbyObject.m */; };
+		91A81864194CAF8D09FBE55C /* Pods_tbd_native.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B28508F2239B8F9C1C11B83 /* Pods_tbd_native.framework */; };
+		A093EBD925351EA200133568 /* RCTHTTPRequestHandler+trustInvalidCertificates.m in Sources */ = {isa = PBXBuildFile; fileRef = A093EBD825351EA200133568 /* RCTHTTPRequestHandler+trustInvalidCertificates.m */; };
+		B55DDEB529DC8060001FFD14 /* RCTLaunchArgumentsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B55DDEB429DC8060001FFD14 /* RCTLaunchArgumentsModule.m */; };
+		C64FDE7AA1277BEDBA2E3861 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC6BA4189FD7B307DD1931F /* ExpoModulesProvider.swift */; };
+		CDE1A00131D0000000A1B001 /* FrameworkEnvironmentMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE1A00231D0000000A1B001 /* FrameworkEnvironmentMapper.swift */; };
+		CE45B62827A2EE6B007BF7BA /* RCTAirshipConfigModule.m in Sources */ = {isa = PBXBuildFile; fileRef = CE45B62727A2EE6B007BF7BA /* RCTAirshipConfigModule.m */; };
+		D817A1C626AEEFD50062C0D1 /* IFDATracking.m in Sources */ = {isa = PBXBuildFile; fileRef = D817A1C526AEEFD50062C0D1 /* IFDATracking.m */; };
+		D817A2BA26AEF3130062C0D1 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D817A2B926AEF3130062C0D1 /* AppTrackingTransparency.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D85173F128D4C7E20060AF6D /* AppSupportedOrientations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85173F028D4C7E20060AF6D /* AppSupportedOrientations.swift */; };
+		D851E83826BA939D005B3C57 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D851E83726BA939D005B3C57 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D85AD4D5284E671000ACF0BD /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85AD4D4284E671000ACF0BD /* Settings.swift */; };
+		D85C40ED28F8512600537816 /* HTTPCookie+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D85C40EC28F8512600537816 /* HTTPCookie+Extension.swift */; };
+		D8AAA68725E3D4DC00555CAD /* NSNotifications+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AAA68625E3D4DC00555CAD /* NSNotifications+Extension.swift */; };
+		D8B3524A2743E63100A46582 /* GATrackingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B352492743E63100A46582 /* GATrackingConstants.swift */; };
+		D8C4CAA826B9713400EA2DA0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8C4CAAA26B9713400EA2DA0 /* InfoPlist.strings */; };
+		D8CFC5772837D0CC0053533D /* RCTCustomUserAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = D8CFC5762837D0CC0053533D /* RCTCustomUserAgent.m */; };
+		D8D79BF4273C0E28000FB05B /* GoogleTagTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D79BF3273C0E27000FB05B /* GoogleTagTracker.swift */; };
+		D8DAFA2B256E8BAB004AC63A /* GamesLobbyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D8DAFA2A256E8BAB004AC63A /* GamesLobbyManager.m */; };
+		D8DAFA35256E8E86004AC63A /* GamesLobbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DAFA34256E8E86004AC63A /* GamesLobbyView.swift */; };
+		D8DAFA3B256E9030004AC63A /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DAFA3A256E9030004AC63A /* UIView+Constraints.swift */; };
+		D8DAFA41256E948B004AC63A /* GamesFramework+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DAFA40256E948B004AC63A /* GamesFramework+Extension.swift */; };
+		D8DAFA4D256EC633004AC63A /* GamesLobbyEventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8DAFA4B256EC633004AC63A /* GamesLobbyEventEmitter.swift */; };
+		D8DAFA4E256EC633004AC63A /* GamesLobbyEventEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = D8DAFA4C256EC633004AC63A /* GamesLobbyEventEmitter.m */; };
+		D8EB89F526EB9507008A0153 /* RemoteLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EB89F426EB9507008A0153 /* RemoteLogs.swift */; };
+		DF0C4DE92F6AA83600B53610 /* ScoresLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0C4DE42F6AA83600B53610 /* ScoresLiveActivity.swift */; };
+		DF0C4DEA2F6AA83600B53610 /* ScoresLiveActivityBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0C4DE52F6AA83600B53610 /* ScoresLiveActivityBundle.swift */; };
+		DF0C4DED2F6AA83600B53610 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF0C4DE22F6AA83600B53610 /* Assets.xcassets */; };
+		DF0C4E1B2F6AB0F500B53610 /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0C4E092F6AB0F500B53610 /* TopBarView.swift */; };
+		DF0C4E1C2F6AB0F500B53610 /* ScoreboardCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0C4E0B2F6AB0F500B53610 /* ScoreboardCounterView.swift */; };
+		DF0C4E1D2F6AB0F500B53610 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0C4E072F6AB0F500B53610 /* CounterView.swift */; };
+		DF0C4E1E2F6AB0F500B53610 /* LiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0C4E0F2F6AB0F500B53610 /* LiveActivity.swift */; };
+		DF0C4E1F2F6AB0F500B53610 /* InPlayHomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0C4E052F6AB0F500B53610 /* InPlayHomeScreenViewModel.swift */; };
+		DF0C4E202F6AB0F500B53610 /* CrestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0C4E082F6AB0F500B53610 /* CrestView.swift */; };
+		DF0C4E212F6AB0F500B53610 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0C4E0A2F6AB0F500B53610 /* MainView.swift */; };
+		DF0C4E222F6AB0F500B53610 /* ScoreboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0C4E0C2F6AB0F500B53610 /* ScoreboardView.swift */; };
+		DF0C4E232F6AB0F500B53610 /* TeamCrestNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0C4E0D2F6AB0F500B53610 /* TeamCrestNameView.swift */; };
+		DF0C4E2C2F6AB48600B53610 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF0C4DE22F6AA83600B53610 /* Assets.xcassets */; };
+		DF0C4E302F718DF700B53610 /* ScoresLiveActivityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0C4E2F2F718DF700B53610 /* ScoresLiveActivityConstants.swift */; };
+		DF0C4E312F718DF700B53610 /* ScoresLiveActivityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0C4E2F2F718DF700B53610 /* ScoresLiveActivityConstants.swift */; };
+		DF0C4E322F7191DB00B53610 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24A5F9B2F5FB8000000F788 /* ImageDownloader.swift */; };
+		DF47DEF02F6AA6C000DBA522 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF47DEEF2F6AA6C000DBA522 /* WidgetKit.framework */; };
+		DF47DEF22F6AA6C000DBA522 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF47DEF12F6AA6C000DBA522 /* SwiftUI.framework */; };
+		DF47DF132F6AA7E800DBA522 /* ScoresAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24A5F582F55A6790000F788 /* ScoresAttributes.swift */; };
+		EC6B90C92BFE9A6300D57909 /* GamesActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6B90C82BFE9A6300D57909 /* GamesActor.swift */; };
+		EC6B90CB2BFE9A8700D57909 /* ParametersGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6B90CA2BFE9A8700D57909 /* ParametersGroup.swift */; };
+		F24A5F5A2F55A6790000F788 /* ScoresAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24A5F582F55A6790000F788 /* ScoresAttributes.swift */; };
+		F24A5F962F5B41940000F788 /* SportsLiveActivityPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24A5F952F5B41750000F788 /* SportsLiveActivityPayload.swift */; };
+		F24A5F992F5EDF920000F788 /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24A5F982F5EDF920000F788 /* DictionaryExtension.swift */; };
+		F24A5F9C2F5FB8000000F788 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24A5F9B2F5FB8000000F788 /* ImageDownloader.swift */; };
+		F24A5F9E2F60F8BD0000F788 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24A5F9D2F60F8B80000F788 /* StringExtension.swift */; };
+		F25DCB962F44B96300DF1119 /* ScoresLiveActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25DCB952F44B95100DF1119 /* ScoresLiveActivityModel.swift */; };
+		F29307C12F50B10900FD4561 /* LiveActivityDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29307C02F50B10900FD4561 /* LiveActivityDataStore.swift */; };
+		F29307C32F50B12900FD4561 /* LiveActivityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29307C22F50B12900FD4561 /* LiveActivityData.swift */; };
+		F2A3EEA72F7EC01E00BFDC53 /* LiveActivityError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A3EEA62F7EC01200BFDC53 /* LiveActivityError.swift */; };
+		F2D1243F2F448F890061F1A1 /* ScoresLiveActivityModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D1243E2F448F890061F1A1 /* ScoresLiveActivityModule.swift */; };
+		F2D124412F448FBB0061F1A1 /* ScoresLiveActivityModule.m in Sources */ = {isa = PBXBuildFile; fileRef = F2D124402F448FBB0061F1A1 /* ScoresLiveActivityModule.m */; };
+		F2DF3F5F2FBFD3BC000ED734 /* SkyText_Rg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76108D042C46DC3D00F0FA72 /* SkyText_Rg.ttf */; };
+		F2DF3F602FBFD3C2000ED734 /* SkyText_Md.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76108D042C46DC3D00F0FA2A /* SkyText_Md.ttf */; };
+		F2DF3F632FBFD3DF000ED734 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DF3F622FBFD3DF000ED734 /* FontExtension.swift */; };
+		F2DF3F642FBFD3DF000ED734 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DF3F622FBFD3DF000ED734 /* FontExtension.swift */; };
+		F2EE01020000000000000001 /* ScoresLiveActivityEventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EE01010000000000000001 /* ScoresLiveActivityEventEmitter.swift */; };
+		F2EE01040000000000000001 /* ScoresLiveActivityEventEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = F2EE01030000000000000001 /* ScoresLiveActivityEventEmitter.m */; };
+		F909095129F012C7004FB63A /* RCTStartupTime.m in Sources */ = {isa = PBXBuildFile; fileRef = F909094829EFE9C3004FB63A /* RCTStartupTime.m */; };
+		F92F59172A9D4EB9009F4A9D /* libQMNative.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F92F59162A9D4EB9009F4A9D /* libQMNative.xcframework */; };
+		FE58303E2BBC6BD800D5A807 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = FE58303D2BBC6BD800D5A807 /* PrivacyInfo.xcprivacy */; };
+		FE7E3A6D2E93CE8A00CC58E2 /* AppDelegate+RegisterSettingsValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7E3A6C2E93CE8A00CC58E2 /* AppDelegate+RegisterSettingsValues.swift */; };
+		FE7E3A6E2E93CE8A00CC58E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7E3A6B2E93CE8A00CC58E2 /* AppDelegate.swift */; };
+		FED8671A2F02A5BD0093F11B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FED867192F02A5BD0093F11B /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2F6D0B882767A57E00808C8E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2F6D0B822767A57E00808C8E;
+			remoteInfo = NotificationServiceExtension;
+		};
+		DF47DF012F6AA6C200DBA522 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DF47DEED2F6AA6C000DBA522;
+			remoteInfo = LiveActivitiesExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2F8B4A2C27678B7B00093C68 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2F6D0B8A2767A57E00808C8E /* NotificationServiceExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		674A84AB2E12A98F00527964 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				604893BF2EE05E33004CD5A1 /* TMXProfilingConnections.xcframework in Embed Frameworks */,
+				604893BD2EE05E31004CD5A1 /* TMXProfilingConnections-companion.xcframework in Embed Frameworks */,
+				604893BB2EE05E30004CD5A1 /* TMXProfiling.xcframework in Embed Frameworks */,
+				604893B92EE05E2E004CD5A1 /* TMXProfiling-companion.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
+		012359C7008ED81FFC3C56F0 /* Pods-tbd_native.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tbd_native.release.xcconfig"; path = "Target Support Files/Pods-tbd_native/Pods-tbd_native.release.xcconfig"; sourceTree = "<group>"; };
+		0EC0FC7A282D9E8F0049B1AA /* IOSExitApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IOSExitApp.h; sourceTree = "<group>"; };
+		0EC0FC7B282D9E8F0049B1AA /* IOSExitApp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IOSExitApp.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* SkyBet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkyBet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = tbd_native/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = tbd_native/Info.plist; sourceTree = "<group>"; };
+		1CC6BA4189FD7B307DD1931F /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-tbd_native/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		274B5A2C271D8738003883C0 /* AirshipConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AirshipConfig.plist; sourceTree = "<group>"; };
+		2B44FA682D0B36FA004DD281 /* full-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "full-background.png"; sourceTree = "<group>"; };
+		2B44FA6A2D0B3714004DD281 /* Safer-Gambling.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Safer-Gambling.png"; sourceTree = "<group>"; };
+		2B44FA6C2D0B371D004DD281 /* skybet-efl-logo-tagline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skybet-efl-logo-tagline.png"; sourceTree = "<group>"; };
+		2B44FA6E2D0B3724004DD281 /* skybet-logo-tagline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skybet-logo-tagline.png"; sourceTree = "<group>"; };
+		2BA08FF72E32255000216068 /* RCTShortcutModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTShortcutModule.h; sourceTree = "<group>"; };
+		2BA08FF82E32255D00216068 /* RCTShortcutModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCTShortcutModule.m; sourceTree = "<group>"; };
+		2DB50E9D2444AF550073C8B6 /* tbd_native-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "tbd_native-Bridging-Header.h"; sourceTree = "<group>"; };
+		2EE579422FC88077009C65FF /* Expo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
+		2F6D0B832767A57E00808C8E /* NotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F6D0B852767A57E00808C8E /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		2F6D0B872767A57E00808C8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2FDF89B227679D4C009F95B1 /* libAirshipExtensions.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAirshipExtensions.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FDF89B427679DB1009F95B1 /* libAirship.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libAirship.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FDF89B62767A063009F95B1 /* liburbanairship-react-native.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "liburbanairship-react-native.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A456AB726F0D9C300D73F56 /* Info.release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.release.plist; path = tbd_native/Info.release.plist; sourceTree = "<group>"; };
+		58FA941B2F3E6B3100483594 /* british-heart-foundation 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "british-heart-foundation 2.png"; sourceTree = "<group>"; };
+		58FA941C2F3E6B3100483594 /* skybet-efl-logo 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skybet-efl-logo 2.png"; sourceTree = "<group>"; };
+		58FA941F2F3E6B9800483594 /* british-heart-foundation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "british-heart-foundation.png"; sourceTree = "<group>"; };
+		58FA94202F3E6B9800483594 /* skybet-efl-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skybet-efl-logo.png"; sourceTree = "<group>"; };
+		604893A82EE05DA0004CD5A1 /* TMXProfiling-companion.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:8VDTV2QZMS:ThreatMetrix Inc."; lastKnownFileType = wrapper.xcframework; path = "TMXProfiling-companion.xcframework"; sourceTree = "<group>"; };
+		604893AA2EE05DAA004CD5A1 /* TMXProfiling.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:8VDTV2QZMS:ThreatMetrix Inc."; lastKnownFileType = wrapper.xcframework; path = TMXProfiling.xcframework; sourceTree = "<group>"; };
+		604893B02EE05DD9004CD5A1 /* TMXProfilingConnections-companion.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:8VDTV2QZMS:ThreatMetrix Inc."; lastKnownFileType = wrapper.xcframework; path = "TMXProfilingConnections-companion.xcframework"; sourceTree = "<group>"; };
+		604893B22EE05DDF004CD5A1 /* TMXProfilingConnections.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:8VDTV2QZMS:ThreatMetrix Inc."; lastKnownFileType = wrapper.xcframework; path = TMXProfilingConnections.xcframework; sourceTree = "<group>"; };
+		674A84852E126BAD00527964 /* TMXModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMXModule.h; sourceTree = "<group>"; };
+		674A84862E126BAD00527964 /* TMXModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TMXModule.m; sourceTree = "<group>"; };
+		76108D042C46DC3D00F0FA2A /* SkyText_Md.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SkyText_Md.ttf; path = ../assets/fonts/SkyText_Md.ttf; sourceTree = "<group>"; };
+		76108D042C46DC3D00F0FA72 /* SkyText_Rg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SkyText_Rg.ttf; path = ../assets/fonts/SkyText_Rg.ttf; sourceTree = "<group>"; };
+		76108D052C46DC3D00F0FA2A /* SSportsD_Md.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SSportsD_Md.ttf; path = ../assets/fonts/SSportsD_Md.ttf; sourceTree = "<group>"; };
+		7D15A7AE242B749600E2CB79 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7D497FEA2AFD2B9D00D16AA6 /* TBDPerformanceModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDPerformanceModule.h; sourceTree = "<group>"; };
+		7D497FEB2AFD2B9D00D16AA6 /* TBDPerformanceModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDPerformanceModule.m; sourceTree = "<group>"; };
+		7DE14F862472D19000D495CE /* SettingsDebug.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SettingsDebug.bundle; sourceTree = "<group>"; };
+		7DE14F8C24730BE600D495CE /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		806692032D95DB930002D109 /* TBDCurrentScreenModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TBDCurrentScreenModule.h; sourceTree = "<group>"; };
+		806692042D95DB930002D109 /* TBDCurrentScreenModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TBDCurrentScreenModule.m; sourceTree = "<group>"; };
+		89EFC9312906E5AD00D24560 /* GamesLobbyObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesLobbyObject.swift; sourceTree = "<group>"; };
+		89EFC9332906E5B700D24560 /* GamesLobbyObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamesLobbyObject.m; sourceTree = "<group>"; };
+		8B28508F2239B8F9C1C11B83 /* Pods_tbd_native.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tbd_native.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A093EBD825351EA200133568 /* RCTHTTPRequestHandler+trustInvalidCertificates.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RCTHTTPRequestHandler+trustInvalidCertificates.m"; sourceTree = "<group>"; };
+		A7DDC61E2C1C3ECC008D5543 /* SkyBetInHouse.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = SkyBetInHouse.entitlements; path = tbd_native/SkyBetInHouse.entitlements; sourceTree = "<group>"; };
+		A7DDC61F2C1C3ECC008D5543 /* SkyBet.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = SkyBet.entitlements; path = tbd_native/SkyBet.entitlements; sourceTree = "<group>"; };
+		A7DDC6202C1C3ECC008D5543 /* SkyBetDebug.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = SkyBetDebug.entitlements; path = tbd_native/SkyBetDebug.entitlements; sourceTree = "<group>"; };
+		B55DDEB429DC8060001FFD14 /* RCTLaunchArgumentsModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RCTLaunchArgumentsModule.m; path = tbd_native/RCTLaunchArgumentsModule.m; sourceTree = "<group>"; };
+		B55DDEB729DC8081001FFD14 /* RCTLaunchArgumentsModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTLaunchArgumentsModule.h; sourceTree = "<group>"; };
+		CDE1A00231D0000000A1B001 /* FrameworkEnvironmentMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FrameworkEnvironmentMapper.swift; path = ../../../shared/native/ios/tbd_native/GamesLobby/Helpers/FrameworkEnvironmentMapper.swift; sourceTree = SOURCE_ROOT; };
+		CE45B62627A2EE17007BF7BA /* RCTAirshipConfigModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTAirshipConfigModule.h; sourceTree = "<group>"; };
+		CE45B62727A2EE6B007BF7BA /* RCTAirshipConfigModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCTAirshipConfigModule.m; sourceTree = "<group>"; };
+		D4428EB6D6C5DD6DE969E7B1 /* Pods-tbd_native.in_house.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tbd_native.in_house.xcconfig"; path = "Target Support Files/Pods-tbd_native/Pods-tbd_native.in_house.xcconfig"; sourceTree = "<group>"; };
+		D817A1C426AEEF010062C0D1 /* IFDATracking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IFDATracking.h; path = tbd_native/IFDATracking.h; sourceTree = "<group>"; };
+		D817A1C526AEEFD50062C0D1 /* IFDATracking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = IFDATracking.m; path = tbd_native/IFDATracking.m; sourceTree = "<group>"; };
+		D817A2B926AEF3130062C0D1 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
+		D85173F028D4C7E20060AF6D /* AppSupportedOrientations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSupportedOrientations.swift; sourceTree = "<group>"; };
+		D851E83726BA939D005B3C57 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		D85AD4D4284E671000ACF0BD /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		D85C40EC28F8512600537816 /* HTTPCookie+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPCookie+Extension.swift"; sourceTree = "<group>"; };
+		D8AAA68625E3D4DC00555CAD /* NSNotifications+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotifications+Extension.swift"; sourceTree = "<group>"; };
+		D8B352492743E63100A46582 /* GATrackingConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GATrackingConstants.swift; sourceTree = "<group>"; };
+		D8C4CAA926B9713400EA2DA0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D8CFC5762837D0CC0053533D /* RCTCustomUserAgent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCTCustomUserAgent.m; sourceTree = "<group>"; };
+		D8CFC5792837D0E10053533D /* RCTCustomUserAgent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTCustomUserAgent.h; sourceTree = "<group>"; };
+		D8D79BF3273C0E27000FB05B /* GoogleTagTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleTagTracker.swift; sourceTree = "<group>"; };
+		D8DAFA29256E8BAB004AC63A /* GamesLobbyManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GamesLobbyManager.h; sourceTree = "<group>"; };
+		D8DAFA2A256E8BAB004AC63A /* GamesLobbyManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GamesLobbyManager.m; sourceTree = "<group>"; };
+		D8DAFA34256E8E86004AC63A /* GamesLobbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesLobbyView.swift; sourceTree = "<group>"; };
+		D8DAFA3A256E9030004AC63A /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
+		D8DAFA40256E948B004AC63A /* GamesFramework+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GamesFramework+Extension.swift"; sourceTree = "<group>"; };
+		D8DAFA4B256EC633004AC63A /* GamesLobbyEventEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesLobbyEventEmitter.swift; sourceTree = "<group>"; };
+		D8DAFA4C256EC633004AC63A /* GamesLobbyEventEmitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamesLobbyEventEmitter.m; sourceTree = "<group>"; };
+		D8EB89F426EB9507008A0153 /* RemoteLogs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteLogs.swift; sourceTree = "<group>"; };
+		DF0C4DE22F6AA83600B53610 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DF0C4DE32F6AA83600B53610 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DF0C4DE42F6AA83600B53610 /* ScoresLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresLiveActivity.swift; sourceTree = "<group>"; };
+		DF0C4DE52F6AA83600B53610 /* ScoresLiveActivityBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresLiveActivityBundle.swift; sourceTree = "<group>"; };
+		DF0C4E052F6AB0F500B53610 /* InPlayHomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InPlayHomeScreenViewModel.swift; sourceTree = "<group>"; };
+		DF0C4E072F6AB0F500B53610 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
+		DF0C4E082F6AB0F500B53610 /* CrestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrestView.swift; sourceTree = "<group>"; };
+		DF0C4E092F6AB0F500B53610 /* TopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
+		DF0C4E0A2F6AB0F500B53610 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		DF0C4E0B2F6AB0F500B53610 /* ScoreboardCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardCounterView.swift; sourceTree = "<group>"; };
+		DF0C4E0C2F6AB0F500B53610 /* ScoreboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardView.swift; sourceTree = "<group>"; };
+		DF0C4E0D2F6AB0F500B53610 /* TeamCrestNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCrestNameView.swift; sourceTree = "<group>"; };
+		DF0C4E0F2F6AB0F500B53610 /* LiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivity.swift; sourceTree = "<group>"; };
+		DF0C4E2F2F718DF700B53610 /* ScoresLiveActivityConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresLiveActivityConstants.swift; sourceTree = "<group>"; };
+		DF47DEEE2F6AA6C000DBA522 /* LiveActivitiesExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LiveActivitiesExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF47DEEF2F6AA6C000DBA522 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		DF47DEF12F6AA6C000DBA522 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		EC6B90C82BFE9A6300D57909 /* GamesActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesActor.swift; sourceTree = "<group>"; };
+		EC6B90CA2BFE9A8700D57909 /* ParametersGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersGroup.swift; sourceTree = "<group>"; };
+		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F210CD012F73E36800E3E235 /* LiveActivitiesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LiveActivitiesExtension.entitlements; sourceTree = "<group>"; };
+		F210CD742F73FA4F00E3E235 /* LiveActivitiesExtensionRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LiveActivitiesExtensionRelease.entitlements; sourceTree = "<group>"; };
+		F210CD752F74069600E3E235 /* LiveActivitiesExtensionIn_House.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LiveActivitiesExtensionIn_House.entitlements; sourceTree = "<group>"; };
+		F24A5F582F55A6790000F788 /* ScoresAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresAttributes.swift; sourceTree = "<group>"; };
+		F24A5F952F5B41750000F788 /* SportsLiveActivityPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsLiveActivityPayload.swift; sourceTree = "<group>"; };
+		F24A5F982F5EDF920000F788 /* DictionaryExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
+		F24A5F9B2F5FB8000000F788 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		F24A5F9D2F60F8B80000F788 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		F25DCB952F44B95100DF1119 /* ScoresLiveActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresLiveActivityModel.swift; sourceTree = "<group>"; };
+		F29307C02F50B10900FD4561 /* LiveActivityDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityDataStore.swift; sourceTree = "<group>"; };
+		F29307C22F50B12900FD4561 /* LiveActivityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityData.swift; sourceTree = "<group>"; };
+		F2A3EEA62F7EC01200BFDC53 /* LiveActivityError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityError.swift; sourceTree = "<group>"; };
+		F2D1243E2F448F890061F1A1 /* ScoresLiveActivityModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresLiveActivityModule.swift; sourceTree = "<group>"; };
+		F2D124402F448FBB0061F1A1 /* ScoresLiveActivityModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScoresLiveActivityModule.m; sourceTree = "<group>"; };
+		F2D124422F448FC80061F1A1 /* ScoresLiveActivityModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScoresLiveActivityModule.h; sourceTree = "<group>"; };
+		F2DF3F622FBFD3DF000ED734 /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
+		F2EE01010000000000000001 /* ScoresLiveActivityEventEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresLiveActivityEventEmitter.swift; sourceTree = "<group>"; };
+		F2EE01030000000000000001 /* ScoresLiveActivityEventEmitter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScoresLiveActivityEventEmitter.m; sourceTree = "<group>"; };
+		F87C345AEC73F04F68DD0047 /* Pods-tbd_native.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tbd_native.debug.xcconfig"; path = "Target Support Files/Pods-tbd_native/Pods-tbd_native.debug.xcconfig"; sourceTree = "<group>"; };
+		F909094729EFE9AB004FB63A /* RCTStartupTime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTStartupTime.h; sourceTree = "<group>"; };
+		F909094829EFE9C3004FB63A /* RCTStartupTime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCTStartupTime.m; sourceTree = "<group>"; };
+		F92F59162A9D4EB9009F4A9D /* libQMNative.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = libQMNative.xcframework; path = tbd_native/Libs/libQMNative.xcframework; sourceTree = "<group>"; };
+		FE58303D2BBC6BD800D5A807 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		FE7E3A6B2E93CE8A00CC58E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FE7E3A6C2E93CE8A00CC58E2 /* AppDelegate+RegisterSettingsValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+RegisterSettingsValues.swift"; sourceTree = "<group>"; };
+		FED867192F02A5BD0093F11B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				604893BE2EE05E33004CD5A1 /* TMXProfilingConnections.xcframework in Frameworks */,
+				604893B82EE05E2E004CD5A1 /* TMXProfiling-companion.xcframework in Frameworks */,
+				604893BA2EE05E30004CD5A1 /* TMXProfiling.xcframework in Frameworks */,
+				604893BC2EE05E31004CD5A1 /* TMXProfilingConnections-companion.xcframework in Frameworks */,
+				D851E83826BA939D005B3C57 /* AdSupport.framework in Frameworks */,
+				D817A2BA26AEF3130062C0D1 /* AppTrackingTransparency.framework in Frameworks */,
+				F92F59172A9D4EB9009F4A9D /* libQMNative.xcframework in Frameworks */,
+				91A81864194CAF8D09FBE55C /* Pods_tbd_native.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F6D0B802767A57E00808C8E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF47DEEB2F6AA6C000DBA522 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF47DEF22F6AA6C000DBA522 /* SwiftUI.framework in Frameworks */,
+				DF47DEF02F6AA6C000DBA522 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		13B07FAE1A68108700A75B9A /* tbd_native */ = {
+			isa = PBXGroup;
+			children = (
+				F2D1243D2F448F7C0061F1A1 /* LiveActivityModule */,
+				FE7E3A6B2E93CE8A00CC58E2 /* AppDelegate.swift */,
+				FE7E3A6C2E93CE8A00CC58E2 /* AppDelegate+RegisterSettingsValues.swift */,
+				674A84852E126BAD00527964 /* TMXModule.h */,
+				674A84862E126BAD00527964 /* TMXModule.m */,
+				806692052D95DB930002D109 /* TBDCurrentScreenModule */,
+				A7DDC61E2C1C3ECC008D5543 /* SkyBetInHouse.entitlements */,
+				A7DDC61F2C1C3ECC008D5543 /* SkyBet.entitlements */,
+				A7DDC6202C1C3ECC008D5543 /* SkyBetDebug.entitlements */,
+				7D497FE92AFD2B9D00D16AA6 /* TBDPerformanceModule */,
+				F909094629EFE97C004FB63A /* RCTStartupTime */,
+				D8F9860E2579456500649A98 /* Resources */,
+				D8DAFA1F256E6E52004AC63A /* GamesLobby */,
+				D8EF7F91284DDF8700801621 /* RCTCustomUserAgent */,
+				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
+				2BA6FA6C2D0C31C0007C9CC6 /* LaunchScreenAssets */,
+				A093EBD825351EA200133568 /* RCTHTTPRequestHandler+trustInvalidCertificates.m */,
+				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				13B07FB61A68108700A75B9A /* Info.plist */,
+				4A456AB726F0D9C300D73F56 /* Info.release.plist */,
+				2DB50E9D2444AF550073C8B6 /* tbd_native-Bridging-Header.h */,
+				D817A1C426AEEF010062C0D1 /* IFDATracking.h */,
+				D817A1C526AEEFD50062C0D1 /* IFDATracking.m */,
+				274B5A2C271D8738003883C0 /* AirshipConfig.plist */,
+				2EE579422FC88077009C65FF /* Expo.plist */,
+				CE45B62627A2EE17007BF7BA /* RCTAirshipConfigModule.h */,
+				CE45B62727A2EE6B007BF7BA /* RCTAirshipConfigModule.m */,
+				0EC0FC7A282D9E8F0049B1AA /* IOSExitApp.h */,
+				0EC0FC7B282D9E8F0049B1AA /* IOSExitApp.m */,
+				B55DDEB429DC8060001FFD14 /* RCTLaunchArgumentsModule.m */,
+				2BA08FF72E32255000216068 /* RCTShortcutModule.h */,
+				2BA08FF82E32255D00216068 /* RCTShortcutModule.m */,
+				B55DDEB729DC8081001FFD14 /* RCTLaunchArgumentsModule.h */,
+				FE58303D2BBC6BD800D5A807 /* PrivacyInfo.xcprivacy */,
+				FED867192F02A5BD0093F11B /* LaunchScreen.storyboard */,
+			);
+			name = tbd_native;
+			sourceTree = "<group>";
+		};
+		2BA6FA6C2D0C31C0007C9CC6 /* LaunchScreenAssets */ = {
+			isa = PBXGroup;
+			children = (
+				58FA941F2F3E6B9800483594 /* british-heart-foundation.png */,
+				58FA94202F3E6B9800483594 /* skybet-efl-logo.png */,
+				2B44FA6A2D0B3714004DD281 /* Safer-Gambling.png */,
+				2B44FA682D0B36FA004DD281 /* full-background.png */,
+				2B44FA6C2D0B371D004DD281 /* skybet-efl-logo-tagline.png */,
+				2B44FA6E2D0B3724004DD281 /* skybet-logo-tagline.png */,
+				58FA941B2F3E6B3100483594 /* british-heart-foundation 2.png */,
+				58FA941C2F3E6B3100483594 /* skybet-efl-logo 2.png */,
+			);
+			path = LaunchScreenAssets;
+			sourceTree = "<group>";
+		};
+		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				604893B22EE05DDF004CD5A1 /* TMXProfilingConnections.xcframework */,
+				604893B02EE05DD9004CD5A1 /* TMXProfilingConnections-companion.xcframework */,
+				604893AA2EE05DAA004CD5A1 /* TMXProfiling.xcframework */,
+				604893A82EE05DA0004CD5A1 /* TMXProfiling-companion.xcframework */,
+				F92F59162A9D4EB9009F4A9D /* libQMNative.xcframework */,
+				2FDF89B62767A063009F95B1 /* liburbanairship-react-native.a */,
+				2FDF89B427679DB1009F95B1 /* libAirship.a */,
+				2FDF89B227679D4C009F95B1 /* libAirshipExtensions.a */,
+				D851E83726BA939D005B3C57 /* AdSupport.framework */,
+				D817A2B926AEF3130062C0D1 /* AppTrackingTransparency.framework */,
+				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
+				DF47DEEF2F6AA6C000DBA522 /* WidgetKit.framework */,
+				DF47DEF12F6AA6C000DBA522 /* SwiftUI.framework */,
+				8B28508F2239B8F9C1C11B83 /* Pods_tbd_native.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2F6D0B842767A57E00808C8E /* NotificationServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				2F6D0B852767A57E00808C8E /* NotificationService.swift */,
+				2F6D0B872767A57E00808C8E /* Info.plist */,
+			);
+			path = NotificationServiceExtension;
+			sourceTree = "<group>";
+		};
+		3EC10F2D515D486F53BF6F02 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F87C345AEC73F04F68DD0047 /* Pods-tbd_native.debug.xcconfig */,
+				D4428EB6D6C5DD6DE969E7B1 /* Pods-tbd_native.in_house.xcconfig */,
+				012359C7008ED81FFC3C56F0 /* Pods-tbd_native.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		7D497FE92AFD2B9D00D16AA6 /* TBDPerformanceModule */ = {
+			isa = PBXGroup;
+			children = (
+				7D497FEA2AFD2B9D00D16AA6 /* TBDPerformanceModule.h */,
+				7D497FEB2AFD2B9D00D16AA6 /* TBDPerformanceModule.m */,
+			);
+			path = TBDPerformanceModule;
+			sourceTree = "<group>";
+		};
+		7DE14F8A247305D100D495CE /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				7DE14F8C24730BE600D495CE /* Settings.bundle */,
+				7DE14F862472D19000D495CE /* SettingsDebug.bundle */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		806692052D95DB930002D109 /* TBDCurrentScreenModule */ = {
+			isa = PBXGroup;
+			children = (
+				806692032D95DB930002D109 /* TBDCurrentScreenModule.h */,
+				806692042D95DB930002D109 /* TBDCurrentScreenModule.m */,
+			);
+			path = TBDCurrentScreenModule;
+			sourceTree = "<group>";
+		};
+		83CBB9F61A601CBA00E9B192 = {
+			isa = PBXGroup;
+			children = (
+				F210CD752F74069600E3E235 /* LiveActivitiesExtensionIn_House.entitlements */,
+				F210CD742F73FA4F00E3E235 /* LiveActivitiesExtensionRelease.entitlements */,
+				F210CD012F73E36800E3E235 /* LiveActivitiesExtension.entitlements */,
+				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				7D15A7AE242B749600E2CB79 /* GoogleService-Info.plist */,
+				DF0C4E252F6AB10400B53610 /* LiveActivities */,
+				2F6D0B842767A57E00808C8E /* NotificationServiceExtension */,
+				3EC10F2D515D486F53BF6F02 /* Pods */,
+				83CBBA001A601CBA00E9B192 /* Products */,
+				C3347974C1DB44B08A5697AF /* Resources */,
+				7DE14F8A247305D100D495CE /* Settings */,
+				F24A5F592F55A6790000F788 /* SharedLiveActivity */,
+				13B07FAE1A68108700A75B9A /* tbd_native */,
+				87B7BDACC7D74BA2564A2339 /* ExpoModulesProviders */,
+			);
+			indentWidth = 2;
+			sourceTree = "<group>";
+			tabWidth = 2;
+			usesTabs = 0;
+		};
+		83CBBA001A601CBA00E9B192 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				13B07F961A680F5B00A75B9A /* SkyBet.app */,
+				2F6D0B832767A57E00808C8E /* NotificationServiceExtension.appex */,
+				DF47DEEE2F6AA6C000DBA522 /* LiveActivitiesExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		87B7BDACC7D74BA2564A2339 /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				B646F3E342E65F1C3E33914E /* tbd_native */,
+			);
+			name = ExpoModulesProviders;
+			sourceTree = "<group>";
+		};
+		B646F3E342E65F1C3E33914E /* tbd_native */ = {
+			isa = PBXGroup;
+			children = (
+				1CC6BA4189FD7B307DD1931F /* ExpoModulesProvider.swift */,
+			);
+			name = tbd_native;
+			sourceTree = "<group>";
+		};
+		C3347974C1DB44B08A5697AF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				76108D052C46DC3D00F0FA2A /* SSportsD_Md.ttf */,
+				76108D042C46DC3D00F0FA72 /* SkyText_Rg.ttf */,
+				76108D042C46DC3D00F0FA2A /* SkyText_Md.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		D8DAFA1F256E6E52004AC63A /* GamesLobby */ = {
+			isa = PBXGroup;
+			children = (
+				EC6B90C72BFE9A5000D57909 /* Actors */,
+				D8DAFA39256E8FC2004AC63A /* Helpers */,
+				D8DAFA4C256EC633004AC63A /* GamesLobbyEventEmitter.m */,
+				D8DAFA4B256EC633004AC63A /* GamesLobbyEventEmitter.swift */,
+				D8DAFA29256E8BAB004AC63A /* GamesLobbyManager.h */,
+				D8DAFA2A256E8BAB004AC63A /* GamesLobbyManager.m */,
+				D8DAFA34256E8E86004AC63A /* GamesLobbyView.swift */,
+				89EFC9332906E5B700D24560 /* GamesLobbyObject.m */,
+				89EFC9312906E5AD00D24560 /* GamesLobbyObject.swift */,
+				D8D79BF3273C0E27000FB05B /* GoogleTagTracker.swift */,
+				D8EB89F426EB9507008A0153 /* RemoteLogs.swift */,
+			);
+			name = GamesLobby;
+			path = tbd_native/GamesLobby;
+			sourceTree = "<group>";
+		};
+		D8DAFA39256E8FC2004AC63A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D85173F028D4C7E20060AF6D /* AppSupportedOrientations.swift */,
+				CDE1A00231D0000000A1B001 /* FrameworkEnvironmentMapper.swift */,
+				D8DAFA40256E948B004AC63A /* GamesFramework+Extension.swift */,
+				D8B352492743E63100A46582 /* GATrackingConstants.swift */,
+				D85C40EC28F8512600537816 /* HTTPCookie+Extension.swift */,
+				D8AAA68625E3D4DC00555CAD /* NSNotifications+Extension.swift */,
+				D85AD4D4284E671000ACF0BD /* Settings.swift */,
+				D8DAFA3A256E9030004AC63A /* UIView+Constraints.swift */,
+				EC6B90CA2BFE9A8700D57909 /* ParametersGroup.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D8EF7F91284DDF8700801621 /* RCTCustomUserAgent */ = {
+			isa = PBXGroup;
+			children = (
+				D8CFC5792837D0E10053533D /* RCTCustomUserAgent.h */,
+				D8CFC5762837D0CC0053533D /* RCTCustomUserAgent.m */,
+			);
+			path = RCTCustomUserAgent;
+			sourceTree = "<group>";
+		};
+		D8F9860E2579456500649A98 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D8C4CAAA26B9713400EA2DA0 /* InfoPlist.strings */,
+			);
+			name = Resources;
+			path = tbd_native/Resources;
+			sourceTree = "<group>";
+		};
+		DF0C4E252F6AB10400B53610 /* LiveActivities */ = {
+			isa = PBXGroup;
+			children = (
+				DF0C4E262F6AB13300B53610 /* ScoresLiveActivity */,
+				DF0C4DE22F6AA83600B53610 /* Assets.xcassets */,
+				DF0C4DE32F6AA83600B53610 /* Info.plist */,
+				DF0C4DE42F6AA83600B53610 /* ScoresLiveActivity.swift */,
+				DF0C4DE52F6AA83600B53610 /* ScoresLiveActivityBundle.swift */,
+			);
+			path = LiveActivities;
+			sourceTree = "<group>";
+		};
+		DF0C4E262F6AB13300B53610 /* ScoresLiveActivity */ = {
+			isa = PBXGroup;
+			children = (
+				F2DF3F612FBFD3CF000ED734 /* Extensions */,
+				DF0C4E292F6AB1A100B53610 /* Model */,
+				DF0C4E282F6AB19600B53610 /* ViewModel */,
+				DF0C4E272F6AB14D00B53610 /* UI */,
+			);
+			path = ScoresLiveActivity;
+			sourceTree = "<group>";
+		};
+		DF0C4E272F6AB14D00B53610 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				DF0C4E072F6AB0F500B53610 /* CounterView.swift */,
+				DF0C4E082F6AB0F500B53610 /* CrestView.swift */,
+				DF0C4E092F6AB0F500B53610 /* TopBarView.swift */,
+				DF0C4E0A2F6AB0F500B53610 /* MainView.swift */,
+				DF0C4E0B2F6AB0F500B53610 /* ScoreboardCounterView.swift */,
+				DF0C4E0C2F6AB0F500B53610 /* ScoreboardView.swift */,
+				DF0C4E0D2F6AB0F500B53610 /* TeamCrestNameView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		DF0C4E282F6AB19600B53610 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DF0C4E052F6AB0F500B53610 /* InPlayHomeScreenViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DF0C4E292F6AB1A100B53610 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DF0C4E0F2F6AB0F500B53610 /* LiveActivity.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EC6B90C72BFE9A5000D57909 /* Actors */ = {
+			isa = PBXGroup;
+			children = (
+				EC6B90C82BFE9A6300D57909 /* GamesActor.swift */,
+			);
+			path = Actors;
+			sourceTree = "<group>";
+		};
+		F24A5F592F55A6790000F788 /* SharedLiveActivity */ = {
+			isa = PBXGroup;
+			children = (
+				F24A5F582F55A6790000F788 /* ScoresAttributes.swift */,
+				DF0C4E2F2F718DF700B53610 /* ScoresLiveActivityConstants.swift */,
+			);
+			path = SharedLiveActivity;
+			sourceTree = "<group>";
+		};
+		F24A5F942F5B3AFC0000F788 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F2A3EEA62F7EC01200BFDC53 /* LiveActivityError.swift */,
+				F24A5F952F5B41750000F788 /* SportsLiveActivityPayload.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F24A5F972F5EDF7C0000F788 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F24A5F9D2F60F8B80000F788 /* StringExtension.swift */,
+				F24A5F982F5EDF920000F788 /* DictionaryExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F24A5F9A2F5FB7F00000F788 /* ImageDownloader */ = {
+			isa = PBXGroup;
+			children = (
+				F24A5F9B2F5FB8000000F788 /* ImageDownloader.swift */,
+			);
+			path = ImageDownloader;
+			sourceTree = "<group>";
+		};
+		F29307BF2F50B0EA00FD4561 /* DataStore */ = {
+			isa = PBXGroup;
+			children = (
+				F29307C02F50B10900FD4561 /* LiveActivityDataStore.swift */,
+				F29307C22F50B12900FD4561 /* LiveActivityData.swift */,
+			);
+			path = DataStore;
+			sourceTree = "<group>";
+		};
+		F2D1243D2F448F7C0061F1A1 /* LiveActivityModule */ = {
+			isa = PBXGroup;
+			children = (
+				F24A5F9A2F5FB7F00000F788 /* ImageDownloader */,
+				F24A5F972F5EDF7C0000F788 /* Extensions */,
+				F24A5F942F5B3AFC0000F788 /* Model */,
+				F29307BF2F50B0EA00FD4561 /* DataStore */,
+				F25DCB952F44B95100DF1119 /* ScoresLiveActivityModel.swift */,
+				F2D1243E2F448F890061F1A1 /* ScoresLiveActivityModule.swift */,
+				F2D124402F448FBB0061F1A1 /* ScoresLiveActivityModule.m */,
+				F2D124422F448FC80061F1A1 /* ScoresLiveActivityModule.h */,
+				F2EE01010000000000000001 /* ScoresLiveActivityEventEmitter.swift */,
+				F2EE01030000000000000001 /* ScoresLiveActivityEventEmitter.m */,
+			);
+			path = LiveActivityModule;
+			sourceTree = "<group>";
+		};
+		F2DF3F612FBFD3CF000ED734 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F2DF3F622FBFD3DF000ED734 /* FontExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F909094629EFE97C004FB63A /* RCTStartupTime */ = {
+			isa = PBXGroup;
+			children = (
+				F909094729EFE9AB004FB63A /* RCTStartupTime.h */,
+				F909094829EFE9C3004FB63A /* RCTStartupTime.m */,
+			);
+			path = RCTStartupTime;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		13B07F861A680F5B00A75B9A /* tbd_native */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "tbd_native" */;
+			buildPhases = (
+				D12869A773E3F4186681FAA3 /* [CP] Check Pods Manifest.lock */,
+				8AC5214CFDD0059A7BA461B0 /* [Expo] Configure project */,
+				13B07F871A680F5B00A75B9A /* Sources */,
+				13B07F8C1A680F5B00A75B9A /* Frameworks */,
+				4AEFABCB2996CE2E004D4538 /* Show Version on LaunchScreen */,
+				13B07F8E1A680F5B00A75B9A /* Resources */,
+				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				2F8B4A2C27678B7B00093C68 /* Embed App Extensions */,
+				F2EE02010000000000000001 /* Embed LiveActivities (skip In_House) */,
+				7DE14F89247305AA00D495CE /* Run Script - Settings */,
+				674A84AB2E12A98F00527964 /* Embed Frameworks */,
+				327A44FF81048745FD64256E /* [CP] Embed Pods Frameworks */,
+				77869FCADDCA71F7D4231999 /* [CP] Copy Pods Resources */,
+				E5865E34B9277F71077D923C /* [CP-User] [RNFB] Core Configuration */,
+				31031716D3DA1E3F90FB9B19 /* [CP-User] [RNFB] Crashlytics Configuration */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2F6D0B892767A57E00808C8E /* PBXTargetDependency */,
+				DF47DF022F6AA6C200DBA522 /* PBXTargetDependency */,
+			);
+			name = tbd_native;
+			productName = tbd_native;
+			productReference = 13B07F961A680F5B00A75B9A /* SkyBet.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2F6D0B822767A57E00808C8E /* NotificationServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F6D0B8B2767A57E00808C8E /* Build configuration list for PBXNativeTarget "NotificationServiceExtension" */;
+			buildPhases = (
+				2F6D0B7F2767A57E00808C8E /* Sources */,
+				2F6D0B802767A57E00808C8E /* Frameworks */,
+				2F6D0B812767A57E00808C8E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationServiceExtension;
+			productName = NotificationServiceExtension;
+			productReference = 2F6D0B832767A57E00808C8E /* NotificationServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		DF47DEED2F6AA6C000DBA522 /* LiveActivitiesExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF47DF082F6AA6C200DBA522 /* Build configuration list for PBXNativeTarget "LiveActivitiesExtension" */;
+			buildPhases = (
+				DF47DEEA2F6AA6C000DBA522 /* Sources */,
+				DF47DEEB2F6AA6C000DBA522 /* Frameworks */,
+				DF47DEEC2F6AA6C000DBA522 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LiveActivitiesExtension;
+			productName = LiveActivitiesExtension;
+			productReference = DF47DEEE2F6AA6C000DBA522 /* LiveActivitiesExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		83CBB9F71A601CBA00E9B192 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 2630;
+				LastUpgradeCheck = 1240;
+				ORGANIZATIONNAME = "";
+				TargetAttributes = {
+					13B07F861A680F5B00A75B9A = {
+						LastSwiftMigration = 1130;
+					};
+					2F6D0B822767A57E00808C8E = {
+						DevelopmentTeam = Z56ZK5M87L;
+						ProvisioningStyle = Manual;
+					};
+					DF47DEED2F6AA6C000DBA522 = {
+						CreatedOnToolsVersion = 26.3;
+					};
+				};
+			};
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "tbd_native" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 83CBB9F61A601CBA00E9B192;
+			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				13B07F861A680F5B00A75B9A /* tbd_native */,
+				2F6D0B822767A57E00808C8E /* NotificationServiceExtension */,
+				DF47DEED2F6AA6C000DBA522 /* LiveActivitiesExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		13B07F8E1A680F5B00A75B9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76108D072C46DC7600F0FA2A /* SkyText_Rg.ttf in Resources */,
+				2B44FA6F2D0B3724004DD281 /* skybet-logo-tagline.png in Resources */,
+				2EE579432FC88077009C65FF /* Expo.plist in Resources */,
+				76108D062C46DC7300F0FA2A /* SSportsD_Md.ttf in Resources */,
+				2B44FA692D0B36FA004DD281 /* full-background.png in Resources */,
+				76108D072C46DC7600F0FAE6 /* SkyText_Md.ttf in Resources */,
+				58FA94212F3E6B9800483594 /* british-heart-foundation.png in Resources */,
+				58FA94222F3E6B9800483594 /* skybet-efl-logo.png in Resources */,
+				FE58303E2BBC6BD800D5A807 /* PrivacyInfo.xcprivacy in Resources */,
+				2B44FA6D2D0B371D004DD281 /* skybet-efl-logo-tagline.png in Resources */,
+				274B5A2D271D8738003883C0 /* AirshipConfig.plist in Resources */,
+				D8C4CAA826B9713400EA2DA0 /* InfoPlist.strings in Resources */,
+				4A456AB826F0D9C300D73F56 /* Info.release.plist in Resources */,
+				FED8671A2F02A5BD0093F11B /* LaunchScreen.storyboard in Resources */,
+				7DE14F8E24730C6500D495CE /* Settings.bundle in Resources */,
+				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				7D15A7AF242B749700E2CB79 /* GoogleService-Info.plist in Resources */,
+				DF0C4E2C2F6AB48600B53610 /* Assets.xcassets in Resources */,
+				2B44FA6B2D0B3714004DD281 /* Safer-Gambling.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F6D0B812767A57E00808C8E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF47DEEC2F6AA6C000DBA522 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2DF3F602FBFD3C2000ED734 /* SkyText_Md.ttf in Resources */,
+				F2DF3F5F2FBFD3BC000ED734 /* SkyText_Rg.ttf in Resources */,
+				DF0C4DED2F6AA83600B53610 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native code and images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\ncd \"$PROJECT_DIR/..\"\nexport PROJECT_ROOT=./\nexport EXPO_NO_METRO_WORKSPACE_ROOT=1\n[ -f \"$PROJECT_DIR/.xcode.env\" ]       && . \"$PROJECT_DIR/.xcode.env\"\n[ -f \"$PROJECT_DIR/.xcode.env.local\" ] && . \"$PROJECT_DIR/.xcode.env.local\"\n[ -z \"$NODE_BINARY\" ] && export NODE_BINARY=\"$(command -v node)\"\necho \"NODE_BINARY=$NODE_BINARY\"\nprintf \"PROJECT_DIR ####\" $PROJECT_DIR\nprintf \"PROJECT_ROOT ####\" $PROJECT_ROOT\n./../../../node_modules/react-native/scripts/react-native-xcode.sh\n\n";
+		};
+		31031716D3DA1E3F90FB9B19 /* [CP-User] [RNFB] Crashlytics Configuration */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "[CP-User] [RNFB] Crashlytics Configuration";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/usr/bin/env bash\n#\n# Copyright (c) 2016-present Invertase Limited & Contributors\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this library except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#   http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n#\nset -e\n\nif [[ ${PODS_ROOT} ]]; then\n  echo \"info: Exec FirebaseCrashlytics Run from Pods\"\n  \"${PODS_ROOT}/FirebaseCrashlytics/run\"\nelse\n  echo \"info: Exec FirebaseCrashlytics Run from framework\"\n  \"${PROJECT_DIR}/FirebaseCrashlytics.framework/run\"\nfi\n";
+		};
+		327A44FF81048745FD64256E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tbd_native/Pods-tbd_native-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/FBAEMKit/FBAEMKit.framework/FBAEMKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework/FBSDKCoreKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/FBSDKCoreKit_Basics/FBSDKCoreKit_Basics.framework/FBSDKCoreKit_Basics",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/FBSDKGamingServicesKit/FBSDKGamingServicesKit.framework/FBSDKGamingServicesKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework/FBSDKLoginKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/FBSDKShareKit/FBSDKShareKit.framework/FBSDKShareKit",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OneTrust-CMP-XCFramework/OTPublishersHeadlessSDK.framework/OTPublishersHeadlessSDK",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Qualtrics/Qualtrics.framework/Qualtrics",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/SplunkAgent.framework/SplunkAgent",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/SplunkAgentObjC.framework/SplunkAgentObjC",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/SplunkAppStart.framework/SplunkAppStart",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/SplunkAppState.framework/SplunkAppState",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/SplunkCommon.framework/SplunkCommon",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/SplunkCrashReports.framework/SplunkCrashReports",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/SplunkCustomTracking.framework/SplunkCustomTracking",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/SplunkInteractions.framework/SplunkInteractions",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/SplunkNavigation.framework/SplunkNavigation",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/SplunkNetwork.framework/SplunkNetwork",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/SplunkNetworkMonitor.framework/SplunkNetworkMonitor",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/SplunkOpenTelemetry.framework/SplunkOpenTelemetry",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/SplunkOpenTelemetryBackgroundExporter.framework/SplunkOpenTelemetryBackgroundExporter",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/SplunkSessionReplayProxy.framework/SplunkSessionReplayProxy",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/SplunkSlowFrameDetector.framework/SplunkSlowFrameDetector",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/SplunkWebView.framework/SplunkWebView",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/OpenTelemetryApi.framework/OpenTelemetryApi",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/OpenTelemetrySdk.framework/OpenTelemetrySdk",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/CrashReporter.framework/CrashReporter",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/CiscoCommon.framework/CiscoCommon",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/CiscoDiskStorage.framework/CiscoDiskStorage",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/CiscoEncryption.framework/CiscoEncryption",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/CiscoInstanceManager.framework/CiscoInstanceManager",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/CiscoInteractions.framework/CiscoInteractions",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/CiscoLogger.framework/CiscoLogger",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/CiscoRuntimeCache.framework/CiscoRuntimeCache",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/CiscoSessionReplay.framework/CiscoSessionReplay",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/SplunkOtelReactNative/CiscoSwizzling.framework/CiscoSwizzling",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/react-native-geo-comply-sdk-wrapper/GeoComplySDK.framework/GeoComplySDK",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBAEMKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit_Basics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKGamingServicesKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OTPublishersHeadlessSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Qualtrics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SplunkAgent.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SplunkAgentObjC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SplunkAppStart.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SplunkAppState.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SplunkCommon.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SplunkCrashReports.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SplunkCustomTracking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SplunkInteractions.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SplunkNavigation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SplunkNetwork.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SplunkNetworkMonitor.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SplunkOpenTelemetry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SplunkOpenTelemetryBackgroundExporter.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SplunkSessionReplayProxy.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SplunkSlowFrameDetector.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SplunkWebView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenTelemetryApi.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenTelemetrySdk.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CrashReporter.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CiscoCommon.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CiscoDiskStorage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CiscoEncryption.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CiscoInstanceManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CiscoInteractions.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CiscoLogger.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CiscoRuntimeCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CiscoSessionReplay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CiscoSwizzling.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GeoComplySDK.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-tbd_native/Pods-tbd_native-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4AEFABCB2996CE2E004D4538 /* Show Version on LaunchScreen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Show Version on LaunchScreen";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Outputs the version number to the APP_VERSION label on LaunchScreen.storyboard. If not set the default value is 3000000.\nversionNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"${INFOPLIST_FILE}\")\nversionNumber=${versionNumber/\\$\\(MARKETING_VERSION\\)/3000000}\n\nsed -i \"\" -e \"/userLabel=\\\"APP_VERSION\\\"/s/text=\\\"[^\\\"]*\\\"/text=\\\"v$versionNumber\\\"/\" \"$PROJECT_DIR/LaunchScreen.storyboard\"\n";
+		};
+		77869FCADDCA71F7D4231999 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-tbd_native/Pods-tbd_native-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/AEPCore/AEPCore_Resources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/AEPServices/AEPServices_Resources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Airship/AirshipAutomationResources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Airship/AirshipCoreResources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Airship/AirshipExtendedActionsResources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Airship/AirshipMessageCenterResources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/AppsFlyerFramework/AppsFlyerLib_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/EXConstants.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/ExpoConstants_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/EXUpdates/EXUpdates.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/ExpoFileSystem/ExpoFileSystem_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseABTesting/FirebaseABTesting_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore/FirebaseCore_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreExtension/FirebaseCoreExtension_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreInternal/FirebaseCoreInternal_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCrashlytics/FirebaseCrashlytics_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseInstallations/FirebaseInstallations_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseRemoteConfig/FirebaseRemoteConfig_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/GamesFramework/GamesFrameworkResources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport/GoogleDataTransport_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities/GoogleUtilities_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Kingfisher/Kingfisher.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MonterosaSDKCommon/MonterosaSDKCommon.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MonterosaSDKConnectKit/MonterosaSDKConnectKit.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MonterosaSDKCore/MonterosaSDKCore.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MonterosaSDKLauncherKit/MonterosaSDK.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MonterosaSDKLauncherKit/MonterosaSDKLauncherKit.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/PromiseKit/PromiseKit_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC/FBLPromises_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/PromisesSwift/Promises_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/RCT-Folly/RCT-Folly_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage/RNCAsyncStorage_resources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/RNDeviceInfo/RNDeviceInfoPrivacyInfo.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/RNPermissions/RNPermissionsPrivacyInfo.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG/RNSVGFilters.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift/ReachabilitySwift.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/React-Core_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact/React-cxxreact_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/SwiftyJSON/SwiftyJSON.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/boost/boost_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/glog/glog_privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/lottie-ios/LottiePrivacyInfo.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/lottie-react-native/Lottie_React_Native_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/nanopb/nanopb_Privacy.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/react-native-geo-comply-sdk-wrapper/react_native_geo_comply_sdk_wrapper_Privacy.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AEPCore_Resources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AEPServices_Resources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AirshipAutomationResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AirshipCoreResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AirshipExtendedActionsResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AirshipMessageCenterResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AppsFlyerLib_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EXConstants.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoConstants_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EXUpdates.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoFileSystem_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseABTesting_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseCore_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseCoreExtension_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseCoreInternal_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseCrashlytics_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseInstallations_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseRemoteConfig_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GamesFrameworkResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleDataTransport_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleUtilities_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Kingfisher.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MonterosaSDKCommon.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MonterosaSDKConnectKit.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MonterosaSDKCore.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MonterosaSDK.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MonterosaSDKLauncherKit.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PromiseKit_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FBLPromises_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Promises_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RCT-Folly_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RNCAsyncStorage_resources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RNDeviceInfoPrivacyInfo.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RNPermissionsPrivacyInfo.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RNSVGFilters.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ReachabilitySwift.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/React-Core_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/React-cxxreact_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SwiftyJSON.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/boost_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/glog_privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LottiePrivacyInfo.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Lottie_React_Native_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/nanopb_Privacy.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/react_native_geo_comply_sdk_wrapper_Privacy.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-tbd_native/Pods-tbd_native-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7DE14F89247305AA00D495CE /* Run Script - Settings */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script - Settings";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\n\necho \"#### Remove settings bundle ####\"\necho \"Current Configuration = [$CONFIGURATION]\"\n\nif [[ (\"$CONFIGURATION\" == \"Release\") ]]; then\n\n    pushd \"$TARGET_BUILD_DIR/$CONTENTS_FOLDER_PATH\"\n\n    echo \"Removing...\"\n\n    rm -rv \"Settings.bundle\"\nfi\necho \"#### END ####\"\n\n";
+		};
+		8AC5214CFDD0059A7BA461B0 /* [Expo] Configure project */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[Expo] Configure project";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-tbd_native/expo-configure-project.sh\"\n";
+		};
+		D12869A773E3F4186681FAA3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-tbd_native-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E5865E34B9277F71077D923C /* [CP-User] [RNFB] Core Configuration */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "[CP-User] [RNFB] Core Configuration";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/usr/bin/env bash\n#\n# Copyright (c) 2016-present Invertase Limited & Contributors\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this library except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#   http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n#\n\n##########################################################################\n##########################################################################\n#\n#  NOTE THAT IF YOU CHANGE THIS FILE YOU MUST RUN pod install AFTERWARDS\n#\n#  This file is installed as an Xcode build script in the project file\n#  by cocoapods, and you will not see your changes until you pod install\n#\n##########################################################################\n##########################################################################\n\nset -e\n\n_MAX_LOOKUPS=2;\n_SEARCH_RESULT=''\n_RN_ROOT_EXISTS=''\n_CURRENT_LOOKUPS=1\n_JSON_ROOT=\"'react-native'\"\n_JSON_FILE_NAME='firebase.json'\n_JSON_OUTPUT_BASE64='e30=' # { }\n_CURRENT_SEARCH_DIR=${PROJECT_DIR}\n_PLIST_BUDDY=/usr/libexec/PlistBuddy\n_TARGET_PLIST=\"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n_DSYM_PLIST=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\"\n\n# plist arrays\n_PLIST_ENTRY_KEYS=()\n_PLIST_ENTRY_TYPES=()\n_PLIST_ENTRY_VALUES=()\n\nfunction setPlistValue {\n  echo \"info:      setting plist entry '$1' of type '$2' in file '$4'\"\n  ${_PLIST_BUDDY} -c \"Add :$1 $2 '$3'\" $4 || echo \"info:      '$1' already exists\"\n}\n\nfunction getFirebaseJsonKeyValue () {\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    ruby -Ku -e \"require 'rubygems';require 'json'; output=JSON.parse('$1'); puts output[$_JSON_ROOT]['$2']\"\n  else\n    echo \"\"\n  fi;\n}\n\nfunction jsonBoolToYesNo () {\n  if [[ $1 == \"false\" ]]; then\n    echo \"NO\"\n  elif [[ $1 == \"true\" ]]; then\n    echo \"YES\"\n  else echo \"NO\"\n  fi\n}\n\necho \"info: -> RNFB build script started\"\necho \"info: 1) Locating ${_JSON_FILE_NAME} file:\"\n\nif [[ -z ${_CURRENT_SEARCH_DIR} ]]; then\n  _CURRENT_SEARCH_DIR=$(pwd)\nfi;\n\nwhile true; do\n  _CURRENT_SEARCH_DIR=$(dirname \"$_CURRENT_SEARCH_DIR\")\n  if [[ \"$_CURRENT_SEARCH_DIR\" == \"/\" ]] || [[ ${_CURRENT_LOOKUPS} -gt ${_MAX_LOOKUPS} ]]; then break; fi;\n  echo \"info:      ($_CURRENT_LOOKUPS of $_MAX_LOOKUPS) Searching in '$_CURRENT_SEARCH_DIR' for a ${_JSON_FILE_NAME} file.\"\n  _SEARCH_RESULT=$(find \"$_CURRENT_SEARCH_DIR\" -maxdepth 2 -name ${_JSON_FILE_NAME} -print | /usr/bin/head -n 1)\n  if [[ ${_SEARCH_RESULT} ]]; then\n    echo \"info:      ${_JSON_FILE_NAME} found at $_SEARCH_RESULT\"\n    break;\n  fi;\n  _CURRENT_LOOKUPS=$((_CURRENT_LOOKUPS+1))\ndone\n\nif [[ ${_SEARCH_RESULT} ]]; then\n  _JSON_OUTPUT_RAW=$(cat \"${_SEARCH_RESULT}\")\n  _RN_ROOT_EXISTS=$(ruby -Ku -e \"require 'rubygems';require 'json'; output=JSON.parse('$_JSON_OUTPUT_RAW'); puts output[$_JSON_ROOT]\" || echo '')\n\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    if ! python3 --version >/dev/null 2>&1; then echo \"python3 not found, firebase.json file processing error.\" && exit 1; fi\n    _JSON_OUTPUT_BASE64=$(python3 -c 'import json,sys,base64;print(base64.b64encode(bytes(json.dumps(json.loads(open('\"'${_SEARCH_RESULT}'\"', '\"'rb'\"').read())['${_JSON_ROOT}']), '\"'utf-8'\"')).decode())' || echo \"e30=\")\n  fi\n\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n\n  # config.app_data_collection_default_enabled\n  _APP_DATA_COLLECTION_ENABLED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"app_data_collection_default_enabled\")\n  if [[ $_APP_DATA_COLLECTION_ENABLED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseDataCollectionDefaultEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_APP_DATA_COLLECTION_ENABLED\")\")\n  fi\n\n  # config.analytics_auto_collection_enabled\n  _ANALYTICS_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_auto_collection_enabled\")\n  if [[ $_ANALYTICS_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FIREBASE_ANALYTICS_COLLECTION_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_AUTO_COLLECTION\")\")\n  fi\n\n  # config.analytics_collection_deactivated\n  _ANALYTICS_DEACTIVATED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_collection_deactivated\")\n  if [[ $_ANALYTICS_DEACTIVATED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_DEACTIVATED\")\")\n  fi\n\n  # config.analytics_idfv_collection_enabled\n  _ANALYTICS_IDFV_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_idfv_collection_enabled\")\n  if [[ $_ANALYTICS_IDFV_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GOOGLE_ANALYTICS_IDFV_COLLECTION_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_IDFV_COLLECTION\")\")\n  fi\n\n  # config.analytics_default_allow_analytics_storage\n  _ANALYTICS_STORAGE=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_default_allow_analytics_storage\")\n  if [[ $_ANALYTICS_STORAGE ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GOOGLE_ANALYTICS_DEFAULT_ALLOW_ANALYTICS_STORAGE\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_STORAGE\")\")\n  fi\n\n  # config.analytics_default_allow_ad_storage\n  _ANALYTICS_AD_STORAGE=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_default_allow_ad_storage\")\n  if [[ $_ANALYTICS_AD_STORAGE ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_STORAGE\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_AD_STORAGE\")\")\n  fi\n\n  # config.analytics_default_allow_ad_user_data\n  _ANALYTICS_AD_USER_DATA=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_default_allow_ad_user_data\")\n  if [[ $_ANALYTICS_AD_USER_DATA ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_USER_DATA\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_AD_USER_DATA\")\")\n  fi\n\n  # config.analytics_default_allow_ad_personalization_signals\n  _ANALYTICS_PERSONALIZATION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_default_allow_ad_personalization_signals\")\n  if [[ $_ANALYTICS_PERSONALIZATION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_PERSONALIZATION\")\")\n  fi\n\n  # config.analytics_registration_with_ad_network_enabled\n  _ANALYTICS_REGISTRATION_WITH_AD_NETWORK=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"google_analytics_registration_with_ad_network_enabled\")\n  if [[ $_ANALYTICS_REGISTRATION_WITH_AD_NETWORK ]]; then\n    _PLIST_ENTRY_KEYS+=(\"GOOGLE_ANALYTICS_REGISTRATION_WITH_AD_NETWORK_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_REGISTRATION_WITH_AD_NETWORK\")\")\n  fi\n\n  # config.google_analytics_automatic_screen_reporting_enabled\n  _ANALYTICS_AUTO_SCREEN_REPORTING=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"google_analytics_automatic_screen_reporting_enabled\")\n  if [[ $_ANALYTICS_AUTO_SCREEN_REPORTING ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseAutomaticScreenReportingEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_AUTO_SCREEN_REPORTING\")\")\n  fi\n\n  # config.perf_auto_collection_enabled\n  _PERF_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"perf_auto_collection_enabled\")\n  if [[ $_PERF_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"firebase_performance_collection_enabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_PERF_AUTO_COLLECTION\")\")\n  fi\n\n  # config.perf_collection_deactivated\n  _PERF_DEACTIVATED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"perf_collection_deactivated\")\n  if [[ $_PERF_DEACTIVATED ]]; then\n    _PLIST_ENTRY_KEYS+=(\"firebase_performance_collection_deactivated\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_PERF_DEACTIVATED\")\")\n  fi\n\n  # config.messaging_auto_init_enabled\n  _MESSAGING_AUTO_INIT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"messaging_auto_init_enabled\")\n  if [[ $_MESSAGING_AUTO_INIT ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseMessagingAutoInitEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_MESSAGING_AUTO_INIT\")\")\n  fi\n\n  # config.in_app_messaging_auto_colllection_enabled\n  _FIAM_AUTO_INIT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"in_app_messaging_auto_collection_enabled\")\n  if [[ $_FIAM_AUTO_INIT ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseInAppMessagingAutomaticDataCollectionEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_FIAM_AUTO_INIT\")\")\n  fi\n\n  # config.app_check_token_auto_refresh\n  _APP_CHECK_TOKEN_AUTO_REFRESH=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"app_check_token_auto_refresh\")\n  if [[ $_APP_CHECK_TOKEN_AUTO_REFRESH ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseAppCheckTokenAutoRefreshEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_APP_CHECK_TOKEN_AUTO_REFRESH\")\")\n  fi\n\n  # config.crashlytics_disable_auto_disabler - undocumented for now - mainly for debugging, document if becomes useful\n  _CRASHLYTICS_AUTO_DISABLE_ENABLED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"crashlytics_disable_auto_disabler\")\n  if [[ $_CRASHLYTICS_AUTO_DISABLE_ENABLED == \"true\" ]]; then\n    echo \"Disabled Crashlytics auto disabler.\" # do nothing\n  else\n    _PLIST_ENTRY_KEYS+=(\"FirebaseCrashlyticsCollectionEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"NO\")\n  fi\nelse\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n  echo \"warning:   A firebase.json file was not found, whilst this file is optional it is recommended to include it to configure firebase services in React Native Firebase.\"\nfi;\n\necho \"info: 2) Injecting Info.plist entries: \"\n\n# Log out the keys we're adding\nfor i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n  echo \"    ->  $i) ${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\"\ndone\n\nfor plist in \"${_TARGET_PLIST}\" \"${_DSYM_PLIST}\" ; do\n  if [[ -f \"${plist}\" ]]; then\n\n    # paths with spaces break the call to setPlistValue. temporarily modify\n    # the shell internal field separator variable (IFS), which normally\n    # includes spaces, to consist only of line breaks\n    oldifs=$IFS\n    IFS=\"\n\"\n\n    for i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n      setPlistValue \"${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\" \"${plist}\"\n    done\n\n    # restore the original internal field separator value\n    IFS=$oldifs\n  else\n    echo \"warning:   A Info.plist build output file was not found (${plist})\"\n  fi\ndone\n\necho \"info: <- RNFB build script finished\"\n";
+		};
+		F2EE02010000000000000001 /* Embed LiveActivities (skip In_House) */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed LiveActivities (skip In_House)";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"$CONFIGURATION\" = \"In_House\" ]; then\n  echo \"info: Skipping LiveActivitiesExtension embed for In_House build (no enterprise profile available)\"\n  exit 0\nfi\n\nEXTENSION_NAME=\"LiveActivitiesExtension.appex\"\nSRC_PATH=\"${BUILT_PRODUCTS_DIR}/${EXTENSION_NAME}\"\nDEST_DIR=\"${CODESIGNING_FOLDER_PATH}/PlugIns\"\nDEST_PATH=\"${DEST_DIR}/${EXTENSION_NAME}\"\n\nif [ ! -d \"$SRC_PATH\" ]; then\n  echo \"error: ${EXTENSION_NAME} not found at ${SRC_PATH}\"\n  exit 1\nfi\n\nmkdir -p \"$DEST_DIR\"\nrm -rf \"$DEST_PATH\"\ncp -RL \"$SRC_PATH\" \"$DEST_PATH\"\necho \"info: Embedded ${EXTENSION_NAME} into ${DEST_DIR}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		13B07F871A680F5B00A75B9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDE1A00131D0000000A1B001 /* FrameworkEnvironmentMapper.swift in Sources */,
+				F29307C32F50B12900FD4561 /* LiveActivityData.swift in Sources */,
+				D8B3524A2743E63100A46582 /* GATrackingConstants.swift in Sources */,
+				D8CFC5772837D0CC0053533D /* RCTCustomUserAgent.m in Sources */,
+				DF0C4E312F718DF700B53610 /* ScoresLiveActivityConstants.swift in Sources */,
+				D8DAFA2B256E8BAB004AC63A /* GamesLobbyManager.m in Sources */,
+				674A84872E126BAD00527964 /* TMXModule.m in Sources */,
+				D817A1C626AEEFD50062C0D1 /* IFDATracking.m in Sources */,
+				EC6B90CB2BFE9A8700D57909 /* ParametersGroup.swift in Sources */,
+				D8EB89F526EB9507008A0153 /* RemoteLogs.swift in Sources */,
+				D85173F128D4C7E20060AF6D /* AppSupportedOrientations.swift in Sources */,
+				D8DAFA4E256EC633004AC63A /* GamesLobbyEventEmitter.m in Sources */,
+				D8DAFA3B256E9030004AC63A /* UIView+Constraints.swift in Sources */,
+				D8D79BF4273C0E28000FB05B /* GoogleTagTracker.swift in Sources */,
+				F24A5F9E2F60F8BD0000F788 /* StringExtension.swift in Sources */,
+				F2D1243F2F448F890061F1A1 /* ScoresLiveActivityModule.swift in Sources */,
+				F24A5F962F5B41940000F788 /* SportsLiveActivityPayload.swift in Sources */,
+				CE45B62827A2EE6B007BF7BA /* RCTAirshipConfigModule.m in Sources */,
+				F2A3EEA72F7EC01E00BFDC53 /* LiveActivityError.swift in Sources */,
+				F24A5F992F5EDF920000F788 /* DictionaryExtension.swift in Sources */,
+				89EFC9322906E5AD00D24560 /* GamesLobbyObject.swift in Sources */,
+				D8DAFA4D256EC633004AC63A /* GamesLobbyEventEmitter.swift in Sources */,
+				F2DF3F642FBFD3DF000ED734 /* FontExtension.swift in Sources */,
+				D85C40ED28F8512600537816 /* HTTPCookie+Extension.swift in Sources */,
+				D8AAA68725E3D4DC00555CAD /* NSNotifications+Extension.swift in Sources */,
+				89EFC9342906E5B700D24560 /* GamesLobbyObject.m in Sources */,
+				0EC0FC7C282D9E8F0049B1AA /* IOSExitApp.m in Sources */,
+				2BA08FF92E32255D00216068 /* RCTShortcutModule.m in Sources */,
+				FE7E3A6D2E93CE8A00CC58E2 /* AppDelegate+RegisterSettingsValues.swift in Sources */,
+				FE7E3A6E2E93CE8A00CC58E2 /* AppDelegate.swift in Sources */,
+				D8DAFA41256E948B004AC63A /* GamesFramework+Extension.swift in Sources */,
+				F909095129F012C7004FB63A /* RCTStartupTime.m in Sources */,
+				F29307C12F50B10900FD4561 /* LiveActivityDataStore.swift in Sources */,
+				F24A5F9C2F5FB8000000F788 /* ImageDownloader.swift in Sources */,
+				F25DCB962F44B96300DF1119 /* ScoresLiveActivityModel.swift in Sources */,
+				806692062D95DB930002D109 /* TBDCurrentScreenModule.m in Sources */,
+				B55DDEB529DC8060001FFD14 /* RCTLaunchArgumentsModule.m in Sources */,
+				D8DAFA35256E8E86004AC63A /* GamesLobbyView.swift in Sources */,
+				A093EBD925351EA200133568 /* RCTHTTPRequestHandler+trustInvalidCertificates.m in Sources */,
+				F24A5F5A2F55A6790000F788 /* ScoresAttributes.swift in Sources */,
+				EC6B90C92BFE9A6300D57909 /* GamesActor.swift in Sources */,
+				D85AD4D5284E671000ACF0BD /* Settings.swift in Sources */,
+				F2D124412F448FBB0061F1A1 /* ScoresLiveActivityModule.m in Sources */,
+				F2EE01020000000000000001 /* ScoresLiveActivityEventEmitter.swift in Sources */,
+				F2EE01040000000000000001 /* ScoresLiveActivityEventEmitter.m in Sources */,
+				7D497FEC2AFD2B9D00D16AA6 /* TBDPerformanceModule.m in Sources */,
+				C64FDE7AA1277BEDBA2E3861 /* ExpoModulesProvider.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F6D0B7F2767A57E00808C8E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F6D0B862767A57E00808C8E /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF47DEEA2F6AA6C000DBA522 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2DF3F632FBFD3DF000ED734 /* FontExtension.swift in Sources */,
+				DF0C4E1E2F6AB0F500B53610 /* LiveActivity.swift in Sources */,
+				DF0C4E1F2F6AB0F500B53610 /* InPlayHomeScreenViewModel.swift in Sources */,
+				DF0C4E222F6AB0F500B53610 /* ScoreboardView.swift in Sources */,
+				DF0C4E212F6AB0F500B53610 /* MainView.swift in Sources */,
+				DF0C4E202F6AB0F500B53610 /* CrestView.swift in Sources */,
+				DF0C4E1C2F6AB0F500B53610 /* ScoreboardCounterView.swift in Sources */,
+				DF47DF132F6AA7E800DBA522 /* ScoresAttributes.swift in Sources */,
+				DF0C4E232F6AB0F500B53610 /* TeamCrestNameView.swift in Sources */,
+				DF0C4DE92F6AA83600B53610 /* ScoresLiveActivity.swift in Sources */,
+				DF0C4E322F7191DB00B53610 /* ImageDownloader.swift in Sources */,
+				DF0C4DEA2F6AA83600B53610 /* ScoresLiveActivityBundle.swift in Sources */,
+				DF0C4E1B2F6AB0F500B53610 /* TopBarView.swift in Sources */,
+				DF0C4E302F718DF700B53610 /* ScoresLiveActivityConstants.swift in Sources */,
+				DF0C4E1D2F6AB0F500B53610 /* CounterView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2F6D0B892767A57E00808C8E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2F6D0B822767A57E00808C8E /* NotificationServiceExtension */;
+			targetProxy = 2F6D0B882767A57E00808C8E /* PBXContainerItemProxy */;
+		};
+		DF47DF022F6AA6C200DBA522 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DF47DEED2F6AA6C000DBA522 /* LiveActivitiesExtension */;
+			targetProxy = DF47DF012F6AA6C200DBA522 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D8C4CAAA26B9713400EA2DA0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D8C4CAA926B9713400EA2DA0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		13B07F941A680F5B00A75B9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F87C345AEC73F04F68DD0047 /* Pods-tbd_native.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUNDLE_DISPLAY_NAME = "Sky Bet";
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = tbd_native/SkyBetDebug.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 3000000;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 5337HLKKD5;
+				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				INFOPLIST_FILE = tbd_native/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Sky Bet";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = com.skybet.SkyBetTesting;
+				PRODUCT_NAME = SkyBet;
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.skybet.SkyBetTesting";
+				SWIFT_OBJC_BRIDGING_HEADER = "tbd_native-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		2F6D0B8C2767A57E00808C8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 5337HLKKD5;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 5337HLKKD5;
+				ENABLE_BITCODE = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = com.skybet.SkyBetTesting.SkyBetNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.skybet.tbd.qa.SkyBetNotificationServiceExtension";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match InHouse com.skybet.SkyBetTesting.SkyBetNotificationServiceExtension";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2F6D0B8D2767A57E00808C8E /* In_House */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 5337HLKKD5;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 5337HLKKD5;
+				ENABLE_BITCODE = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
+				PRODUCT_BUNDLE_IDENTIFIER = com.skybet.SkyBetTesting.SkyBetNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.skybet.SkyBetTesting.SkyBetNotificationServiceExtension";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = In_House;
+		};
+		2F6D0B8F2767A57E00808C8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = BR5TD8Z784;
+				ENABLE_BITCODE = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bskyb.mobenga.skybet.skybetnotificationserviceextension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.bskyb.mobenga.skybet.skybetnotificationserviceextension";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7DD4F7262493BB3C0042B0B3 /* In_House */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CC = "";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CXX = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"ACCEPT_SELF_SIGNED_CERTIFICATES=1",
+					_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION,
+					"QA=1",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers/react/nativemodule/core",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD = "";
+				LDPLUSPLUS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.2/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-DFOLLY_NO_CONFIG",
+					"-DFOLLY_MOBILE=1",
+					"-DFOLLY_USE_LIBCPP=1",
+					"-fcxx-modules",
+					"-DFOLLY_CFG_NO_COROUTINES=1",
+					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
+				);
+				OTHER_LDFLAGS = (
+					"-ld_classic",
+					"-fprofile-instr-generate",
+				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../../../../node_modules/react-native";
+				SDKROOT = iphoneos;
+				USE_HERMES = true;
+			};
+			name = In_House;
+		};
+		7DD4F7272493BB3C0042B0B3 /* In_House */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4428EB6D6C5DD6DE969E7B1 /* Pods-tbd_native.in_house.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUNDLE_DISPLAY_NAME = "Sky Bet";
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = tbd_native/SkyBetInHouse.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 3000000;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = 5337HLKKD5;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 5337HLKKD5;
+				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				INFOPLIST_FILE = tbd_native/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Sky Bet";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
+				PRODUCT_BUNDLE_IDENTIFIER = com.skybet.SkyBetTesting;
+				PRODUCT_NAME = SkyBet;
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.skybet.SkyBetTesting";
+				SWIFT_OBJC_BRIDGING_HEADER = "tbd_native-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = In_House;
+		};
+		83CBBA201A601CBA00E9B192 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CC = "";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CXX = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"ACCEPT_SELF_SIGNED_CERTIFICATES=1",
+					"$(inherited)",
+					_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers/react/nativemodule/core",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD = "";
+				LDPLUSPLUS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.2/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-DFOLLY_NO_CONFIG",
+					"-DFOLLY_MOBILE=1",
+					"-DFOLLY_USE_LIBCPP=1",
+					"-fcxx-modules",
+					"-DFOLLY_CFG_NO_COROUTINES=1",
+					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
+				);
+				OTHER_LDFLAGS = (
+					"-ld_classic",
+					"-fprofile-instr-generate",
+				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../../../../node_modules/react-native";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				USE_HERMES = true;
+			};
+			name = Debug;
+		};
+		A02348C726B9F0590095C274 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CC = "";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				CXX = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION,
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers/react/nativemodule/core",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon-Samples/ReactCommon_Samples.framework/Headers/platform/ios",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-NativeModulesApple/React_NativeModulesApple.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
+					"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon/ReactCommon.framework/Headers",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-Fabric/React_Fabric.framework/Headers/react/renderer/components/view/platform/cxx",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD = "";
+				LDPLUSPLUS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
+					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.2/$(PLATFORM_NAME)\"",
+					"\"$(inherited)\"",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-DFOLLY_NO_CONFIG",
+					"-DFOLLY_MOBILE=1",
+					"-DFOLLY_USE_LIBCPP=1",
+					"-fcxx-modules",
+					"-DFOLLY_CFG_NO_COROUTINES=1",
+					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
+				);
+				OTHER_LDFLAGS = (
+					"-ld_classic",
+					"-fprofile-instr-generate",
+				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../../../../node_modules/react-native";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				USE_HERMES = true;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A02348C826B9F0590095C274 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 012359C7008ED81FFC3C56F0 /* Pods-tbd_native.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUNDLE_DISPLAY_NAME = "Sky Bet";
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = tbd_native/SkyBet.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 3000000;
+				DEVELOPMENT_TEAM = BR5TD8Z784;
+				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				INFOPLIST_FILE = tbd_native/Info.release.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Sky Bet";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bskyb.mobenga.skybet;
+				PRODUCT_NAME = SkyBet;
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.bskyb.mobenga.skybet";
+				SWIFT_OBJC_BRIDGING_HEADER = "tbd_native-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		DF47DF042F6AA6C200DBA522 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = LiveActivitiesExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = LiveActivities/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LiveActivities;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = com.skybet.SkyBetTesting.LiveActivities;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DF47DF052F6AA6C200DBA522 /* In_House */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = "";
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = LiveActivities/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LiveActivities;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bskyb.mobenga.skybet.liveactivities;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = In_House;
+		};
+		DF47DF062F6AA6C200DBA522 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = LiveActivitiesExtensionRelease.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = BR5TD8Z784;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = LiveActivities/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LiveActivities;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bskyb.mobenga.skybet.liveactivities;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.bskyb.mobenga.skybet.liveactivities";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "tbd_native" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13B07F941A680F5B00A75B9A /* Debug */,
+				7DD4F7272493BB3C0042B0B3 /* In_House */,
+				A02348C826B9F0590095C274 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		2F6D0B8B2767A57E00808C8E /* Build configuration list for PBXNativeTarget "NotificationServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F6D0B8C2767A57E00808C8E /* Debug */,
+				2F6D0B8D2767A57E00808C8E /* In_House */,
+				2F6D0B8F2767A57E00808C8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "tbd_native" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83CBBA201A601CBA00E9B192 /* Debug */,
+				7DD4F7262493BB3C0042B0B3 /* In_House */,
+				A02348C726B9F0590095C274 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DF47DF082F6AA6C200DBA522 /* Build configuration list for PBXNativeTarget "LiveActivitiesExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF47DF042F6AA6C200DBA522 /* Debug */,
+				DF47DF052F6AA6C200DBA522 /* In_House */,
+				DF47DF062F6AA6C200DBA522 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
+}

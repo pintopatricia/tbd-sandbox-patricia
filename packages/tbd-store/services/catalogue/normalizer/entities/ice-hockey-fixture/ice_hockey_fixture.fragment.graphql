@@ -1,0 +1,23 @@
+fragment iceHockeyFixture on IceHockeyFixture {
+  __typename
+  urn
+  isAmericanFormat
+  runnerNames {
+    home
+    away
+  }
+  score {
+    scoreHome: home
+    scoreAway: away
+  }
+  clock {
+    clockPeriod: period
+  }
+  periodScores {
+    score {
+      scoreHome: home
+      scoreAway: away
+    }
+    periodScoresPeriod: period
+  }
+}

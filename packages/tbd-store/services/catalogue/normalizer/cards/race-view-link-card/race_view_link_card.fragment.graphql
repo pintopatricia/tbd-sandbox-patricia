@@ -1,0 +1,16 @@
+fragment raceViewLinkCard on RaceViewLinkCard {
+  __typename
+  urn
+  race {
+    ...race
+  }
+  viewLink {
+    viewUrn
+    viewUrl
+  }
+}
+
+fragment raceViewLinkCardPartial on RaceViewLinkCard {
+  __typename
+  urn
+}

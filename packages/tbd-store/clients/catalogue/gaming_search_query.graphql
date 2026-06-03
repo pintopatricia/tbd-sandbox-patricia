@@ -1,0 +1,9 @@
+query GamingSearch(
+  $query: String!
+  $first: Int
+  $after: String
+){
+  GamingSearch(query: $query, first: $first, after: $after) {
+    ...fullGamingSearchCardItems
+  }
+}

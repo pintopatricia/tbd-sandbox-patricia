@@ -1,0 +1,28 @@
+"__typename": "{{__typename}}{{^__typename}}AustralianRulesFixture{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:fixture:31237287{{/urn}}",
+"id": "{{id}}{{^id}}123456789{{/id}}",
+"runnerNames": {{#if runnerNames}}{
+  "home": "{{runnerNames.home}}{{^runnerNames.home}}New York Knicks{{/runnerNames.home}}",
+  "away": "{{runnerNames.away}}{{^runnerNames.away}}Philadelphia 76ers{{/runnerNames.away}}"
+}{{else}}null{{/if}},
+"isAmericanFormat": {{#unless isAmericanFormat}}false{{else}}true{{/unless}},
+"score": {{#if score}}{
+    "goals": {
+        "home": {{score.goals.home}}{{^score.goals.home}}4{{/score.goals.home}},
+        "away": {{score.goals.away}}{{^score.goals.away}}2{{/score.goals.away}}
+    },
+    "behinds": {
+        "home": {{score.behinds.home}}{{^score.behinds.home}}1{{/score.behinds.home}},
+        "away": {{score.behinds.away}}{{^score.behinds.away}}0{{/score.behinds.away}}
+    },
+    "points": {
+        "home": {{score.points.home}}{{^score.points.home}}3{{/score.points.home}},
+        "away": {{score.points.away}}{{^score.points.away}}2{{/score.points.away}}
+    }
+}{{else}}null{{/if}},
+"periodScores": [
+  {{#each periodScores}}
+    { {{> bff-australian-rules-period-scores}} }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+]

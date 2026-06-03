@@ -1,0 +1,7 @@
+.headerContainer {
+  background: var(--header-background-primary-colour);
+}
+
+.placeHolder {
+  min-height: var(--ssc-desktop-header-placeholder-height);
+}

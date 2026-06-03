@@ -1,0 +1,6 @@
+fragment exchangeDefaultProductPreference on ExchangeDefaultProductPreference {
+  __typename
+  urn
+  exchangeDefaultProductOptions
+  selectedExchangeDefaultProduct
+}

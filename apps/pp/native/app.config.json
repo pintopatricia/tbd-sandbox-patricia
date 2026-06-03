@@ -1,0 +1,83 @@
+{
+  "APP_KEYS": {
+    "android": "LDYesjOybjF6pAKy",
+    "ios": "husT5F46tmhjdCep"
+  },
+  "LOADING_URL": {
+    "subdomain": "apitbdn",
+    "domain": "betfair.net"
+  },
+  "ADOBE_APP_KEYS": {
+    "ios": {
+      "dev": "f9a5d999-5b57-40e7-8ccf-6ee3e428410b",
+      "prod": "8d7392b5-f6c2-4b88-8c8e-318a2bc7f569"
+    },
+    "android": {
+      "dev": "9b15febb-4e0b-4efa-aa28-cc46cd7a704e",
+      "prod": "84639794-d4a3-4c7d-9f7c-6ad0be1c02d6"
+    }
+  },
+  "QM_KEYS": {
+    "android": "683c517e-7c70-11ed-a1eb-0242ac120002",
+    "ios": "c46b8556-2197-11ee-be56-0242ac120002"
+  },
+  "SIGNALFX_CONFIGURATION": {
+    "endpoint": {
+      "realm": "eu0",
+      "rumAccessToken": "BN9EVDZSeHfkftFnAiH4Mw"
+    },
+    "session": {
+      "samplingRate": 0.2
+    },
+    "appName": "Betfair Sportsbook",
+    "deploymentEnvironment": "dev",
+    "appStartEnabled": true,
+    "enableDebugLogging": false
+  },
+  "SIGNALFX_MODULE_CONFIGURATION": {
+    "crashReportingModule": false,
+    "interactionsModule": true,
+    "networkMonitorModule": true,
+    "startupModule": true
+  },
+  "ONE_TRUST_KEYS": {
+    "ios": {
+      "dev": "8d9ae506-9f69-4eb3-8a24-5e164ef1ec48-test",
+      "prod": "8d9ae506-9f69-4eb3-8a24-5e164ef1ec48"
+    },
+    "android": {
+      "dev": "477d44be-f337-4a62-8d24-8cbd41724b3e-test",
+      "prod": "477d44be-f337-4a62-8d24-8cbd41724b3e"
+    }
+  },
+  "FEEDBACK_WEBVIEW_URL": "https://tbdassets.betfair.net",
+  "TBDN_DEFAULT_ENVIRONMENT": "qa",
+  "TBDN_RELEASE_MODE": "internal",
+  "TBDN_IOS_DEVICE_NAME": "iPhone 14",
+  "TBDN_IOS_PLATFORM_VERSION": "26.2",
+  "TBDN_CATALOGUE_VERSION": "v11",
+  "TBDN_INITIAL_COOKIES": "",
+  "TBDN_INITIAL_CUSTOM_ENVIRONMENT": "",
+  "expo": {
+    "name": "Paddy Power",
+    "slug": "tbd-native-pp",
+    "jsEngine": "hermes",
+    "runtimeVersion": {
+      "policy": "fingerprint"
+    },
+    "updates": {
+      "enabled": true,
+      "url": "https://tbdnota.tools.flutter.com/manifest",
+      "codeSigningMetadata": {
+        "keyid": "main",
+        "alg": "rsa-v1_5-sha256"
+      },
+      "requestHeaders": {
+        "expo-channel-name": "pp-production"
+      },
+      "codeSigningCertificate": "./certs/certificate.pem",
+      "checkAutomatically": "NEVER",
+      "fallbackToCacheTimeout": 0
+    }
+  }
+}

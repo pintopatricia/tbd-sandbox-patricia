@@ -1,0 +1,480 @@
+name: check-queue
+on:
+  pull_request:
+  merge_group:
+    types: [checks_requested]
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  MONTEROSA_TOKEN: ${{ secrets.MONTEROSA_TOKEN }}
+  JENKINS_URL: ${{secrets.JENKINS_URL}}
+  JENKINS_TBD_USER: ${{ secrets.JENKINS_TBD_USER }}
+  JENKINS_TBD_USER_TOKEN: ${{ secrets.JENKINS_TBD_USER_TOKEN }}
+  AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+  AWS_REGION: eu-west-1
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY_TOKEN }}
+  VAULT_USER: ${{ secrets.VAULT_USER }}
+  VAULT_PASSWORD: ${{ secrets.VAULT_PASSWORD }}
+
+jobs:
+  cancel-previous:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'merge_group'
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout script file
+        with:
+          sparse-checkout: |
+            .github/merge_queue_cancel_previous.sh
+          sparse-checkout-cone-mode: false
+      - name: Cancel previous runs
+        env:
+          WORKFLOW_NAMES: "check-queue"
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_REF: ${{ github.ref }}
+        run: |
+          ./.github/merge_queue_cancel_previous.sh
+
+  lint:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'merge_group'
+    timeout-minutes: 20
+    env:
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+      NX_BASE: ${{github.event.merge_group.base_sha}}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 100
+          fetch-tags: false
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+      - name: Restore cached node dependencies
+        id: cache-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Install dependencies
+        run: yarn install --immutable-cache
+      - name: Generate config files for Betfair brand
+        run: |
+          chmod +x tools/generate-env-files.sh
+          ./tools/generate-env-files.sh --brand BF
+      - name: Get PR number
+        id: get_pr_number
+        run: |
+          echo "number=$(echo "${{ github.ref }}" | sed -n 's|.*/pr-\([0-9]*\)-.*|\1|p')" >> $GITHUB_OUTPUT
+      - name: Cache nx run
+        uses: actions/cache@v4
+        with:
+          path: ".nx"
+          key: ${{ steps.get_pr_number.outputs.number }}-nx-lint-cache
+      - name: Prepare workspaces
+        run: yarn prepare
+      - name: Run lint
+        run: yarn worktree:root:lint
+      - name: Send Slack Notification (Failure)
+        if: failure()
+        uses: ./.github/actions/slack-notification
+        with:
+          slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL_MERGE_QUEUE }}
+          job-name: "lint"
+      - name: Cancel workflow run if failed
+        if: failure()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const response = await github.rest.actions.cancelWorkflowRun({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.runId
+            });
+            console.log("Workflow canceled:", response.data);
+
+  test:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'merge_group'
+    timeout-minutes: 30
+    env:
+      RUNNING_IN_CI: true
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+      NX_BASE: ${{github.event.merge_group.base_sha}}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 100
+          fetch-tags: false
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+      - name: Restore cached node dependencies
+        id: cache-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Install dependencies
+        run: yarn install --immutable-cache
+      - name: Generate config files for Betfair brand
+        run: |
+          chmod +x tools/generate-env-files.sh
+          ./tools/generate-env-files.sh --brand BF
+      - name: Get PR number
+        id: get_pr_number
+        run: |
+          echo "number=$(echo "${{ github.ref }}" | sed -n 's|.*/pr-\([0-9]*\)-.*|\1|p')" >> $GITHUB_OUTPUT
+      - name: Cache nx run
+        uses: actions/cache@v4
+        with:
+          path: ".nx"
+          key: ${{ steps.get_pr_number.outputs.number }}-nx-test-cache
+      - name: Run tests
+        run: |
+          rm -rf node_modules/canvas
+          yarn worktree:root:test
+          yarn generate:global:coverage
+      - name: Send Slack Notification (Failure)
+        if: failure()
+        uses: ./.github/actions/slack-notification
+        with:
+          slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL_MERGE_QUEUE }}
+          job-name: "test"
+      - name: Cancel workflow run if failed
+        if: failure()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const response = await github.rest.actions.cancelWorkflowRun({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.runId
+            });
+            console.log("Workflow canceled:", response.data);
+
+  typecheck:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'merge_group'
+    timeout-minutes: 20
+    env:
+      RUNNING_IN_CI: true
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+      NX_BASE: ${{github.event.merge_group.base_sha}}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 100
+          fetch-tags: false
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+      - name: Restore cached node dependencies
+        id: cache-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Install dependencies
+        run: yarn install --immutable-cache
+      - name: Generate config files for Betfair brand
+        run: |
+          chmod +x tools/generate-env-files.sh
+          ./tools/generate-env-files.sh --brand BF
+      - name: Get PR number
+        id: get_pr_number
+        run: |
+          echo "number=$(echo "${{ github.ref }}" | sed -n 's|.*/pr-\([0-9]*\)-.*|\1|p')" >> $GITHUB_OUTPUT
+      - name: Cache nx run
+        uses: actions/cache@v4
+        with:
+          path: ".nx"
+          key: ${{ steps.get_pr_number.outputs.number }}-nx-typecheck-cache
+      - name: Run typecheck
+        run: yarn worktree:root:typecheck
+      - name: Send Slack Notification (Failure)
+        if: failure()
+        uses: ./.github/actions/slack-notification
+        with:
+          slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL_MERGE_QUEUE }}
+          job-name: "typecheck"
+      - name: Cancel workflow run if failed
+        if: failure()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const response = await github.rest.actions.cancelWorkflowRun({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.runId
+            });
+            console.log("Workflow canceled:", response.data);
+
+  validate-queries-and-dependencies:
+    if: github.event_name == 'merge_group'
+    timeout-minutes: 20
+    runs-on: [ubuntu-self-hosted, x64]
+    env:
+      RUNNING_IN_CI: true
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+      NX_BASE: ${{github.event.merge_group.base_sha}}
+    steps:
+      - name: Get Cross-Repo App Token
+        id: app
+        uses: Flutter-Tech/github-app-token@v2
+        with:
+          APP_PEM: ${{ secrets.CROSS_REPO_CONTENTS_ACCESS_PEM }}
+          APP_ID: 211263
+          APP_INSTALLATION_ID: 26559618
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+      - name: Restore cached node dependencies
+        id: cache-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Install dependencies
+        run: |
+          npm install -g yarn@1.22.10
+          yarn install
+      - name: Generate config files for Betfair brand
+        run: |
+          chmod +x tools/generate-env-files.sh
+          ./tools/generate-env-files.sh --brand BF
+      - name: Generate Dist (Prepare)
+        run: |
+          yarn prepare
+      - name: Generate queries
+        env:
+          GITHUB_TOKEN: ${{ steps.app.outputs.app_token }} # needed to download info from tbd-bff
+        run: |
+          yarn compile-graphql
+      - name: Check queries not updated
+        run: |
+          EXTRACTED_QUERIES="packages/tbd-store/clients/catalogue/extracted_queries_v*"
+          if ! git diff --quiet -- $EXTRACTED_QUERIES || \
+            ! git diff --cached --quiet -- $EXTRACTED_QUERIES; then
+            echo "Changes detected in $EXTRACTED_QUERIES"
+            exit 1
+          fi
+      - name: Cancel workflow run if failed
+        if: failure()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const response = await github.rest.actions.cancelWorkflowRun({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.runId
+            });
+            console.log("Workflow canceled:", response.data);
+
+  tbd-circuit-breaker:
+    if: false
+    timeout-minutes: 20
+    runs-on:
+      group: FlutterGithubRunners
+    steps:
+      - name: Skip this job
+        run: echo "This job is skipped but is required as a merge requirement"
+
+  native-orchestrator:
+    if: github.event_name == 'merge_group'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      native_changes: ${{ steps.result.outputs.native_changes }}
+    steps:
+      # Configs to test if the error "fetch-pack: unexpected disconnect while reading sideband packet" during checkout is mitigated
+      - name: Git config
+        run: |
+          git config --global pack.window 1
+          git config --global http.postBuffer 157286400
+          git config --global core.compression 0
+
+      - name: Get code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 100
+          fetch-tags: false
+
+      - name: Compare changes
+        id: result
+        run: |
+          ./.github/merge_queues_orchestrator.sh --lastcommit ${{ github.event.merge_group.base_sha }} --currentcommit ${{ github.event.merge_group.head_sha }}
+
+  build-android-app:
+    if: github.event_name == 'merge_group' && needs.native-orchestrator.outputs.native_changes == 'true'
+    needs: native-orchestrator
+    uses: ./.github/workflows/build-android-app.yml
+    with:
+      brand: bf
+      buildType: inhouse
+      releaseMode: internal
+      environment: qa
+      buildAbi: x86_64
+      apkName: "Betfair-x86_64-inhouse-${{ github.run_id }}"
+      artifactoryPath: tbd-native/android/bf/merge-queues/
+      ref: ${{ github.ref }}
+    secrets: inherit
+
+  build-android-failure:
+    if: github.event_name == 'merge_group' && failure()
+    needs: build-android-app
+    runs-on:
+      group: FlutterGithubRunners
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            .github
+
+      - name: Send Slack Notification (Failure)
+        uses: ./.github/actions/slack-notification
+        with:
+          slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL_MERGE_QUEUE }}
+          job-name: "build-android-app"
+
+      - name: Cancel workflow run
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const response = await github.rest.actions.cancelWorkflowRun({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.runId
+            });
+            console.log("Workflow canceled:", response.data);
+
+  web-orchestrator:
+    if: github.event_name == 'merge_group'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      web_changes: ${{ steps.result.outputs.web_changes }}
+    steps:
+      # Configs to test if the error "fetch-pack: unexpected disconnect while reading sideband packet" during checkout is mitigated
+      - name: Git config
+        run: |
+          git config --global pack.window 1
+          git config --global http.postBuffer 157286400
+          git config --global core.compression 0
+
+      - name: Get code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 100
+          fetch-tags: false
+
+      - name: Compare changes
+        id: result
+        run: |
+          ./.github/merge_queues_orchestrator.sh --lastcommit ${{ github.event.merge_group.base_sha }} --currentcommit ${{ github.event.merge_group.head_sha }}
+
+  build-web-app:
+    env:
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+    runs-on: centos-self-hosted
+    needs: web-orchestrator
+    if: github.event_name == 'merge_group' && needs.web-orchestrator.outputs.web_changes == 'true'
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Get PR number
+        id: get-pr-number
+        run: |
+          echo "number=$(echo "${{ github.ref }}" | sed -n 's|.*/pr-\([0-9]*\)-.*|\1|p')" >> $GITHUB_OUTPUT
+
+      - name: Call build web app action
+        id: build-web-app
+        uses: ./.github/actions/build-web-app
+        with:
+          cloudflare-api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          cloudflare-account-id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Send Slack Notification (Failure)
+        if: failure()
+        uses: ./.github/actions/slack-notification
+        with:
+          slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL_MERGE_QUEUE }}
+          job-name: "build-web-app"
+
+      - name: Cancel workflow run if failed
+        if: failure()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const response = await github.rest.actions.cancelWorkflowRun({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.runId
+            });
+            console.log("Workflow canceled:", response.data);
+
+    outputs:
+      url: ${{ steps.build-web-app.outputs.url }}
+      pr_id: ${{ steps.get-pr-number.outputs.number }}
+
+  web_regression_tests:
+    needs: build-web-app
+    if: github.event_name == 'merge_group' && needs.build-web-app.result == 'success'
+    uses: ./.github/workflows/web-tests.yml
+    secrets: inherit
+    with:
+      test_type: regression-tests
+      script_extension: web:regression:bf:qa:ci
+      base_url: ${{ needs.build-web-app.outputs.url }}
+      pr_id: ${{ needs.build-web-app.outputs.pr_id }}
+      is_merge_queue: true
+      commit_status_context: "web_regression_tests"
+
+  web_visual_tests:
+    needs: build-web-app
+    if: github.event_name == 'merge_group' && needs.build-web-app.result == 'success'
+    uses: ./.github/workflows/web-tests.yml
+    secrets: inherit
+    with:
+      test_type: visual-tests
+      script_extension: web:visual:bf:qa:ci
+      base_url: ${{ needs.build-web-app.outputs.url }}
+      pr_id: ${{ needs.build-web-app.outputs.pr_id }}
+      is_merge_queue: true
+      commit_status_context: "web_visual_tests"
+
+  android_visual_tests:
+    needs: build-android-app
+    if: github.event_name == 'merge_group' && needs.build-android-app.result == 'success'
+    uses: ./.github/workflows/android-tests.yml
+    secrets: inherit
+    with:
+      test_type: visual
+      pr_id: ${{ needs.build-android-app.outputs.pr_id }}
+      apk_name: ${{ needs.build-android-app.outputs.artifact_name }}
+      is_merge_queue: true
+      commit_status_context: "android_visual_tests"
+      env: "mockserver"
+
+  android_regression_tests:
+    needs: build-android-app
+    if: github.event_name == 'merge_group' && needs.build-android-app.result == 'success'
+    uses: ./.github/workflows/android-tests.yml
+    secrets: inherit
+    with:
+      test_type: regression
+      pr_id: ${{ needs.build-android-app.outputs.pr_id }}
+      apk_name: ${{ needs.build-android-app.outputs.artifact_name }}
+      is_merge_queue: true
+      commit_status_context: "android_regression_tests"
+      env: "mockserver"

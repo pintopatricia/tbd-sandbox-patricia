@@ -1,0 +1,51 @@
+fragment obbPvpCard on ObbPvpCard {
+  __typename
+  urn
+  title {
+    name
+  }
+  event {
+    __typename
+    urn
+    name
+    eventId
+  }
+  teams {
+    home {
+      id
+      name
+      jerseys {
+        color
+      }
+    }
+    away {
+      id
+      name
+      jerseys {
+        color
+      }
+    }
+  }
+  participants {
+    ...obbFootballPlayer
+  }
+  participantInfo {
+    ... on DisplayNameTitle {
+      name
+    }
+  }
+  filterTags {
+    label {
+      ...displayName
+    }
+    type
+  }
+  incidentType {
+    ... on ObbIncidentType {
+      id
+    }
+  }
+  defaultLegs {
+    ...obbLeg
+  }
+}

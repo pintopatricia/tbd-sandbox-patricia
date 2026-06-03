@@ -1,0 +1,27 @@
+{
+  "projects": [
+    {
+      "vault": {
+        "tla": "tbd",
+        "az": "common",
+        "key": "lokalise_token",
+        "ssl_verify": "false",
+        "version": "v2"
+      },
+      "name": "TBD",
+      "id": "7287907366ab9f12d97af0.93692733",
+      "deploy_paths": ["./ios/Settings/Settings.bundle"],
+      "options": {
+        "format": "strings",
+        "original_filenames": false,
+        "replace_breaks": false,
+        "bundle_structure": "%LANG_ISO%.lproj/%LANG_ISO%.strings",
+        "export_sort": "a_z",
+        "export_empty_as": "base",
+        "include_comments": false,
+        "include_description": false,
+        "filter_langs": ["en_GB"]
+      }
+    }
+  ]
+}

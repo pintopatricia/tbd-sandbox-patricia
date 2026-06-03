@@ -1,0 +1,24 @@
+fragment runnerMarketGraph on RunnerMarketGraph {
+  __typename
+  runnerURN
+  graphParams
+  liveData {
+    urn
+    selectionId
+    handicap
+    totalMatched
+    lastPriceTraded
+    availableToLay {
+      odd
+      liquidity
+    }
+    availableToBack {
+      odd
+      liquidity
+    }
+    traded {
+      odd
+      liquidity
+    }
+  }
+}

@@ -1,0 +1,44 @@
+.placeholder {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  width: 100%;
+  padding: var(--sportsbook-single-place-panel-placeholder-placeholder-padding);
+}
+
+.container {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--sportsbook-single-place-panel-placeholder-container-vertical-gap);
+
+  padding: var(--sportsbook-single-place-panel-placeholder-container-padding);
+}
+
+.singlesCard {
+  height: var(--sportsbook-single-place-panel-placeholder-bet-details-sizing);
+
+  background-color: var(--sportsbook-single-place-panel-placeholder-bet-details-background-colour);
+  border-radius: var(--sportsbook-single-place-panel-placeholder-bet-details-border-radius);
+}
+
+.controls {
+  display: flex;
+
+  gap: var(--sportsbook-single-place-panel-placeholder-container-horizontal-gap);
+
+  padding: var(--sportsbook-single-place-panel-placeholder-container-padding);
+}
+
+.card {
+  flex: 1 50%;
+
+  height: var(--sportsbook-single-place-panel-placeholder-card-sizing);
+
+  background-color: var(--sportsbook-single-place-panel-placeholder-card-background-colour);
+  border-radius: var(--sportsbook-single-place-panel-placeholder-card-border-radius);
+}

@@ -1,0 +1,8 @@
+"__typename": "{{__typename}}{{^__typename}}LoyaltyPromoCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:loyaltyPromo:pph/CHECKMATE1|LIGHT{{/urn}}",
+"theme": "{{theme}}{{^theme}}LIGHT{{/theme}}",
+{{#with loyaltyPromotion}}
+"loyaltyPromotion": {
+    {{> bff-loyalty-promotion }}
+}
+{{/with}}

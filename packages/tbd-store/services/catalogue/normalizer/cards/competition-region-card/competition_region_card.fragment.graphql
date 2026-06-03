@@ -1,0 +1,31 @@
+fragment competitionRegionCard on CompetitionRegionCard {
+  __typename
+  urn
+  competitionRegions {
+    country {
+      urn
+      code
+      flag {
+        vector
+        small
+        medium
+        large
+      }
+    }
+    competitionViewLinks {
+      urn
+      viewLink {
+        viewUrn
+        viewUrl
+      }
+      competition {
+        ...competitionWithLogo
+      }
+    }
+  }
+}
+
+fragment competitionRegionCardPartial on CompetitionRegionCard {
+  __typename
+  urn
+}

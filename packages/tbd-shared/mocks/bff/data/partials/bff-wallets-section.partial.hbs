@@ -1,0 +1,12 @@
+"__typename": "{{__typename}}{{^__typename}}WalletSection{{/__typename}}",
+"key": "{{key}}{{^key}}CASH{{/key}}",
+"label": "{{label}}{{^label}}Balance{{/label}}",
+"name": "{{name}}{{^name}}Cash{{/name}}",
+"walletRules": [
+    {{#each walletRules }}
+        {
+            {{> bff-wallet-rules}}
+        }
+    {{#unless @last}},{{/unless}}
+    {{/each}}
+]

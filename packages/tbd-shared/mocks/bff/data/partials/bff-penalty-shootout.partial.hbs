@@ -1,0 +1,15 @@
+{{#with penaltyShootout}}
+  "penaltyShootout": {
+  "firstTeamToShoot": "{{firstTeamToShoot}}{{^firstTeamToShoot}}HOME{{/firstTeamToShoot}}",
+  "nextTeamToShoot": "{{nextTeamToShoot}}{{^nextTeamToShoot}}AWAY{{/nextTeamToShoot}}",
+  "penaltyScores" : [
+  {{#each penaltyScores}}
+    {
+    "penaltyNumber": {{penaltyNumber}}{{^penaltyNumber}}{{/penaltyNumber}},
+    "side": "{{side}}{{^side}}{{/side}}",
+    "shotResult": "{{shotResult}}{{^shotResult}}{{/shotResult}}"
+    }{{#unless @last}},{{/unless}}
+  {{/each}}
+  ]
+  },
+{{/with}}

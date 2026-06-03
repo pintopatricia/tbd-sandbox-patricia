@@ -1,0 +1,9 @@
+{
+  "short_name": "Poker Stars",
+  "name": "Poker Stars",
+  "start_url": "/",
+  "background_color": "#1e1e1e",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#1e1e1e"
+}

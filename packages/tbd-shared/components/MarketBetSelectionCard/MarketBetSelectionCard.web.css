@@ -1,0 +1,14 @@
+.marketBetSelectionCard {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--spacing-2);
+}
+
+.betSelectionDetailsContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+}

@@ -1,0 +1,25 @@
+"__typename": "SkyBetClubTrackerCard",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:skyBetClubTracker:skyBetClubTracker{{/urn}}",
+"promotion": {
+    "__typename": "PphPromotion",
+    "fulfillmentEndDate": {{#if fulfillmentEndDate}}"{{fulfillmentEndDate}}"{{else}}null{{/if}},
+    "customerPromotionState": {
+        "hasAccepted": {{#if hasAccepted}}"{{hasAccepted}}"{{else}}false{{/if}},
+        "__typename": "PPHCustomerPromotionState",
+        "criteriaState": {
+        "params": {
+            "gauge": {
+            "current": {{current}}{{^current}}null{{/current}},
+            "target": {{target}}{{^target}}null{{/target}},
+            "__typename": "PPHCriteriaStateGauge"
+            },
+            "__typename": "PPHCriteriaStateParams"
+        },
+        "__typename": "PPHCriteriaState"
+        }
+    },
+    "termsAndConditions": {
+        "__typename": "PPHPromotionTermsAndConditions",
+        "summarized": null
+    }
+}

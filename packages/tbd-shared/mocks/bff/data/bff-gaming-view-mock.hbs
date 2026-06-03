@@ -1,0 +1,23 @@
+{
+	"data": {
+		"View": {
+			"__typename": "GamingView",
+			"urn": "{{urn}}{{^urn}}ppb:tbd:view:gaming:1{{/urn}}",
+			"url": "{{url}}{{^url}}/casino{{/url}}",
+			"leftSidebar": {
+				{{> bff-leftside-bar }}
+			},
+			"items": {
+				"pageInfo": null,
+				{{> bff-items }}
+			},
+			"partialItems": {
+				{{> bff-partial-items }}
+			},
+			"bottomBar": {
+        		{{> bff-bottom-bar-tiles }}
+			},
+			"category": "GAMING"
+		}
+	}
+}

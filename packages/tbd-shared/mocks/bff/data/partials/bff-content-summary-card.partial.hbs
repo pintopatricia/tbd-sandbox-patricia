@@ -1,0 +1,34 @@
+"__typename": "{{__typename}}{{^__typename}}ContentSummaryCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:contentSummary:sport:1{{/urn}}",
+"sections": [
+  {{#each sections}}{
+    "sectionType": "{{sectionType}}{{^sectionType}}ACCORDION{{/sectionType}}",
+    "title": "{{title}}{{^title}}Popular Competitions and Outrights{{/title}}",
+    "items": [
+      {{#each items}}{
+        {{#ifEquals __typename "ContentSummaryTextItem"}}
+          "__typename": "ContentSummaryTextItem",
+          "text": "{{text}}{{^text}}"Content Summary Text"{{/text}}"
+        {{/ifEquals}}
+
+        {{#ifEquals __typename "ContentSummaryGroupLinkItem"}}
+          "__typename": "ContentSummaryGroupLinkItem",
+          "subtitle": "{{subtitle}}{{^subtitle}}Popular Tournaments{{/subtitle}}",
+          "items": [
+            {{#each items}}{
+            "alignment": "LEFT",
+            "text": "{{text}}{{^text}}UEFA Champions League betting{{/text}}",
+            {{#with viewLink}}
+              "viewLink": {
+              "viewUrl": "{{viewUrl}}{{^viewUrl}}/soccer/uefa-champions-league/paris-st-g-v-basaksehir/e-30163578{{/viewUrl}}",
+              "viewUrn": "{{viewUrn}}{{^viewUrn}}ppb:tbd:view:event:30163578{{/viewUrn}}"
+              }
+            {{/with}}
+            }{{#unless @last}},{{/unless}}{{/each}}
+          ]
+        {{/ifEquals}}
+
+      }{{#unless @last}},{{/unless}}{{/each}}
+    ]
+  }{{#unless @last}},{{/unless}}{{/each}}
+]

@@ -1,0 +1,126 @@
+.playerCardContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  min-width: var(--player-list-card-min-width-sizing);
+
+  cursor: pointer;
+
+  border-radius: var(--player-list-card-border-radius);
+}
+
+.playerInfoContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--player-list-card-vertical-gap);
+
+  align-items: flex-start;
+
+  height: var(--player-list-card-player-info-sizing);
+  padding: var(--player-list-card-padding);
+
+  background: var(--player-list-card-header-background-colour);
+  border-radius: var(--player-list-card-border-radius) var(--player-list-card-border-radius) 0 0;
+}
+
+.playerNameContainer {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.firstName,
+.lastName {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+
+  overflow: hidden;
+
+  font: var(--player-list-card-label-typography);
+  color: var(--player-list-card-label-colour);
+  text-transform: var(--player-list-card-label-typography-text-transform);
+}
+
+.position {
+  font: var(--player-list-card-supporting-text-typography);
+  color: var(--player-list-card-supporting-text-colour);
+}
+
+.playerValuesContainer {
+  display: flex;
+
+  gap: var(--player-list-card-horizontal-gap);
+
+  padding: var(--player-list-card-padding);
+
+  background: var(--player-list-card-content-background-colour);
+  border-radius: 0 0 var(--player-list-card-border-radius) var(--player-list-card-border-radius);
+}
+
+.playerStats {
+  display: flex;
+
+  flex: 1 0 0;
+  flex-direction: column;
+
+  gap: var(--player-list-card-stats-vertical-gap);
+}
+
+.statsLabel {
+  font: var(--player-list-card-supporting-text-typography);
+  color: var(--player-list-card-supporting-text-colour);
+  text-transform: capitalize;
+}
+
+.statsContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--player-list-card-stats-value-vertical-gap);
+}
+
+.statsValue {
+  font: var(--player-list-card-stats-text-typography);
+  color: var(--player-list-card-stats-text-colour);
+}
+
+.odds {
+  box-sizing: border-box;
+  display: flex;
+
+  justify-content: center;
+
+  width: var(--player-list-card-odds-width-sizing);
+  height: var(--player-list-card-odds-height-sizing);
+  padding: var(--player-list-card-odds-padding);
+
+  background: var(--player-list-card-odds-background-colour);
+  border-radius: var(--player-list-card-odds-border-radius);
+}
+
+.placeholder {
+  width: var(--player-list-card-placeholder-width-sizing);
+  height: var(--player-list-card-placeholder-height-sizing);
+}
+
+.highlighted {
+  border: var(--player-list-card-selected-border);
+}
+
+.labelDisabled {
+  color: var(--player-list-card-disabled-label-colour);
+}
+
+.supportingTextDisabled {
+  color: var(--player-list-card-disabled-supporting-text-colour);
+}
+
+.statsDisabled {
+  color: var(--player-list-card-disabled-stats-text-colour);
+}

@@ -1,0 +1,13 @@
+mutation ReadWebMessage(
+  $customerMessageId: Float!
+  $throttlesOn: [String!]
+  $throttlesOff: [String!]
+  $productExclusions: [ProductExclusion!]
+)
+@productExclusions(productExclusions: $productExclusions)
+@throttlesOn(throttlesOn: $throttlesOn)
+@throttlesOff(throttlesOff: $throttlesOff) {
+  readWebMessage(customerMessageId: $customerMessageId) {
+    state
+  }
+}

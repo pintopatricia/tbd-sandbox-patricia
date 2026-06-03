@@ -1,0 +1,49 @@
+.jackpot {
+  position: relative;
+
+  width: 100%;
+}
+
+.title,
+.description {
+  color: var(--neutrals-text-default);
+  text-align: center;
+}
+
+.hotTitle {
+  text-shadow: 0 0 var(--spacing-2) var(--agnostic-action-primary-text-default);
+}
+
+.description {
+  padding-bottom: 4px;
+  /* stylelint-disable-next-line scale-unlimited/declaration-strict-value */
+  margin: 3px 0;
+}
+
+.gameBadgeContainer {
+  position: relative;
+
+  width: 80%;
+  margin: auto;
+}
+
+.gameBadgeContainer .label {
+  position: absolute;
+  top: 45%;
+
+  width: 100%;
+
+  color: var(--casino-jackpot-text-default);
+  text-align: center;
+
+  transform: translateY(-50%);
+}
+
+.progressBarContainer {
+  display: flex;
+
+  align-items: center;
+
+  height: 16px;
+  margin: 0 auto var(--spacing-2);
+}

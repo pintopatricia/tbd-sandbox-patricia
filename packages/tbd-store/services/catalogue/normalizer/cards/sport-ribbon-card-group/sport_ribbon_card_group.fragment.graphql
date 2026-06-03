@@ -1,0 +1,42 @@
+fragment sportRibbonCardGroup on SportRibbonCardGroup {
+  __typename
+  urn
+  full: items {
+    edges {
+      label
+      node {
+        __typename
+        urn
+        ... on GenericViewLinkCard {
+          genericViewLinkTitle: title {
+            ...displayName
+          }
+          icon {
+            id
+            category
+          }
+          viewLink {
+            viewUrn
+            viewUrl
+            viewDisplayMode
+          }
+          badge
+        }
+        ... on SportViewLinkCard {
+          viewLink {
+            viewUrn
+            viewUrl
+          }
+          sport {
+            ...sportWithShortName
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment sportRibbonCardGroupPartial on SportRibbonCardGroup {
+  __typename
+  urn
+}

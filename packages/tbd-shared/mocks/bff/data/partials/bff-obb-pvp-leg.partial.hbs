@@ -1,0 +1,37 @@
+"event": {
+  {{#with event}}
+    {{> bff-sportevent}}
+  {{/with}}
+},
+{{#if firstParticipant}}
+  {{#with firstParticipant}}
+    "firstParticipant": {
+      {{> bff-obb-participant}}
+    },
+  {{/with}}
+{{/if}}
+{{#if secondParticipant}}
+  {{#with secondParticipant}}
+    "secondParticipant": {
+      {{> bff-obb-participant}}
+    },
+  {{/with}}
+{{/if}}
+{{#if outcome}}
+  {{#with outcome}}
+    "outcome": {
+      {{> bff-obb-outcome}}
+    },
+  {{/with}}
+{{/if}}
+{{#if quote}}
+  {{#with quote}}
+    "quote": {
+      {{> bff-obb-quote-result}}
+    },
+  {{/with}}
+{{/if}}
+{{#if aggregator}}
+    "aggregator": "{{aggregator}}",
+{{/if}}
+"__typename": "{{__typename}}{{^__typename}}ObbPvpLeg{{/__typename}}"

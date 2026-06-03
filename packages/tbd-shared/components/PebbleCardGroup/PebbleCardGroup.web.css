@@ -1,0 +1,26 @@
+.container {
+  margin: 0;
+}
+
+.shell {
+  margin: 0;
+}
+
+.header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: var(--spacing-4);
+}
+
+.outerTitle {
+  color: var(--neutrals-text-default);
+}
+
+.collapseEndElements {
+  display: flex;
+
+  gap: var(--card-header-horizontal-gap);
+}

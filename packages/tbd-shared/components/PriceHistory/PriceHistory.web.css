@@ -1,0 +1,7 @@
+.priceHistory {
+  width: 100px;
+
+  color: var(--neutrals-text-secondary);
+  text-align: right;
+  text-wrap: wrap;
+}

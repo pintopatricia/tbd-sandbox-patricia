@@ -1,0 +1,27 @@
+ext {
+    APK = [
+        basePackageName: "com.betfair",
+        projectStartDate: "20200606"
+    ]
+
+    BUILD = [
+        android: [
+            buildToolsVersion: "35.0.0",
+            minSdkVersion: 28,
+            compileSdkVersion: 35,
+            targetSdkVersion: 35
+        ],
+        compile: [
+            sourceCompatibility: JavaVersion.VERSION_1_8,
+            targetCompatibility: JavaVersion.VERSION_1_8
+        ],
+        plugin: [
+            firebaseCrashlyticsVersion: "3.0.2",
+            googleServicesVersion: "4.4.1",
+            gradleDownloadTask: "5.0.1",
+            gradleVersion: "8.10.0",
+            kotlinVersion: "2.0.21",
+            ndkVersion: "27.1.12297006"
+        ]
+    ]
+}

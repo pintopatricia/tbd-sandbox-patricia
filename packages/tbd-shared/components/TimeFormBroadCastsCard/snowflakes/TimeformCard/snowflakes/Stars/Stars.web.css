@@ -1,0 +1,17 @@
+.stars {
+  flex-shrink: 0;
+}
+
+.starFilled,
+.starOutline {
+  padding: 0;
+}
+
+.stars > * > * {
+  width: 12px;
+  height: 12px;
+}
+
+.stars > *:not(:last-child) {
+  margin-right: var(--spacing-2);
+}

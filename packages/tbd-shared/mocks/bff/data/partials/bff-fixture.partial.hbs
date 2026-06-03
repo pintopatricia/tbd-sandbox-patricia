@@ -1,0 +1,43 @@
+{{#if (defined __typename)}}
+  {{#ifEquals __typename "FootballFixture"}}
+    {{> bff-football-fixture-content}}
+  {{/ifEquals}}
+  {{#ifEquals __typename "TennisMatch"}}
+    {{> bff-tennis-fixture-content}}
+  {{/ifEquals}}
+  {{#ifEquals __typename "BasketballFixture"}}
+    {{> bff-basketball-fixture-content}}
+  {{/ifEquals}}
+  {{#ifEquals __typename "CricketFixture"}}
+    {{> bff-cricket-fixture-content}}
+  {{/ifEquals}}
+  {{#ifEquals __typename "TableTennisFixture"}}
+    {{> bff-table-tennis-fixture-content}}
+  {{/ifEquals}}
+  {{#ifEquals __typename "AmericanFootballFixture"}}
+    {{> bff-american-football-fixture-content}}
+  {{/ifEquals}}
+  {{#ifEquals __typename "RugbyUnionFixture"}}
+    {{> bff-rugby-union-fixture-content}}
+  {{/ifEquals}}
+  {{#ifEquals __typename "IceHockeyFixture"}}
+    {{> bff-ice-hockey-fixture-content}}
+  {{/ifEquals}}
+  {{#ifEquals __typename "RugbyLeagueFixture"}}
+    {{> bff-rugby-league-fixture-content}}
+  {{/ifEquals}}
+  {{#ifEquals __typename "SnookerFixture"}}
+    {{> bff-snooker-fixture-content}}
+  {{/ifEquals}}
+  {{#ifEquals __typename "VolleyballFixture"}}
+    {{> bff-volleyball-fixture-content}}
+  {{/ifEquals}}
+  {{#ifEquals __typename "AustralianRulesFixture"}}
+    {{> bff-australian-rules-fixture-content}}
+  {{/ifEquals}}
+  {{#ifEquals __typename "BaseFixture"}}
+    {{> bff-base-fixture}}
+  {{/ifEquals}}
+{{else}}
+    {{> bff-football-fixture-content}}
+{{/if}}

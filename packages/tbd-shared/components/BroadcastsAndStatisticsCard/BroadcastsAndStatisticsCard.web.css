@@ -1,0 +1,13 @@
+.container {
+  margin: 0;
+}
+
+.supportingContentContainer {
+  display: flex;
+
+  gap: var(--spacing-1);
+}
+
+.liveStreamContainer {
+  padding-top: var(--spacing-1);
+}

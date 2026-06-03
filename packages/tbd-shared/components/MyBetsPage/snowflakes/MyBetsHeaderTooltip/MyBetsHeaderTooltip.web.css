@@ -1,0 +1,11 @@
+.iconButton {
+  width: var(--my-bets-header-icon-right-sizing);
+  height: var(--my-bets-header-icon-right-sizing);
+}
+
+.toolTip {
+  position: absolute;
+  top: 48px;
+  right: 0;
+  z-index: 1;
+}

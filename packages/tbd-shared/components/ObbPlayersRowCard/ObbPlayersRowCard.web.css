@@ -1,0 +1,120 @@
+.playerCardContainer {
+  display: flex;
+
+  flex-direction: row;
+
+  gap: var(--player-list-card-horizontal-gap);
+
+  align-items: center;
+
+  min-width: var(--player-list-card-min-width-sizing);
+  padding: var(--player-list-card-padding);
+
+  color: var(--player-list-card-label-colour);
+
+  cursor: pointer;
+
+  background-color: var(--player-list-card-header-background-colour);
+  border-radius: var(--player-list-card-border-radius);
+}
+
+.playerRowInfoContainer {
+  display: flex;
+
+  flex: 1 0 0;
+  flex-direction: row;
+
+  gap: var(--player-list-card-horizontal-gap);
+
+  justify-content: space-between;
+
+  min-width: 0;
+}
+
+.playerNameContainer {
+  display: flex;
+
+  flex-direction: row;
+
+  gap: 4px;
+}
+
+.firstName {
+  font: var(--player-list-card-label-typography);
+  color: var(--player-list-card-label-colour);
+  text-overflow: ellipsis;
+  text-transform: var(--player-list-card-label-typography-text-transform);
+}
+
+.lastName {
+  overflow: hidden;
+
+  font: var(--player-list-card-label-secondary-typography);
+  color: var(--player-list-card-label-colour);
+  text-overflow: ellipsis;
+  text-transform: var(--player-list-card-label-typography-text-transform);
+}
+
+.highlighted {
+  background-color: var(--player-list-card-header-selected-background-colour);
+  border: var(--player-list-card-selected-border);
+}
+
+.playerInfoJersey {
+  display: flex;
+
+  align-items: center;
+
+  width: var(--player-list-card-jersey-sizing);
+  height: var(--player-list-card-jersey-sizing);
+}
+
+.playerNameAndPosition {
+  display: flex;
+
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+.playerRowStats {
+  display: flex;
+
+  gap: var(--player-list-card-stats-horizontal-gap);
+
+  align-items: center;
+  justify-content: flex-end;
+
+  min-width: var(--player-list-card-stats-min-width-sizing);
+}
+
+.jersey,
+.fallbackJersey {
+  width: var(--player-list-card-jersey-sizing);
+  height: var(--player-list-card-jersey-sizing);
+}
+
+.playerPositionAndNumber {
+  font: var(--player-list-card-supporting-text-typography);
+  color: var(--player-list-card-supporting-text-colour);
+}
+
+.playerStatsIcon {
+  width: var(--player-list-card-stats-icon-sizing);
+  height: var(--player-list-card-stats-icon-sizing);
+}
+
+.playerStatsIconDisabled {
+  fill: var(--player-list-card-supporting-text-colour);
+}
+
+.playerStatValue {
+  overflow: hidden;
+
+  font: var(--player-list-card-supporting-text-typography);
+  text-overflow: ellipsis;
+}
+
+.labelDisabled {
+  color: var(--player-list-card-disabled-label-colour);
+}

@@ -1,0 +1,10 @@
+"__typename": "StatsLineupsCard",
+"urn": "{{urn}}{{^urn}}ppb:tbd:stats:card:lineups:1{{/urn}}",
+"footballPlayerViewLinks": null,
+"hasFormationInfo": {{#if hasFormationInfo}}true{{else}}false{{/if}},
+"status": "{{status}}{{^status}}PRE_MATCH{{/status}}",
+{{#with fixture}}
+"fixture": {
+  {{> bff-fixture}}
+}
+{{/with}}

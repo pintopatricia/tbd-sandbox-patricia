@@ -1,0 +1,24 @@
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:extraWalletCard:22294781090{{/urn}}",
+"badges": [
+{{#each badges}}
+  "{{this}}"
+  {{#unless @last}},{{/unless}}
+{{/each}}
+],
+{{#with extraWallet}}
+"extraWallet": {
+  {{> bff-extra-wallet}}
+},
+{{/with}}
+{{#if restrictions}}
+  "restrictions": {
+    {{#with restrictions}}
+      "single": {{#if (defined single)}}{{single}}{{else}}false{{/if}},
+      "acca": {{#if (defined acca)}}{{acca}}{{else}}false{{/if}},
+      "sameGameMulti": {{#if (defined sameGameMulti)}}{{sameGameMulti}}{{else}}false{{/if}},
+      "__typename": "WalletRestrictions"
+    {{/with}}
+  },
+{{/if}}
+"__typename": "ExtraWalletCard"
+

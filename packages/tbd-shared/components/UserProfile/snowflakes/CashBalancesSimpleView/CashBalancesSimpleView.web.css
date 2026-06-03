@@ -1,0 +1,40 @@
+.cashBalanceSimpleViewContainer {
+  display: flex;
+
+  gap: var(--cash-balances-simple-view-horizontal-gap);
+}
+
+.title {
+  font: var(--cash-balances-simple-view-label-typography);
+  color: var(--cash-balances-simple-view-text-label-colour);
+  text-decoration-line: var(--cash-balances-simple-view-label-typography-text-decoration-line);
+  text-transform: var(--cash-balances-simple-view-label-typography-text-transform);
+  letter-spacing: var(--cash-balances-simple-view-label-typography-letter-spacing);
+}
+
+.cashBalanceSimpleViewContainer > div {
+  display: flex;
+
+  flex: 1;
+  flex-direction: column;
+
+  gap: var(--cash-balances-simple-view-vertical-gap);
+
+  justify-content: space-between;
+}
+
+.amount {
+  font: var(--cash-balances-simple-view-content-text-highlighted-typography);
+  color: var(--cash-balances-simple-view-text-content-highlighted-colour);
+  text-decoration-line: var(--cash-balances-simple-view-content-text-highlighted-typography-text-decoration-line);
+  text-transform: var(--cash-balances-simple-view-content-text-highlighted-typography-text-transform);
+  letter-spacing: var(--cash-balances-simple-view-content-text-highlighted-typography-letter-spacing);
+}
+
+.hiddenContent {
+  font: var(--cash-balances-simple-view-hidden-content-text-typography);
+  color: var(--cash-balances-simple-view-text-hidden-content-text-colour);
+  text-decoration-line: var(--cash-balances-simple-view-hidden-content-text-typography-text-decoration-line);
+  text-transform: var(--cash-balances-simple-view-hidden-content-text-typography-text-transform);
+  letter-spacing: var(--cash-balances-simple-view-hidden-content-text-typography-letter-spacing);
+}

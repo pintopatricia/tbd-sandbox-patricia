@@ -1,0 +1,28 @@
+/* stylelint-disable-next-line block-no-empty -- this is needed to be used as selector */
+.betInfoCollapse {
+}
+
+.betInfoHeader {
+  display: flex;
+
+  gap: var(--card-header-horizontal-gap);
+
+  align-items: center;
+  align-self: stretch;
+
+  padding: var(--card-header-small-full-width-padding);
+
+  color: var(--card-title-colour);
+  text-transform: uppercase;
+}
+
+.betInfoHeaderTitle {
+  flex: 1 0 0;
+
+  font: var(--card-header-small-title-typography);
+}
+
+.betInfoHeaderIcon {
+  width: var(--card-header-icon-sizing);
+  height: var(--card-header-icon-sizing);
+}

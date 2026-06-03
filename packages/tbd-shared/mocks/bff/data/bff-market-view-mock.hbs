@@ -1,0 +1,26 @@
+{
+	"data": {
+		"View": {
+			"__typename": "MarketView",
+			"urn": "{{urn}}{{^urn}}ppb:tbd:view:market:1.123456789{{/urn}}",
+			"url": "{{url}}{{^url}}/football/friendly-matches/rsm-hodonin-v-h-slavia-kromeriz/match-odds/m-1.123456789{{/url}}",
+			"mainMarket": {
+				{{> bff-market mainMarket}}
+			},
+			"leftSidebar": {
+				{{> bff-leftside-bar }}
+			},
+			"items": {
+				"pageInfo": null,
+				{{> bff-items }}
+			},
+			"partialItems": {
+				"pageInfo": null,
+				{{> bff-partial-items }}
+			},
+			"bottomBar": {
+				{{> bff-bottom-bar-tiles }}
+			}
+		}
+	}
+}

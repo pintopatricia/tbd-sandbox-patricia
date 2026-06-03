@@ -1,0 +1,32 @@
+# .github/actions/download-artifactory/action.yml
+name: "Download from artifactory"
+description: "Download an artifact from internal JFrog Artifactory"
+inputs:
+  artifactory_path:
+    description: "Path to artifact to download from artifactory"
+    required: true
+  path:
+    description: "Path to where the artifact should be saved"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install JFrog CLI
+      uses: jfrog/setup-jfrog-cli@v4
+    - name: Setup JFrog CLI
+      shell: bash
+      run: |
+        echo "::add-mask::$ART_USERNAME"
+        echo "::add-mask::$ART_PASSWORD"
+        jfrog config add \
+          --url https://artifactory-prd.prd.betfair/ \
+          --user $ART_USERNAME \
+          --password $ART_PASSWORD
+    - name: Publish to Artifactory
+      shell: bash
+      run: |
+        jfrog rt download --flat ${{inputs.artifactory_path}} "${{inputs.path}}"
+      env:
+        JFROG_CLI_REPORT_USAGE: false
+        JFROG_CLI_BUILD_NAME: tbd-native

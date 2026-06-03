@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+
+  flex: 1;
+  flex-direction: column;
+
+  margin-top: var(--page-vertical-gap-primary);
+
+  transition: opacity 150ms ease-out;
+
+  --race-meeting-view-fade-opacity: 0.5;
+}
+
+.container.highlighted {
+  margin-top: 0;
+}
+
+.headerHighlighted {
+  background-color: var(--page-highlighted-section-background-color);
+}
+
+@media screen and (min-width: 899px) {
+  .headerHighlighted {
+    margin: var(--sticky-header-padding-desktop);
+  }
+}
+
+.offsetContainer {
+  margin-top: var(--page-vertical-gap-primary);
+}
+
+.transitioning {
+  pointer-events: none;
+
+  opacity: var(--race-meeting-view-fade-opacity);
+}

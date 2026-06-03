@@ -1,0 +1,24 @@
+"__typename":"SegmentedCardGroup",
+"urn": "{{urn}}{{^urn}}ppb:tbd:segmented:card:group:ppb|tbd|card|group|curatedGames|segmented-zone{{/urn}}",
+{{#with full}}
+"full":{
+    {{> bff-items }}
+},
+{{/with}}
+"partials":{
+    "edges": [
+        {{#with partials}}
+        {{#each edges}}
+            {
+            {{#with node}}
+                "node": {
+                    "__typename": "{{__typename}}{{^__typename}}GameCard{{/__typename}}",
+                    "urn": "{{urn}}{{^urn}}ppb:tbd:card:game:game-0{{/urn}}"
+                }
+            {{/with}}
+            }{{#unless @last}},{{/unless}}
+        {{/each}}
+        {{/with}}
+    ]
+},
+"title": {{#if title}}"{{title}}"{{else}}null{{/if}}

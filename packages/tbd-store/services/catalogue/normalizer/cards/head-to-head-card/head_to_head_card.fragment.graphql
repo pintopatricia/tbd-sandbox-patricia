@@ -1,0 +1,20 @@
+fragment headToHeadCard on HeadToHeadCard {
+  __typename
+  urn
+  footballFixture: fixture {
+    ...footballFixture
+    head2head {
+      home {
+        ...footballTeamForm
+      }
+      away {
+        ...footballTeamForm
+      }
+    }
+  }
+}
+
+fragment headToHeadCardPartial on HeadToHeadCard {
+  __typename
+  urn
+}

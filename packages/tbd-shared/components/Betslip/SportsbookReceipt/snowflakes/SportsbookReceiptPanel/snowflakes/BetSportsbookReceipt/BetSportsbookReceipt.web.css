@@ -1,0 +1,13 @@
+.betReceiptContainer {
+  background-color: var(--bet-sportsbook-receipt-background-color);
+}
+
+.content {
+  display: flex;
+
+  flex-direction: column;
+
+  row-gap: var(--bet-sportsbook-receipt-container-vertical-gap);
+
+  padding: var(--bet-sportsbook-receipt-container-padding);
+}

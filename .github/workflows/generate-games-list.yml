@@ -1,0 +1,48 @@
+name: Generate Games List
+run-name: Generate Games List for ${{ inputs.application }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      application:
+        description: "Application"
+        required: true
+        default: "BFSportsbook"
+        type: choice
+        options:
+          - "BFSportsbook"
+          - "SkyBet"
+
+jobs:
+  generateGamesList:
+    runs-on: ubuntu-self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch games list
+        id: fetchGamesList
+        shell: bash
+        run: |
+          echo 'Game Name,Provider,ID,URL' > ./${{ inputs.application }}-games-list.csv
+          case ${{ inputs.application }}  in
+          BFSportsbook)
+            curl -s --location 'https://gfe.betfair.com/api/gfe/aggregation-data/v1/aggregation-data?product=native-xsellexchange&urn=ppb%3Agaming%3Anative-xsellexchange%3Agame&countryCode=GB&platform=native&currencyCode=EUR&version=8&data=native-api&_ak=NativeApp&jurisdiction=international&language=en&segment=logged_out&independentZones=true' \
+            | jq -r '.response[] | (.data.display_name[0].text)|=(split(",")|join("")) | "\(.data.display_name[0].text),\(.data.provider.name),\(.data.internal_code),https://www.betfair.com/betting/casino/game/\(.uid)/g-\(.uid)"' >> ./${{ inputs.application }}-games-list.csv
+          ;;
+          SkyBet)
+            curl -s --location 'https://gfe.skybet.com/api/gfe/aggregation-data/v1/aggregation-data?product=native-sportsgaming&urn=ppb%3Agaming%3Anative-sportsgaming%3Agame&countryCode=GB&platform=native&currencyCode=EUR&version=8&data=native-api&_ak=NativeApp&jurisdiction=international&language=en&segment=logged_out&independentZones=true' \
+            | jq -r '.response[] | (.data.display_name[0].text)|=(split(",")|join("")) | "\(.data.display_name[0].text),\(.data.provider.name),\(.data.internal_code),https://skybet.com/casino/game/\(.uid)/g-\(.uid)"' >> ./${{ inputs.application }}-games-list.csv
+          ;;
+          *)
+          ;;
+          esac
+
+      - name: Save games list as artifact
+        if: steps.fetchGamesList.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: "${{ inputs.application }}-games-list.csv"
+          path: |
+            ./${{ inputs.application }}-games-list.csv
+          retention-days: 7

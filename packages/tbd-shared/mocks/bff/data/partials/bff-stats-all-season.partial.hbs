@@ -1,0 +1,30 @@
+
+{{#if averageGoalsConceded}}
+{{#with averageGoalsConceded}}
+"averageGoalsConceded": {
+  "firstHalf": {{firstHalf}}{{^firstHalf}}1{{/firstHalf}},
+  "secondHalf": {{secondHalf}}{{^secondHalf}}2{{/secondHalf}},
+  "overall": {{overall}}{{^overall}}3{{/overall}}
+},
+{{/with}}
+{{else}}
+  "averageGoalsConceded": null,
+{{/if}}
+{{#if averageGoalsScored}}
+{{#with averageGoalsScored}}
+"averageGoalsScored": {
+  "firstHalf": {{firstHalf}}{{^firstHalf}}1{{/firstHalf}},
+  "secondHalf": {{secondHalf}}{{^secondHalf}}2{{/secondHalf}},
+  "overall": {{overall}}{{^overall}}3{{/overall}}
+},
+{{/with}}
+{{else}}
+  "averageGoalsScored": null,
+{{/if}}
+{{#if averageShotsOnTarget}}
+{{#with averageShotsOnTarget}}
+"averageShotsOnTarget": {{averageShotsOnTarget}}{{^averageShotsOnTarget}}3{{/averageShotsOnTarget}}
+{{/with}}
+{{else}}
+  "averageShotsOnTarget": null
+{{/if}}

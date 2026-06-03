@@ -1,0 +1,17 @@
+{
+  "carouselContainer": "._2e67cdaa3ad00fca-carouselContainer",
+  "carouselSlider": "._2e67cdaa3ad00fca-carouselSlider",
+  "carouselItem": "._2e67cdaa3ad00fca-carouselItem",
+  "itemImages": "._2e67cdaa3ad00fca-itemImages",
+  "progressBarContainer": "._2e67cdaa3ad00fca-progressBarContainer",
+  "shadowBox": "._2e67cdaa3ad00fca-shadowBox",
+  "shadowBoxTop": "._2e67cdaa3ad00fca-shadowBoxTop",
+  "arrowContainer": "._2e67cdaa3ad00fca-arrowContainer",
+  "arrow": "._2e67cdaa3ad00fca-arrow",
+  "left": "._2e67cdaa3ad00fca-left",
+  "right": "._2e67cdaa3ad00fca-right",
+  "progressBar": "._2e67cdaa3ad00fca-progressBar",
+  "progress": "._2e67cdaa3ad00fca-progress",
+  "progressFillAnimation": "._2e67cdaa3ad00fca-progressFillAnimation",
+  "fadeIn": "._2e67cdaa3ad00fca-fadeIn"
+}

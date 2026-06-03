@@ -1,0 +1,16 @@
+{
+  "container": ".b5c2c64301512338-container",
+  "statZone": ".b5c2c64301512338-statZone",
+  "progressBar": ".b5c2c64301512338-progressBar",
+  "statZoneLabel": ".b5c2c64301512338-statZoneLabel",
+  "statZoneLabelPlaceholder": ".b5c2c64301512338-statZoneLabelPlaceholder",
+  "mainLabel": ".b5c2c64301512338-mainLabel",
+  "mainLabelPlaceholder": ".b5c2c64301512338-mainLabelPlaceholder",
+  "secondaryLabel": ".b5c2c64301512338-secondaryLabel",
+  "secondaryLabelPlaceholder": ".b5c2c64301512338-secondaryLabelPlaceholder",
+  "disabled": ".b5c2c64301512338-disabled",
+  "inverted": ".b5c2c64301512338-inverted",
+  "textZone": ".b5c2c64301512338-textZone",
+  "textZonePlaceholder": ".b5c2c64301512338-textZonePlaceholder",
+  "statZonePlaceholder": ".b5c2c64301512338-statZonePlaceholder"
+}

@@ -1,0 +1,118 @@
+.scrollable {
+  padding: var(--header-height) 0 var(--bottom-bar-height-sizing);
+  overflow-x: hidden;
+}
+
+.webWrappedVersion {
+  --bottom-bar-height-sizing: 0px;
+
+  padding: 0 0 var(--bottom-bar-height-sizing);
+  overflow-x: hidden;
+}
+
+.betslipCollapsed {
+  padding-bottom: calc(var(--bottom-bar-height-sizing) + var(--betslip-collapsed-height));
+}
+
+.overlayFadeOut {
+  animation-name: overlayFadeOutAnimation;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: var(--overlay-stack);
+
+  width: calc(100% - var(--spacing-6));
+  height: calc(100% - var(--spacing-6));
+  margin: var(--spacing-3);
+
+  background-color: var(--neutrals-background-elevation3);
+  border-radius: var(--spacing-2);
+  opacity: 1;
+}
+
+@keyframes overlayFadeOutAnimation {
+  from {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: var(--overlay-stack);
+
+    width: 100%;
+    height: 100%;
+    margin: 0;
+
+    background-color: var(--neutrals-background-elevation3);
+    border-radius: 0;
+    opacity: 0;
+  }
+
+  to {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: var(--overlay-stack);
+
+    width: calc(100% - var(--spacing-6));
+    height: calc(100% - var(--spacing-6));
+    margin: var(--spacing-3);
+
+    background-color: var(--neutrals-background-elevation3);
+    border-radius: var(--spacing-2);
+    opacity: 1;
+  }
+}
+
+.scrollableFadeOut {
+  width: 100%;
+  height: 100%;
+  padding: var(--header-height) 0 var(--spacing-3);
+  overflow: hidden scroll;
+
+  animation-name: scrollableFadeOutAnimation;
+  animation-duration: 0.6s;
+  animation-iteration-count: 1;
+}
+
+@keyframes scrollableFadeOutAnimation {
+  from {
+    padding-top: 0;
+    padding-right: 0;
+    padding-left: 0;
+
+    visibility: visible;
+  }
+
+  to {
+    padding-top: var(--spacing-3);
+    padding-right: var(--spacing-3);
+    padding-left: var(--spacing-3);
+
+    visibility: hidden;
+  }
+}
+
+.overlayed {
+  margin: var(--spacing-3);
+
+  border-radius: 8px;
+}
+
+.fullHeightContainer {
+  display: flex;
+
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}

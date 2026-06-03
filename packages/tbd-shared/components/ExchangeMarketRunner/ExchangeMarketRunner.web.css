@@ -1,0 +1,94 @@
+.buttonColumnContainer {
+  display: flex;
+
+  flex-direction: column;
+  flex-shrink: 0;
+
+  align-items: flex-end;
+}
+
+.spacingDiv {
+  height: 20px;
+}
+
+.runner {
+  padding-right: var(--spacing-3);
+  padding-left: var(--spacing-3);
+}
+
+.horseRacingRunner {
+  padding-right: var(--spacing-3);
+}
+
+.marketDepthButtonsContainer > button {
+  height: var(--bet-button-height);
+  margin-right: var(--gutter-1);
+}
+
+.marketDepthButtonsContainer {
+  display: flex;
+}
+
+.marketDepthButtonsContainer > button:first-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.marketDepthButtonsContainer > button:last-child {
+  margin-right: 0;
+
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.marketDepthButtonsContainer.racingRunner {
+  padding-left: var(--spacing-3);
+}
+
+.exchangeButtonsContainer {
+  display: flex;
+
+  flex-shrink: 0;
+
+  width: calc((var(--bet-button-width) * 2) + 1px);
+  min-height: var(--bet-button-height);
+  overflow: hidden;
+}
+
+.exchangeButtonsContainer.racingRunner {
+  border-radius: 4px;
+}
+
+.exchangeButtonsContainer button:last-child {
+  margin-left: var(--gutter-1);
+}
+
+.runnerBase:not(:first-child) {
+  margin-top: var(--gutter-1);
+}
+
+.horseRacingRunner:not(:first-child) {
+  margin-top: var(--spacing-half);
+}
+
+.runnerBase:first-child .exchangeButtonsContainer {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.runnerBase:last-child .exchangeButtonsContainer {
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.nonRunnerContainer {
+  display: flex;
+
+  flex-shrink: 0;
+
+  align-items: center;
+
+  min-height: var(--bet-button-height);
+  margin-left: var(--spacing-2);
+  overflow: hidden;
+}

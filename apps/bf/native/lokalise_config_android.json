@@ -1,0 +1,33 @@
+{
+  "projects": [
+    {
+      "vault": {
+        "tla": "tbd",
+        "az": "common",
+        "key": "lokalise_token",
+        "ssl_verify": "false",
+        "version": "v2"
+      },
+      "name": "TBD",
+      "id": "426345265d711a67111c26.23925347",
+      "deploy_paths": ["./android/app/src/main/res"],
+      "options": {
+        "format": "xml",
+        "original_filenames": false,
+        "replace_breaks": false,
+        "bundle_structure": "values-%LANG_ISO%/strings.xml",
+        "export_sort": "a_z",
+        "export_empty_as": "base",
+        "include_comments": false,
+        "include_description": false,
+        "filter_langs": ["da", "de", "en", "en_GB", "es", "es_419", "fi", "hu", "it", "no", "pt_BR", "ro", "ru", "sv"],
+        "language_mapping": [
+          {
+            "original_language_iso": "es_419",
+            "custom_language_iso": "es-rUS"
+          }
+        ]
+      }
+    }
+  ]
+}

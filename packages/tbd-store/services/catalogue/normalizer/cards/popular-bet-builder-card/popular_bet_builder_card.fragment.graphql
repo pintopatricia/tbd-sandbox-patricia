@@ -1,0 +1,26 @@
+fragment popularBetBuilderCard on PopularBetBuilderCard {
+  __typename
+  urn
+  sportevent {
+    ...sportEvent
+  }
+  fixture {
+    ...fixture
+  }
+  popularbettingopportunity {
+    ...popularBettingOpportunity
+  }
+  viewLink {
+    viewUrn
+    viewUrl
+  }
+  tabViewLink {
+    viewUrn
+    viewUrl
+  }
+}
+
+fragment popularBetBuilderCardPartial on PopularBetBuilderCard {
+  __typename
+  urn
+}

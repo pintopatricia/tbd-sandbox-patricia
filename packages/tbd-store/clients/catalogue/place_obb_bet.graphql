@@ -1,0 +1,57 @@
+mutation PlaceObbBet(
+  $requestInput: PlaceBetRequestInput!
+  $throttlesOn: [String!]
+  $throttlesOff: [String!]
+  $productExclusions: [ProductExclusion!]
+)
+@productExclusions(productExclusions: $productExclusions)
+@throttlesOn(throttlesOn: $throttlesOn)
+@throttlesOff(throttlesOff: $throttlesOff) {
+  obbPlaceBet(requestInput: $requestInput) {
+    betPlacementsResult {
+      id
+      result {
+        resultCode
+        errorDetails
+        legResults {
+          resultCode
+          errorDetails
+        }
+      }
+      betDetails {
+        id
+        receiptId
+        betType
+        placedDate
+        price {
+          decimal
+          fractional {
+            numerator
+            denominator
+          }
+        }
+        stake
+        stakePerLine
+        potentialPayout
+        currency
+        outcomeBasedLegs {
+          price {
+            decimal
+            fractional {
+              numerator
+              denominator
+            }
+          }
+          eventId {
+            id
+            supplier
+          }
+        }
+      }
+    }
+    result {
+      resultCode
+      errorDetails
+    }
+  }
+}

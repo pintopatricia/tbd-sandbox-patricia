@@ -1,0 +1,11 @@
+fragment forbiddenContentCard on ForbiddenContentCard {
+  __typename
+  urn
+  forbiddenCardType
+}
+
+fragment forbiddenContentCardPartial on ForbiddenContentCard {
+  __typename
+  urn
+  forbiddenCardType
+}

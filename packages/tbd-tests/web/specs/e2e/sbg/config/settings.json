@@ -1,0 +1,18 @@
+{
+  "settingsPosition": 3,
+
+  "settings": [
+    {
+      "name": "Decimal",
+      "index": 1,
+      "regex": "^(?!0+(?:\\.0+)?$)\\d+(\\.\\d+)?$",
+      "testKey": "PRPI-659"
+    },
+    {
+      "name": "Fractional",
+      "index": 0,
+      "regex": "/",
+      "testKey": "PRPI-786"
+    }
+  ]
+}

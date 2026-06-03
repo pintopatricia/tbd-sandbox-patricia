@@ -1,0 +1,38 @@
+.scrollableConfirm {
+  display: flex;
+
+  max-height: calc(var(--vh) - var(--header-height) - var(--betslip-top-offset) - var(--expandable-handle-height));
+}
+
+.scrollableConfirmDesktop {
+  flex-grow: 1;
+
+  max-height: calc(
+    var(--vh) - var(--ssc-desktop-header-placeholder-height) - var(--betslip-top-offset) - var(--spacing-8) -
+      var(--spacing-half) - var(--expandable-handle-height)
+  );
+
+  background-color: var(--components-neutrals-bottomsheet-background-elevation1);
+  border-radius: 0 0 8px 8px;
+}
+
+.editButtonContainer {
+  width: 100px;
+}
+
+@supports (max-height: 100svh) {
+  .scrollableConfirm {
+    max-height: calc(100svh - var(--header-height) - var(--betslip-top-offset) - var(--expandable-handle-height));
+  }
+
+  .scrollableConfirmDesktop {
+    max-height: calc(
+      100svh - var(--ssc-desktop-header-placeholder-height) - var(--betslip-top-offset) - var(--spacing-8) -
+        var(--spacing-half) - var(--expandable-handle-height)
+    );
+  }
+}
+
+.notificationsListContainer {
+  margin-bottom: var(--spacing-2);
+}

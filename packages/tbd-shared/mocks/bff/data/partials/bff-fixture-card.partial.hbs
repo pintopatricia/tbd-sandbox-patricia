@@ -1,0 +1,25 @@
+"__typename": "{{__typename}}{{^__typename}}FixtureCard{{/__typename}}",
+"availableToSubscribe": {{availableToSubscribe}}{{^availableToSubscribe}}true{{/availableToSubscribe}},
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:fixture:29359895{{/urn}}",
+"fixture": {
+  {{#ifEquals fixture.__typename "BaseFixture"}}
+    {{> bff-base-fixture fixture}}
+  {{else}}
+    {{> bff-fixture fixture}}
+  {{/ifEquals}}
+},
+"sportevent": {
+  {{> bff-sportevent sportevent}}
+},
+"away": "Wolves",
+"home": "Man Utd",
+{{#if fixtureEventViewLink}}
+"fixtureEventViewLink": {
+  {{#with fixtureEventViewLink}}
+    "viewUrn":"{{viewUrn}}",
+    "viewUrl":"{{viewUrl}}"
+  {{/with}}
+}
+{{else}}
+"fixtureEventViewLink": null
+{{/if}}

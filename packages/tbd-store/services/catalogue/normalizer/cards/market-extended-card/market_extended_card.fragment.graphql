@@ -1,0 +1,53 @@
+fragment marketExtendedCard on MarketExtendedCard {
+  __typename
+  urn
+  cardTitle: title
+  numberOfItemsToDisplay
+  viewLinks {
+    viewUrn
+    viewUrl
+  }
+  displayRunners {
+    exchange {
+      market {
+        ...exchangeMarketLiveData
+      }
+      runners {
+        runnerURN
+      }
+    }
+    sportsbook {
+      market {
+        ...sportsbookMarketLiveData
+      }
+      runners {
+        runnerURN
+      }
+    }
+  }
+  cashoutQuotes {
+    exchangeCashoutQuotes {
+      ...exchangeCashoutQuote
+    }
+  }
+  runnerViewLinks {
+    runnerUrn
+    viewUrl
+    viewUrn
+  }
+  isRunnerExpandable
+  raceViewLink {
+    viewUrn
+    viewUrl
+  }
+  marketPromo: promotion {
+    title
+    description
+    signposting
+  }
+}
+
+fragment marketExtendedCardPartial on MarketExtendedCard {
+  __typename
+  urn
+}

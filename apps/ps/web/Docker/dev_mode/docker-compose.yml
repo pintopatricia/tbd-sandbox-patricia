@@ -1,0 +1,37 @@
+version: "3.4"
+name: tbdps
+services:
+  http-webserver:
+    image: docker.app.betfair/ppb/tbd/bff/http-webserver:latest
+    restart: always
+    volumes:
+      - ${PWD}/../../../apps/tbd-http-webserver/config/certificates:/etc/bf-fabric/certificates/
+      - ${PWD}/../../../apps/tbd-http-webserver/config/webserver-config-http-ps-qa.json:/etc/bf-fabric/config-http.json
+      - ${PWD}/../../../apps/tbd-http-webserver/lib/config/environment.json:/fabric/deploy/tbd-http-webserver/dist/tbd-http-webserver-v1/lib/config/environment.json:ro
+      - ${PWD}/../../../apps/tbd-http-webserver/lib/config/environment-backend.json:/fabric/deploy/tbd-http-webserver/dist/tbd-http-webserver-v1/lib/config/environment-backend.json
+      - tbd-assets:/var/tmp/webserver/tbd-assets
+  webserver:
+    image: ppb/tbdps/web/dev/webserver
+    ports:
+      - "9001:9001"
+    build:
+      context: ${PWD}/../../../
+      dockerfile: apps/ps/web/Docker/dev_mode/Dockerfile
+      args:
+        - GITHUB_TOKEN=${GITHUB_TOKEN}
+        - MONTEROSA_TOKEN=${MONTEROSA_TOKEN}
+    restart: always
+    volumes:
+      - ${PWD}/../../../yarn.lock:/usr/app/yarn.lock
+      - ${PWD}/../web:/usr/app/apps/ps/web
+      - ${PWD}/../../../packages/tbd-router:/usr/app/packages/tbd-router
+      - ${PWD}/../../../packages/tbd-shared:/usr/app/packages/tbd-shared
+      - ${PWD}/../../../packages/tbd-store:/usr/app/packages/tbd-store
+      # bookmark node_modules folders for avoiding adding the following list of directories to the Docker Volume
+      - /usr/app/packages/tbd-router/node_modules
+      - /usr/app/packages/tbd-shared/node_modules
+      - /usr/app/packages/tbd-store/node_modules
+      # "tbd-assets" named volume to share with other services/containers (such as "http-webserver")
+      - tbd-assets:/usr/app/apps/ps/web/dist
+volumes:
+  tbd-assets:

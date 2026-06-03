@@ -1,0 +1,17 @@
+fragment imsPromotionStateCard on ImsPromotionStateCard {
+  __typename
+  urn
+  title
+  promotion {
+    ...imsPromotion
+  }
+  depositLink {
+    viewUrn
+    viewUrl
+  }
+}
+
+fragment imsPromotionStateCardPartial on ImsPromotionStateCard {
+  __typename
+  urn
+}

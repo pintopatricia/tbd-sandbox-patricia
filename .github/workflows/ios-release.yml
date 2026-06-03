@@ -1,0 +1,171 @@
+name: iOS Release
+run-name: "iOS Release [ios_release-${{ inputs.brand }}-${{ inputs.ios_build_number }}]"
+on:
+  workflow_dispatch:
+    inputs:
+      brand:
+        description: 'Native brand to build'
+        type: choice
+        required: true
+        options:
+          - bf
+          - sbg
+        default: bf
+      ios_build_number:
+        description: 'iOS build number'
+        type: string
+        required: true
+      app_version_number:
+        description: 'iOS app version number'
+        type: string
+        required: true
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_26.2.app/Contents/Developer
+  RELEASE_MATCH_KEYCHAIN_NAME_BF: ${{ secrets.RELEASE_MATCH_KEYCHAIN_NAME_BF }}
+  RELEASE_MATCH_KEYCHAIN_NAME_SBG: ${{ secrets.RELEASE_MATCH_KEYCHAIN_NAME_SBG }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  MONTEROSA_TOKEN: ${{ secrets.MONTEROSA_TOKEN }}
+  MONTEROSA_USER: ${{secrets.MONTEROSA_USER}}
+  FB_APP_ID_BF: ${{ secrets.FB_APP_ID_BF }}
+  FB_APP_ID_SBG: ${{ secrets.FB_APP_ID_SBG }}
+  FIREBASE_CI_KEY: ${{ secrets.FIREBASE_CI_KEY }}
+  MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+  MATCH_KEYCHAIN_PASSWORD_BF: ${{ secrets.MATCH_KEYCHAIN_PASSWORD_BF }}
+  MATCH_KEYCHAIN_PASSWORD_SBG: ${{ secrets.MATCH_KEYCHAIN_PASSWORD_SBG }}
+  FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+  APP_STORE_CONNECT_API_KEY_ID_SBG: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID_SBG}}
+  APP_STORE_CONNECT_API_ISSUER_ID_SBG: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID_SBG }}
+  APP_STORE_CONNECT_API_KEY_CONTENT_SBG: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT_SBG }}
+  APP_STORE_CONNECT_API_KEY_ID_BF: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID_BF}}
+  APP_STORE_CONNECT_API_ISSUER_ID_BF: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID_BF }}
+  APP_STORE_CONNECT_API_KEY_CONTENT_BF: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT_BF }}
+  SLACK_RELEASE_WEBHOOK_URL: ${{ secrets.SLACK_RELEASE_WEBHOOK_URL }}
+  IOS_BUILD_NUMBER: ${{ inputs.ios_build_number }}
+  APP_VERSION_NUMBER: ${{ inputs.app_version_number }}
+  IS_GH: true
+jobs:
+  build-and-deploy:
+    runs-on: macos-latest
+    steps:
+      - name: Set artifact name
+        id: set-artifact-name
+        run: |
+          if [[ "${{ inputs.brand }}" == "sbg" ]]; then
+            echo "artifact_name=SkyBet.ipa" >> $GITHUB_OUTPUT
+          else
+            echo "artifact_name=Betfair.ipa" >> $GITHUB_OUTPUT
+          fi
+      - name: Get Cross-Repo App Token
+        id: app
+        uses: Flutter-Tech/github-app-token@v2
+        with:
+          APP_PEM: ${{ secrets.CROSS_REPO_CONTENTS_ACCESS_PEM }}
+          APP_ID: 211263
+          APP_INSTALLATION_ID: 26559618
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ios_build_number }}-ios_${{ inputs.brand }}_releasable
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Cache node dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Setup Ruby
+        run: |
+          brew install ruby-build
+          ruby-build 3.2.2 /Users/runner/hostedtoolcache/Ruby/3.2.2/arm64
+          touch /Users/runner/hostedtoolcache/Ruby/3.2.2/arm64.complete
+
+      - name: Setup ruby (cached)
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+          bundler-cache: true
+
+      - name: Install CocoaPods
+        run: sudo gem install cocoapods -v 1.15.2
+
+      - name: Install fastlane
+        run: sudo gem install fastlane -v 2.232.2
+
+      - name: Add FB ID
+        run: |
+          if [ "${{ inputs.brand }}" = "bf" ]; then
+            FB_APP_ID="$FB_APP_ID_BF"
+          else
+            FB_APP_ID="$FB_APP_ID_SBG"
+          fi
+          sed -i "" "s/FACEBOOK_APP_ID/$FB_APP_ID/g" "apps/${{ inputs.brand }}/native/ios/tbd_native/Info.plist"
+        shell: bash
+
+      - name: Install dependencies
+        run: yarn install --immutable-cache
+
+      - name: Prepare
+        run: |
+          yarn prepare
+
+      - name: Configure Firebase
+        run: |
+          cd apps/${{ inputs.brand }}/native
+          yarn configureFirebase release
+
+      - name: Make .netrc file
+        run: |
+          rm -f ~/.netrc
+          touch ~/.netrc
+          echo 'machine api.github.com' >> ~/.netrc
+          echo 'login github_app' >> ~/.netrc
+          echo 'password ${{ steps.app.outputs.app_token }}' >> ~/.netrc
+          echo 'machine github.com' >> ~/.netrc
+          echo 'login github_app' >> ~/.netrc
+          echo 'password ${{ steps.app.outputs.app_token }}' >> ~/.netrc
+          echo 'machine gitlab.com' >> ~/.netrc
+          echo 'login ${{ env.MONTEROSA_USER }}' >> ~/.netrc
+          echo 'password ${{ env.MONTEROSA_TOKEN }}' >> ~/.netrc
+          chmod 600 ~/.netrc
+        shell: bash
+
+      - name: Install Pods
+        run: |
+          cd apps/${{ inputs.brand }}/native/ios
+          bundle install
+          bundle exec pod install --repo-update
+
+      - name: Build and deploy
+        run: |
+          if [ "${{ inputs.brand }}" = "bf" ]; then
+            export MATCH_KEYCHAIN_PASSWORD="$MATCH_KEYCHAIN_PASSWORD_BF"
+            export MATCH_KEYCHAIN_NAME="$RELEASE_MATCH_KEYCHAIN_NAME_BF"
+            export APP_STORE_CONNECT_API_KEY_ID="$APP_STORE_CONNECT_API_KEY_ID_BF"
+            export APP_STORE_CONNECT_API_ISSUER_ID="$APP_STORE_CONNECT_API_ISSUER_ID_BF"
+            export APP_STORE_CONNECT_API_KEY_CONTENT="$APP_STORE_CONNECT_API_KEY_CONTENT_BF"
+          else
+            export MATCH_KEYCHAIN_PASSWORD="$MATCH_KEYCHAIN_PASSWORD_SBG"
+            export MATCH_KEYCHAIN_NAME="$RELEASE_MATCH_KEYCHAIN_NAME_SBG"
+            export APP_STORE_CONNECT_API_KEY_ID="$APP_STORE_CONNECT_API_KEY_ID_SBG"
+            export APP_STORE_CONNECT_API_ISSUER_ID="$APP_STORE_CONNECT_API_ISSUER_ID_SBG"
+            export APP_STORE_CONNECT_API_KEY_CONTENT="$APP_STORE_CONNECT_API_KEY_CONTENT_SBG"
+          fi
+          cd apps/${{ inputs.brand }}/native/ios
+          RESOURCES_VERSION=$(/usr/libexec/PlistBuddy -c "Print :GamingSettings:ResourcesVersion" ./tbd_native/Info.release.plist | tr -d "[:space:]")
+          SHOULD_USE_WEB_VIEW_LAUNCH=$(/usr/libexec/PlistBuddy -c "Print :GamingSettings:WebViewLaunch" ./tbd_native/Info.release.plist | tr -d "[:space:]")
+          export SHOULD_USE_WEB_VIEW_LAUNCH="$SHOULD_USE_WEB_VIEW_LAUNCH"
+          bundle exec fastlane release --env prod resourcesVersion:"$RESOURCES_VERSION"
+      - name: Upload Realease iPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: "${{ steps.set-artifact-name.outputs.artifact_name }}"
+          path: "apps/${{ inputs.brand }}/native/ios/${{ steps.set-artifact-name.outputs.artifact_name }}"
+          retention-days: 30

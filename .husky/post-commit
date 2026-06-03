@@ -1,0 +1,3 @@
+# .husky/post-commit
+
+sh tools/ci/main_orchestrator_dry_run.sh husky

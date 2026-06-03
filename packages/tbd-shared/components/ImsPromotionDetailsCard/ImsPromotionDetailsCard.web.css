@@ -1,0 +1,9 @@
+.container {
+  margin: 0;
+}
+
+.title {
+  margin-bottom: var(--spacing-2);
+
+  color: var(--neutrals-text-default);
+}

@@ -1,0 +1,24 @@
+"__typename": "{{__typename}}{{^__typename}}BasketballFixture{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:fixture:31237287{{/urn}}",
+"id": "{{id}}{{^id}}123456789{{/id}}",
+"runnerNames": {{#if runnerNames}}{
+  "home": "{{runnerNames.home}}{{^runnerNames.home}}New York Knicks{{/runnerNames.home}}",
+  "away": "{{runnerNames.away}}{{^runnerNames.away}}Philadelphia 76ers{{/runnerNames.away}}"
+}{{else}}null{{/if}},
+"isAmericanFormat": {{#unless isAmericanFormat}}false{{else}}true{{/unless}},
+"clock": {
+  "period": "{{periodClock}}{{^periodClock}}PERIOD_1{{/periodClock}}",
+  "segment": "{{segmentClock}}{{^segmentClock}}Q1{{/segmentClock}}",
+  "timeElapsed": "{{timeElapsedClock}}{{^timeElapsedClock}}498{{/timeElapsedClock}}",
+  "timeRemaining": {{#if timeRemainingClock includeZero=true}}"{{timeRemainingClock}}"{{else}}null{{/if}}
+},
+"score": {
+    "home": {{homeScore}}{{^homeScore}}33{{/homeScore}},
+    "away": {{awayScore}}{{^awayScore}}22{{/awayScore}}
+},
+"periodScores": [
+  {{#each periodScores}}
+    { {{> bff-basketball-period-scores}} }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+]

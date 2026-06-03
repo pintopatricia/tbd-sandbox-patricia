@@ -1,0 +1,12 @@
+"minStake": {{minStake}},
+"maxStake": {{maxStake}},
+"maxPayout": {{maxPayout}},
+"minStakeIncrement": {{minStakeIncrement}},
+"currency": "{{currency}}{{^currency}}GBP{{/currency}}",
+"price": {
+  {{#with price}}
+    {{> bff-sportsbook-odds }}
+  {{/with}}
+},
+"__typename": "{{__typename}}{{^__typename}}ImplyDetails{{/__typename}}"
+

@@ -1,0 +1,13 @@
+web/specs/e2e/**/config/**/login-local.json
+native/specs/e2e/**/config/**/login-local.json
+utils/xray-lint/config/jira.json
+native/specs/visual/**/config/**/download-baselines.json
+native/specs/visual/actual/**
+native/specs/visual/diff/**
+native/specs/visual/diff-waitUntilImageEquals/**
+native/specs/visual/baselines/tbd-native-visual-tests-baseline/**
+
+# Visual Tests
+web/specs/visual/actual/**
+web/specs/visual/diff/**
+web/specs/visual/diff-waitUntilImageEquals/**

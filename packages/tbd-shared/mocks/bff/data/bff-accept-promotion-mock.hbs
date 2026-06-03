@@ -1,0 +1,16 @@
+{
+  "data":{
+    "acceptPromotion":{
+      "responseCode": {{responseCode}}{{^responseCode}}0{{/responseCode}},
+      "responseMessage": null,
+      {{#if promotion}}
+      {{#with promotion}}
+        "promotion":
+        { {{> bff-ims-promotion }} }
+      {{/with}}
+      {{else}}
+        "promotion": null
+      {{/if}}
+    }
+  }
+}

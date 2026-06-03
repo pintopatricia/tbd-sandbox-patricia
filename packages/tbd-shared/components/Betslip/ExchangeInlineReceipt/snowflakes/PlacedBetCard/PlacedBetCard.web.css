@@ -1,0 +1,20 @@
+/* stylelint-disable-next-line block-no-empty -- this is needed to be used as selector */
+.card {
+}
+
+.header {
+  margin-bottom: var(--sm-spacing-x-small);
+}
+
+.results:not(:last-child) {
+  margin-bottom: var(--spacing-2);
+}
+
+.freeBets {
+  margin-right: var(--spacing-2);
+  margin-left: var(--spacing-2);
+}
+
+.freeBets:not(:last-child) {
+  margin-bottom: var(--spacing-2);
+}

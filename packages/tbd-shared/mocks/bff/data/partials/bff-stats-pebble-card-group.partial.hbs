@@ -1,0 +1,39 @@
+"__typename": "StatsPebbleCardGroup",
+"urn": "{{urn}}{{^urn}}ppb:tbd:stats:cardgroup:pebble:1{{/urn}}",
+"selectedItemUrn": "{{selectedItemUrn}}{{^selectedItemUrn}}ppb:tbd:stats:card:form:1{{/selectedItemUrn}}",
+"status": "{{status}}{{^status}}PRE_MATCH{{/status}}",
+{{#with full}}
+"full":{
+  "__typename":"PebbleLayoutItemsConnection",
+  {{> bff-items }}
+},
+{{/with}}
+{{#with partials}}
+"partials":{
+  "__typename":"PebbleLayoutItemsConnection",
+  "edges":[
+    {{#each edges}}
+    {
+      "__typename":"{{typename}}{{^typename}}PebbleCardEdge{{/typename}}",
+      "type":"{{type}}{{^type}}FORM{{/type}}",
+      {{#if displayName}}
+      {{#with displayName}}
+      "displayName": {
+        "__typename":"{{__typename}}{{^__typename}}DisplayNameTranslationKey{{/__typename}}",
+        "translationKey":{{#if translationKey}}"{{translationKey}}"{{else}}null{{/if}}
+      },
+      {{/with}}
+      {{else}}
+      "displayName": null,
+      {{/if}}
+      {{#with node}}
+      "node":{
+        "__typename":"{{__typename}}{{^__typename}}StatsFormCard{{/__typename}}",
+        "urn":"{{urn}}{{^urn}}ppb:tbd:stats:card:form:1{{/urn}}"
+      }
+      {{/with}}
+    }{{#unless @last}},{{/unless}}
+    {{/each}}
+  ]
+}
+{{/with}}

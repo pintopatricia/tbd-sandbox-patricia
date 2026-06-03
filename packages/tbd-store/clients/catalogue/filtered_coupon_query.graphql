@@ -1,0 +1,24 @@
+query FilteredCoupon(
+  $urn: [URN!]!
+  $preferences: LayoutPreferencesInput
+  $productExclusions: [ProductExclusion!]
+  $filteredCouponFilterBy: FilteredCouponFilterBy
+  $futureRacingFilterBy: FutureRacingFilterBy
+  $racesByTimeRangeFilterBy: ByTimeRangeFilterBy
+  $numberOfFilledCardsInCardGroup: Int!
+  $sortBy: FilteredGroupSort
+  $experiments: [ExperimentsInput!]
+  $throttlesOn: [String!]
+  $throttlesOff: [String!]
+)
+@preferences(preferences: $preferences)
+@productExclusions(productExclusions: $productExclusions)
+@experiments(experiments: $experiments)
+@throttlesOn(throttlesOn: $throttlesOn)
+@throttlesOff(throttlesOff: $throttlesOff) {
+  Cards(cardsURN: $urn) {
+    ...filteredCouponCardGroupWithItemsFiltered
+    ...futureRacingCardGroupWithItemsFiltered
+    ...racesByTimeRangeCardGroupWithItemsFiltered
+  }
+}

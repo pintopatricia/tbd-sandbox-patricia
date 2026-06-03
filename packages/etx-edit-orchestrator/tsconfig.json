@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    /* Modules */
+    "module": "commonjs",
+
+    /* Emit */
+    "declaration": true,
+    "noEmit": false,
+    "outDir": "dist/es6",
+
+    /* Language and Environment */
+    "lib": ["es2019"],
+    "target": "es6"
+  },
+  "include": ["src/**/*.ts"]
+}

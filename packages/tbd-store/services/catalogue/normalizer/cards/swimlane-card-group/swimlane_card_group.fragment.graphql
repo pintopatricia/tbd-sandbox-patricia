@@ -1,0 +1,27 @@
+fragment swimlaneCardGroup on SwimlaneCardGroup {
+  __typename
+  urn
+  cardGroupTitle: title
+  displayName {
+    translationKey
+  }
+  viewAll {
+    label
+    icon
+    viewLink {
+      viewUrn
+      viewUrl
+    }
+  }
+  full: items(first: $numberOfFilledCardsInCardGroup) {
+    ...fullCardGroupItems
+  }
+  partials: items {
+    ...partialsCardGroupItems
+  }
+}
+
+fragment swimlaneCardGroupPartial on SwimlaneCardGroup {
+  __typename
+  urn
+}

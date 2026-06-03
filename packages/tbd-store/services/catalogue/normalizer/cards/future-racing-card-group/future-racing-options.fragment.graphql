@@ -1,0 +1,25 @@
+fragment futureRacingOptions on FutureRacingOptions {
+  __typename
+  countriesFilter {
+    urn
+    defaultOptions {
+      urn
+      name
+    }
+    availableOptions {
+      urn
+      name
+    }
+  }
+  monthFilter {
+    urn
+    defaultOptions {
+      urn
+      date
+    }
+    availableOptions {
+      urn
+      date
+    }
+  }
+}

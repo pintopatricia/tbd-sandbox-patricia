@@ -1,0 +1,17 @@
+"__typename": "{{__typename}}{{^__typename}}FootballPlayerCompetitionStatsCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:footballplayercompetitionstats:71823|35049415{{/urn}}",
+"player": {
+    {{#with player.seasonStats}}
+    "seasonStats": {
+        "matchesPlayed": {{matchesPlayed}}{{^matchesPlayed}}6{{/matchesPlayed}},
+        "totals": {
+            {{#with totals}}
+            "goals": {{goals}}{{^goals}}0{{/goals}},
+            "yellowCards": {{yellowCards}}{{^yellowCards}}0{{/yellowCards}},
+            "redCards": {{redCards}}{{^redCards}}0{{/redCards}},
+            "assists": {{assists}}{{^assists}}0{{/assists}}
+            {{/with}}
+        }
+    }
+    {{/with}}
+}

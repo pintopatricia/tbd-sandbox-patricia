@@ -1,0 +1,20 @@
+"__typename": "SportsbookBetInfoCard",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:sbkBetInfo:1179447017{{/urn}}",
+"placedDate": "{{placedDate}}{{^placedDate}}2023-04-28T13:48:50.000Z{{/placedDate}}",
+"betReceiptId": "{{betReceiptId}}{{^betReceiptId}}O/16488231/0000013{{/betReceiptId}}",
+"settledDate": "{{settledDate}}",
+"regulatorBetId": "{{regulatorBetId}}",
+"deviceId": "{{deviceId}}",
+{{#if selections}}
+    "selections": [
+    {{#each selections}}
+        {
+        "marketUrn": "{{marketUrn}}{{^marketUrn}}ppb:sbkMarket:924.237747664{{/marketUrn}}",
+        "runnerUrn": "{{runnerUrn}}{{^runnerUrn}}ppb:sbkRunner:924.237747664/48044{{/runnerUrn}}"
+        }{{#unless @last}},{{/unless}}
+    {{/each}}
+    ],
+{{else}}
+    "selections": null,
+{{/if}}
+"product": {{#if product}}"{{product}}"{{else}}null{{/if}}

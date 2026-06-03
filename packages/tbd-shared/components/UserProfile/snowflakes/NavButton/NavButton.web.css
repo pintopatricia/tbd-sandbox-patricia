@@ -1,0 +1,32 @@
+.navButton {
+  padding: var(--spacing-3);
+
+  text-decoration: none;
+}
+
+.button {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+
+  color: var(--action-secondary-text-default);
+  text-align: center;
+
+  border: 1px solid var(--action-secondary-border-default);
+  border-radius: 4px;
+}
+
+.alignLeft {
+  justify-content: flex-start;
+}
+
+.alignRight {
+  justify-content: flex-end;
+}
+
+.withoutOutline {
+  border: none;
+}

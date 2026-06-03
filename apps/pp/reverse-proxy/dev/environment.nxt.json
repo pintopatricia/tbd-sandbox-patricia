@@ -1,0 +1,260 @@
+{
+  "ENV": "localhost",
+  "PRODUCT_ID": "90",
+  "HOMEPAGE_PATHS": "",
+  "HOST": "www.paddypower.{domain_extension}.nxt.ppbdev.com/",
+  "BASE_PATH": "/",
+  "ASSETS": {
+    "HOST": "",
+    "PATH": "ie1/tbd/assets",
+    "DC": "ie1"
+  },
+  "DESKTOP_HEADER_CONFIG": {
+    "authenticationConfiguration": {
+      "loginEndpoint": "https://identitysso.paddypower.{domain_extension}.nxt.ppbdev.com/view/login",
+      "loginRedirectUrl": "https://www.paddypower.{domain_extension}.nxt.ppbdev.com/",
+      "loginRedirectMethod": "POST",
+      "logoutEndpoint": "https://identitysso.paddypower.{domain_extension}.nxt.ppbdev.com/api/logout",
+      "logoutRedirectUrl": "https://www.paddypower.{domain_extension}.nxt.ppbdev.com/",
+      "logoutRedirectMethod": "POST"
+    },
+    "productDomain": "{domain_extension}.nxt.ppbdev.com",
+    "clientConfiguration": {
+      "version": "1",
+      "brand": "paddypower",
+      "product": "sportsbook",
+      "channel": "desktop",
+      "platform": "",
+      "selectedTab": "sportsbook"
+    },
+    "contentConfiguration": {
+      "headerType": "REGULAR"
+    }
+  },
+  "BETSLIP_CONFIG": {
+    "collapseStrategy": "ALL_OPEN"
+  },
+  "LOOP_CLIENT_CONFIG": {
+    "key": "XymxaWUIKZ2hryn4",
+    "brand": "PP"
+  },
+  "ENDPOINTS": {
+    "SPAM": "",
+    "APPLE_PAY_PROXY": "https://myfunds.paddypower.{domain_extension}.nxt.ppbdev.com/lib/js/apple_pay_proxy.min.js",
+    "MY_ACCOUNT": "https://myaccount.paddypower.{domain_extension}.nxt.ppbdev.com",
+    "PROMOS": "https://promos.paddypower.{domain_extension}.nxt.ppbdev.com",
+    "DEPOSIT": {
+      "path": "deposit?prod=90&showHeader=0",
+      "host": "https://myfunds.paddypower.{domain_extension}.nxt.ppbdev.com/"
+    },
+    "SPEND_BUDGET": {
+      "path": "my-budget?prod=90&showHeader=0",
+      "host": "https://myspendbudget.paddypower.{domain_extension}.nxt.ppbdev.com/"
+    },
+    "EXCHANGE_SITE": {
+      "path": "exchange",
+      "host": "https://www.betfair.{domain_extension}.nxt.ppbdev.com/"
+    },
+    "OSG": {
+      "path": "",
+      "host": "wss://osg.paddypower.{domain_extension}.nxt.ppbdev.com/"
+    },
+    "ERO": {
+      "path": "www/sports/exchange/readonly/v1/",
+      "host": ""
+    },
+    "ETX": {
+      "path": "www/sports/exchange/transactional/v1/",
+      "host": ""
+    },
+    "SMP": {
+      "path": "www/sports/fixedodds/readonly/v1/",
+      "host": ""
+    },
+    "NSS": {
+      "path": "NotificationSubscription/v1/",
+      "host": ""
+    },
+    "SER": {
+      "path": "SportsbookEventReadOnlyService/v1/",
+      "host": ""
+    },
+    "SPB": {
+      "path": "www/sports/fixedodds/transactional/v1/",
+      "host": ""
+    },
+    "SIB": {
+      "path": "www/sports/fixedodds/transactional/v1/",
+      "host": ""
+    },
+    "SSC": {
+      "path": "api/v1.0/content",
+      "host": ""
+    },
+    "COS_READONLY": {
+      "path": "cashout-service/readonly/v1/",
+      "host": ""
+    },
+    "COS_TRANSACTIONAL": {
+      "path": "cashout-service/transactional/v1/",
+      "host": ""
+    },
+    "FCQ": {
+      "path": "fcq-service/v0.1/",
+      "host": ""
+    },
+    "SCO": {
+      "path": "www/sports/fixedodds/transactional/v1/",
+      "host": ""
+    },
+    "CATALOGUE": {
+      "path": "api/tbd/bff-gql/",
+      "host": ""
+    },
+    "WAS": {
+      "path": "wallet-service/v3.0/",
+      "host": ""
+    },
+    "LBR": {
+      "path": "www/sports/exchange/reporting/live/v1/",
+      "host": ""
+    },
+    "LOGOUT": {
+      "path": "api/logout/",
+      "host": ""
+    },
+    "BLH": {
+      "path": "graphql",
+      "host": "https://blh.betfair.com.nxt.ppbdev.com"
+    },
+    "SCA": {
+      "path": "graphql/",
+      "host": ""
+    },
+    "USP": {
+      "path": "usp-preferences/v1.0/",
+      "host": ""
+    },
+    "GAME_LAUNCHER": {
+      "path": "launcher/",
+      "host": ""
+    },
+    "PROMOTIONS_CDN": {
+      "path": "",
+      "host": "https://promotions.cdnppb.net.nxt.ppbdev.com"
+    },
+    "PMA_S3_PROMOTIONS_CDN": {
+      "path": "",
+      "host": "https://pma-s3.betfair.com.nxt.ppbdev.com"
+    },
+    "GAMING_SEARCH": {
+      "path": "api/gfe/search-games/v1/search-games",
+      "host": ""
+    },
+    "XTSD": {
+      "path": "LoadRunnerInfoChartAction/",
+      "host": ""
+    },
+    "CBS": {
+      "path": "CustomerBehaviourService/v2.0/",
+      "host": ""
+    },
+    "SMD": {
+      "path": "SeoMetadata/v1/",
+      "host": ""
+    },
+    "LIVE_DEALER_WS": {
+      "path": "api/gfe/fanout/v2/",
+      "host": ""
+    },
+    "LIVE_DEALER_EVENT_SOURCE": {
+      "path": "feeds/",
+      "host": "https://gmd.paddypower.com.nxt.ppbdev.com/"
+    },
+    "USER_ACTIVITY": {
+      "path": "api/gfe/user-activity/v1/favourite-games/",
+      "host": "https://gfe.paddypower.{domain_extension}.nxt.ppbdev.com/"
+    },
+    "HANDLE_BANNER_ACTION": {
+      "path": "myaccountx/rest/handleBannerAction",
+      "host": ""
+    },
+    "WMS": {
+      "path": "",
+      "host": "https://messaging.paddypower.{domain_extension}.nxt.ppbdev.com/"
+    },
+    "BCE": {
+      "path": "api/sports/bce/v1.0/",
+      "host": "https://bce.nxt.dev.betfair/"
+    },
+    "EGA": {
+      "path": "",
+      "host": "https://graphs.betfair.{domain_extension}.nxt.ppbdev.com/"
+    },
+    "LPS": {
+      "path": "",
+      "host": ""
+    }
+  },
+  "ADOBE_SDK": {
+    "ADOBE_MARKETING_SERVER": "betfair-mid.neolane.net",
+    "ADOBE_TRACKING_SERVER": "powerleisurebookmakers-mid-stage1-t.adobe-campaign.com"
+  },
+  "EXPERIMENTATIONS_KEY": "XymxaWUIKZ2hryn4",
+  "CATALOG": {
+    "FILLED_CARDS_PER_CARD_GROUP": 2,
+    "FILLED_CARDS_PER_VIEW": 3,
+    "FILLED_CARDS_PER_LAZY_LOAD": 4
+  },
+  "REN_USER_AGENTS": {
+    "MOBILE": "RENPP Android",
+    "DESKTOP": "RENPP Desktop"
+  },
+  "SSO_URL": "https://identitysso.paddypower.com.nxt.ppbdev.com/view/login?redirectMethod=GET&product=bfrebuild&prod=90",
+  "JOIN_FALLBACK_URL": "https://btfr.co/linker/join-now-btfr",
+  "DOMAIN_EXTENSIONS": {
+    "INTERNATIONAL": "com"
+  },
+  "CLOUDFLARE_WHITELIST_DOMAINS": [],
+  "GTM": {
+    "ID": "GTM-M2MWMLTZ",
+    "DEBUG_KEYS": "&gtm_auth=4H47DrWdhtYPnhhDU0ZYoA&gtm_preview=env-6&gtm_cookies_win=x"
+  },
+  "EXTERNAL_LINKS": {
+    "NINETY_MINUTE_RULE": {
+      "INTERNATIONAL": {
+        "default": "https://support.paddypower.com/app/answers/detail/a_id/10279/"
+      }
+    },
+    "SUPER_SUB": {
+      "INTERNATIONAL": {
+        "default": "https://helpcenter.paddypower.com/app/answers/detail/10079-super-sub/"
+      }
+    },
+    "MAX_PAYOUT": {
+      "INTERNATIONAL": {
+        "default": "https://helpcenter.paddypower.com/app/answers/detail/45-what-is-the-maximum-payout/"
+      }
+    },
+    "ACCA_INSURANCE": {
+      "INTERNATIONAL": {
+        "default": "https://support.betfair.com/app/answers/detail/6157-sportsbook-what-is-acca-edge"
+      }
+    },
+    "MARKET_RULES_DISCOUNT_RATE": {
+      "INTERNATIONAL": {
+        "default": "//support.betfair.com/app/answers/detail/a_id/414"
+      }
+    },
+    "RULE4": {
+      "INTERNATIONAL": {
+        "default": "https://helpcenter.paddypower.com/app/answers/detail/1355-horse-racing---withdrawn-horse---rule-4/"
+      }
+    },
+    "DEAD_HEAT": {
+      "INTERNATIONAL": {
+        "default": "https://helpcenter.paddypower.com/app/answers/detail/176-dead-heat---what-happens-to-my-bet/"
+      }
+    }
+  }
+}

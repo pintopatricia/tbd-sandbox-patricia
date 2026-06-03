@@ -1,0 +1,47 @@
+.timeformCard {
+  background: linear-gradient(
+    135deg,
+    var(--brand-timeform-background-gradient-start) 0%,
+    var(--brand-timeform-background-gradient-end) 100%
+  );
+  border-radius: 4px;
+}
+
+.content {
+  padding: var(--spacing-1) var(--spacing-3) var(--spacing-3) var(--spacing-3);
+}
+
+.runnerRating {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-bottom: var(--spacing-2);
+}
+
+.runnerRating:last-child {
+  margin-bottom: 0;
+}
+
+.runnerText {
+  margin-right: var(--spacing-2);
+  overflow: hidden;
+
+  color: var(--agnostic-neutrals-text-alternative);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.verdictSection {
+  margin-top: var(--spacing-4);
+}
+
+.verdictLabel {
+  color: var(--agnostic-neutrals-text-disabled);
+}
+
+.verdict {
+  margin-top: var(--spacing-1);
+
+  color: var(--agnostic-neutrals-text-alternative);
+}

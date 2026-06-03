@@ -1,0 +1,31 @@
+"__typename": "PackagedCreatedBetsCard",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:packagedcreatedbets:Zp5nEBAAACIAlHmk/s/1{{/urn}}",
+"pcbLayout": "{{layout}}{{^layout}}OUT_OF_CARD{{/layout}}",
+"pcbTitle": {
+  "__typename": "DisplayNameTitle",
+  "name": {{#if title}}"{{title}}"{{else}}null{{/if}}
+},
+{{#with favouriteMarketsState}}
+  "favouriteMarketsState": {
+    {{> bff-favourite-markets-state}}
+  },
+{{/with}}
+"items": {
+  "edges": [
+    {{#each edges}}
+      {
+        "cursor": {{#if cursor}}"{{cursor}}"{{else}}null{{/if}},
+        "__typename": "PackagedCreatedBetsCardItemEdge",
+        {{#with node}}
+        "node": {
+          {{> bff-betting-opportunity}}
+        }
+        {{/with}}
+      }{{#unless @last}},{{/unless}}
+    {{/each}}
+  ],
+  "pageInfo": {
+    "endCursor": {{#if endCursor}}"{{endCursor}}"{{else}}null{{/if}},
+    "hasNextPage": {{#if hasNextPage}}true{{else}}false{{/if}}
+  }
+}

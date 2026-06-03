@@ -1,0 +1,22 @@
+{
+  "data":{
+    "Search":{
+      "query": "{{query}}{{^query}}real{{/query}}",
+      "pageSize": {{pageSize}}{{^pageSize}}15{{/pageSize}},
+      "startIndex": {{startIndex}}{{^startIndex}}0{{/startIndex}},
+      "didYouMean": "{{didYouMean}}{{^didYouMean}}{{/didYouMean}}",
+      "results":[
+        {{#each results}}
+          {
+          {{#ifEquals __typename "EventView"}}
+            {{> bff-search-event-view}}
+          {{/ifEquals}}
+          {{#ifEquals __typename "CompetitionView"}}
+            {{> bff-search-competition-view}}
+          {{/ifEquals}}
+          }{{#unless @last}},{{/unless}}
+        {{/each}}
+      ]
+    }
+  }
+}

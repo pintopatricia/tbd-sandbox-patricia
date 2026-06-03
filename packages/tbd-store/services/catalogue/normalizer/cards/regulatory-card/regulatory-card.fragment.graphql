@@ -1,0 +1,85 @@
+fragment regulatoryCard on RegulatoryCard {
+  urn
+  __typename
+  sections {
+    __typename
+    ... on RegulatorySectionGeneric {
+      sectionType
+      genericSectionTitle: title
+    }
+    ... on RegulatorySectionAccordion {
+      sectionType
+      title
+    }
+    items {
+      __typename
+      ... on RegulatoryImageItem {
+        imageURL
+        alignment
+        alt
+        target
+        link: url
+        viewLink {
+          viewUrn
+          viewUrl
+          viewDisplayMode
+        }
+      }
+      ... on RegulatoryTextItem {
+        alignment
+        text
+      }
+      ... on RegulatoryLinkItem {
+        alignment
+        text
+        url
+        target
+        viewLink {
+          viewUrl
+          viewUrn
+          viewDisplayMode
+        }
+      }
+      ... on RegulatorySessionItem {
+        alignment
+        timeFormat
+        sessionText: text
+      }
+      ... on RegulatoryLoggedInSinceItem {
+        alignment
+        loggedInSinceText: text
+        timeFormat
+      }
+      ... on RegulatoryCookieConsentItem {
+        alignment
+        text
+        target
+      }
+      ... on RegulatoryLastLogInItem {
+        alignment
+        lastLoginText: text
+        time
+        timeFormat
+      }
+      ... on RegulatoryUserDetailsItem {
+        alignment
+        firstName
+        lastName
+        nationalIdentifier
+        contractNumber
+      }
+      ... on RegulatoryClockItem {
+        alignment
+        clockText: text
+        timeFormat
+        timeZone
+        target
+      }
+    }
+  }
+}
+
+fragment regulatoryCardPartial on RegulatoryCard {
+  __typename
+  urn
+}

@@ -1,0 +1,56 @@
+.placeholder {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: var(--header-stack);
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+.xSellBarPlaceholder {
+  height: var(--x-sell-bar-mobile-container-sizing);
+}
+
+.logoContainerPlaceholder {
+  display: flex;
+
+  align-items: center;
+
+  height: var(--header-container-sizing);
+  padding: var(--header-padding);
+
+  background: var(--header-background-primary-colour);
+}
+
+.buttonContainerPlaceholder {
+  display: flex;
+
+  flex-grow: 1;
+
+  gap: var(--header-horizontal-gap-primary);
+
+  width: 100%;
+  padding: var(--header-padding);
+
+  background-color: var(--header-background-secondary-colour);
+  border-bottom: var(--header-border);
+}
+
+.buttonPlaceholderPrimary {
+  width: 100%;
+  height: var(--primary-button-container-sizing);
+
+  background-color: var(--placeholder-background-colour);
+  border-radius: var(--primary-button-border-radius);
+}
+
+.buttonPlaceholderSecondary {
+  width: 100%;
+  height: var(--secondary-button-container-sizing);
+
+  background-color: var(--placeholder-background-colour);
+  border-radius: var(--secondary-button-border-radius);
+}

@@ -1,0 +1,20 @@
+fragment notFoundView on NotFoundView {
+  __typename
+  urn
+  url
+  items(first: $numberOfFilledCardsInView) {
+    ...viewItems
+  }
+  bottomBar @include(if: $withBottomBar) {
+    ...bottomBar
+  }
+  leftSidebar @include(if: $withLeftSidebar) {
+    ...leftSidebar
+  }
+  regulatoryData @include(if: $withRegulatoryData) {
+    ...regulatoryData
+  }
+  xsellBar {
+    ...XSellBar
+  }
+}

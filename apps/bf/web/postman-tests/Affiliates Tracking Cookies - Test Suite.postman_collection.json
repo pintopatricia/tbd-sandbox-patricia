@@ -1,0 +1,2790 @@
+{
+  "info": {
+    "_postman_id": "f8ea4ec3-73ea-4608-b618-30dfe375931e",
+    "name": "Affiliates Tracking Cookies - Test Suite",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Cookies Based on URL Params",
+      "item": [
+        {
+          "name": "Only RFR - valid case",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const jar = pm.cookies.jar();",
+                  "pm.request.url.host = [pm.environment.get(\"domain\")];",
+                  "// clear all cookies",
+                  "",
+                  "jar.clear(pm.request.url, function (error) {",
+                  "  // error - <Error>",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Consts created to possibilitate de assertion of expiryDate of cookie to around 45 days after.",
+                  "",
+                  "// The const 'FOURTY_FIVE_DAYS_IN_MILLISECONDS' is indeed 44 days, 23hours and 30 min.",
+                  "// It will then be asserted that the expiry date is above this.",
+                  "// The 'oneHourInMilliseconds' will then be added to 'FOURTY_FIVE_DAYS_IN_MILLISECONDS' and will assert if cookie expiry date is below that value.",
+                  "",
+                  "const oneHourInMilliseconds = 3600000;",
+                  "const FOURTY_FIVE_DAYS_IN_MILLISECONDS = 3886200000;",
+                  "",
+                  "const currentDate = new Date().getTime();",
+                  "const expectedExpirationDateLower = currentDate + FOURTY_FIVE_DAYS_IN_MILLISECONDS;",
+                  "const expectedExpirationDateAbove = expectedExpirationDateLower + oneHourInMilliseconds;",
+                  "",
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should have `rfr` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"rfr\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"2\");",
+                  "",
+                  "    const cookieExpirationDate = cookie.expires.getTime();",
+                  "",
+                  "    // Evaluate if expiry date is set to 45 days from current.",
+                  "    pm.expect(cookieExpirationDate).to.be.greaterThan(expectedExpirationDateLower);",
+                  "    pm.expect(cookieExpirationDate).to.be.lessThan(expectedExpirationDateAbove);",
+                  "});",
+                  "",
+                  "pm.test('should have `PI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"PI\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"2\");",
+                  "    ",
+                  "    const cookieExpirationDate = cookie.expires.getTime();",
+                  "",
+                  "    // Evaluate if expiry date is set to 45 days from current.",
+                  "    pm.expect(cookieExpirationDate).to.be.greaterThan(expectedExpirationDateLower);",
+                  "    pm.expect(cookieExpirationDate).to.be.lessThan(expectedExpirationDateAbove);",
+                  "});",
+                  "",
+                  "pm.test('should have `pi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"pi\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"partner2\");",
+                  "",
+                  "    const cookieExpirationDate = cookie.expires.getTime();",
+                  "",
+                  "    // Evaluate if expiry date is set to 45 days from current.",
+                  "    pm.expect(cookieExpirationDate).to.be.greaterThan(expectedExpirationDateLower);",
+                  "    pm.expect(cookieExpirationDate).to.be.lessThan(expectedExpirationDateAbove);",
+                  "});",
+                  "",
+                  "pm.test('should have `TrackingTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"TrackingTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3D2\");",
+                  "",
+                  "    const cookieExpirationDate = cookie.expires.getTime();",
+                  "",
+                  "    // Evaluate if expiry date is set to 45 days from current.",
+                  "    pm.expect(cookieExpirationDate).to.be.greaterThan(expectedExpirationDateLower);",
+                  "    pm.expect(cookieExpirationDate).to.be.lessThan(expectedExpirationDateAbove);",
+                  "});",
+                  "",
+                  "pm.test('should have `StickyTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"StickyTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3D2\");",
+                  "",
+                  "    const cookieExpirationDate = cookie.expires.getTime();",
+                  "",
+                  "    // Evaluate if expiry date is set to 45 days from current.",
+                  "    pm.expect(cookieExpirationDate).to.be.greaterThan(expectedExpirationDateLower);",
+                  "    pm.expect(cookieExpirationDate).to.be.lessThan(expectedExpirationDateAbove);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{isHttp}}{{domain}}/betting?rfr=2",
+              "host": ["{{isHttp}}{{domain}}"],
+              "path": ["betting"],
+              "query": [
+                {
+                  "key": "rfr",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Only RFR - valid case letters",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const jar = pm.cookies.jar();",
+                  "pm.request.url.host = [pm.environment.get(\"domain\")];",
+                  "// clear all cookies",
+                  "",
+                  "jar.clear(pm.request.url, function (error) {",
+                  "  // error - <Error>",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should have `rfr` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"rfr\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"abc\");",
+                  "});",
+                  "",
+                  "pm.test('should have `PI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"PI\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"abc\");",
+                  "});",
+                  "",
+                  "pm.test('should have `pi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"pi\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"partnerabc\");",
+                  "});",
+                  "",
+                  "pm.test('should have `TrackingTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"TrackingTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3Dabc\");",
+                  "});",
+                  "",
+                  "pm.test('should have `StickyTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"StickyTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3Dabc\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{isHttp}}{{domain}}/betting?rfr=abc",
+              "host": ["{{isHttp}}{{domain}}"],
+              "path": ["betting"],
+              "query": [
+                {
+                  "key": "rfr",
+                  "value": "abc"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Only RFR - invalid case non-alpha numeric chars",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const jar = pm.cookies.jar();",
+                  "pm.request.url.host = [pm.environment.get(\"domain\")];",
+                  "// clear all cookies",
+                  "",
+                  "jar.clear(pm.request.url, function (error) {",
+                  "  // error - <Error>",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should not have `rfr` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"rfr\");",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should not have `PI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"PI\");",
+                  "    ",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should not have `pi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"pi\");",
+                  "    ",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should not have `TrackingTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"TrackingTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should not have `StickyTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"StickyTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{isHttp}}{{domain}}/betting?rfr=123~",
+              "host": ["{{isHttp}}{{domain}}"],
+              "path": ["betting"],
+              "query": [
+                {
+                  "key": "rfr",
+                  "value": "123~"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Only RFR - invalid case only non-alpha numeric chars",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const jar = pm.cookies.jar();",
+                  "pm.request.url.host = [pm.environment.get(\"domain\")];",
+                  "// clear all cookies",
+                  "",
+                  "jar.clear(pm.request.url, function (error) {",
+                  "  // error - <Error>",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should not have `rfr` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"rfr\");",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should not have `PI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"PI\");",
+                  "    ",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should not have `pi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"pi\");",
+                  "    ",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should not have `TrackingTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"TrackingTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should not have `StickyTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"StickyTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{isHttp}}{{domain}}/betting?rfr=~",
+              "host": ["{{isHttp}}{{domain}}"],
+              "path": ["betting"],
+              "query": [
+                {
+                  "key": "rfr",
+                  "value": "~"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "RFR & SID - valid case",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const jar = pm.cookies.jar();",
+                  "pm.request.url.host = [pm.environment.get(\"domain\")];",
+                  "// clear all cookies",
+                  "",
+                  "jar.clear(pm.request.url, function (error) {",
+                  "  // error - <Error>",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Consts created to possibilitate de assertion of expiryDate of cookie to around 45 days after.",
+                  "",
+                  "// The const 'FOURTY_FIVE_DAYS_IN_MILLISECONDS' is indeed 44 days, 23hours and 30 min.",
+                  "// It will then be asserted that the expiry date is above this.",
+                  "// The 'oneHourInMilliseconds' will then be added to 'FOURTY_FIVE_DAYS_IN_MILLISECONDS' and will assert if cookie expiry date is below that value.",
+                  "",
+                  "const oneHourInMilliseconds = 3600000;",
+                  "const FOURTY_FIVE_DAYS_IN_MILLISECONDS = 3886200000;",
+                  "",
+                  "const currentDate = new Date().getTime();",
+                  "const expectedExpirationDateLower = currentDate + FOURTY_FIVE_DAYS_IN_MILLISECONDS;",
+                  "const expectedExpirationDateAbove = expectedExpirationDateLower + oneHourInMilliseconds;",
+                  "",
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should have `rfr` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"rfr\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"6\");",
+                  "});",
+                  "",
+                  "pm.test('should have `PI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"PI\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"6\");",
+                  "});",
+                  "",
+                  "pm.test('should have `pi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"pi\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"partner6\");",
+                  "});",
+                  "",
+                  "pm.test('should have `TrackingTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"TrackingTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3D6\");",
+                  "});",
+                  "",
+                  "pm.test('should have `StickyTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"StickyTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3D6\");",
+                  "});",
+                  "",
+                  "pm.test('should have `UI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"UI\");",
+                  "",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"1234\");",
+                  "",
+                  "     const cookieExpirationDate = cookie.expires.getTime();",
+                  "",
+                  "    // Evaluate if expiry date is set to 45 days from current.",
+                  "    pm.expect(cookieExpirationDate).to.be.greaterThan(expectedExpirationDateLower);",
+                  "    pm.expect(cookieExpirationDate).to.be.lessThan(expectedExpirationDateAbove);",
+                  "});",
+                  "",
+                  "pm.test('should have `spi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"spi\");",
+                  "",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"1234\");",
+                  "",
+                  "     const cookieExpirationDate = cookie.expires.getTime();",
+                  "",
+                  "    // Evaluate if expiry date is set to 45 days from current.",
+                  "    pm.expect(cookieExpirationDate).to.be.greaterThan(expectedExpirationDateLower);",
+                  "    pm.expect(cookieExpirationDate).to.be.lessThan(expectedExpirationDateAbove);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{isHttp}}{{domain}}/betting?rfr=6&sid=1234",
+              "host": ["{{isHttp}}{{domain}}"],
+              "path": ["betting"],
+              "query": [
+                {
+                  "key": "rfr",
+                  "value": "6"
+                },
+                {
+                  "key": "sid",
+                  "value": "1234"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "RFR & SID - invalid SID",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const jar = pm.cookies.jar();",
+                  "pm.request.url.host = [pm.environment.get(\"domain\")];",
+                  "// clear all cookies",
+                  "",
+                  "jar.clear(pm.request.url, function (error) {",
+                  "  // error - <Error>",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should have `rfr` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"rfr\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"7\");",
+                  "});",
+                  "",
+                  "pm.test('should have `PI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"PI\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"7\");",
+                  "});",
+                  "",
+                  "pm.test('should have `pi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"pi\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"partner7\");",
+                  "});",
+                  "",
+                  "pm.test('should have `TrackingTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"TrackingTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3D7\");",
+                  "});",
+                  "",
+                  "pm.test('should have `StickyTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"StickyTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3D7\");",
+                  "});",
+                  "",
+                  "pm.test('should not have `UI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"UI\");",
+                  "",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should not have `spi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"spi\");",
+                  "",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{isHttp}}{{domain}}/betting?rfr=7&sid=123_",
+              "host": ["{{isHttp}}{{domain}}"],
+              "path": ["betting"],
+              "query": [
+                {
+                  "key": "rfr",
+                  "value": "7"
+                },
+                {
+                  "key": "sid",
+                  "value": "123_"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Only SID -",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const jar = pm.cookies.jar();",
+                  "pm.request.url.host = [pm.environment.get(\"domain\")];",
+                  "// clear all cookies",
+                  "",
+                  "jar.clear(pm.request.url, function (error) {",
+                  "  // error - <Error>",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should not have `rfr` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"rfr\");",
+                  "    ",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should not have `PI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"PI\");",
+                  "    ",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should not have `pi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"pi\");",
+                  "    ",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should not have `TrackingTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"TrackingTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should not have `StickyTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"StickyTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should have `UI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"UI\");",
+                  "",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"223\");",
+                  "});",
+                  "",
+                  "pm.test('should have `spi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"spi\");",
+                  "",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"223\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{isHttp}}{{domain}}/betting?sid=223",
+              "host": ["{{isHttp}}{{domain}}"],
+              "path": ["betting"],
+              "query": [
+                {
+                  "key": "sid",
+                  "value": "223"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "RFR & SID & PromotionCode - valid case",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const jar = pm.cookies.jar();",
+                  "pm.request.url.host = [pm.environment.get(\"domain\")];",
+                  "// clear all cookies",
+                  "",
+                  "jar.clear(pm.request.url, function (error) {",
+                  "  // error - <Error>",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should have `rfr` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"rfr\");",
+                  "    ",
+                  "   pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"88\");",
+                  "});",
+                  "",
+                  "pm.test('should have `PI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"PI\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"88\");",
+                  "});",
+                  "",
+                  "pm.test('should have `pi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"pi\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"partner88\");",
+                  "});",
+                  "",
+                  "pm.test('should have `TrackingTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"TrackingTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"promotionCode%3DZSK200%26rfr%3D88\");",
+                  "});",
+                  "",
+                  "pm.test('should have `StickyTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"StickyTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"promotionCode%3DZSK200%26rfr%3D88\");",
+                  "});",
+                  "",
+                  "pm.test('should have `UI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"UI\");",
+                  "",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"1\");",
+                  "});",
+                  "",
+                  "pm.test('should have `spi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"spi\");",
+                  "",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"1\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{isHttp}}{{domain}}/betting?rfr=88&sid=1&promotionCode=ZSK200",
+              "host": ["{{isHttp}}{{domain}}"],
+              "path": ["betting"],
+              "query": [
+                {
+                  "key": "rfr",
+                  "value": "88"
+                },
+                {
+                  "key": "sid",
+                  "value": "1"
+                },
+                {
+                  "key": "promotionCode",
+                  "value": "ZSK200"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "SID & PromotionCode - valid case",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const jar = pm.cookies.jar();",
+                  "pm.request.url.host = [pm.environment.get(\"domain\")];",
+                  "// clear all cookies",
+                  "",
+                  "jar.clear(pm.request.url, function (error) {",
+                  "  // error - <Error>",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should not have `rfr` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"rfr\");",
+                  "",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should not have `PI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"PI\");",
+                  "",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should not have `pi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"pi\");",
+                  "",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should have `TrackingTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"TrackingTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"promotionCode%3DASd123\");",
+                  "});",
+                  "",
+                  "pm.test('should have `StickyTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"StickyTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"promotionCode%3DASd123\");",
+                  "});",
+                  "",
+                  "pm.test('should have `UI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"UI\");",
+                  "",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"2\");",
+                  "});",
+                  "",
+                  "pm.test('should have `spi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"spi\");",
+                  "",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"2\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{isHttp}}{{domain}}/betting?sid=2&promotionCode=ASd123",
+              "host": ["{{isHttp}}{{domain}}"],
+              "path": ["betting"],
+              "query": [
+                {
+                  "key": "sid",
+                  "value": "2"
+                },
+                {
+                  "key": "promotionCode",
+                  "value": "ASd123"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Only Promotion Code - valid case",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const jar = pm.cookies.jar();",
+                  "pm.request.url.host = [pm.environment.get(\"domain\")];",
+                  "// clear all cookies",
+                  "",
+                  "jar.clear(pm.request.url, function (error) {",
+                  "  // error - <Error>",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should not have `rfr` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"rfr\");",
+                  "",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should not have `PI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"PI\");",
+                  "",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should not have `pi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"pi\");",
+                  "",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should have `TrackingTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"TrackingTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"promotionCode%3DJustPromo\");",
+                  "});",
+                  "",
+                  "pm.test('should have `StickyTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"StickyTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"promotionCode%3DJustPromo\");",
+                  "});",
+                  "",
+                  "pm.test('should not have `UI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"UI\");",
+                  "",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should not have `spi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"spi\");",
+                  "",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{isHttp}}{{domain}}/betting?promotionCode=JustPromo",
+              "host": ["{{isHttp}}{{domain}}"],
+              "path": ["betting"],
+              "query": [
+                {
+                  "key": "promotionCode",
+                  "value": "JustPromo"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Update Cookies Based on URL Params",
+      "item": [
+        {
+          "name": "Only RFR - valid case",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const jar = pm.cookies.jar();",
+                  "pm.request.url.host = [pm.environment.get(\"domain\")];",
+                  "// clear all cookies",
+                  "",
+                  "jar.clear(pm.request.url, function (error) {",
+                  "  // error - <Error>",
+                  "});",
+                  "",
+                  "// create cookies",
+                  "jar.set(pm.request.url, \"rfr\", \"3\");",
+                  "jar.set(pm.request.url, \"pi\", \"partner3\");",
+                  "jar.set(pm.request.url, \"PI\", \"3\");",
+                  "jar.set(pm.request.url, \"TrackingTags\", \"rfr=3\");"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Consts created to possibilitate de assertion of expiryDate of cookie to around 45 days after.",
+                  "",
+                  "// The const 'FOURTY_FIVE_DAYS_IN_MILLISECONDS' is indeed 44 days, 23hours and 30 min.",
+                  "// It will then be asserted that the expiry date is above this.",
+                  "// The 'oneHourInMilliseconds' will then be added to 'FOURTY_FIVE_DAYS_IN_MILLISECONDS' and will assert if cookie expiry date is below that value.",
+                  "",
+                  "const oneHourInMilliseconds = 3600000;",
+                  "const FOURTY_FIVE_DAYS_IN_MILLISECONDS = 3886200000;",
+                  "",
+                  "const currentDate = new Date().getTime();",
+                  "const expectedExpirationDateLower = currentDate + FOURTY_FIVE_DAYS_IN_MILLISECONDS;",
+                  "const expectedExpirationDateAbove = expectedExpirationDateLower + oneHourInMilliseconds;",
+                  "",
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should have `rfr` cookie defined with values from url queryParam', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"rfr\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"234\");",
+                  "",
+                  "    const cookieExpirationDate = cookie.expires.getTime();",
+                  "",
+                  "    // Evaluate if expiry date is set to 45 days from current.",
+                  "    pm.expect(cookieExpirationDate).to.be.greaterThan(expectedExpirationDateLower);",
+                  "    pm.expect(cookieExpirationDate).to.be.lessThan(expectedExpirationDateAbove);",
+                  "});",
+                  "",
+                  "pm.test('should have `PI` cookie defined with values from url queryParam', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"PI\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"234\");",
+                  "    ",
+                  "    const cookieExpirationDate = cookie.expires.getTime();",
+                  "",
+                  "    // Evaluate if expiry date is set to 45 days from current.",
+                  "    pm.expect(cookieExpirationDate).to.be.greaterThan(expectedExpirationDateLower);",
+                  "    pm.expect(cookieExpirationDate).to.be.lessThan(expectedExpirationDateAbove);",
+                  "});",
+                  "",
+                  "pm.test('should have `pi` cookie defined with values from url queryParam', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"pi\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"partner234\");",
+                  "",
+                  "    const cookieExpirationDate = cookie.expires.getTime();",
+                  "",
+                  "    // Evaluate if expiry date is set to 45 days from current.",
+                  "    pm.expect(cookieExpirationDate).to.be.greaterThan(expectedExpirationDateLower);",
+                  "    pm.expect(cookieExpirationDate).to.be.lessThan(expectedExpirationDateAbove);",
+                  "});",
+                  "",
+                  "pm.test('should have `TrackingTags` cookie defined  with values from url queryParam', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"TrackingTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3D234\");",
+                  "",
+                  "    const cookieExpirationDate = cookie.expires.getTime();",
+                  "",
+                  "    // Evaluate if expiry date is set to 45 days from current.",
+                  "    pm.expect(cookieExpirationDate).to.be.greaterThan(expectedExpirationDateLower);",
+                  "    pm.expect(cookieExpirationDate).to.be.lessThan(expectedExpirationDateAbove);",
+                  "});",
+                  "",
+                  "pm.test('should have `StickyTags` cookie defined with values from url queryParam', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"StickyTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3D234\");",
+                  "",
+                  "    const cookieExpirationDate = cookie.expires.getTime();",
+                  "",
+                  "    // Evaluate if expiry date is set to 45 days from current.",
+                  "    pm.expect(cookieExpirationDate).to.be.greaterThan(expectedExpirationDateLower);",
+                  "    pm.expect(cookieExpirationDate).to.be.lessThan(expectedExpirationDateAbove);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{isHttp}}{{domain}}/betting?rfr=234",
+              "host": ["{{isHttp}}{{domain}}"],
+              "path": ["betting"],
+              "query": [
+                {
+                  "key": "rfr",
+                  "value": "234"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Only RFR - new rfr, only 1 cookie set",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const jar = pm.cookies.jar();",
+                  "pm.request.url.host = [pm.environment.get(\"domain\")];",
+                  "// clear all cookies",
+                  "",
+                  "jar.clear(pm.request.url, function (error) {",
+                  "  // error - <Error>",
+                  "});",
+                  "",
+                  "// create cookies",
+                  "jar.set(pm.request.url, \"rfr\", \"3\");",
+                  "jar.set(pm.request.url, \"PI\", \"3\");"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should have `rfr` cookie defined with values from url queryParam', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"rfr\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"235\");",
+                  "});",
+                  "",
+                  "pm.test('should have `PI` cookie defined with values from url queryParam', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"PI\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"235\");",
+                  "});",
+                  "",
+                  "pm.test('should have `pi` cookie defined with values from url queryParam', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"pi\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"partner235\");",
+                  "});",
+                  "",
+                  "pm.test('should have `TrackingTags` cookie defined  with values from url queryParam', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"TrackingTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3D235\");",
+                  "});",
+                  "",
+                  "pm.test('should have `StickyTags` cookie defined with values from url queryParam', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"StickyTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3D235\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{isHttp}}{{domain}}/betting?rfr=235",
+              "host": ["{{isHttp}}{{domain}}"],
+              "path": ["betting"],
+              "query": [
+                {
+                  "key": "rfr",
+                  "value": "235"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "RFR & SID & PromotionCode - valid case",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const jar = pm.cookies.jar();",
+                  "pm.request.url.host = [pm.environment.get(\"domain\")];",
+                  "// clear all cookies",
+                  "",
+                  "jar.clear(pm.request.url, function (error) {",
+                  "  // error - <Error>",
+                  "});",
+                  "",
+                  "// create cookies",
+                  "jar.set(pm.request.url, \"rfr\", \"3\");",
+                  "jar.set(pm.request.url, \"PI\", \"3\");",
+                  "jar.set(pm.request.url, \"pi\", \"partner3\");",
+                  "jar.set(pm.request.url, \"TrackingTags\", \"rfr=3&sid=3&promotionCode=3\");",
+                  "jar.set(pm.request.url, \"StickyTags\", \"rfr=3&sid=3&promotionCode=3\");",
+                  "jar.set(pm.request.url, \"sid\", \"3\");",
+                  "jar.set(pm.request.url, \"UI\", \"3\");",
+                  "jar.set(pm.request.url, \"spi\", \"3\");"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Consts created to possibilitate de assertion of expiryDate of cookie to around 45 days after.",
+                  "",
+                  "// The const 'FOURTY_FIVE_DAYS_IN_MILLISECONDS' is indeed 44 days, 23hours and 30 min.",
+                  "// It will then be asserted that the expiry date is above this.",
+                  "// The 'oneHourInMilliseconds' will then be added to 'FOURTY_FIVE_DAYS_IN_MILLISECONDS' and will assert if cookie expiry date is below that value.",
+                  "",
+                  "const oneHourInMilliseconds = 3600000;",
+                  "const FOURTY_FIVE_DAYS_IN_MILLISECONDS = 3886200000;",
+                  "",
+                  "const currentDate = new Date().getTime();",
+                  "const expectedExpirationDateLower = currentDate + FOURTY_FIVE_DAYS_IN_MILLISECONDS;",
+                  "const expectedExpirationDateAbove = expectedExpirationDateLower + oneHourInMilliseconds;",
+                  "",
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => {",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should have `rfr` cookie defined with values from url queryParam', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"rfr\");",
+                  "",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"236\");",
+                  "});",
+                  "",
+                  "pm.test('should have `PI` cookie defined with values from url queryParam', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"PI\");",
+                  "",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"236\");",
+                  "});",
+                  "",
+                  "pm.test('should have `pi` cookie defined with values from url queryParam', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"pi\");",
+                  "",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"partner236\");",
+                  "});",
+                  "",
+                  "pm.test('should have `TrackingTags` cookie defined  with values from url queryParam', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"TrackingTags\");",
+                  "",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"promotionCode%3DAnotherPromo%26rfr%3D236\");",
+                  "});",
+                  "",
+                  "pm.test('should have `StickyTags` cookie defined with values from url queryParam', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"StickyTags\");",
+                  "",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"promotionCode%3DAnotherPromo%26rfr%3D236\");",
+                  "});",
+                  "",
+                  "pm.test('should have `sid` cookie defined with values from url queryParam', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"sid\");",
+                  "",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"632\");",
+                  "",
+                  "    const cookieExpirationDate = cookie.expires.getTime();",
+                  "",
+                  "    // Evaluate if expiry date is set to 45 days from current.",
+                  "    pm.expect(cookieExpirationDate).to.be.greaterThan(expectedExpirationDateLower);",
+                  "    pm.expect(cookieExpirationDate).to.be.lessThan(expectedExpirationDateAbove);",
+                  "});",
+                  "",
+                  "pm.test('should have `UI` cookie defined with values from url queryParam', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"UI\");",
+                  "",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"632\");",
+                  "",
+                  "    const cookieExpirationDate = cookie.expires.getTime();",
+                  "",
+                  "    // Evaluate if expiry date is set to 45 days from current.",
+                  "    pm.expect(cookieExpirationDate).to.be.greaterThan(expectedExpirationDateLower);",
+                  "    pm.expect(cookieExpirationDate).to.be.lessThan(expectedExpirationDateAbove);",
+                  "});",
+                  "",
+                  "pm.test('should have `spi` cookie defined with values from url queryParam', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"spi\");",
+                  "",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"632\");",
+                  "",
+                  "    const cookieExpirationDate = cookie.expires.getTime();",
+                  "",
+                  "    // Evaluate if expiry date is set to 45 days from current.",
+                  "    pm.expect(cookieExpirationDate).to.be.greaterThan(expectedExpirationDateLower);",
+                  "    pm.expect(cookieExpirationDate).to.be.lessThan(expectedExpirationDateAbove);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{isHttp}}{{domain}}/betting?rfr=236&sid=632&promotionCode=AnotherPromo",
+              "host": ["{{isHttp}}{{domain}}"],
+              "path": ["betting"],
+              "query": [
+                {
+                  "key": "rfr",
+                  "value": "236"
+                },
+                {
+                  "key": "sid",
+                  "value": "632"
+                },
+                {
+                  "key": "promotionCode",
+                  "value": "AnotherPromo"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PromotionCode - all cookies set, enter with only promotionCode",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "// This tests needs to be run sequentially, after the previous one on folder:",
+                  "",
+                  "// Update Cookies Based on URL Params > RFR & SID & PromotionCode - valid case"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Test Commented, because at this moment TrackingCookies is being overriden.",
+                  "// Not deleted until confirmed what is expected.",
+                  "",
+                  "/*",
+                  "",
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should have `rfr` cookie persist values', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"rfr\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"236\");",
+                  "});",
+                  "",
+                  "pm.test('should have `PI` cookie persist values', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"PI\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"236\");",
+                  "});",
+                  "",
+                  "pm.test('should have `pi` cookie persist values', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"pi\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"partner236\");",
+                  "});",
+                  "",
+                  "pm.test('should have `TrackingTags` cookie only update promotionCode', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"TrackingTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3D236&promotionCode%3DDifferentPromotion\");",
+                  "});",
+                  "",
+                  "pm.test('should have `StickyTags` cookie only update promotionCode', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"StickyTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3D236&promotionCode%3DDifferentPromotion\");",
+                  "});",
+                  "",
+                  "pm.test('should have `sid` cookie persist values', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"sid\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"632\");",
+                  "});",
+                  "",
+                  "pm.test('should have `UI` cookie persist values', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"UI\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"632\");",
+                  "});",
+                  "",
+                  "pm.test('should have `spi` cookie persist values', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"spi\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"632\");",
+                  "});",
+                  "",
+                  "*/"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost.betfair.com/betting?promotionCode=DifferentPromotion",
+              "protocol": "https",
+              "host": ["localhost", "betfair", "com"],
+              "port": "443",
+              "path": ["betting"],
+              "query": [
+                {
+                  "key": "promotionCode",
+                  "value": "DifferentPromotion"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "SEO Tracking for Registration Page",
+      "item": [
+        {
+          "name": "Without Cookies - Referer BING",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const jar = pm.cookies.jar();",
+                  "pm.request.url.host = [pm.environment.get(\"domain\")];",
+                  "// clear all cookies",
+                  "",
+                  "jar.clear(pm.request.url, function (error) {",
+                  "  // error - <Error>",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Consts created to possibilitate de assertion of expiryDate of cookie to around 45 days after.",
+                  "",
+                  "// The const 'FOURTY_FIVE_DAYS_IN_MILLISECONDS' is indeed 44 days, 23hours and 30 min.",
+                  "// It will then be asserted that the expiry date is above this.",
+                  "// The 'oneHourInMilliseconds' will then be added to 'FOURTY_FIVE_DAYS_IN_MILLISECONDS' and will assert if cookie expiry date is below that value.",
+                  "",
+                  "const oneHourInMilliseconds = 3600000;",
+                  "const FOURTY_FIVE_DAYS_IN_MILLISECONDS = 3886200000;",
+                  "",
+                  "const currentDate = new Date().getTime();",
+                  "const expectedExpirationDateLower = currentDate + FOURTY_FIVE_DAYS_IN_MILLISECONDS;",
+                  "const expectedExpirationDateAbove = expectedExpirationDateLower + oneHourInMilliseconds;",
+                  "",
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should have `rfr` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"rfr\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"990760\");",
+                  "",
+                  "    const cookieExpirationDate = cookie.expires.getTime();",
+                  "",
+                  "    // Evaluate if expiry date is set to 45 days from current.",
+                  "    pm.expect(cookieExpirationDate).to.be.greaterThan(expectedExpirationDateLower);",
+                  "    pm.expect(cookieExpirationDate).to.be.lessThan(expectedExpirationDateAbove);",
+                  "});",
+                  "",
+                  "pm.test('should have `PI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"PI\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"990760\");",
+                  "    ",
+                  "    const cookieExpirationDate = cookie.expires.getTime();",
+                  "",
+                  "    // Evaluate if expiry date is set to 45 days from current.",
+                  "    pm.expect(cookieExpirationDate).to.be.greaterThan(expectedExpirationDateLower);",
+                  "    pm.expect(cookieExpirationDate).to.be.lessThan(expectedExpirationDateAbove);",
+                  "});",
+                  "",
+                  "pm.test('should have `pi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"pi\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"partner990760\");",
+                  "",
+                  "    const cookieExpirationDate = cookie.expires.getTime();",
+                  "",
+                  "    // Evaluate if expiry date is set to 45 days from current.",
+                  "    pm.expect(cookieExpirationDate).to.be.greaterThan(expectedExpirationDateLower);",
+                  "    pm.expect(cookieExpirationDate).to.be.lessThan(expectedExpirationDateAbove);",
+                  "});",
+                  "",
+                  "pm.test('should have `TrackingTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"TrackingTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3D990760\");",
+                  "",
+                  "    const cookieExpirationDate = cookie.expires.getTime();",
+                  "",
+                  "    // Evaluate if expiry date is set to 45 days from current.",
+                  "    pm.expect(cookieExpirationDate).to.be.greaterThan(expectedExpirationDateLower);",
+                  "    pm.expect(cookieExpirationDate).to.be.lessThan(expectedExpirationDateAbove);",
+                  "});",
+                  "",
+                  "pm.test('should have `StickyTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"StickyTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3D990760\");",
+                  "",
+                  "    const cookieExpirationDate = cookie.expires.getTime();",
+                  "",
+                  "    // Evaluate if expiry date is set to 45 days from current.",
+                  "    pm.expect(cookieExpirationDate).to.be.greaterThan(expectedExpirationDateLower);",
+                  "    pm.expect(cookieExpirationDate).to.be.lessThan(expectedExpirationDateAbove);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "https://www.bing.com/",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{isHttp}}{{domain}}/betting",
+              "host": ["{{isHttp}}{{domain}}"],
+              "path": ["betting"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Without Cookies - Referer YANDEX",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const jar = pm.cookies.jar();",
+                  "pm.request.url.host = [pm.environment.get(\"domain\")];",
+                  "// clear all cookies",
+                  "",
+                  "jar.clear(pm.request.url, function (error) {",
+                  "  // error - <Error>",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should have `rfr` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"rfr\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"990762\");",
+                  "});",
+                  "",
+                  "pm.test('should have `PI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"PI\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"990762\");",
+                  "});",
+                  "",
+                  "pm.test('should have `pi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"pi\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"partner990762\");",
+                  "});",
+                  "",
+                  "pm.test('should have `TrackingTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"TrackingTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3D990762\");",
+                  "});",
+                  "",
+                  "pm.test('should have `StickyTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"StickyTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3D990762\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "https://www.yandex.com/",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{isHttp}}{{domain}}/betting",
+              "host": ["{{isHttp}}{{domain}}"],
+              "path": ["betting"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Without Cookies - Referer YAHOO",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const jar = pm.cookies.jar();",
+                  "pm.request.url.host = [pm.environment.get(\"domain\")];",
+                  "// clear all cookies",
+                  "",
+                  "jar.clear(pm.request.url, function (error) {",
+                  "  // error - <Error>",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should have `rfr` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"rfr\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"990761\");",
+                  "});",
+                  "",
+                  "pm.test('should have `PI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"PI\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"990761\");",
+                  "});",
+                  "",
+                  "pm.test('should have `pi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"pi\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"partner990761\");",
+                  "});",
+                  "",
+                  "pm.test('should have `TrackingTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"TrackingTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3D990761\");",
+                  "});",
+                  "",
+                  "pm.test('should have `StickyTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"StickyTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3D990761\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "https://www.yahoo.com/",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{isHttp}}{{domain}}/betting",
+              "host": ["{{isHttp}}{{domain}}"],
+              "path": ["betting"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Without Cookies - Referer Google (Home)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const jar = pm.cookies.jar();",
+                  "pm.request.url.host = [pm.environment.get(\"domain\")];",
+                  "// clear all cookies",
+                  "",
+                  "jar.clear(pm.request.url, function (error) {",
+                  "  // error - <Error>",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should have `rfr` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"rfr\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"990763\");",
+                  "});",
+                  "",
+                  "pm.test('should have `PI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"PI\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"990763\");",
+                  "});",
+                  "",
+                  "pm.test('should have `pi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"pi\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"partner990763\");",
+                  "});",
+                  "",
+                  "pm.test('should have `TrackingTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"TrackingTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3D990763\");",
+                  "});",
+                  "",
+                  "pm.test('should have `StickyTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"StickyTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3D990763\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "https://www.google.com/",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{isHttp}}{{domain}}/betting",
+              "host": ["{{isHttp}}{{domain}}"],
+              "path": ["betting"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Without Cookies - Referer Google (SportView)",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const jar = pm.cookies.jar();",
+                  "pm.request.url.host = [pm.environment.get(\"domain\")];",
+                  "// clear all cookies",
+                  "",
+                  "jar.clear(pm.request.url, function (error) {",
+                  "  // error - <Error>",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should have `rfr` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"rfr\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"990768\");",
+                  "});",
+                  "",
+                  "pm.test('should have `PI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"PI\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"990768\");",
+                  "});",
+                  "",
+                  "pm.test('should have `pi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"pi\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"partner990768\");",
+                  "});",
+                  "",
+                  "pm.test('should have `TrackingTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"TrackingTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3D990768\");",
+                  "});",
+                  "",
+                  "pm.test('should have `StickyTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"StickyTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3D990768\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "https://www.google.com/",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{isHttp}}{{domain}}/betting/football/sport:1",
+              "host": ["{{isHttp}}{{domain}}"],
+              "path": ["betting", "football", "sport:1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Without Cookies - Referer Not related site",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const jar = pm.cookies.jar();",
+                  "pm.request.url.host = [pm.environment.get(\"domain\")];",
+                  "// clear all cookies",
+                  "",
+                  "jar.clear(pm.request.url, function (error) {",
+                  "  // error - <Error>",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should have `rfr` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"rfr\");",
+                  "    pm.expect(cookie).to.be.undefined;;",
+                  "});",
+                  "",
+                  "pm.test('should have `PI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"PI\");",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should have `pi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"pi\");",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should have `TrackingTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"TrackingTags\");",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should have `StickyTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"StickyTags\");",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "https://www.atlassian.com/",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{isHttp}}{{domain}}/betting",
+              "host": ["{{isHttp}}{{domain}}"],
+              "path": ["betting"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "With Cookies - Referer Google but RFR on queryParameter",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const jar = pm.cookies.jar();",
+                  "pm.request.url.host = [pm.environment.get(\"domain\")];",
+                  "// clear all cookies",
+                  "",
+                  "jar.clear(pm.request.url, function (error) {",
+                  "  // error - <Error>",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should have `rfr` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"rfr\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"2\");",
+                  "});",
+                  "",
+                  "pm.test('should have `PI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"PI\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"2\");",
+                  "});",
+                  "",
+                  "pm.test('should have `pi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"pi\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"partner2\");",
+                  "});",
+                  "",
+                  "pm.test('should have `TrackingTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"TrackingTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3D2\");",
+                  "});",
+                  "",
+                  "pm.test('should have `StickyTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"StickyTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"rfr%3D2\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Referer",
+                "value": "https://www.google.com/",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{isHttp}}{{domain}}/betting?rfr=2",
+              "host": ["{{isHttp}}{{domain}}"],
+              "path": ["betting"],
+              "query": [
+                {
+                  "key": "rfr",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "UTM Cookies",
+      "item": [
+        {
+          "name": "Without cookies - All UTM valid",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const jar = pm.cookies.jar();",
+                  "pm.request.url.host = [pm.environment.get(\"domain\")];",
+                  "// clear all cookies",
+                  "",
+                  "jar.clear(pm.request.url, function (error) {",
+                  "  // error - <Error>",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should have `utm_source` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"utm_source\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"Google\");",
+                  "",
+                  "    pm.expect(cookie.expires).to.equal(null);",
+                  "});",
+                  "",
+                  "pm.test('should have `utm_campaign` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"utm_campaign\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"123\");",
+                  "",
+                  "    pm.expect(cookie.expires).to.equal(null);",
+                  "});",
+                  "",
+                  "pm.test('should have `utm_content` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"utm_content\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"132\");",
+                  "",
+                  "    pm.expect(cookie.expires).to.equal(null);",
+                  "});",
+                  "",
+                  "pm.test('should have `utm_medium` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"utm_medium\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"PPC\");",
+                  "",
+                  "    pm.expect(cookie.expires).to.equal(null);",
+                  "});",
+                  "",
+                  "pm.test('should have `utm_ad` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"utm_ad\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"231\");",
+                  "",
+                  "    pm.expect(cookie.expires).to.equal(null);",
+                  "});",
+                  "",
+                  "pm.test('should have `utm_term` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"utm_term\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"betting\");",
+                  "",
+                  "    pm.expect(cookie.expires).to.equal(null);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{isHttp}}{{domain}}/betting?utm_source=Google&utm_campaign=123&utm_medium=PPC&utm_ad=231&utm_content=132&utm_term=betting",
+              "host": ["{{isHttp}}{{domain}}"],
+              "path": ["betting"],
+              "query": [
+                {
+                  "key": "utm_source",
+                  "value": "Google"
+                },
+                {
+                  "key": "utm_campaign",
+                  "value": "123"
+                },
+                {
+                  "key": "utm_medium",
+                  "value": "PPC"
+                },
+                {
+                  "key": "utm_ad",
+                  "value": "231"
+                },
+                {
+                  "key": "utm_content",
+                  "value": "132"
+                },
+                {
+                  "key": "utm_term",
+                  "value": "betting"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Without cookies - UTM invalid",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const jar = pm.cookies.jar();",
+                  "pm.request.url.host = [pm.environment.get(\"domain\")];",
+                  "// clear all cookies",
+                  "",
+                  "jar.clear(pm.request.url, function (error) {",
+                  "  // error - <Error>",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should have `utm_campaign` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"utm_campaign\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"goodtest\");",
+                  "",
+                  "    pm.expect(cookie.expires).to.equal(null);",
+                  "});",
+                  "",
+                  "pm.test('should not have `utm_notrelated` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"utm_notrelated\");",
+                  "    ",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});",
+                  "",
+                  "pm.test('should not have `batatas` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"batatas\");",
+                  "    ",
+                  "    pm.expect(cookie).to.be.undefined;",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{isHttp}}{{domain}}/betting?utm_campaign=goodtest&utm_notrelated=notrelated&batatas=batatas",
+              "host": ["{{isHttp}}{{domain}}"],
+              "path": ["betting"],
+              "query": [
+                {
+                  "key": "utm_campaign",
+                  "value": "goodtest"
+                },
+                {
+                  "key": "utm_notrelated",
+                  "value": "notrelated"
+                },
+                {
+                  "key": "batatas",
+                  "value": "batatas"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "With cookies - UTM valid replace",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const jar = pm.cookies.jar();",
+                  "pm.request.url.host = [pm.environment.get(\"domain\")];",
+                  "// clear all cookies",
+                  "",
+                  "jar.clear(pm.request.url, function (error) {",
+                  "  // error - <Error>",
+                  "});",
+                  "",
+                  "// create cookies",
+                  "jar.set(pm.request.url, \"utm_source\", \"3\");",
+                  "jar.set(pm.request.url, \"utm_campaign\", \"3\");",
+                  "jar.set(pm.request.url, \"utm_medium\", \"3\");",
+                  "jar.set(pm.request.url, \"utm_ad\", \"3\");",
+                  "jar.set(pm.request.url, \"utm_term\", \"3\");",
+                  "jar.set(pm.request.url, \"utm_content\", \"3\");"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should have `utm_source` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"utm_source\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"Google\");",
+                  "});",
+                  "",
+                  "pm.test('should have `utm_campaign` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"utm_campaign\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"456\");",
+                  "});",
+                  "",
+                  "pm.test('should have `utm_content` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"utm_content\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"654\");",
+                  "});",
+                  "",
+                  "pm.test('should have `utm_medium` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"utm_medium\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"PPC\");",
+                  "});",
+                  "",
+                  "pm.test('should have `utm_ad` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"utm_ad\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"546\");",
+                  "});",
+                  "",
+                  "pm.test('should have `utm_term` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"utm_term\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"betting\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{isHttp}}{{domain}}/betting?utm_source=Google&utm_campaign=456&utm_medium=PPC&utm_ad=546&utm_content=654&utm_term=betting",
+              "host": ["{{isHttp}}{{domain}}"],
+              "path": ["betting"],
+              "query": [
+                {
+                  "key": "utm_source",
+                  "value": "Google"
+                },
+                {
+                  "key": "utm_campaign",
+                  "value": "456"
+                },
+                {
+                  "key": "utm_medium",
+                  "value": "PPC"
+                },
+                {
+                  "key": "utm_ad",
+                  "value": "546"
+                },
+                {
+                  "key": "utm_content",
+                  "value": "654"
+                },
+                {
+                  "key": "utm_term",
+                  "value": "betting"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "General",
+      "item": [
+        {
+          "name": "All MKT queryParams at same time",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const jar = pm.cookies.jar();",
+                  "pm.request.url.host = [pm.environment.get(\"domain\")];",
+                  "// clear all cookies",
+                  "",
+                  "jar.clear(pm.request.url, function (error) {",
+                  "  // error - <Error>",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should have `utm_source` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"utm_source\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"betting1\");",
+                  "});",
+                  "",
+                  "pm.test('should have `utm_campaign` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"utm_campaign\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"betting2\");",
+                  "});",
+                  "",
+                  "pm.test('should have `utm_content` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"utm_content\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"betting5\");",
+                  "});",
+                  "",
+                  "pm.test('should have `utm_medium` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"utm_medium\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"betting3\");",
+                  "});",
+                  "",
+                  "pm.test('should have `utm_ad` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"utm_ad\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"betting4\");",
+                  "});",
+                  "",
+                  "pm.test('should have `utm_term` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"utm_term\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"betting6\");",
+                  "});",
+                  "",
+                  "pm.test('should have `rfr` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"rfr\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"35\");",
+                  "});",
+                  "",
+                  "pm.test('should have `pi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"pi\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"partner35\");",
+                  "});",
+                  "",
+                  "pm.test('should have `PI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"PI\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"35\");",
+                  "});",
+                  "",
+                  "pm.test('should have `TrackingTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"TrackingTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"promotionCode%3DpromoCodeTest%26rfr%3D35\");",
+                  "});",
+                  "",
+                  "pm.test('should have `StickyTags` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"StickyTags\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"promotionCode%3DpromoCodeTest%26rfr%3D35\");",
+                  "});",
+                  "",
+                  "pm.test('should have `sid` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"sid\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"54\");",
+                  "});",
+                  "",
+                  "pm.test('should have `spi` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"spi\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"54\");",
+                  "});",
+                  "",
+                  "pm.test('should have `UI` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"UI\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"54\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{isHttp}}{{domain}}/betting?utm_source=betting1&utm_campaign=betting2&utm_medium=betting3&utm_ad=betting4&utm_content=betting5&utm_term=betting6&rfr=35&sid=54&promotionCode=promoCodeTest",
+              "host": ["{{isHttp}}{{domain}}"],
+              "path": ["betting"],
+              "query": [
+                {
+                  "key": "utm_source",
+                  "value": "betting1"
+                },
+                {
+                  "key": "utm_campaign",
+                  "value": "betting2"
+                },
+                {
+                  "key": "utm_medium",
+                  "value": "betting3"
+                },
+                {
+                  "key": "utm_ad",
+                  "value": "betting4"
+                },
+                {
+                  "key": "utm_content",
+                  "value": "betting5"
+                },
+                {
+                  "key": "utm_term",
+                  "value": "betting6"
+                },
+                {
+                  "key": "rfr",
+                  "value": "35"
+                },
+                {
+                  "key": "sid",
+                  "value": "54"
+                },
+                {
+                  "key": "promotionCode",
+                  "value": "promoCodeTest"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Other Query Parameters",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "",
+                  "// Function that given a cookie jar and a cookie name, returns full object of the cookie",
+                  "function getCookie(cookies, name) {",
+                  "    return cookies.filter((cookie) => { ",
+                  "        return cookie.name === name",
+                  "    })[0]",
+                  "}",
+                  "",
+                  "pm.test('should have `efid` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"efid\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"1\");",
+                  "    // By checking that expires is not null, it should have a value",
+                  "    pm.expect(cookie.expires).not.to.equal(null);",
+                  "});",
+                  "",
+                  "pm.test('should have `pid` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"pid\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"2\");",
+                  "    // By checking that expires is not null, it should have a value",
+                  "    pm.expect(cookie.expires).not.to.equal(null);",
+                  "});",
+                  "",
+                  "pm.test('should have `ttp` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"ttp\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"3\");",
+                  "    // By checking that expires is not null, it should have a value",
+                  "    pm.expect(cookie.expires).not.to.equal(null);",
+                  "});",
+                  "",
+                  "pm.test('should have `bid` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"bid\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"4\");",
+                  "    // By checking that expires is not null, it should have a value",
+                  "    pm.expect(cookie.expires).not.to.equal(null);",
+                  "});",
+                  "",
+                  "pm.test('should have `mpch` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"mpch\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"5\");",
+                  "    // By checking that expires is not null, it should have a value",
+                  "    pm.expect(cookie.expires).not.to.equal(null);",
+                  "});",
+                  "",
+                  "",
+                  "pm.test('should have `pla` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"pla\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"6\");",
+                  "    // By checking that expires is not null, it should have a value",
+                  "    pm.expect(cookie.expires).not.to.equal(null);",
+                  "});",
+                  "",
+                  "pm.test('should have `clkID` cookie defined', () => {",
+                  "    const cookie = getCookie(pm.cookies, \"clkID\");",
+                  "    ",
+                  "    pm.expect(cookie).to.exist;",
+                  "    pm.expect(cookie.value).to.equal(\"7\");",
+                  "    // By checking that expires is not null, it should have a value",
+                  "    pm.expect(cookie.expires).not.to.equal(null);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost.betfair.com/betting?efid=1&pid=2&ttp=3&bid=4&promotionCode=CODE&pla=6&clkID=7&mpch=5",
+              "protocol": "https",
+              "host": ["localhost", "betfair", "com"],
+              "port": "443",
+              "path": ["betting"],
+              "query": [
+                {
+                  "key": "efid",
+                  "value": "1"
+                },
+                {
+                  "key": "pid",
+                  "value": "2"
+                },
+                {
+                  "key": "ttp",
+                  "value": "3"
+                },
+                {
+                  "key": "bid",
+                  "value": "4"
+                },
+                {
+                  "key": "promotionCode",
+                  "value": "CODE"
+                },
+                {
+                  "key": "pla",
+                  "value": "6"
+                },
+                {
+                  "key": "clkID",
+                  "value": "7"
+                },
+                {
+                  "key": "",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "mpch",
+                  "value": "5"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

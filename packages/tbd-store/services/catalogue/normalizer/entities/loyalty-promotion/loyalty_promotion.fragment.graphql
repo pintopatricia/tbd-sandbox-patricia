@@ -1,0 +1,38 @@
+fragment loyaltyPromotionLegacy on LoyaltyPromotion {
+  __typename
+  urn
+  name
+  title
+  promoImage {
+    url
+  }
+  state {
+    optInState
+    label {
+      ...displayName
+    }
+    link {
+      label {
+        ...displayName
+      }
+      viewLink {
+        viewUrn
+        viewUrl
+        viewDisplayMode
+      }
+    }
+  }
+  termsAndConditions {
+    summary
+    link {
+      label {
+        ...displayName
+      }
+      viewLink {
+        viewUrn
+        viewUrl
+        viewDisplayMode
+      }
+    }
+  }
+}

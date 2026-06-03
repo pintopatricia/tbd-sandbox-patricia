@@ -1,0 +1,4 @@
+.placeholderContainer {
+  height: 49px;
+  padding: var(--sportsbook-bet-leg-card-padding);
+}

@@ -1,0 +1,14 @@
+fragment gamingJackpotCard on GamingJackpotCard {
+  __typename
+  urn
+  name
+  logo
+  jackpots {
+    ...gamingJackpot
+  }
+}
+
+fragment gamingJackpotCardPartial on GamingJackpotCard {
+  __typename
+  urn
+}

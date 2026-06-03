@@ -1,0 +1,9 @@
+"__typename": "IncidentsCard",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:incidents:22294781090{{/urn}}",
+"isHighlighted": {{#if isHighlighted}}true{{else}}false{{/if}},
+"showEmptyState": {{#if showEmptyState}}true{{else}}false{{/if}},
+{{#with fixture}}
+"fixture": {
+  {{> bff-fixture}}
+}
+{{/with}}

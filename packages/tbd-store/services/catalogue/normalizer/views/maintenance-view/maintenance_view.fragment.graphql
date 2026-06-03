@@ -1,0 +1,32 @@
+fragment maintenanceView on MaintenanceView {
+  __typename
+  urn
+  url
+  redirectUrl
+  products {
+    product
+    status
+    viewLink {
+      viewUrn
+      viewUrl
+    }
+    name {
+      translate {
+        key
+      }
+    }
+  }
+  twitterUrl
+  items {
+    ...viewItems
+  }
+  regulatoryData {
+    ...regulatoryData
+  }
+  bottomBar {
+    ...bottomBar
+  }
+  xsellBar {
+    ...XSellBar
+  }
+}

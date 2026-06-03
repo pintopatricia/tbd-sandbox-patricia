@@ -1,0 +1,25 @@
+{
+  "data": {
+    {{#with data}}
+      "setFavouriteMarket": {
+        {{#with setFavouriteMarket}}
+          {{#with result}}
+            "result": {
+              {{#with favouriteMarketsState}}
+                "favouriteMarketsState": {
+                  {{> bff-favourite-markets-state}}
+                },
+              {{/with}}
+              {{#with favouriteMarketsNavigationTab}}
+                "favouriteMarketsNavigationTab": {
+                  {{> bff-favourite-markets-navigation-tab}}
+                }
+              {{/with}}
+            },
+          {{/with}}
+          "error": {{error}}{{^error}}null{{/error}}
+        {{/with}}
+      }
+    {{/with}}
+  }
+}

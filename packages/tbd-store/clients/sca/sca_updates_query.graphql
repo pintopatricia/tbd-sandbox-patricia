@@ -1,0 +1,671 @@
+query ScaUpdates(
+  $footballEventIds: [ID!]!
+  $tennisEventIds: [ID!]!
+  $raceIds: [ID!]!
+  $baseballEventIds: [ID!]!
+  $basketballEventIds: [ID!]!
+  $cricketEventIds: [ID!]!
+  $tableTennisEventIds: [ID!]!
+  $iceHockeyEventIds: [ID!]!
+  $americanFootballEventIds: [ID!]!
+  $rugbyUnionEventIds: [ID!]!
+  $rugbyLeagueEventIds: [ID!]!
+  $snookerEventIds: [ID!]!
+  $volleyballEventIds: [ID!]!
+  $australianRulesEventIds: [ID!]!
+  $dartsEventIds: [ID!]!
+  $isLite: Boolean!
+  $includeStats: Boolean!
+  $includePlayers: Boolean!
+  $footballPlayerIds: [ID!]!
+  $includePlayerStats: Boolean!
+  $includeSubstitutions: Boolean!
+) {
+  baseball {
+    fixture(ids: $baseballEventIds) {
+      ...baseballFixture
+    }
+  }
+  basketball {
+    fixture(ids: $basketballEventIds) {
+      ...basketballFixture
+    }
+  }
+  cricket {
+    fixture(ids: $cricketEventIds) {
+      ...cricketFixture
+    }
+  }
+  iceHockey {
+    fixture(ids: $iceHockeyEventIds) {
+      ...iceHockeyFixture
+    }
+  }
+  americanFootball {
+    fixture(ids: $americanFootballEventIds) {
+      ...americanFootballFixture
+    }
+  }
+  rugbyUnion {
+    fixture(ids: $rugbyUnionEventIds) {
+      ...rugbyUnionFixture
+    }
+  }
+  rugbyLeague {
+    fixture(ids: $rugbyLeagueEventIds) {
+      ...rugbyLeagueFixture
+    }
+  }
+  volleyball {
+    fixture(ids: $volleyballEventIds) {
+      ...volleyballFixture
+    }
+  }
+  darts {
+    fixture(ids: $dartsEventIds) {
+      ...dartsFixture
+    }
+  }
+  football {
+    fixture(ids: $footballEventIds) {
+      ...footballFixture @skip(if: $isLite)
+      ...footballFixtureLite @include(if: $isLite)
+    }
+  }
+  tableTennis {
+    fixture(ids: $tableTennisEventIds) {
+      ...tableTennisFixture
+    }
+  }
+  tennis {
+    match(ids: $tennisEventIds) {
+      ...tennisFixture
+    }
+  }
+  snooker {
+    fixture(ids: $snookerEventIds) {
+      ...snookerFixture
+    }
+  }
+  australianRules {
+    fixture(ids: $australianRulesEventIds) {
+      ...australianRulesFixture
+    }
+  }
+  horseRacing {
+    race(ids: $raceIds) {
+      ...raceStatusAndResultType
+    }
+  }
+}
+
+fragment raceStatusAndResultType on Race {
+  id
+  details {
+    status
+    resultType
+  }
+}
+
+fragment footballFixture on FootballFixture {
+  ...footballFixtureLite
+  incidents {
+    clock {
+      ...clock
+    }
+    period
+    periodStatus
+    details {
+      ...incidentDetails
+    }
+  }
+  stats(
+    periods: [
+      { periodStatus: FULL }
+      { period: EXTRA, periodStatus: INPLAY_FIRST_HALF }
+      { period: EXTRA, periodStatus: INPLAY_SECOND_HALF }
+      { period: REGULAR, periodStatus: FULL }
+      { period: REGULAR, periodStatus: INPLAY_FIRST_HALF }
+      { period: REGULAR, periodStatus: INPLAY_SECOND_HALF }
+    ]
+  ) {
+    __typename
+    period
+    periodStatus
+    home {
+      ...gameStats
+    }
+    away {
+      ...gameStats
+    }
+    both {
+      ...gameStats
+    }
+  }
+}
+
+fragment footballFixtureLite on FootballFixture {
+  id
+  scheduledAt
+  score {
+    home
+    away
+  }
+  home {
+    formation
+  }
+  away {
+    formation
+  }
+  duration {
+    period
+    status
+    stoppageMinutes
+    clock {
+      ...clock
+    }
+  }
+  penaltyShootout {
+    firstTeamToShoot
+    penaltyFormat
+    nextTeamToShoot
+    penaltyScores {
+      penaltyNumber
+      side
+      shotResult
+    }
+  }
+  stats(
+    periods: [
+      { periodStatus: FULL }
+      { period: EXTRA, periodStatus: INPLAY_FIRST_HALF }
+      { period: EXTRA, periodStatus: INPLAY_SECOND_HALF }
+      { period: REGULAR, periodStatus: FULL }
+      { period: REGULAR, periodStatus: INPLAY_FIRST_HALF }
+      { period: REGULAR, periodStatus: INPLAY_SECOND_HALF }
+    ]
+  ) @include(if: $includeStats) {
+    __typename
+    period
+    periodStatus
+    home {
+      ...gameStatsLite
+    }
+    away {
+      ...gameStatsLite
+    }
+    both {
+      ...gameStatsLite
+    }
+  }
+  players(ids: $footballPlayerIds) @include(if: $includePlayers) {
+    ...footballPlayerWithSubs
+  }
+}
+
+fragment tennisFixture on TennisMatch {
+  id
+  teamAScore
+  teamBScore
+  scheduledStartTime
+  actualStartTime
+  status {
+    status
+    reason
+  }
+  currentSet {
+    number
+    teamAScore
+    teamBScore
+    currentGame {
+      type
+      number
+      teamAScore
+      teamBScore
+      pointNumber
+      teamServing
+      pointWinner
+      serveNumber
+    }
+  }
+}
+
+fragment tableTennisFixture on TableTennisFixture {
+  id
+  currentSet {
+    currentServer
+    number
+    score {
+      away
+      home
+    }
+  }
+  setsWon {
+    away
+    home
+  }
+  previousSets {
+    currentServer
+    number
+    score {
+      away
+      home
+    }
+  }
+}
+
+fragment baseballFixture on BaseballFixture {
+  id
+  score {
+    home
+    away
+  }
+  clock {
+    period
+  }
+  scorePerInning {
+    period
+    score {
+      home
+      away
+    }
+  }
+}
+
+fragment basketballFixture on BasketballFixture {
+  id
+  score {
+    home
+    away
+  }
+  clock {
+    period
+    segment
+    timeElapsed
+    timeRemaining
+  }
+  periodScores {
+    score {
+      home
+      away
+    }
+    period
+  }
+}
+
+fragment cricketFixture on CricketFixture {
+  id
+  score {
+    home {
+      runs
+      wickets
+      inningNumber
+    }
+    away {
+      runs
+      wickets
+      inningNumber
+    }
+  }
+  currentTeamBatting
+  currentTime {
+    inning
+    over
+  }
+}
+
+fragment iceHockeyFixture on IceHockeyFixture {
+  id
+  score {
+    home
+    away
+  }
+  clock {
+    period
+  }
+  periodScores {
+    score {
+      home
+      away
+    }
+    period
+  }
+}
+
+fragment australianRulesFixture on AustralianRulesFixture {
+  id
+  score {
+    goals {
+      home
+      away
+    }
+    behinds {
+      home
+      away
+    }
+    points {
+      home
+      away
+    }
+  }
+  periodScores {
+    score {
+      goals {
+        home
+        away
+      }
+      behinds {
+        home
+        away
+      }
+      points {
+        home
+        away
+      }
+    }
+    australianRulesPeriod
+  }
+}
+
+fragment rugbyUnionFixture on RugbyUnionFixture {
+  id
+  score {
+    home
+    away
+  }
+  halfTimeScore {
+    home
+    away
+  }
+}
+
+fragment rugbyLeagueFixture on RugbyLeagueFixture {
+  id
+  score {
+    home
+    away
+  }
+  halfTimeScore {
+    home
+    away
+  }
+}
+
+fragment americanFootballFixture on AmericanFootballFixture {
+  id
+  score {
+    home
+    away
+  }
+  clock {
+    period
+  }
+}
+
+fragment snookerFixture on SnookerFixture {
+  id
+  score {
+    home
+    away
+  }
+}
+
+fragment volleyballFixture on VolleyballFixture {
+  id
+  homeScore
+  awayScore
+  currentSet {
+    number
+    score {
+      home
+      away
+    }
+    currentServer
+  }
+  previousSets {
+    number
+    score {
+      home
+      away
+    }
+    currentServer
+  }
+}
+
+fragment dartsFixture on DartsFixture {
+  id
+  type
+  score {
+    __typename
+    ... on DartsScore {
+      home
+      away
+    }
+    ... on DartsFixtureSetsScore {
+      setsWon {
+        home
+        away
+      }
+      currentSet {
+        number
+        score {
+          home
+          away
+        }
+      }
+      previousSets {
+        number
+        score {
+          home
+          away
+        }
+      }
+    }
+  }
+}
+
+fragment incidentDetails on FootballIncidentDetails {
+  __typename
+  ... on GoalIncident {
+    ...goalIncident
+  }
+  ... on CardIncident {
+    ...cardIncident
+  }
+  ... on SubstitutionIncident {
+    ...substitutionIncident
+  }
+  ... on PenaltyIncident {
+    ...penaltyIncident
+  }
+  ... on PenaltyShootoutIncident {
+    ...penaltyShootoutIncident
+  }
+  ... on PeriodIncident {
+    ...periodIncident
+  }
+  ... on ShotIncident {
+    ...shotIncident
+  }
+  ... on SetPieceIncident {
+    ...setPieceIncident
+  }
+  ... on FoulIncident {
+    ...foulIncident
+  }
+  ... on AttackIncident {
+    ...attackIncident
+  }
+}
+
+fragment attackIncident on AttackIncident {
+  side
+  attackType
+}
+
+fragment foulIncident on FoulIncident {
+  side
+  foulType
+  player {
+    ...footballPlayer
+  }
+}
+
+fragment setPieceIncident on SetPieceIncident {
+  side
+  setPieceType
+}
+
+fragment shotIncident on ShotIncident {
+  side
+  shotType
+  player {
+    ...footballPlayer
+  }
+}
+
+fragment periodIncident on PeriodIncident {
+  periodType
+  period
+  status
+  injuryTime
+}
+
+fragment penaltyShootoutIncident on PenaltyShootoutIncident {
+  side
+  penaltyShootoutType
+  player {
+    ...footballPlayer
+  }
+}
+
+fragment penaltyIncident on PenaltyIncident {
+  side
+  penaltyType
+}
+
+fragment substitutionIncident on SubstitutionIncident {
+  side
+  playerIn {
+    ...footballPlayer
+  }
+  playerOut {
+    ...footballPlayer
+  }
+}
+
+fragment cardIncident on CardIncident {
+  cardType
+  side
+  player {
+    ...footballPlayer
+  }
+}
+
+fragment goalIncident on GoalIncident {
+  goalType
+  side
+  goalScorer {
+    ...footballPlayer
+  }
+  assist {
+    ...footballPlayer
+  }
+}
+
+fragment clock on Instant {
+  minute
+  second
+}
+
+fragment gameStatsLite on FootballGameStats {
+  __typename
+  corners
+  goals
+  totalCards
+  shotsOnTarget
+  totalShots
+}
+
+fragment gameStats on FootballGameStats {
+  ...gameStatsLite
+  possession
+  yellowCards
+  redCards
+  offsides
+  fouls
+  throwIns
+  freeKicks
+  goalKicks
+  blockedShots
+  attacks
+  dangerousAttacks
+  shotsOffTarget
+}
+
+fragment footballPlayer on FootballPlayer {
+  __typename
+  id
+  name
+  matchName
+  shirtNumber
+  position
+  startingType
+  formationPlace
+}
+
+fragment footballPlayersStats on FootballGameStats {
+  __typename
+  shotsOnTarget
+  totalShots
+  goals
+  fouls
+  foulsWon
+  passes
+  totalCards
+  assists
+  foulInvolvements
+}
+
+fragment footballPlayerPeriodStats on FootballPlayerPeriodStats {
+  periodDetails {
+    __typename
+    period
+    periodStatus
+  }
+  stats {
+    ...footballPlayersStats
+  }
+}
+
+fragment footballPlayerWithStats on FootballPlayer {
+  __typename
+  id
+  name
+  stats(
+    periods: [
+      { periodStatus: FULL }
+      { period: EXTRA, periodStatus: INPLAY_FIRST_HALF }
+      { period: EXTRA, periodStatus: INPLAY_SECOND_HALF }
+      { period: REGULAR, periodStatus: FULL }
+      { period: REGULAR, periodStatus: INPLAY_FIRST_HALF }
+      { period: REGULAR, periodStatus: INPLAY_SECOND_HALF }
+    ]
+  ) @include(if: $includePlayerStats) {
+    ...footballPlayerPeriodStats
+  }
+}
+
+fragment footballPlayerSub on FootballPlayerSub {
+  __typename
+  player {
+    ...footballPlayerWithStats
+  }
+}
+
+fragment footballPlayerWithSubs on FootballPlayer {
+  ...footballPlayerWithStats
+  substitutions @include(if: $includeSubstitutions) {
+    ...footballPlayerSub
+  }
+}

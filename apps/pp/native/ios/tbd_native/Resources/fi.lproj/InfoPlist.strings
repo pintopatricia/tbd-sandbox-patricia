@@ -1,0 +1,3 @@
+NSCameraUsageDescription = "Kun painat OK, voit ladata kuvan tai lähettää meille valokuvan vahvistaaksesi tilisi.";
+NSFaceIDUsageDescription = "Face ID -ominaisuuden aktivoinnin avulla pääset tilillesi nopeasti ja turvallisesti.";
+NSUserTrackingUsageDescription = "Tietojasi käytetään entistä yksilöllisemmän kokemuksen tarjoamiseksi navigoinnin, viestien lähettämisen, urheilutapahtumien ja kampanjoiden suhteen.";

@@ -1,0 +1,70 @@
+name: Trigger Master Pipelines
+on:
+  push:
+    branches:
+      - master
+env:
+  NX_BASE: origin/${{github.base_ref}}
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  LAST_COMMIT: ${{github.event.before }}
+  CURRENT_COMMIT: ${{ github.sha }}
+  JENKINS_TBD_USER: ${{secrets.JENKINS_TBD_USER}}
+  JENKINS_TBD_USER_TOKEN: ${{secrets.JENKINS_TBD_USER_TOKEN}}
+  JENKINS_URL: ${{secrets.JENKINS_URL}}
+jobs:
+  orchestrator:
+    runs-on: ubuntu-self-hosted
+    outputs:
+      native_ios_changes: ${{ steps.check-changes.outputs.native_ios_changes }}
+      native_android_changes: ${{ steps.check-changes.outputs.native_android_changes }}
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 100 #should be more than enough to get 2 PR's merged commit history
+      - name: Execute script to iterate through json file
+        id: check-changes
+        run: ./.github/process_jobs.sh  --lastcommit ${{env.LAST_COMMIT}} --currentcommit ${{env.CURRENT_COMMIT}} --jenkinstbduser ${{env.JENKINS_TBD_USER}} --jenkinstbdusertoken ${{env.JENKINS_TBD_USER_TOKEN}} --jenkinsurl ${{env.JENKINS_URL}}
+  ios-trigger-pipeline:
+    runs-on: ubuntu-self-hosted
+    needs: orchestrator
+    if: needs.orchestrator.outputs.native_ios_changes == 'true'
+    strategy:
+      matrix:
+        brand: ['bf', 'sbg', 'pp']
+    steps:
+      - uses: actions/github-script@v7
+        id: trigger-ios-pipeline
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+                owner: "Flutter-Global",
+                repo: "tbd",
+                workflow_id: ".github/workflows/trigger-ios-pipeline.yml",
+                ref: "master",
+                inputs: {
+                  brand: "${{ matrix.brand }}",
+                },
+              });
+  android-trigger-pipeline:
+    runs-on: ubuntu-self-hosted
+    needs: orchestrator
+    if: needs.orchestrator.outputs.native_android_changes == 'true'
+    strategy:
+      matrix:
+        brand: ['bf', 'sbg', 'pp']
+    steps:
+      - uses: actions/github-script@v7
+        id: trigger-android-pipeline
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+                owner: "Flutter-Global",
+                repo: "tbd",
+                workflow_id: ".github/workflows/trigger-android-pipeline.yml",
+                ref: "master",
+                inputs: {
+                  brand: "${{ matrix.brand }}",
+                },
+              });

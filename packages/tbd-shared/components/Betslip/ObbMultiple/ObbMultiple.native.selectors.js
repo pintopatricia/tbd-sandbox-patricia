@@ -1,0 +1,9 @@
+const OBB_MULTIPLE = "obb-multiple";
+const OBB_MULTIPLE_SELECTIONS_DETAILS = `${OBB_MULTIPLE}-selections-details`;
+const OBB_MULTIPLE_CONTROLS = `${OBB_MULTIPLE}-controls`;
+
+module.exports = {
+  OBB_MULTIPLE,
+  OBB_MULTIPLE_CONTROLS,
+  OBB_MULTIPLE_SELECTIONS_DETAILS,
+};

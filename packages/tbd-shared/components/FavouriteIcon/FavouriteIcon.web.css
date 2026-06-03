@@ -1,0 +1,25 @@
+.favouriteIcon {
+  padding: var(--sm-spacing-none) var(--sm-spacing-x-small);
+}
+
+.buttonContainer {
+  position: "relative";
+
+  display: "flex";
+
+  flex-direction: "column";
+
+  gap: var(--sm-spacing-xxx-small);
+
+  align-items: "center";
+  justify-content: "center";
+}
+
+.iconContainer {
+  position: "relative";
+
+  box-sizing: "content-box";
+
+  width: var(--sm-sizing-assets-medium);
+  height: var(--sm-sizing-assets-medium);
+}

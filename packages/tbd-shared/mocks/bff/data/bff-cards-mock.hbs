@@ -1,0 +1,15 @@
+{
+  "data": {
+    {{#with withAppContext}}
+      "AppContext": {{> bff-app-context }},
+    {{/with}}
+    "Cards": [
+      {{#each cards}}
+        {
+          {{> bff-card-types }}
+        }
+        {{#unless @last}},{{/unless}}
+      {{/each}}
+    ]
+  }
+}

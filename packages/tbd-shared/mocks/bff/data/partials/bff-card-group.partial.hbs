@@ -1,0 +1,41 @@
+"__typename":"SwimlaneCardGroup",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:group#topInplayEventsInSport#1{{/urn}}",
+{{#with full}}
+    "full":{
+        {{> bff-items }}
+    },
+{{/with}}
+    "partials":{
+        "edges": [
+          {{#with partials}}
+            {{#each edges}}
+                {
+                {{#with node}}
+                    "node": {
+                        "__typename": "{{__typename}}{{^__typename}}EventViewLinkCard{{/__typename}}",
+                        "urn": "{{urn}}{{^urn}}ppb:tbd:card:eventViewLink::29359895{{/urn}}"
+                    }
+                {{/with}}
+                }{{#unless @last}},{{/unless}}
+            {{/each}}
+          {{/with}}
+        ]
+    },
+"cardGroupTitle": {{#if cardGroupTitle}}"{{cardGroupTitle}}"{{else}}null{{/if}},
+"titleImage": {{#if titleImage}}"{{titleImage}}"{{else}}null{{/if}},
+{{#if viewAll}}
+    {{#with viewAll}}
+    "viewAll" : {
+    "icon": {{#if icon}}"{{icon}}"{{else}}null{{/if}},
+    "label": "{{label}}{{^label}}Category Links Label{{/label}}",
+        {{#with viewLink}}
+            "viewLink": {
+                "viewUrl": "{{viewUrl}}{{^viewUrl}}/casino/c/slots/gamingCategory:slots{{/viewUrl}}",
+                "viewUrn": "{{viewUrn}}{{^viewUrn}}ppb:tbd:view:gamingCategory:slots{{/viewUrn}}"
+            }
+        {{/with}}
+    }
+    {{/with}}
+{{else}}
+    "viewAll": null
+{{/if}}

@@ -1,0 +1,93 @@
+{
+	"data": {
+		"View": {
+			"__typename": "PlayerView",
+			"urn": "{{urn}}{{^urn}}ppb:tbd:view:player:123|123{{/urn}}",
+			"url": "{{url}}{{^url}}/player/jan-paul-van-hecke/pl-123%123{{/url}}",
+			"title": "{{context.player.name}}{{^context.player.name}}Jan Paul van Hecke{{/context.player.name}}",
+			"leftSidebar": {
+				{{> bff-leftside-bar }}
+			},
+			"bottomBar": {
+				{{> bff-bottom-bar-tiles }}
+			},
+			{{#with context}} 
+			"context": {
+				"__typename": "FootballPlayerFixtureContext",
+				{{#with player}} 
+				"player": {
+					"__typename": "FootballPlayerFixture",
+					"id": "{{id}}{{^id}}123{{/id}}",
+					"urn": "{{urn}}{{^urn}}ppb:tbd:player:123|123{{/urn}}",
+					"name": "{{name}}{{^name}}Jan Paul van Hecke{{/name}}",
+					"position": {{#if position}}"{{position}}"{{else}}null{{/if}},
+					"shirtNumber": {{#if shirtNumber}}{{shirtNumber}}{{else}}null{{/if}}
+				},
+				{{/with}}
+				{{#with team}} 
+				"team": {
+					"__typename": "FootballTeam",
+					"name": "{{name}}{{^name}}Brighton{{/name}}",
+					"color": "{{color}}{{^color}}0057B8{{/color}}"
+				}
+				{{/with}}
+			},
+			{{/with}}
+			"items": {
+				"__typename": "PlayerViewItemsConnection",
+				"edges": [
+				{{#each items.edges}}
+					{{#with node}}
+						{{#ifEquals __typename "FootballPlayerCompetitionStatsCard"}}
+						{
+							"__typename": "PlayerViewItemEdge",
+							"node": {
+								"__typename": "FootballPlayerCompetitionStatsCard",
+								"urn": "{{urn}}{{^urn}}ppb:tbd:card:footballplayercompetitionstats:123|123{{/urn}}",
+								"player": {
+									"__typename": "FootballPlayerFixture",
+									"seasonStats": {
+										{{#with player.seasonStats}}
+										"__typename": "FootballPlayerFixtureSeasonStats",
+										"matchesPlayed": {{matchesPlayed}}{{^matchesPlayed}}0{{/matchesPlayed}},
+										"totals": {
+											{{#with totals}}
+											"__typename": "FootballPlayerFixtureStat",
+											"goals": {{goals}}{{^goals}}0{{/goals}},
+											"yellowCards": {{yellowCards}}{{^yellowCards}}5{{/yellowCards}},
+											"redCards": {{redCards}}{{^redCards}}0{{/redCards}},
+											"assists": {{assists}}{{^assists}}0{{/assists}}
+											{{/with}}
+										}
+										{{/with}}
+									}
+								}
+							}
+						}
+						{{/ifEquals}}
+						{{#ifEquals __typename "PlayerMarketsCardGroup"}}
+						{
+							"__typename": "PlayerViewItemEdge",
+							"node": {
+								"__typename": "PlayerMarketsCardGroup",
+								"urn": "{{urn}}{{^urn}}ppb:tbd:cardgroup:playermarkets:123|123{{/urn}}"
+							}
+						}
+						{{/ifEquals}}
+						{{#ifEquals __typename "RegulatoryCard"}}
+						{
+							"__typename": "PlayerViewItemEdge",
+							"node": {
+								"__typename": "RegulatoryCard",
+								"urn": "{{urn}}{{^urn}}ppb:tbd:card:regulatory:footer{{/urn}}"
+							}
+						}
+						{{/ifEquals}}
+					{{/with}}
+					{{#unless @last}},{{/unless}}
+				{{/each}}
+				]
+			}
+		}
+	}
+}

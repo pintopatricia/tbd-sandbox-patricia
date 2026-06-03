@@ -1,0 +1,13 @@
+"__typename": "VirtualRunner",
+"runnerURN": "{{runnerURN}}{{^runnerURN}}ppb:virtualRunner:24620036{{/runnerURN}}",
+"selectionId": {{selectionId}}{{^selectionId}}24620036{{/selectionId}},
+"odds": {
+  {{#with odds}}
+    "decimal": {{decimal}}{{^decimal}}4.33{{/decimal}},
+    "fractional": {
+      "numerator": {{fractional.numerator}}{{^fractional.numerator}}10{{/fractional.numerator}},
+      "denominator": {{fractional.denominator}}{{^fractional.denominator}}3{{/fractional.denominator}}
+    }
+  {{/with}}
+},
+"name": "{{name}}{{^name}}Badjoras{{/name}}"

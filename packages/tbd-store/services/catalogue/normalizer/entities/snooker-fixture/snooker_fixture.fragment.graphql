@@ -1,0 +1,13 @@
+fragment snookerFixture on SnookerFixture {
+  __typename
+  urn
+  isAmericanFormat
+  runnerNames {
+    home
+    away
+  }
+  score {
+    scoreHome: home
+    scoreAway: away
+  }
+}

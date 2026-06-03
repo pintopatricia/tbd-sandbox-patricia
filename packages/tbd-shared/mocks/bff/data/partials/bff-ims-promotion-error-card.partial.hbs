@@ -1,0 +1,10 @@
+"__typename": "ImsPromotionErrorCard",
+"errorCode": "{{errorCode}}{{^errorCode}}GENERAL{{/errorCode}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:imsPromotionError:gaming-promotion-1{{/urn}}",
+"promotionName": {{#if promotionName}}"{{promotionName}}"{{else}}null{{/if}},
+{{#with seeAll}}
+    "seeAll": {
+    "viewUrn": "{{viewUrn}}{{^viewUrn}}ppb:tbd:view:gaming:1{{/viewUrn}}",
+    "viewUrl": "{{viewUrl}}{{^viewUrl}}/casino/gm-1{{/viewUrl}}"
+    }
+{{/with}}

@@ -1,0 +1,21 @@
+.container {
+  margin: 0;
+}
+
+.content {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: var(--sm-spacing-x-small);
+}
+
+.inputFields,
+.freeBets,
+.alert {
+  margin-bottom: var(--sm-spacing-x-small);
+}
+
+.operatorInfo {
+  margin-top: var(--sm-spacing-x-small);
+}

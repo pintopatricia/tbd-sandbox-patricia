@@ -1,0 +1,14 @@
+fragment eventHeaderCard on EventHeaderCard {
+  __typename
+  urn
+  title
+  subtitle
+  tertiaryTitle
+  sportId
+  date
+}
+
+fragment eventHeaderCardPartial on EventHeaderCard {
+  __typename
+  urn
+}

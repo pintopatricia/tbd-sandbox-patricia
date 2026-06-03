@@ -1,0 +1,152 @@
+.swimlaneItemContainer {
+  --swimlane-item-container-width: 87%;
+  flex-basis: 100%;
+
+  max-width: var(--swimlane-item-container-max-width);
+}
+
+.swimlaneItemContainer.snap {
+  width: var(--swimlane-item-container-width);
+  max-width: var(--swimlane-item-container-max-width);
+  scroll-snap-align: start;
+  scroll-margin: 0 var(--spacing-3);
+}
+
+[class*="childWrapper"]:has(.swimlaneItemContainer.snap) {
+  margin-left: var(--spacing-3);
+}
+
+.scrollableSwimlaneLeft {
+  padding-left: 0;
+}
+
+.scrollableSwimlaneRight {
+  padding-right: 0;
+}
+
+.container section {
+  padding: 0;
+}
+
+[class*="childWrapper"]:has(.swimlaneItemContainer.snap):last-child {
+  margin-right: var(--spacing-3);
+}
+
+.navigation {
+  width: 200px;
+}
+
+.swimlaneItemContainer.supportingContent {
+  flex: 0 0 100px;
+
+  height: 56px;
+  padding: 0 var(--spacing-1);
+}
+
+[class*="childWrapper"]:has(.swimlaneItemContainer.supportingContent):first-child {
+  margin-left: var(--spacing-3);
+}
+
+.highlightedSelection {
+  width: var(--swimlane-item-container-width);
+  max-width: var(--swimlane-item-container-max-width);
+}
+
+.container {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--half-time-pulse-card-gap);
+
+  padding: var(--half-time-pulse-card-padding);
+
+  background: var(--half-time-pulse-card-background-colour);
+  border-radius: var(--half-time-pulse-card-border-radius);
+}
+
+.highlightedContainer {
+  background: var(--half-time-pulse-card-background-highlighted-colour);
+  border: var(--half-time-pulse-card-highlighted-border);
+}
+
+.titleContainer {
+  display: flex;
+
+  flex-direction: row;
+
+  gap: var(--half-time-pulse-title-label-gap);
+
+  align-items: center;
+
+  padding: var(--half-time-pulse-header-padding);
+}
+
+.title {
+  font: var(--half-time-pulse-title-typography);
+  color: var(--half-time-pulse-title-colour);
+}
+
+.subtitle {
+  padding: var(--half-time-pulse-header-padding);
+
+  font: var(--half-time-pulse-subtitle-typography);
+  color: var(--half-time-pulse-subtitle-colour);
+}
+
+.extended.snap,
+.highlightedSelection.extended {
+  width: 93%;
+  max-width: none;
+}
+
+.competitionViewLink {
+  flex-grow: 0;
+}
+
+.game {
+  width: 70vw;
+}
+
+.gamingLink {
+  height: var(--highlighted-link-card-container-sizing);
+}
+
+.swimlaneItemContainer.sportviewlink {
+  flex-grow: initial;
+
+  max-width: 94px;
+}
+
+.swimlaneItemContainer.byTimeRangeMeeting {
+  flex-grow: 0;
+
+  min-width: 59px;
+}
+
+.swimlaneItemContainer.promoCard {
+  align-self: flex-end;
+}
+
+[class*="childWrapper"]:has(.swimlaneItemContainer.competitionViewLink):not(:last-child) {
+  margin-right: var(--spacing-half);
+}
+
+/* DESKTOP specific overwrites */
+@media screen and (min-width: 900px) {
+  [class*="childWrapper"]:has(.swimlaneItemContainer.snap):not(:last-child) {
+    margin-right: var(--spacing-3);
+  }
+
+  [class*="childWrapper"]:has(.swimlaneItemContainer.snap):last-child {
+    margin-right: 0;
+  }
+
+  .scrollableSwimlaneLeft {
+    padding-left: var(--spacing-3);
+  }
+
+  .scrollableSwimlaneRight {
+    padding-right: var(--spacing-3);
+  }
+}

@@ -1,0 +1,19 @@
+.marketBetCardContainer {
+  margin: 0;
+}
+
+.divider {
+  padding: var(--spacing-2) 0;
+}
+
+.liabilityContainer {
+  display: flex;
+}
+
+.liabilityContainer > :first-child {
+  flex-basis: 40%;
+}
+
+.liabilityContainer > :last-child {
+  flex-basis: 60%;
+}

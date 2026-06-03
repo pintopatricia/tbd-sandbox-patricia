@@ -1,0 +1,43 @@
+"__typename": "{{__typename}}{{^__typename}}CompetitionRegionCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:competitionRegion:12345{{/urn}}",
+"competitionRegions": [
+    {{#each competitionRegions}}
+      {
+        {{#with country}}
+          "country": {
+            "urn": "{{urn}}",
+            "code": "{{code}}",
+            {{#with flag}}
+            "flag": {
+              "vector": {{#if vector}}"{{vector}}"{{else}}null{{/if}},
+              "small": {{#if small}}"{{small}}"{{else}}null{{/if}},
+              "medium": {{#if medium}}"{{medium}}"{{else}}null{{/if}},
+              "large": {{#if large}}"{{large}}"{{else}}null{{/if}}
+            }
+            {{else}}
+            "flag": null
+            {{/with}}
+          },
+        {{/with}}
+        "competitionViewLinks": [
+            {{#each competitionViewLinks}}
+              {
+                "urn": "{{urn}}{{^urn}}ppb:tbd:competitionviewlink:12345{{/urn}}",
+                "viewLink": {
+                  {{#with viewLink}}
+                    {{> bff-view-link}}
+                  {{/with}}
+                },
+                "competition": {
+                  {{#with competition}}
+                    {{> bff-competition }}
+                  {{/with}}
+                }
+              }
+            {{#unless @last}},{{/unless}}
+          {{/each}}
+        ]
+      }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+]

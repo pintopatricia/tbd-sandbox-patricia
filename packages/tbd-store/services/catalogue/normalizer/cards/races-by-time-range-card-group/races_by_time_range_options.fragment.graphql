@@ -1,0 +1,14 @@
+fragment byTimeRangeOptions on ByTimeRangeOptions {
+  __typename
+  countriesFilter {
+    urn
+    defaultOptions {
+      urn
+      name
+    }
+    availableOptions {
+      urn
+      name
+    }
+  }
+}

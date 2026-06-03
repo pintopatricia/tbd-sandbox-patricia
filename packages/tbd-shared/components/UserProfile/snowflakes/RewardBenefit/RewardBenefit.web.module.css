@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+
+  margin: var(--spacing-3) 0;
+
+  color: var(--neutrals-text-default);
+}
+
+.wrapper:last-child {
+  margin: 0;
+}
+
+.iconWrapper {
+  margin-right: var(--spacing-2);
+}

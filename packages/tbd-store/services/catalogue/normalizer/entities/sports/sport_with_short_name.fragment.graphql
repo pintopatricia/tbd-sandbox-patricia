@@ -1,0 +1,7 @@
+fragment sportWithShortName on Sport {
+  __typename
+  urn
+  name
+  sportId
+  shortName
+}

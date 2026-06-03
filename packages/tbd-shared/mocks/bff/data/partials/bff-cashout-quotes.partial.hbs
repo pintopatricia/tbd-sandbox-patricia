@@ -1,0 +1,16 @@
+"cashoutQuotes":{
+  "exchangeCashoutQuotes":[
+  {{#with cashoutQuotes}}
+    {{#each exchangeCashoutQuotes}}
+     {
+        "__typename": "ExchangeCashoutQuote",
+        "urn":"{{urn}}{{^urn}}ppb:excCashoutQuote:1.171572927/0{{/urn}}",
+        "marketURN":"{{marketURN}}{{^marketURN}}ppb:excMarket:1.171572927{{/marketURN}}",
+        "value":{{value}}{{^value}}1.94{{/value}},
+        "profit":{{profit}}{{^profit}}-0.06{{/profit}},
+        "currentLiability":{{currentLiability}}{{^currentLiability}}1{{/currentLiability}},
+        "status":"{{status}}{{^status}}AVAILABLE{{/status}}"
+     }
+     {{#unless @last}},{{/unless}}{{/each}}{{/with}}
+  ]
+}

@@ -1,0 +1,52 @@
+.squadsContainer {
+  display: flex;
+
+  justify-content: space-between;
+}
+
+.microPlayerContainer {
+  display: flex;
+
+  flex: 1;
+  flex-direction: column;
+
+  gap: var(--mash-ups-card-squad-vertical-gap);
+
+  align-items: center;
+}
+
+.entryPointGap {
+  /* stylelint-disable-next-line csstools/value-no-unknown-custom-properties */
+  padding-top: var(--mash-ups-card-squads-label-padding);
+}
+
+.defaultGap {
+  padding-top: var(--spacing-1);
+}
+
+.title {
+  font: var(--card-title-typography);
+  color: var(--card-title-colour);
+  text-decoration-line: var(--card-title-typography-text-decoration-line);
+  text-transform: var(--card-title-typography-text-transform);
+  letter-spacing: var(--card-title-typography-letter-spacing);
+}
+
+.vsText {
+  margin-right: var(--spacing-2);
+  margin-left: var(--spacing-2);
+
+  font: var(--mash-ups-card-squads-label-typography);
+  color: var(--mash-ups-card-squads-label-colour);
+}
+
+.outcomeLabel {
+  font: var(--mash-ups-card-label-typography);
+  color: var(--squad-bet-card-label-colour);
+}
+
+.betButtonsContainer {
+  display: flex;
+
+  gap: var(--spacing-2);
+}

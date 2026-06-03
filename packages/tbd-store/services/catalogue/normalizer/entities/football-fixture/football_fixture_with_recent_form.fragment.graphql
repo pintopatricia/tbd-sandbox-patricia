@@ -1,0 +1,11 @@
+fragment footballFixtureWithRecentForm on FootballFixture {
+  ...footballFixture
+  recentForm {
+    home {
+      ...footballTeamForm
+    }
+    away {
+      ...footballTeamForm
+    }
+  }
+}

@@ -1,0 +1,5 @@
+.placeholder {
+  width: calc(100% - var(--spacing-2) * 2);
+  height: 269px;
+  margin: var(--spacing-2);
+}

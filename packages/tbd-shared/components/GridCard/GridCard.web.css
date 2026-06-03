@@ -1,0 +1,21 @@
+.gridCardContainer {
+  margin: var(--spacing-1) var(--spacing-3);
+}
+
+.marketBlurb {
+  padding-bottom: var(--spacing-2);
+}
+
+.gridCard {
+  margin: var(--spacing-2) 0;
+}
+
+.gridRunnerList {
+  padding-bottom: var(--spacing-2);
+
+  transition: height 1s ease;
+}
+
+.gridRunnerList:last-child {
+  margin-bottom: 0;
+}

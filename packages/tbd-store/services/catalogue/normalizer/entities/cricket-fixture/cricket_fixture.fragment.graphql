@@ -1,0 +1,26 @@
+fragment cricketFixture on CricketFixture {
+  __typename
+  urn
+  isAmericanFormat
+  runnerNames {
+    home
+    away
+  }
+  score {
+    homeScore: home {
+      runs
+      wickets
+      inningNumber
+    }
+    awayScore: away {
+      runs
+      wickets
+      inningNumber
+    }
+  }
+  currentTeamBatting
+  currentTime {
+    inning
+    over
+  }
+}

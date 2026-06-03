@@ -1,0 +1,58 @@
+fragment footballFixture on FootballFixture {
+  __typename
+  urn
+  home {
+    name
+    color
+    crest {
+      vector
+      small
+      medium
+      large
+    }
+  }
+  away {
+    name
+    color
+    crest {
+      vector
+      small
+      medium
+      large
+    }
+  }
+  isAmericanFormat
+  runnerNames {
+    home
+    away
+  }
+  scheduledAt
+  startedAt
+  score {
+    home
+    away
+  }
+  firstLegScore {
+    home
+    away
+  }
+  duration {
+    period
+    status
+    clock {
+      minute
+      second
+    }
+    stoppageMinutes
+  }
+  penaltyShootout {
+    firstTeamToShoot
+    nextTeamToShoot
+    penaltyFormat
+    penaltyScores {
+      penaltyNumber
+      side
+      shotResult
+    }
+  }
+}

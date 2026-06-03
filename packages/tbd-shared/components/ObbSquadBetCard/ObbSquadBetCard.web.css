@@ -1,0 +1,21 @@
+.titleContainer {
+  display: flex;
+
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font: var(--card-title-typography);
+  color: var(--card-title-colour);
+  text-decoration-line: var(--card-title-typography-text-decoration-line);
+  text-transform: var(--card-title-typography-text-transform);
+  letter-spacing: var(--card-title-typography-letter-spacing);
+}
+
+.outcomeLabel {
+  font: var(--squad-bet-card-label-typography);
+  color: var(--squad-bet-card-label-colour);
+}

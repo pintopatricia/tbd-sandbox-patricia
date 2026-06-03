@@ -1,0 +1,4 @@
+{
+  "JIRA_BASE_URL": "{{tla_tbd/data/jenkins/jira_baseurl_e2e_tests}}",
+  "JIRA_TOKEN": "{{tla_tbd/data/jenkins/jira_token_e2e_tests}}"
+}

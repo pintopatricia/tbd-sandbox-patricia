@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@drawable/ic_splash_background">
+
+  <ImageView
+    android:id="@+id/imageViewAppLogo"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/ic_splash_logo"
+    android:layout_marginBottom="16dp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toTopOf="@+id/textViewPartnership"
+    app:layout_constraintVertical_chainStyle="packed" />
+
+  <TextView
+    android:id="@+id/textViewPartnership"
+    android:layout_width="277dp"
+    android:layout_height="wrap_content"
+    android:text="PROUD PARTNERS OF THE EFL AND BRITISH HEART FOUNDATION"
+    android:textAlignment="center"
+    android:textColor="@color/splash_blue_120"
+    android:textSize="16sp"
+    android:textStyle="italic"
+    android:fontFamily="@font/ssportsd"
+    android:layout_marginBottom="20dp"
+    app:layout_constraintBottom_toTopOf="@+id/partnershipLogos"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent" />
+
+  <LinearLayout
+    android:id="@+id/partnershipLogos"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:layout_marginBottom="40dp"
+    app:layout_constraintBottom_toTopOf="@+id/rlFooter"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent">
+
+    <ImageView
+      android:id="@+id/imageEflLogo"
+      android:layout_width="72dp"
+      android:layout_height="87.79dp"
+      android:src="@drawable/skybet_efl_logo"
+      android:scaleType="fitCenter" />
+
+    <View
+      android:id="@+id/divider"
+      android:layout_width="2dp"
+      android:layout_height="87.79dp"
+      android:layout_marginStart="30dp"
+      android:layout_marginEnd="30dp"
+      android:background="@color/divider_white_50" />
+
+    <ImageView
+      android:id="@+id/imageBhfLogo"
+      android:layout_width="75.432dp"
+      android:layout_height="87.79dp"
+      android:src="@drawable/british_heart_foundation"
+      android:scaleType="fitCenter" />
+  </LinearLayout>
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/rlFooter"
+    android:layout_width="match_parent"
+    android:layout_height="88dp"
+    android:background="@color/whiteOT"
+    app:layout_constraintBottom_toBottomOf="parent">
+
+    <ImageView
+      android:id="@+id/imageBottomViewIcons"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/safer_gambling"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toStartOf="@+id/textViewVersion"
+      app:layout_constraintHorizontal_chainStyle="packed" />
+
+    <TextView
+      android:id="@+id/textViewVersion"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="12dp"
+      android:text="@string/splashVersionCode"
+      android:textColor="@color/blackOT"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toEndOf="@+id/imageBottomViewIcons"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_chainStyle="packed" />
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

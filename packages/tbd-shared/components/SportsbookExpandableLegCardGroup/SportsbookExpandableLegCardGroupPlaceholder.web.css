@@ -1,0 +1,7 @@
+.placeholderContainer {
+  width: 100%;
+  min-height: 135px;
+
+  background-color: var(--card-background-colour);
+  border-radius: var(--card-border-radius);
+}

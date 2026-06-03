@@ -1,0 +1,42 @@
+fragment regulatoryData on RegulatoryData {
+  __typename
+  sections {
+    __typename
+    ... on RegulatorySectionGeneric {
+      sectionType
+    }
+    items {
+      __typename
+      ... on RegulatoryTextItem {
+        alignment
+        text
+      }
+      ... on RegulatoryLinkItem {
+        alignment
+        text
+        target
+        viewLink {
+          viewUrl
+        }
+      }
+      ... on RegulatoryImageItem {
+        imageURL
+        alignment
+        alt
+        target
+        link: url
+        viewLink {
+          viewUrn
+          viewUrl
+          viewDisplayMode
+        }
+      }
+      ... on RegulatorySessionItem {
+        alignment
+        timeFormat
+        sessionText: text
+        time
+      }
+    }
+  }
+}

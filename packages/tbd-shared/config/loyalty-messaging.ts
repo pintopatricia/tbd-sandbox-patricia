@@ -1,0 +1,1 @@
+export const LOYALTY_MESSAGE_DISMISS_TIMEOUT: number = 7 * 1000;

@@ -1,0 +1,32 @@
+.betButtonWrapper {
+  display: flex;
+
+  flex-shrink: 0;
+
+  width: var(--bet-button-width);
+  min-height: var(--bet-button-height);
+  margin-left: var(--spacing-1);
+  overflow: hidden;
+}
+
+.betButtonWrapper:first-child {
+  margin-left: 0;
+}
+
+.gridRunnerLine {
+  margin-top: var(--gutter-1);
+}
+
+.gridRunnerLine:first-child {
+  margin-top: 0;
+}
+
+.gridRunnerLine:first-child .betButtonWrapper {
+  border-top-left-radius: var(--spacing-1);
+  border-top-right-radius: var(--spacing-1);
+}
+
+.gridRunnerLine:last-child .betButtonWrapper {
+  border-bottom-right-radius: var(--spacing-1);
+  border-bottom-left-radius: var(--spacing-1);
+}

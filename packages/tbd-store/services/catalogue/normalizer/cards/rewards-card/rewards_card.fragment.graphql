@@ -1,0 +1,141 @@
+fragment rewardsCard on RewardsCard {
+  __typename
+  urn
+  benefitsPackages {
+    ... on BenefitsPackages {
+      rewardsStatus
+      lastMonthTradedMarkets
+      currentMonthTradedMarkets
+      currentMonth
+      nextMonth
+      qualifiedBenefitsPackage {
+        ... on BenefitsPackage {
+          commissionRate
+          requiredMarketBets
+          packageLevel
+          criteriaType
+          excludedBenefits {
+            type
+            accessLevel
+          }
+          benefits {
+            ... on Benefit {
+              hidden
+              accessLevel
+              type
+              valueLookup {
+                ... on ValueLookup {
+                  maxAmount {
+                    ... on ValueLookupItem {
+                      type
+                      value
+                    }
+                  }
+                  quantity {
+                    ... on ValueLookupItem {
+                      type
+                      value
+                    }
+                  }
+                  size {
+                    ... on ValueLookupItem {
+                      type
+                      value
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      chosenBenefitsPackage {
+        ... on BenefitsPackage {
+          commissionRate
+          requiredMarketBets
+          packageLevel
+          criteriaType
+          excludedBenefits {
+            type
+            accessLevel
+          }
+          benefits {
+            ... on Benefit {
+              hidden
+              accessLevel
+              type
+              valueLookup {
+                ... on ValueLookup {
+                  maxAmount {
+                    ... on ValueLookupItem {
+                      type
+                      value
+                    }
+                  }
+                  quantity {
+                    ... on ValueLookupItem {
+                      type
+                      value
+                    }
+                  }
+                  size {
+                    ... on ValueLookupItem {
+                      type
+                      value
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      availablePackages {
+        ... on BenefitsPackage {
+          commissionRate
+          requiredMarketBets
+          packageLevel
+          criteriaType
+          excludedBenefits {
+            type
+            accessLevel
+          }
+          benefits {
+            ... on Benefit {
+              hidden
+              accessLevel
+              type
+              valueLookup {
+                ... on ValueLookup {
+                  maxAmount {
+                    ... on ValueLookupItem {
+                      type
+                      value
+                    }
+                  }
+                  quantity {
+                    ... on ValueLookupItem {
+                      type
+                      value
+                    }
+                  }
+                  size {
+                    ... on ValueLookupItem {
+                      type
+                      value
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment rewardsCardPartial on RewardsCard {
+  __typename
+  urn
+}

@@ -1,0 +1,10 @@
+.cardContainer {
+  height: 100%;
+}
+
+.externalSettingsView {
+  display: flex;
+
+  flex-direction: column;
+  flex-grow: 1;
+}

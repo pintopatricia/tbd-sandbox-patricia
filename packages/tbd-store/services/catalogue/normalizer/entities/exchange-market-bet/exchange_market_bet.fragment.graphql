@@ -1,0 +1,28 @@
+fragment exchangeMarketBet on MarketBet {
+  __typename
+  urn
+  id
+  description
+  numOfOrders
+  numOfUnmatched
+  cashoutQuotes {
+    ...exchangeCashoutQuote
+  }
+  liability
+  betDelay
+  marketViewLink {
+    viewUrn
+    viewUrl
+  }
+  unmatchedEditViewLink {
+    viewUrn
+    viewUrl
+  }
+  exchangeLightMarketViewLink {
+    viewUrn
+    viewUrl
+  }
+  commission
+  profit
+  netProfit
+}

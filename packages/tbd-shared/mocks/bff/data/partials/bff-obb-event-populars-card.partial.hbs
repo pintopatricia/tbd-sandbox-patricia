@@ -1,0 +1,41 @@
+"__typename": "{{__typename}}{{^__typename}}ObbEventPopularsCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:obb:card:eventPopulars:aTlm5hIAACIAfTQD/e/35057423{{/urn}}",
+"obbEventPopularsCardTitle": {
+  {{#with obbEventPopularsCardTitle}}
+    {{> bff-obb-display-name}}
+  {{/with}}
+},
+"badgeLabel": {
+  {{#with badgeLabel}}
+    {{> bff-obb-display-name}}
+  {{/with}}
+},
+"numberOfVisibleBettingOpportunities": {{numberOfVisibleBettingOpportunities}}{{^numberOfVisibleBettingOpportunities}}3{{/numberOfVisibleBettingOpportunities}},
+"showPopularEvidence": {{#if showPopularEvidence}}true{{else}}false{{/if}},
+"showStats": {{#if showStats}}true{{else}}false{{/if}},
+"event": {
+  {{#with event}}
+    {{> bff-sportevent}}
+  {{/with}}
+},
+"popularBettingOpportunities": [
+  {{#each popularBettingOpportunities}}
+    {
+      "__typename": "ObbPopularBettingOpportunity",
+      "betCount": {{betCount}}{{^betCount}}10{{/betCount}},
+      "participants": [
+        {{#each participants}}
+          {
+            {{> bff-obb-participant}}
+          }
+          {{#unless @last}},{{/unless}}
+        {{/each}}
+      ],
+      "leg": {
+        {{#with leg}}
+        {{> bff-obb-leg}}
+        {{/with}}
+      }
+    }{{#unless @last}},{{/unless}}
+  {{/each}}
+]

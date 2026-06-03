@@ -1,0 +1,19 @@
+{{#with outcomeDefinitionExp}}
+{
+    "outcomeDefinitionEntries": [
+        {{#each operands}}
+          {
+            "outcomeDefinitionType": "OPERAND",
+            "outcomeDefinition": {{> bff-outcome-definition}}
+          }
+          {{#unless @last}},{{/unless}}
+        {{/each}}
+        {{#if operator}},
+        {
+          "operator": "{{operator}}",
+          "outcomeDefinitionType": "OPERATOR"
+        }
+        {{/if}}
+    ]
+}
+{{/with}}

@@ -1,0 +1,23 @@
+.container {
+  margin: 0;
+}
+
+.resultsContainer {
+  display: grid;
+
+  grid-template-columns: 45vw 45vw;
+
+  gap: var(--spacing-3) var(--spacing-3);
+
+  margin-top: var(--spacing-6);
+}
+
+.rectangleResult {
+  grid-column: 1 / 3;
+
+  height: 50vw;
+}
+
+.gameContainer {
+  margin-bottom: var(--spacing-3);
+}

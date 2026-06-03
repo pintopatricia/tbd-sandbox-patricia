@@ -1,0 +1,13 @@
+fragment footballFixtureWithStats on FootballFixture {
+  ...footballFixture
+  stats {
+    periodStatus
+    period
+    home {
+      redCards
+    }
+    away {
+      redCards
+    }
+  }
+}

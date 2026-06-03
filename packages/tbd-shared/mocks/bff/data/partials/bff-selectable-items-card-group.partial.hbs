@@ -1,0 +1,97 @@
+"__typename": "{{__typename}}{{^__typename}}SelectableItemsCardGroup{{/__typename}}",
+"urn": "{{{urn}}}{{^urn}}ppb:tbd:cardgroup:selectableItems:Ytki8REAACYA-5OJ/s/7{{/urn}}",
+"cardGroupTitle": {{#if cardGroupTitle}}"{{cardGroupTitle}}"{{else}}null{{/if}},
+{{#if selectableItemsCardGroupType}}
+"selectableItemsCardGroupType": "{{selectableItemsCardGroupType}}",
+{{/if}}
+{{#if filter}}
+  {{#with filter}}
+    "filter": {
+      {{#if countries}}
+        "countries": [
+          {{#each countries}}"{{this}}"{{#unless @last}},{{/unless}}{{/each}}
+        ],
+      {{/if}}
+      {{#if defaultSelected}}"defaultSelected": "{{defaultSelected}}"{{/if}}
+    },
+  {{/with}}
+{{/if}}
+{{#with full}}
+  "full":{
+    "edges": [
+      {{#each edges}}
+        {
+          {{#if __typename}}
+          "__typename": "{{__typename}}",
+          {{/if}}
+          {{#if isClosed}}
+          "isClosed": {{isClosed}},
+          {{/if}}
+          {{#if isDisabled}}
+          "isDisabled": {{isDisabled}},
+          {{/if}}
+          {{#if startTime}}
+            "startTime": "{{startTime}}",
+          {{/if}}
+          {{#if venue}}
+            "venue": "{{venue}}",
+          {{/if}}
+          {{#if promotion}}
+            "promotion": {
+            {{#with promotion}}
+              "title": "{{title}}{{^title}}Title{{/title}}",
+              "description": "{{description}}{{^description}}Description{{/description}}",
+              "signposting": "{{signposting}}{{^signposting}}MONEY_BACK{{/signposting}}"
+            {{/with}}
+            },
+          {{/if}}
+          {{#with node}}
+            "node": {
+              {{> bff-card-types }}
+            }
+          {{/with}}
+        }{{#unless @last}},{{/unless}}
+      {{/each}}
+    ]
+  },
+{{/with}}
+{{#with partials}}
+  "partials":{
+    "edges": [
+      {{#each edges}}
+        {
+          {{#if __typename}}
+          "__typename": "{{__typename}}",
+          {{/if}}
+          {{#if isClosed}}
+          "isClosed": {{isClosed}},
+          {{/if}}
+          {{#if isDisabled}}
+          "isDisabled": {{isDisabled}},
+          {{/if}}
+          {{#if startTime}}
+            "startTime": "{{startTime}}",
+          {{/if}}
+          {{#if venue}}
+            "venue": "{{venue}}",
+          {{/if}}
+          {{#if promotion}}
+            "promotion": {
+            {{#with promotion}}
+              "title": "{{title}}{{^title}}Title{{/title}}",
+              "description": "{{description}}{{^description}}Description{{/description}}",
+              "signposting": "{{signposting}}{{^signposting}}MONEY_BACK{{/signposting}}"
+            {{/with}}
+            },
+          {{/if}}
+          {{#with node}}
+            "node": {
+              "__typename": "{{__typename}}{{^__typename}}RaceMarketCard{{/__typename}}",
+              "urn": "{{{urn}}}{{^urn}}ppb:tbd:card:raceMarket:29901908.1410;WIN|3{{/urn}}"
+            }
+          {{/with}}
+        }{{#unless @last}},{{/unless}}
+      {{/each}}
+    ]
+  }
+{{/with}}

@@ -1,0 +1,16 @@
+const EXCHANGE_INLINE_PLACE_PANEL = "exchange-inline-place-panel";
+const INPUT = `${EXCHANGE_INLINE_PLACE_PANEL}-input`;
+const FREE_BETS = `${EXCHANGE_INLINE_PLACE_PANEL}-freebets`;
+const NOTIFICATIONS = `${EXCHANGE_INLINE_PLACE_PANEL}-notifications`;
+const PLACE_BUTTON = `${EXCHANGE_INLINE_PLACE_PANEL}-place-button`;
+const QUICKSTAKES = `${EXCHANGE_INLINE_PLACE_PANEL}-quickstakes`;
+const KEYBOARD = `${EXCHANGE_INLINE_PLACE_PANEL}-keyboard`;
+
+module.exports = {
+  INPUT,
+  FREE_BETS,
+  NOTIFICATIONS,
+  PLACE_BUTTON,
+  QUICKSTAKES,
+  KEYBOARD,
+};

@@ -1,0 +1,165 @@
+openapi: 3.0.3
+info:
+  title: "Bet Mutation Service - OpenAPI 3.0"
+  description: "Bet Mutation Service"
+  version: "0.0.1"
+
+paths:
+  /bet/mutationEligibility:
+    get:
+      tags:
+        - bet-mutation-eligibility-service
+      summary: Get BetMutation Eligibility
+      description: Get Bet Mutation Eligibility by Id
+      operationId: betEligibility
+      parameters:
+        - name: betIds
+          in: query
+          description: The Bet Id list to get Eligibility
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+        - name: X-AUTHENTICATION
+          in: header
+          required: false
+          description: Client Authentication token
+          schema:
+            type: string
+        - name: ssoid
+          in: cookie
+          required: false
+          description: Client Authentication token by cookie
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BetEligibilityResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BetEligibilityResponse'
+        '400':
+          description: Unknown Bet ID
+        '401':
+          description: User not authorized
+        '404':
+          description: Bet not found
+        '422':
+          description: Validation exception
+
+components:
+  schemas:
+    BetEligibilityResponse:
+      type: object
+      properties:
+        betEligibilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/BetEligibility'
+
+    BetEligibility:
+      type: object
+      properties:
+        betId:
+          type: string
+          example: 1234
+        betMutationEligibility:
+          type: array
+          items:
+            $ref: '#/components/schemas/BetMutationEligibility'
+        legs:
+          type: array
+          items:
+            $ref: '#/components/schemas/LegEligibility'
+
+    BetMutationEligibility:
+      type: object
+      properties:
+        mutation:
+          $ref: '#/components/schemas/BetMutationEligibilityType'
+        promoCode:
+          type: string
+
+    BetMutationEligibilityType:
+      type: string
+      enum:
+        - AccaFreeze
+        - None
+
+    LegMutationType:
+      type: string
+      enum:
+        - AccaFreeze
+        - None
+
+    LegEligibility:
+      type: object
+      properties:
+        legRef:
+          type: string
+        legMutationEligibility:
+          type: array
+          items:
+            $ref: '#/components/schemas/LegMutationEligibility'
+        legMutationDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/LegMutationDetails'
+
+    LegMutationEligibility:
+      type: object
+      properties:
+        mutation:
+          $ref: '#/components/schemas/LegMutationType'
+        mutationAvailability:
+          $ref: '#/components/schemas/LegAvailabilityDetail'
+        details:
+          $ref: '#/components/schemas/LegMutationEligibilityDetails'
+
+    LegMutationDetails:
+      nullable: true
+      oneOf:
+        - $ref: '#/components/schemas/AccaFreezeLegDetails'
+
+    AccaFreezeLegDetails:
+      type: object
+      properties:
+        freezeDetails:
+          $ref: '#/components/schemas/LiveGameData'
+
+    LiveGameData:
+      type: object
+      properties:
+        minute:
+          type: integer
+        homeTeamName:
+          type: string
+        homeTeamScore:
+          type: integer
+        awayTeamName:
+          type: string
+        awayTeamScore:
+          type: integer
+
+    LegMutationEligibilityDetails:
+      nullable: true
+      oneOf:
+        - $ref: '#/components/schemas/AccaFreezeLegEligibility'
+
+    AccaFreezeLegEligibility:
+      type: object
+      properties:
+        gameDetails:
+          $ref: '#/components/schemas/LiveGameData'
+
+    LegAvailabilityDetail:
+      type: string
+      enum:
+        - Available
+        - Unavailable
+        - Suspended

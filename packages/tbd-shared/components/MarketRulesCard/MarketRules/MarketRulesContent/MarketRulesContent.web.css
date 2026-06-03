@@ -1,0 +1,27 @@
+.container > * {
+  margin: var(--market-rules-section-container-padding);
+}
+
+.container > *:last-child {
+  margin: 0;
+}
+
+.title {
+  margin-top: var(--spacing-4);
+
+  color: var(--neutrals-text-default);
+}
+
+.footer {
+  padding: var(--spacing-3) 0 var(--spacing-6) 0;
+
+  color: var(--neutrals-text-secondary);
+}
+
+.container a {
+  font: var(--link-label-typography);
+  color: var(--link-label-colour);
+  text-decoration-line: var(--link-label-typography-text-decoration-line);
+  text-transform: var(--link-label-typography-text-transform);
+  letter-spacing: var(--link-label-typography-letter-spacing);
+}

@@ -1,0 +1,13 @@
+{{#if display_name}}
+    {{#with display_name}}
+        "display_name": [{
+            "type": "{{#if type}}{{type}}{{else}}null{{/if}}",
+            "text": "{{#if text}}{{text}}{{else}}null{{/if}}"
+        }]
+    {{/with}}
+{{else}}
+        "display_name": [{
+            "type": "heading1",
+            "text": "game1"
+        }]
+{{/if}}    

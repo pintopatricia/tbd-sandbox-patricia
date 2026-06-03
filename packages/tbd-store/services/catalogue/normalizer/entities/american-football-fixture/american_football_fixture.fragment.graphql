@@ -1,0 +1,26 @@
+fragment americanFootballFixture on AmericanFootballFixture {
+  __typename
+  urn
+  isAmericanFormat
+  runnerNames {
+    home
+    away
+  }
+  score {
+    home
+    away
+  }
+  clock {
+    americanFootballPeriod: period
+    timeElapsed
+    timeRemaining
+  }
+  quarterScores {
+    period
+    score {
+      home
+      away
+    }
+  }
+}
+

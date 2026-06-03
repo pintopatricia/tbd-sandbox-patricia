@@ -1,0 +1,46 @@
+{
+  "languages": [
+    {
+      "code": "es_419",
+      "name": "Espanol",
+      "expectedUrl": "/apuestas/es/",
+      "sportsBook": "Sportsbook",
+      "testKey": "PRPI-647"
+    },
+    {
+      "code": "de",
+      "name": "Deutsch",
+      "expectedUrl": "/wetten/de/",
+      "sportsBook": "Sportwetten",
+      "testKey": "PRPI-785"
+    },
+    {
+      "code": "hu",
+      "name": "Hungarian",
+      "expectedUrl": "/fogad%C3%A1s/hu/",
+      "sportsBook": "Sportfogadás",
+      "testKey": "PRPI-784"
+    },
+    {
+      "code": "no",
+      "name": "Norwegian",
+      "expectedUrl": "/oddsspill/no/",
+      "sportsBook": "Oddsspill",
+      "testKey": "PRPI-779"
+    },
+    {
+      "code": "ru",
+      "name": "Russian",
+      "expectedUrl": "/%D0%B4%D0%B5%D0%BB%D0%B0%D1%82%D1%8C-%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B8/ru/",
+      "sportsBook": "Букмекер",
+      "testKey": "PRPI-783"
+    },
+    {
+      "code": "en_GB",
+      "name": "English",
+      "expectedUrl": "/betting/",
+      "sportsBook": "Sportsbook",
+      "testKey": "PRPI-782"
+    }
+  ]
+}

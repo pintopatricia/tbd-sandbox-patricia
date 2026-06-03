@@ -1,0 +1,84 @@
+.container {
+  display: flex;
+
+  gap: var(--stats-group-horizontal-gap);
+
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+}
+
+.statZone {
+  display: flex;
+
+  flex: 1 0 0;
+
+  align-items: center;
+}
+
+.progressBar {
+  width: 100%;
+}
+
+.statZoneLabel {
+  min-width: var(--stats-group-label-sizing);
+
+  font: var(--stats-group-label-typography);
+  color: var(--stats-group-label-colour);
+}
+
+.statZoneLabelPlaceholder {
+  width: var(--stats-group-placeholder-width-sizing);
+  height: var(--stats-group-placeholder-height-sizing);
+
+  border-radius: var(--stats-group-placeholder-border-radius);
+}
+
+.mainLabel {
+  font: var(--stats-group-label-typography);
+  color: var(--stats-group-label-colour);
+}
+
+.mainLabelPlaceholder {
+  width: 33px;
+  height: 14px;
+}
+
+.secondaryLabel {
+  font: var(--stats-group-supporting-content-typography);
+  color: var(--stats-group-supporting-content-text-colour);
+}
+
+.secondaryLabelPlaceholder {
+  width: var(--stats-group-placeholder-supporting-content-width-sizing);
+  height: var(--stats-group-placeholder-supporting-content-height-sizing);
+
+  border-radius: (--stats-group-placeholder-border-radius),
+}
+
+.disabled {
+  color: var(--stats-group-disabled-label-colour);
+}
+
+.inverted {
+  text-align: end;
+}
+
+.textZone {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+}
+
+.textZonePlaceholder {
+  gap: var(--stats-group-placeholder-vertical-gap)
+}
+
+.statZonePlaceholder {
+  gap: var(--stats-group-placeholder-horizontal-gap)
+}

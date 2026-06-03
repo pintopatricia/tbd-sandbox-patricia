@@ -1,0 +1,56 @@
+.runnerInfo {
+  display: flex;
+
+  align-items: center;
+}
+
+.silkDefault {
+  flex: none;
+
+  width: auto;
+}
+
+.silkDefault,
+.silk {
+  height: 46px;
+  margin-right: var(--spacing-4);
+}
+
+.runnerContainer {
+  overflow: hidden;
+
+  white-space: nowrap;
+}
+
+.runner {
+  padding-bottom: var(--spacing-1);
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+.attribute {
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+.jockey {
+  padding-bottom: var(--spacing-half);
+}
+
+.runnerAttributeLabel {
+  padding-right: var(--spacing-1);
+
+  color: var(--neutrals-text-secondary);
+}
+
+.runnerAttribute {
+  padding-right: var(--spacing-1);
+}
+
+.runner,
+.attribute,
+.runnerAttribute {
+  color: var(--neutrals-text-default);
+}

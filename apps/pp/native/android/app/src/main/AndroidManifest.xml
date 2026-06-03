@@ -1,0 +1,145 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" package="com.paddypower.tbd">
+
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+  <uses-permission android:name="android.permission.CAMERA" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+
+    <!-- geoComply-->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+
+    <!-- Jumio - CET-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+  <application android:usesCleartextTraffic="true" android:name=".MainApplication" tools:replace="android:label,android:allowBackup" android:label="@string/I18N.ANDROID.APP_NAME" android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round" android:allowBackup="false" android:theme="@style/AppTheme">
+    <!-- facebook SDK -->
+    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+    <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
+    <meta-data android:name="CHANNEL" android:value="rnbfrb" />
+    <meta-data
+      android:name="com.google.firebase.messaging.default_notification_icon"
+      android:resource="@drawable/ic_notification" />
+    <meta-data android:name="expo.modules.updates.ENABLED" android:value="true"/>
+    <meta-data android:name="expo.modules.updates.EXPO_UPDATE_URL" android:value="https://tbdnota.tools.flutter.com/manifest"/>
+    <meta-data android:name="expo.modules.updates.EXPO_RUNTIME_VERSION" android:value="file:fingerprint"/>
+    <meta-data android:name="expo.modules.updates.EXPO_UPDATES_CHECK_ON_LAUNCH" android:value="NEVER"/>
+    <meta-data android:name="expo.modules.updates.EXPO_UPDATES_LAUNCH_WAIT_MS" android:value="0"/>
+    <meta-data android:name="expo.modules.updates.HAS_EMBEDDED_UPDATE" android:value="true"/>
+    <meta-data
+      android:name="expo.modules.updates.UPDATES_CONFIGURATION_REQUEST_HEADERS_KEY"
+      android:value='{"expo-channel-name":"pp-production"}'
+    />
+    <!-- Public certificate to validate signing from OTA -->
+    <meta-data
+      android:name="expo.modules.updates.CODE_SIGNING_CERTIFICATE"
+      android:value="-----BEGIN CERTIFICATE-----&#xD;&#xA;MIIC1zCCAb+gAwIBAgIJd+HALuiSBYH6MA0GCSqGSIb3DQEBCwUAMBUxEzARBgNV&#xD;&#xA;BAMTCkZsdXR0ZXJVS0kwHhcNMjYwNTE5MTQ0MTA1WhcNMzYwNTE5MTQ0MTA1WjAV&#xD;&#xA;MRMwEQYDVQQDEwpGbHV0dGVyVUtJMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB&#xD;&#xA;CgKCAQEAvXKcRv6Z9xRWhDfqjID94bGBCwyy0lzXob+mF1nIn3an5LGj0/vamQF4&#xD;&#xA;j/AtWJ6cV4Re/as2ovKwg77NA9Qi+o3NfPAbCLEE7K4mHUpQGcnVOe+OY/4oOHco&#xD;&#xA;KQ4XvSDwPu/YZb9bzOIi6AwwzYAkmwWnSNhwqIli8IsNgG/0/hCtLWMG9w3KsXVa&#xD;&#xA;nx37ICJUc67/zBEXnxPLVqF73kwuZM6R1E0C5xfCSZIsvhBm+tjNNzWnsoJ4BDS+&#xD;&#xA;RvOmDaURiSbd5T/vQ/XBSICVsqU7x15nvb/+XA3VkBCcdS6ryzqFdnxKJy+TB+Fs&#xD;&#xA;YySZSbLnbrt7O6y5PTN0/HeDlr04twIDAQABoyowKDAOBgNVHQ8BAf8EBAMCB4Aw&#xD;&#xA;FgYDVR0lAQH/BAwwCgYIKwYBBQUHAwMwDQYJKoZIhvcNAQELBQADggEBACYe0yeM&#xD;&#xA;zLaTJvM4zEzis/gbGjBczhA2Zb3ckloeyrnq0mtduVkMeJLaLWawCzxPLXwY49hR&#xD;&#xA;zpv23ceIIeCNeBGxZQbHkCFlxkHyuviv5faI5hfHuZgu7Bkx7vH4YentE3TSsgba&#xD;&#xA;SXZa1jTq9JtlQgf/uttdtfS49zKfzNjygnNEtFLoVLY6joBFJBiV6cAndaEilAW4&#xD;&#xA;vPnbUzD0hLJ235as3tlGikmSas/8vnjTIK/xfRI5ylZbvIg7VcqPXQs8I4P+fUkf&#xD;&#xA;rH+g+zmJeqAiTCsTNfKPDUzPS01JEmqEIdevc2s5K/tXlOAbE54yTEIyGzGOue+f&#xD;&#xA;5eVBG8MXNFGoDkY=&#xD;&#xA;-----END CERTIFICATE-----&#xD;&#xA;"
+    />
+    <meta-data
+      android:name="expo.modules.updates.CODE_SIGNING_METADATA"
+      android:value="{&quot;keyid&quot;:&quot;main&quot;,&quot;alg&quot;:&quot;rsa-v1_5-sha256&quot;}"
+    />
+    <activity
+      android:name=".SplashActivity"
+      android:theme="@style/SplashTheme"
+      android:label="@string/I18N.ANDROID.APP_NAME"
+      android:screenOrientation="portrait"
+      android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+    <activity
+      android:name=".MainActivity"
+      android:label="@string/I18N.ANDROID.APP_NAME"
+      android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+      android:screenOrientation="portrait"
+      android:launchMode="singleTask"
+      android:windowSoftInputMode="adjustResize"
+      android:exported="true">
+      <!-- App Scheme Config -->
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.INFO" />
+        <data android:scheme="bsm" />
+        <data android:scheme="bfe" />
+        <data android:scheme="whatsapp" />
+        <data android:scheme="twitter" />
+        <data android:scheme="sms" />
+        <data android:scheme="mailto" />
+        <data android:scheme="fb-messenger" />
+      </intent-filter>
+      <!-- App Links Config -->
+      <intent-filter android:autoVerify="true">
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.INFO" />
+        <data android:host="www.betfair.bet.br" android:pathPrefix="/apostas" android:scheme="https" />
+        <data android:host="www.betfair.com" android:pathPrefix="/betting" android:scheme="https" />
+        <data android:host="www.betfair.es" android:pathPrefix="/apuestas" android:scheme="https" />
+        <data android:host="www.betfair.it" android:pathPrefix="/scommesse" android:scheme="https" />
+        <data android:host="www.betfair.ro" android:pathPrefix="/pariuri" android:scheme="https" />
+        <data android:host="www.betfair.se" android:pathPrefix="/betting" android:scheme="https" />
+      </intent-filter>
+      <intent-filter android:autoVerify="true">
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.INFO" />
+        <data android:host="promotions.betfair.com" android:pathPrefix="" android:scheme="https" />
+        <data android:host="promos.betfair.com" android:pathPrefix="" android:scheme="https" />
+      </intent-filter>
+    </activity>
+    <activity android:name="com.facebook.FacebookActivity"
+        android:configChanges=
+                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+        android:label="@string/app_name" />
+    <activity
+        android:name="com.facebook.CustomTabActivity"
+        android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="@string/fb_login_protocol_scheme" />
+        </intent-filter>
+    </activity>
+    <provider
+      android:name="androidx.core.content.FileProvider"
+      android:authorities="${applicationId}.provider"
+      android:exported="false"
+      android:grantUriPermissions="true">
+      <meta-data tools:replace="android:resource"
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/filepath" />
+    </provider>
+    <service
+      android:name=".data.service.FcmMessagingService"
+      android:exported="false">
+      <intent-filter>
+        <action android:name="com.google.firebase.MESSAGING_EVENT" />
+      </intent-filter>
+    </service>
+  </application>
+  <queries>
+      <intent>
+          <action android:name="android.intent.action.VIEW" />
+          <data android:scheme="https"/>
+      </intent>
+  </queries>
+</manifest>

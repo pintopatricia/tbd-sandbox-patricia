@@ -1,0 +1,15 @@
+.footer {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--footer-vertical-gap-primary);
+
+  padding: var(--footer-padding);
+}
+
+@media screen and (min-width: 900px) {
+  .footer {
+    padding-top: 0;
+  }
+}

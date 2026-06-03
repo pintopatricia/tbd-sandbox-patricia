@@ -1,0 +1,35 @@
+"eventViewLinkFixture": {
+"__typename": "{{__typename}}{{^__typename}}FootballFixture{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:fixture:29359895{{/urn}}",
+"scheduledAt": "{{scheduledAt}}{{^scheduledAt}}2020-02-01T12:30:00Z{{/scheduledAt}}",
+"startedAt": {{#if startedAt}}"{{startedAt}}"{{else}}null{{/if}},
+{{#with home}}
+  "home": { {{> bff-football-team}} },
+{{/with}}
+{{#with away}}
+  "away": { {{> bff-football-team}} },
+{{/with}}
+"duration":{
+{{#if duration}}
+  {{#with duration}}
+    "period": "{{period}}{{^period}}REGULAR{{/period}}",
+    "status": "{{status}}{{^status}}PRE_MATCH{{/status}}",
+    {{#with clock}}
+      "clock":{
+      "minute": {{minute}}{{^minute}}24{{/minute}},
+      "second": {{second}}{{^second}}48{{/second}}
+      },
+    {{/with}}
+    {{#if stoppageMinutes}} "stoppageMinutes": {{stoppageMinutes}}{{^stoppageMinutes}}2{{/stoppageMinutes}} {{else}} "stoppageMinutes": null {{/if}}
+  {{/with}}
+{{else}}
+  "period":"REGULAR",
+  "status":"PRE_MATCH",
+  "clock":{
+  "minute":24,
+  "second":48
+  },
+  "stoppageMinutes": 2
+{{/if}}
+}
+}

@@ -1,0 +1,49 @@
+.contextualStatsComparisonContainer {
+  display: flex;
+
+  gap: var(--half-time-pulse-stat-container-spacing-gap);
+
+  padding: var(--half-time-pulse-stat-container-spacing-vertical-padding)
+    var(--half-time-pulse-stat-container-spacing-horizontal-padding);
+
+  background: var(--half-time-pulse-stat-container-background-colour);
+  border-radius: var(--half-time-pulse-stat-container-border-radius);
+}
+
+.text {
+  font: var(--half-time-pulse-stat-text-typography);
+  color: var(--half-time-pulse-stat-text-colour);
+}
+
+.contextualTextContainer {
+  display: flex;
+
+  flex: 1 0 0;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 0;
+}
+
+.contextualTextContainer .text {
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.statsContainer {
+  display: flex;
+
+  gap: var(--half-time-pulse-stats-horizontal-gap);
+
+  align-items: center;
+}
+
+.iconContainer {
+  display: flex;
+
+  min-width: var(--half-time-pulse-stat-card-icon-sizing);
+  height: var(--half-time-pulse-stat-card-icon-sizing);
+}

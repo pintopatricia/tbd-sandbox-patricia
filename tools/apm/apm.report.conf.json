@@ -1,0 +1,83 @@
+{
+  "DEFAULTS": {
+    "WPT": {
+      "connection": "4G"
+    }
+  },
+  "TLA": "tbd",
+  "REPORTING": {
+    "tables": {
+      "SPAM": {
+        "grafana": "https://grafana.app.betfair/d/pawjucjZk/channels-tbd-spam?orgId=1&from=now-7d&to=now&var-source=ie1%20-%20tsdb&var-service=unknown&var-page=All&var-application=web-mobile"
+      }
+    },
+    "mailing_list": ["rebuild.performance.report@paddypowerbetfair.com"],
+    "subject": "Betfair Rebuild Speed and Performance Weekly Update",
+    "benchmarks": {
+      "view": "firstView",
+      "calc": "median",
+      "metrics": {
+        "largestContentfulPaint": {
+          "lowerBound": 4.0,
+          "upperBound": 4.5
+        },
+        "cumulativeLayoutShift": {
+          "lowerBound": 0.3,
+          "upperBound": 0.35
+        },
+        "firstInputDelay": {
+          "lowerBound": 0.1,
+          "upperBound": 0.15
+        },
+        "totalBlockingTime": {
+          "lowerBound": 0.3,
+          "upperBound": 0.35
+        }
+      }
+    }
+  },
+  "PAGES": {
+    "SPAM": [
+      {
+        "page": "homepage",
+        "displayName": "Home Page"
+      },
+      {
+        "page": "football-event-page",
+        "displayName": "Football Event Page"
+      },
+      {
+        "page": "football-landing-page",
+        "displayName": "Football Landing Page"
+      },
+      {
+        "page": "horse-racing-landing-page",
+        "displayName": "Horse Racing Landing Page"
+      },
+      {
+        "page": "gaming-landing-page",
+        "displayName": "Gaming Landing Page"
+      },
+      {
+        "page": "my-account-landing-page",
+        "displayName": "My Account Landing Page"
+      },
+      {
+        "page": "my-bets-page-exchange-open",
+        "displayName": "My Bets Exchange Open"
+      },
+      {
+        "page": "my-bets-page-exchange-settled",
+        "displayName": "My Bets Exchange Settled"
+      },
+      {
+        "page": "my-bets-page-sportsbook-open",
+        "displayName": "My Bets Sportsbook Open"
+      },
+      {
+        "page": "my-bets-page-sportsbook-settled",
+        "displayName": "My Bets Sportsbook Settled"
+      }
+    ]
+  }
+}

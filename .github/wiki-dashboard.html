@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CI/CD Status Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Epilogue:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#080b0f;--surface:#0d1117;--surface2:#131920;--surface3:#0a0e14;
+  --border:#1c2333;--border2:#243047;--text:#cdd9e5;--muted:#545d68;
+  --ok:#3fb950;--ok-dim:rgba(63,185,80,.10);--ok-line:rgba(63,185,80,.25);
+  --fail:#f85149;--fail-dim:rgba(248,81,73,.10);--fail-line:rgba(248,81,73,.25);
+  --run:#d29922;--run-dim:rgba(210,153,34,.10);--run-line:rgba(210,153,34,.25);
+  --none:#3d444d;--none-dim:rgba(61,68,77,.20);--none-line:rgba(61,68,77,.30);
+  --accent:#1f6feb;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Epilogue',sans-serif;min-height:100vh;padding:48px 28px 80px;}
+body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:40px 40px;opacity:.12;pointer-events:none;z-index:0;}
+.wrap{position:relative;z-index:1;max-width:1400px;margin:0 auto;}
+.header{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:36px;flex-wrap:wrap;}
+.header-title{display:flex;align-items:center;gap:14px;}
+.signal{display:flex;flex-direction:column;gap:4px;}
+.signal span{display:block;width:11px;height:11px;border-radius:50%;}
+.signal span:nth-child(1){background:var(--fail)}.signal span:nth-child(2){background:var(--run)}.signal span:nth-child(3){background:var(--ok)}
+h1{font-size:clamp(1.4rem,3vw,2rem);font-weight:900;letter-spacing:-.03em;color:#fff;line-height:1;}
+h1 em{font-style:normal;color:var(--accent);}
+.meta{font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:var(--muted);letter-spacing:.08em;margin-top:5px;}
+.last-gen{font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:var(--muted);letter-spacing:.05em;text-align:right;}
+.totals{display:flex;gap:10px;margin-bottom:28px;flex-wrap:wrap;}
+.total-chip{display:flex;align-items:center;gap:8px;padding:7px 14px;border-radius:4px;border:1px solid var(--border);background:var(--surface);}
+.total-chip .num{font-size:1.2rem;font-weight:900;line-height:1;}
+.total-chip .lbl{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.total-chip.ok{border-color:var(--ok-line);}.total-chip.ok .num{color:var(--ok);}
+.total-chip.fail{border-color:var(--fail-line);}.total-chip.fail .num{color:var(--fail);}
+.total-chip.run{border-color:var(--run-line);}.total-chip.run .num{color:var(--run);}
+.total-chip.none{border-color:var(--none-line);}.total-chip.none .num{color:var(--none);}
+.category{margin-bottom:32px;animation:fadeUp .3s ease both;}
+.category:nth-child(2){animation-delay:.05s}.category:nth-child(3){animation-delay:.10s}.category:nth-child(4){animation-delay:.15s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.category-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.category-icon{font-size:1rem;}
+.category-name{font-family:'IBM Plex Mono',monospace;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.wf-table{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.wf-table thead tr th{background:var(--surface2);font-family:'IBM Plex Mono',monospace;font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:8px 14px;border-bottom:1px solid var(--border);text-align:center;}
+.wf-table thead tr.row-brand-names th{background:var(--surface3);font-size:.6rem;padding:7px 10px;}
+.wf-table thead tr.row-jobs th{background:var(--surface2);font-size:.56rem;padding:5px 10px;opacity:.7;border-bottom:2px solid var(--border2);}
+.wf-col{text-align:left !important;}
+.wf-spacer{text-align:left !important;background:var(--surface2) !important;}
+.brand-group-border{border-left:1px solid var(--border2) !important;}
+.wf-table tbody td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.wf-table tbody tr:last-child td{border-bottom:none;}
+.wf-table tbody tr:hover td{background:rgba(255,255,255,.012);}
+.wf-name-cell{border-right:1px solid var(--border2);white-space:nowrap;}
+.wf-name{font-weight:600;font-size:.8rem;color:var(--text);}
+.cell-center{text-align:center;}
+.status-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:3px;font-family:'IBM Plex Mono',monospace;font-size:.62rem;font-weight:600;letter-spacing:.06em;text-decoration:none;transition:opacity .15s,transform .12s;white-space:nowrap;}
+.status-chip:hover{opacity:.75;transform:translateY(-1px);}
+.status-chip.ok{background:var(--ok-dim);border:1px solid var(--ok-line);color:var(--ok);}
+.status-chip.fail{background:var(--fail-dim);border:1px solid var(--fail-line);color:var(--fail);}
+.status-chip.run{background:var(--run-dim);border:1px solid var(--run-line);color:var(--run);}
+.status-chip.none{background:var(--none-dim);border:1px solid var(--none-line);color:var(--none);cursor:default;}
+.status-dot{width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0;}
+.status-chip.run .status-dot{animation:pulse 1.2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.6)}}
+.chip-wrap{display:flex;flex-direction:column;align-items:center;gap:2px;}
+.chip-meta{font-family:'IBM Plex Mono',monospace;font-size:.55rem;color:var(--muted);letter-spacing:.03em;}
+.brand-0{color:#58a6ff !important;}.brand-1{color:#e3b341 !important;}.brand-2{color:#56d364 !important;}.brand-3{color:#ff7b72 !important;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <div class="header-title">
+      <div class="signal"><span></span><span></span><span></span></div>
+      <div>
+        <h1>CI/CD <em>Status Board</em></h1>
+        <div class="meta">// LAST RUN PER WORKFLOW × BRAND — AUTO-UPDATED ON MASTER</div>
+      </div>
+    </div>
+    <div class="last-gen" id="lastGen">—</div>
+  </div>
+  <div class="totals" id="totals"></div>
+  <div id="board"></div>
+</div>
+<script>
+const EMBEDDED = "__DASHBOARD_DATA_PLACEHOLDER__";
+
+function classFor(s,c){
+  if(s==='in_progress'||s==='queued')return'run';
+  if(c==='success')return'ok';
+  if(c==='failure'||c==='timed_out')return'fail';
+  return'none';
+}
+function labelFor(s,c){
+  if(s==='in_progress')return'RUN';
+  if(s==='queued')return'QUEUE';
+  if(!c||s==='no_run')return'—';
+  return{success:'✓',failure:'✗',timed_out:'T/O',cancelled:'SKIP',skipped:'SKIP'}[c]||c.slice(0,4).toUpperCase();
+}
+function timeAgo(iso){
+  if(!iso)return'';
+  const d=Math.floor((Date.now()-new Date(iso))/1000);
+  if(d<60)return d+'s ago';if(d<3600)return Math.floor(d/60)+'m ago';
+  if(d<86400)return Math.floor(d/3600)+'h ago';return Math.floor(d/86400)+'d ago';
+}
+function formatDate(iso){
+  if(!iso)return'—';
+  return new Date(iso).toLocaleString('en-GB',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
+}
+function chip(s,c,url,num,updatedAt,showMeta,runName){
+  const cls=classFor(s,c),label=labelFor(s,c),ago=timeAgo(updatedAt);
+  const tag=url?'a':'span';
+  const tooltip=runName?` title="${runName.replace(/"/g,'&quot;')}"`:''
+  const attrs=url?`href="${url}" target="_blank" rel="noopener"${tooltip}`:tooltip;
+  const meta=showMeta&&(num||ago)?`<span class="chip-meta">${[num?'#'+num:'',ago].filter(Boolean).join(' · ')}</span>`:'';
+  return`<div class="chip-wrap"><${tag} class="status-chip ${cls}" ${attrs}><span class="status-dot"></span>${label}</${tag}>${meta}</div>`;
+}
+function render(data){
+  document.getElementById('lastGen').innerHTML='// updated '+formatDate(data.generated);
+  const counts={ok:0,fail:0,run:0,none:0};
+  for(const cat of data.categories)
+    for(const wf of cat.workflows)
+      for(const b of wf.brands){
+        if(wf.has_jobs&&b.jobs&&b.jobs.length)for(const j of b.jobs)counts[classFor(j.status,j.conclusion)]++;
+        else counts[classFor(b.status,b.conclusion)]++;
+      }
+  document.getElementById('totals').innerHTML=[
+    {cls:'ok',label:'Passing',n:counts.ok},{cls:'fail',label:'Failed',n:counts.fail},
+    {cls:'run',label:'Running',n:counts.run},{cls:'none',label:'No Run',n:counts.none}
+  ].filter(t=>t.n>0).map(t=>`<div class="total-chip ${t.cls}"><span class="num">${t.n}</span><span class="lbl">${t.label}</span></div>`).join('');
+
+  const brands=data.brands;
+  document.getElementById('board').innerHTML=data.categories.map(cat=>{
+    const anyHasJobs=cat.workflows.some(w=>w.has_jobs&&w.job_names&&w.job_names.length);
+    let header='';
+    if(anyHasJobs){
+      const refWf=cat.workflows.find(w=>w.has_jobs&&w.job_names&&w.job_names.length);
+      const jobs=refWf?refWf.job_names:['status'];
+      header+=`<tr class="row-brand-names"><th class="wf-spacer"></th>${brands.map((b,bi)=>`<th colspan="${jobs.length}" class="brand-${bi}${bi>0?' brand-group-border':''}">${b.toUpperCase()}</th>`).join('')}</tr>`;
+      header+=`<tr class="row-jobs"><th class="wf-spacer"></th>${brands.map((b,bi)=>jobs.map((j,ji)=>`<th class="${bi>0&&ji===0?'brand-group-border':''}">${j}</th>`).join('')).join('')}</tr>`;
+    } else {
+      header+=`<tr><th class="wf-col">Workflow</th>${brands.map((b,bi)=>`<th class="brand-${bi}${bi>0?' brand-group-border':''}">${b.toUpperCase()}</th>`).join('')}</tr>`;
+    }
+    const rows=cat.workflows.map(wf=>{
+      const cells=brands.map((b,bi)=>{
+        const bd=wf.brands.find(x=>x.brand===b)||{};
+        if(wf.has_jobs&&wf.job_names&&wf.job_names.length){
+          return wf.job_names.map((jn,ji)=>{
+            const jd=(bd.jobs||[]).find(j=>j.name&&j.name.toLowerCase().includes(jn.toLowerCase()))||{};
+            return`<td class="cell-center${bi>0&&ji===0?' brand-group-border':''}">${chip(jd.status,jd.conclusion,jd.url,bd.run_number,bd.updated_at,ji===0,bd.run_name)}</td>`;
+          }).join('');
+        }
+        return`<td class="cell-center${bi>0?' brand-group-border':''}">${chip(bd.status,bd.conclusion,bd.url,bd.run_number,bd.updated_at,true,bd.run_name)}</td>`;
+      }).join('');
+      return`<tr><td class="wf-name-cell"><span class="wf-name">${wf.name}</span></td>${cells}</tr>`;
+    }).join('');
+    return`<div class="category"><div class="category-header"><span class="category-icon">${cat.icon}</span><span class="category-name">${cat.name}</span></div><table class="wf-table"><thead>${header}</thead><tbody>${rows}</tbody></table></div>`;
+  }).join('');
+}
+(async()=>{
+  let data=null;
+  if(typeof EMBEDDED==='string'&&EMBEDDED.trim().startsWith('{'))try{data=JSON.parse(EMBEDDED);}catch(e){}
+  if(!data)try{const r=await fetch('dashboard-data.json');if(r.ok)data=await r.json();}catch(e){}
+  if(!data){document.getElementById('board').innerHTML='<p style="font-family:monospace;color:#f85149;padding:20px">⚠ No data. Run the update-ci-dashboard workflow first.</p>';return;}
+  render(data);
+})();
+</script>
+</body>
+</html>

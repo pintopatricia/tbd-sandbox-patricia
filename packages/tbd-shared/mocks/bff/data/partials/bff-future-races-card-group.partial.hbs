@@ -1,0 +1,78 @@
+"__typename": "{{__typename}}{{^__typename}}FutureRacesCardGroup{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:cardgroup:filtered#1{{/urn}}",
+"filteredCouponTitle": {{#if title}}"{{title}}"{{else}}null{{/if}},
+{{#with filterOptions}}
+"filterOptions": {
+    {{#with monthFilter}}
+    "monthFilter": {
+        "urn": "{{urn}}",
+        {{#if defaultOptions}}
+        "defaultOptions": [
+          {{#each defaultOptions}}
+          {
+            "urn": "{{urn}}",
+            "date": "{{date}}"
+        }
+        {{#unless @last}},{{/unless}}
+     {{/each}}
+     ],
+     {{else}}
+     "defaultOptions": null,
+     {{/if}}
+        "availableOptions":[
+        {{#each availableOptions}}
+            {
+                "urn": "{{urn}}",
+                "date": "{{date}}"
+            }
+            {{#unless @last}},{{/unless}}
+        {{/each}}
+        ]
+    }
+    {{/with}}
+    {{#if countriesFilter}}{{#if monthFilter}},{{/if}}{{/if}}
+    {{#with countriesFilter}}
+    "countriesFilter": {
+        "urn": "{{urn}}",
+        {{#if defaultOptions}}
+          "defaultOptions": [
+            {{#each defaultOptions}}
+              {
+                  "urn": "{{urn}}",
+                  "name": "{{name}}"
+              }
+              {{#unless @last}},{{/unless}}
+            {{/each}}
+          ],
+          {{else}}
+          "defaultOptions": null,
+          {{/if}}
+        "availableOptions":[
+        {{#each availableOptions}}
+            {
+                "urn": "{{urn}}",
+                "name": "{{name}}"
+            }
+            {{#unless @last}},{{/unless}}
+        {{/each}}
+        ]
+    }
+    {{/with}}
+},
+{{/with}}
+{{#with full}}
+    "full":{
+        {{> bff-items }}
+    },
+{{/with}}
+{{#with partials}}
+"partials": {
+    {{#with pageInfo}}
+    "pageInfo": {
+        "hasNextPage": {{hasNextPage}}{{^hasNextPage}}null{{/hasNextPage}}
+    },
+    {{/with}}
+    {{> bff-partial-items }}
+},
+{{/with}}
+"defaultMarketTab": "{{#if defaultMarketTab}}{{defaultMarketTab}}{{else}}EXCHANGE{{/if}}"

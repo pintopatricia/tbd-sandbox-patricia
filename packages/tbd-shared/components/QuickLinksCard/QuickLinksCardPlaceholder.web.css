@@ -1,0 +1,16 @@
+.placeholder {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.placeholderContainer {
+  height: 146px;
+}
+
+.placeholderTitle {
+  width: 50%;
+  height: 24px;
+}

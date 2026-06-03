@@ -1,0 +1,18 @@
+"id": "{{id}}",
+{{#if price}}
+  "price": {
+    {{#with price}}
+      {{> bff-sportsbook-odds}}
+    {{/with}}
+  },
+{{/if}}
+"result": {
+  {{#with result}}
+    "resultCode": "{{resultCode}}",
+    {{#if errorDetails}}
+      "errorDetails": "{{errorDetails}}",
+    {{/if}}
+   "__typename": "{{__typename}}{{^__typename}}ObbResult{{/__typename}}"
+  {{/with}}
+},
+"__typename": "{{__typename}}{{^__typename}}ObbQuote{{/__typename}}"

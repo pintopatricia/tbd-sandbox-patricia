@@ -1,0 +1,39 @@
+# .github/actions/slack-notification/action.yml
+name: "Send Failure Slack Notification"
+description: "Send a Slack message when a PR is removed from queue due to failures."
+inputs:
+  slack-webhook-url:
+    description: "Slack webhook token"
+    required: true
+  job-name:
+    description: "Name of the job that failed"
+    required: true
+  allure-report-url:
+    description: "URL to the Allure report for the failed job"
+    required: false
+runs:
+  using: "composite"
+  steps:
+    - name: Get PR number
+      shell: bash
+      id: get_pr_ref
+      run: |
+        echo "number=$(echo "${{ github.ref }}" | sed -n 's|.*/pr-\([0-9]*\)-.*|\1|p')" >> $GITHUB_OUTPUT
+    - name: Get Allure text
+      shell: bash
+      id: get_allure_text
+      run: |
+        if [ -z "${{ inputs.allure-report-url }}" ]; then
+          echo "allure_text=" >> $GITHUB_OUTPUT
+        else
+          echo "allure_text=| <${{ inputs.allure-report-url }}|View Report>" >> $GITHUB_OUTPUT
+        fi
+    - name: Send message to Slack using Slack App
+      uses: slackapi/slack-github-action@v2.0.0
+      with:
+        method: chat.postMessage
+        token: ${{ inputs.slack-webhook-url }}
+        payload: |
+          channel: '#tbd-alerts'
+          text: "⚠️ Job *${{ inputs.job-name }}* has failed for PR <https://github.com/${{ github.repository }}/pull/${{ steps.get_pr_ref.outputs.number }}|${{ steps.get_pr_ref.outputs.number }}> ⚠️\n
+            <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Workflow> ${{ steps.get_allure_text.outputs.allure_text }}"

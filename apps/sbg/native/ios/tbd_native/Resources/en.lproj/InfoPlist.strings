@@ -1,0 +1,3 @@
+NSCameraUsageDescription = "Pressing OK, will allow you to upload an image or send us a photo to verify your account.";
+NSFaceIDUsageDescription = "Enabling Face ID allows you quick and secure access to your account.";
+NSUserTrackingUsageDescription = "Your data will be used to offer you a more personalised experience in Navigation, Messaging, Sporting Events and Promotions.";

@@ -1,0 +1,57 @@
+.card {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  padding: var(--spacing-2);
+  overflow-y: hidden;
+
+  border-radius: 4px;
+}
+
+.goal {
+  color: var(--agnostic-neutrals-text-default);
+
+  background: var(--signposting-indicators-rich-content-icon-warning);
+}
+
+.ownGoal {
+  color: var(--neutrals-text-default);
+
+  background-color: var(--neutrals-background-elevation2);
+}
+
+.card.away {
+  align-items: flex-start;
+
+  text-align: left;
+}
+
+.card.home {
+  align-items: flex-end;
+
+  text-align: right;
+}
+
+.goalImage {
+  position: absolute;
+
+  width: 56px;
+  height: 56px;
+}
+
+.goalImageAway {
+  right: -12px;
+  bottom: -12px;
+}
+
+.goalImageHome {
+  bottom: -12px;
+  left: -12px;
+}
+
+.text {
+  position: relative;
+}

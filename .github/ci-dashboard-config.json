@@ -1,0 +1,56 @@
+{
+  "brands": ["bf", "sbg"],
+  "categories": [
+    {
+      "name": "iOS",
+      "icon": "🍏",
+      "workflows": [
+        {
+          "name": "iOS Release",
+          "file": "ios-release.yml"
+        },
+        {
+          "name": "Trigger iOS Pipeline",
+          "file": "trigger-ios-pipeline.yml"
+        },
+        {
+          "name": "iOS Pipeline",
+          "file": "ios-pipeline.yml"
+        },
+        {
+          "name": "Build iOS App",
+          "file": "build-ios.yml"
+        },
+        {
+          "name": "iOS Tests",
+          "file": "ios-pipeline.yml",
+          "jobs": ["visual", "E2E"]
+        }
+      ]
+    },
+    {
+      "name": "Android",
+      "icon": "🤖",
+      "workflows": [
+        {
+          "name": "Android Release",
+          "file": "android-release.yml"
+        },
+        {
+          "name": "Android Tests",
+          "file": "android-tests.yml",
+          "jobs": ["visual", "regression"]
+        },
+        {
+          "name": "Build Android App",
+          "file": "build-android.yml"
+        }
+      ]
+    },
+    {
+      "name": "Core",
+      "icon": "⚙️",
+      "workflows": []
+    }
+  ]
+}

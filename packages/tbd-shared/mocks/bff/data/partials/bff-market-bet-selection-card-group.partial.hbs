@@ -1,0 +1,15 @@
+"__typename": "MarketBetSelectionCardGroup",
+"urn": "{{urn}}{{^urn}}ppb:tbd:cardgroup:marketBetSelectionCard:1.167249009|OPEN{{/urn}}",
+"betCardGroupURN": "{{betCardGroupURN}}{{^betCardGroupURN}}ppb:tbd:card:betCardGroup:123{{/betCardGroupURN}}",
+"marketBetCardURN": "{{marketBetCardURN}}{{^marketBetCardURN}}ppb:tbd:card:marketBetCard:000{{/marketBetCardURN}}",
+"marketBetCardGroupURN": "{{marketBetCardGroupURN}}{{^marketBetCardGroupURN}}ppb:tbd:card:marketBetCardGroup:666{{/marketBetCardGroupURN}}",
+{{#with full}}
+"full": {
+  {{> bff-items }}
+},
+{{/with}}
+{{#with partials}}
+"partials": {
+  {{> bff-partial-items }}
+}
+{{/with}}

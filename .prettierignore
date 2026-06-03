@@ -1,0 +1,16 @@
+# Folders
+apps/bf/native/android/
+apps/bf/native/ios/
+apps/sbg/native/android/
+apps/sbg/native/ios/
+**/node_modules/
+**/coverage/
+**/dist/
+**/.out/
+reports/
+
+# Files
+packages/tbd-tests/web/specs/e2e/bf/config-templates/nxt/login-local.json
+packages/tbd-tests/web/specs/e2e/bf/config-templates/prod/login-local.json
+packages/tbd-tests/web/specs/e2e/sbg/config-templates/nxt/login-local.json
+packages/tbd-tests/web/specs/e2e/sbg/config-templates/prod/login-local.json

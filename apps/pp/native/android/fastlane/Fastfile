@@ -1,0 +1,160 @@
+require_relative "lib/helpers"
+
+default_platform(:android)
+
+platform :android do
+  before_all do |lane|
+    if lane != :inhouseDeployFirebase && lane != :inhouseDebugDeployFirebase && lane!=:buildAndDeployArtifactoryApp && lane!=:buildReleaseBundle && lane!=:buildReleaseBundleBrazil && lane !=:deployStoreApp && lane !=:deployFirebaseApp && lane !=:deployAWS
+      gradle(task: "clean")
+    end
+  end
+
+  after_each do |lane|
+    if lane != :inhouseDeployFirebase && lane != :inhouseDebugDeployFirebase && lane!=:buildAndDeployArtifactoryApp && lane!=:buildReleaseBundle && lane!=:buildReleaseBundleBrazil && lane !=:deployStoreApp && lane !=:deployFirebaseApp && lane !=:deployAWS
+      reset_git_repo(
+        force: true,
+        files: [
+          "../android/**/res/**/ic_launcher.png",
+          "../android/**/res/**/ic_launcher_round.png"
+        ]
+      )
+    end
+  end
+
+  desc "Builds the store app and deploys to artifactory"
+  lane :buildAndDeployArtifactoryApp do |options|
+    # changes push notifications environment to production
+    # keys / secrets can be found on company https://www.airship.com/ account
+    set_properties_value(
+      path: "./app/src/main/assets/airshipconfig.properties",
+      key: "inProduction",
+      value: true
+    )
+    set_properties_value(
+      path: "./app/src/main/assets/airshipconfig.properties",
+      key: "productionAppKey",
+      value: "h8EOo356RQOeP5ratitncg"
+    )
+    set_properties_value(
+      path: "./app/src/main/assets/airshipconfig.properties",
+      key: "productionAppSecret",
+      value: "NYNeuZMDQpuhkmC4QlPZRA"
+    )
+
+    gradle(task: "assemblePlayRelease")
+  end
+
+  desc "Builds the store app (aab)"
+  lane :buildReleaseBundle do |options|
+    # changes push notifications environment to production
+    # keys / secrets can be found on company https://www.airship.com/ account
+    set_properties_value(
+      path: "./app/src/main/assets/airshipconfig.properties",
+      key: "inProduction",
+      value: true
+    )
+    set_properties_value(
+      path: "./app/src/main/assets/airshipconfig.properties",
+      key: "productionAppKey",
+      value: "h8EOo356RQOeP5ratitncg"
+    )
+    set_properties_value(
+      path: "./app/src/main/assets/airshipconfig.properties",
+      key: "productionAppSecret",
+      value: "NYNeuZMDQpuhkmC4QlPZRA"
+    )
+
+    # TODO: Switch to enable parallel and max-workers once jenkins decomission is done
+    # gradle(task: "bundlePlayRelease", flags: "--max-workers 15 --parallel")
+    gradle(task: "bundlePlayRelease")
+
+  end
+
+  desc "Builds the store app for brazil (aab)"
+  lane :buildReleaseBundleBrazil do
+    # changes push notifications environment to production
+    # keys / secrets can be found on company https://www.airship.com/ account
+    set_properties_value(
+      path: "./app/src/main/assets/airshipconfig.properties",
+      key: "inProduction",
+      value: true
+    )
+    set_properties_value(
+      path: "./app/src/main/assets/airshipconfig.properties",
+      key: "productionAppKey",
+      value: "JEZ1qmKQQjmpKE6lF7bN5A"
+    )
+    set_properties_value(
+      path: "./app/src/main/assets/airshipconfig.properties",
+      key: "productionAppSecret",
+      value: "dhoddoYBRsq4P0TlTU0Edg"
+    )
+
+    gradle(task: "bundlePlayReleaseBrazil", flags: "--max-workers 15 --parallel")
+  end
+
+  desc "Deploys to firebase (apk)"
+  lane :deployFirebaseApp do
+    firebase_app_distribution(
+      app: "1:237660054779:android:264b95c0f4fd4857547c5e",
+      android_artifact_type: "APK",
+      android_artifact_path: "android_release-"  + ENV['RELEASE_BUILD_NUMBER'] + ".apk",
+      groups: 'bfrb-teams',
+      release_notes: "App target: Release: \n" + get_release_notes(),
+      firebase_cli_token: ENV['FIREBASE_CI_KEY'],
+      debug: true
+    )
+  end
+
+  desc "Deploys to play store (Internal track)"
+  lane :deployStoreApp do |options|
+    upload_to_play_store(
+      **options,
+      package_name: "com.paddypower.sportsbook",
+      aab: "android_release-"  + ENV['RELEASE_BUILD_NUMBER'] + ".aab",
+      skip_upload_apk: true,
+      track: "internal",
+      release_status: "draft",
+      changes_not_sent_for_review: true
+    )
+  end
+
+  desc "Deploys to AWS - DEV / PRD"
+  lane :deployAWS do |options|
+    aws_s3(
+      access_key: ENV['AWS_ACCESS_KEY_ID'],
+      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
+      bucket: ENV['AWS_BUCKET'],
+      region: ENV['AWS_DEFAULT_REGION'],
+      # Depending on the jenkins choice, deploy a versioned apk or a production ready apk
+      apk:  ENV['DEPLOY_ENV_PARAM'] == "DEV" ? "android_release-" + ENV['RELEASE_BUILD_NUMBER'] + ".apk" : "betfair-sports-betting.apk",
+      acl: "bucket-owner-full-control",
+      path: 'android/',
+      upload_metadata: false
+    )
+  end
+
+  desc "Upload our In-House app to Firebase on CI for the stakeholders"
+  lane :inhouseDeployFirebase do
+    firebase_app_distribution(
+      app: "1:119308048373:android:fdd0b0eed9bb81318972bc",
+      apk_path: "app/build/outputs/apk/play/inhouse/Betfair-" + ENV['BUILD_NUMBER'] + ".apk",
+      groups: 'bfrb-teams',
+      release_notes: "App target: Play \n" + get_release_notes_from_file(),
+      firebase_cli_token: ENV['FIREBASE_CI_KEY'],
+      debug: true
+    )
+  end
+
+  desc "Upload our QA apps to Firebase on CI for the stakeholders"
+  lane :inhouseDebugDeployFirebase do
+    firebase_app_distribution(
+      app: "1:119308048373:android:892a65d8a5c464108972bc",
+      apk_path: "app/build/outputs/apk/play/debug/app-play-debug.apk",
+      groups: 'bfrb-teams',
+      release_notes: "App target: Play \n" + get_release_notes_from_file(),
+      firebase_cli_token: ENV['FIREBASE_CI_KEY'],
+      debug: true
+    )
+  end
+ end

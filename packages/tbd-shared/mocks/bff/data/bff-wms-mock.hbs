@@ -1,0 +1,24 @@
+{
+	"data": {
+		"MarketingMessages": {{#if MarketingMessages}}
+        [
+        {{#each MarketingMessages}}
+          {
+            "urn": "{{urn}}{{^urn}}ppb:tbd:modalElement:webMessage:486643674{{/urn}}",
+            "content": {
+            {{#with content}}
+               "title": "{{title}}{{^title}}ppb:tbd:modalElement:webMessage:486643674{{/title}}",
+               "templateUrl": "{{templateUrl}}{{^templateUrl}}ppb:tbd:modalElement:webMessage:486643674{{/templateUrl}}",
+               "templateHeight": {{templateHeight}}{{^templateHeight}}200{{/templateHeight}},
+               "templateWidth": {{templateWidth}}{{^templateWidth}}400{{/templateWidth}}
+            {{/with}}
+            }
+          }
+        {{#unless @last}},{{/unless}}
+        {{/each}}
+        ]
+    {{else}}
+    []
+    {{/if}}
+    }
+}

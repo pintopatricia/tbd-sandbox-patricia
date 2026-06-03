@@ -1,0 +1,21 @@
+fragment fullGamingSearchCardItems on GamingSearchCardConnection {
+  totalCount
+  edges {
+    node {
+      ...gameCard
+    }
+  }
+  pageInfo {
+    hasNextPage
+    endCursor
+  }
+}
+
+fragment partialsGamingSearchCardItems on GamingSearchCardConnection {
+  edges {
+    node {
+      urn
+      __typename
+    }
+  }
+}

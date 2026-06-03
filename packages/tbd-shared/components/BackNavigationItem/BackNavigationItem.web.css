@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+
+  align-items: center;
+
+  padding: var(--spacing-5) var(--spacing-3);
+
+  background-color: var(--page-highlighted-section-background-color);
+}
+
+.content {
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /* stylelint-disable-next-line */
+  font: var(--selector-title-typography);
+  color: var(--selector-text-title-colour);
+  text-align: left;
+}

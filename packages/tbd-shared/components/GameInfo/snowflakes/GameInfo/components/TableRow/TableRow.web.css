@@ -1,0 +1,71 @@
+:root {
+  --gray-200: #eaeaea;
+  --color-border-table: var(--gray-200);
+  --font-sans: "Sky Text", sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-size-base: 1rem;
+  --line-height-base: 1.45;
+  --letter-spacing-base: 0;
+  --gap-base: 8px;
+  --icon-size-row: 20px;
+}
+
+.tableRow {
+  display: flex;
+
+  gap: var(--gap-base);
+
+  width: 100%;
+  padding-top: var(--gap-base);
+  padding-bottom: var(--gap-base);
+
+  color: var(--game-info-text-content-text-colour);
+
+  border-bottom: 1px solid var(--color-border-table);
+}
+
+.rowLeftSide {
+  display: flex;
+
+  gap: var(--gap-base);
+
+  width: 100%;
+  height: fit-content;
+}
+
+.rowIcon {
+  display: flex;
+
+  width: var(--icon-size-row);
+  height: var(--icon-size-row);
+  margin-top: auto;
+  margin-bottom: auto;
+
+  color: var(--game-info-text-content-text-colour);
+}
+
+/* stylelint-disable property-disallowed-list */
+.rowTitle {
+  width: 100%;
+
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium, 500);
+  line-height: var(--line-height-base);
+  color: var(--game-info-text-content-text-colour);
+  letter-spacing: var(--letter-spacing-base);
+  vertical-align: middle;
+}
+
+.rowValue {
+  width: 100%;
+
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular, 400);
+  line-height: var(--line-height-base);
+  text-align: right;
+  letter-spacing: var(--letter-spacing-base);
+  vertical-align: middle;
+}

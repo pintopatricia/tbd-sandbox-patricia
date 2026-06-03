@@ -1,0 +1,77 @@
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+<shortcut
+  android:enabled="true"
+  android:icon="@drawable/football_icon"
+  android:shortcutId="football"
+  android:shortcutShortLabel="@string/I18N.APP_SHORTCUTS.FOOTBALL">
+  <intent
+    android:action="android.intent.action.VIEW"
+    android:data="https://skybet.com/football/s-1"
+    android:targetClass="com.skybet.tbd.MainActivity"
+    android:targetPackage="com.skybet.tbd.qa">
+    <extra
+      android:name="shortcutName"
+      android:value="Football" />
+    <extra
+      android:name="origin"
+      android:value="fromShortcut" />
+  </intent>
+</shortcut>
+
+<shortcut
+  android:enabled="true"
+  android:icon="@drawable/horse_racing_icon"
+  android:shortcutId="racing"
+  android:shortcutShortLabel="@string/I18N.APP_SHORTCUTS.RACING">
+  <intent
+    android:action="android.intent.action.VIEW"
+    android:data="https://skybet.com/horse-racing/s-7"
+    android:targetClass="com.skybet.tbd.MainActivity"
+    android:targetPackage="com.skybet.tbd.qa">
+    <extra
+      android:name="shortcutName"
+      android:value="Racing" />
+    <extra
+      android:name="origin"
+      android:value="fromShortcut" />
+  </intent>
+</shortcut>
+
+<shortcut
+  android:enabled="true"
+  android:icon="@drawable/in_play_icon"
+  android:shortcutId="inPlay"
+  android:shortcutShortLabel="@string/I18N.APP_SHORTCUTS.IN_PLAY">
+  <intent
+    android:action="android.intent.action.VIEW"
+    android:data="https://skybet.com/inplay/all/i-696e706c6179"
+    android:targetClass="com.skybet.tbd.MainActivity"
+    android:targetPackage="com.skybet.tbd.qa">
+    <extra
+      android:name="shortcutName"
+      android:value="In Play" />
+    <extra
+      android:name="origin"
+      android:value="fromShortcut" />
+  </intent>
+</shortcut>
+
+<shortcut
+  android:enabled="true"
+  android:icon="@drawable/virtuals_icon"
+  android:shortcutId="virtuals"
+  android:shortcutShortLabel="@string/I18N.APP_SHORTCUTS.VIRTUALS">
+  <intent
+    android:action="android.intent.action.VIEW"
+    android:data="https://skybet.com/view/d-virtuals"
+    android:targetClass="com.skybet.tbd.MainActivity"
+    android:targetPackage="com.skybet.tbd.qa">
+    <extra
+      android:name="shortcutName"
+      android:value="Virtuals" />
+    <extra
+      android:name="origin"
+      android:value="fromShortcut" />
+  </intent>
+</shortcut>
+</shortcuts>

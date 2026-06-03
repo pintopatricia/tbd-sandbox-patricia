@@ -1,0 +1,46 @@
+fragment imsPromotion on ImsPromotion {
+  __typename
+  urn
+  headline
+  subHeadline
+  bonusInstanceCode
+  ctaText
+  layout
+  status
+  timeLeft
+  wagerType
+  percentCompleted
+  bonusWagering
+  wageringLeft
+  bonusAwarded
+  currentBonusBalance
+  amountOnPendingWinnings
+  freeSpins {
+    initialFreeSpins
+    remainingFreeSpins
+  }
+  goldenChips {
+    initialGoldenChips
+    remainingGoldenChips
+    goldenChipsAmount
+  }
+  buyIn {
+    buyInMinValue
+    buyInMaxValue
+    boughtIn
+    intervals {
+      min
+      max
+      amount
+      percentage
+    }
+  }
+  image {
+    url
+    alt
+    dimensions {
+      width
+      height
+    }
+  }
+}

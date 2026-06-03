@@ -1,0 +1,15 @@
+"__typename": "{{__typename}}{{^__typename}}RaceViewLinkCard{{/__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:tbd:card:raceViewLink:7|30269293.1410{{/urn}}",
+"race": {
+  {{#if race}}
+    {{#with race}}
+      {{> bff-race }}
+    {{/with}}
+  {{/if}}
+},
+{{#with viewLink}}
+  "viewLink": {
+  "viewUrl": "{{viewUrl}}{{^viewUrl}}/horse-racing{{/viewUrl}}",
+  "viewUrn": "{{viewUrn}}{{^viewUrn}}ppb:tbd:view:sport:7{{/viewUrn}}"
+  }
+{{/with}}

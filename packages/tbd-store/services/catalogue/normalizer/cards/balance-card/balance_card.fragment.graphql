@@ -1,0 +1,36 @@
+fragment balanceCard on BalanceCard {
+  __typename
+  urn
+  wallets {
+    name
+  }
+  walletSections {
+    ... on WalletSectios {
+      __typename
+      key
+      label
+      name
+      walletRules {
+        ... on WalletRule {
+          __typename
+          name
+          hideIfZero
+          withCurrency
+          aggregationRules {
+            ... on WalletAggregationRule {
+              __typename
+              field
+              sign
+              wallet
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment balanceCardPartial on BalanceCard {
+  __typename
+  urn
+}

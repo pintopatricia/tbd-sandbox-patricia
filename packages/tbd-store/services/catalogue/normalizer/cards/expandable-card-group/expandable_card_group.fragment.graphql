@@ -1,0 +1,18 @@
+fragment expandableCardGroup on ExpandableCardGroup {
+  __typename
+  urn
+  expandableCardGroupTitle: title
+  isExpandable
+  isExpanded
+  full: items(first: $numberOfFilledCardsInCardGroup) {
+    ...fullExpandableCardGroupItems
+  }
+  partials: items {
+    ...partialsExpandableCardGroupItems
+  }
+}
+
+fragment expandableCardGroupPartial on ExpandableCardGroup {
+  __typename
+  urn
+}

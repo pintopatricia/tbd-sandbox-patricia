@@ -1,0 +1,30 @@
+{{#each this}}
+  {
+  "opponent":"{{opponent}}{{^opponent}}Reading{{/opponent}}",
+  "outcome":"{{outcome}}{{^outcome}}DRAW{{/outcome}}",
+  "side":"{{side}}{{^side}}HOME{{/side}}",
+  {{#if penaltyShootoutScore}}
+    {{#with penaltyShootoutScore}}
+      "penaltyShootoutScore" : {
+      "home": {{home}}{{^home}}2{{/home}},
+      "away": {{away}}{{^away}}2{{/away}}
+      },
+    {{/with}}
+  {{else}}
+    "penaltyShootoutScore": null,
+  {{/if}}
+  {{#if extraTimeScore}}
+    {{#with extraTimeScore}}
+      "extraTimeScore" : {
+      "home": {{home}}{{^home}}2{{/home}},
+      "away": {{away}}{{^away}}2{{/away}}
+      },
+    {{/with}}
+  {{else}}
+    "extraTimeScore": null,
+  {{/if}}
+  {{> bff-score }}
+  "startAt":"{{startAt}}{{^startAt}}2020-01-31T19:45:00Z{{/startAt}}"
+  }
+  {{#unless @last}},{{/unless}}
+{{/each}}

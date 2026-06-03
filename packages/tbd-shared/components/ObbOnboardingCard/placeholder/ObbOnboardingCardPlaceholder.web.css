@@ -1,0 +1,7 @@
+.stubCardPlaceholder {
+  width: var(--squad-bet-card-secondary-width);
+  height: 196px;
+
+  background-color: var(--card-background-colour);
+  border-radius: var(--card-border-radius);
+}

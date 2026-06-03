@@ -1,0 +1,3 @@
+NSCameraUsageDescription = "Premendo OK, potrai caricare un'immagine o inviarci una foto per verificare il tuo conto.";
+NSFaceIDUsageDescription = "Abilitando Face ID potrai accedere in modo rapido e sicuro al tuo conto.";
+NSUserTrackingUsageDescription = "I dati verranno utilizzati per offrire un'esperienza più personalizzata in navigazione, messaggistica, eventi sportivi e promozioni.";

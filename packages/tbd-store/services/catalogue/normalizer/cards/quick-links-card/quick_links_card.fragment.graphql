@@ -1,0 +1,25 @@
+fragment quickLinksCard on QuickLinksCard {
+  __typename
+  urn
+  quickLinksTitle: title
+  label {
+    ...displayName
+  }
+  accordionTitle
+  accordionExpanded
+  links {
+    label
+    viewLink {
+      viewUrn
+      viewUrl
+    }
+    target
+    icon
+  }
+  iconName
+}
+
+fragment quickLinksCardPartial on QuickLinksCard {
+  __typename
+  urn
+}

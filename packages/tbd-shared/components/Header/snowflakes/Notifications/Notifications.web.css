@@ -1,0 +1,33 @@
+.notificationsContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  width: 100%;
+  height: calc(100vh - var(--spacing-3));
+  padding-bottom: var(--spacing-3);
+
+  background-color: var(--sm-colours-background-static-neutral-base);
+}
+
+.notificationsHeader {
+  display: flex;
+
+  justify-content: space-between;
+
+  padding: var(--spacing-3) var(--spacing-3) 0 0;
+}
+
+.title {
+  padding-left: var(--spacing-3);
+
+  font: var(--selector-title-typography);
+}
+
+.closeIconContainer,
+.closeIconContainer svg {
+  width: var(--user-profile-header-close-icon-sizing);
+  height: var(--user-profile-header-close-icon-sizing);
+
+  fill: var(--user-profile-header-icon-close-colour);
+}

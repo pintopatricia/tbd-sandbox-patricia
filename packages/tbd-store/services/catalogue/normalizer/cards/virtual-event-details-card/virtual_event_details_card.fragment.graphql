@@ -1,0 +1,12 @@
+fragment virtualEventDetailsCard on VirtualEventDetailsCard {
+  __typename
+  urn
+  virtualEvent {
+    ...virtualEvent
+  }
+}
+
+fragment virtualEventDetailsCardPartial on VirtualEventDetailsCard {
+  __typename
+  urn
+}

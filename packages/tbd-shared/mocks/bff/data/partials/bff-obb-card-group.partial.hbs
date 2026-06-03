@@ -1,0 +1,43 @@
+"__typename":"{{__typename}}",
+"urn": "{{urn}}{{^urn}}ppb:obb:cardgroup:ZylnFBIAAB8AKIpz/e/33755137{{/urn}}",
+{{#with obbCardGroupTitle}}
+"obbCardGroupTitle": {
+    {{> bff-obb-display-name}}
+},
+{{/with}}
+"bettingWindowOffset": {{bettingWindowOffset}}{{^bettingWindowOffset}}24{{/bettingWindowOffset}},
+{{#with moreInfoLabel}}
+"moreInfoLabel": {
+  {{> bff-obb-display-name}}
+},
+{{/with}}
+"filterTags": [
+  {{#each filterTags}}
+    {
+      {{> bff-obb-filter-tag}}
+    }
+    {{#unless @last}},{{/unless}}
+  {{/each}}
+],
+"showFilterTags": {{showFilterTags}}{{^showFilterTags}}false{{/showFilterTags}},
+{{#with moreInfo}}
+"moreInfo": {
+  {{> bff-obb-more-info}}
+},
+{{/with}}
+{{#if obbCardGroupSections}}
+{{#with obbCardGroupSections}}
+  "obbCardGroupSections": {
+    {{> bff-obb-section}}
+  },
+  {{/with}}
+{{else}}
+  "obbCardGroupSections": {
+    "edges": []
+  },
+{{/if}}
+{{#with event}}
+"event":{
+    {{> bff-sportevent}}
+}
+{{/with}}

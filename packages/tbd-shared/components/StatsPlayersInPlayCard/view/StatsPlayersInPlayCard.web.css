@@ -1,0 +1,22 @@
+.container > section {
+  padding: var(--spacing-2) 0;
+}
+
+.swimlaneContainer {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: var(--stats-table-card-gap);
+
+  width: var(--swimlane-item-container-max-width);
+  padding: var(--stats-table-card-padding);
+
+  background-color: var(--stats-table-card-background-color);
+  border: var(--stats-table-card-border);
+  border-radius: var(--stats-table-card-border-radius);
+}
+
+.title {
+  color: var(--stats-table-card-title-color);
+}
